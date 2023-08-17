@@ -16,7 +16,11 @@ bingo get swagger
 
 ## Generate the Go client
 
-Once bingo & swagger are installed (see [Dependencies](#dependencies)), generate the client:
+You are ready to generate the client once bingo & swagger are installed (see [Dependencies](#dependencies)).
+
+To generate the client for a specific API, find the name of its tag and model in the [API specification](https://github.com/grafana/grafana/blob/main/public/api-merged.json). Then, set those as environment variables and run the command to generate it:
 ```bash
+export API_TAG=folders
+export MODEL=Folder
 make generate-client
 ```
