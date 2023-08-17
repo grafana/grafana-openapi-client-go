@@ -13,3 +13,10 @@ This project uses [bingo](https://github.com/bwplotka/bingo) (located in [.bingo
 go install github.com/bwplotka/bingo@latest
 bingo get swagger
 ```
+
+## Generate the Go client
+
+Once bingo & swagger are installed (see [Dependencies](#dependencies)), generate the client:
+```bash
+make generate-client
+```
