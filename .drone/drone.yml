@@ -9,7 +9,7 @@ platform:
 
 steps:
 - name: test
-  image: grafana/build-container:1.2.27
+  image: golang:1.20
   commands:
   - make test
 

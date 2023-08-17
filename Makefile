@@ -1,3 +1,5 @@
+include .bingo/Variables.mk
+
 .PHONY: drone, test
 
 drone:
