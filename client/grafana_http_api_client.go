@@ -10,7 +10,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/grafana/grafana-openapi-client-go/goclient/client/folders"
+	"github.com/grafana/grafana-openapi-client-go/client/folders"
 )
 
 // Default grafana HTTP API HTTP client.

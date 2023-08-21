@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/grafana/grafana-openapi-client-go/goclient/models"
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // UpdateFolderReader is a Reader for the UpdateFolder structure.

@@ -28,10 +28,8 @@ $(info Generate model '$(MODEL)')
 endif
 
 generate-client: ${SWAGGER}
-	mkdir -p ./goclient
 	$(SWAGGER) generate client \
 	-f https://raw.githubusercontent.com/grafana/grafana/${GRAFANA_TARGET_VERSION}/public/api-merged.json \
-	-t ./goclient \
 	--skip-validation \
 	--with-flatten=remove-unused \
 	--additional-initialism=DTO,API,OK,LDAP,ACL,SNS,CSV \
