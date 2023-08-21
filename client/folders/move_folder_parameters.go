@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/grafana/grafana-openapi-client-go/goclient/models"
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // NewMoveFolderParams creates a new MoveFolderParams object,
