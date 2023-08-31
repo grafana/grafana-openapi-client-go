@@ -30,12 +30,12 @@ var DefaultSchemes = []string{"http", "https"}
 
 // NewHTTPClient creates a new grafana HTTP API HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *GrafanaHTTPAPI {
-	return NewHTTPClientWithConfig(formats, nil)
+	return NewHTTPClientWithTransportConfig(formats, nil)
 }
 
 // NewHTTPClientWithConfig creates a new grafana HTTP API HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *GrafanaHTTPAPI {
+func NewHTTPClientWithTransportConfig(formats strfmt.Registry, cfg *TransportConfig) *GrafanaHTTPAPI {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -43,11 +43,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Gra
 
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-	return New(transport, formats)
+	return New(transport, Config{}, formats)
 }
 
 // New creates a new grafana HTTP API client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *GrafanaHTTPAPI {
+func New(transport runtime.ClientTransport, config Config, formats strfmt.Registry) *GrafanaHTTPAPI {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -55,6 +55,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *GrafanaHTT
 
 	cli := new(GrafanaHTTPAPI)
 	cli.Transport = transport
+	cli.Config = config
 	cli.Folders = folders.New(transport, formats)
 	return cli
 }
@@ -103,10 +104,25 @@ type GrafanaHTTPAPI struct {
 	Folders folders.ClientService
 
 	Transport runtime.ClientTransport
+	Config    Config
+}
+
+// Config contains configuration for the client
+type Config struct {
+	// OrgID provides an optional organization ID
+	// with BasicAuth, it defaults to last used org
+	// with APIKey, it is disallowed because service account tokens are scoped to a single org
+	OrgID int64
 }
 
 // SetTransport changes the transport on the client and all its subresources
 func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Folders.SetTransport(transport)
+}
+
+// WithOrgID returns a new client with the provided organization ID
+func (c *GrafanaHTTPAPI) WithOrgID(orgID int64) *GrafanaHTTPAPI {
+	c.Config.OrgID = orgID
+	return c
 }

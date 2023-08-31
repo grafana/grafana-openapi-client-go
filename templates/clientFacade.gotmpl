@@ -41,12 +41,12 @@ var DefaultSchemes = {{ printf "%#v" .Schemes }}
 
 // NewHTTPClient creates a new {{ humanize .Name }} HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *{{ pascalize .Name }} {
-  return NewHTTPClientWithConfig(formats, nil)
+  return NewHTTPClientWithTransportConfig(formats, nil)
 }
 
 // NewHTTPClientWithConfig creates a new {{ humanize .Name }} HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *{{ pascalize .Name }} {
+func NewHTTPClientWithTransportConfig(formats strfmt.Registry, cfg *TransportConfig) *{{ pascalize .Name }} {
   // ensure nullable parameters have default
   if cfg == nil {
     cfg = DefaultTransportConfig()
@@ -54,11 +54,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *{{ 
 
   // create transport and client
   transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-  return New(transport, formats)
+  return New(transport, Config{}, formats)
 }
 
 // New creates a new {{ humanize .Name }} client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *{{ pascalize .Name }} {
+func New(transport runtime.ClientTransport, config Config, formats strfmt.Registry) *{{ pascalize .Name }} {
   // ensure nullable parameters have default
   if formats == nil {
     formats = strfmt.Default
@@ -66,6 +66,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *{{ pascali
 
   cli := new({{ pascalize .Name }})
   cli.Transport = transport
+  cli.Config = config
   {{- range .OperationGroups }}
   cli.{{ pascalize .Name }} = {{ .PackageAlias }}.New(transport, formats)
   {{- end }}
@@ -117,8 +118,16 @@ type {{ pascalize .Name }} struct {
     {{ pascalize .Name }} {{ .PackageAlias }}.ClientService
   {{ end }}
   Transport runtime.ClientTransport
+  Config Config
 }
 
+// Config contains configuration for the client
+type Config struct {
+  // OrgID provides an optional organization ID
+	// with BasicAuth, it defaults to last used org
+	// with APIKey, it is disallowed because service account tokens are scoped to a single org
+  OrgID int64
+}
 
 // SetTransport changes the transport on the client and all its subresources
 func (c *{{pascalize .Name}}) SetTransport(transport runtime.ClientTransport) {
@@ -126,4 +135,11 @@ func (c *{{pascalize .Name}}) SetTransport(transport runtime.ClientTransport) {
   {{- range .OperationGroups }}
   c.{{ pascalize .Name }}.SetTransport(transport)
   {{- end }}
+}
+
+
+// WithOrgID returns a new client with the provided organization ID
+func (c *{{pascalize .Name}}) WithOrgID(orgID int64) *{{ pascalize .Name }} {
+	c.Config.OrgID = orgID
+	return c
 }
