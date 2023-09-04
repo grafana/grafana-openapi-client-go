@@ -7,6 +7,7 @@ package client
 
 import (
 	"net/url"
+	"strconv"
 
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
@@ -25,6 +26,9 @@ const (
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
 	DefaultBasePath string = "/api"
+	// Optional property that specifies the org.
+	// For more info, see: https://grafana.com/docs/grafana/latest/developers/http_api/auth/
+	OrgIDHeader = "X-Grafana-Org-Id"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
@@ -44,7 +48,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Gra
 	}
 
 	// create transport and client
-	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	transport := newTransportWithConfig(cfg)
 	return New(transport, formats)
 }
 
@@ -125,4 +129,28 @@ type GrafanaHTTPAPI struct {
 func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Folders.SetTransport(transport)
+}
+
+func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
+	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+
+	auth := []runtime.ClientAuthInfoWriter{}
+	switch {
+	case cfg.BasicAuth != nil:
+		pwd, _ := cfg.BasicAuth.Password()
+		basicAuth := httptransport.BasicAuth(cfg.BasicAuth.Username(), pwd)
+		auth = append(auth, basicAuth)
+	case cfg.OrgID != 0:
+		orgIDHeader := runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
+			return r.SetHeaderParam(OrgIDHeader, strconv.FormatInt(cfg.OrgID, 10))
+		})
+		auth = append(auth, orgIDHeader)
+	case cfg.APIKey != "":
+		APIKey := httptransport.BearerToken(cfg.APIKey)
+		auth = append(auth, APIKey)
+	}
+
+	tr.DefaultAuthentication = httptransport.Compose(auth...)
+
+	return tr
 }
