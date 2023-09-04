@@ -6,6 +6,8 @@ package client
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"net/url"
+
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
@@ -30,12 +32,12 @@ var DefaultSchemes = []string{"http", "https"}
 
 // NewHTTPClient creates a new grafana HTTP API HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *GrafanaHTTPAPI {
-	return NewHTTPClientWithTransportConfig(formats, nil)
+	return NewHTTPClientWithConfig(formats, nil)
 }
 
 // NewHTTPClientWithConfig creates a new grafana HTTP API HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithTransportConfig(formats strfmt.Registry, cfg *TransportConfig) *GrafanaHTTPAPI {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *GrafanaHTTPAPI {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -43,11 +45,11 @@ func NewHTTPClientWithTransportConfig(formats strfmt.Registry, cfg *TransportCon
 
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-	return New(transport, Config{}, formats)
+	return New(transport, formats)
 }
 
 // New creates a new grafana HTTP API client
-func New(transport runtime.ClientTransport, config Config, formats strfmt.Registry) *GrafanaHTTPAPI {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *GrafanaHTTPAPI {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -55,7 +57,6 @@ func New(transport runtime.ClientTransport, config Config, formats strfmt.Regist
 
 	cli := new(GrafanaHTTPAPI)
 	cli.Transport = transport
-	cli.Config = config
 	cli.Folders = folders.New(transport, formats)
 	return cli
 }
@@ -76,6 +77,14 @@ type TransportConfig struct {
 	Host     string
 	BasePath string
 	Schemes  []string
+	// APIKey is an optional API key or service account token.
+	APIKey string
+	// BasicAuth is optional basic auth credentials.
+	BasicAuth *url.Userinfo
+	// OrgID provides an optional organization ID
+	// with BasicAuth, it defaults to last used org
+	// with APIKey, it is disallowed because service account tokens are scoped to a single org
+	OrgID int64
 }
 
 // WithHost overrides the default host,
@@ -99,30 +108,21 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 	return cfg
 }
 
+// WithOrgID sets the organization ID
+func (cfg *TransportConfig) WithOrgID(orgID int64) *TransportConfig {
+	cfg.OrgID = orgID
+	return cfg
+}
+
 // GrafanaHTTPAPI is a client for grafana HTTP API
 type GrafanaHTTPAPI struct {
 	Folders folders.ClientService
 
 	Transport runtime.ClientTransport
-	Config    Config
-}
-
-// Config contains configuration for the client
-type Config struct {
-	// OrgID provides an optional organization ID
-	// with BasicAuth, it defaults to last used org
-	// with APIKey, it is disallowed because service account tokens are scoped to a single org
-	OrgID int64
 }
 
 // SetTransport changes the transport on the client and all its subresources
 func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Folders.SetTransport(transport)
-}
-
-// WithOrgID returns a new client with the provided organization ID
-func (c *GrafanaHTTPAPI) WithOrgID(orgID int64) *GrafanaHTTPAPI {
-	c.Config.OrgID = orgID
-	return c
 }
