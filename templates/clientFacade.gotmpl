@@ -58,17 +58,18 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *{{ 
 
   // create transport and client
   transport := newTransportWithConfig(cfg)
-  return New(transport, formats)
+  return New(transport, cfg, formats)
 }
 
 // New creates a new {{ humanize .Name }} client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *{{ pascalize .Name }} {
+func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt.Registry) *{{ pascalize .Name }} {
   // ensure nullable parameters have default
   if formats == nil {
     formats = strfmt.Default
   }
 
   cli := new({{ pascalize .Name }})
+  cli.cfg = cfg
   cli.Transport = transport
   {{- range .OperationGroups }}
   cli.{{ pascalize .Name }} = {{ .PackageAlias }}.New(transport, formats)
@@ -123,18 +124,14 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
     return cfg
 }
 
-// WithOrgID sets the organization ID
-func (cfg *TransportConfig) WithOrgID(orgID int64) *TransportConfig {
-	cfg.OrgID = orgID
-	return cfg
-}
-
 // {{ pascalize .Name }} is a client for {{ humanize .Name }}
 type {{ pascalize .Name }} struct {
   {{ range .OperationGroups }}
     {{ pascalize .Name }} {{ .PackageAlias }}.ClientService
   {{ end }}
   Transport runtime.ClientTransport
+  // cfg is private because it should only be read (for example, to get the OrgID) or set (and then the transport must be created again)
+  cfg *TransportConfig
 }
 
 // SetTransport changes the transport on the client and all its subresources
@@ -145,27 +142,45 @@ func (c *{{pascalize .Name}}) SetTransport(transport runtime.ClientTransport) {
   {{- end }}
 }
 
+// WithTransport changes the transport on the client and all its subresources
+// and returns the client
+func (c *{{pascalize .Name}}) WithTransport(transport runtime.ClientTransport) *{{pascalize .Name}} {
+	c.Transport = transport
+	c.Folders.SetTransport(transport)
+	return c
+}
+
+// OrgID returns the organization ID that was set in the transport config
+func (c *{{pascalize .Name}}) OrgID() int64 {
+  return c.cfg.OrgID
+}
+
+// WithOrgID sets the organization ID and returns the client
+func (c *{{pascalize .Name}}) WithOrgID(orgID int64) *{{pascalize .Name}} {
+  c.cfg.OrgID = orgID
+	return c.WithTransport(newTransportWithConfig(c.cfg))
+}
+
 func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
 	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
-  auth := []runtime.ClientAuthInfoWriter{}
-  switch {
-    case cfg.BasicAuth != nil:
-      pwd, _ := cfg.BasicAuth.Password()
-      basicAuth := httptransport.BasicAuth(cfg.BasicAuth.Username(), pwd)
-      auth = append(auth, basicAuth)
-    case cfg.OrgID != 0:
-      orgIDHeader := runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
-        return r.SetHeaderParam(OrgIDHeader, strconv.FormatInt(cfg.OrgID, 10))
-      })
-      auth = append(auth, orgIDHeader)
-    case cfg.APIKey != "":
-      APIKey := httptransport.BearerToken(cfg.APIKey)
+  var auth []runtime.ClientAuthInfoWriter
+  if cfg.BasicAuth != nil {
+    pwd, _ := cfg.BasicAuth.Password()
+    basicAuth := httptransport.BasicAuth(cfg.BasicAuth.Username(), pwd)
+    auth = append(auth, basicAuth)
+  }
+  if cfg.OrgID != 0 {
+    orgIDHeader := runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
+      return r.SetHeaderParam(OrgIDHeader, strconv.FormatInt(cfg.OrgID, 10))
+    })
+    auth = append(auth, orgIDHeader)
+  }
+  if cfg.APIKey != "" {
+    APIKey := httptransport.BearerToken(cfg.APIKey)
     auth = append(auth, APIKey)
   }
 
 	tr.DefaultAuthentication = httptransport.Compose(auth...)
-
-
 	return tr
 }
