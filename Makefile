@@ -33,5 +33,6 @@ generate-client: ${SWAGGER}
 	--skip-validation \
 	--with-flatten=remove-unused \
 	--additional-initialism=DTO,API,OK,LDAP,ACL,SNS,CSV \
+	--template-dir=templates \
 	$(CLIENT_GENERATION_ARGS)
 	go mod tidy
