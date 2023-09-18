@@ -9,6 +9,8 @@ package client
 // The template itself can be found here: https://github.com/go-swagger/go-swagger/blob/master/generator/templates/client/facade.gotmpl
 
 import (
+	"crypto/tls"
+	"net/http"
 	"net/url"
 	"strconv"
 
@@ -93,6 +95,8 @@ type TransportConfig struct {
 	// with BasicAuth, it defaults to last used org
 	// with APIKey, it is disallowed because service account tokens are scoped to a single org
 	OrgID int64
+	// TLSConfig provides an optional configuration for a TLS client
+	TLSConfig *tls.Config
 }
 
 // WithHost overrides the default host,
@@ -152,6 +156,9 @@ func (c *GrafanaHTTPAPI) WithOrgID(orgID int64) *GrafanaHTTPAPI {
 
 func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
 	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	httpTransport := http.DefaultTransport.(*http.Transport)
+	httpTransport.TLSClientConfig = cfg.TLSConfig
+	tr.Transport = httpTransport
 
 	var auth []runtime.ClientAuthInfoWriter
 	if cfg.BasicAuth != nil {
