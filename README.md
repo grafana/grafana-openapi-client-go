@@ -24,3 +24,13 @@ export API_TAG=folders
 export MODEL=Folder
 make generate-client
 ```
+
+## Custom templates
+
+In order to generate the client, `go-swagger` uses default templates. These templates can be customised to add custom configuration that are applied each time the client is generated.
+
+For more information, check out the `go-swagger` docs on how to [use custom templates](https://github.com/go-swagger/go-swagger/blob/master/docs/generate/templates.md). The default template definitions for the client can be found in [go-swagger/generator/templates/client/](https://github.com/go-swagger/go-swagger/tree/master/generator/templates/client).
+
+In this project, the custom templates can be found in `templates/`. They are provided to the generation command through the flag `--template-dir=templates`.
+
+The custom templates provide added functionality for things such as authentication, TLS/SSL, retries, and custom error handling.
