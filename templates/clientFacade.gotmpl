@@ -107,6 +107,12 @@ type TransportConfig struct {
     OrgID int64
     // TLSConfig provides an optional configuration for a TLS client
     TLSConfig *tls.Config
+    // NumRetries contains the number of attempted retries
+    NumRetries int
+    // RetryTimeout says how long to wait before retrying a request
+    RetryTimeout time.Duration
+    // RetryStatusCodes contains the list of status codes to retry, use "x" as a wildcard for a single digit (default: [429, 5xx])
+    RetryStatusCodes []string
 }
 
 // WithHost overrides the default host,
