@@ -10,14 +10,17 @@ package users
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new users API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for users API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -54,6 +58,10 @@ type ClientService interface {
 GetUserByID gets user by id
 */
 func (a *Client) GetUserByID(params *GetUserByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserByIDParams()
@@ -75,7 +83,30 @@ func (a *Client) GetUserByID(params *GetUserByIDParams, authInfo runtime.ClientA
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -93,6 +124,10 @@ func (a *Client) GetUserByID(params *GetUserByIDParams, authInfo runtime.ClientA
 GetUserByLoginOrEmail gets user by login or email
 */
 func (a *Client) GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserByLoginOrEmailParams()
@@ -114,7 +149,30 @@ func (a *Client) GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, auth
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -134,6 +192,10 @@ GetUserOrgList gets organizations for user
 Get organizations for user identified by id.
 */
 func (a *Client) GetUserOrgList(params *GetUserOrgListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOrgListOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserOrgListParams()
@@ -155,7 +217,30 @@ func (a *Client) GetUserOrgList(params *GetUserOrgListParams, authInfo runtime.C
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -175,6 +260,10 @@ GetUserTeams gets teams for user
 Get teams for user identified by id.
 */
 func (a *Client) GetUserTeams(params *GetUserTeamsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserTeamsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserTeamsParams()
@@ -196,7 +285,30 @@ func (a *Client) GetUserTeams(params *GetUserTeamsParams, authInfo runtime.Clien
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -216,6 +328,10 @@ SearchUsers gets users
 Returns all users that the authenticated user has permission to view, admin permission required.
 */
 func (a *Client) SearchUsers(params *SearchUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchUsersOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSearchUsersParams()
@@ -237,7 +353,30 @@ func (a *Client) SearchUsers(params *SearchUsersParams, authInfo runtime.ClientA
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -255,6 +394,10 @@ func (a *Client) SearchUsers(params *SearchUsersParams, authInfo runtime.ClientA
 SearchUsersWithPaging gets users with paging
 */
 func (a *Client) SearchUsersWithPaging(params *SearchUsersWithPagingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchUsersWithPagingOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSearchUsersWithPagingParams()
@@ -276,7 +419,30 @@ func (a *Client) SearchUsersWithPaging(params *SearchUsersWithPagingParams, auth
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -296,6 +462,10 @@ UpdateUser updates user
 Update the user identified by id.
 */
 func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateUserParams()
@@ -317,7 +487,30 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

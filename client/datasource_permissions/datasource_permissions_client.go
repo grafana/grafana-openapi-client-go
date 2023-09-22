@@ -10,14 +10,17 @@ package datasource_permissions
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new datasource permissions API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for datasource permissions API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -52,6 +56,10 @@ AddPermission adds permissions for a data source
 You need to have a permission with action `datasources.permissions:read` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 */
 func (a *Client) AddPermission(params *AddPermissionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddPermissionOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAddPermissionParams()
@@ -73,7 +81,30 @@ func (a *Client) AddPermission(params *AddPermissionParams, authInfo runtime.Cli
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -95,6 +126,10 @@ func (a *Client) AddPermission(params *AddPermissionParams, authInfo runtime.Cli
 You need to have a permission with action `datasources.permissions:delete` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 */
 func (a *Client) DeletePermissions(params *DeletePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePermissionsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeletePermissionsParams()
@@ -116,7 +151,30 @@ func (a *Client) DeletePermissions(params *DeletePermissionsParams, authInfo run
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -138,6 +196,10 @@ func (a *Client) DeletePermissions(params *DeletePermissionsParams, authInfo run
 You need to have a permission with action `datasources.permissions:toggle` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 */
 func (a *Client) DisablePermissions(params *DisablePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DisablePermissionsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDisablePermissionsParams()
@@ -159,7 +221,30 @@ func (a *Client) DisablePermissions(params *DisablePermissionsParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -184,6 +269,10 @@ which permit certain users or teams to query the data source.
 You need to have a permission with action `datasources.permissions:toggle` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 */
 func (a *Client) EnablePermissions(params *EnablePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*EnablePermissionsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewEnablePermissionsParams()
@@ -205,7 +294,30 @@ func (a *Client) EnablePermissions(params *EnablePermissionsParams, authInfo run
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -227,6 +339,10 @@ func (a *Client) EnablePermissions(params *EnablePermissionsParams, authInfo run
 You need to have a permission with action `datasources.permissions:read` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 */
 func (a *Client) GetAllPermissions(params *GetAllPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAllPermissionsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAllPermissionsParams()
@@ -248,7 +364,30 @@ func (a *Client) GetAllPermissions(params *GetAllPermissionsParams, authInfo run
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

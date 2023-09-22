@@ -10,14 +10,17 @@ package snapshots
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new snapshots API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for snapshots API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -54,6 +58,10 @@ CreateDashboardSnapshot whens creating a snapshot using the API you have to prov
 Snapshot public mode should be enabled or authentication is required.
 */
 func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDashboardSnapshotOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateDashboardSnapshotParams()
@@ -75,7 +83,30 @@ func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -93,6 +124,10 @@ func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, 
 DeleteDashboardSnapshot deletes snapshot by key
 */
 func (a *Client) DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteDashboardSnapshotParams()
@@ -114,7 +149,30 @@ func (a *Client) DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -134,6 +192,10 @@ DeleteDashboardSnapshotByDeleteKey deletes snapshot by delete key
 Snapshot public mode should be enabled or authentication is required.
 */
 func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnapshotByDeleteKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteDashboardSnapshotByDeleteKeyParams()
@@ -155,7 +217,30 @@ func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnaps
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -173,6 +258,10 @@ func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnaps
 GetDashboardSnapshot gets snapshot by key
 */
 func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardSnapshotOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDashboardSnapshotParams()
@@ -194,7 +283,30 @@ func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, authIn
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -212,6 +324,10 @@ func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, authIn
 GetSharingOptions gets snapshot sharing settings
 */
 func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSharingOptionsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetSharingOptionsParams()
@@ -233,7 +349,30 @@ func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, authInfo run
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -251,6 +390,10 @@ func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, authInfo run
 SearchDashboardSnapshots lists snapshots
 */
 func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchDashboardSnapshotsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSearchDashboardSnapshotsParams()
@@ -272,7 +415,30 @@ func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

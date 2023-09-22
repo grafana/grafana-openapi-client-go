@@ -10,14 +10,17 @@ package legacy_alerts_notification_channels
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new legacy alerts notification channels API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for legacy alerts notification channels API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -62,6 +66,10 @@ CreateAlertNotificationChannel creates notification channel
 You can find the full list of [supported notifiers](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/#list-of-supported-notifiers) on the alert notifiers page.
 */
 func (a *Client) CreateAlertNotificationChannel(params *CreateAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAlertNotificationChannelOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateAlertNotificationChannelParams()
@@ -83,7 +91,30 @@ func (a *Client) CreateAlertNotificationChannel(params *CreateAlertNotificationC
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -103,6 +134,10 @@ DeleteAlertNotificationChannel deletes alert notification by ID
 Deletes an existing notification channel identified by ID.
 */
 func (a *Client) DeleteAlertNotificationChannel(params *DeleteAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertNotificationChannelOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAlertNotificationChannelParams()
@@ -124,7 +159,30 @@ func (a *Client) DeleteAlertNotificationChannel(params *DeleteAlertNotificationC
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -144,6 +202,10 @@ DeleteAlertNotificationChannelByUID deletes alert notification by UID
 Deletes an existing notification channel identified by UID.
 */
 func (a *Client) DeleteAlertNotificationChannelByUID(params *DeleteAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertNotificationChannelByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAlertNotificationChannelByUIDParams()
@@ -165,7 +227,30 @@ func (a *Client) DeleteAlertNotificationChannelByUID(params *DeleteAlertNotifica
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -185,6 +270,10 @@ GetAlertNotificationChannelByID gets notification channel by ID
 Returns the notification channel given the notification channel ID.
 */
 func (a *Client) GetAlertNotificationChannelByID(params *GetAlertNotificationChannelByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAlertNotificationChannelByIDParams()
@@ -206,7 +295,30 @@ func (a *Client) GetAlertNotificationChannelByID(params *GetAlertNotificationCha
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -226,6 +338,10 @@ GetAlertNotificationChannelByUID gets notification channel by UID
 Returns the notification channel given the notification channel UID.
 */
 func (a *Client) GetAlertNotificationChannelByUID(params *GetAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAlertNotificationChannelByUIDParams()
@@ -247,7 +363,30 @@ func (a *Client) GetAlertNotificationChannelByUID(params *GetAlertNotificationCh
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -267,6 +406,10 @@ GetAlertNotificationChannels gets all notification channels
 Returns all notification channels that the authenticated user has permission to view.
 */
 func (a *Client) GetAlertNotificationChannels(params *GetAlertNotificationChannelsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAlertNotificationChannelsParams()
@@ -288,7 +431,30 @@ func (a *Client) GetAlertNotificationChannels(params *GetAlertNotificationChanne
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -308,6 +474,10 @@ GetAlertNotificationLookup gets all notification channels lookup
 Returns all notification channels, but with less detailed information. Accessible by any authenticated user and is mainly used by providing alert notification channels in Grafana UI when configuring alert rule.
 */
 func (a *Client) GetAlertNotificationLookup(params *GetAlertNotificationLookupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationLookupOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAlertNotificationLookupParams()
@@ -329,7 +499,30 @@ func (a *Client) GetAlertNotificationLookup(params *GetAlertNotificationLookupPa
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -349,6 +542,10 @@ NotificationChannelTest tests notification channel
 Sends a test notification to the channel.
 */
 func (a *Client) NotificationChannelTest(params *NotificationChannelTestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*NotificationChannelTestOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewNotificationChannelTestParams()
@@ -370,7 +567,30 @@ func (a *Client) NotificationChannelTest(params *NotificationChannelTestParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -390,6 +610,10 @@ UpdateAlertNotificationChannel updates notification channel by ID
 Updates an existing notification channel identified by ID.
 */
 func (a *Client) UpdateAlertNotificationChannel(params *UpdateAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAlertNotificationChannelOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateAlertNotificationChannelParams()
@@ -411,7 +635,30 @@ func (a *Client) UpdateAlertNotificationChannel(params *UpdateAlertNotificationC
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -431,6 +678,10 @@ UpdateAlertNotificationChannelByUID updates notification channel by UID
 Updates an existing notification channel identified by uid.
 */
 func (a *Client) UpdateAlertNotificationChannelByUID(params *UpdateAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAlertNotificationChannelByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateAlertNotificationChannelByUIDParams()
@@ -452,7 +703,30 @@ func (a *Client) UpdateAlertNotificationChannelByUID(params *UpdateAlertNotifica
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

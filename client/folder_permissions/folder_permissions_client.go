@@ -10,14 +10,17 @@ package folder_permissions
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new folder permissions API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for folder permissions API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -44,6 +48,10 @@ type ClientService interface {
 GetFolderPermissionList gets all existing permissions for the folder with the given uid
 */
 func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderPermissionListOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetFolderPermissionListParams()
@@ -65,7 +73,30 @@ func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -83,6 +114,10 @@ func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, 
 UpdateFolderPermissions updates permissions for a folder this operation will remove existing permissions if they re not included in the request
 */
 func (a *Client) UpdateFolderPermissions(params *UpdateFolderPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateFolderPermissionsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateFolderPermissionsParams()
@@ -104,7 +139,30 @@ func (a *Client) UpdateFolderPermissions(params *UpdateFolderPermissionsParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

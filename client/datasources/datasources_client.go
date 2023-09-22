@@ -10,14 +10,17 @@ package datasources
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new datasources API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for datasources API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -90,6 +94,10 @@ If you are running Grafana Enterprise and have Fine-grained access control enabl
 you need to have a permission with action: `datasources:create`
 */
 func (a *Client) AddDataSource(params *AddDataSourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddDataSourceOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAddDataSourceParams()
@@ -111,7 +119,30 @@ func (a *Client) AddDataSource(params *AddDataSourceParams, authInfo runtime.Cli
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -131,6 +162,10 @@ CallDatasourceResourceByID fetches data source resources by Id
 Please refer to [updated API](#/datasources/callDatasourceResourceWithUID) instead
 */
 func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCallDatasourceResourceByIDParams()
@@ -152,7 +187,30 @@ func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDPa
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -170,6 +228,10 @@ func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDPa
 CallDatasourceResourceWithUID fetches data source resources
 */
 func (a *Client) CallDatasourceResourceWithUID(params *CallDatasourceResourceWithUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCallDatasourceResourceWithUIDParams()
@@ -191,7 +253,30 @@ func (a *Client) CallDatasourceResourceWithUID(params *CallDatasourceResourceWit
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -211,6 +296,10 @@ CheckDatasourceHealthByID sends a health check request to the plugin datasource 
 Please refer to [updated API](#/datasources/checkDatasourceHealthWithUID) instead
 */
 func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCheckDatasourceHealthByIDParams()
@@ -232,7 +321,30 @@ func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDPara
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -250,6 +362,10 @@ func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDPara
 CheckDatasourceHealthWithUID sends a health check request to the plugin datasource identified by the UID
 */
 func (a *Client) CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCheckDatasourceHealthWithUIDParams()
@@ -271,7 +387,30 @@ func (a *Client) CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithU
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -291,6 +430,10 @@ DatasourceProxyDELETEByUIDcalls data source proxy d e l e t e calls
 Proxies all calls to the actual data source.
 */
 func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDatasourceProxyDELETEByUIDcallsParams()
@@ -312,7 +455,30 @@ func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEBy
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -334,6 +500,10 @@ func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEBy
 Please refer to [updated API](#/datasources/datasourceProxyDELETEByUIDcalls) instead
 */
 func (a *Client) DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDatasourceProxyDELETEcallsParams()
@@ -355,7 +525,30 @@ func (a *Client) DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsPa
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -375,6 +568,10 @@ DatasourceProxyGETByUIDcalls data source proxy g e t calls
 Proxies all calls to the actual data source.
 */
 func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDatasourceProxyGETByUIDcallsParams()
@@ -396,7 +593,30 @@ func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcal
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -418,6 +638,10 @@ func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcal
 Please refer to [updated API](#/datasources/datasourceProxyGETByUIDcalls) instead
 */
 func (a *Client) DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDatasourceProxyGETcallsParams()
@@ -439,7 +663,30 @@ func (a *Client) DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -459,6 +706,10 @@ DatasourceProxyPOSTByUIDcalls data source proxy p o s t calls
 Proxies all calls to the actual data source. The data source should support POST methods for the specific path and role as defined
 */
 func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyPOSTByUIDcallsCreated, *DatasourceProxyPOSTByUIDcallsAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDatasourceProxyPOSTByUIDcallsParams()
@@ -480,7 +731,30 @@ func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDc
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, nil, err
 	}
@@ -503,6 +777,10 @@ func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDc
 Please refer to [updated API](#/datasources/datasourceProxyPOSTByUIDcalls) instead
 */
 func (a *Client) DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyPOSTcallsCreated, *DatasourceProxyPOSTcallsAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDatasourceProxyPOSTcallsParams()
@@ -524,7 +802,30 @@ func (a *Client) DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, nil, err
 	}
@@ -549,6 +850,10 @@ you need to have a permission with action: `datasources:delete` and scopes: `dat
 Please refer to [updated API](#/datasources/deleteDataSourceByUID) instead
 */
 func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteDataSourceByIDParams()
@@ -570,7 +875,30 @@ func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, authIn
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -592,6 +920,10 @@ func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, authIn
 you need to have a permission with action: `datasources:delete` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
 func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByNameOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteDataSourceByNameParams()
@@ -613,7 +945,30 @@ func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, au
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -635,6 +990,10 @@ func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, au
 you need to have a permission with action: `datasources:delete` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:kLtEtcRGk` (single data source).
 */
 func (a *Client) DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteDataSourceByUIDParams()
@@ -656,7 +1015,30 @@ func (a *Client) DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, auth
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -680,6 +1062,10 @@ you need to have a permission with action: `datasources:read` and scopes: `datas
 Please refer to [updated API](#/datasources/getDataSourceByUID) instead
 */
 func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDataSourceByIDParams()
@@ -701,7 +1087,30 @@ func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, authInfo run
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -723,6 +1132,10 @@ func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, authInfo run
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
 func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByNameOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDataSourceByNameParams()
@@ -744,7 +1157,30 @@ func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, authInfo
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -766,6 +1202,10 @@ func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, authInfo
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:kLtEtcRGk` (single data source).
 */
 func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDataSourceByUIDParams()
@@ -787,7 +1227,30 @@ func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -809,6 +1272,10 @@ func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, authInfo r
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
 func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceIDByNameOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDataSourceIDByNameParams()
@@ -830,7 +1297,30 @@ func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, auth
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -852,6 +1342,10 @@ func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, auth
 you need to have a permission with action: `datasources:read` and scope: `datasources:*`.
 */
 func (a *Client) GetDataSources(params *GetDataSourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourcesOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDataSourcesParams()
@@ -873,7 +1367,30 @@ func (a *Client) GetDataSources(params *GetDataSourcesParams, authInfo runtime.C
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -901,6 +1418,10 @@ you need to have a permission with action: `datasources:write` and scopes: `data
 Please refer to [updated API](#/datasources/updateDataSourceByUID) instead
 */
 func (a *Client) UpdateDataSourceByID(params *UpdateDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDataSourceByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateDataSourceByIDParams()
@@ -922,7 +1443,30 @@ func (a *Client) UpdateDataSourceByID(params *UpdateDataSourceByIDParams, authIn
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -948,6 +1492,10 @@ If you are running Grafana Enterprise and have Fine-grained access control enabl
 you need to have a permission with action: `datasources:write` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:1` (single data source).
 */
 func (a *Client) UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateDataSourceByUIDParams()
@@ -969,7 +1517,30 @@ func (a *Client) UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, auth
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

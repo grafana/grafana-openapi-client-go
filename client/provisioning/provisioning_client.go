@@ -10,14 +10,17 @@ package provisioning
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new provisioning API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for provisioning API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -92,6 +96,10 @@ type ClientService interface {
 RouteDeleteAlertRule deletes a specific alert rule by UID
 */
 func (a *Client) RouteDeleteAlertRule(params *RouteDeleteAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteAlertRuleNoContent, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteDeleteAlertRuleParams()
@@ -113,7 +121,30 @@ func (a *Client) RouteDeleteAlertRule(params *RouteDeleteAlertRuleParams, authIn
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -131,6 +162,10 @@ func (a *Client) RouteDeleteAlertRule(params *RouteDeleteAlertRuleParams, authIn
 RouteDeleteContactpoints deletes a contact point
 */
 func (a *Client) RouteDeleteContactpoints(params *RouteDeleteContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteContactpointsNoContent, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteDeleteContactpointsParams()
@@ -152,7 +187,30 @@ func (a *Client) RouteDeleteContactpoints(params *RouteDeleteContactpointsParams
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -170,6 +228,10 @@ func (a *Client) RouteDeleteContactpoints(params *RouteDeleteContactpointsParams
 RouteDeleteMuteTiming deletes a mute timing
 */
 func (a *Client) RouteDeleteMuteTiming(params *RouteDeleteMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteMuteTimingNoContent, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteDeleteMuteTimingParams()
@@ -191,7 +253,30 @@ func (a *Client) RouteDeleteMuteTiming(params *RouteDeleteMuteTimingParams, auth
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -209,6 +294,10 @@ func (a *Client) RouteDeleteMuteTiming(params *RouteDeleteMuteTimingParams, auth
 RouteDeleteTemplate deletes a template
 */
 func (a *Client) RouteDeleteTemplate(params *RouteDeleteTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteTemplateNoContent, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteDeleteTemplateParams()
@@ -230,7 +319,30 @@ func (a *Client) RouteDeleteTemplate(params *RouteDeleteTemplateParams, authInfo
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -248,6 +360,10 @@ func (a *Client) RouteDeleteTemplate(params *RouteDeleteTemplateParams, authInfo
 RouteGetAlertRule gets a specific alert rule by UID
 */
 func (a *Client) RouteGetAlertRule(params *RouteGetAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetAlertRuleParams()
@@ -269,7 +385,30 @@ func (a *Client) RouteGetAlertRule(params *RouteGetAlertRuleParams, authInfo run
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -287,6 +426,10 @@ func (a *Client) RouteGetAlertRule(params *RouteGetAlertRuleParams, authInfo run
 RouteGetAlertRuleExport exports an alert rule in provisioning file format
 */
 func (a *Client) RouteGetAlertRuleExport(params *RouteGetAlertRuleExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleExportOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetAlertRuleExportParams()
@@ -308,7 +451,30 @@ func (a *Client) RouteGetAlertRuleExport(params *RouteGetAlertRuleExportParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -326,6 +492,10 @@ func (a *Client) RouteGetAlertRuleExport(params *RouteGetAlertRuleExportParams, 
 RouteGetAlertRuleGroup gets a rule group
 */
 func (a *Client) RouteGetAlertRuleGroup(params *RouteGetAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleGroupOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetAlertRuleGroupParams()
@@ -347,7 +517,30 @@ func (a *Client) RouteGetAlertRuleGroup(params *RouteGetAlertRuleGroupParams, au
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -365,6 +558,10 @@ func (a *Client) RouteGetAlertRuleGroup(params *RouteGetAlertRuleGroupParams, au
 RouteGetAlertRuleGroupExport exports an alert rule group in provisioning file format
 */
 func (a *Client) RouteGetAlertRuleGroupExport(params *RouteGetAlertRuleGroupExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleGroupExportOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetAlertRuleGroupExportParams()
@@ -386,7 +583,30 @@ func (a *Client) RouteGetAlertRuleGroupExport(params *RouteGetAlertRuleGroupExpo
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -404,6 +624,10 @@ func (a *Client) RouteGetAlertRuleGroupExport(params *RouteGetAlertRuleGroupExpo
 RouteGetAlertRules gets all the alert rules
 */
 func (a *Client) RouteGetAlertRules(params *RouteGetAlertRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRulesOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetAlertRulesParams()
@@ -425,7 +649,30 @@ func (a *Client) RouteGetAlertRules(params *RouteGetAlertRulesParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -443,6 +690,10 @@ func (a *Client) RouteGetAlertRules(params *RouteGetAlertRulesParams, authInfo r
 RouteGetAlertRulesExport exports all alert rules in provisioning file format
 */
 func (a *Client) RouteGetAlertRulesExport(params *RouteGetAlertRulesExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRulesExportOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetAlertRulesExportParams()
@@ -464,7 +715,30 @@ func (a *Client) RouteGetAlertRulesExport(params *RouteGetAlertRulesExportParams
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -482,6 +756,10 @@ func (a *Client) RouteGetAlertRulesExport(params *RouteGetAlertRulesExportParams
 RouteGetContactpoints gets all the contact points
 */
 func (a *Client) RouteGetContactpoints(params *RouteGetContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetContactpointsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetContactpointsParams()
@@ -503,7 +781,30 @@ func (a *Client) RouteGetContactpoints(params *RouteGetContactpointsParams, auth
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -521,6 +822,10 @@ func (a *Client) RouteGetContactpoints(params *RouteGetContactpointsParams, auth
 RouteGetMuteTiming gets a mute timing
 */
 func (a *Client) RouteGetMuteTiming(params *RouteGetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetMuteTimingParams()
@@ -542,7 +847,30 @@ func (a *Client) RouteGetMuteTiming(params *RouteGetMuteTimingParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -560,6 +888,10 @@ func (a *Client) RouteGetMuteTiming(params *RouteGetMuteTimingParams, authInfo r
 RouteGetMuteTimings gets all the mute timings
 */
 func (a *Client) RouteGetMuteTimings(params *RouteGetMuteTimingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingsOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetMuteTimingsParams()
@@ -581,7 +913,30 @@ func (a *Client) RouteGetMuteTimings(params *RouteGetMuteTimingsParams, authInfo
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -599,6 +954,10 @@ func (a *Client) RouteGetMuteTimings(params *RouteGetMuteTimingsParams, authInfo
 RouteGetPolicyTree gets the notification policy tree
 */
 func (a *Client) RouteGetPolicyTree(params *RouteGetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetPolicyTreeOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetPolicyTreeParams()
@@ -620,7 +979,30 @@ func (a *Client) RouteGetPolicyTree(params *RouteGetPolicyTreeParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -638,6 +1020,10 @@ func (a *Client) RouteGetPolicyTree(params *RouteGetPolicyTreeParams, authInfo r
 RouteGetTemplate gets a notification template
 */
 func (a *Client) RouteGetTemplate(params *RouteGetTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetTemplateOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetTemplateParams()
@@ -659,7 +1045,30 @@ func (a *Client) RouteGetTemplate(params *RouteGetTemplateParams, authInfo runti
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -677,6 +1086,10 @@ func (a *Client) RouteGetTemplate(params *RouteGetTemplateParams, authInfo runti
 RouteGetTemplates gets all notification templates
 */
 func (a *Client) RouteGetTemplates(params *RouteGetTemplatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetTemplatesOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteGetTemplatesParams()
@@ -698,7 +1111,30 @@ func (a *Client) RouteGetTemplates(params *RouteGetTemplatesParams, authInfo run
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -716,6 +1152,10 @@ func (a *Client) RouteGetTemplates(params *RouteGetTemplatesParams, authInfo run
 RoutePostAlertRule creates a new alert rule
 */
 func (a *Client) RoutePostAlertRule(params *RoutePostAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostAlertRuleCreated, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePostAlertRuleParams()
@@ -737,7 +1177,30 @@ func (a *Client) RoutePostAlertRule(params *RoutePostAlertRuleParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -755,6 +1218,10 @@ func (a *Client) RoutePostAlertRule(params *RoutePostAlertRuleParams, authInfo r
 RoutePostContactpoints creates a contact point
 */
 func (a *Client) RoutePostContactpoints(params *RoutePostContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostContactpointsAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePostContactpointsParams()
@@ -776,7 +1243,30 @@ func (a *Client) RoutePostContactpoints(params *RoutePostContactpointsParams, au
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -794,6 +1284,10 @@ func (a *Client) RoutePostContactpoints(params *RoutePostContactpointsParams, au
 RoutePostMuteTiming creates a new mute timing
 */
 func (a *Client) RoutePostMuteTiming(params *RoutePostMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostMuteTimingCreated, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePostMuteTimingParams()
@@ -815,7 +1309,30 @@ func (a *Client) RoutePostMuteTiming(params *RoutePostMuteTimingParams, authInfo
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -833,6 +1350,10 @@ func (a *Client) RoutePostMuteTiming(params *RoutePostMuteTimingParams, authInfo
 RoutePutAlertRule updates an existing alert rule
 */
 func (a *Client) RoutePutAlertRule(params *RoutePutAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutAlertRuleOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePutAlertRuleParams()
@@ -854,7 +1375,30 @@ func (a *Client) RoutePutAlertRule(params *RoutePutAlertRuleParams, authInfo run
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -872,6 +1416,10 @@ func (a *Client) RoutePutAlertRule(params *RoutePutAlertRuleParams, authInfo run
 RoutePutAlertRuleGroup updates the interval of a rule group
 */
 func (a *Client) RoutePutAlertRuleGroup(params *RoutePutAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutAlertRuleGroupOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePutAlertRuleGroupParams()
@@ -893,7 +1441,30 @@ func (a *Client) RoutePutAlertRuleGroup(params *RoutePutAlertRuleGroupParams, au
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -911,6 +1482,10 @@ func (a *Client) RoutePutAlertRuleGroup(params *RoutePutAlertRuleGroupParams, au
 RoutePutContactpoint updates an existing contact point
 */
 func (a *Client) RoutePutContactpoint(params *RoutePutContactpointParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutContactpointAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePutContactpointParams()
@@ -932,7 +1507,30 @@ func (a *Client) RoutePutContactpoint(params *RoutePutContactpointParams, authIn
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -950,6 +1548,10 @@ func (a *Client) RoutePutContactpoint(params *RoutePutContactpointParams, authIn
 RoutePutMuteTiming replaces an existing mute timing
 */
 func (a *Client) RoutePutMuteTiming(params *RoutePutMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutMuteTimingOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePutMuteTimingParams()
@@ -971,7 +1573,30 @@ func (a *Client) RoutePutMuteTiming(params *RoutePutMuteTimingParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -989,6 +1614,10 @@ func (a *Client) RoutePutMuteTiming(params *RoutePutMuteTimingParams, authInfo r
 RoutePutPolicyTree sets the notification policy tree
 */
 func (a *Client) RoutePutPolicyTree(params *RoutePutPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutPolicyTreeAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePutPolicyTreeParams()
@@ -1010,7 +1639,30 @@ func (a *Client) RoutePutPolicyTree(params *RoutePutPolicyTreeParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -1028,6 +1680,10 @@ func (a *Client) RoutePutPolicyTree(params *RoutePutPolicyTreeParams, authInfo r
 RoutePutTemplate updates an existing notification template
 */
 func (a *Client) RoutePutTemplate(params *RoutePutTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutTemplateAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRoutePutTemplateParams()
@@ -1049,7 +1705,30 @@ func (a *Client) RoutePutTemplate(params *RoutePutTemplateParams, authInfo runti
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -1067,6 +1746,10 @@ func (a *Client) RoutePutTemplate(params *RoutePutTemplateParams, authInfo runti
 RouteResetPolicyTree clears the notification policy tree
 */
 func (a *Client) RouteResetPolicyTree(params *RouteResetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteResetPolicyTreeAccepted, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRouteResetPolicyTreeParams()
@@ -1088,7 +1771,30 @@ func (a *Client) RouteResetPolicyTree(params *RouteResetPolicyTreeParams, authIn
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

@@ -14,8 +14,7 @@ package {{ .Name }}
 
 import (
   "fmt"
-  "io"
-  "net/http"
+  "time"
 
   "github.com/go-openapi/errors"
   "github.com/go-openapi/runtime"
@@ -23,13 +22,15 @@ import (
   "github.com/go-openapi/swag"
   "github.com/go-openapi/validate"
 
+  "github.com/grafana/grafana-openapi-client-go/utils"
+
   {{ imports .DefaultImports }}
   {{ imports .Imports }}
 )
 
 // New creates a new {{ humanize .Name }} API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-  return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+  return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -40,6 +41,7 @@ Client {{ if .Summary }}{{ .Summary }}{{ if .Description }}
 type Client struct {
   transport runtime.ClientTransport
   formats strfmt.Registry
+  cfg *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -61,6 +63,10 @@ type ClientService interface {
   {{ blockcomment .Description }}{{ end }}{{ else if .Description}}{{ blockcomment .Description }}{{ else }}{{ humanize .Name }} API{{ end }}
 */
 func (a *Client) {{ pascalize .Name }}(params *{{ pascalize .Name }}Params{{ if .Authorized }}, authInfo runtime.ClientAuthInfoWriter{{end}}{{ if .HasStreamingResponse }}, writer io.Writer{{ end }}, opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }} {
+  var (
+    result interface{}
+    err error
+  )
   // TODO: Validate the params before sending
   if params == nil {
     params = New{{ pascalize .Name }}Params()
@@ -82,7 +88,30 @@ func (a *Client) {{ pascalize .Name }}(params *{{ pascalize .Name }}Params{{ if 
 		opt(op)
 	}
   {{ $length := len .SuccessResponses }}
-  {{ if .SuccessResponse }}result{{else}}_{{ end }}, err := a.transport.Submit(op)
+  timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+  for n := 0; n <= a.cfg.NumRetries; n++ {
+    // Wait a bit if it is not the first request
+    if n != 0 {
+      time.Sleep(timeout)
+    }
+
+    {{ if .SuccessResponse }}result{{else}}_{{ end }}, err = a.transport.Submit(op)
+  	
+    // If err is not nil, retry again
+    // That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+    // non-2xx status code doesn't cause an error.
+    if err != nil {
+      continue
+    }
+
+    shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+    if err != nil {
+      return nil, err
+    }
+    if !shouldRetry {
+      break
+    }
+  }
   if err != nil {
     return {{ if .SuccessResponse }}{{ padSurround "nil" "nil" 0 $length }}, {{ end }}err
   }

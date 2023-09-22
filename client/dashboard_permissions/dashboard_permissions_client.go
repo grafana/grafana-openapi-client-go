@@ -10,14 +10,17 @@ package dashboard_permissions
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new dashboard permissions API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for dashboard permissions API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -50,6 +54,10 @@ GetDashboardPermissionsListByID gets all existing permissions for the given dash
 Please refer to [updated API](#/dashboard_permissions/getDashboardPermissionsListByUID) instead
 */
 func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissionsListByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDashboardPermissionsListByIDParams()
@@ -71,7 +79,30 @@ func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissions
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -89,6 +120,10 @@ func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissions
 GetDashboardPermissionsListByUID gets all existing permissions for the given dashboard
 */
 func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermissionsListByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDashboardPermissionsListByUIDParams()
@@ -110,7 +145,30 @@ func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermission
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -132,6 +190,10 @@ func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermission
 This operation will remove existing permissions if they’re not included in the request.
 */
 func (a *Client) UpdateDashboardPermissionsByID(params *UpdateDashboardPermissionsByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateDashboardPermissionsByIDParams()
@@ -153,7 +215,30 @@ func (a *Client) UpdateDashboardPermissionsByID(params *UpdateDashboardPermissio
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -173,6 +258,10 @@ UpdateDashboardPermissionsByUID updates permissions for a dashboard
 This operation will remove existing permissions if they’re not included in the request.
 */
 func (a *Client) UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissionsByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateDashboardPermissionsByUIDParams()
@@ -194,7 +283,30 @@ func (a *Client) UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissi
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

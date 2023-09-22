@@ -10,14 +10,17 @@ package saml
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new saml API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for saml API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -50,6 +54,10 @@ type ClientService interface {
 GetMetadata its exposes the s p grafana s metadata for the Id p s consumption
 */
 func (a *Client) GetMetadata(params *GetMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetadataOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetMetadataParams()
@@ -71,7 +79,30 @@ func (a *Client) GetMetadata(params *GetMetadataParams, authInfo runtime.ClientA
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -89,6 +120,10 @@ func (a *Client) GetMetadata(params *GetMetadataParams, authInfo runtime.ClientA
 GetSAMLLogout gets logout initiates single logout process
 */
 func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetSAMLLogoutParams()
@@ -110,7 +145,30 @@ func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, authInfo runtime.Cli
 		opt(op)
 	}
 
-	_, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		_, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return err
 	}
@@ -127,6 +185,10 @@ func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, authInfo runtime.Cli
 or in case of IdP-initiated logout.
 */
 func (a *Client) GetSLO(params *GetSLOParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetSLOParams()
@@ -148,7 +210,30 @@ func (a *Client) GetSLO(params *GetSLOParams, authInfo runtime.ClientAuthInfoWri
 		opt(op)
 	}
 
-	_, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		_, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return err
 	}
@@ -159,6 +244,10 @@ func (a *Client) GetSLO(params *GetSLOParams, authInfo runtime.ClientAuthInfoWri
 PostACS its performs assertion consumer service a c s
 */
 func (a *Client) PostACS(params *PostACSParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostACSParams()
@@ -180,7 +269,30 @@ func (a *Client) PostACS(params *PostACSParams, authInfo runtime.ClientAuthInfoW
 		opt(op)
 	}
 
-	_, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		_, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return err
 	}
@@ -197,6 +309,10 @@ func (a *Client) PostACS(params *PostACSParams, authInfo runtime.ClientAuthInfoW
 or in case of IdP-initiated logout.
 */
 func (a *Client) PostSLO(params *PostSLOParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostSLOParams()
@@ -218,7 +334,30 @@ func (a *Client) PostSLO(params *PostSLOParams, authInfo runtime.ClientAuthInfoW
 		opt(op)
 	}
 
-	_, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		_, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return err
 	}

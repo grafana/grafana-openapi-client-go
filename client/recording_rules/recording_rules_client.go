@@ -10,14 +10,17 @@ package recording_rules
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new recording rules API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for recording rules API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -56,6 +60,10 @@ type ClientService interface {
 CreateRecordingRule creates a recording rule that is then registered and started
 */
 func (a *Client) CreateRecordingRule(params *CreateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRecordingRuleOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRecordingRuleParams()
@@ -77,7 +85,30 @@ func (a *Client) CreateRecordingRule(params *CreateRecordingRuleParams, authInfo
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -97,6 +128,10 @@ CreateRecordingRuleWriteTarget creates a remote write target
 It returns a 422 if there is not an existing prometheus data source configured.
 */
 func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRecordingRuleWriteTargetParams()
@@ -118,7 +153,30 @@ func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWrite
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -136,6 +194,10 @@ func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWrite
 DeleteRecordingRule deletes removes the rule from the registry and stops it
 */
 func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRecordingRuleOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteRecordingRuleParams()
@@ -157,7 +219,30 @@ func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, authInfo
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -175,6 +260,10 @@ func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, authInfo
 DeleteRecordingRuleWriteTarget deletes the remote write target
 */
 func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteRecordingRuleWriteTargetParams()
@@ -196,7 +285,30 @@ func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWrite
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -214,6 +326,10 @@ func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWrite
 GetRecordingRuleWriteTarget returns the prometheus remote write target
 */
 func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetRecordingRuleWriteTargetParams()
@@ -235,7 +351,30 @@ func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTarget
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -253,6 +392,10 @@ func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTarget
 ListRecordingRules lists all rules in the database active or deleted
 */
 func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListRecordingRulesOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListRecordingRulesParams()
@@ -274,7 +417,30 @@ func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, authInfo r
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -292,6 +458,10 @@ func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, authInfo r
 TestCreateRecordingRule tests a recording rule
 */
 func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestCreateRecordingRuleOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTestCreateRecordingRuleParams()
@@ -313,7 +483,30 @@ func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -331,6 +524,10 @@ func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, 
 UpdateRecordingRule updates the active status of a rule
 */
 func (a *Client) UpdateRecordingRule(params *UpdateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateRecordingRuleOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateRecordingRuleParams()
@@ -352,7 +549,30 @@ func (a *Client) UpdateRecordingRule(params *UpdateRecordingRuleParams, authInfo
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

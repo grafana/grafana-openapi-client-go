@@ -10,14 +10,17 @@ package org
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new org API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for org API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -61,6 +65,10 @@ If you are running Grafana Enterprise and have Fine-grained access control enabl
 you need to have a permission with action: `org.users:add` with scope `users:*`.
 */
 func (a *Client) AddOrgUserToCurrentOrg(params *AddOrgUserToCurrentOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddOrgUserToCurrentOrgOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAddOrgUserToCurrentOrgParams()
@@ -82,7 +90,30 @@ func (a *Client) AddOrgUserToCurrentOrg(params *AddOrgUserToCurrentOrgParams, au
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -100,6 +131,10 @@ func (a *Client) AddOrgUserToCurrentOrg(params *AddOrgUserToCurrentOrgParams, au
 GetCurrentOrg gets current organization
 */
 func (a *Client) GetCurrentOrg(params *GetCurrentOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCurrentOrgOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCurrentOrgParams()
@@ -121,7 +156,30 @@ func (a *Client) GetCurrentOrg(params *GetCurrentOrgParams, authInfo runtime.Cli
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -144,6 +202,10 @@ If you are running Grafana Enterprise and have Fine-grained access control enabl
 you need to have a permission with action: `org.users:read` with scope `users:*`.
 */
 func (a *Client) GetOrgUsersForCurrentOrg(params *GetOrgUsersForCurrentOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrgUsersForCurrentOrgParams()
@@ -165,7 +227,30 @@ func (a *Client) GetOrgUsersForCurrentOrg(params *GetOrgUsersForCurrentOrgParams
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -188,6 +273,10 @@ Accessible to users with org admin role, admin in any folder or admin of any tea
 Mainly used by Grafana UI for providing list of users when adding team members and when editing folder/dashboard permissions.
 */
 func (a *Client) GetOrgUsersForCurrentOrgLookup(params *GetOrgUsersForCurrentOrgLookupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgUsersForCurrentOrgLookupOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOrgUsersForCurrentOrgLookupParams()
@@ -209,7 +298,30 @@ func (a *Client) GetOrgUsersForCurrentOrgLookup(params *GetOrgUsersForCurrentOrg
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -231,6 +343,10 @@ func (a *Client) GetOrgUsersForCurrentOrgLookup(params *GetOrgUsersForCurrentOrg
 you need to have a permission with action: `org.users:remove` with scope `users:*`.
 */
 func (a *Client) RemoveOrgUserForCurrentOrg(params *RemoveOrgUserForCurrentOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveOrgUserForCurrentOrgOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRemoveOrgUserForCurrentOrgParams()
@@ -252,7 +368,30 @@ func (a *Client) RemoveOrgUserForCurrentOrg(params *RemoveOrgUserForCurrentOrgPa
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -270,6 +409,10 @@ func (a *Client) RemoveOrgUserForCurrentOrg(params *RemoveOrgUserForCurrentOrgPa
 UpdateCurrentOrg updates current organization
 */
 func (a *Client) UpdateCurrentOrg(params *UpdateCurrentOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCurrentOrgOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateCurrentOrgParams()
@@ -291,7 +434,30 @@ func (a *Client) UpdateCurrentOrg(params *UpdateCurrentOrgParams, authInfo runti
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -309,6 +475,10 @@ func (a *Client) UpdateCurrentOrg(params *UpdateCurrentOrgParams, authInfo runti
 UpdateCurrentOrgAddress updates current organization s address
 */
 func (a *Client) UpdateCurrentOrgAddress(params *UpdateCurrentOrgAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCurrentOrgAddressOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateCurrentOrgAddressParams()
@@ -330,7 +500,30 @@ func (a *Client) UpdateCurrentOrgAddress(params *UpdateCurrentOrgAddressParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -352,6 +545,10 @@ func (a *Client) UpdateCurrentOrgAddress(params *UpdateCurrentOrgAddressParams, 
 you need to have a permission with action: `org.users.role:update` with scope `users:*`.
 */
 func (a *Client) UpdateOrgUserForCurrentOrg(params *UpdateOrgUserForCurrentOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgUserForCurrentOrgOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateOrgUserForCurrentOrgParams()
@@ -373,7 +570,30 @@ func (a *Client) UpdateOrgUserForCurrentOrg(params *UpdateOrgUserForCurrentOrgPa
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}

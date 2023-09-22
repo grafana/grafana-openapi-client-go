@@ -10,14 +10,17 @@ package dashboard_versions
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/utils"
 )
 
 // New creates a new dashboard versions API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
-	return &Client{transport: transport, formats: formats}
+func New(transport runtime.ClientTransport, formats strfmt.Registry, cfg *utils.ClientConfig) ClientService {
+	return &Client{transport: transport, formats: formats, cfg: cfg}
 }
 
 /*
@@ -26,6 +29,7 @@ Client for dashboard versions API
 type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
+	cfg       *utils.ClientConfig
 }
 
 // ClientOption is the option for Client methods
@@ -54,6 +58,10 @@ GetDashboardVersionByID gets a specific dashboard version
 Please refer to [updated API](#/dashboard_versions/getDashboardVersionByUID) instead
 */
 func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDashboardVersionByIDParams()
@@ -75,7 +83,30 @@ func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, 
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -93,6 +124,10 @@ func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, 
 GetDashboardVersionByUID gets a specific dashboard version using UID
 */
 func (a *Client) GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDashboardVersionByUIDParams()
@@ -114,7 +149,30 @@ func (a *Client) GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -134,6 +192,10 @@ GetDashboardVersionsByID gets all existing versions for the dashboard
 Please refer to [updated API](#/dashboard_versions/getDashboardVersionsByUID) instead
 */
 func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDashboardVersionsByIDParams()
@@ -155,7 +217,30 @@ func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -173,6 +258,10 @@ func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams
 GetDashboardVersionsByUID gets all existing versions for the dashboard using UID
 */
 func (a *Client) GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionsByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDashboardVersionsByUIDParams()
@@ -194,7 +283,30 @@ func (a *Client) GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDPara
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -214,6 +326,10 @@ RestoreDashboardVersionByID restores a dashboard to a given dashboard version
 Please refer to [updated API](#/dashboard_versions/restoreDashboardVersionByUID) instead
 */
 func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRestoreDashboardVersionByIDParams()
@@ -235,7 +351,30 @@ func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByID
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -253,6 +392,10 @@ func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByID
 RestoreDashboardVersionByUID restores a dashboard to a given dashboard version using UID
 */
 func (a *Client) RestoreDashboardVersionByUID(params *RestoreDashboardVersionByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error) {
+	var (
+		result interface{}
+		err    error
+	)
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRestoreDashboardVersionByUIDParams()
@@ -274,7 +417,30 @@ func (a *Client) RestoreDashboardVersionByUID(params *RestoreDashboardVersionByU
 		opt(op)
 	}
 
-	result, err := a.transport.Submit(op)
+	timeout := utils.GetTimeout(a.cfg.RetryTimeout)
+	for n := 0; n <= a.cfg.NumRetries; n++ {
+		// Wait a bit if it is not the first request
+		if n != 0 {
+			time.Sleep(timeout)
+		}
+
+		result, err = a.transport.Submit(op)
+
+		// If err is not nil, retry again
+		// That's either caused by client policy, or failure to speak HTTP (such as network connectivity problem). A
+		// non-2xx status code doesn't cause an error.
+		if err != nil {
+			continue
+		}
+
+		shouldRetry, err := utils.MatchRetryCode(err, a.cfg.RetryStatusCodes)
+		if err != nil {
+			return nil, err
+		}
+		if !shouldRetry {
+			break
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
