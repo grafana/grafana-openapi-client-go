@@ -1,8 +1,10 @@
 # Grafana HTTP OpenAPI Client for Go
 
-> :warning: Grafana's OpenAPI Go client is currently under construction. Progress is tracked [here](https://github.com/grafana/grafana/issues/47827).
-
 This HTTP Go client for [Grafana](https://github.com/grafana/grafana) is generated from [Grafana's OpenAPI specification](https://github.com/grafana/grafana/blob/main/public/api-merged.json) using [swagger for Go](https://github.com/go-swagger/go-swagger).
+
+The Grafana OpenAPI Client for Go is under active development. We are planning a few improvements around processes such as automation, testing, release, and integration into other dependencies. Some of this work is tracked [here](https://github.com/grafana/grafana/issues/47827).
+
+Both code and non-code contributions are very welcome - please feel free to open an issue or PR in this repository if you spot a possible improvement!
 
 ## Dependencies
 
@@ -14,16 +16,26 @@ go install github.com/bwplotka/bingo@latest
 bingo get swagger
 ```
 
-## Generate the Go client
+## Generate the Grafana OpenAPI client
 
 You are ready to generate the client once bingo & swagger are installed (see [Dependencies](#dependencies)).
 
-To generate the client for a specific API, find the name of its tag and model in the [API specification](https://github.com/grafana/grafana/blob/main/public/api-merged.json). Then, set those as environment variables and run the command to generate it:
+To generate the client for _all Grafana APIs_, simply run the following `make` command, which runs the Swagger generation command:
+
+```bash
+make generate-client
+```
+
+To generate the client for a _specific Grafana API_, find the name of its tag and model in the [Grafana OpenAPI specification](https://github.com/grafana/grafana/blob/main/public/api-merged.json). Then, set those as environment variables and run the command to generate it:
 ```bash
 export API_TAG=folders
 export MODEL=Folder
 make generate-client
 ```
+
+## Initialise the Grafana OpenAPI client
+
+To see an up-to-date and actively maintained example of how to initialise and use the Grafana OpenAPI client, checkout how the Grafana Terraform Provider does this [here](https://github.com/grafana/terraform-provider-grafana/blob/master/internal/provider/provider.go#L411).
 
 ## Custom templates
 
