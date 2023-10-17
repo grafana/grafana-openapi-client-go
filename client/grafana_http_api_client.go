@@ -340,14 +340,6 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Users.SetTransport(transport)
 }
 
-// WithTransport changes the transport on the client and all its subresources
-// and returns the client
-func (c *GrafanaHTTPAPI) WithTransport(transport runtime.ClientTransport) *GrafanaHTTPAPI {
-	c.Transport = transport
-	c.Folders.SetTransport(transport)
-	return c
-}
-
 // OrgID returns the organization ID that was set in the transport config
 func (c *GrafanaHTTPAPI) OrgID() int64 {
 	return c.cfg.OrgID
@@ -356,7 +348,8 @@ func (c *GrafanaHTTPAPI) OrgID() int64 {
 // WithOrgID sets the organization ID and returns the client
 func (c *GrafanaHTTPAPI) WithOrgID(orgID int64) *GrafanaHTTPAPI {
 	c.cfg.OrgID = orgID
-	return c.WithTransport(newTransportWithConfig(c.cfg))
+	c.SetTransport(newTransportWithConfig(c.cfg))
+	return c
 }
 
 func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
