@@ -13,19 +13,19 @@ package {{ .Package }}
 // The template itself can be found here: https://github.com/go-swagger/go-swagger/blob/master/generator/templates/client/facade.gotmpl
 
 import (
+  "bytes"
   "crypto/tls"
+  "io"
   "net/http"
   "net/url"
   "strconv"
 
-  "github.com/go-openapi/errors"
   "github.com/go-openapi/runtime"
   httptransport "github.com/go-openapi/runtime/client"
-  "github.com/go-openapi/spec"
   "github.com/go-openapi/strfmt"
-  "github.com/go-openapi/swag"
+  
+  "github.com/grafana/grafana-openapi-client-go/pkg/transport"
 
-  "github.com/grafana/grafana-openapi-client-go/utils"
   {{ imports .DefaultImports }}
   {{ imports .Imports }}
 )
@@ -76,13 +76,8 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
   cli := new({{ pascalize .Name }})
   cli.cfg = cfg
   cli.Transport = transport
-  clientConfig := &utils.ClientConfig{
-    NumRetries: cfg.NumRetries,
-    RetryTimeout: cfg.RetryTimeout,
-    RetryStatusCodes: cfg.RetryStatusCodes,
-  }
   {{- range .OperationGroups }}
-  cli.{{ pascalize .Name }} = {{ .PackageAlias }}.New(transport, formats, clientConfig)
+  cli.{{ pascalize .Name }} = {{ .PackageAlias }}.New(transport, formats)
   {{- end }}
   return cli
 }
@@ -173,27 +168,35 @@ func (c *{{pascalize .Name}}) WithOrgID(orgID int64) *{{pascalize .Name}} {
 }
 
 func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
-	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 	httpTransport := http.DefaultTransport.(*http.Transport)
 	httpTransport.TLSClientConfig = cfg.TLSConfig
-	tr.Transport = httpTransport
 
-  var auth []runtime.ClientAuthInfoWriter
-  if cfg.BasicAuth != nil {
-    pwd, _ := cfg.BasicAuth.Password()
-    basicAuth := httptransport.BasicAuth(cfg.BasicAuth.Username(), pwd)
-    auth = append(auth, basicAuth)
-  }
-  if cfg.OrgID != 0 {
-    orgIDHeader := runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
-      return r.SetHeaderParam(OrgIDHeader, strconv.FormatInt(cfg.OrgID, 10))
-    })
-    auth = append(auth, orgIDHeader)
-  }
-  if cfg.APIKey != "" {
-    APIKey := httptransport.BearerToken(cfg.APIKey)
-    auth = append(auth, APIKey)
-  }
+	retryableTransport := &transport.RetryableTransport{
+		Transport: httpTransport,
+    NumRetries: cfg.NumRetries,
+    RetryTimeout: cfg.RetryTimeout,
+    RetryStatusCodes: cfg.RetryStatusCodes,
+	}
+
+	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)	
+	tr.Transport = retryableTransport
+
+	var auth []runtime.ClientAuthInfoWriter
+	if cfg.BasicAuth != nil {
+		pwd, _ := cfg.BasicAuth.Password()
+		basicAuth := httptransport.BasicAuth(cfg.BasicAuth.Username(), pwd)
+		auth = append(auth, basicAuth)
+	}
+	if cfg.OrgID != 0 {
+		orgIDHeader := runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
+			return r.SetHeaderParam(OrgIDHeader, strconv.FormatInt(cfg.OrgID, 10))
+		})
+		auth = append(auth, orgIDHeader)
+	}
+	if cfg.APIKey != "" {
+		APIKey := httptransport.BearerToken(cfg.APIKey)
+		auth = append(auth, APIKey)
+	}
 
 	tr.DefaultAuthentication = httptransport.Compose(auth...)
 	return tr
