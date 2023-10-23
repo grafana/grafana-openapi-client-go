@@ -55,7 +55,6 @@ func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error
 
 		// read the body (even on non-successful HTTP status codes)
 		bodyContents, err = io.ReadAll(resp.Body)
-		resp.Body.Close() //nolint:errcheck
 
 		// if there was an error reading the body, try again
 		if err != nil {
@@ -67,7 +66,9 @@ func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error
 			return resp, err
 		}
 
-		if !shouldRetry {
+		if shouldRetry {
+			resp.Body.Close() //nolint:errcheck
+		} else {
 			break
 		}
 	}
@@ -80,7 +81,7 @@ func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error
 		return resp, errors.ErrNotFound{
 			BodyContents: bodyContents,
 		}
-	case resp.StatusCode >= 400:
+	case resp.StatusCode >= http.StatusBadRequest:
 		return resp, fmt.Errorf("status: %d, body: %v", resp.StatusCode, string(bodyContents))
 	}
 
