@@ -10,10 +10,11 @@ min-occurrences = 5
 
 [linters-settings.depguard.rules.main]
 allow = [
-  "fmt", "strconv", "time", "net/http", "testing",
+  "fmt", "strconv", "time", "net/http",
+  "bytes", "io", "math",
   "github.com/go-openapi/runtime",
-  "github.com/stretchr/testify/assert",
-  "github.com/grafana/grafana-openapi-client-go/utils"
+  "github.com/grafana/grafana-openapi-client-go/pkg/errors",
+  "github.com/grafana/grafana-openapi-client-go/pkg/transport"
 ]
 
 [linters]
