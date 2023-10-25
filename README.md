@@ -2,8 +2,6 @@
 
 This HTTP Go client for [Grafana](https://github.com/grafana/grafana) is generated from [Grafana's OpenAPI specification](https://github.com/grafana/grafana/blob/main/public/api-merged.json) using [swagger for Go](https://github.com/go-swagger/go-swagger).
 
-The Grafana OpenAPI Client for Go is under active development. We are planning a few improvements around processes such as automation, testing, release, and integration into other dependencies. Some of this work is tracked [here](https://github.com/grafana/grafana/issues/47827).
-
 Both code and non-code contributions are very welcome - please feel free to open an issue or PR in this repository if you spot a possible improvement!
 
 ## Dependencies
@@ -16,15 +14,15 @@ go install github.com/bwplotka/bingo@latest
 bingo get swagger
 ```
 
-## Generate the Grafana OpenAPI client
+## Generate the client
 
-You are ready to generate the client once bingo & swagger are installed (see [Dependencies](#dependencies)).
-
-To generate the client for _all Grafana APIs_, simply run the following `make` command, which runs the Swagger generation command:
+Once bingo & swagger are installed (see [Dependencies](#dependencies)), generate the client for _all Grafana APIs_, with the following `make` command:
 
 ```bash
 make generate-client
 ```
+
+This runs the Swagger generation command.
 
 To generate the client for a _specific Grafana API_, find the name of its tag and model in the [Grafana OpenAPI specification](https://github.com/grafana/grafana/blob/main/public/api-merged.json). Then, set those as environment variables and run the command to generate it:
 ```bash
@@ -33,11 +31,7 @@ export MODEL=Folder
 make generate-client
 ```
 
-## Initialise the Grafana OpenAPI client
-
-To see an up-to-date and actively maintained example of how to initialise and use the Grafana OpenAPI client, checkout how the Grafana Terraform Provider does this [here](https://github.com/grafana/terraform-provider-grafana/blob/master/internal/provider/provider.go#L411).
-
-## Custom templates
+### How to use custom templates
 
 In order to generate the client, `go-swagger` uses default templates. These templates can be customised to add custom configuration that are applied each time the client is generated.
 
@@ -46,3 +40,50 @@ For more information, check out the `go-swagger` docs on how to [use custom temp
 In this project, the custom templates can be found in `templates/`. They are provided to the generation command through the flag `--template-dir=templates`.
 
 The custom templates provide added functionality for things such as authentication, TLS/SSL, retries, and custom error handling.
+
+## Build the client
+
+### Configuration
+
+The client has the following friendly configuration options:
+
+```go
+import goapi "github.com/grafana/grafana-openapi-client-go/client"
+
+cfg := &goapi.TransportConfig{
+    // Host is the doman name or IP address of the host that serves the API.
+    Host:       "localhost:3000",
+    // BasePath is the URL prefix for all API paths, relative to the host root.
+    BasePath:   "/api",
+    // Schemes are the transfer protocols used by the API (http or https).
+    Schemes:    []string{"http"},
+    // APIKey is an optional API key or service account token.
+    APIKey:     os.Getenv("API_ACCESS_TOKEN"),
+    // BasicAuth is optional basic auth credentials.
+    BasicAuth:  url.UserPassword("admin", "admin"),
+    // OrgID provides an optional organization ID.
+    // OrgID is only supported with BasicAuth since API keys are already org-scoped.
+    OrgID:      1,
+    // TLSConfig provides an optional configuration for a TLS client
+    TLSConfig:  &tls.Config{},
+    // NumRetries contains the optional number of attempted retries
+    NumRetries: 3,
+    // RetryTimeout sets an optional time to wait before retrying a request
+    RetryTimeout: 0,
+    // RetryStatusCodes contains the optional list of status codes to retry
+    // Use "x" as a wildcard for a single digit (default: [429, 5xx])
+    RetryStatusCodes []string{"420, 5xx"},
+}
+
+client := goapi.NewHTTPClientWithConfig(strfmt.Default, cfg)
+```
+
+### Examples
+
+Checkout how the Grafana Terraform Provider initialises and uses the client [here](https://github.com/grafana/terraform-provider-grafana/blob/master/internal/provider/provider.go#L411).
+
+The `goswagger` documentation have more information about how to [build a client](https://goswagger.io/generate/client.html).
+
+### Roadmap
+
+We are planning a few improvements around processes such as automation, testing, release, and integration into other dependencies. Some of this work is tracked [here](https://github.com/grafana/grafana/issues/47827).

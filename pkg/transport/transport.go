@@ -12,9 +12,7 @@ import (
 	"github.com/grafana/grafana-openapi-client-go/pkg/errors"
 )
 
-const (
-	DefaultTimeout = time.Second * 5
-)
+const DefaultTimeout = time.Second * 5
 
 type RetryableTransport struct {
 	Transport        http.RoundTripper
