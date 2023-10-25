@@ -80,7 +80,7 @@ client := goapi.NewHTTPClientWithConfig(strfmt.Default, cfg)
 
 ### Examples
 
-Checkout how the Grafana Terraform Provider initialises and uses the client [here](https://github.com/grafana/terraform-provider-grafana/blob/master/internal/provider/provider.go#L411).
+Checkout how the Grafana Terraform Provider initialises and uses the client [here](https://github.com/grafana/terraform-provider-grafana/blob/2988bb3560acc55f3e686532f44109a224825568/internal/provider/provider.go#L419-L446).
 
 The `goswagger` documentation have more information about how to [build a client](https://goswagger.io/generate/client.html).
 
