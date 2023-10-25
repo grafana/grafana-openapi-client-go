@@ -13,10 +13,13 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/pkg/transport"
 
 	"github.com/grafana/grafana-openapi-client-go/client/access_control"
 	"github.com/grafana/grafana-openapi-client-go/client/access_control_provisioning"
@@ -166,19 +169,28 @@ func DefaultTransportConfig() *TransportConfig {
 // TransportConfig contains the transport related info,
 // found in the meta section of the spec file.
 type TransportConfig struct {
-	Host     string
+	// Host is the doman name or IP address of the host that serves the API.
+	Host string
+	// BasePath is the URL prefix for all API paths, relative to the host root.
 	BasePath string
-	Schemes  []string
+	// Schemes are the transfer protocols used by the API (http or https).
+	Schemes []string
 	// APIKey is an optional API key or service account token.
 	APIKey string
 	// BasicAuth is optional basic auth credentials.
 	BasicAuth *url.Userinfo
-	// OrgID provides an optional organization ID
-	// with BasicAuth, it defaults to last used org
-	// with APIKey, it is disallowed because service account tokens are scoped to a single org
+	// OrgID provides an optional organization ID.
+	// OrgID is only supported with BasicAuth since API keys are already org-scoped.
 	OrgID int64
 	// TLSConfig provides an optional configuration for a TLS client
 	TLSConfig *tls.Config
+	// NumRetries contains the optional number of attempted retries
+	NumRetries int
+	// RetryTimeout sets an optional time to wait before retrying a request
+	RetryTimeout time.Duration
+	// RetryStatusCodes contains the optional list of status codes to retry
+	// Use "x" as a wildcard for a single digit (default: [429, 5xx])
+	RetryStatusCodes []string
 }
 
 // WithHost overrides the default host,
@@ -353,10 +365,18 @@ func (c *GrafanaHTTPAPI) WithOrgID(orgID int64) *GrafanaHTTPAPI {
 }
 
 func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
-	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 	httpTransport := http.DefaultTransport.(*http.Transport)
 	httpTransport.TLSClientConfig = cfg.TLSConfig
-	tr.Transport = httpTransport
+
+	retryableTransport := &transport.RetryableTransport{
+		Transport:        httpTransport,
+		NumRetries:       cfg.NumRetries,
+		RetryTimeout:     cfg.RetryTimeout,
+		RetryStatusCodes: cfg.RetryStatusCodes,
+	}
+
+	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	tr.Transport = retryableTransport
 
 	var auth []runtime.ClientAuthInfoWriter
 	if cfg.BasicAuth != nil {

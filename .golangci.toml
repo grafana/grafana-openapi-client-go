@@ -8,11 +8,19 @@ min-confidence = 3
 min-len = 5
 min-occurrences = 5
 
+[linters-settings.depguard.rules.main]
+allow = [
+  "fmt", "strconv", "time", "net/http",
+  "bytes", "io", "math",
+  "github.com/go-openapi/runtime",
+  "github.com/grafana/grafana-openapi-client-go/pkg/errors",
+  "github.com/grafana/grafana-openapi-client-go/pkg/transport"
+]
+
 [linters]
 disable-all = true
 enable = [
   "bodyclose",
-  "deadcode",
   "depguard",
   "dogsled",
   "errcheck",
@@ -20,7 +28,6 @@ enable = [
   "goconst",
   "gocritic",
   "goimports",
-  "golint",
   "goprintffuncname",
   "gosec",
   "gosimple",
@@ -31,12 +38,10 @@ enable = [
   "rowserrcheck",
   "exportloopref",
   "staticcheck",
-  "structcheck",
   "stylecheck",
   "typecheck",
   "unconvert",
   "unused",
-  "varcheck",
   "whitespace",
   "gocyclo",
   "unparam",

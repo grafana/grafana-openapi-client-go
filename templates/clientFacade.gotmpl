@@ -13,17 +13,18 @@ package {{ .Package }}
 // The template itself can be found here: https://github.com/go-swagger/go-swagger/blob/master/generator/templates/client/facade.gotmpl
 
 import (
+  "bytes"
   "crypto/tls"
+  "io"
   "net/http"
   "net/url"
   "strconv"
 
-  "github.com/go-openapi/errors"
   "github.com/go-openapi/runtime"
   httptransport "github.com/go-openapi/runtime/client"
-  "github.com/go-openapi/spec"
   "github.com/go-openapi/strfmt"
-  "github.com/go-openapi/swag"
+  
+  "github.com/grafana/grafana-openapi-client-go/pkg/transport"
 
   {{ imports .DefaultImports }}
   {{ imports .Imports }}
@@ -94,19 +95,28 @@ func DefaultTransportConfig() *TransportConfig {
 // TransportConfig contains the transport related info,
 // found in the meta section of the spec file.
 type TransportConfig struct {
+    // Host is the doman name or IP address of the host that serves the API.
     Host string
+    // BasePath is the URL prefix for all API paths, relative to the host root.
     BasePath string
+    // Schemes are the transfer protocols used by the API (http or https).
     Schemes []string
     // APIKey is an optional API key or service account token.
     APIKey string
     // BasicAuth is optional basic auth credentials.
     BasicAuth *url.Userinfo
-    // OrgID provides an optional organization ID
-    // with BasicAuth, it defaults to last used org
-    // with APIKey, it is disallowed because service account tokens are scoped to a single org
+    // OrgID provides an optional organization ID.
+    // OrgID is only supported with BasicAuth since API keys are already org-scoped.
     OrgID int64
     // TLSConfig provides an optional configuration for a TLS client
     TLSConfig *tls.Config
+    // NumRetries contains the optional number of attempted retries
+    NumRetries int
+    // RetryTimeout sets an optional time to wait before retrying a request
+    RetryTimeout time.Duration
+    // RetryStatusCodes contains the optional list of status codes to retry
+    // Use "x" as a wildcard for a single digit (default: [429, 5xx])
+    RetryStatusCodes []string
 }
 
 // WithHost overrides the default host,
@@ -161,27 +171,35 @@ func (c *{{pascalize .Name}}) WithOrgID(orgID int64) *{{pascalize .Name}} {
 }
 
 func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
-	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 	httpTransport := http.DefaultTransport.(*http.Transport)
 	httpTransport.TLSClientConfig = cfg.TLSConfig
-	tr.Transport = httpTransport
 
-  var auth []runtime.ClientAuthInfoWriter
-  if cfg.BasicAuth != nil {
-    pwd, _ := cfg.BasicAuth.Password()
-    basicAuth := httptransport.BasicAuth(cfg.BasicAuth.Username(), pwd)
-    auth = append(auth, basicAuth)
-  }
-  if cfg.OrgID != 0 {
-    orgIDHeader := runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
-      return r.SetHeaderParam(OrgIDHeader, strconv.FormatInt(cfg.OrgID, 10))
-    })
-    auth = append(auth, orgIDHeader)
-  }
-  if cfg.APIKey != "" {
-    APIKey := httptransport.BearerToken(cfg.APIKey)
-    auth = append(auth, APIKey)
-  }
+	retryableTransport := &transport.RetryableTransport{
+		Transport: httpTransport,
+    NumRetries: cfg.NumRetries,
+    RetryTimeout: cfg.RetryTimeout,
+    RetryStatusCodes: cfg.RetryStatusCodes,
+	}
+
+	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)	
+	tr.Transport = retryableTransport
+
+	var auth []runtime.ClientAuthInfoWriter
+	if cfg.BasicAuth != nil {
+		pwd, _ := cfg.BasicAuth.Password()
+		basicAuth := httptransport.BasicAuth(cfg.BasicAuth.Username(), pwd)
+		auth = append(auth, basicAuth)
+	}
+	if cfg.OrgID != 0 {
+		orgIDHeader := runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
+			return r.SetHeaderParam(OrgIDHeader, strconv.FormatInt(cfg.OrgID, 10))
+		})
+		auth = append(auth, orgIDHeader)
+	}
+	if cfg.APIKey != "" {
+		APIKey := httptransport.BearerToken(cfg.APIKey)
+		auth = append(auth, APIKey)
+	}
 
 	tr.DefaultAuthentication = httptransport.Compose(auth...)
 	return tr
