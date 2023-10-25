@@ -1,6 +1,7 @@
 package transport
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"math"
@@ -24,9 +25,9 @@ type RetryableTransport struct {
 
 func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	var (
-		resp         *http.Response
-		err          error
-		bodyContents []byte
+		resp             *http.Response
+		err              error
+		respBodyContents []byte
 	)
 
 	for n := 0; n <= t.NumRetries; n++ {
@@ -48,7 +49,7 @@ func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error
 		}
 
 		// read the body (even on non-successful HTTP status codes)
-		bodyContents, err = io.ReadAll(resp.Body)
+		respBodyContents, err = io.ReadAll(resp.Body)
 		resp.Body.Close() //nolint:errcheck
 
 		// if there was an error reading the body, try again
@@ -72,12 +73,13 @@ func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error
 	switch {
 	case resp.StatusCode == http.StatusNotFound:
 		return resp, errors.ErrNotFound{
-			BodyContents: bodyContents,
+			BodyContents: respBodyContents,
 		}
 	case resp.StatusCode >= http.StatusBadRequest:
-		return resp, fmt.Errorf("status: %d, body: %v", resp.StatusCode, string(bodyContents))
+		return resp, fmt.Errorf("status: %d, body: %v", resp.StatusCode, string(respBodyContents))
 	}
 
+	resp.Body = io.NopCloser(bytes.NewBuffer(respBodyContents))
 	return resp, err
 }
 
