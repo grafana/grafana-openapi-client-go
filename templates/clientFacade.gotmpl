@@ -117,6 +117,8 @@ type TransportConfig struct {
     // RetryStatusCodes contains the optional list of status codes to retry
     // Use "x" as a wildcard for a single digit (default: [429, 5xx])
     RetryStatusCodes []string
+    // HTTPHeaders contains an optional map of HTTP headers to add to each request
+    HTTPHeaders map[string]string
 }
 
 // WithHost overrides the default host,
@@ -179,6 +181,7 @@ func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
     NumRetries: cfg.NumRetries,
     RetryTimeout: cfg.RetryTimeout,
     RetryStatusCodes: cfg.RetryStatusCodes,
+    HTTPHeaders: cfg.HTTPHeaders,
 	}
 
 	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)	
