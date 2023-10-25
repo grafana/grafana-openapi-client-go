@@ -19,11 +19,11 @@ type RetryableTransport struct {
 	NumRetries       int
 	RetryTimeout     time.Duration
 	RetryStatusCodes []string
-	HttpHeaders      map[string]string
+	HTTPHeaders      map[string]string
 }
 
 func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	for k, v := range t.HttpHeaders {
+	for k, v := range t.HTTPHeaders {
 		req.Header.Set(k, v)
 	}
 
