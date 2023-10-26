@@ -21,7 +21,7 @@ import (
 type UpdateOrgUserCommand struct {
 
 	// role
-	// Enum: [Viewer Editor Admin]
+	// Enum: [None Viewer Editor Admin]
 	Role string `json:"role,omitempty"`
 }
 
@@ -43,7 +43,7 @@ var updateOrgUserCommandTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Viewer","Editor","Admin"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["None","Viewer","Editor","Admin"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -52,6 +52,9 @@ func init() {
 }
 
 const (
+
+	// UpdateOrgUserCommandRoleNone captures enum value "None"
+	UpdateOrgUserCommandRoleNone string = "None"
 
 	// UpdateOrgUserCommandRoleViewer captures enum value "Viewer"
 	UpdateOrgUserCommandRoleViewer string = "Viewer"

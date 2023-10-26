@@ -24,7 +24,7 @@ type AddCommand struct {
 	Name string `json:"name,omitempty"`
 
 	// role
-	// Enum: [Viewer Editor Admin]
+	// Enum: [None Viewer Editor Admin]
 	Role string `json:"role,omitempty"`
 
 	// seconds to live
@@ -49,7 +49,7 @@ var addCommandTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Viewer","Editor","Admin"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["None","Viewer","Editor","Admin"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -58,6 +58,9 @@ func init() {
 }
 
 const (
+
+	// AddCommandRoleNone captures enum value "None"
+	AddCommandRoleNone string = "None"
 
 	// AddCommandRoleViewer captures enum value "Viewer"
 	AddCommandRoleViewer string = "Viewer"

@@ -18,14 +18,23 @@ import (
 // swagger:model TLSConfig
 type TLSConfig struct {
 
+	// Text of the CA cert to use for the targets.
+	Ca string `json:"ca,omitempty"`
+
 	// The CA cert to use for the targets.
 	CaFile string `json:"ca_file,omitempty"`
+
+	// Text of the client cert file for the targets.
+	Cert string `json:"cert,omitempty"`
 
 	// The client cert file for the targets.
 	CertFile string `json:"cert_file,omitempty"`
 
 	// Disable target certificate validation.
 	InsecureSkipVerify bool `json:"insecure_skip_verify,omitempty"`
+
+	// key
+	Key Secret `json:"key,omitempty"`
 
 	// The client key file for the targets.
 	KeyFile string `json:"key_file,omitempty"`
@@ -44,6 +53,10 @@ type TLSConfig struct {
 func (m *TLSConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateKey(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMaxVersion(formats); err != nil {
 		res = append(res, err)
 	}
@@ -55,6 +68,23 @@ func (m *TLSConfig) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *TLSConfig) validateKey(formats strfmt.Registry) error {
+	if swag.IsZero(m.Key) { // not required
+		return nil
+	}
+
+	if err := m.Key.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("key")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("key")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -96,6 +126,10 @@ func (m *TLSConfig) validateMinVersion(formats strfmt.Registry) error {
 func (m *TLSConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateKey(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMaxVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -107,6 +141,24 @@ func (m *TLSConfig) ContextValidate(ctx context.Context, formats strfmt.Registry
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *TLSConfig) contextValidateKey(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Key) { // not required
+		return nil
+	}
+
+	if err := m.Key.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("key")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("key")
+		}
+		return err
+	}
+
 	return nil
 }
 

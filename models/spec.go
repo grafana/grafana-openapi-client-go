@@ -18,6 +18,9 @@ import (
 // swagger:model Spec
 type Spec struct {
 
+	// cookie preferences
+	CookiePreferences *CookiePreferences `json:"cookiePreferences,omitempty"`
+
 	// UID for the home dashboard
 	HomeDashboardUID string `json:"homeDashboardUID,omitempty"`
 
@@ -42,6 +45,10 @@ type Spec struct {
 func (m *Spec) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCookiePreferences(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateQueryHistory(formats); err != nil {
 		res = append(res, err)
 	}
@@ -49,6 +56,25 @@ func (m *Spec) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Spec) validateCookiePreferences(formats strfmt.Registry) error {
+	if swag.IsZero(m.CookiePreferences) { // not required
+		return nil
+	}
+
+	if m.CookiePreferences != nil {
+		if err := m.CookiePreferences.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cookiePreferences")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cookiePreferences")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -75,6 +101,10 @@ func (m *Spec) validateQueryHistory(formats strfmt.Registry) error {
 func (m *Spec) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateCookiePreferences(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateQueryHistory(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -82,6 +112,27 @@ func (m *Spec) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Spec) contextValidateCookiePreferences(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CookiePreferences != nil {
+
+		if swag.IsZero(m.CookiePreferences) { // not required
+			return nil
+		}
+
+		if err := m.CookiePreferences.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cookiePreferences")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cookiePreferences")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

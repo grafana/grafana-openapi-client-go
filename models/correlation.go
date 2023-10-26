@@ -29,6 +29,13 @@ type Correlation struct {
 	// Example: My Label
 	Label string `json:"label,omitempty"`
 
+	// OrgID of the data source the correlation originates from
+	// Example: 1
+	OrgID int64 `json:"orgId,omitempty"`
+
+	// Provisioned True if the correlation was created during provisioning
+	Provisioned bool `json:"provisioned,omitempty"`
+
 	// UID of the data source the correlation originates from
 	// Example: d0oxYRg4z
 	SourceUID string `json:"sourceUID,omitempty"`

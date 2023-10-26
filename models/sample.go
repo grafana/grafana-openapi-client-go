@@ -18,6 +18,9 @@ import (
 // swagger:model Sample
 type Sample struct {
 
+	// h
+	H *FloatHistogram `json:"H,omitempty"`
+
 	// metric
 	Metric Labels `json:"Metric,omitempty"`
 
@@ -32,6 +35,10 @@ type Sample struct {
 func (m *Sample) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateH(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMetric(formats); err != nil {
 		res = append(res, err)
 	}
@@ -39,6 +46,25 @@ func (m *Sample) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Sample) validateH(formats strfmt.Registry) error {
+	if swag.IsZero(m.H) { // not required
+		return nil
+	}
+
+	if m.H != nil {
+		if err := m.H.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("H")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("H")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -63,6 +89,10 @@ func (m *Sample) validateMetric(formats strfmt.Registry) error {
 func (m *Sample) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateH(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMetric(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -70,6 +100,27 @@ func (m *Sample) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Sample) contextValidateH(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.H != nil {
+
+		if swag.IsZero(m.H) { // not required
+			return nil
+		}
+
+		if err := m.H.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("H")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("H")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

@@ -41,11 +41,18 @@ type HTTPClientConfig struct {
 	// marshalled configuration when set to false.
 	FollowRedirects bool `json:"follow_redirects,omitempty"`
 
+	// NoProxy contains addresses that should not use a proxy.
+	NoProxy string `json:"no_proxy,omitempty"`
+
 	// oauth2
 	Oauth2 *OAuth2 `json:"oauth2,omitempty"`
 
 	// proxy connect header
 	ProxyConnectHeader Header `json:"proxy_connect_header,omitempty"`
+
+	// ProxyFromEnvironment makes use of net/http ProxyFromEnvironment function
+	// to determine proxies.
+	ProxyFromEnvironment bool `json:"proxy_from_environment,omitempty"`
 
 	// proxy url
 	ProxyURL *URL `json:"proxy_url,omitempty"`

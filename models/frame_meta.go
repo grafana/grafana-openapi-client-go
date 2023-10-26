@@ -46,6 +46,10 @@ type FrameMeta struct {
 	// PathSeparator defines the separator pattern to decode a hierarchy. The default separator is '/'.
 	PathSeparator string `json:"pathSeparator,omitempty"`
 
+	// PreferredVisualizationPluginId sets the panel plugin id to use to render the data when using Explore. If
+	// the plugin cannot be found will fall back to PreferredVisualization.
+	PreferredVisualisationPluginID string `json:"preferredVisualisationPluginId,omitempty"`
+
 	// preferred visualisation type
 	PreferredVisualisationType VisType `json:"preferredVisualisationType,omitempty"`
 

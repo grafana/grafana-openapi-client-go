@@ -41,6 +41,9 @@ type TelegramConfig struct {
 
 	// token
 	Token Secret `json:"token,omitempty"`
+
+	// token file
+	TokenFile string `json:"token_file,omitempty"`
 }
 
 // Validate validates this telegram config

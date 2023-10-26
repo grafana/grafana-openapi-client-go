@@ -30,7 +30,7 @@ type CreateServiceAccountForm struct {
 
 	// role
 	// Example: Admin
-	// Enum: [Viewer Editor Admin]
+	// Enum: [None Viewer Editor Admin]
 	Role string `json:"role,omitempty"`
 }
 
@@ -52,7 +52,7 @@ var createServiceAccountFormTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Viewer","Editor","Admin"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["None","Viewer","Editor","Admin"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -61,6 +61,9 @@ func init() {
 }
 
 const (
+
+	// CreateServiceAccountFormRoleNone captures enum value "None"
+	CreateServiceAccountFormRoleNone string = "None"
 
 	// CreateServiceAccountFormRoleViewer captures enum value "Viewer"
 	CreateServiceAccountFormRoleViewer string = "Viewer"

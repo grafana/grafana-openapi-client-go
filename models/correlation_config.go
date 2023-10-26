@@ -25,7 +25,7 @@ type CorrelationConfig struct {
 	Field *string `json:"field"`
 
 	// Target data query
-	// Example: {"expr":"job=app"}
+	// Example: {"prop1":"value1","prop2":"value"}
 	// Required: true
 	Target interface{} `json:"target"`
 

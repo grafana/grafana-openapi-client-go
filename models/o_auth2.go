@@ -33,6 +33,16 @@ type OAuth2 struct {
 	// endpoint params
 	EndpointParams map[string]string `json:"endpoint_params,omitempty"`
 
+	// NoProxy contains addresses that should not use a proxy.
+	NoProxy string `json:"no_proxy,omitempty"`
+
+	// proxy connect header
+	ProxyConnectHeader Header `json:"proxy_connect_header,omitempty"`
+
+	// ProxyFromEnvironment makes use of net/http ProxyFromEnvironment function
+	// to determine proxies.
+	ProxyFromEnvironment bool `json:"proxy_from_environment,omitempty"`
+
 	// proxy url
 	ProxyURL *URL `json:"proxy_url,omitempty"`
 
@@ -52,6 +62,10 @@ func (m *OAuth2) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateClientSecret(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProxyConnectHeader(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -101,6 +115,25 @@ func (m *OAuth2) validateClientSecret(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *OAuth2) validateProxyConnectHeader(formats strfmt.Registry) error {
+	if swag.IsZero(m.ProxyConnectHeader) { // not required
+		return nil
+	}
+
+	if m.ProxyConnectHeader != nil {
+		if err := m.ProxyConnectHeader.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("proxy_connect_header")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("proxy_connect_header")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OAuth2) validateProxyURL(formats strfmt.Registry) error {
 	if swag.IsZero(m.ProxyURL) { // not required
 		return nil
@@ -129,6 +162,10 @@ func (m *OAuth2) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 	}
 
 	if err := m.contextValidateClientSecret(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProxyConnectHeader(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -174,6 +211,24 @@ func (m *OAuth2) contextValidateClientSecret(ctx context.Context, formats strfmt
 			return ve.ValidateName("client_secret")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("client_secret")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *OAuth2) contextValidateProxyConnectHeader(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ProxyConnectHeader) { // not required
+		return nil
+	}
+
+	if err := m.ProxyConnectHeader.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("proxy_connect_header")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("proxy_connect_header")
 		}
 		return err
 	}

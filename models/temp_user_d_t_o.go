@@ -56,7 +56,7 @@ type TempUserDTO struct {
 	OrgID int64 `json:"orgId,omitempty"`
 
 	// role
-	// Enum: [Viewer Editor Admin]
+	// Enum: [None Viewer Editor Admin]
 	Role string `json:"role,omitempty"`
 
 	// status
@@ -120,7 +120,7 @@ var tempUserDTOTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Viewer","Editor","Admin"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["None","Viewer","Editor","Admin"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -129,6 +129,9 @@ func init() {
 }
 
 const (
+
+	// TempUserDTORoleNone captures enum value "None"
+	TempUserDTORoleNone string = "None"
 
 	// TempUserDTORoleViewer captures enum value "Viewer"
 	TempUserDTORoleViewer string = "Viewer"

@@ -13,38 +13,36 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// WebhookConfig WebhookConfig configures notifications via a generic webhook.
+// MSTeamsConfig m s teams config
 //
-// swagger:model WebhookConfig
-type WebhookConfig struct {
+// swagger:model MSTeamsConfig
+type MSTeamsConfig struct {
 
 	// http config
 	HTTPConfig *HTTPClientConfig `json:"http_config,omitempty"`
 
-	// MaxAlerts is the maximum number of alerts to be sent per webhook message.
-	// Alerts exceeding this threshold will be truncated. Setting this to 0
-	// allows an unlimited number of alerts.
-	MaxAlerts uint64 `json:"max_alerts,omitempty"`
-
 	// send resolved
 	SendResolved bool `json:"send_resolved,omitempty"`
 
-	// url
-	URL *SecretURL `json:"url,omitempty"`
+	// text
+	Text string `json:"text,omitempty"`
 
-	// url file
-	URLFile string `json:"url_file,omitempty"`
+	// title
+	Title string `json:"title,omitempty"`
+
+	// webhook url
+	WebhookURL *SecretURL `json:"webhook_url,omitempty"`
 }
 
-// Validate validates this webhook config
-func (m *WebhookConfig) Validate(formats strfmt.Registry) error {
+// Validate validates this m s teams config
+func (m *MSTeamsConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateHTTPConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateURL(formats); err != nil {
+	if err := m.validateWebhookURL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,7 +52,7 @@ func (m *WebhookConfig) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WebhookConfig) validateHTTPConfig(formats strfmt.Registry) error {
+func (m *MSTeamsConfig) validateHTTPConfig(formats strfmt.Registry) error {
 	if swag.IsZero(m.HTTPConfig) { // not required
 		return nil
 	}
@@ -73,17 +71,17 @@ func (m *WebhookConfig) validateHTTPConfig(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WebhookConfig) validateURL(formats strfmt.Registry) error {
-	if swag.IsZero(m.URL) { // not required
+func (m *MSTeamsConfig) validateWebhookURL(formats strfmt.Registry) error {
+	if swag.IsZero(m.WebhookURL) { // not required
 		return nil
 	}
 
-	if m.URL != nil {
-		if err := m.URL.Validate(formats); err != nil {
+	if m.WebhookURL != nil {
+		if err := m.WebhookURL.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("url")
+				return ve.ValidateName("webhook_url")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("url")
+				return ce.ValidateName("webhook_url")
 			}
 			return err
 		}
@@ -92,15 +90,15 @@ func (m *WebhookConfig) validateURL(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this webhook config based on the context it is used
-func (m *WebhookConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this m s teams config based on the context it is used
+func (m *MSTeamsConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateHTTPConfig(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateURL(ctx, formats); err != nil {
+	if err := m.contextValidateWebhookURL(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -110,7 +108,7 @@ func (m *WebhookConfig) ContextValidate(ctx context.Context, formats strfmt.Regi
 	return nil
 }
 
-func (m *WebhookConfig) contextValidateHTTPConfig(ctx context.Context, formats strfmt.Registry) error {
+func (m *MSTeamsConfig) contextValidateHTTPConfig(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.HTTPConfig != nil {
 
@@ -131,19 +129,19 @@ func (m *WebhookConfig) contextValidateHTTPConfig(ctx context.Context, formats s
 	return nil
 }
 
-func (m *WebhookConfig) contextValidateURL(ctx context.Context, formats strfmt.Registry) error {
+func (m *MSTeamsConfig) contextValidateWebhookURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.URL != nil {
+	if m.WebhookURL != nil {
 
-		if swag.IsZero(m.URL) { // not required
+		if swag.IsZero(m.WebhookURL) { // not required
 			return nil
 		}
 
-		if err := m.URL.ContextValidate(ctx, formats); err != nil {
+		if err := m.WebhookURL.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("url")
+				return ve.ValidateName("webhook_url")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("url")
+				return ce.ValidateName("webhook_url")
 			}
 			return err
 		}
@@ -153,7 +151,7 @@ func (m *WebhookConfig) contextValidateURL(ctx context.Context, formats strfmt.R
 }
 
 // MarshalBinary interface implementation
-func (m *WebhookConfig) MarshalBinary() ([]byte, error) {
+func (m *MSTeamsConfig) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -161,8 +159,8 @@ func (m *WebhookConfig) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *WebhookConfig) UnmarshalBinary(b []byte) error {
-	var res WebhookConfig
+func (m *MSTeamsConfig) UnmarshalBinary(b []byte) error {
+	var res MSTeamsConfig
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

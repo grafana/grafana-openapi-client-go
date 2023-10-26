@@ -30,6 +30,9 @@ type DashboardACLInfoDTO struct {
 	// folder Id
 	FolderID int64 `json:"folderId,omitempty"`
 
+	// folder Uid
+	FolderUID string `json:"folderUid,omitempty"`
+
 	// inherited
 	Inherited bool `json:"inherited,omitempty"`
 
@@ -43,7 +46,7 @@ type DashboardACLInfoDTO struct {
 	PermissionName string `json:"permissionName,omitempty"`
 
 	// role
-	// Enum: [Viewer Editor Admin]
+	// Enum: [None Viewer Editor Admin]
 	Role string `json:"role,omitempty"`
 
 	// slug
@@ -146,7 +149,7 @@ var dashboardAclInfoDTOTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Viewer","Editor","Admin"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["None","Viewer","Editor","Admin"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -155,6 +158,9 @@ func init() {
 }
 
 const (
+
+	// DashboardACLInfoDTORoleNone captures enum value "None"
+	DashboardACLInfoDTORoleNone string = "None"
 
 	// DashboardACLInfoDTORoleViewer captures enum value "Viewer"
 	DashboardACLInfoDTORoleViewer string = "Viewer"

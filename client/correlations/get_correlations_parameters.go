@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetCorrelationsParams creates a new GetCorrelationsParams object,
@@ -60,6 +61,31 @@ GetCorrelationsParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type GetCorrelationsParams struct {
+
+	/* Limit.
+
+	   Limit the maximum number of correlations to return per page
+
+	   Format: int64
+	   Default: 100
+	*/
+	Limit *int64
+
+	/* Page.
+
+	   Page index for starting fetching correlations
+
+	   Format: int64
+	   Default: 1
+	*/
+	Page *int64
+
+	/* SourceUID.
+
+	   Source datasource UID filter to be applied to correlations
+	*/
+	SourceUID []string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -77,7 +103,21 @@ func (o *GetCorrelationsParams) WithDefaults() *GetCorrelationsParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetCorrelationsParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		limitDefault = int64(100)
+
+		pageDefault = int64(1)
+	)
+
+	val := GetCorrelationsParams{
+		Limit: &limitDefault,
+		Page:  &pageDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get correlations params
@@ -113,6 +153,39 @@ func (o *GetCorrelationsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithLimit adds the limit to the get correlations params
+func (o *GetCorrelationsParams) WithLimit(limit *int64) *GetCorrelationsParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the get correlations params
+func (o *GetCorrelationsParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithPage adds the page to the get correlations params
+func (o *GetCorrelationsParams) WithPage(page *int64) *GetCorrelationsParams {
+	o.SetPage(page)
+	return o
+}
+
+// SetPage adds the page to the get correlations params
+func (o *GetCorrelationsParams) SetPage(page *int64) {
+	o.Page = page
+}
+
+// WithSourceUID adds the sourceUID to the get correlations params
+func (o *GetCorrelationsParams) WithSourceUID(sourceUID []string) *GetCorrelationsParams {
+	o.SetSourceUID(sourceUID)
+	return o
+}
+
+// SetSourceUID adds the sourceUid to the get correlations params
+func (o *GetCorrelationsParams) SetSourceUID(sourceUID []string) {
+	o.SourceUID = sourceUID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetCorrelationsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -121,8 +194,70 @@ func (o *GetCorrelationsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	}
 	var res []error
 
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Page != nil {
+
+		// query param page
+		var qrPage int64
+
+		if o.Page != nil {
+			qrPage = *o.Page
+		}
+		qPage := swag.FormatInt64(qrPage)
+		if qPage != "" {
+
+			if err := r.SetQueryParam("page", qPage); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SourceUID != nil {
+
+		// binding items for sourceUID
+		joinedSourceUID := o.bindParamSourceUID(reg)
+
+		// query array param sourceUID
+		if err := r.SetQueryParam("sourceUID", joinedSourceUID...); err != nil {
+			return err
+		}
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetCorrelations binds the parameter sourceUID
+func (o *GetCorrelationsParams) bindParamSourceUID(formats strfmt.Registry) []string {
+	sourceUIDIR := o.SourceUID
+
+	var sourceUIDIC []string
+	for _, sourceUIDIIR := range sourceUIDIR { // explode []string
+
+		sourceUIDIIV := sourceUIDIIR // string as string
+		sourceUIDIC = append(sourceUIDIC, sourceUIDIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	sourceUIDIS := swag.JoinByFormat(sourceUIDIC, "multi")
+
+	return sourceUIDIS
 }

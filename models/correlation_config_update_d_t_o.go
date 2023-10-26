@@ -24,7 +24,7 @@ type CorrelationConfigUpdateDTO struct {
 	Field string `json:"field,omitempty"`
 
 	// Target data query
-	// Example: {"expr":"job=app"}
+	// Example: {"prop1":"value1","prop2":"value"}
 	Target interface{} `json:"target,omitempty"`
 
 	// Source data transformations

@@ -64,7 +64,8 @@ type SearchParams struct {
 
 	/* DashboardIds.
 
-	   List of dashboard id’s to search for
+	     List of dashboard id’s to search for
+	This is deprecated: users should use the `dashboardUIDs` query parameter instead
 	*/
 	DashboardIds []int64
 
@@ -76,9 +77,18 @@ type SearchParams struct {
 
 	/* FolderIds.
 
-	   List of folder id’s to search in for dashboards
+	     List of folder id’s to search in for dashboards
+	If it's `0` then it will query for the top level folders
+	This is deprecated: users should use the `folderUIDs` query parameter instead
 	*/
 	FolderIds []int64
+
+	/* FolderUIDs.
+
+	     List of folder UID’s to search in for dashboards
+	If it's an empty string then it will query for the top level folders
+	*/
+	FolderUIDs []string
 
 	/* Limit.
 
@@ -236,6 +246,17 @@ func (o *SearchParams) SetFolderIds(folderIds []int64) {
 	o.FolderIds = folderIds
 }
 
+// WithFolderUIDs adds the folderUIDs to the search params
+func (o *SearchParams) WithFolderUIDs(folderUIDs []string) *SearchParams {
+	o.SetFolderUIDs(folderUIDs)
+	return o
+}
+
+// SetFolderUIDs adds the folderUiDs to the search params
+func (o *SearchParams) SetFolderUIDs(folderUIDs []string) {
+	o.FolderUIDs = folderUIDs
+}
+
 // WithLimit adds the limit to the search params
 func (o *SearchParams) WithLimit(limit *int64) *SearchParams {
 	o.SetLimit(limit)
@@ -361,6 +382,17 @@ func (o *SearchParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regist
 
 		// query array param folderIds
 		if err := r.SetQueryParam("folderIds", joinedFolderIds...); err != nil {
+			return err
+		}
+	}
+
+	if o.FolderUIDs != nil {
+
+		// binding items for folderUIDs
+		joinedFolderUIDs := o.bindParamFolderUIDs(reg)
+
+		// query array param folderUIDs
+		if err := r.SetQueryParam("folderUIDs", joinedFolderUIDs...); err != nil {
 			return err
 		}
 	}
@@ -550,6 +582,23 @@ func (o *SearchParams) bindParamFolderIds(formats strfmt.Registry) []string {
 	folderIdsIS := swag.JoinByFormat(folderIdsIC, "")
 
 	return folderIdsIS
+}
+
+// bindParamSearch binds the parameter folderUIDs
+func (o *SearchParams) bindParamFolderUIDs(formats strfmt.Registry) []string {
+	folderUIDsIR := o.FolderUIDs
+
+	var folderUIDsIC []string
+	for _, folderUIDsIIR := range folderUIDsIR { // explode []string
+
+		folderUIDsIIV := folderUIDsIIR // string as string
+		folderUIDsIC = append(folderUIDsIC, folderUIDsIIV)
+	}
+
+	// items.CollectionFormat: ""
+	folderUIDsIS := swag.JoinByFormat(folderUIDsIC, "")
+
+	return folderUIDsIS
 }
 
 // bindParamSearch binds the parameter tag

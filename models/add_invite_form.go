@@ -27,7 +27,7 @@ type AddInviteForm struct {
 	Name string `json:"name,omitempty"`
 
 	// role
-	// Enum: [Viewer Editor Admin]
+	// Enum: [None Viewer Editor Admin]
 	Role string `json:"role,omitempty"`
 
 	// send email
@@ -52,7 +52,7 @@ var addInviteFormTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Viewer","Editor","Admin"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["None","Viewer","Editor","Admin"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -61,6 +61,9 @@ func init() {
 }
 
 const (
+
+	// AddInviteFormRoleNone captures enum value "None"
+	AddInviteFormRoleNone string = "None"
 
 	// AddInviteFormRoleViewer captures enum value "Viewer"
 	AddInviteFormRoleViewer string = "Viewer"

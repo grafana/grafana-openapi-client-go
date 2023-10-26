@@ -78,9 +78,6 @@ type DashboardMeta struct {
 	// provisioned external Id
 	ProvisionedExternalID string `json:"provisionedExternalId,omitempty"`
 
-	// public dashboard access token
-	PublicDashboardAccessToken string `json:"publicDashboardAccessToken,omitempty"`
-
 	// public dashboard enabled
 	PublicDashboardEnabled bool `json:"publicDashboardEnabled,omitempty"`
 

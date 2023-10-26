@@ -47,6 +47,9 @@ type EmbeddedContactPoint struct {
 	// UID is the unique identifier of the contact point. The UID can be
 	// set by the user.
 	// Example: my_external_reference
+	// Max Length: 40
+	// Min Length: 1
+	// Pattern: ^[a-zA-Z0-9\-\_]+$
 	UID string `json:"uid,omitempty"`
 }
 
@@ -59,6 +62,10 @@ func (m *EmbeddedContactPoint) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -162,6 +169,26 @@ func (m *EmbeddedContactPoint) validateType(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *EmbeddedContactPoint) validateUID(formats strfmt.Registry) error {
+	if swag.IsZero(m.UID) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("uid", "body", m.UID, 1); err != nil {
+		return err
+	}
+
+	if err := validate.MaxLength("uid", "body", m.UID, 40); err != nil {
+		return err
+	}
+
+	if err := validate.Pattern("uid", "body", m.UID, `^[a-zA-Z0-9\-\_]+$`); err != nil {
 		return err
 	}
 

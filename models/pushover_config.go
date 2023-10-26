@@ -18,6 +18,9 @@ import (
 // swagger:model PushoverConfig
 type PushoverConfig struct {
 
+	// device
+	Device string `json:"device,omitempty"`
+
 	// expire
 	Expire string `json:"expire,omitempty"`
 
