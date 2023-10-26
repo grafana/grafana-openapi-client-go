@@ -66,42 +66,42 @@ type GetCorrelationsOK struct {
 	Payload []*models.Correlation
 }
 
-// IsSuccess returns true when this get correlations o k response has a 2xx status code
+// IsSuccess returns true when this get correlations Ok response has a 2xx status code
 func (o *GetCorrelationsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get correlations o k response has a 3xx status code
+// IsRedirect returns true when this get correlations Ok response has a 3xx status code
 func (o *GetCorrelationsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get correlations o k response has a 4xx status code
+// IsClientError returns true when this get correlations Ok response has a 4xx status code
 func (o *GetCorrelationsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get correlations o k response has a 5xx status code
+// IsServerError returns true when this get correlations Ok response has a 5xx status code
 func (o *GetCorrelationsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get correlations o k response a status code equal to that given
+// IsCode returns true when this get correlations Ok response a status code equal to that given
 func (o *GetCorrelationsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get correlations o k response
+// Code gets the status code for the get correlations Ok response
 func (o *GetCorrelationsOK) Code() int {
 	return 200
 }
 
 func (o *GetCorrelationsOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/correlations][%d] getCorrelationsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/correlations][%d] getCorrelationsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetCorrelationsOK) String() string {
-	return fmt.Sprintf("[GET /datasources/correlations][%d] getCorrelationsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/correlations][%d] getCorrelationsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetCorrelationsOK) GetPayload() []*models.Correlation {

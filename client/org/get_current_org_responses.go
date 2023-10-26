@@ -66,42 +66,42 @@ type GetCurrentOrgOK struct {
 	Payload *models.OrgDetailsDTO
 }
 
-// IsSuccess returns true when this get current org o k response has a 2xx status code
+// IsSuccess returns true when this get current org Ok response has a 2xx status code
 func (o *GetCurrentOrgOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get current org o k response has a 3xx status code
+// IsRedirect returns true when this get current org Ok response has a 3xx status code
 func (o *GetCurrentOrgOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get current org o k response has a 4xx status code
+// IsClientError returns true when this get current org Ok response has a 4xx status code
 func (o *GetCurrentOrgOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get current org o k response has a 5xx status code
+// IsServerError returns true when this get current org Ok response has a 5xx status code
 func (o *GetCurrentOrgOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get current org o k response a status code equal to that given
+// IsCode returns true when this get current org Ok response a status code equal to that given
 func (o *GetCurrentOrgOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get current org o k response
+// Code gets the status code for the get current org Ok response
 func (o *GetCurrentOrgOK) Code() int {
 	return 200
 }
 
 func (o *GetCurrentOrgOK) Error() string {
-	return fmt.Sprintf("[GET /org][%d] getCurrentOrgOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /org][%d] getCurrentOrgOk  %+v", 200, o.Payload)
 }
 
 func (o *GetCurrentOrgOK) String() string {
-	return fmt.Sprintf("[GET /org][%d] getCurrentOrgOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /org][%d] getCurrentOrgOk  %+v", 200, o.Payload)
 }
 
 func (o *GetCurrentOrgOK) GetPayload() *models.OrgDetailsDTO {

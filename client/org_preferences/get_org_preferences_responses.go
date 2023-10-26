@@ -66,42 +66,42 @@ type GetOrgPreferencesOK struct {
 	Payload *models.Spec
 }
 
-// IsSuccess returns true when this get org preferences o k response has a 2xx status code
+// IsSuccess returns true when this get org preferences Ok response has a 2xx status code
 func (o *GetOrgPreferencesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get org preferences o k response has a 3xx status code
+// IsRedirect returns true when this get org preferences Ok response has a 3xx status code
 func (o *GetOrgPreferencesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get org preferences o k response has a 4xx status code
+// IsClientError returns true when this get org preferences Ok response has a 4xx status code
 func (o *GetOrgPreferencesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get org preferences o k response has a 5xx status code
+// IsServerError returns true when this get org preferences Ok response has a 5xx status code
 func (o *GetOrgPreferencesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get org preferences o k response a status code equal to that given
+// IsCode returns true when this get org preferences Ok response a status code equal to that given
 func (o *GetOrgPreferencesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get org preferences o k response
+// Code gets the status code for the get org preferences Ok response
 func (o *GetOrgPreferencesOK) Code() int {
 	return 200
 }
 
 func (o *GetOrgPreferencesOK) Error() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetOrgPreferencesOK) String() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetOrgPreferencesOK) GetPayload() *models.Spec {

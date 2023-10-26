@@ -54,42 +54,42 @@ type RouteGetContactpointsExportOK struct {
 	Payload *models.AlertingFileExport
 }
 
-// IsSuccess returns true when this route get contactpoints export o k response has a 2xx status code
+// IsSuccess returns true when this route get contactpoints export Ok response has a 2xx status code
 func (o *RouteGetContactpointsExportOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this route get contactpoints export o k response has a 3xx status code
+// IsRedirect returns true when this route get contactpoints export Ok response has a 3xx status code
 func (o *RouteGetContactpointsExportOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this route get contactpoints export o k response has a 4xx status code
+// IsClientError returns true when this route get contactpoints export Ok response has a 4xx status code
 func (o *RouteGetContactpointsExportOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this route get contactpoints export o k response has a 5xx status code
+// IsServerError returns true when this route get contactpoints export Ok response has a 5xx status code
 func (o *RouteGetContactpointsExportOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this route get contactpoints export o k response a status code equal to that given
+// IsCode returns true when this route get contactpoints export Ok response a status code equal to that given
 func (o *RouteGetContactpointsExportOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the route get contactpoints export o k response
+// Code gets the status code for the route get contactpoints export Ok response
 func (o *RouteGetContactpointsExportOK) Code() int {
 	return 200
 }
 
 func (o *RouteGetContactpointsExportOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points/export][%d] routeGetContactpointsExportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points/export][%d] routeGetContactpointsExportOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetContactpointsExportOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points/export][%d] routeGetContactpointsExportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points/export][%d] routeGetContactpointsExportOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetContactpointsExportOK) GetPayload() *models.AlertingFileExport {

@@ -84,42 +84,42 @@ type CreateTokenOK struct {
 	Payload *models.NewAPIKeyResult
 }
 
-// IsSuccess returns true when this create token o k response has a 2xx status code
+// IsSuccess returns true when this create token Ok response has a 2xx status code
 func (o *CreateTokenOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this create token o k response has a 3xx status code
+// IsRedirect returns true when this create token Ok response has a 3xx status code
 func (o *CreateTokenOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this create token o k response has a 4xx status code
+// IsClientError returns true when this create token Ok response has a 4xx status code
 func (o *CreateTokenOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this create token o k response has a 5xx status code
+// IsServerError returns true when this create token Ok response has a 5xx status code
 func (o *CreateTokenOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this create token o k response a status code equal to that given
+// IsCode returns true when this create token Ok response a status code equal to that given
 func (o *CreateTokenOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the create token o k response
+// Code gets the status code for the create token Ok response
 func (o *CreateTokenOK) Code() int {
 	return 200
 }
 
 func (o *CreateTokenOK) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenOk  %+v", 200, o.Payload)
 }
 
 func (o *CreateTokenOK) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenOk  %+v", 200, o.Payload)
 }
 
 func (o *CreateTokenOK) GetPayload() *models.NewAPIKeyResult {

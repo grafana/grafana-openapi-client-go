@@ -93,7 +93,7 @@ func (a *Client) DeleteLicenseToken(params *DeleteLicenseTokenParams, authInfo r
 }
 
 /*
-GetCustomPermissionsCSV gets custom permissions report in c s v format
+GetCustomPermissionsCSV gets custom permissions report in CSV format
 
 You need to have a permission with action `licensing.reports:read`.
 */

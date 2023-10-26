@@ -72,42 +72,42 @@ type GetFolderDescendantCountsOK struct {
 	Payload models.DescendantCounts
 }
 
-// IsSuccess returns true when this get folder descendant counts o k response has a 2xx status code
+// IsSuccess returns true when this get folder descendant counts Ok response has a 2xx status code
 func (o *GetFolderDescendantCountsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get folder descendant counts o k response has a 3xx status code
+// IsRedirect returns true when this get folder descendant counts Ok response has a 3xx status code
 func (o *GetFolderDescendantCountsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get folder descendant counts o k response has a 4xx status code
+// IsClientError returns true when this get folder descendant counts Ok response has a 4xx status code
 func (o *GetFolderDescendantCountsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get folder descendant counts o k response has a 5xx status code
+// IsServerError returns true when this get folder descendant counts Ok response has a 5xx status code
 func (o *GetFolderDescendantCountsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get folder descendant counts o k response a status code equal to that given
+// IsCode returns true when this get folder descendant counts Ok response a status code equal to that given
 func (o *GetFolderDescendantCountsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get folder descendant counts o k response
+// Code gets the status code for the get folder descendant counts Ok response
 func (o *GetFolderDescendantCountsOK) Code() int {
 	return 200
 }
 
 func (o *GetFolderDescendantCountsOK) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetFolderDescendantCountsOK) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetFolderDescendantCountsOK) GetPayload() models.DescendantCounts {

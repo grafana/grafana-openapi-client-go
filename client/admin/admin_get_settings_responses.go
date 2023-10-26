@@ -60,42 +60,42 @@ type AdminGetSettingsOK struct {
 	Payload models.SettingsBag
 }
 
-// IsSuccess returns true when this admin get settings o k response has a 2xx status code
+// IsSuccess returns true when this admin get settings Ok response has a 2xx status code
 func (o *AdminGetSettingsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this admin get settings o k response has a 3xx status code
+// IsRedirect returns true when this admin get settings Ok response has a 3xx status code
 func (o *AdminGetSettingsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this admin get settings o k response has a 4xx status code
+// IsClientError returns true when this admin get settings Ok response has a 4xx status code
 func (o *AdminGetSettingsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this admin get settings o k response has a 5xx status code
+// IsServerError returns true when this admin get settings Ok response has a 5xx status code
 func (o *AdminGetSettingsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this admin get settings o k response a status code equal to that given
+// IsCode returns true when this admin get settings Ok response a status code equal to that given
 func (o *AdminGetSettingsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the admin get settings o k response
+// Code gets the status code for the admin get settings Ok response
 func (o *AdminGetSettingsOK) Code() int {
 	return 200
 }
 
 func (o *AdminGetSettingsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetSettingsOK) String() string {
-	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetSettingsOK) GetPayload() models.SettingsBag {

@@ -78,42 +78,42 @@ type GetReportOK struct {
 	Payload *models.ConfigDTO
 }
 
-// IsSuccess returns true when this get report o k response has a 2xx status code
+// IsSuccess returns true when this get report Ok response has a 2xx status code
 func (o *GetReportOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get report o k response has a 3xx status code
+// IsRedirect returns true when this get report Ok response has a 3xx status code
 func (o *GetReportOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get report o k response has a 4xx status code
+// IsClientError returns true when this get report Ok response has a 4xx status code
 func (o *GetReportOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get report o k response has a 5xx status code
+// IsServerError returns true when this get report Ok response has a 5xx status code
 func (o *GetReportOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get report o k response a status code equal to that given
+// IsCode returns true when this get report Ok response a status code equal to that given
 func (o *GetReportOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get report o k response
+// Code gets the status code for the get report Ok response
 func (o *GetReportOK) Code() int {
 	return 200
 }
 
 func (o *GetReportOK) Error() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetReportOK) String() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetReportOK) GetPayload() *models.ConfigDTO {

@@ -78,42 +78,42 @@ type UpdateCorrelationOK struct {
 	Payload *models.UpdateCorrelationResponseBody
 }
 
-// IsSuccess returns true when this update correlation o k response has a 2xx status code
+// IsSuccess returns true when this update correlation Ok response has a 2xx status code
 func (o *UpdateCorrelationOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update correlation o k response has a 3xx status code
+// IsRedirect returns true when this update correlation Ok response has a 3xx status code
 func (o *UpdateCorrelationOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update correlation o k response has a 4xx status code
+// IsClientError returns true when this update correlation Ok response has a 4xx status code
 func (o *UpdateCorrelationOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update correlation o k response has a 5xx status code
+// IsServerError returns true when this update correlation Ok response has a 5xx status code
 func (o *UpdateCorrelationOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update correlation o k response a status code equal to that given
+// IsCode returns true when this update correlation Ok response a status code equal to that given
 func (o *UpdateCorrelationOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update correlation o k response
+// Code gets the status code for the update correlation Ok response
 func (o *UpdateCorrelationOK) Code() int {
 	return 200
 }
 
 func (o *UpdateCorrelationOK) Error() string {
-	return fmt.Sprintf("[PATCH /datasources/uid/{sourceUID}/correlations/{correlationUID}][%d] updateCorrelationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /datasources/uid/{sourceUID}/correlations/{correlationUID}][%d] updateCorrelationOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCorrelationOK) String() string {
-	return fmt.Sprintf("[PATCH /datasources/uid/{sourceUID}/correlations/{correlationUID}][%d] updateCorrelationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /datasources/uid/{sourceUID}/correlations/{correlationUID}][%d] updateCorrelationOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCorrelationOK) GetPayload() *models.UpdateCorrelationResponseBody {

@@ -66,42 +66,42 @@ type AddOrgUserToCurrentOrgOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this add org user to current org o k response has a 2xx status code
+// IsSuccess returns true when this add org user to current org Ok response has a 2xx status code
 func (o *AddOrgUserToCurrentOrgOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this add org user to current org o k response has a 3xx status code
+// IsRedirect returns true when this add org user to current org Ok response has a 3xx status code
 func (o *AddOrgUserToCurrentOrgOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this add org user to current org o k response has a 4xx status code
+// IsClientError returns true when this add org user to current org Ok response has a 4xx status code
 func (o *AddOrgUserToCurrentOrgOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this add org user to current org o k response has a 5xx status code
+// IsServerError returns true when this add org user to current org Ok response has a 5xx status code
 func (o *AddOrgUserToCurrentOrgOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this add org user to current org o k response a status code equal to that given
+// IsCode returns true when this add org user to current org Ok response a status code equal to that given
 func (o *AddOrgUserToCurrentOrgOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the add org user to current org o k response
+// Code gets the status code for the add org user to current org Ok response
 func (o *AddOrgUserToCurrentOrgOK) Code() int {
 	return 200
 }
 
 func (o *AddOrgUserToCurrentOrgOK) Error() string {
-	return fmt.Sprintf("[POST /org/users][%d] addOrgUserToCurrentOrgOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /org/users][%d] addOrgUserToCurrentOrgOk  %+v", 200, o.Payload)
 }
 
 func (o *AddOrgUserToCurrentOrgOK) String() string {
-	return fmt.Sprintf("[POST /org/users][%d] addOrgUserToCurrentOrgOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /org/users][%d] addOrgUserToCurrentOrgOk  %+v", 200, o.Payload)
 }
 
 func (o *AddOrgUserToCurrentOrgOK) GetPayload() *models.SuccessResponseBody {

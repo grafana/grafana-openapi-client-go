@@ -72,42 +72,42 @@ type GetAllPermissionsOK struct {
 	Payload *models.DataSourcePermissionsDTO
 }
 
-// IsSuccess returns true when this get all permissions o k response has a 2xx status code
+// IsSuccess returns true when this get all permissions Ok response has a 2xx status code
 func (o *GetAllPermissionsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get all permissions o k response has a 3xx status code
+// IsRedirect returns true when this get all permissions Ok response has a 3xx status code
 func (o *GetAllPermissionsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get all permissions o k response has a 4xx status code
+// IsClientError returns true when this get all permissions Ok response has a 4xx status code
 func (o *GetAllPermissionsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get all permissions o k response has a 5xx status code
+// IsServerError returns true when this get all permissions Ok response has a 5xx status code
 func (o *GetAllPermissionsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get all permissions o k response a status code equal to that given
+// IsCode returns true when this get all permissions Ok response a status code equal to that given
 func (o *GetAllPermissionsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get all permissions o k response
+// Code gets the status code for the get all permissions Ok response
 func (o *GetAllPermissionsOK) Code() int {
 	return 200
 }
 
 func (o *GetAllPermissionsOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/{datasourceId}/permissions][%d] getAllPermissionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/{datasourceId}/permissions][%d] getAllPermissionsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAllPermissionsOK) String() string {
-	return fmt.Sprintf("[GET /datasources/{datasourceId}/permissions][%d] getAllPermissionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/{datasourceId}/permissions][%d] getAllPermissionsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAllPermissionsOK) GetPayload() *models.DataSourcePermissionsDTO {

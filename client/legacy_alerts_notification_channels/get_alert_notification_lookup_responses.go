@@ -66,42 +66,42 @@ type GetAlertNotificationLookupOK struct {
 	Payload []*models.AlertNotificationLookup
 }
 
-// IsSuccess returns true when this get alert notification lookup o k response has a 2xx status code
+// IsSuccess returns true when this get alert notification lookup Ok response has a 2xx status code
 func (o *GetAlertNotificationLookupOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get alert notification lookup o k response has a 3xx status code
+// IsRedirect returns true when this get alert notification lookup Ok response has a 3xx status code
 func (o *GetAlertNotificationLookupOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get alert notification lookup o k response has a 4xx status code
+// IsClientError returns true when this get alert notification lookup Ok response has a 4xx status code
 func (o *GetAlertNotificationLookupOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get alert notification lookup o k response has a 5xx status code
+// IsServerError returns true when this get alert notification lookup Ok response has a 5xx status code
 func (o *GetAlertNotificationLookupOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get alert notification lookup o k response a status code equal to that given
+// IsCode returns true when this get alert notification lookup Ok response a status code equal to that given
 func (o *GetAlertNotificationLookupOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get alert notification lookup o k response
+// Code gets the status code for the get alert notification lookup Ok response
 func (o *GetAlertNotificationLookupOK) Code() int {
 	return 200
 }
 
 func (o *GetAlertNotificationLookupOK) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertNotificationLookupOK) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertNotificationLookupOK) GetPayload() []*models.AlertNotificationLookup {

@@ -72,42 +72,42 @@ type DeleteCorrelationOK struct {
 	Payload *models.DeleteCorrelationResponseBody
 }
 
-// IsSuccess returns true when this delete correlation o k response has a 2xx status code
+// IsSuccess returns true when this delete correlation Ok response has a 2xx status code
 func (o *DeleteCorrelationOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete correlation o k response has a 3xx status code
+// IsRedirect returns true when this delete correlation Ok response has a 3xx status code
 func (o *DeleteCorrelationOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete correlation o k response has a 4xx status code
+// IsClientError returns true when this delete correlation Ok response has a 4xx status code
 func (o *DeleteCorrelationOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete correlation o k response has a 5xx status code
+// IsServerError returns true when this delete correlation Ok response has a 5xx status code
 func (o *DeleteCorrelationOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete correlation o k response a status code equal to that given
+// IsCode returns true when this delete correlation Ok response a status code equal to that given
 func (o *DeleteCorrelationOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete correlation o k response
+// Code gets the status code for the delete correlation Ok response
 func (o *DeleteCorrelationOK) Code() int {
 	return 200
 }
 
 func (o *DeleteCorrelationOK) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteCorrelationOK) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteCorrelationOK) GetPayload() *models.DeleteCorrelationResponseBody {

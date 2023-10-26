@@ -72,42 +72,42 @@ type GetDashboardPermissionsListByIDOK struct {
 	Payload []*models.DashboardACLInfoDTO
 }
 
-// IsSuccess returns true when this get dashboard permissions list by Id o k response has a 2xx status code
+// IsSuccess returns true when this get dashboard permissions list by Id Ok response has a 2xx status code
 func (o *GetDashboardPermissionsListByIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get dashboard permissions list by Id o k response has a 3xx status code
+// IsRedirect returns true when this get dashboard permissions list by Id Ok response has a 3xx status code
 func (o *GetDashboardPermissionsListByIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get dashboard permissions list by Id o k response has a 4xx status code
+// IsClientError returns true when this get dashboard permissions list by Id Ok response has a 4xx status code
 func (o *GetDashboardPermissionsListByIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get dashboard permissions list by Id o k response has a 5xx status code
+// IsServerError returns true when this get dashboard permissions list by Id Ok response has a 5xx status code
 func (o *GetDashboardPermissionsListByIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get dashboard permissions list by Id o k response a status code equal to that given
+// IsCode returns true when this get dashboard permissions list by Id Ok response a status code equal to that given
 func (o *GetDashboardPermissionsListByIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get dashboard permissions list by Id o k response
+// Code gets the status code for the get dashboard permissions list by Id Ok response
 func (o *GetDashboardPermissionsListByIDOK) Code() int {
 	return 200
 }
 
 func (o *GetDashboardPermissionsListByIDOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/id/{DashboardID}/permissions][%d] getDashboardPermissionsListByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dashboards/id/{DashboardID}/permissions][%d] getDashboardPermissionsListByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *GetDashboardPermissionsListByIDOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/id/{DashboardID}/permissions][%d] getDashboardPermissionsListByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dashboards/id/{DashboardID}/permissions][%d] getDashboardPermissionsListByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *GetDashboardPermissionsListByIDOK) GetPayload() []*models.DashboardACLInfoDTO {

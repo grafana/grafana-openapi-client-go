@@ -84,42 +84,42 @@ type UpdateFolderOK struct {
 	Payload *models.Folder
 }
 
-// IsSuccess returns true when this update folder o k response has a 2xx status code
+// IsSuccess returns true when this update folder Ok response has a 2xx status code
 func (o *UpdateFolderOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update folder o k response has a 3xx status code
+// IsRedirect returns true when this update folder Ok response has a 3xx status code
 func (o *UpdateFolderOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update folder o k response has a 4xx status code
+// IsClientError returns true when this update folder Ok response has a 4xx status code
 func (o *UpdateFolderOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update folder o k response has a 5xx status code
+// IsServerError returns true when this update folder Ok response has a 5xx status code
 func (o *UpdateFolderOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update folder o k response a status code equal to that given
+// IsCode returns true when this update folder Ok response a status code equal to that given
 func (o *UpdateFolderOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update folder o k response
+// Code gets the status code for the update folder Ok response
 func (o *UpdateFolderOK) Code() int {
 	return 200
 }
 
 func (o *UpdateFolderOK) Error() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateFolderOK) String() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateFolderOK) GetPayload() *models.Folder {

@@ -78,42 +78,42 @@ type AddOrgInviteOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this add org invite o k response has a 2xx status code
+// IsSuccess returns true when this add org invite Ok response has a 2xx status code
 func (o *AddOrgInviteOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this add org invite o k response has a 3xx status code
+// IsRedirect returns true when this add org invite Ok response has a 3xx status code
 func (o *AddOrgInviteOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this add org invite o k response has a 4xx status code
+// IsClientError returns true when this add org invite Ok response has a 4xx status code
 func (o *AddOrgInviteOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this add org invite o k response has a 5xx status code
+// IsServerError returns true when this add org invite Ok response has a 5xx status code
 func (o *AddOrgInviteOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this add org invite o k response a status code equal to that given
+// IsCode returns true when this add org invite Ok response a status code equal to that given
 func (o *AddOrgInviteOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the add org invite o k response
+// Code gets the status code for the add org invite Ok response
 func (o *AddOrgInviteOK) Code() int {
 	return 200
 }
 
 func (o *AddOrgInviteOK) Error() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteOk  %+v", 200, o.Payload)
 }
 
 func (o *AddOrgInviteOK) String() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteOk  %+v", 200, o.Payload)
 }
 
 func (o *AddOrgInviteOK) GetPayload() *models.SuccessResponseBody {

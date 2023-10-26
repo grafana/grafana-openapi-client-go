@@ -78,42 +78,42 @@ type AdminRevokeUserAuthTokenOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this admin revoke user auth token o k response has a 2xx status code
+// IsSuccess returns true when this admin revoke user auth token Ok response has a 2xx status code
 func (o *AdminRevokeUserAuthTokenOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this admin revoke user auth token o k response has a 3xx status code
+// IsRedirect returns true when this admin revoke user auth token Ok response has a 3xx status code
 func (o *AdminRevokeUserAuthTokenOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this admin revoke user auth token o k response has a 4xx status code
+// IsClientError returns true when this admin revoke user auth token Ok response has a 4xx status code
 func (o *AdminRevokeUserAuthTokenOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this admin revoke user auth token o k response has a 5xx status code
+// IsServerError returns true when this admin revoke user auth token Ok response has a 5xx status code
 func (o *AdminRevokeUserAuthTokenOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this admin revoke user auth token o k response a status code equal to that given
+// IsCode returns true when this admin revoke user auth token Ok response a status code equal to that given
 func (o *AdminRevokeUserAuthTokenOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the admin revoke user auth token o k response
+// Code gets the status code for the admin revoke user auth token Ok response
 func (o *AdminRevokeUserAuthTokenOK) Code() int {
 	return 200
 }
 
 func (o *AdminRevokeUserAuthTokenOK) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminRevokeUserAuthTokenOK) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminRevokeUserAuthTokenOK) GetPayload() *models.SuccessResponseBody {

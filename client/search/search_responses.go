@@ -66,42 +66,42 @@ type SearchOK struct {
 	Payload models.HitList
 }
 
-// IsSuccess returns true when this search o k response has a 2xx status code
+// IsSuccess returns true when this search Ok response has a 2xx status code
 func (o *SearchOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this search o k response has a 3xx status code
+// IsRedirect returns true when this search Ok response has a 3xx status code
 func (o *SearchOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this search o k response has a 4xx status code
+// IsClientError returns true when this search Ok response has a 4xx status code
 func (o *SearchOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this search o k response has a 5xx status code
+// IsServerError returns true when this search Ok response has a 5xx status code
 func (o *SearchOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this search o k response a status code equal to that given
+// IsCode returns true when this search Ok response a status code equal to that given
 func (o *SearchOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the search o k response
+// Code gets the status code for the search Ok response
 func (o *SearchOK) Code() int {
 	return 200
 }
 
 func (o *SearchOK) Error() string {
-	return fmt.Sprintf("[GET /search][%d] searchOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /search][%d] searchOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchOK) String() string {
-	return fmt.Sprintf("[GET /search][%d] searchOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /search][%d] searchOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchOK) GetPayload() models.HitList {

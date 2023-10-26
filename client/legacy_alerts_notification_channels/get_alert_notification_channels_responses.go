@@ -66,42 +66,42 @@ type GetAlertNotificationChannelsOK struct {
 	Payload []*models.AlertNotification
 }
 
-// IsSuccess returns true when this get alert notification channels o k response has a 2xx status code
+// IsSuccess returns true when this get alert notification channels Ok response has a 2xx status code
 func (o *GetAlertNotificationChannelsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get alert notification channels o k response has a 3xx status code
+// IsRedirect returns true when this get alert notification channels Ok response has a 3xx status code
 func (o *GetAlertNotificationChannelsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get alert notification channels o k response has a 4xx status code
+// IsClientError returns true when this get alert notification channels Ok response has a 4xx status code
 func (o *GetAlertNotificationChannelsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get alert notification channels o k response has a 5xx status code
+// IsServerError returns true when this get alert notification channels Ok response has a 5xx status code
 func (o *GetAlertNotificationChannelsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get alert notification channels o k response a status code equal to that given
+// IsCode returns true when this get alert notification channels Ok response a status code equal to that given
 func (o *GetAlertNotificationChannelsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get alert notification channels o k response
+// Code gets the status code for the get alert notification channels Ok response
 func (o *GetAlertNotificationChannelsOK) Code() int {
 	return 200
 }
 
 func (o *GetAlertNotificationChannelsOK) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications][%d] getAlertNotificationChannelsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications][%d] getAlertNotificationChannelsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertNotificationChannelsOK) String() string {
-	return fmt.Sprintf("[GET /alert-notifications][%d] getAlertNotificationChannelsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications][%d] getAlertNotificationChannelsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertNotificationChannelsOK) GetPayload() []*models.AlertNotification {

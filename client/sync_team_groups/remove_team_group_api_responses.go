@@ -78,42 +78,42 @@ type RemoveTeamGroupAPIOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this remove team group Api o k response has a 2xx status code
+// IsSuccess returns true when this remove team group Api Ok response has a 2xx status code
 func (o *RemoveTeamGroupAPIOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this remove team group Api o k response has a 3xx status code
+// IsRedirect returns true when this remove team group Api Ok response has a 3xx status code
 func (o *RemoveTeamGroupAPIOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this remove team group Api o k response has a 4xx status code
+// IsClientError returns true when this remove team group Api Ok response has a 4xx status code
 func (o *RemoveTeamGroupAPIOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this remove team group Api o k response has a 5xx status code
+// IsServerError returns true when this remove team group Api Ok response has a 5xx status code
 func (o *RemoveTeamGroupAPIOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this remove team group Api o k response a status code equal to that given
+// IsCode returns true when this remove team group Api Ok response a status code equal to that given
 func (o *RemoveTeamGroupAPIOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the remove team group Api o k response
+// Code gets the status code for the remove team group Api Ok response
 func (o *RemoveTeamGroupAPIOK) Code() int {
 	return 200
 }
 
 func (o *RemoveTeamGroupAPIOK) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups/{groupId}][%d] removeTeamGroupApiOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups/{groupId}][%d] removeTeamGroupApiOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveTeamGroupAPIOK) String() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups/{groupId}][%d] removeTeamGroupApiOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups/{groupId}][%d] removeTeamGroupApiOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveTeamGroupAPIOK) GetPayload() *models.SuccessResponseBody {

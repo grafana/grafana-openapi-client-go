@@ -78,42 +78,42 @@ type CreateCorrelationOK struct {
 	Payload *models.CreateCorrelationResponseBody
 }
 
-// IsSuccess returns true when this create correlation o k response has a 2xx status code
+// IsSuccess returns true when this create correlation Ok response has a 2xx status code
 func (o *CreateCorrelationOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this create correlation o k response has a 3xx status code
+// IsRedirect returns true when this create correlation Ok response has a 3xx status code
 func (o *CreateCorrelationOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this create correlation o k response has a 4xx status code
+// IsClientError returns true when this create correlation Ok response has a 4xx status code
 func (o *CreateCorrelationOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this create correlation o k response has a 5xx status code
+// IsServerError returns true when this create correlation Ok response has a 5xx status code
 func (o *CreateCorrelationOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this create correlation o k response a status code equal to that given
+// IsCode returns true when this create correlation Ok response a status code equal to that given
 func (o *CreateCorrelationOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the create correlation o k response
+// Code gets the status code for the create correlation Ok response
 func (o *CreateCorrelationOK) Code() int {
 	return 200
 }
 
 func (o *CreateCorrelationOK) Error() string {
-	return fmt.Sprintf("[POST /datasources/uid/{sourceUID}/correlations][%d] createCorrelationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /datasources/uid/{sourceUID}/correlations][%d] createCorrelationOk  %+v", 200, o.Payload)
 }
 
 func (o *CreateCorrelationOK) String() string {
-	return fmt.Sprintf("[POST /datasources/uid/{sourceUID}/correlations][%d] createCorrelationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /datasources/uid/{sourceUID}/correlations][%d] createCorrelationOk  %+v", 200, o.Payload)
 }
 
 func (o *CreateCorrelationOK) GetPayload() *models.CreateCorrelationResponseBody {

@@ -59,42 +59,42 @@ PostRenewLicenseTokenOK describes a response with status code 200, with default 
 type PostRenewLicenseTokenOK struct {
 }
 
-// IsSuccess returns true when this post renew license token o k response has a 2xx status code
+// IsSuccess returns true when this post renew license token Ok response has a 2xx status code
 func (o *PostRenewLicenseTokenOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this post renew license token o k response has a 3xx status code
+// IsRedirect returns true when this post renew license token Ok response has a 3xx status code
 func (o *PostRenewLicenseTokenOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this post renew license token o k response has a 4xx status code
+// IsClientError returns true when this post renew license token Ok response has a 4xx status code
 func (o *PostRenewLicenseTokenOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this post renew license token o k response has a 5xx status code
+// IsServerError returns true when this post renew license token Ok response has a 5xx status code
 func (o *PostRenewLicenseTokenOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this post renew license token o k response a status code equal to that given
+// IsCode returns true when this post renew license token Ok response a status code equal to that given
 func (o *PostRenewLicenseTokenOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the post renew license token o k response
+// Code gets the status code for the post renew license token Ok response
 func (o *PostRenewLicenseTokenOK) Code() int {
 	return 200
 }
 
 func (o *PostRenewLicenseTokenOK) Error() string {
-	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenOK ", 200)
+	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenOk ", 200)
 }
 
 func (o *PostRenewLicenseTokenOK) String() string {
-	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenOK ", 200)
+	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenOk ", 200)
 }
 
 func (o *PostRenewLicenseTokenOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

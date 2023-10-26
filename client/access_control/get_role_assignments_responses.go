@@ -66,42 +66,42 @@ type GetRoleAssignmentsOK struct {
 	Payload *models.RoleAssignmentsDTO
 }
 
-// IsSuccess returns true when this get role assignments o k response has a 2xx status code
+// IsSuccess returns true when this get role assignments Ok response has a 2xx status code
 func (o *GetRoleAssignmentsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get role assignments o k response has a 3xx status code
+// IsRedirect returns true when this get role assignments Ok response has a 3xx status code
 func (o *GetRoleAssignmentsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get role assignments o k response has a 4xx status code
+// IsClientError returns true when this get role assignments Ok response has a 4xx status code
 func (o *GetRoleAssignmentsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get role assignments o k response has a 5xx status code
+// IsServerError returns true when this get role assignments Ok response has a 5xx status code
 func (o *GetRoleAssignmentsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get role assignments o k response a status code equal to that given
+// IsCode returns true when this get role assignments Ok response a status code equal to that given
 func (o *GetRoleAssignmentsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get role assignments o k response
+// Code gets the status code for the get role assignments Ok response
 func (o *GetRoleAssignmentsOK) Code() int {
 	return 200
 }
 
 func (o *GetRoleAssignmentsOK) Error() string {
-	return fmt.Sprintf("[GET /access-control/roles/{roleUID}/assignments][%d] getRoleAssignmentsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles/{roleUID}/assignments][%d] getRoleAssignmentsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetRoleAssignmentsOK) String() string {
-	return fmt.Sprintf("[GET /access-control/roles/{roleUID}/assignments][%d] getRoleAssignmentsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles/{roleUID}/assignments][%d] getRoleAssignmentsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetRoleAssignmentsOK) GetPayload() *models.RoleAssignmentsDTO {

@@ -72,42 +72,42 @@ type AddTeamRoleOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this add team role o k response has a 2xx status code
+// IsSuccess returns true when this add team role Ok response has a 2xx status code
 func (o *AddTeamRoleOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this add team role o k response has a 3xx status code
+// IsRedirect returns true when this add team role Ok response has a 3xx status code
 func (o *AddTeamRoleOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this add team role o k response has a 4xx status code
+// IsClientError returns true when this add team role Ok response has a 4xx status code
 func (o *AddTeamRoleOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this add team role o k response has a 5xx status code
+// IsServerError returns true when this add team role Ok response has a 5xx status code
 func (o *AddTeamRoleOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this add team role o k response a status code equal to that given
+// IsCode returns true when this add team role Ok response a status code equal to that given
 func (o *AddTeamRoleOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the add team role o k response
+// Code gets the status code for the add team role Ok response
 func (o *AddTeamRoleOK) Code() int {
 	return 200
 }
 
 func (o *AddTeamRoleOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleOk  %+v", 200, o.Payload)
 }
 
 func (o *AddTeamRoleOK) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleOk  %+v", 200, o.Payload)
 }
 
 func (o *AddTeamRoleOK) GetPayload() *models.SuccessResponseBody {

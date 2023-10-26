@@ -65,42 +65,42 @@ GetDashboardSnapshotOK describes a response with status code 200, with default h
 type GetDashboardSnapshotOK struct {
 }
 
-// IsSuccess returns true when this get dashboard snapshot o k response has a 2xx status code
+// IsSuccess returns true when this get dashboard snapshot Ok response has a 2xx status code
 func (o *GetDashboardSnapshotOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get dashboard snapshot o k response has a 3xx status code
+// IsRedirect returns true when this get dashboard snapshot Ok response has a 3xx status code
 func (o *GetDashboardSnapshotOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get dashboard snapshot o k response has a 4xx status code
+// IsClientError returns true when this get dashboard snapshot Ok response has a 4xx status code
 func (o *GetDashboardSnapshotOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get dashboard snapshot o k response has a 5xx status code
+// IsServerError returns true when this get dashboard snapshot Ok response has a 5xx status code
 func (o *GetDashboardSnapshotOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get dashboard snapshot o k response a status code equal to that given
+// IsCode returns true when this get dashboard snapshot Ok response a status code equal to that given
 func (o *GetDashboardSnapshotOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get dashboard snapshot o k response
+// Code gets the status code for the get dashboard snapshot Ok response
 func (o *GetDashboardSnapshotOK) Code() int {
 	return 200
 }
 
 func (o *GetDashboardSnapshotOK) Error() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotOK ", 200)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotOk ", 200)
 }
 
 func (o *GetDashboardSnapshotOK) String() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotOK ", 200)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotOk ", 200)
 }
 
 func (o *GetDashboardSnapshotOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

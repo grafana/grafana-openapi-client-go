@@ -72,42 +72,42 @@ type ListRecordingRulesOK struct {
 	Payload []*models.RecordingRuleJSON
 }
 
-// IsSuccess returns true when this list recording rules o k response has a 2xx status code
+// IsSuccess returns true when this list recording rules Ok response has a 2xx status code
 func (o *ListRecordingRulesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this list recording rules o k response has a 3xx status code
+// IsRedirect returns true when this list recording rules Ok response has a 3xx status code
 func (o *ListRecordingRulesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this list recording rules o k response has a 4xx status code
+// IsClientError returns true when this list recording rules Ok response has a 4xx status code
 func (o *ListRecordingRulesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this list recording rules o k response has a 5xx status code
+// IsServerError returns true when this list recording rules Ok response has a 5xx status code
 func (o *ListRecordingRulesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this list recording rules o k response a status code equal to that given
+// IsCode returns true when this list recording rules Ok response a status code equal to that given
 func (o *ListRecordingRulesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the list recording rules o k response
+// Code gets the status code for the list recording rules Ok response
 func (o *ListRecordingRulesOK) Code() int {
 	return 200
 }
 
 func (o *ListRecordingRulesOK) Error() string {
-	return fmt.Sprintf("[GET /recording-rules][%d] listRecordingRulesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /recording-rules][%d] listRecordingRulesOk  %+v", 200, o.Payload)
 }
 
 func (o *ListRecordingRulesOK) String() string {
-	return fmt.Sprintf("[GET /recording-rules][%d] listRecordingRulesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /recording-rules][%d] listRecordingRulesOk  %+v", 200, o.Payload)
 }
 
 func (o *ListRecordingRulesOK) GetPayload() []*models.RecordingRuleJSON {

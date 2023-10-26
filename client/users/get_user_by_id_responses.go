@@ -72,42 +72,42 @@ type GetUserByIDOK struct {
 	Payload *models.UserProfileDTO
 }
 
-// IsSuccess returns true when this get user by Id o k response has a 2xx status code
+// IsSuccess returns true when this get user by Id Ok response has a 2xx status code
 func (o *GetUserByIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get user by Id o k response has a 3xx status code
+// IsRedirect returns true when this get user by Id Ok response has a 3xx status code
 func (o *GetUserByIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get user by Id o k response has a 4xx status code
+// IsClientError returns true when this get user by Id Ok response has a 4xx status code
 func (o *GetUserByIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get user by Id o k response has a 5xx status code
+// IsServerError returns true when this get user by Id Ok response has a 5xx status code
 func (o *GetUserByIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get user by Id o k response a status code equal to that given
+// IsCode returns true when this get user by Id Ok response a status code equal to that given
 func (o *GetUserByIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get user by Id o k response
+// Code gets the status code for the get user by Id Ok response
 func (o *GetUserByIDOK) Code() int {
 	return 200
 }
 
 func (o *GetUserByIDOK) Error() string {
-	return fmt.Sprintf("[GET /users/{user_id}][%d] getUserByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}][%d] getUserByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *GetUserByIDOK) String() string {
-	return fmt.Sprintf("[GET /users/{user_id}][%d] getUserByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}][%d] getUserByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *GetUserByIDOK) GetPayload() *models.UserProfileDTO {

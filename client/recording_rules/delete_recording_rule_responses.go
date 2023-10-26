@@ -72,42 +72,42 @@ type DeleteRecordingRuleOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this delete recording rule o k response has a 2xx status code
+// IsSuccess returns true when this delete recording rule Ok response has a 2xx status code
 func (o *DeleteRecordingRuleOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete recording rule o k response has a 3xx status code
+// IsRedirect returns true when this delete recording rule Ok response has a 3xx status code
 func (o *DeleteRecordingRuleOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete recording rule o k response has a 4xx status code
+// IsClientError returns true when this delete recording rule Ok response has a 4xx status code
 func (o *DeleteRecordingRuleOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete recording rule o k response has a 5xx status code
+// IsServerError returns true when this delete recording rule Ok response has a 5xx status code
 func (o *DeleteRecordingRuleOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete recording rule o k response a status code equal to that given
+// IsCode returns true when this delete recording rule Ok response a status code equal to that given
 func (o *DeleteRecordingRuleOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete recording rule o k response
+// Code gets the status code for the delete recording rule Ok response
 func (o *DeleteRecordingRuleOK) Code() int {
 	return 200
 }
 
 func (o *DeleteRecordingRuleOK) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteRecordingRuleOK) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteRecordingRuleOK) GetPayload() *models.SuccessResponseBody {

@@ -66,42 +66,42 @@ type SearchTeamsOK struct {
 	Payload *models.SearchTeamQueryResult
 }
 
-// IsSuccess returns true when this search teams o k response has a 2xx status code
+// IsSuccess returns true when this search teams Ok response has a 2xx status code
 func (o *SearchTeamsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this search teams o k response has a 3xx status code
+// IsRedirect returns true when this search teams Ok response has a 3xx status code
 func (o *SearchTeamsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this search teams o k response has a 4xx status code
+// IsClientError returns true when this search teams Ok response has a 4xx status code
 func (o *SearchTeamsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this search teams o k response has a 5xx status code
+// IsServerError returns true when this search teams Ok response has a 5xx status code
 func (o *SearchTeamsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this search teams o k response a status code equal to that given
+// IsCode returns true when this search teams Ok response a status code equal to that given
 func (o *SearchTeamsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the search teams o k response
+// Code gets the status code for the search teams Ok response
 func (o *SearchTeamsOK) Code() int {
 	return 200
 }
 
 func (o *SearchTeamsOK) Error() string {
-	return fmt.Sprintf("[GET /teams/search][%d] searchTeamsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /teams/search][%d] searchTeamsOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchTeamsOK) String() string {
-	return fmt.Sprintf("[GET /teams/search][%d] searchTeamsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /teams/search][%d] searchTeamsOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchTeamsOK) GetPayload() *models.SearchTeamQueryResult {

@@ -72,42 +72,42 @@ type AddDataSourceOK struct {
 	Payload *models.AddDataSourceOKBody
 }
 
-// IsSuccess returns true when this add data source o k response has a 2xx status code
+// IsSuccess returns true when this add data source Ok response has a 2xx status code
 func (o *AddDataSourceOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this add data source o k response has a 3xx status code
+// IsRedirect returns true when this add data source Ok response has a 3xx status code
 func (o *AddDataSourceOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this add data source o k response has a 4xx status code
+// IsClientError returns true when this add data source Ok response has a 4xx status code
 func (o *AddDataSourceOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this add data source o k response has a 5xx status code
+// IsServerError returns true when this add data source Ok response has a 5xx status code
 func (o *AddDataSourceOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this add data source o k response a status code equal to that given
+// IsCode returns true when this add data source Ok response a status code equal to that given
 func (o *AddDataSourceOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the add data source o k response
+// Code gets the status code for the add data source Ok response
 func (o *AddDataSourceOK) Code() int {
 	return 200
 }
 
 func (o *AddDataSourceOK) Error() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceOk  %+v", 200, o.Payload)
 }
 
 func (o *AddDataSourceOK) String() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceOk  %+v", 200, o.Payload)
 }
 
 func (o *AddDataSourceOK) GetPayload() *models.AddDataSourceOKBody {

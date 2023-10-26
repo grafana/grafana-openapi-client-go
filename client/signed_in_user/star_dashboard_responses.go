@@ -72,42 +72,42 @@ type StarDashboardOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this star dashboard o k response has a 2xx status code
+// IsSuccess returns true when this star dashboard Ok response has a 2xx status code
 func (o *StarDashboardOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this star dashboard o k response has a 3xx status code
+// IsRedirect returns true when this star dashboard Ok response has a 3xx status code
 func (o *StarDashboardOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this star dashboard o k response has a 4xx status code
+// IsClientError returns true when this star dashboard Ok response has a 4xx status code
 func (o *StarDashboardOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this star dashboard o k response has a 5xx status code
+// IsServerError returns true when this star dashboard Ok response has a 5xx status code
 func (o *StarDashboardOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this star dashboard o k response a status code equal to that given
+// IsCode returns true when this star dashboard Ok response a status code equal to that given
 func (o *StarDashboardOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the star dashboard o k response
+// Code gets the status code for the star dashboard Ok response
 func (o *StarDashboardOK) Code() int {
 	return 200
 }
 
 func (o *StarDashboardOK) Error() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardOk  %+v", 200, o.Payload)
 }
 
 func (o *StarDashboardOK) String() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardOk  %+v", 200, o.Payload)
 }
 
 func (o *StarDashboardOK) GetPayload() *models.SuccessResponseBody {

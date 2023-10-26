@@ -54,42 +54,42 @@ type RouteGetTemplateOK struct {
 	Payload *models.NotificationTemplate
 }
 
-// IsSuccess returns true when this route get template o k response has a 2xx status code
+// IsSuccess returns true when this route get template Ok response has a 2xx status code
 func (o *RouteGetTemplateOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this route get template o k response has a 3xx status code
+// IsRedirect returns true when this route get template Ok response has a 3xx status code
 func (o *RouteGetTemplateOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this route get template o k response has a 4xx status code
+// IsClientError returns true when this route get template Ok response has a 4xx status code
 func (o *RouteGetTemplateOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this route get template o k response has a 5xx status code
+// IsServerError returns true when this route get template Ok response has a 5xx status code
 func (o *RouteGetTemplateOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this route get template o k response a status code equal to that given
+// IsCode returns true when this route get template Ok response a status code equal to that given
 func (o *RouteGetTemplateOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the route get template o k response
+// Code gets the status code for the route get template Ok response
 func (o *RouteGetTemplateOK) Code() int {
 	return 200
 }
 
 func (o *RouteGetTemplateOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/templates/{name}][%d] routeGetTemplateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/templates/{name}][%d] routeGetTemplateOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetTemplateOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/templates/{name}][%d] routeGetTemplateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/templates/{name}][%d] routeGetTemplateOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetTemplateOK) GetPayload() *models.NotificationTemplate {

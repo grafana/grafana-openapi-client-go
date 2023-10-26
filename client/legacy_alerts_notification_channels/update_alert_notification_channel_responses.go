@@ -72,42 +72,42 @@ type UpdateAlertNotificationChannelOK struct {
 	Payload *models.AlertNotification
 }
 
-// IsSuccess returns true when this update alert notification channel o k response has a 2xx status code
+// IsSuccess returns true when this update alert notification channel Ok response has a 2xx status code
 func (o *UpdateAlertNotificationChannelOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update alert notification channel o k response has a 3xx status code
+// IsRedirect returns true when this update alert notification channel Ok response has a 3xx status code
 func (o *UpdateAlertNotificationChannelOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update alert notification channel o k response has a 4xx status code
+// IsClientError returns true when this update alert notification channel Ok response has a 4xx status code
 func (o *UpdateAlertNotificationChannelOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update alert notification channel o k response has a 5xx status code
+// IsServerError returns true when this update alert notification channel Ok response has a 5xx status code
 func (o *UpdateAlertNotificationChannelOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update alert notification channel o k response a status code equal to that given
+// IsCode returns true when this update alert notification channel Ok response a status code equal to that given
 func (o *UpdateAlertNotificationChannelOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update alert notification channel o k response
+// Code gets the status code for the update alert notification channel Ok response
 func (o *UpdateAlertNotificationChannelOK) Code() int {
 	return 200
 }
 
 func (o *UpdateAlertNotificationChannelOK) Error() string {
-	return fmt.Sprintf("[PUT /alert-notifications/{notification_channel_id}][%d] updateAlertNotificationChannelOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/{notification_channel_id}][%d] updateAlertNotificationChannelOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAlertNotificationChannelOK) String() string {
-	return fmt.Sprintf("[PUT /alert-notifications/{notification_channel_id}][%d] updateAlertNotificationChannelOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/{notification_channel_id}][%d] updateAlertNotificationChannelOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAlertNotificationChannelOK) GetPayload() *models.AlertNotification {

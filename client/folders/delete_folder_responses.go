@@ -78,42 +78,42 @@ type DeleteFolderOK struct {
 	Payload *models.DeleteFolderOKBody
 }
 
-// IsSuccess returns true when this delete folder o k response has a 2xx status code
+// IsSuccess returns true when this delete folder Ok response has a 2xx status code
 func (o *DeleteFolderOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete folder o k response has a 3xx status code
+// IsRedirect returns true when this delete folder Ok response has a 3xx status code
 func (o *DeleteFolderOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete folder o k response has a 4xx status code
+// IsClientError returns true when this delete folder Ok response has a 4xx status code
 func (o *DeleteFolderOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete folder o k response has a 5xx status code
+// IsServerError returns true when this delete folder Ok response has a 5xx status code
 func (o *DeleteFolderOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete folder o k response a status code equal to that given
+// IsCode returns true when this delete folder Ok response a status code equal to that given
 func (o *DeleteFolderOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete folder o k response
+// Code gets the status code for the delete folder Ok response
 func (o *DeleteFolderOK) Code() int {
 	return 200
 }
 
 func (o *DeleteFolderOK) Error() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteFolderOK) String() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteFolderOK) GetPayload() *models.DeleteFolderOKBody {

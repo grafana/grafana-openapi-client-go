@@ -72,42 +72,42 @@ type GetRecordingRuleWriteTargetOK struct {
 	Payload *models.PrometheusRemoteWriteTargetJSON
 }
 
-// IsSuccess returns true when this get recording rule write target o k response has a 2xx status code
+// IsSuccess returns true when this get recording rule write target Ok response has a 2xx status code
 func (o *GetRecordingRuleWriteTargetOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get recording rule write target o k response has a 3xx status code
+// IsRedirect returns true when this get recording rule write target Ok response has a 3xx status code
 func (o *GetRecordingRuleWriteTargetOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get recording rule write target o k response has a 4xx status code
+// IsClientError returns true when this get recording rule write target Ok response has a 4xx status code
 func (o *GetRecordingRuleWriteTargetOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get recording rule write target o k response has a 5xx status code
+// IsServerError returns true when this get recording rule write target Ok response has a 5xx status code
 func (o *GetRecordingRuleWriteTargetOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get recording rule write target o k response a status code equal to that given
+// IsCode returns true when this get recording rule write target Ok response a status code equal to that given
 func (o *GetRecordingRuleWriteTargetOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get recording rule write target o k response
+// Code gets the status code for the get recording rule write target Ok response
 func (o *GetRecordingRuleWriteTargetOK) Code() int {
 	return 200
 }
 
 func (o *GetRecordingRuleWriteTargetOK) Error() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetOk  %+v", 200, o.Payload)
 }
 
 func (o *GetRecordingRuleWriteTargetOK) String() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetOk  %+v", 200, o.Payload)
 }
 
 func (o *GetRecordingRuleWriteTargetOK) GetPayload() *models.PrometheusRemoteWriteTargetJSON {

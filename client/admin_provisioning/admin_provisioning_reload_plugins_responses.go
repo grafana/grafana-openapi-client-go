@@ -66,42 +66,42 @@ type AdminProvisioningReloadPluginsOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this admin provisioning reload plugins o k response has a 2xx status code
+// IsSuccess returns true when this admin provisioning reload plugins Ok response has a 2xx status code
 func (o *AdminProvisioningReloadPluginsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this admin provisioning reload plugins o k response has a 3xx status code
+// IsRedirect returns true when this admin provisioning reload plugins Ok response has a 3xx status code
 func (o *AdminProvisioningReloadPluginsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this admin provisioning reload plugins o k response has a 4xx status code
+// IsClientError returns true when this admin provisioning reload plugins Ok response has a 4xx status code
 func (o *AdminProvisioningReloadPluginsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this admin provisioning reload plugins o k response has a 5xx status code
+// IsServerError returns true when this admin provisioning reload plugins Ok response has a 5xx status code
 func (o *AdminProvisioningReloadPluginsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this admin provisioning reload plugins o k response a status code equal to that given
+// IsCode returns true when this admin provisioning reload plugins Ok response a status code equal to that given
 func (o *AdminProvisioningReloadPluginsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the admin provisioning reload plugins o k response
+// Code gets the status code for the admin provisioning reload plugins Ok response
 func (o *AdminProvisioningReloadPluginsOK) Code() int {
 	return 200
 }
 
 func (o *AdminProvisioningReloadPluginsOK) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminProvisioningReloadPluginsOK) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminProvisioningReloadPluginsOK) GetPayload() *models.SuccessResponseBody {

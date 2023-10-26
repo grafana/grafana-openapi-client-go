@@ -54,42 +54,42 @@ type RoutePutMuteTimingOK struct {
 	Payload *models.MuteTimeInterval
 }
 
-// IsSuccess returns true when this route put mute timing o k response has a 2xx status code
+// IsSuccess returns true when this route put mute timing Ok response has a 2xx status code
 func (o *RoutePutMuteTimingOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this route put mute timing o k response has a 3xx status code
+// IsRedirect returns true when this route put mute timing Ok response has a 3xx status code
 func (o *RoutePutMuteTimingOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this route put mute timing o k response has a 4xx status code
+// IsClientError returns true when this route put mute timing Ok response has a 4xx status code
 func (o *RoutePutMuteTimingOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this route put mute timing o k response has a 5xx status code
+// IsServerError returns true when this route put mute timing Ok response has a 5xx status code
 func (o *RoutePutMuteTimingOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this route put mute timing o k response a status code equal to that given
+// IsCode returns true when this route put mute timing Ok response a status code equal to that given
 func (o *RoutePutMuteTimingOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the route put mute timing o k response
+// Code gets the status code for the route put mute timing Ok response
 func (o *RoutePutMuteTimingOK) Code() int {
 	return 200
 }
 
 func (o *RoutePutMuteTimingOK) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/mute-timings/{name}][%d] routePutMuteTimingOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /api/v1/provisioning/mute-timings/{name}][%d] routePutMuteTimingOk  %+v", 200, o.Payload)
 }
 
 func (o *RoutePutMuteTimingOK) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/mute-timings/{name}][%d] routePutMuteTimingOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /api/v1/provisioning/mute-timings/{name}][%d] routePutMuteTimingOk  %+v", 200, o.Payload)
 }
 
 func (o *RoutePutMuteTimingOK) GetPayload() *models.MuteTimeInterval {

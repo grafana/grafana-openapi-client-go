@@ -72,42 +72,42 @@ type RemoveOrgUserOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this remove org user o k response has a 2xx status code
+// IsSuccess returns true when this remove org user Ok response has a 2xx status code
 func (o *RemoveOrgUserOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this remove org user o k response has a 3xx status code
+// IsRedirect returns true when this remove org user Ok response has a 3xx status code
 func (o *RemoveOrgUserOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this remove org user o k response has a 4xx status code
+// IsClientError returns true when this remove org user Ok response has a 4xx status code
 func (o *RemoveOrgUserOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this remove org user o k response has a 5xx status code
+// IsServerError returns true when this remove org user Ok response has a 5xx status code
 func (o *RemoveOrgUserOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this remove org user o k response a status code equal to that given
+// IsCode returns true when this remove org user Ok response a status code equal to that given
 func (o *RemoveOrgUserOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the remove org user o k response
+// Code gets the status code for the remove org user Ok response
 func (o *RemoveOrgUserOK) Code() int {
 	return 200
 }
 
 func (o *RemoveOrgUserOK) Error() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveOrgUserOK) String() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveOrgUserOK) GetPayload() *models.SuccessResponseBody {

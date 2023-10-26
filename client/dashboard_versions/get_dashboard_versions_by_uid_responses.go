@@ -72,42 +72,42 @@ type GetDashboardVersionsByUIDOK struct {
 	Payload []*models.DashboardVersionMeta
 }
 
-// IsSuccess returns true when this get dashboard versions by Uid o k response has a 2xx status code
+// IsSuccess returns true when this get dashboard versions by Uid Ok response has a 2xx status code
 func (o *GetDashboardVersionsByUIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get dashboard versions by Uid o k response has a 3xx status code
+// IsRedirect returns true when this get dashboard versions by Uid Ok response has a 3xx status code
 func (o *GetDashboardVersionsByUIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get dashboard versions by Uid o k response has a 4xx status code
+// IsClientError returns true when this get dashboard versions by Uid Ok response has a 4xx status code
 func (o *GetDashboardVersionsByUIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get dashboard versions by Uid o k response has a 5xx status code
+// IsServerError returns true when this get dashboard versions by Uid Ok response has a 5xx status code
 func (o *GetDashboardVersionsByUIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get dashboard versions by Uid o k response a status code equal to that given
+// IsCode returns true when this get dashboard versions by Uid Ok response a status code equal to that given
 func (o *GetDashboardVersionsByUIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get dashboard versions by Uid o k response
+// Code gets the status code for the get dashboard versions by Uid Ok response
 func (o *GetDashboardVersionsByUIDOK) Code() int {
 	return 200
 }
 
 func (o *GetDashboardVersionsByUIDOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions][%d] getDashboardVersionsByUidOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions][%d] getDashboardVersionsByUidOk  %+v", 200, o.Payload)
 }
 
 func (o *GetDashboardVersionsByUIDOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions][%d] getDashboardVersionsByUidOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions][%d] getDashboardVersionsByUidOk  %+v", 200, o.Payload)
 }
 
 func (o *GetDashboardVersionsByUIDOK) GetPayload() []*models.DashboardVersionMeta {

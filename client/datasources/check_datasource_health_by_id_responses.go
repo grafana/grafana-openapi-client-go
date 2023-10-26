@@ -72,42 +72,42 @@ type CheckDatasourceHealthByIDOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this check datasource health by Id o k response has a 2xx status code
+// IsSuccess returns true when this check datasource health by Id Ok response has a 2xx status code
 func (o *CheckDatasourceHealthByIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this check datasource health by Id o k response has a 3xx status code
+// IsRedirect returns true when this check datasource health by Id Ok response has a 3xx status code
 func (o *CheckDatasourceHealthByIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this check datasource health by Id o k response has a 4xx status code
+// IsClientError returns true when this check datasource health by Id Ok response has a 4xx status code
 func (o *CheckDatasourceHealthByIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this check datasource health by Id o k response has a 5xx status code
+// IsServerError returns true when this check datasource health by Id Ok response has a 5xx status code
 func (o *CheckDatasourceHealthByIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this check datasource health by Id o k response a status code equal to that given
+// IsCode returns true when this check datasource health by Id Ok response a status code equal to that given
 func (o *CheckDatasourceHealthByIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the check datasource health by Id o k response
+// Code gets the status code for the check datasource health by Id Ok response
 func (o *CheckDatasourceHealthByIDOK) Code() int {
 	return 200
 }
 
 func (o *CheckDatasourceHealthByIDOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/{id}/health][%d] checkDatasourceHealthByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}/health][%d] checkDatasourceHealthByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *CheckDatasourceHealthByIDOK) String() string {
-	return fmt.Sprintf("[GET /datasources/{id}/health][%d] checkDatasourceHealthByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}/health][%d] checkDatasourceHealthByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *CheckDatasourceHealthByIDOK) GetPayload() *models.SuccessResponseBody {

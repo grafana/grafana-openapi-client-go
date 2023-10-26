@@ -72,42 +72,42 @@ type UpdateRoleOK struct {
 	Payload *models.RoleDTO
 }
 
-// IsSuccess returns true when this update role o k response has a 2xx status code
+// IsSuccess returns true when this update role Ok response has a 2xx status code
 func (o *UpdateRoleOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update role o k response has a 3xx status code
+// IsRedirect returns true when this update role Ok response has a 3xx status code
 func (o *UpdateRoleOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update role o k response has a 4xx status code
+// IsClientError returns true when this update role Ok response has a 4xx status code
 func (o *UpdateRoleOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update role o k response has a 5xx status code
+// IsServerError returns true when this update role Ok response has a 5xx status code
 func (o *UpdateRoleOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update role o k response a status code equal to that given
+// IsCode returns true when this update role Ok response a status code equal to that given
 func (o *UpdateRoleOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update role o k response
+// Code gets the status code for the update role Ok response
 func (o *UpdateRoleOK) Code() int {
 	return 200
 }
 
 func (o *UpdateRoleOK) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateRoleOK) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateRoleOK) GetPayload() *models.RoleDTO {

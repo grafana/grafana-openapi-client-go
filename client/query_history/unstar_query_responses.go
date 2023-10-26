@@ -60,42 +60,42 @@ type UnstarQueryOK struct {
 	Payload *models.QueryHistoryResponse
 }
 
-// IsSuccess returns true when this unstar query o k response has a 2xx status code
+// IsSuccess returns true when this unstar query Ok response has a 2xx status code
 func (o *UnstarQueryOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this unstar query o k response has a 3xx status code
+// IsRedirect returns true when this unstar query Ok response has a 3xx status code
 func (o *UnstarQueryOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this unstar query o k response has a 4xx status code
+// IsClientError returns true when this unstar query Ok response has a 4xx status code
 func (o *UnstarQueryOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this unstar query o k response has a 5xx status code
+// IsServerError returns true when this unstar query Ok response has a 5xx status code
 func (o *UnstarQueryOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this unstar query o k response a status code equal to that given
+// IsCode returns true when this unstar query Ok response a status code equal to that given
 func (o *UnstarQueryOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the unstar query o k response
+// Code gets the status code for the unstar query Ok response
 func (o *UnstarQueryOK) Code() int {
 	return 200
 }
 
 func (o *UnstarQueryOK) Error() string {
-	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryOk  %+v", 200, o.Payload)
 }
 
 func (o *UnstarQueryOK) String() string {
-	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryOk  %+v", 200, o.Payload)
 }
 
 func (o *UnstarQueryOK) GetPayload() *models.QueryHistoryResponse {

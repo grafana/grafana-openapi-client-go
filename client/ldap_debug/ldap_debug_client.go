@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-GetSyncStatus returns the current state of the l d a p background sync integration
+GetSyncStatus returns the current state of the LDAP background sync integration
 
 You need to have a permission with action `ldap.status:read`.
 */

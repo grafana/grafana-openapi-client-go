@@ -66,42 +66,42 @@ type PauseAllAlertsOK struct {
 	Payload *models.PauseAllAlertsOKBody
 }
 
-// IsSuccess returns true when this pause all alerts o k response has a 2xx status code
+// IsSuccess returns true when this pause all alerts Ok response has a 2xx status code
 func (o *PauseAllAlertsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this pause all alerts o k response has a 3xx status code
+// IsRedirect returns true when this pause all alerts Ok response has a 3xx status code
 func (o *PauseAllAlertsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this pause all alerts o k response has a 4xx status code
+// IsClientError returns true when this pause all alerts Ok response has a 4xx status code
 func (o *PauseAllAlertsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this pause all alerts o k response has a 5xx status code
+// IsServerError returns true when this pause all alerts Ok response has a 5xx status code
 func (o *PauseAllAlertsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this pause all alerts o k response a status code equal to that given
+// IsCode returns true when this pause all alerts Ok response a status code equal to that given
 func (o *PauseAllAlertsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the pause all alerts o k response
+// Code gets the status code for the pause all alerts Ok response
 func (o *PauseAllAlertsOK) Code() int {
 	return 200
 }
 
 func (o *PauseAllAlertsOK) Error() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsOk  %+v", 200, o.Payload)
 }
 
 func (o *PauseAllAlertsOK) String() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsOk  %+v", 200, o.Payload)
 }
 
 func (o *PauseAllAlertsOK) GetPayload() *models.PauseAllAlertsOKBody {

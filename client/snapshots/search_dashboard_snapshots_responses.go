@@ -54,42 +54,42 @@ type SearchDashboardSnapshotsOK struct {
 	Payload []*models.DashboardSnapshotDTO
 }
 
-// IsSuccess returns true when this search dashboard snapshots o k response has a 2xx status code
+// IsSuccess returns true when this search dashboard snapshots Ok response has a 2xx status code
 func (o *SearchDashboardSnapshotsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this search dashboard snapshots o k response has a 3xx status code
+// IsRedirect returns true when this search dashboard snapshots Ok response has a 3xx status code
 func (o *SearchDashboardSnapshotsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this search dashboard snapshots o k response has a 4xx status code
+// IsClientError returns true when this search dashboard snapshots Ok response has a 4xx status code
 func (o *SearchDashboardSnapshotsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this search dashboard snapshots o k response has a 5xx status code
+// IsServerError returns true when this search dashboard snapshots Ok response has a 5xx status code
 func (o *SearchDashboardSnapshotsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this search dashboard snapshots o k response a status code equal to that given
+// IsCode returns true when this search dashboard snapshots Ok response a status code equal to that given
 func (o *SearchDashboardSnapshotsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the search dashboard snapshots o k response
+// Code gets the status code for the search dashboard snapshots Ok response
 func (o *SearchDashboardSnapshotsOK) Code() int {
 	return 200
 }
 
 func (o *SearchDashboardSnapshotsOK) Error() string {
-	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchDashboardSnapshotsOK) String() string {
-	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchDashboardSnapshotsOK) GetPayload() []*models.DashboardSnapshotDTO {

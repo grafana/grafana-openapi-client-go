@@ -78,42 +78,42 @@ type AddTeamGroupAPIOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this add team group Api o k response has a 2xx status code
+// IsSuccess returns true when this add team group Api Ok response has a 2xx status code
 func (o *AddTeamGroupAPIOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this add team group Api o k response has a 3xx status code
+// IsRedirect returns true when this add team group Api Ok response has a 3xx status code
 func (o *AddTeamGroupAPIOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this add team group Api o k response has a 4xx status code
+// IsClientError returns true when this add team group Api Ok response has a 4xx status code
 func (o *AddTeamGroupAPIOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this add team group Api o k response has a 5xx status code
+// IsServerError returns true when this add team group Api Ok response has a 5xx status code
 func (o *AddTeamGroupAPIOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this add team group Api o k response a status code equal to that given
+// IsCode returns true when this add team group Api Ok response a status code equal to that given
 func (o *AddTeamGroupAPIOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the add team group Api o k response
+// Code gets the status code for the add team group Api Ok response
 func (o *AddTeamGroupAPIOK) Code() int {
 	return 200
 }
 
 func (o *AddTeamGroupAPIOK) Error() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiOk  %+v", 200, o.Payload)
 }
 
 func (o *AddTeamGroupAPIOK) String() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiOk  %+v", 200, o.Payload)
 }
 
 func (o *AddTeamGroupAPIOK) GetPayload() *models.SuccessResponseBody {

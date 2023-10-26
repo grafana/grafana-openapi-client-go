@@ -72,42 +72,42 @@ type UnstarDashboardOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this unstar dashboard o k response has a 2xx status code
+// IsSuccess returns true when this unstar dashboard Ok response has a 2xx status code
 func (o *UnstarDashboardOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this unstar dashboard o k response has a 3xx status code
+// IsRedirect returns true when this unstar dashboard Ok response has a 3xx status code
 func (o *UnstarDashboardOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this unstar dashboard o k response has a 4xx status code
+// IsClientError returns true when this unstar dashboard Ok response has a 4xx status code
 func (o *UnstarDashboardOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this unstar dashboard o k response has a 5xx status code
+// IsServerError returns true when this unstar dashboard Ok response has a 5xx status code
 func (o *UnstarDashboardOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this unstar dashboard o k response a status code equal to that given
+// IsCode returns true when this unstar dashboard Ok response a status code equal to that given
 func (o *UnstarDashboardOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the unstar dashboard o k response
+// Code gets the status code for the unstar dashboard Ok response
 func (o *UnstarDashboardOK) Code() int {
 	return 200
 }
 
 func (o *UnstarDashboardOK) Error() string {
-	return fmt.Sprintf("[DELETE /user/stars/dashboard/{dashboard_id}][%d] unstarDashboardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /user/stars/dashboard/{dashboard_id}][%d] unstarDashboardOk  %+v", 200, o.Payload)
 }
 
 func (o *UnstarDashboardOK) String() string {
-	return fmt.Sprintf("[DELETE /user/stars/dashboard/{dashboard_id}][%d] unstarDashboardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /user/stars/dashboard/{dashboard_id}][%d] unstarDashboardOk  %+v", 200, o.Payload)
 }
 
 func (o *UnstarDashboardOK) GetPayload() *models.SuccessResponseBody {

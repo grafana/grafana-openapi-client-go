@@ -66,42 +66,42 @@ type GetFoldersOK struct {
 	Payload []*models.FolderSearchHit
 }
 
-// IsSuccess returns true when this get folders o k response has a 2xx status code
+// IsSuccess returns true when this get folders Ok response has a 2xx status code
 func (o *GetFoldersOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get folders o k response has a 3xx status code
+// IsRedirect returns true when this get folders Ok response has a 3xx status code
 func (o *GetFoldersOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get folders o k response has a 4xx status code
+// IsClientError returns true when this get folders Ok response has a 4xx status code
 func (o *GetFoldersOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get folders o k response has a 5xx status code
+// IsServerError returns true when this get folders Ok response has a 5xx status code
 func (o *GetFoldersOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get folders o k response a status code equal to that given
+// IsCode returns true when this get folders Ok response a status code equal to that given
 func (o *GetFoldersOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get folders o k response
+// Code gets the status code for the get folders Ok response
 func (o *GetFoldersOK) Code() int {
 	return 200
 }
 
 func (o *GetFoldersOK) Error() string {
-	return fmt.Sprintf("[GET /folders][%d] getFoldersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /folders][%d] getFoldersOk  %+v", 200, o.Payload)
 }
 
 func (o *GetFoldersOK) String() string {
-	return fmt.Sprintf("[GET /folders][%d] getFoldersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /folders][%d] getFoldersOk  %+v", 200, o.Payload)
 }
 
 func (o *GetFoldersOK) GetPayload() []*models.FolderSearchHit {

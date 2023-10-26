@@ -54,42 +54,42 @@ type GetSharingOptionsOK struct {
 	Payload *models.GetSharingOptionsOKBody
 }
 
-// IsSuccess returns true when this get sharing options o k response has a 2xx status code
+// IsSuccess returns true when this get sharing options Ok response has a 2xx status code
 func (o *GetSharingOptionsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get sharing options o k response has a 3xx status code
+// IsRedirect returns true when this get sharing options Ok response has a 3xx status code
 func (o *GetSharingOptionsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get sharing options o k response has a 4xx status code
+// IsClientError returns true when this get sharing options Ok response has a 4xx status code
 func (o *GetSharingOptionsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get sharing options o k response has a 5xx status code
+// IsServerError returns true when this get sharing options Ok response has a 5xx status code
 func (o *GetSharingOptionsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get sharing options o k response a status code equal to that given
+// IsCode returns true when this get sharing options Ok response a status code equal to that given
 func (o *GetSharingOptionsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get sharing options o k response
+// Code gets the status code for the get sharing options Ok response
 func (o *GetSharingOptionsOK) Code() int {
 	return 200
 }
 
 func (o *GetSharingOptionsOK) Error() string {
-	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetSharingOptionsOK) String() string {
-	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetSharingOptionsOK) GetPayload() *models.GetSharingOptionsOKBody {
