@@ -72,42 +72,42 @@ type PatchOrgPreferencesOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this patch org preferences o k response has a 2xx status code
+// IsSuccess returns true when this patch org preferences Ok response has a 2xx status code
 func (o *PatchOrgPreferencesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this patch org preferences o k response has a 3xx status code
+// IsRedirect returns true when this patch org preferences Ok response has a 3xx status code
 func (o *PatchOrgPreferencesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this patch org preferences o k response has a 4xx status code
+// IsClientError returns true when this patch org preferences Ok response has a 4xx status code
 func (o *PatchOrgPreferencesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this patch org preferences o k response has a 5xx status code
+// IsServerError returns true when this patch org preferences Ok response has a 5xx status code
 func (o *PatchOrgPreferencesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this patch org preferences o k response a status code equal to that given
+// IsCode returns true when this patch org preferences Ok response a status code equal to that given
 func (o *PatchOrgPreferencesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the patch org preferences o k response
+// Code gets the status code for the patch org preferences Ok response
 func (o *PatchOrgPreferencesOK) Code() int {
 	return 200
 }
 
 func (o *PatchOrgPreferencesOK) Error() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesOk  %+v", 200, o.Payload)
 }
 
 func (o *PatchOrgPreferencesOK) String() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesOk  %+v", 200, o.Payload)
 }
 
 func (o *PatchOrgPreferencesOK) GetPayload() *models.SuccessResponseBody {

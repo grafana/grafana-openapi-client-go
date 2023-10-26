@@ -72,42 +72,42 @@ type RemoveOrgUserForCurrentOrgOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this remove org user for current org o k response has a 2xx status code
+// IsSuccess returns true when this remove org user for current org Ok response has a 2xx status code
 func (o *RemoveOrgUserForCurrentOrgOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this remove org user for current org o k response has a 3xx status code
+// IsRedirect returns true when this remove org user for current org Ok response has a 3xx status code
 func (o *RemoveOrgUserForCurrentOrgOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this remove org user for current org o k response has a 4xx status code
+// IsClientError returns true when this remove org user for current org Ok response has a 4xx status code
 func (o *RemoveOrgUserForCurrentOrgOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this remove org user for current org o k response has a 5xx status code
+// IsServerError returns true when this remove org user for current org Ok response has a 5xx status code
 func (o *RemoveOrgUserForCurrentOrgOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this remove org user for current org o k response a status code equal to that given
+// IsCode returns true when this remove org user for current org Ok response a status code equal to that given
 func (o *RemoveOrgUserForCurrentOrgOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the remove org user for current org o k response
+// Code gets the status code for the remove org user for current org Ok response
 func (o *RemoveOrgUserForCurrentOrgOK) Code() int {
 	return 200
 }
 
 func (o *RemoveOrgUserForCurrentOrgOK) Error() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgOK) String() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgOK) GetPayload() *models.SuccessResponseBody {

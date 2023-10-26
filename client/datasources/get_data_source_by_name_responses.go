@@ -66,42 +66,42 @@ type GetDataSourceByNameOK struct {
 	Payload *models.DataSource
 }
 
-// IsSuccess returns true when this get data source by name o k response has a 2xx status code
+// IsSuccess returns true when this get data source by name Ok response has a 2xx status code
 func (o *GetDataSourceByNameOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get data source by name o k response has a 3xx status code
+// IsRedirect returns true when this get data source by name Ok response has a 3xx status code
 func (o *GetDataSourceByNameOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get data source by name o k response has a 4xx status code
+// IsClientError returns true when this get data source by name Ok response has a 4xx status code
 func (o *GetDataSourceByNameOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get data source by name o k response has a 5xx status code
+// IsServerError returns true when this get data source by name Ok response has a 5xx status code
 func (o *GetDataSourceByNameOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get data source by name o k response a status code equal to that given
+// IsCode returns true when this get data source by name Ok response a status code equal to that given
 func (o *GetDataSourceByNameOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get data source by name o k response
+// Code gets the status code for the get data source by name Ok response
 func (o *GetDataSourceByNameOK) Code() int {
 	return 200
 }
 
 func (o *GetDataSourceByNameOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/name/{name}][%d] getDataSourceByNameOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/name/{name}][%d] getDataSourceByNameOk  %+v", 200, o.Payload)
 }
 
 func (o *GetDataSourceByNameOK) String() string {
-	return fmt.Sprintf("[GET /datasources/name/{name}][%d] getDataSourceByNameOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/name/{name}][%d] getDataSourceByNameOk  %+v", 200, o.Payload)
 }
 
 func (o *GetDataSourceByNameOK) GetPayload() *models.DataSource {

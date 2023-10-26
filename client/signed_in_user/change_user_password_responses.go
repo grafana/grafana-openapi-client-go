@@ -72,42 +72,42 @@ type ChangeUserPasswordOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this change user password o k response has a 2xx status code
+// IsSuccess returns true when this change user password Ok response has a 2xx status code
 func (o *ChangeUserPasswordOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this change user password o k response has a 3xx status code
+// IsRedirect returns true when this change user password Ok response has a 3xx status code
 func (o *ChangeUserPasswordOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this change user password o k response has a 4xx status code
+// IsClientError returns true when this change user password Ok response has a 4xx status code
 func (o *ChangeUserPasswordOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this change user password o k response has a 5xx status code
+// IsServerError returns true when this change user password Ok response has a 5xx status code
 func (o *ChangeUserPasswordOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this change user password o k response a status code equal to that given
+// IsCode returns true when this change user password Ok response a status code equal to that given
 func (o *ChangeUserPasswordOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the change user password o k response
+// Code gets the status code for the change user password Ok response
 func (o *ChangeUserPasswordOK) Code() int {
 	return 200
 }
 
 func (o *ChangeUserPasswordOK) Error() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordOk  %+v", 200, o.Payload)
 }
 
 func (o *ChangeUserPasswordOK) String() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordOk  %+v", 200, o.Payload)
 }
 
 func (o *ChangeUserPasswordOK) GetPayload() *models.SuccessResponseBody {

@@ -66,42 +66,42 @@ type GetAccessControlStatusOK struct {
 	Payload models.Status
 }
 
-// IsSuccess returns true when this get access control status o k response has a 2xx status code
+// IsSuccess returns true when this get access control status Ok response has a 2xx status code
 func (o *GetAccessControlStatusOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get access control status o k response has a 3xx status code
+// IsRedirect returns true when this get access control status Ok response has a 3xx status code
 func (o *GetAccessControlStatusOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get access control status o k response has a 4xx status code
+// IsClientError returns true when this get access control status Ok response has a 4xx status code
 func (o *GetAccessControlStatusOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get access control status o k response has a 5xx status code
+// IsServerError returns true when this get access control status Ok response has a 5xx status code
 func (o *GetAccessControlStatusOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get access control status o k response a status code equal to that given
+// IsCode returns true when this get access control status Ok response a status code equal to that given
 func (o *GetAccessControlStatusOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get access control status o k response
+// Code gets the status code for the get access control status Ok response
 func (o *GetAccessControlStatusOK) Code() int {
 	return 200
 }
 
 func (o *GetAccessControlStatusOK) Error() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAccessControlStatusOK) String() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAccessControlStatusOK) GetPayload() models.Status {

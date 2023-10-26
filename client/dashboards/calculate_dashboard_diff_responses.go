@@ -66,42 +66,42 @@ type CalculateDashboardDiffOK struct {
 	Payload []uint8
 }
 
-// IsSuccess returns true when this calculate dashboard diff o k response has a 2xx status code
+// IsSuccess returns true when this calculate dashboard diff Ok response has a 2xx status code
 func (o *CalculateDashboardDiffOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this calculate dashboard diff o k response has a 3xx status code
+// IsRedirect returns true when this calculate dashboard diff Ok response has a 3xx status code
 func (o *CalculateDashboardDiffOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this calculate dashboard diff o k response has a 4xx status code
+// IsClientError returns true when this calculate dashboard diff Ok response has a 4xx status code
 func (o *CalculateDashboardDiffOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this calculate dashboard diff o k response has a 5xx status code
+// IsServerError returns true when this calculate dashboard diff Ok response has a 5xx status code
 func (o *CalculateDashboardDiffOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this calculate dashboard diff o k response a status code equal to that given
+// IsCode returns true when this calculate dashboard diff Ok response a status code equal to that given
 func (o *CalculateDashboardDiffOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the calculate dashboard diff o k response
+// Code gets the status code for the calculate dashboard diff Ok response
 func (o *CalculateDashboardDiffOK) Code() int {
 	return 200
 }
 
 func (o *CalculateDashboardDiffOK) Error() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffOk  %+v", 200, o.Payload)
 }
 
 func (o *CalculateDashboardDiffOK) String() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffOk  %+v", 200, o.Payload)
 }
 
 func (o *CalculateDashboardDiffOK) GetPayload() []uint8 {

@@ -44,7 +44,7 @@ type GettableAPIReceiver struct {
 	SlackConfigs []*SlackConfig `json:"slack_configs"`
 
 	// sns configs
-	SnsConfigs []*SNSConfig `json:"sns_configs"`
+	SNSConfigs []*SNSConfig `json:"sns_configs"`
 
 	// teams configs
 	TeamsConfigs []*MSTeamsConfig `json:"teams_configs"`
@@ -97,7 +97,7 @@ func (m *GettableAPIReceiver) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateSnsConfigs(formats); err != nil {
+	if err := m.validateSNSConfigs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -313,18 +313,18 @@ func (m *GettableAPIReceiver) validateSlackConfigs(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *GettableAPIReceiver) validateSnsConfigs(formats strfmt.Registry) error {
-	if swag.IsZero(m.SnsConfigs) { // not required
+func (m *GettableAPIReceiver) validateSNSConfigs(formats strfmt.Registry) error {
+	if swag.IsZero(m.SNSConfigs) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.SnsConfigs); i++ {
-		if swag.IsZero(m.SnsConfigs[i]) { // not required
+	for i := 0; i < len(m.SNSConfigs); i++ {
+		if swag.IsZero(m.SNSConfigs[i]) { // not required
 			continue
 		}
 
-		if m.SnsConfigs[i] != nil {
-			if err := m.SnsConfigs[i].Validate(formats); err != nil {
+		if m.SNSConfigs[i] != nil {
+			if err := m.SNSConfigs[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sns_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -527,7 +527,7 @@ func (m *GettableAPIReceiver) ContextValidate(ctx context.Context, formats strfm
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateSnsConfigs(ctx, formats); err != nil {
+	if err := m.contextValidateSNSConfigs(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -736,17 +736,17 @@ func (m *GettableAPIReceiver) contextValidateSlackConfigs(ctx context.Context, f
 	return nil
 }
 
-func (m *GettableAPIReceiver) contextValidateSnsConfigs(ctx context.Context, formats strfmt.Registry) error {
+func (m *GettableAPIReceiver) contextValidateSNSConfigs(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.SnsConfigs); i++ {
+	for i := 0; i < len(m.SNSConfigs); i++ {
 
-		if m.SnsConfigs[i] != nil {
+		if m.SNSConfigs[i] != nil {
 
-			if swag.IsZero(m.SnsConfigs[i]) { // not required
+			if swag.IsZero(m.SNSConfigs[i]) { // not required
 				return nil
 			}
 
-			if err := m.SnsConfigs[i].ContextValidate(ctx, formats); err != nil {
+			if err := m.SNSConfigs[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sns_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {

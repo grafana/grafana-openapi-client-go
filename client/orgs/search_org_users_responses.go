@@ -66,42 +66,42 @@ type SearchOrgUsersOK struct {
 	Payload *models.SearchOrgUsersQueryResult
 }
 
-// IsSuccess returns true when this search org users o k response has a 2xx status code
+// IsSuccess returns true when this search org users Ok response has a 2xx status code
 func (o *SearchOrgUsersOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this search org users o k response has a 3xx status code
+// IsRedirect returns true when this search org users Ok response has a 3xx status code
 func (o *SearchOrgUsersOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this search org users o k response has a 4xx status code
+// IsClientError returns true when this search org users Ok response has a 4xx status code
 func (o *SearchOrgUsersOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this search org users o k response has a 5xx status code
+// IsServerError returns true when this search org users Ok response has a 5xx status code
 func (o *SearchOrgUsersOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this search org users o k response a status code equal to that given
+// IsCode returns true when this search org users Ok response a status code equal to that given
 func (o *SearchOrgUsersOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the search org users o k response
+// Code gets the status code for the search org users Ok response
 func (o *SearchOrgUsersOK) Code() int {
 	return 200
 }
 
 func (o *SearchOrgUsersOK) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchOrgUsersOK) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchOrgUsersOK) GetPayload() *models.SearchOrgUsersQueryResult {

@@ -66,42 +66,42 @@ type SetHelpFlagOK struct {
 	Payload *models.SetHelpFlagOKBody
 }
 
-// IsSuccess returns true when this set help flag o k response has a 2xx status code
+// IsSuccess returns true when this set help flag Ok response has a 2xx status code
 func (o *SetHelpFlagOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this set help flag o k response has a 3xx status code
+// IsRedirect returns true when this set help flag Ok response has a 3xx status code
 func (o *SetHelpFlagOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this set help flag o k response has a 4xx status code
+// IsClientError returns true when this set help flag Ok response has a 4xx status code
 func (o *SetHelpFlagOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this set help flag o k response has a 5xx status code
+// IsServerError returns true when this set help flag Ok response has a 5xx status code
 func (o *SetHelpFlagOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this set help flag o k response a status code equal to that given
+// IsCode returns true when this set help flag Ok response a status code equal to that given
 func (o *SetHelpFlagOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the set help flag o k response
+// Code gets the status code for the set help flag Ok response
 func (o *SetHelpFlagOK) Code() int {
 	return 200
 }
 
 func (o *SetHelpFlagOK) Error() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagOk  %+v", 200, o.Payload)
 }
 
 func (o *SetHelpFlagOK) String() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagOk  %+v", 200, o.Payload)
 }
 
 func (o *SetHelpFlagOK) GetPayload() *models.SetHelpFlagOKBody {

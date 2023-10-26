@@ -60,42 +60,42 @@ type GetAlertByIDOK struct {
 	Payload *models.LegacyAlert
 }
 
-// IsSuccess returns true when this get alert by Id o k response has a 2xx status code
+// IsSuccess returns true when this get alert by Id Ok response has a 2xx status code
 func (o *GetAlertByIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get alert by Id o k response has a 3xx status code
+// IsRedirect returns true when this get alert by Id Ok response has a 3xx status code
 func (o *GetAlertByIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get alert by Id o k response has a 4xx status code
+// IsClientError returns true when this get alert by Id Ok response has a 4xx status code
 func (o *GetAlertByIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get alert by Id o k response has a 5xx status code
+// IsServerError returns true when this get alert by Id Ok response has a 5xx status code
 func (o *GetAlertByIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get alert by Id o k response a status code equal to that given
+// IsCode returns true when this get alert by Id Ok response a status code equal to that given
 func (o *GetAlertByIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get alert by Id o k response
+// Code gets the status code for the get alert by Id Ok response
 func (o *GetAlertByIDOK) Code() int {
 	return 200
 }
 
 func (o *GetAlertByIDOK) Error() string {
-	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertByIDOK) String() string {
-	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertByIDOK) GetPayload() *models.LegacyAlert {

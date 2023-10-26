@@ -72,42 +72,42 @@ type UpdateOrgPreferencesOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this update org preferences o k response has a 2xx status code
+// IsSuccess returns true when this update org preferences Ok response has a 2xx status code
 func (o *UpdateOrgPreferencesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update org preferences o k response has a 3xx status code
+// IsRedirect returns true when this update org preferences Ok response has a 3xx status code
 func (o *UpdateOrgPreferencesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update org preferences o k response has a 4xx status code
+// IsClientError returns true when this update org preferences Ok response has a 4xx status code
 func (o *UpdateOrgPreferencesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update org preferences o k response has a 5xx status code
+// IsServerError returns true when this update org preferences Ok response has a 5xx status code
 func (o *UpdateOrgPreferencesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update org preferences o k response a status code equal to that given
+// IsCode returns true when this update org preferences Ok response a status code equal to that given
 func (o *UpdateOrgPreferencesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update org preferences o k response
+// Code gets the status code for the update org preferences Ok response
 func (o *UpdateOrgPreferencesOK) Code() int {
 	return 200
 }
 
 func (o *UpdateOrgPreferencesOK) Error() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateOrgPreferencesOK) String() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateOrgPreferencesOK) GetPayload() *models.SuccessResponseBody {

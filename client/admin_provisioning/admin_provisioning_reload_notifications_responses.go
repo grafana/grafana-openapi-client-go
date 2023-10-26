@@ -66,42 +66,42 @@ type AdminProvisioningReloadNotificationsOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this admin provisioning reload notifications o k response has a 2xx status code
+// IsSuccess returns true when this admin provisioning reload notifications Ok response has a 2xx status code
 func (o *AdminProvisioningReloadNotificationsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this admin provisioning reload notifications o k response has a 3xx status code
+// IsRedirect returns true when this admin provisioning reload notifications Ok response has a 3xx status code
 func (o *AdminProvisioningReloadNotificationsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this admin provisioning reload notifications o k response has a 4xx status code
+// IsClientError returns true when this admin provisioning reload notifications Ok response has a 4xx status code
 func (o *AdminProvisioningReloadNotificationsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this admin provisioning reload notifications o k response has a 5xx status code
+// IsServerError returns true when this admin provisioning reload notifications Ok response has a 5xx status code
 func (o *AdminProvisioningReloadNotificationsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this admin provisioning reload notifications o k response a status code equal to that given
+// IsCode returns true when this admin provisioning reload notifications Ok response a status code equal to that given
 func (o *AdminProvisioningReloadNotificationsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the admin provisioning reload notifications o k response
+// Code gets the status code for the admin provisioning reload notifications Ok response
 func (o *AdminProvisioningReloadNotificationsOK) Code() int {
 	return 200
 }
 
 func (o *AdminProvisioningReloadNotificationsOK) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/notifications/reload][%d] adminProvisioningReloadNotificationsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/notifications/reload][%d] adminProvisioningReloadNotificationsOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminProvisioningReloadNotificationsOK) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/notifications/reload][%d] adminProvisioningReloadNotificationsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/notifications/reload][%d] adminProvisioningReloadNotificationsOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminProvisioningReloadNotificationsOK) GetPayload() *models.SuccessResponseBody {

@@ -78,42 +78,42 @@ type DeleteReportOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this delete report o k response has a 2xx status code
+// IsSuccess returns true when this delete report Ok response has a 2xx status code
 func (o *DeleteReportOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete report o k response has a 3xx status code
+// IsRedirect returns true when this delete report Ok response has a 3xx status code
 func (o *DeleteReportOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete report o k response has a 4xx status code
+// IsClientError returns true when this delete report Ok response has a 4xx status code
 func (o *DeleteReportOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete report o k response has a 5xx status code
+// IsServerError returns true when this delete report Ok response has a 5xx status code
 func (o *DeleteReportOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete report o k response a status code equal to that given
+// IsCode returns true when this delete report Ok response a status code equal to that given
 func (o *DeleteReportOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete report o k response
+// Code gets the status code for the delete report Ok response
 func (o *DeleteReportOK) Code() int {
 	return 200
 }
 
 func (o *DeleteReportOK) Error() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteReportOK) String() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteReportOK) GetPayload() *models.SuccessResponseBody {

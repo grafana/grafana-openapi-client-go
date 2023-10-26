@@ -78,42 +78,42 @@ type UpdateTeamOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this update team o k response has a 2xx status code
+// IsSuccess returns true when this update team Ok response has a 2xx status code
 func (o *UpdateTeamOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update team o k response has a 3xx status code
+// IsRedirect returns true when this update team Ok response has a 3xx status code
 func (o *UpdateTeamOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update team o k response has a 4xx status code
+// IsClientError returns true when this update team Ok response has a 4xx status code
 func (o *UpdateTeamOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update team o k response has a 5xx status code
+// IsServerError returns true when this update team Ok response has a 5xx status code
 func (o *UpdateTeamOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update team o k response a status code equal to that given
+// IsCode returns true when this update team Ok response a status code equal to that given
 func (o *UpdateTeamOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update team o k response
+// Code gets the status code for the update team Ok response
 func (o *UpdateTeamOK) Code() int {
 	return 200
 }
 
 func (o *UpdateTeamOK) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateTeamOK) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateTeamOK) GetPayload() *models.SuccessResponseBody {

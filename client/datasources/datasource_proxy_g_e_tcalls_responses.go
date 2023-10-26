@@ -77,42 +77,42 @@ DatasourceProxyGETcallsOK describes a response with status code 200, with defaul
 type DatasourceProxyGETcallsOK struct {
 }
 
-// IsSuccess returns true when this datasource proxy g e tcalls o k response has a 2xx status code
+// IsSuccess returns true when this datasource proxy g e tcalls Ok response has a 2xx status code
 func (o *DatasourceProxyGETcallsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this datasource proxy g e tcalls o k response has a 3xx status code
+// IsRedirect returns true when this datasource proxy g e tcalls Ok response has a 3xx status code
 func (o *DatasourceProxyGETcallsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this datasource proxy g e tcalls o k response has a 4xx status code
+// IsClientError returns true when this datasource proxy g e tcalls Ok response has a 4xx status code
 func (o *DatasourceProxyGETcallsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this datasource proxy g e tcalls o k response has a 5xx status code
+// IsServerError returns true when this datasource proxy g e tcalls Ok response has a 5xx status code
 func (o *DatasourceProxyGETcallsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this datasource proxy g e tcalls o k response a status code equal to that given
+// IsCode returns true when this datasource proxy g e tcalls Ok response a status code equal to that given
 func (o *DatasourceProxyGETcallsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the datasource proxy g e tcalls o k response
+// Code gets the status code for the datasource proxy g e tcalls Ok response
 func (o *DatasourceProxyGETcallsOK) Code() int {
 	return 200
 }
 
 func (o *DatasourceProxyGETcallsOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/proxy/{id}/{datasource_proxy_route}][%d] datasourceProxyGETcallsOK ", 200)
+	return fmt.Sprintf("[GET /datasources/proxy/{id}/{datasource_proxy_route}][%d] datasourceProxyGETcallsOk ", 200)
 }
 
 func (o *DatasourceProxyGETcallsOK) String() string {
-	return fmt.Sprintf("[GET /datasources/proxy/{id}/{datasource_proxy_route}][%d] datasourceProxyGETcallsOK ", 200)
+	return fmt.Sprintf("[GET /datasources/proxy/{id}/{datasource_proxy_route}][%d] datasourceProxyGETcallsOk ", 200)
 }
 
 func (o *DatasourceProxyGETcallsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

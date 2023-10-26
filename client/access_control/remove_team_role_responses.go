@@ -72,42 +72,42 @@ type RemoveTeamRoleOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this remove team role o k response has a 2xx status code
+// IsSuccess returns true when this remove team role Ok response has a 2xx status code
 func (o *RemoveTeamRoleOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this remove team role o k response has a 3xx status code
+// IsRedirect returns true when this remove team role Ok response has a 3xx status code
 func (o *RemoveTeamRoleOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this remove team role o k response has a 4xx status code
+// IsClientError returns true when this remove team role Ok response has a 4xx status code
 func (o *RemoveTeamRoleOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this remove team role o k response has a 5xx status code
+// IsServerError returns true when this remove team role Ok response has a 5xx status code
 func (o *RemoveTeamRoleOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this remove team role o k response a status code equal to that given
+// IsCode returns true when this remove team role Ok response a status code equal to that given
 func (o *RemoveTeamRoleOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the remove team role o k response
+// Code gets the status code for the remove team role Ok response
 func (o *RemoveTeamRoleOK) Code() int {
 	return 200
 }
 
 func (o *RemoveTeamRoleOK) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/teams/{teamId}/roles/{roleUID}][%d] removeTeamRoleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/teams/{teamId}/roles/{roleUID}][%d] removeTeamRoleOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveTeamRoleOK) String() string {
-	return fmt.Sprintf("[DELETE /access-control/teams/{teamId}/roles/{roleUID}][%d] removeTeamRoleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/teams/{teamId}/roles/{roleUID}][%d] removeTeamRoleOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveTeamRoleOK) GetPayload() *models.SuccessResponseBody {

@@ -28,11 +28,20 @@ $(info Generate model '$(MODEL)')
 endif
 
 generate-client: ${SWAGGER}
+	rm -rf ./models ./client
+
 	$(SWAGGER) generate client \
 	-f https://raw.githubusercontent.com/grafana/grafana/${GRAFANA_TARGET_VERSION}/public/api-merged.json \
 	--skip-validation \
 	--with-flatten=remove-unused \
-	--additional-initialism=DTO,API,OK,LDAP,ACL,SNS,CSV \
+	--additional-initialism=DTO \
+	--additional-initialism=API \
+	--additional-initialism=OK \
+	--additional-initialism=LDAP \
+	--additional-initialism=ACL \
+	--additional-initialism=SNS \
+	--additional-initialism=CSV \
+	--additional-initialism=PDF \
 	--template-dir=templates \
 	$(CLIENT_GENERATION_ARGS)
 	go mod tidy

@@ -72,42 +72,42 @@ type PauseAlertOK struct {
 	Payload *models.PauseAlertOKBody
 }
 
-// IsSuccess returns true when this pause alert o k response has a 2xx status code
+// IsSuccess returns true when this pause alert Ok response has a 2xx status code
 func (o *PauseAlertOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this pause alert o k response has a 3xx status code
+// IsRedirect returns true when this pause alert Ok response has a 3xx status code
 func (o *PauseAlertOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this pause alert o k response has a 4xx status code
+// IsClientError returns true when this pause alert Ok response has a 4xx status code
 func (o *PauseAlertOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this pause alert o k response has a 5xx status code
+// IsServerError returns true when this pause alert Ok response has a 5xx status code
 func (o *PauseAlertOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this pause alert o k response a status code equal to that given
+// IsCode returns true when this pause alert Ok response a status code equal to that given
 func (o *PauseAlertOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the pause alert o k response
+// Code gets the status code for the pause alert Ok response
 func (o *PauseAlertOK) Code() int {
 	return 200
 }
 
 func (o *PauseAlertOK) Error() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertOk  %+v", 200, o.Payload)
 }
 
 func (o *PauseAlertOK) String() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertOk  %+v", 200, o.Payload)
 }
 
 func (o *PauseAlertOK) GetPayload() *models.PauseAlertOKBody {

@@ -60,42 +60,42 @@ type GetUserPreferencesOK struct {
 	Payload *models.Spec
 }
 
-// IsSuccess returns true when this get user preferences o k response has a 2xx status code
+// IsSuccess returns true when this get user preferences Ok response has a 2xx status code
 func (o *GetUserPreferencesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get user preferences o k response has a 3xx status code
+// IsRedirect returns true when this get user preferences Ok response has a 3xx status code
 func (o *GetUserPreferencesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get user preferences o k response has a 4xx status code
+// IsClientError returns true when this get user preferences Ok response has a 4xx status code
 func (o *GetUserPreferencesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get user preferences o k response has a 5xx status code
+// IsServerError returns true when this get user preferences Ok response has a 5xx status code
 func (o *GetUserPreferencesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get user preferences o k response a status code equal to that given
+// IsCode returns true when this get user preferences Ok response a status code equal to that given
 func (o *GetUserPreferencesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get user preferences o k response
+// Code gets the status code for the get user preferences Ok response
 func (o *GetUserPreferencesOK) Code() int {
 	return 200
 }
 
 func (o *GetUserPreferencesOK) Error() string {
-	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetUserPreferencesOK) String() string {
-	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetUserPreferencesOK) GetPayload() *models.Spec {

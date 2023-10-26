@@ -72,42 +72,42 @@ type GetDashboardByUIDOK struct {
 	Payload *models.DashboardFullWithMeta
 }
 
-// IsSuccess returns true when this get dashboard by Uid o k response has a 2xx status code
+// IsSuccess returns true when this get dashboard by Uid Ok response has a 2xx status code
 func (o *GetDashboardByUIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get dashboard by Uid o k response has a 3xx status code
+// IsRedirect returns true when this get dashboard by Uid Ok response has a 3xx status code
 func (o *GetDashboardByUIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get dashboard by Uid o k response has a 4xx status code
+// IsClientError returns true when this get dashboard by Uid Ok response has a 4xx status code
 func (o *GetDashboardByUIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get dashboard by Uid o k response has a 5xx status code
+// IsServerError returns true when this get dashboard by Uid Ok response has a 5xx status code
 func (o *GetDashboardByUIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get dashboard by Uid o k response a status code equal to that given
+// IsCode returns true when this get dashboard by Uid Ok response a status code equal to that given
 func (o *GetDashboardByUIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get dashboard by Uid o k response
+// Code gets the status code for the get dashboard by Uid Ok response
 func (o *GetDashboardByUIDOK) Code() int {
 	return 200
 }
 
 func (o *GetDashboardByUIDOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidOk  %+v", 200, o.Payload)
 }
 
 func (o *GetDashboardByUIDOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidOk  %+v", 200, o.Payload)
 }
 
 func (o *GetDashboardByUIDOK) GetPayload() *models.DashboardFullWithMeta {

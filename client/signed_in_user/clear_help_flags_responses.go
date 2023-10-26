@@ -66,42 +66,42 @@ type ClearHelpFlagsOK struct {
 	Payload *models.ClearHelpFlagsOKBody
 }
 
-// IsSuccess returns true when this clear help flags o k response has a 2xx status code
+// IsSuccess returns true when this clear help flags Ok response has a 2xx status code
 func (o *ClearHelpFlagsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this clear help flags o k response has a 3xx status code
+// IsRedirect returns true when this clear help flags Ok response has a 3xx status code
 func (o *ClearHelpFlagsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this clear help flags o k response has a 4xx status code
+// IsClientError returns true when this clear help flags Ok response has a 4xx status code
 func (o *ClearHelpFlagsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this clear help flags o k response has a 5xx status code
+// IsServerError returns true when this clear help flags Ok response has a 5xx status code
 func (o *ClearHelpFlagsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this clear help flags o k response a status code equal to that given
+// IsCode returns true when this clear help flags Ok response a status code equal to that given
 func (o *ClearHelpFlagsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the clear help flags o k response
+// Code gets the status code for the clear help flags Ok response
 func (o *ClearHelpFlagsOK) Code() int {
 	return 200
 }
 
 func (o *ClearHelpFlagsOK) Error() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsOk  %+v", 200, o.Payload)
 }
 
 func (o *ClearHelpFlagsOK) String() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsOk  %+v", 200, o.Payload)
 }
 
 func (o *ClearHelpFlagsOK) GetPayload() *models.ClearHelpFlagsOKBody {

@@ -78,42 +78,42 @@ type UpdateDashboardPermissionsByIDOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this update dashboard permissions by Id o k response has a 2xx status code
+// IsSuccess returns true when this update dashboard permissions by Id Ok response has a 2xx status code
 func (o *UpdateDashboardPermissionsByIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update dashboard permissions by Id o k response has a 3xx status code
+// IsRedirect returns true when this update dashboard permissions by Id Ok response has a 3xx status code
 func (o *UpdateDashboardPermissionsByIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update dashboard permissions by Id o k response has a 4xx status code
+// IsClientError returns true when this update dashboard permissions by Id Ok response has a 4xx status code
 func (o *UpdateDashboardPermissionsByIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update dashboard permissions by Id o k response has a 5xx status code
+// IsServerError returns true when this update dashboard permissions by Id Ok response has a 5xx status code
 func (o *UpdateDashboardPermissionsByIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update dashboard permissions by Id o k response a status code equal to that given
+// IsCode returns true when this update dashboard permissions by Id Ok response a status code equal to that given
 func (o *UpdateDashboardPermissionsByIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update dashboard permissions by Id o k response
+// Code gets the status code for the update dashboard permissions by Id Ok response
 func (o *UpdateDashboardPermissionsByIDOK) Code() int {
 	return 200
 }
 
 func (o *UpdateDashboardPermissionsByIDOK) Error() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/permissions][%d] updateDashboardPermissionsByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/permissions][%d] updateDashboardPermissionsByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateDashboardPermissionsByIDOK) String() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/permissions][%d] updateDashboardPermissionsByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/permissions][%d] updateDashboardPermissionsByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateDashboardPermissionsByIDOK) GetPayload() *models.SuccessResponseBody {

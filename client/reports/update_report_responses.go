@@ -78,42 +78,42 @@ type UpdateReportOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this update report o k response has a 2xx status code
+// IsSuccess returns true when this update report Ok response has a 2xx status code
 func (o *UpdateReportOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update report o k response has a 3xx status code
+// IsRedirect returns true when this update report Ok response has a 3xx status code
 func (o *UpdateReportOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update report o k response has a 4xx status code
+// IsClientError returns true when this update report Ok response has a 4xx status code
 func (o *UpdateReportOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update report o k response has a 5xx status code
+// IsServerError returns true when this update report Ok response has a 5xx status code
 func (o *UpdateReportOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update report o k response a status code equal to that given
+// IsCode returns true when this update report Ok response a status code equal to that given
 func (o *UpdateReportOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update report o k response
+// Code gets the status code for the update report Ok response
 func (o *UpdateReportOK) Code() int {
 	return 200
 }
 
 func (o *UpdateReportOK) Error() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateReportOK) String() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateReportOK) GetPayload() *models.SuccessResponseBody {

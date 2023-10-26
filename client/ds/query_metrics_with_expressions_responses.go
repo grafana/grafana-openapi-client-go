@@ -78,42 +78,42 @@ type QueryMetricsWithExpressionsOK struct {
 	Payload *models.QueryDataResponse
 }
 
-// IsSuccess returns true when this query metrics with expressions o k response has a 2xx status code
+// IsSuccess returns true when this query metrics with expressions Ok response has a 2xx status code
 func (o *QueryMetricsWithExpressionsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this query metrics with expressions o k response has a 3xx status code
+// IsRedirect returns true when this query metrics with expressions Ok response has a 3xx status code
 func (o *QueryMetricsWithExpressionsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this query metrics with expressions o k response has a 4xx status code
+// IsClientError returns true when this query metrics with expressions Ok response has a 4xx status code
 func (o *QueryMetricsWithExpressionsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this query metrics with expressions o k response has a 5xx status code
+// IsServerError returns true when this query metrics with expressions Ok response has a 5xx status code
 func (o *QueryMetricsWithExpressionsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this query metrics with expressions o k response a status code equal to that given
+// IsCode returns true when this query metrics with expressions Ok response a status code equal to that given
 func (o *QueryMetricsWithExpressionsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the query metrics with expressions o k response
+// Code gets the status code for the query metrics with expressions Ok response
 func (o *QueryMetricsWithExpressionsOK) Code() int {
 	return 200
 }
 
 func (o *QueryMetricsWithExpressionsOK) Error() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsOk  %+v", 200, o.Payload)
 }
 
 func (o *QueryMetricsWithExpressionsOK) String() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsOk  %+v", 200, o.Payload)
 }
 
 func (o *QueryMetricsWithExpressionsOK) GetPayload() *models.QueryDataResponse {

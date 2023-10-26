@@ -78,42 +78,42 @@ type CallDatasourceResourceByIDOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this call datasource resource by Id o k response has a 2xx status code
+// IsSuccess returns true when this call datasource resource by Id Ok response has a 2xx status code
 func (o *CallDatasourceResourceByIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this call datasource resource by Id o k response has a 3xx status code
+// IsRedirect returns true when this call datasource resource by Id Ok response has a 3xx status code
 func (o *CallDatasourceResourceByIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this call datasource resource by Id o k response has a 4xx status code
+// IsClientError returns true when this call datasource resource by Id Ok response has a 4xx status code
 func (o *CallDatasourceResourceByIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this call datasource resource by Id o k response has a 5xx status code
+// IsServerError returns true when this call datasource resource by Id Ok response has a 5xx status code
 func (o *CallDatasourceResourceByIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this call datasource resource by Id o k response a status code equal to that given
+// IsCode returns true when this call datasource resource by Id Ok response a status code equal to that given
 func (o *CallDatasourceResourceByIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the call datasource resource by Id o k response
+// Code gets the status code for the call datasource resource by Id Ok response
 func (o *CallDatasourceResourceByIDOK) Code() int {
 	return 200
 }
 
 func (o *CallDatasourceResourceByIDOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/{id}/resources/{datasource_proxy_route}][%d] callDatasourceResourceByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}/resources/{datasource_proxy_route}][%d] callDatasourceResourceByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *CallDatasourceResourceByIDOK) String() string {
-	return fmt.Sprintf("[GET /datasources/{id}/resources/{datasource_proxy_route}][%d] callDatasourceResourceByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}/resources/{datasource_proxy_route}][%d] callDatasourceResourceByIdOk  %+v", 200, o.Payload)
 }
 
 func (o *CallDatasourceResourceByIDOK) GetPayload() *models.SuccessResponseBody {

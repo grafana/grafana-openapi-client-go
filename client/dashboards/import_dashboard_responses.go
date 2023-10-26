@@ -78,42 +78,42 @@ type ImportDashboardOK struct {
 	Payload *models.ImportDashboardResponse
 }
 
-// IsSuccess returns true when this import dashboard o k response has a 2xx status code
+// IsSuccess returns true when this import dashboard Ok response has a 2xx status code
 func (o *ImportDashboardOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this import dashboard o k response has a 3xx status code
+// IsRedirect returns true when this import dashboard Ok response has a 3xx status code
 func (o *ImportDashboardOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this import dashboard o k response has a 4xx status code
+// IsClientError returns true when this import dashboard Ok response has a 4xx status code
 func (o *ImportDashboardOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this import dashboard o k response has a 5xx status code
+// IsServerError returns true when this import dashboard Ok response has a 5xx status code
 func (o *ImportDashboardOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this import dashboard o k response a status code equal to that given
+// IsCode returns true when this import dashboard Ok response a status code equal to that given
 func (o *ImportDashboardOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the import dashboard o k response
+// Code gets the status code for the import dashboard Ok response
 func (o *ImportDashboardOK) Code() int {
 	return 200
 }
 
 func (o *ImportDashboardOK) Error() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardOk  %+v", 200, o.Payload)
 }
 
 func (o *ImportDashboardOK) String() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardOk  %+v", 200, o.Payload)
 }
 
 func (o *ImportDashboardOK) GetPayload() *models.ImportDashboardResponse {

@@ -72,42 +72,42 @@ type DeleteDataSourceByNameOK struct {
 	Payload *models.DeleteDataSourceByNameOKBody
 }
 
-// IsSuccess returns true when this delete data source by name o k response has a 2xx status code
+// IsSuccess returns true when this delete data source by name Ok response has a 2xx status code
 func (o *DeleteDataSourceByNameOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete data source by name o k response has a 3xx status code
+// IsRedirect returns true when this delete data source by name Ok response has a 3xx status code
 func (o *DeleteDataSourceByNameOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete data source by name o k response has a 4xx status code
+// IsClientError returns true when this delete data source by name Ok response has a 4xx status code
 func (o *DeleteDataSourceByNameOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete data source by name o k response has a 5xx status code
+// IsServerError returns true when this delete data source by name Ok response has a 5xx status code
 func (o *DeleteDataSourceByNameOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete data source by name o k response a status code equal to that given
+// IsCode returns true when this delete data source by name Ok response a status code equal to that given
 func (o *DeleteDataSourceByNameOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete data source by name o k response
+// Code gets the status code for the delete data source by name Ok response
 func (o *DeleteDataSourceByNameOK) Code() int {
 	return 200
 }
 
 func (o *DeleteDataSourceByNameOK) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/name/{name}][%d] deleteDataSourceByNameOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/name/{name}][%d] deleteDataSourceByNameOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteDataSourceByNameOK) String() string {
-	return fmt.Sprintf("[DELETE /datasources/name/{name}][%d] deleteDataSourceByNameOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/name/{name}][%d] deleteDataSourceByNameOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteDataSourceByNameOK) GetPayload() *models.DeleteDataSourceByNameOKBody {

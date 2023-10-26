@@ -66,42 +66,42 @@ type GetUserAuthTokensOK struct {
 	Payload []*models.UserToken
 }
 
-// IsSuccess returns true when this get user auth tokens o k response has a 2xx status code
+// IsSuccess returns true when this get user auth tokens Ok response has a 2xx status code
 func (o *GetUserAuthTokensOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get user auth tokens o k response has a 3xx status code
+// IsRedirect returns true when this get user auth tokens Ok response has a 3xx status code
 func (o *GetUserAuthTokensOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get user auth tokens o k response has a 4xx status code
+// IsClientError returns true when this get user auth tokens Ok response has a 4xx status code
 func (o *GetUserAuthTokensOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get user auth tokens o k response has a 5xx status code
+// IsServerError returns true when this get user auth tokens Ok response has a 5xx status code
 func (o *GetUserAuthTokensOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get user auth tokens o k response a status code equal to that given
+// IsCode returns true when this get user auth tokens Ok response a status code equal to that given
 func (o *GetUserAuthTokensOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get user auth tokens o k response
+// Code gets the status code for the get user auth tokens Ok response
 func (o *GetUserAuthTokensOK) Code() int {
 	return 200
 }
 
 func (o *GetUserAuthTokensOK) Error() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensOk  %+v", 200, o.Payload)
 }
 
 func (o *GetUserAuthTokensOK) String() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensOk  %+v", 200, o.Payload)
 }
 
 func (o *GetUserAuthTokensOK) GetPayload() []*models.UserToken {

@@ -66,42 +66,42 @@ type ListUserRolesOK struct {
 	Payload []*models.RoleDTO
 }
 
-// IsSuccess returns true when this list user roles o k response has a 2xx status code
+// IsSuccess returns true when this list user roles Ok response has a 2xx status code
 func (o *ListUserRolesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this list user roles o k response has a 3xx status code
+// IsRedirect returns true when this list user roles Ok response has a 3xx status code
 func (o *ListUserRolesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this list user roles o k response has a 4xx status code
+// IsClientError returns true when this list user roles Ok response has a 4xx status code
 func (o *ListUserRolesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this list user roles o k response has a 5xx status code
+// IsServerError returns true when this list user roles Ok response has a 5xx status code
 func (o *ListUserRolesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this list user roles o k response a status code equal to that given
+// IsCode returns true when this list user roles Ok response a status code equal to that given
 func (o *ListUserRolesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the list user roles o k response
+// Code gets the status code for the list user roles Ok response
 func (o *ListUserRolesOK) Code() int {
 	return 200
 }
 
 func (o *ListUserRolesOK) Error() string {
-	return fmt.Sprintf("[GET /access-control/users/{userId}/roles][%d] listUserRolesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /access-control/users/{userId}/roles][%d] listUserRolesOk  %+v", 200, o.Payload)
 }
 
 func (o *ListUserRolesOK) String() string {
-	return fmt.Sprintf("[GET /access-control/users/{userId}/roles][%d] listUserRolesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /access-control/users/{userId}/roles][%d] listUserRolesOk  %+v", 200, o.Payload)
 }
 
 func (o *ListUserRolesOK) GetPayload() []*models.RoleDTO {

@@ -72,42 +72,42 @@ type GetOrgQuotaOK struct {
 	Payload []*models.QuotaDTO
 }
 
-// IsSuccess returns true when this get org quota o k response has a 2xx status code
+// IsSuccess returns true when this get org quota Ok response has a 2xx status code
 func (o *GetOrgQuotaOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get org quota o k response has a 3xx status code
+// IsRedirect returns true when this get org quota Ok response has a 3xx status code
 func (o *GetOrgQuotaOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get org quota o k response has a 4xx status code
+// IsClientError returns true when this get org quota Ok response has a 4xx status code
 func (o *GetOrgQuotaOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get org quota o k response has a 5xx status code
+// IsServerError returns true when this get org quota Ok response has a 5xx status code
 func (o *GetOrgQuotaOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get org quota o k response a status code equal to that given
+// IsCode returns true when this get org quota Ok response a status code equal to that given
 func (o *GetOrgQuotaOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get org quota o k response
+// Code gets the status code for the get org quota Ok response
 func (o *GetOrgQuotaOK) Code() int {
 	return 200
 }
 
 func (o *GetOrgQuotaOK) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/quotas][%d] getOrgQuotaOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/quotas][%d] getOrgQuotaOk  %+v", 200, o.Payload)
 }
 
 func (o *GetOrgQuotaOK) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/quotas][%d] getOrgQuotaOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/quotas][%d] getOrgQuotaOk  %+v", 200, o.Payload)
 }
 
 func (o *GetOrgQuotaOK) GetPayload() []*models.QuotaDTO {

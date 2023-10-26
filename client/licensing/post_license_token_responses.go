@@ -54,42 +54,42 @@ type PostLicenseTokenOK struct {
 	Payload *models.Token
 }
 
-// IsSuccess returns true when this post license token o k response has a 2xx status code
+// IsSuccess returns true when this post license token Ok response has a 2xx status code
 func (o *PostLicenseTokenOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this post license token o k response has a 3xx status code
+// IsRedirect returns true when this post license token Ok response has a 3xx status code
 func (o *PostLicenseTokenOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this post license token o k response has a 4xx status code
+// IsClientError returns true when this post license token Ok response has a 4xx status code
 func (o *PostLicenseTokenOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this post license token o k response has a 5xx status code
+// IsServerError returns true when this post license token Ok response has a 5xx status code
 func (o *PostLicenseTokenOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this post license token o k response a status code equal to that given
+// IsCode returns true when this post license token Ok response a status code equal to that given
 func (o *PostLicenseTokenOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the post license token o k response
+// Code gets the status code for the post license token Ok response
 func (o *PostLicenseTokenOK) Code() int {
 	return 200
 }
 
 func (o *PostLicenseTokenOK) Error() string {
-	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenOk  %+v", 200, o.Payload)
 }
 
 func (o *PostLicenseTokenOK) String() string {
-	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenOk  %+v", 200, o.Payload)
 }
 
 func (o *PostLicenseTokenOK) GetPayload() *models.Token {

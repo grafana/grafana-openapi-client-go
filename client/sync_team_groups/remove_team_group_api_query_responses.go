@@ -78,42 +78,42 @@ type RemoveTeamGroupAPIQueryOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this remove team group Api query o k response has a 2xx status code
+// IsSuccess returns true when this remove team group Api query Ok response has a 2xx status code
 func (o *RemoveTeamGroupAPIQueryOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this remove team group Api query o k response has a 3xx status code
+// IsRedirect returns true when this remove team group Api query Ok response has a 3xx status code
 func (o *RemoveTeamGroupAPIQueryOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this remove team group Api query o k response has a 4xx status code
+// IsClientError returns true when this remove team group Api query Ok response has a 4xx status code
 func (o *RemoveTeamGroupAPIQueryOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this remove team group Api query o k response has a 5xx status code
+// IsServerError returns true when this remove team group Api query Ok response has a 5xx status code
 func (o *RemoveTeamGroupAPIQueryOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this remove team group Api query o k response a status code equal to that given
+// IsCode returns true when this remove team group Api query Ok response a status code equal to that given
 func (o *RemoveTeamGroupAPIQueryOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the remove team group Api query o k response
+// Code gets the status code for the remove team group Api query Ok response
 func (o *RemoveTeamGroupAPIQueryOK) Code() int {
 	return 200
 }
 
 func (o *RemoveTeamGroupAPIQueryOK) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryOK) String() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryOk  %+v", 200, o.Payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryOK) GetPayload() *models.SuccessResponseBody {

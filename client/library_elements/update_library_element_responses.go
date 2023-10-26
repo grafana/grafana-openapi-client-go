@@ -84,42 +84,42 @@ type UpdateLibraryElementOK struct {
 	Payload *models.LibraryElementResponse
 }
 
-// IsSuccess returns true when this update library element o k response has a 2xx status code
+// IsSuccess returns true when this update library element Ok response has a 2xx status code
 func (o *UpdateLibraryElementOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update library element o k response has a 3xx status code
+// IsRedirect returns true when this update library element Ok response has a 3xx status code
 func (o *UpdateLibraryElementOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update library element o k response has a 4xx status code
+// IsClientError returns true when this update library element Ok response has a 4xx status code
 func (o *UpdateLibraryElementOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update library element o k response has a 5xx status code
+// IsServerError returns true when this update library element Ok response has a 5xx status code
 func (o *UpdateLibraryElementOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update library element o k response a status code equal to that given
+// IsCode returns true when this update library element Ok response a status code equal to that given
 func (o *UpdateLibraryElementOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update library element o k response
+// Code gets the status code for the update library element Ok response
 func (o *UpdateLibraryElementOK) Code() int {
 	return 200
 }
 
 func (o *UpdateLibraryElementOK) Error() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateLibraryElementOK) String() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateLibraryElementOK) GetPayload() *models.LibraryElementResponse {

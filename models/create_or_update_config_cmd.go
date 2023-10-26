@@ -28,8 +28,8 @@ type CreateOrUpdateConfigCmd struct {
 	// dashboards
 	Dashboards []*DashboardDTO `json:"dashboards"`
 
-	// enable csv
-	EnableCsv bool `json:"enableCsv,omitempty"`
+	// enable Csv
+	EnableCSV bool `json:"enableCsv,omitempty"`
 
 	// enable dashboard Url
 	EnableDashboardURL bool `json:"enableDashboardUrl,omitempty"`

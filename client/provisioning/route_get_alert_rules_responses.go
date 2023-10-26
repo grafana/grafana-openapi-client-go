@@ -48,42 +48,42 @@ type RouteGetAlertRulesOK struct {
 	Payload models.ProvisionedAlertRules
 }
 
-// IsSuccess returns true when this route get alert rules o k response has a 2xx status code
+// IsSuccess returns true when this route get alert rules Ok response has a 2xx status code
 func (o *RouteGetAlertRulesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this route get alert rules o k response has a 3xx status code
+// IsRedirect returns true when this route get alert rules Ok response has a 3xx status code
 func (o *RouteGetAlertRulesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this route get alert rules o k response has a 4xx status code
+// IsClientError returns true when this route get alert rules Ok response has a 4xx status code
 func (o *RouteGetAlertRulesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this route get alert rules o k response has a 5xx status code
+// IsServerError returns true when this route get alert rules Ok response has a 5xx status code
 func (o *RouteGetAlertRulesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this route get alert rules o k response a status code equal to that given
+// IsCode returns true when this route get alert rules Ok response a status code equal to that given
 func (o *RouteGetAlertRulesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the route get alert rules o k response
+// Code gets the status code for the route get alert rules Ok response
 func (o *RouteGetAlertRulesOK) Code() int {
 	return 200
 }
 
 func (o *RouteGetAlertRulesOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules][%d] routeGetAlertRulesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules][%d] routeGetAlertRulesOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetAlertRulesOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules][%d] routeGetAlertRulesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules][%d] routeGetAlertRulesOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetAlertRulesOK) GetPayload() models.ProvisionedAlertRules {

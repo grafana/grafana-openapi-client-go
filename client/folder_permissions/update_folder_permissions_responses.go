@@ -72,42 +72,42 @@ type UpdateFolderPermissionsOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this update folder permissions o k response has a 2xx status code
+// IsSuccess returns true when this update folder permissions Ok response has a 2xx status code
 func (o *UpdateFolderPermissionsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update folder permissions o k response has a 3xx status code
+// IsRedirect returns true when this update folder permissions Ok response has a 3xx status code
 func (o *UpdateFolderPermissionsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update folder permissions o k response has a 4xx status code
+// IsClientError returns true when this update folder permissions Ok response has a 4xx status code
 func (o *UpdateFolderPermissionsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update folder permissions o k response has a 5xx status code
+// IsServerError returns true when this update folder permissions Ok response has a 5xx status code
 func (o *UpdateFolderPermissionsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update folder permissions o k response a status code equal to that given
+// IsCode returns true when this update folder permissions Ok response a status code equal to that given
 func (o *UpdateFolderPermissionsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update folder permissions o k response
+// Code gets the status code for the update folder permissions Ok response
 func (o *UpdateFolderPermissionsOK) Code() int {
 	return 200
 }
 
 func (o *UpdateFolderPermissionsOK) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateFolderPermissionsOK) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateFolderPermissionsOK) GetPayload() *models.SuccessResponseBody {

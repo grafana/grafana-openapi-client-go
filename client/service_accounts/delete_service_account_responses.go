@@ -72,42 +72,42 @@ type DeleteServiceAccountOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this delete service account o k response has a 2xx status code
+// IsSuccess returns true when this delete service account Ok response has a 2xx status code
 func (o *DeleteServiceAccountOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete service account o k response has a 3xx status code
+// IsRedirect returns true when this delete service account Ok response has a 3xx status code
 func (o *DeleteServiceAccountOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete service account o k response has a 4xx status code
+// IsClientError returns true when this delete service account Ok response has a 4xx status code
 func (o *DeleteServiceAccountOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete service account o k response has a 5xx status code
+// IsServerError returns true when this delete service account Ok response has a 5xx status code
 func (o *DeleteServiceAccountOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete service account o k response a status code equal to that given
+// IsCode returns true when this delete service account Ok response a status code equal to that given
 func (o *DeleteServiceAccountOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete service account o k response
+// Code gets the status code for the delete service account Ok response
 func (o *DeleteServiceAccountOK) Code() int {
 	return 200
 }
 
 func (o *DeleteServiceAccountOK) Error() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}][%d] deleteServiceAccountOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}][%d] deleteServiceAccountOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteServiceAccountOK) String() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}][%d] deleteServiceAccountOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}][%d] deleteServiceAccountOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteServiceAccountOK) GetPayload() *models.SuccessResponseBody {

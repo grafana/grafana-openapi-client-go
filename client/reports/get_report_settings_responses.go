@@ -66,42 +66,42 @@ type GetReportSettingsOK struct {
 	Payload *models.SettingsDTO
 }
 
-// IsSuccess returns true when this get report settings o k response has a 2xx status code
+// IsSuccess returns true when this get report settings Ok response has a 2xx status code
 func (o *GetReportSettingsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get report settings o k response has a 3xx status code
+// IsRedirect returns true when this get report settings Ok response has a 3xx status code
 func (o *GetReportSettingsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get report settings o k response has a 4xx status code
+// IsClientError returns true when this get report settings Ok response has a 4xx status code
 func (o *GetReportSettingsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get report settings o k response has a 5xx status code
+// IsServerError returns true when this get report settings Ok response has a 5xx status code
 func (o *GetReportSettingsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get report settings o k response a status code equal to that given
+// IsCode returns true when this get report settings Ok response a status code equal to that given
 func (o *GetReportSettingsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get report settings o k response
+// Code gets the status code for the get report settings Ok response
 func (o *GetReportSettingsOK) Code() int {
 	return 200
 }
 
 func (o *GetReportSettingsOK) Error() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetReportSettingsOK) String() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetReportSettingsOK) GetPayload() *models.SettingsDTO {

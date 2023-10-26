@@ -60,42 +60,42 @@ type DeleteQueryOK struct {
 	Payload *models.QueryHistoryDeleteQueryResponse
 }
 
-// IsSuccess returns true when this delete query o k response has a 2xx status code
+// IsSuccess returns true when this delete query Ok response has a 2xx status code
 func (o *DeleteQueryOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete query o k response has a 3xx status code
+// IsRedirect returns true when this delete query Ok response has a 3xx status code
 func (o *DeleteQueryOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete query o k response has a 4xx status code
+// IsClientError returns true when this delete query Ok response has a 4xx status code
 func (o *DeleteQueryOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete query o k response has a 5xx status code
+// IsServerError returns true when this delete query Ok response has a 5xx status code
 func (o *DeleteQueryOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete query o k response a status code equal to that given
+// IsCode returns true when this delete query Ok response a status code equal to that given
 func (o *DeleteQueryOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete query o k response
+// Code gets the status code for the delete query Ok response
 func (o *DeleteQueryOK) Code() int {
 	return 200
 }
 
 func (o *DeleteQueryOK) Error() string {
-	return fmt.Sprintf("[DELETE /query-history/{query_history_uid}][%d] deleteQueryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/{query_history_uid}][%d] deleteQueryOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteQueryOK) String() string {
-	return fmt.Sprintf("[DELETE /query-history/{query_history_uid}][%d] deleteQueryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/{query_history_uid}][%d] deleteQueryOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteQueryOK) GetPayload() *models.QueryHistoryDeleteQueryResponse {

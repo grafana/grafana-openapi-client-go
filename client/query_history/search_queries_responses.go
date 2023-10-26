@@ -60,42 +60,42 @@ type SearchQueriesOK struct {
 	Payload *models.QueryHistorySearchResponse
 }
 
-// IsSuccess returns true when this search queries o k response has a 2xx status code
+// IsSuccess returns true when this search queries Ok response has a 2xx status code
 func (o *SearchQueriesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this search queries o k response has a 3xx status code
+// IsRedirect returns true when this search queries Ok response has a 3xx status code
 func (o *SearchQueriesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this search queries o k response has a 4xx status code
+// IsClientError returns true when this search queries Ok response has a 4xx status code
 func (o *SearchQueriesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this search queries o k response has a 5xx status code
+// IsServerError returns true when this search queries Ok response has a 5xx status code
 func (o *SearchQueriesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this search queries o k response a status code equal to that given
+// IsCode returns true when this search queries Ok response a status code equal to that given
 func (o *SearchQueriesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the search queries o k response
+// Code gets the status code for the search queries Ok response
 func (o *SearchQueriesOK) Code() int {
 	return 200
 }
 
 func (o *SearchQueriesOK) Error() string {
-	return fmt.Sprintf("[GET /query-history][%d] searchQueriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /query-history][%d] searchQueriesOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchQueriesOK) String() string {
-	return fmt.Sprintf("[GET /query-history][%d] searchQueriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /query-history][%d] searchQueriesOk  %+v", 200, o.Payload)
 }
 
 func (o *SearchQueriesOK) GetPayload() *models.QueryHistorySearchResponse {

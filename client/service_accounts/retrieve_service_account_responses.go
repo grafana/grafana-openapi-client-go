@@ -78,42 +78,42 @@ type RetrieveServiceAccountOK struct {
 	Payload *models.ServiceAccountDTO
 }
 
-// IsSuccess returns true when this retrieve service account o k response has a 2xx status code
+// IsSuccess returns true when this retrieve service account Ok response has a 2xx status code
 func (o *RetrieveServiceAccountOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this retrieve service account o k response has a 3xx status code
+// IsRedirect returns true when this retrieve service account Ok response has a 3xx status code
 func (o *RetrieveServiceAccountOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this retrieve service account o k response has a 4xx status code
+// IsClientError returns true when this retrieve service account Ok response has a 4xx status code
 func (o *RetrieveServiceAccountOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this retrieve service account o k response has a 5xx status code
+// IsServerError returns true when this retrieve service account Ok response has a 5xx status code
 func (o *RetrieveServiceAccountOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this retrieve service account o k response a status code equal to that given
+// IsCode returns true when this retrieve service account Ok response a status code equal to that given
 func (o *RetrieveServiceAccountOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the retrieve service account o k response
+// Code gets the status code for the retrieve service account Ok response
 func (o *RetrieveServiceAccountOK) Code() int {
 	return 200
 }
 
 func (o *RetrieveServiceAccountOK) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountOk  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveServiceAccountOK) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountOk  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveServiceAccountOK) GetPayload() *models.ServiceAccountDTO {

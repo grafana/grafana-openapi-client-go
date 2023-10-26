@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-GetLDAPStatus attempts to connect to all the configured l d a p servers and returns information on whenever they re available or not
+GetLDAPStatus attempts to connect to all the configured LDAP servers and returns information on whenever they re available or not
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.status:read`.
 */
@@ -83,7 +83,7 @@ func (a *Client) GetLDAPStatus(params *GetLDAPStatusParams, authInfo runtime.Cli
 }
 
 /*
-GetUserFromLDAP finds an user based on a username in l d a p this helps illustrate how would the particular user be mapped in grafana when synced
+GetUserFromLDAP finds an user based on a username in LDAP this helps illustrate how would the particular user be mapped in grafana when synced
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.user:read`.
 */
@@ -124,7 +124,7 @@ func (a *Client) GetUserFromLDAP(params *GetUserFromLDAPParams, authInfo runtime
 }
 
 /*
-PostSyncUserWithLDAP enables a single grafana user to be synchronized against l d a p
+PostSyncUserWithLDAP enables a single grafana user to be synchronized against LDAP
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.user:sync`.
 */
@@ -165,7 +165,7 @@ func (a *Client) PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, authIn
 }
 
 /*
-ReloadLDAPCfg reloads the l d a p configuration
+ReloadLDAPCfg reloads the LDAP configuration
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.config:reload`.
 */

@@ -78,42 +78,42 @@ type AdminCreateUserOK struct {
 	Payload *models.AdminCreateUserResponse
 }
 
-// IsSuccess returns true when this admin create user o k response has a 2xx status code
+// IsSuccess returns true when this admin create user Ok response has a 2xx status code
 func (o *AdminCreateUserOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this admin create user o k response has a 3xx status code
+// IsRedirect returns true when this admin create user Ok response has a 3xx status code
 func (o *AdminCreateUserOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this admin create user o k response has a 4xx status code
+// IsClientError returns true when this admin create user Ok response has a 4xx status code
 func (o *AdminCreateUserOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this admin create user o k response has a 5xx status code
+// IsServerError returns true when this admin create user Ok response has a 5xx status code
 func (o *AdminCreateUserOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this admin create user o k response a status code equal to that given
+// IsCode returns true when this admin create user Ok response a status code equal to that given
 func (o *AdminCreateUserOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the admin create user o k response
+// Code gets the status code for the admin create user Ok response
 func (o *AdminCreateUserOK) Code() int {
 	return 200
 }
 
 func (o *AdminCreateUserOK) Error() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminCreateUserOK) String() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminCreateUserOK) GetPayload() *models.AdminCreateUserResponse {

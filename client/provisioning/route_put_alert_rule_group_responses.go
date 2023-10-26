@@ -54,42 +54,42 @@ type RoutePutAlertRuleGroupOK struct {
 	Payload *models.AlertRuleGroup
 }
 
-// IsSuccess returns true when this route put alert rule group o k response has a 2xx status code
+// IsSuccess returns true when this route put alert rule group Ok response has a 2xx status code
 func (o *RoutePutAlertRuleGroupOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this route put alert rule group o k response has a 3xx status code
+// IsRedirect returns true when this route put alert rule group Ok response has a 3xx status code
 func (o *RoutePutAlertRuleGroupOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this route put alert rule group o k response has a 4xx status code
+// IsClientError returns true when this route put alert rule group Ok response has a 4xx status code
 func (o *RoutePutAlertRuleGroupOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this route put alert rule group o k response has a 5xx status code
+// IsServerError returns true when this route put alert rule group Ok response has a 5xx status code
 func (o *RoutePutAlertRuleGroupOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this route put alert rule group o k response a status code equal to that given
+// IsCode returns true when this route put alert rule group Ok response a status code equal to that given
 func (o *RoutePutAlertRuleGroupOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the route put alert rule group o k response
+// Code gets the status code for the route put alert rule group Ok response
 func (o *RoutePutAlertRuleGroupOK) Code() int {
 	return 200
 }
 
 func (o *RoutePutAlertRuleGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] routePutAlertRuleGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] routePutAlertRuleGroupOk  %+v", 200, o.Payload)
 }
 
 func (o *RoutePutAlertRuleGroupOK) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] routePutAlertRuleGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] routePutAlertRuleGroupOk  %+v", 200, o.Payload)
 }
 
 func (o *RoutePutAlertRuleGroupOK) GetPayload() *models.AlertRuleGroup {

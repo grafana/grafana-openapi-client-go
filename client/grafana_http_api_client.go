@@ -114,7 +114,7 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.AccessControl = access_control.New(transport, formats)
 	cli.AccessControlProvisioning = access_control_provisioning.New(transport, formats)
 	cli.Admin = admin.New(transport, formats)
-	cli.AdminLdap = admin_ldap.New(transport, formats)
+	cli.AdminLDAP = admin_ldap.New(transport, formats)
 	cli.AdminProvisioning = admin_provisioning.New(transport, formats)
 	cli.AdminUsers = admin_users.New(transport, formats)
 	cli.Annotations = annotations.New(transport, formats)
@@ -130,7 +130,7 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.FolderPermissions = folder_permissions.New(transport, formats)
 	cli.Folders = folders.New(transport, formats)
 	cli.GetCurrentOrg = get_current_org.New(transport, formats)
-	cli.LdapDebug = ldap_debug.New(transport, formats)
+	cli.LDAPDebug = ldap_debug.New(transport, formats)
 	cli.LegacyAlerts = legacy_alerts.New(transport, formats)
 	cli.LegacyAlertsNotificationChannels = legacy_alerts_notification_channels.New(transport, formats)
 	cli.LibraryElements = library_elements.New(transport, formats)
@@ -224,7 +224,7 @@ type GrafanaHTTPAPI struct {
 
 	Admin admin.ClientService
 
-	AdminLdap admin_ldap.ClientService
+	AdminLDAP admin_ldap.ClientService
 
 	AdminProvisioning admin_provisioning.ClientService
 
@@ -256,7 +256,7 @@ type GrafanaHTTPAPI struct {
 
 	GetCurrentOrg get_current_org.ClientService
 
-	LdapDebug ldap_debug.ClientService
+	LDAPDebug ldap_debug.ClientService
 
 	LegacyAlerts legacy_alerts.ClientService
 
@@ -313,7 +313,7 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.AccessControl.SetTransport(transport)
 	c.AccessControlProvisioning.SetTransport(transport)
 	c.Admin.SetTransport(transport)
-	c.AdminLdap.SetTransport(transport)
+	c.AdminLDAP.SetTransport(transport)
 	c.AdminProvisioning.SetTransport(transport)
 	c.AdminUsers.SetTransport(transport)
 	c.Annotations.SetTransport(transport)
@@ -329,7 +329,7 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.FolderPermissions.SetTransport(transport)
 	c.Folders.SetTransport(transport)
 	c.GetCurrentOrg.SetTransport(transport)
-	c.LdapDebug.SetTransport(transport)
+	c.LDAPDebug.SetTransport(transport)
 	c.LegacyAlerts.SetTransport(transport)
 	c.LegacyAlertsNotificationChannels.SetTransport(transport)
 	c.LibraryElements.SetTransport(transport)

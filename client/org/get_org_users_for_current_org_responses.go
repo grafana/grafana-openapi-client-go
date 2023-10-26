@@ -66,42 +66,42 @@ type GetOrgUsersForCurrentOrgOK struct {
 	Payload []*models.OrgUserDTO
 }
 
-// IsSuccess returns true when this get org users for current org o k response has a 2xx status code
+// IsSuccess returns true when this get org users for current org Ok response has a 2xx status code
 func (o *GetOrgUsersForCurrentOrgOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get org users for current org o k response has a 3xx status code
+// IsRedirect returns true when this get org users for current org Ok response has a 3xx status code
 func (o *GetOrgUsersForCurrentOrgOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get org users for current org o k response has a 4xx status code
+// IsClientError returns true when this get org users for current org Ok response has a 4xx status code
 func (o *GetOrgUsersForCurrentOrgOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get org users for current org o k response has a 5xx status code
+// IsServerError returns true when this get org users for current org Ok response has a 5xx status code
 func (o *GetOrgUsersForCurrentOrgOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get org users for current org o k response a status code equal to that given
+// IsCode returns true when this get org users for current org Ok response a status code equal to that given
 func (o *GetOrgUsersForCurrentOrgOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get org users for current org o k response
+// Code gets the status code for the get org users for current org Ok response
 func (o *GetOrgUsersForCurrentOrgOK) Code() int {
 	return 200
 }
 
 func (o *GetOrgUsersForCurrentOrgOK) Error() string {
-	return fmt.Sprintf("[GET /org/users][%d] getOrgUsersForCurrentOrgOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /org/users][%d] getOrgUsersForCurrentOrgOk  %+v", 200, o.Payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgOK) String() string {
-	return fmt.Sprintf("[GET /org/users][%d] getOrgUsersForCurrentOrgOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /org/users][%d] getOrgUsersForCurrentOrgOk  %+v", 200, o.Payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgOK) GetPayload() []*models.OrgUserDTO {

@@ -66,42 +66,42 @@ type GetSignedInUserTeamListOK struct {
 	Payload []*models.TeamDTO
 }
 
-// IsSuccess returns true when this get signed in user team list o k response has a 2xx status code
+// IsSuccess returns true when this get signed in user team list Ok response has a 2xx status code
 func (o *GetSignedInUserTeamListOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get signed in user team list o k response has a 3xx status code
+// IsRedirect returns true when this get signed in user team list Ok response has a 3xx status code
 func (o *GetSignedInUserTeamListOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get signed in user team list o k response has a 4xx status code
+// IsClientError returns true when this get signed in user team list Ok response has a 4xx status code
 func (o *GetSignedInUserTeamListOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get signed in user team list o k response has a 5xx status code
+// IsServerError returns true when this get signed in user team list Ok response has a 5xx status code
 func (o *GetSignedInUserTeamListOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get signed in user team list o k response a status code equal to that given
+// IsCode returns true when this get signed in user team list Ok response a status code equal to that given
 func (o *GetSignedInUserTeamListOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get signed in user team list o k response
+// Code gets the status code for the get signed in user team list Ok response
 func (o *GetSignedInUserTeamListOK) Code() int {
 	return 200
 }
 
 func (o *GetSignedInUserTeamListOK) Error() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListOk  %+v", 200, o.Payload)
 }
 
 func (o *GetSignedInUserTeamListOK) String() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListOk  %+v", 200, o.Payload)
 }
 
 func (o *GetSignedInUserTeamListOK) GetPayload() []*models.TeamDTO {

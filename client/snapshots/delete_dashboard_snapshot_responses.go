@@ -66,42 +66,42 @@ type DeleteDashboardSnapshotOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this delete dashboard snapshot o k response has a 2xx status code
+// IsSuccess returns true when this delete dashboard snapshot Ok response has a 2xx status code
 func (o *DeleteDashboardSnapshotOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete dashboard snapshot o k response has a 3xx status code
+// IsRedirect returns true when this delete dashboard snapshot Ok response has a 3xx status code
 func (o *DeleteDashboardSnapshotOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete dashboard snapshot o k response has a 4xx status code
+// IsClientError returns true when this delete dashboard snapshot Ok response has a 4xx status code
 func (o *DeleteDashboardSnapshotOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete dashboard snapshot o k response has a 5xx status code
+// IsServerError returns true when this delete dashboard snapshot Ok response has a 5xx status code
 func (o *DeleteDashboardSnapshotOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete dashboard snapshot o k response a status code equal to that given
+// IsCode returns true when this delete dashboard snapshot Ok response a status code equal to that given
 func (o *DeleteDashboardSnapshotOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete dashboard snapshot o k response
+// Code gets the status code for the delete dashboard snapshot Ok response
 func (o *DeleteDashboardSnapshotOK) Code() int {
 	return 200
 }
 
 func (o *DeleteDashboardSnapshotOK) Error() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteDashboardSnapshotOK) String() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotOk  %+v", 200, o.Payload)
 }
 
 func (o *DeleteDashboardSnapshotOK) GetPayload() *models.SuccessResponseBody {

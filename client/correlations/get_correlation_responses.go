@@ -66,42 +66,42 @@ type GetCorrelationOK struct {
 	Payload *models.Correlation
 }
 
-// IsSuccess returns true when this get correlation o k response has a 2xx status code
+// IsSuccess returns true when this get correlation Ok response has a 2xx status code
 func (o *GetCorrelationOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get correlation o k response has a 3xx status code
+// IsRedirect returns true when this get correlation Ok response has a 3xx status code
 func (o *GetCorrelationOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get correlation o k response has a 4xx status code
+// IsClientError returns true when this get correlation Ok response has a 4xx status code
 func (o *GetCorrelationOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get correlation o k response has a 5xx status code
+// IsServerError returns true when this get correlation Ok response has a 5xx status code
 func (o *GetCorrelationOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get correlation o k response a status code equal to that given
+// IsCode returns true when this get correlation Ok response a status code equal to that given
 func (o *GetCorrelationOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get correlation o k response
+// Code gets the status code for the get correlation Ok response
 func (o *GetCorrelationOK) Code() int {
 	return 200
 }
 
 func (o *GetCorrelationOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations/{correlationUID}][%d] getCorrelationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations/{correlationUID}][%d] getCorrelationOk  %+v", 200, o.Payload)
 }
 
 func (o *GetCorrelationOK) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations/{correlationUID}][%d] getCorrelationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations/{correlationUID}][%d] getCorrelationOk  %+v", 200, o.Payload)
 }
 
 func (o *GetCorrelationOK) GetPayload() *models.Correlation {

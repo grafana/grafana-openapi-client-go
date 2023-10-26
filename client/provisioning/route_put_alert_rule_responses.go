@@ -54,42 +54,42 @@ type RoutePutAlertRuleOK struct {
 	Payload *models.ProvisionedAlertRule
 }
 
-// IsSuccess returns true when this route put alert rule o k response has a 2xx status code
+// IsSuccess returns true when this route put alert rule Ok response has a 2xx status code
 func (o *RoutePutAlertRuleOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this route put alert rule o k response has a 3xx status code
+// IsRedirect returns true when this route put alert rule Ok response has a 3xx status code
 func (o *RoutePutAlertRuleOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this route put alert rule o k response has a 4xx status code
+// IsClientError returns true when this route put alert rule Ok response has a 4xx status code
 func (o *RoutePutAlertRuleOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this route put alert rule o k response has a 5xx status code
+// IsServerError returns true when this route put alert rule Ok response has a 5xx status code
 func (o *RoutePutAlertRuleOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this route put alert rule o k response a status code equal to that given
+// IsCode returns true when this route put alert rule Ok response a status code equal to that given
 func (o *RoutePutAlertRuleOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the route put alert rule o k response
+// Code gets the status code for the route put alert rule Ok response
 func (o *RoutePutAlertRuleOK) Code() int {
 	return 200
 }
 
 func (o *RoutePutAlertRuleOK) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/alert-rules/{UID}][%d] routePutAlertRuleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /api/v1/provisioning/alert-rules/{UID}][%d] routePutAlertRuleOk  %+v", 200, o.Payload)
 }
 
 func (o *RoutePutAlertRuleOK) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/alert-rules/{UID}][%d] routePutAlertRuleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /api/v1/provisioning/alert-rules/{UID}][%d] routePutAlertRuleOk  %+v", 200, o.Payload)
 }
 
 func (o *RoutePutAlertRuleOK) GetPayload() *models.ProvisionedAlertRule {

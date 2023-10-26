@@ -54,42 +54,42 @@ type RouteGetAlertRuleExportOK struct {
 	Payload *models.AlertingFileExport
 }
 
-// IsSuccess returns true when this route get alert rule export o k response has a 2xx status code
+// IsSuccess returns true when this route get alert rule export Ok response has a 2xx status code
 func (o *RouteGetAlertRuleExportOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this route get alert rule export o k response has a 3xx status code
+// IsRedirect returns true when this route get alert rule export Ok response has a 3xx status code
 func (o *RouteGetAlertRuleExportOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this route get alert rule export o k response has a 4xx status code
+// IsClientError returns true when this route get alert rule export Ok response has a 4xx status code
 func (o *RouteGetAlertRuleExportOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this route get alert rule export o k response has a 5xx status code
+// IsServerError returns true when this route get alert rule export Ok response has a 5xx status code
 func (o *RouteGetAlertRuleExportOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this route get alert rule export o k response a status code equal to that given
+// IsCode returns true when this route get alert rule export Ok response a status code equal to that given
 func (o *RouteGetAlertRuleExportOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the route get alert rule export o k response
+// Code gets the status code for the route get alert rule export Ok response
 func (o *RouteGetAlertRuleExportOK) Code() int {
 	return 200
 }
 
 func (o *RouteGetAlertRuleExportOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}/export][%d] routeGetAlertRuleExportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}/export][%d] routeGetAlertRuleExportOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetAlertRuleExportOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}/export][%d] routeGetAlertRuleExportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}/export][%d] routeGetAlertRuleExportOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetAlertRuleExportOK) GetPayload() *models.AlertingFileExport {

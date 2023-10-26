@@ -54,42 +54,42 @@ type RouteGetPolicyTreeExportOK struct {
 	Payload *models.AlertingFileExport
 }
 
-// IsSuccess returns true when this route get policy tree export o k response has a 2xx status code
+// IsSuccess returns true when this route get policy tree export Ok response has a 2xx status code
 func (o *RouteGetPolicyTreeExportOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this route get policy tree export o k response has a 3xx status code
+// IsRedirect returns true when this route get policy tree export Ok response has a 3xx status code
 func (o *RouteGetPolicyTreeExportOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this route get policy tree export o k response has a 4xx status code
+// IsClientError returns true when this route get policy tree export Ok response has a 4xx status code
 func (o *RouteGetPolicyTreeExportOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this route get policy tree export o k response has a 5xx status code
+// IsServerError returns true when this route get policy tree export Ok response has a 5xx status code
 func (o *RouteGetPolicyTreeExportOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this route get policy tree export o k response a status code equal to that given
+// IsCode returns true when this route get policy tree export Ok response a status code equal to that given
 func (o *RouteGetPolicyTreeExportOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the route get policy tree export o k response
+// Code gets the status code for the route get policy tree export Ok response
 func (o *RouteGetPolicyTreeExportOK) Code() int {
 	return 200
 }
 
 func (o *RouteGetPolicyTreeExportOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/policies/export][%d] routeGetPolicyTreeExportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/policies/export][%d] routeGetPolicyTreeExportOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetPolicyTreeExportOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/policies/export][%d] routeGetPolicyTreeExportOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /api/v1/provisioning/policies/export][%d] routeGetPolicyTreeExportOk  %+v", 200, o.Payload)
 }
 
 func (o *RouteGetPolicyTreeExportOK) GetPayload() *models.AlertingFileExport {

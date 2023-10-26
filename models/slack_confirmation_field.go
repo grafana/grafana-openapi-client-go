@@ -23,7 +23,7 @@ type SlackConfirmationField struct {
 	DismissText string `json:"dismiss_text,omitempty"`
 
 	// ok text
-	OkText string `json:"ok_text,omitempty"`
+	OKText string `json:"ok_text,omitempty"`
 
 	// text
 	Text string `json:"text,omitempty"`

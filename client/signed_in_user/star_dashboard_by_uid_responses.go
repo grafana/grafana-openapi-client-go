@@ -72,42 +72,42 @@ type StarDashboardByUIDOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this star dashboard by Uid o k response has a 2xx status code
+// IsSuccess returns true when this star dashboard by Uid Ok response has a 2xx status code
 func (o *StarDashboardByUIDOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this star dashboard by Uid o k response has a 3xx status code
+// IsRedirect returns true when this star dashboard by Uid Ok response has a 3xx status code
 func (o *StarDashboardByUIDOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this star dashboard by Uid o k response has a 4xx status code
+// IsClientError returns true when this star dashboard by Uid Ok response has a 4xx status code
 func (o *StarDashboardByUIDOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this star dashboard by Uid o k response has a 5xx status code
+// IsServerError returns true when this star dashboard by Uid Ok response has a 5xx status code
 func (o *StarDashboardByUIDOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this star dashboard by Uid o k response a status code equal to that given
+// IsCode returns true when this star dashboard by Uid Ok response a status code equal to that given
 func (o *StarDashboardByUIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the star dashboard by Uid o k response
+// Code gets the status code for the star dashboard by Uid Ok response
 func (o *StarDashboardByUIDOK) Code() int {
 	return 200
 }
 
 func (o *StarDashboardByUIDOK) Error() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/uid/{dashboard_uid}][%d] starDashboardByUidOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/uid/{dashboard_uid}][%d] starDashboardByUidOk  %+v", 200, o.Payload)
 }
 
 func (o *StarDashboardByUIDOK) String() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/uid/{dashboard_uid}][%d] starDashboardByUidOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/uid/{dashboard_uid}][%d] starDashboardByUidOk  %+v", 200, o.Payload)
 }
 
 func (o *StarDashboardByUIDOK) GetPayload() *models.SuccessResponseBody {

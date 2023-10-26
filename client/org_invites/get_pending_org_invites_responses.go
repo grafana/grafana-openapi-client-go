@@ -66,42 +66,42 @@ type GetPendingOrgInvitesOK struct {
 	Payload []*models.TempUserDTO
 }
 
-// IsSuccess returns true when this get pending org invites o k response has a 2xx status code
+// IsSuccess returns true when this get pending org invites Ok response has a 2xx status code
 func (o *GetPendingOrgInvitesOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get pending org invites o k response has a 3xx status code
+// IsRedirect returns true when this get pending org invites Ok response has a 3xx status code
 func (o *GetPendingOrgInvitesOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get pending org invites o k response has a 4xx status code
+// IsClientError returns true when this get pending org invites Ok response has a 4xx status code
 func (o *GetPendingOrgInvitesOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get pending org invites o k response has a 5xx status code
+// IsServerError returns true when this get pending org invites Ok response has a 5xx status code
 func (o *GetPendingOrgInvitesOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get pending org invites o k response a status code equal to that given
+// IsCode returns true when this get pending org invites Ok response a status code equal to that given
 func (o *GetPendingOrgInvitesOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get pending org invites o k response
+// Code gets the status code for the get pending org invites Ok response
 func (o *GetPendingOrgInvitesOK) Code() int {
 	return 200
 }
 
 func (o *GetPendingOrgInvitesOK) Error() string {
-	return fmt.Sprintf("[GET /org/invites][%d] getPendingOrgInvitesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /org/invites][%d] getPendingOrgInvitesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetPendingOrgInvitesOK) String() string {
-	return fmt.Sprintf("[GET /org/invites][%d] getPendingOrgInvitesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /org/invites][%d] getPendingOrgInvitesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetPendingOrgInvitesOK) GetPayload() []*models.TempUserDTO {

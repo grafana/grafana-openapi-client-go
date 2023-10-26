@@ -72,42 +72,42 @@ type AdminUpdateUserPermissionsOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this admin update user permissions o k response has a 2xx status code
+// IsSuccess returns true when this admin update user permissions Ok response has a 2xx status code
 func (o *AdminUpdateUserPermissionsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this admin update user permissions o k response has a 3xx status code
+// IsRedirect returns true when this admin update user permissions Ok response has a 3xx status code
 func (o *AdminUpdateUserPermissionsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this admin update user permissions o k response has a 4xx status code
+// IsClientError returns true when this admin update user permissions Ok response has a 4xx status code
 func (o *AdminUpdateUserPermissionsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this admin update user permissions o k response has a 5xx status code
+// IsServerError returns true when this admin update user permissions Ok response has a 5xx status code
 func (o *AdminUpdateUserPermissionsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this admin update user permissions o k response a status code equal to that given
+// IsCode returns true when this admin update user permissions Ok response a status code equal to that given
 func (o *AdminUpdateUserPermissionsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the admin update user permissions o k response
+// Code gets the status code for the admin update user permissions Ok response
 func (o *AdminUpdateUserPermissionsOK) Code() int {
 	return 200
 }
 
 func (o *AdminUpdateUserPermissionsOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminUpdateUserPermissionsOK) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsOk  %+v", 200, o.Payload)
 }
 
 func (o *AdminUpdateUserPermissionsOK) GetPayload() *models.SuccessResponseBody {

@@ -72,42 +72,42 @@ type UpdateOrgQuotaOK struct {
 	Payload *models.SuccessResponseBody
 }
 
-// IsSuccess returns true when this update org quota o k response has a 2xx status code
+// IsSuccess returns true when this update org quota Ok response has a 2xx status code
 func (o *UpdateOrgQuotaOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this update org quota o k response has a 3xx status code
+// IsRedirect returns true when this update org quota Ok response has a 3xx status code
 func (o *UpdateOrgQuotaOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this update org quota o k response has a 4xx status code
+// IsClientError returns true when this update org quota Ok response has a 4xx status code
 func (o *UpdateOrgQuotaOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this update org quota o k response has a 5xx status code
+// IsServerError returns true when this update org quota Ok response has a 5xx status code
 func (o *UpdateOrgQuotaOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this update org quota o k response a status code equal to that given
+// IsCode returns true when this update org quota Ok response a status code equal to that given
 func (o *UpdateOrgQuotaOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the update org quota o k response
+// Code gets the status code for the update org quota Ok response
 func (o *UpdateOrgQuotaOK) Code() int {
 	return 200
 }
 
 func (o *UpdateOrgQuotaOK) Error() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateOrgQuotaOK) String() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaOk  %+v", 200, o.Payload)
 }
 
 func (o *UpdateOrgQuotaOK) GetPayload() *models.SuccessResponseBody {
