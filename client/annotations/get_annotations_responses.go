@@ -57,7 +57,7 @@ GetAnnotationsOK describes a response with status code 200, with default header 
 (empty)
 */
 type GetAnnotationsOK struct {
-	Payload []*models.ItemDTO
+	Payload []*models.Annotation
 }
 
 // IsSuccess returns true when this get annotations Ok response has a 2xx status code
@@ -98,7 +98,7 @@ func (o *GetAnnotationsOK) String() string {
 	return fmt.Sprintf("[GET /annotations][%d] getAnnotationsOk  %+v", 200, o.Payload)
 }
 
-func (o *GetAnnotationsOK) GetPayload() []*models.ItemDTO {
+func (o *GetAnnotationsOK) GetPayload() []*models.Annotation {
 	return o.Payload
 }
 

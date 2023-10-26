@@ -69,7 +69,7 @@ GetPlaylistOK describes a response with status code 200, with default header val
 (empty)
 */
 type GetPlaylistOK struct {
-	Payload *models.Spec
+	Payload *models.Playlist
 }
 
 // IsSuccess returns true when this get playlist Ok response has a 2xx status code
@@ -110,13 +110,13 @@ func (o *GetPlaylistOK) String() string {
 	return fmt.Sprintf("[GET /playlists/{uid}][%d] getPlaylistOk  %+v", 200, o.Payload)
 }
 
-func (o *GetPlaylistOK) GetPayload() *models.Spec {
+func (o *GetPlaylistOK) GetPayload() *models.Playlist {
 	return o.Payload
 }
 
 func (o *GetPlaylistOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Spec)
+	o.Payload = new(models.Playlist)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

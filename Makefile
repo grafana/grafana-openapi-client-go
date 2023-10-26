@@ -1,6 +1,6 @@
 include .bingo/Variables.mk
 
-.PHONY: drone, test, generate-client
+.PHONY: drone, test, generate-client, pull-schema
 
 GRAFANA_TARGET_VERSION ?= v10.2.0
 
@@ -27,11 +27,14 @@ CLIENT_GENERATION_ARGS += --model=$(MODEL)
 $(info Generate model '$(MODEL)')
 endif
 
-generate-client: ${SWAGGER}
+pull-schema:
+	GRAFANA_TARGET_VERSION=$(GRAFANA_TARGET_VERSION) bash ./scripts/pull-schema.sh
+
+generate-client: ${SWAGGER} pull-schema
 	rm -rf ./models ./client
 
 	$(SWAGGER) generate client \
-	-f https://raw.githubusercontent.com/grafana/grafana/${GRAFANA_TARGET_VERSION}/public/api-merged.json \
+	-f scripts/schema.json \
 	--skip-validation \
 	--with-flatten=remove-unused \
 	--additional-initialism=DTO \
