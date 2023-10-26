@@ -50,6 +50,9 @@ type UserProfileDTO struct {
 	// is grafana admin
 	IsGrafanaAdmin bool `json:"isGrafanaAdmin,omitempty"`
 
+	// is grafana admin externally synced
+	IsGrafanaAdminExternallySynced bool `json:"isGrafanaAdminExternallySynced,omitempty"`
+
 	// login
 	Login string `json:"login,omitempty"`
 

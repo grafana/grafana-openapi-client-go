@@ -38,7 +38,7 @@ type QueryStat struct {
 	// DisplayName overrides Grafana default naming, should not be used from a data source
 	DisplayName string `json:"displayName,omitempty"`
 
-	// DisplayNameFromDS overrides Grafana default naming in a better way that allows users to override it easily.
+	// DisplayNameFromDS overrides Grafana default naming strategy.
 	DisplayNameFromDS string `json:"displayNameFromDS,omitempty"`
 
 	// Filterable indicates if the Field's data can be filtered by additional calls.

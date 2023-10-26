@@ -52,11 +52,15 @@ type ClientService interface {
 
 	RouteGetContactpoints(params *RouteGetContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetContactpointsOK, error)
 
+	RouteGetContactpointsExport(params *RouteGetContactpointsExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetContactpointsExportOK, error)
+
 	RouteGetMuteTiming(params *RouteGetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingOK, error)
 
 	RouteGetMuteTimings(params *RouteGetMuteTimingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingsOK, error)
 
 	RouteGetPolicyTree(params *RouteGetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetPolicyTreeOK, error)
+
+	RouteGetPolicyTreeExport(params *RouteGetPolicyTreeExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetPolicyTreeExportOK, error)
 
 	RouteGetTemplate(params *RouteGetTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetTemplateOK, error)
 
@@ -515,6 +519,45 @@ func (a *Client) RouteGetContactpoints(params *RouteGetContactpointsParams, auth
 }
 
 /*
+RouteGetContactpointsExport exports all contact points in provisioning file format
+*/
+func (a *Client) RouteGetContactpointsExport(params *RouteGetContactpointsExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetContactpointsExportOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRouteGetContactpointsExportParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "RouteGetContactpointsExport",
+		Method:             "GET",
+		PathPattern:        "/api/v1/provisioning/contact-points/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &RouteGetContactpointsExportReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RouteGetContactpointsExportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for RouteGetContactpointsExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 RouteGetMuteTiming gets a mute timing
 */
 func (a *Client) RouteGetMuteTiming(params *RouteGetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingOK, error) {
@@ -628,6 +671,45 @@ func (a *Client) RouteGetPolicyTree(params *RouteGetPolicyTreeParams, authInfo r
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for RouteGetPolicyTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RouteGetPolicyTreeExport exports the notification policy tree in provisioning file format
+*/
+func (a *Client) RouteGetPolicyTreeExport(params *RouteGetPolicyTreeExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetPolicyTreeExportOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRouteGetPolicyTreeExportParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "RouteGetPolicyTreeExport",
+		Method:             "GET",
+		PathPattern:        "/api/v1/provisioning/policies/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &RouteGetPolicyTreeExportReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RouteGetPolicyTreeExportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for RouteGetPolicyTreeExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

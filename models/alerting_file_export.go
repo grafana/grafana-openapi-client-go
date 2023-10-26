@@ -22,21 +22,61 @@ type AlertingFileExport struct {
 	// api version
 	APIVersion int64 `json:"apiVersion,omitempty"`
 
+	// contact points
+	ContactPoints []*ContactPointExport `json:"contactPoints"`
+
 	// groups
 	Groups []*AlertRuleGroupExport `json:"groups"`
+
+	// policies
+	Policies []*NotificationPolicyExport `json:"policies"`
 }
 
 // Validate validates this alerting file export
 func (m *AlertingFileExport) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateContactPoints(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePolicies(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AlertingFileExport) validateContactPoints(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContactPoints) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ContactPoints); i++ {
+		if swag.IsZero(m.ContactPoints[i]) { // not required
+			continue
+		}
+
+		if m.ContactPoints[i] != nil {
+			if err := m.ContactPoints[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("contactPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("contactPoints" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -66,17 +106,76 @@ func (m *AlertingFileExport) validateGroups(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AlertingFileExport) validatePolicies(formats strfmt.Registry) error {
+	if swag.IsZero(m.Policies) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Policies); i++ {
+		if swag.IsZero(m.Policies[i]) { // not required
+			continue
+		}
+
+		if m.Policies[i] != nil {
+			if err := m.Policies[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("policies" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this alerting file export based on the context it is used
 func (m *AlertingFileExport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateContactPoints(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePolicies(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AlertingFileExport) contextValidateContactPoints(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ContactPoints); i++ {
+
+		if m.ContactPoints[i] != nil {
+
+			if swag.IsZero(m.ContactPoints[i]) { // not required
+				return nil
+			}
+
+			if err := m.ContactPoints[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("contactPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("contactPoints" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -95,6 +194,31 @@ func (m *AlertingFileExport) contextValidateGroups(ctx context.Context, formats 
 					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("groups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AlertingFileExport) contextValidatePolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Policies); i++ {
+
+		if m.Policies[i] != nil {
+
+			if swag.IsZero(m.Policies[i]) { // not required
+				return nil
+			}
+
+			if err := m.Policies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("policies" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("policies" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

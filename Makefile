@@ -2,7 +2,7 @@ include .bingo/Variables.mk
 
 .PHONY: drone, test, generate-client
 
-GRAFANA_TARGET_VERSION ?= v10.0.1
+GRAFANA_TARGET_VERSION ?= v10.2.0
 
 drone:
 	drone jsonnet --stream --format --source .drone/drone.jsonnet --target .drone/drone.yml

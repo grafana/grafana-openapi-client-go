@@ -27,11 +27,6 @@ type UpdateFolderCommand struct {
 	// NewTitle it's an optional parameter used for overriding the existing folder title
 	Title string `json:"title,omitempty"`
 
-	// NewUID it's an optional parameter used for overriding the existing folder UID
-	// Starting with 10.0, this is deprecated. It will be removed in a future release.
-	// Please avoid using it because it can result in folder loosing its permissions.
-	UID string `json:"uid,omitempty"`
-
 	// Version only used by the legacy folder implementation
 	Version int64 `json:"version,omitempty"`
 }

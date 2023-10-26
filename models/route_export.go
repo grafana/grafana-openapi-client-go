@@ -14,11 +14,11 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Route A Route is a node that contains definitions of how to handle alerts. This is modified
-// from the upstream alertmanager in that it adds the ObjectMatchers property.
+// RouteExport RouteExport is the provisioned file export of definitions.Route. This is needed to hide fields that aren't useable in
+// provisioning file format. An alternative would be to define a custom MarshalJSON and MarshalYAML that excludes them.
 //
-// swagger:model Route
-type Route struct {
+// swagger:model RouteExport
+type RouteExport struct {
 
 	// continue
 	Continue bool `json:"continue,omitempty"`
@@ -47,9 +47,6 @@ type Route struct {
 	// object matchers
 	ObjectMatchers ObjectMatchers `json:"object_matchers,omitempty"`
 
-	// provenance
-	Provenance Provenance `json:"provenance,omitempty"`
-
 	// receiver
 	Receiver string `json:"receiver,omitempty"`
 
@@ -57,11 +54,11 @@ type Route struct {
 	RepeatInterval string `json:"repeat_interval,omitempty"`
 
 	// routes
-	Routes []*Route `json:"routes"`
+	Routes []*RouteExport `json:"routes"`
 }
 
-// Validate validates this route
-func (m *Route) Validate(formats strfmt.Registry) error {
+// Validate validates this route export
+func (m *RouteExport) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMatchRe(formats); err != nil {
@@ -69,10 +66,6 @@ func (m *Route) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMatchers(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateProvenance(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -86,7 +79,7 @@ func (m *Route) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Route) validateMatchRe(formats strfmt.Registry) error {
+func (m *RouteExport) validateMatchRe(formats strfmt.Registry) error {
 	if swag.IsZero(m.MatchRe) { // not required
 		return nil
 	}
@@ -105,7 +98,7 @@ func (m *Route) validateMatchRe(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Route) validateMatchers(formats strfmt.Registry) error {
+func (m *RouteExport) validateMatchers(formats strfmt.Registry) error {
 	if swag.IsZero(m.Matchers) { // not required
 		return nil
 	}
@@ -122,24 +115,7 @@ func (m *Route) validateMatchers(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Route) validateProvenance(formats strfmt.Registry) error {
-	if swag.IsZero(m.Provenance) { // not required
-		return nil
-	}
-
-	if err := m.Provenance.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("provenance")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("provenance")
-		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *Route) validateRoutes(formats strfmt.Registry) error {
+func (m *RouteExport) validateRoutes(formats strfmt.Registry) error {
 	if swag.IsZero(m.Routes) { // not required
 		return nil
 	}
@@ -165,8 +141,8 @@ func (m *Route) validateRoutes(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this route based on the context it is used
-func (m *Route) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this route export based on the context it is used
+func (m *RouteExport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateMatchRe(ctx, formats); err != nil {
@@ -174,10 +150,6 @@ func (m *Route) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	}
 
 	if err := m.contextValidateMatchers(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateProvenance(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -191,7 +163,7 @@ func (m *Route) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	return nil
 }
 
-func (m *Route) contextValidateMatchRe(ctx context.Context, formats strfmt.Registry) error {
+func (m *RouteExport) contextValidateMatchRe(ctx context.Context, formats strfmt.Registry) error {
 
 	if swag.IsZero(m.MatchRe) { // not required
 		return nil
@@ -209,7 +181,7 @@ func (m *Route) contextValidateMatchRe(ctx context.Context, formats strfmt.Regis
 	return nil
 }
 
-func (m *Route) contextValidateMatchers(ctx context.Context, formats strfmt.Registry) error {
+func (m *RouteExport) contextValidateMatchers(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Matchers.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -223,25 +195,7 @@ func (m *Route) contextValidateMatchers(ctx context.Context, formats strfmt.Regi
 	return nil
 }
 
-func (m *Route) contextValidateProvenance(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Provenance) { // not required
-		return nil
-	}
-
-	if err := m.Provenance.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("provenance")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("provenance")
-		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *Route) contextValidateRoutes(ctx context.Context, formats strfmt.Registry) error {
+func (m *RouteExport) contextValidateRoutes(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Routes); i++ {
 
@@ -267,7 +221,7 @@ func (m *Route) contextValidateRoutes(ctx context.Context, formats strfmt.Regist
 }
 
 // MarshalBinary interface implementation
-func (m *Route) MarshalBinary() ([]byte, error) {
+func (m *RouteExport) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -275,8 +229,8 @@ func (m *Route) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Route) UnmarshalBinary(b []byte) error {
-	var res Route
+func (m *RouteExport) UnmarshalBinary(b []byte) error {
+	var res RouteExport
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -27,9 +27,6 @@ type MetricRequest struct {
 	// Required: true
 	From *string `json:"from"`
 
-	// public dashboard access token
-	PublicDashboardAccessToken string `json:"publicDashboardAccessToken,omitempty"`
-
 	// queries.refId – Specifies an identifier of the query. Is optional and default to “A”.
 	// queries.datasourceId – Specifies the data source to be queried. Each query in the request must have an unique datasourceId.
 	// queries.maxDataPoints - Species maximum amount of data points that dashboard panel can render. Is optional and default to 100.

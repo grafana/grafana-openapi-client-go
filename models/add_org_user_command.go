@@ -24,7 +24,7 @@ type AddOrgUserCommand struct {
 	LoginOrEmail string `json:"loginOrEmail,omitempty"`
 
 	// role
-	// Enum: [Viewer Editor Admin]
+	// Enum: [None Viewer Editor Admin]
 	Role string `json:"role,omitempty"`
 }
 
@@ -46,7 +46,7 @@ var addOrgUserCommandTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Viewer","Editor","Admin"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["None","Viewer","Editor","Admin"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -55,6 +55,9 @@ func init() {
 }
 
 const (
+
+	// AddOrgUserCommandRoleNone captures enum value "None"
+	AddOrgUserCommandRoleNone string = "None"
 
 	// AddOrgUserCommandRoleViewer captures enum value "Viewer"
 	AddOrgUserCommandRoleViewer string = "Viewer"

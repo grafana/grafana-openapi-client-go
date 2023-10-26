@@ -87,6 +87,9 @@ type ProvisionedAlertRule struct {
 	Title *string `json:"title"`
 
 	// uid
+	// Max Length: 40
+	// Min Length: 1
+	// Pattern: ^[a-zA-Z0-9-_]+$
 	UID string `json:"uid,omitempty"`
 
 	// updated
@@ -136,6 +139,10 @@ func (m *ProvisionedAlertRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTitle(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -364,6 +371,26 @@ func (m *ProvisionedAlertRule) validateTitle(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MaxLength("title", "body", *m.Title, 190); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ProvisionedAlertRule) validateUID(formats strfmt.Registry) error {
+	if swag.IsZero(m.UID) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("uid", "body", m.UID, 1); err != nil {
+		return err
+	}
+
+	if err := validate.MaxLength("uid", "body", m.UID, 40); err != nil {
+		return err
+	}
+
+	if err := validate.Pattern("uid", "body", m.UID, `^[a-zA-Z0-9-_]+$`); err != nil {
 		return err
 	}
 

@@ -68,6 +68,12 @@ type RouteGetAlertRulesExportParams struct {
 	*/
 	Download *bool
 
+	/* FolderUID.
+
+	   UIDs of folders from which to export rules
+	*/
+	FolderUID []string
+
 	/* Format.
 
 	   Format of the downloaded file, either yaml or json. Accept header can also be used, but the query parameter will take precedence.
@@ -75,6 +81,18 @@ type RouteGetAlertRulesExportParams struct {
 	   Default: "yaml"
 	*/
 	Format *string
+
+	/* Group.
+
+	   Name of group of rules to export. Must be specified only together with a single folder UID
+	*/
+	Group *string
+
+	/* RuleUID.
+
+	   UID of alert rule to export. If specified, parameters folderUid and group must be empty.
+	*/
+	RuleUID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -154,6 +172,17 @@ func (o *RouteGetAlertRulesExportParams) SetDownload(download *bool) {
 	o.Download = download
 }
 
+// WithFolderUID adds the folderUID to the route get alert rules export params
+func (o *RouteGetAlertRulesExportParams) WithFolderUID(folderUID []string) *RouteGetAlertRulesExportParams {
+	o.SetFolderUID(folderUID)
+	return o
+}
+
+// SetFolderUID adds the folderUid to the route get alert rules export params
+func (o *RouteGetAlertRulesExportParams) SetFolderUID(folderUID []string) {
+	o.FolderUID = folderUID
+}
+
 // WithFormat adds the format to the route get alert rules export params
 func (o *RouteGetAlertRulesExportParams) WithFormat(format *string) *RouteGetAlertRulesExportParams {
 	o.SetFormat(format)
@@ -163,6 +192,28 @@ func (o *RouteGetAlertRulesExportParams) WithFormat(format *string) *RouteGetAle
 // SetFormat adds the format to the route get alert rules export params
 func (o *RouteGetAlertRulesExportParams) SetFormat(format *string) {
 	o.Format = format
+}
+
+// WithGroup adds the group to the route get alert rules export params
+func (o *RouteGetAlertRulesExportParams) WithGroup(group *string) *RouteGetAlertRulesExportParams {
+	o.SetGroup(group)
+	return o
+}
+
+// SetGroup adds the group to the route get alert rules export params
+func (o *RouteGetAlertRulesExportParams) SetGroup(group *string) {
+	o.Group = group
+}
+
+// WithRuleUID adds the ruleUID to the route get alert rules export params
+func (o *RouteGetAlertRulesExportParams) WithRuleUID(ruleUID *string) *RouteGetAlertRulesExportParams {
+	o.SetRuleUID(ruleUID)
+	return o
+}
+
+// SetRuleUID adds the ruleUid to the route get alert rules export params
+func (o *RouteGetAlertRulesExportParams) SetRuleUID(ruleUID *string) {
+	o.RuleUID = ruleUID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -190,6 +241,17 @@ func (o *RouteGetAlertRulesExportParams) WriteToRequest(r runtime.ClientRequest,
 		}
 	}
 
+	if o.FolderUID != nil {
+
+		// binding items for folderUid
+		joinedFolderUID := o.bindParamFolderUID(reg)
+
+		// query array param folderUid
+		if err := r.SetQueryParam("folderUid", joinedFolderUID...); err != nil {
+			return err
+		}
+	}
+
 	if o.Format != nil {
 
 		// query param format
@@ -207,8 +269,59 @@ func (o *RouteGetAlertRulesExportParams) WriteToRequest(r runtime.ClientRequest,
 		}
 	}
 
+	if o.Group != nil {
+
+		// query param group
+		var qrGroup string
+
+		if o.Group != nil {
+			qrGroup = *o.Group
+		}
+		qGroup := qrGroup
+		if qGroup != "" {
+
+			if err := r.SetQueryParam("group", qGroup); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.RuleUID != nil {
+
+		// query param ruleUid
+		var qrRuleUID string
+
+		if o.RuleUID != nil {
+			qrRuleUID = *o.RuleUID
+		}
+		qRuleUID := qrRuleUID
+		if qRuleUID != "" {
+
+			if err := r.SetQueryParam("ruleUid", qRuleUID); err != nil {
+				return err
+			}
+		}
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamRouteGetAlertRulesExport binds the parameter folderUid
+func (o *RouteGetAlertRulesExportParams) bindParamFolderUID(formats strfmt.Registry) []string {
+	folderUIDIR := o.FolderUID
+
+	var folderUIDIC []string
+	for _, folderUIDIIR := range folderUIDIR { // explode []string
+
+		folderUIDIIV := folderUIDIIR // string as string
+		folderUIDIC = append(folderUIDIC, folderUIDIIV)
+	}
+
+	// items.CollectionFormat: ""
+	folderUIDIS := swag.JoinByFormat(folderUIDIC, "")
+
+	return folderUIDIS
 }

@@ -29,6 +29,9 @@ type CreateCorrelationCommand struct {
 	// Example: My label
 	Label string `json:"label,omitempty"`
 
+	// True if correlation was created with provisioning. This makes it read-only.
+	Provisioned bool `json:"provisioned,omitempty"`
+
 	// Target data source UID to which the correlation is created. required if config.type = query
 	// Example: PE1C5CBDA0504A6A3
 	TargetUID string `json:"targetUID,omitempty"`

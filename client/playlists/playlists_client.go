@@ -36,8 +36,6 @@ type ClientService interface {
 
 	GetPlaylist(params *GetPlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPlaylistOK, error)
 
-	GetPlaylistDashboards(params *GetPlaylistDashboardsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPlaylistDashboardsOK, error)
-
 	GetPlaylistItems(params *GetPlaylistItemsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPlaylistItemsOK, error)
 
 	SearchPlaylists(params *SearchPlaylistsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchPlaylistsOK, error)
@@ -161,45 +159,6 @@ func (a *Client) GetPlaylist(params *GetPlaylistParams, authInfo runtime.ClientA
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getPlaylist: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetPlaylistDashboards gets playlist dashboards
-*/
-func (a *Client) GetPlaylistDashboards(params *GetPlaylistDashboardsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPlaylistDashboardsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetPlaylistDashboardsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "getPlaylistDashboards",
-		Method:             "GET",
-		PathPattern:        "/playlists/{uid}/dashboards",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &GetPlaylistDashboardsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetPlaylistDashboardsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getPlaylistDashboards: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

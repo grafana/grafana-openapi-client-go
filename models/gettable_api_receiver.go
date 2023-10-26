@@ -46,6 +46,9 @@ type GettableAPIReceiver struct {
 	// sns configs
 	SnsConfigs []*SNSConfig `json:"sns_configs"`
 
+	// teams configs
+	TeamsConfigs []*MSTeamsConfig `json:"teams_configs"`
+
 	// telegram configs
 	TelegramConfigs []*TelegramConfig `json:"telegram_configs"`
 
@@ -95,6 +98,10 @@ func (m *GettableAPIReceiver) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSnsConfigs(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTeamsConfigs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -332,6 +339,32 @@ func (m *GettableAPIReceiver) validateSnsConfigs(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *GettableAPIReceiver) validateTeamsConfigs(formats strfmt.Registry) error {
+	if swag.IsZero(m.TeamsConfigs) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.TeamsConfigs); i++ {
+		if swag.IsZero(m.TeamsConfigs[i]) { // not required
+			continue
+		}
+
+		if m.TeamsConfigs[i] != nil {
+			if err := m.TeamsConfigs[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("teams_configs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("teams_configs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *GettableAPIReceiver) validateTelegramConfigs(formats strfmt.Registry) error {
 	if swag.IsZero(m.TelegramConfigs) { // not required
 		return nil
@@ -495,6 +528,10 @@ func (m *GettableAPIReceiver) ContextValidate(ctx context.Context, formats strfm
 	}
 
 	if err := m.contextValidateSnsConfigs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTeamsConfigs(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -714,6 +751,31 @@ func (m *GettableAPIReceiver) contextValidateSnsConfigs(ctx context.Context, for
 					return ve.ValidateName("sns_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("sns_configs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GettableAPIReceiver) contextValidateTeamsConfigs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.TeamsConfigs); i++ {
+
+		if m.TeamsConfigs[i] != nil {
+
+			if swag.IsZero(m.TeamsConfigs[i]) { // not required
+				return nil
+			}
+
+			if err := m.TeamsConfigs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("teams_configs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("teams_configs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
