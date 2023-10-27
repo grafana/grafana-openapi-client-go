@@ -57,7 +57,7 @@ GetTeamPreferencesOK describes a response with status code 200, with default hea
 (empty)
 */
 type GetTeamPreferencesOK struct {
-	Payload *models.Spec
+	Payload *models.Preferences
 }
 
 // IsSuccess returns true when this get team preferences Ok response has a 2xx status code
@@ -98,13 +98,13 @@ func (o *GetTeamPreferencesOK) String() string {
 	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesOk  %+v", 200, o.Payload)
 }
 
-func (o *GetTeamPreferencesOK) GetPayload() *models.Spec {
+func (o *GetTeamPreferencesOK) GetPayload() *models.Preferences {
 	return o.Payload
 }
 
 func (o *GetTeamPreferencesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Spec)
+	o.Payload = new(models.Preferences)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

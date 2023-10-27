@@ -13,10 +13,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Spec Spec defines model for Spec.
+// Preferences Spec defines model for Spec.
 //
-// swagger:model Spec
-type Spec struct {
+// swagger:model Preferences
+type Preferences struct {
 
 	// cookie preferences
 	CookiePreferences *CookiePreferences `json:"cookiePreferences,omitempty"`
@@ -41,8 +41,8 @@ type Spec struct {
 	WeekStart string `json:"weekStart,omitempty"`
 }
 
-// Validate validates this spec
-func (m *Spec) Validate(formats strfmt.Registry) error {
+// Validate validates this preferences
+func (m *Preferences) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCookiePreferences(formats); err != nil {
@@ -59,7 +59,7 @@ func (m *Spec) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Spec) validateCookiePreferences(formats strfmt.Registry) error {
+func (m *Preferences) validateCookiePreferences(formats strfmt.Registry) error {
 	if swag.IsZero(m.CookiePreferences) { // not required
 		return nil
 	}
@@ -78,7 +78,7 @@ func (m *Spec) validateCookiePreferences(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Spec) validateQueryHistory(formats strfmt.Registry) error {
+func (m *Preferences) validateQueryHistory(formats strfmt.Registry) error {
 	if swag.IsZero(m.QueryHistory) { // not required
 		return nil
 	}
@@ -97,8 +97,8 @@ func (m *Spec) validateQueryHistory(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this spec based on the context it is used
-func (m *Spec) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this preferences based on the context it is used
+func (m *Preferences) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateCookiePreferences(ctx, formats); err != nil {
@@ -115,7 +115,7 @@ func (m *Spec) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	return nil
 }
 
-func (m *Spec) contextValidateCookiePreferences(ctx context.Context, formats strfmt.Registry) error {
+func (m *Preferences) contextValidateCookiePreferences(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CookiePreferences != nil {
 
@@ -136,7 +136,7 @@ func (m *Spec) contextValidateCookiePreferences(ctx context.Context, formats str
 	return nil
 }
 
-func (m *Spec) contextValidateQueryHistory(ctx context.Context, formats strfmt.Registry) error {
+func (m *Preferences) contextValidateQueryHistory(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.QueryHistory != nil {
 
@@ -158,7 +158,7 @@ func (m *Spec) contextValidateQueryHistory(ctx context.Context, formats strfmt.R
 }
 
 // MarshalBinary interface implementation
-func (m *Spec) MarshalBinary() ([]byte, error) {
+func (m *Preferences) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -166,8 +166,8 @@ func (m *Spec) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Spec) UnmarshalBinary(b []byte) error {
-	var res Spec
+func (m *Preferences) UnmarshalBinary(b []byte) error {
+	var res Preferences
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

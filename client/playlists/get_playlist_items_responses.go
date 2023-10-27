@@ -69,7 +69,7 @@ GetPlaylistItemsOK describes a response with status code 200, with default heade
 (empty)
 */
 type GetPlaylistItemsOK struct {
-	Payload []*models.Item
+	Payload []*models.PlaylistItem
 }
 
 // IsSuccess returns true when this get playlist items Ok response has a 2xx status code
@@ -110,7 +110,7 @@ func (o *GetPlaylistItemsOK) String() string {
 	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsOk  %+v", 200, o.Payload)
 }
 
-func (o *GetPlaylistItemsOK) GetPayload() []*models.Item {
+func (o *GetPlaylistItemsOK) GetPayload() []*models.PlaylistItem {
 	return o.Payload
 }
 
