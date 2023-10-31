@@ -33,7 +33,20 @@ func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error
 		respBodyContents []byte
 	)
 
+	// Copy the request body if it's not nil
+	var bodyData []byte
+	if req.Body != nil {
+		if bodyData, err = io.ReadAll(req.Body); err != nil {
+			return nil, fmt.Errorf("failed to read request body: %w", err)
+		}
+	}
+
 	for n := 0; n <= t.NumRetries; n++ {
+		// Reset the request body if it's not nil
+		if len(bodyData) > 0 {
+			req.Body = io.NopCloser(bytes.NewBuffer(bodyData))
+		}
+
 		if n != 0 {
 			retryTimeout := t.RetryTimeout
 			if retryTimeout == 0 {
