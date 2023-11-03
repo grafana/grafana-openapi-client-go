@@ -14,7 +14,7 @@ SCHEMA="$(echo "${SCHEMA}" | jq 'del(.definitions.Item)')" # Old playlist item s
 SCHEMA="$(echo "${SCHEMA}" | jq '.responses.getPlaylistItemsResponse.schema.items["$ref"] = "#/definitions/PlaylistItem"')" # Currently pointing to Item (old PlaylistItem model)
 SCHEMA="$(echo "${SCHEMA}" | jq '.responses.updatePlaylistResponse.schema["$ref"] = "#/definitions/Playlist"')" # Currently pointing to Spec (Preferences)
 SCHEMA="$(echo "${SCHEMA}" | jq '.responses.getPlaylistResponse.schema["$ref"] = "#/definitions/Playlist"')" # Currently pointing to Spec (Preferences)
-
+SCHEMA="$(echo "${SCHEMA}" | jq '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)')" # Remove "Route" prefixes to operation IDs (ex: RouteGetxxx)
 
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
