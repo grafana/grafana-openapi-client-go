@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // UpdateAnnotationsCmd update annotations cmd
@@ -18,7 +20,7 @@ import (
 type UpdateAnnotationsCmd struct {
 
 	// data
-	Data JSON `json:"data,omitempty"`
+	Data custom_models.JSON `json:"data,omitempty"`
 
 	// id
 	ID int64 `json:"id,omitempty"`
@@ -38,6 +40,23 @@ type UpdateAnnotationsCmd struct {
 
 // Validate validates this update annotations cmd
 func (m *UpdateAnnotationsCmd) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UpdateAnnotationsCmd) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
+		return nil
+	}
+
 	return nil
 }
 

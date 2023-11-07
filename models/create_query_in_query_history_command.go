@@ -11,6 +11,8 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // CreateQueryInQueryHistoryCommand CreateQueryInQueryHistoryCommand is the command for adding query history
@@ -24,7 +26,7 @@ type CreateQueryInQueryHistoryCommand struct {
 
 	// queries
 	// Required: true
-	Queries JSON `json:"queries"`
+	Queries *custom_models.JSON `json:"queries"`
 }
 
 // Validate validates this create query in query history command
@@ -43,8 +45,8 @@ func (m *CreateQueryInQueryHistoryCommand) Validate(formats strfmt.Registry) err
 
 func (m *CreateQueryInQueryHistoryCommand) validateQueries(formats strfmt.Registry) error {
 
-	if m.Queries == nil {
-		return errors.Required("queries", "body", nil)
+	if err := validate.Required("queries", "body", m.Queries); err != nil {
+		return err
 	}
 
 	return nil

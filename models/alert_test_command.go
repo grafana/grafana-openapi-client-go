@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // AlertTestCommand alert test command
@@ -18,7 +20,7 @@ import (
 type AlertTestCommand struct {
 
 	// dashboard
-	Dashboard JSON `json:"dashboard,omitempty"`
+	Dashboard custom_models.JSON `json:"dashboard,omitempty"`
 
 	// panel Id
 	PanelID int64 `json:"panelId,omitempty"`
@@ -26,6 +28,23 @@ type AlertTestCommand struct {
 
 // Validate validates this alert test command
 func (m *AlertTestCommand) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDashboard(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AlertTestCommand) validateDashboard(formats strfmt.Registry) error {
+	if swag.IsZero(m.Dashboard) { // not required
+		return nil
+	}
+
 	return nil
 }
 

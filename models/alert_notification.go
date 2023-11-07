@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // AlertNotification alert notification
@@ -45,7 +46,7 @@ type AlertNotification struct {
 	SendReminder bool `json:"sendReminder,omitempty"`
 
 	// settings
-	Settings JSON `json:"settings,omitempty"`
+	Settings custom_models.JSON `json:"settings,omitempty"`
 
 	// type
 	Type string `json:"type,omitempty"`
@@ -66,6 +67,10 @@ func (m *AlertNotification) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUpdated(formats); err != nil {
 		res = append(res, err)
 	}
@@ -83,6 +88,14 @@ func (m *AlertNotification) validateCreated(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("created", "body", "date-time", m.Created.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *AlertNotification) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
 	}
 
 	return nil

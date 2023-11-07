@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // CalculateDiffTarget calculate diff target
@@ -21,7 +23,7 @@ type CalculateDiffTarget struct {
 	DashboardID int64 `json:"dashboardId,omitempty"`
 
 	// unsaved dashboard
-	UnsavedDashboard JSON `json:"unsavedDashboard,omitempty"`
+	UnsavedDashboard custom_models.JSON `json:"unsavedDashboard,omitempty"`
 
 	// version
 	Version int64 `json:"version,omitempty"`
@@ -29,6 +31,23 @@ type CalculateDiffTarget struct {
 
 // Validate validates this calculate diff target
 func (m *CalculateDiffTarget) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateUnsavedDashboard(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CalculateDiffTarget) validateUnsavedDashboard(formats strfmt.Registry) error {
+	if swag.IsZero(m.UnsavedDashboard) { // not required
+		return nil
+	}
+
 	return nil
 }
 

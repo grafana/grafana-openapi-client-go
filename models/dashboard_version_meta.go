@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // DashboardVersionMeta DashboardVersionMeta extends the DashboardVersionDTO with the names
@@ -32,7 +33,7 @@ type DashboardVersionMeta struct {
 	DashboardID int64 `json:"dashboardId,omitempty"`
 
 	// data
-	Data JSON `json:"data,omitempty"`
+	Data custom_models.JSON `json:"data,omitempty"`
 
 	// id
 	ID int64 `json:"id,omitempty"`
@@ -61,6 +62,10 @@ func (m *DashboardVersionMeta) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -74,6 +79,14 @@ func (m *DashboardVersionMeta) validateCreated(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("created", "body", "date-time", m.Created.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DashboardVersionMeta) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
+		return nil
 	}
 
 	return nil

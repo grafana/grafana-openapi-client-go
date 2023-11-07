@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // UpdateAlertNotificationCommand update alert notification command
@@ -39,7 +41,7 @@ type UpdateAlertNotificationCommand struct {
 	SendReminder bool `json:"sendReminder,omitempty"`
 
 	// settings
-	Settings JSON `json:"settings,omitempty"`
+	Settings custom_models.JSON `json:"settings,omitempty"`
 
 	// type
 	Type string `json:"type,omitempty"`
@@ -50,6 +52,23 @@ type UpdateAlertNotificationCommand struct {
 
 // Validate validates this update alert notification command
 func (m *UpdateAlertNotificationCommand) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UpdateAlertNotificationCommand) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
 	return nil
 }
 

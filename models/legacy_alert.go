@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // LegacyAlert legacy alert
@@ -27,7 +28,7 @@ type LegacyAlert struct {
 	DashboardID int64 `json:"DashboardID,omitempty"`
 
 	// eval data
-	EvalData JSON `json:"EvalData,omitempty"`
+	EvalData custom_models.JSON `json:"EvalData,omitempty"`
 
 	// execution error
 	ExecutionError string `json:"ExecutionError,omitempty"`
@@ -61,7 +62,7 @@ type LegacyAlert struct {
 	PanelID int64 `json:"PanelID,omitempty"`
 
 	// settings
-	Settings JSON `json:"Settings,omitempty"`
+	Settings custom_models.JSON `json:"Settings,omitempty"`
 
 	// severity
 	Severity string `json:"Severity,omitempty"`
@@ -91,11 +92,19 @@ func (m *LegacyAlert) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEvalData(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFor(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateNewStateDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -125,6 +134,14 @@ func (m *LegacyAlert) validateCreated(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *LegacyAlert) validateEvalData(formats strfmt.Registry) error {
+	if swag.IsZero(m.EvalData) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *LegacyAlert) validateFor(formats strfmt.Registry) error {
 	if swag.IsZero(m.For) { // not required
 		return nil
@@ -149,6 +166,14 @@ func (m *LegacyAlert) validateNewStateDate(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("NewStateDate", "body", "date-time", m.NewStateDate.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *LegacyAlert) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
 	}
 
 	return nil

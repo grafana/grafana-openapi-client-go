@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // DashboardFullWithMeta dashboard full with meta
@@ -19,7 +20,7 @@ import (
 type DashboardFullWithMeta struct {
 
 	// dashboard
-	Dashboard JSON `json:"dashboard,omitempty"`
+	Dashboard custom_models.JSON `json:"dashboard,omitempty"`
 
 	// meta
 	Meta *DashboardMeta `json:"meta,omitempty"`
@@ -29,6 +30,10 @@ type DashboardFullWithMeta struct {
 func (m *DashboardFullWithMeta) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDashboard(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMeta(formats); err != nil {
 		res = append(res, err)
 	}
@@ -36,6 +41,14 @@ func (m *DashboardFullWithMeta) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DashboardFullWithMeta) validateDashboard(formats strfmt.Registry) error {
+	if swag.IsZero(m.Dashboard) { // not required
+		return nil
+	}
+
 	return nil
 }
 

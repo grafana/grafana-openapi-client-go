@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // SaveDashboardCommand save dashboard command
@@ -24,7 +25,7 @@ type SaveDashboardCommand struct {
 	UpdatedAt strfmt.DateTime `json:"UpdatedAt,omitempty"`
 
 	// dashboard
-	Dashboard JSON `json:"dashboard,omitempty"`
+	Dashboard custom_models.JSON `json:"dashboard,omitempty"`
 
 	// folder Id
 	FolderID int64 `json:"folderId,omitempty"`
@@ -53,6 +54,10 @@ func (m *SaveDashboardCommand) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDashboard(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -66,6 +71,14 @@ func (m *SaveDashboardCommand) validateUpdatedAt(formats strfmt.Registry) error 
 
 	if err := validate.FormatOf("UpdatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *SaveDashboardCommand) validateDashboard(formats strfmt.Registry) error {
+	if swag.IsZero(m.Dashboard) { // not required
+		return nil
 	}
 
 	return nil

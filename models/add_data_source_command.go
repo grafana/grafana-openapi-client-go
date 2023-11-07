@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // AddDataSourceCommand Also acts as api DTO
@@ -34,7 +35,7 @@ type AddDataSourceCommand struct {
 	IsDefault bool `json:"isDefault,omitempty"`
 
 	// json data
-	JSONData JSON `json:"jsonData,omitempty"`
+	JSONData custom_models.JSON `json:"jsonData,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -66,6 +67,10 @@ func (m *AddDataSourceCommand) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateJSONData(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -84,6 +89,14 @@ func (m *AddDataSourceCommand) validateAccess(formats strfmt.Registry) error {
 			return ce.ValidateName("access")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *AddDataSourceCommand) validateJSONData(formats strfmt.Registry) error {
+	if swag.IsZero(m.JSONData) { // not required
+		return nil
 	}
 
 	return nil

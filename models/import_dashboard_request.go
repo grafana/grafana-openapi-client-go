@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // ImportDashboardRequest ImportDashboardRequest request object for importing a dashboard.
@@ -20,7 +21,7 @@ import (
 type ImportDashboardRequest struct {
 
 	// dashboard
-	Dashboard JSON `json:"dashboard,omitempty"`
+	Dashboard custom_models.JSON `json:"dashboard,omitempty"`
 
 	// folder Id
 	FolderID int64 `json:"folderId,omitempty"`
@@ -45,6 +46,10 @@ type ImportDashboardRequest struct {
 func (m *ImportDashboardRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDashboard(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateInputs(formats); err != nil {
 		res = append(res, err)
 	}
@@ -52,6 +57,14 @@ func (m *ImportDashboardRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ImportDashboardRequest) validateDashboard(formats strfmt.Registry) error {
+	if swag.IsZero(m.Dashboard) { // not required
+		return nil
+	}
+
 	return nil
 }
 

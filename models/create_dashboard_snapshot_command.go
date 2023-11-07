@@ -11,6 +11,8 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // CreateDashboardSnapshotCommand create dashboard snapshot command
@@ -20,7 +22,7 @@ type CreateDashboardSnapshotCommand struct {
 
 	// dashboard
 	// Required: true
-	Dashboard JSON `json:"dashboard"`
+	Dashboard *custom_models.JSON `json:"dashboard"`
 
 	// Unique key used to delete the snapshot. It is different from the `key` so that only the creator can delete the snapshot. Required if `external` is `true`.
 	DeleteKey string `json:"deleteKey,omitempty"`
@@ -55,8 +57,8 @@ func (m *CreateDashboardSnapshotCommand) Validate(formats strfmt.Registry) error
 
 func (m *CreateDashboardSnapshotCommand) validateDashboard(formats strfmt.Registry) error {
 
-	if m.Dashboard == nil {
-		return errors.Required("dashboard", "body", nil)
+	if err := validate.Required("dashboard", "body", m.Dashboard); err != nil {
+		return err
 	}
 
 	return nil

@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // DataSource data source
@@ -40,7 +41,7 @@ type DataSource struct {
 	IsDefault bool `json:"isDefault,omitempty"`
 
 	// json data
-	JSONData JSON `json:"jsonData,omitempty"`
+	JSONData custom_models.JSON `json:"jsonData,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -88,6 +89,10 @@ func (m *DataSource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateJSONData(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -125,6 +130,14 @@ func (m *DataSource) validateAccessControl(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *DataSource) validateJSONData(formats strfmt.Registry) error {
+	if swag.IsZero(m.JSONData) { // not required
+		return nil
 	}
 
 	return nil

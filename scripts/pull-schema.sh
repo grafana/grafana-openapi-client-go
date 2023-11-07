@@ -14,6 +14,7 @@ SCHEMA="$(echo "${SCHEMA}" | jq 'del(.definitions.Item)')" # Old playlist item s
 SCHEMA="$(echo "${SCHEMA}" | jq '.responses.getPlaylistItemsResponse.schema.items["$ref"] = "#/definitions/PlaylistItem"')" # Currently pointing to Item (old PlaylistItem model)
 SCHEMA="$(echo "${SCHEMA}" | jq '.responses.updatePlaylistResponse.schema["$ref"] = "#/definitions/Playlist"')" # Currently pointing to Spec (Preferences)
 SCHEMA="$(echo "${SCHEMA}" | jq '.responses.getPlaylistResponse.schema["$ref"] = "#/definitions/Playlist"')" # Currently pointing to Spec (Preferences)
+SCHEMA="$(echo "${SCHEMA}" | jq '.definitions.Json["x-go-type"] = {type: "JSON", hints: {noValidation: true}, import: {package: "github.com/grafana/grafana-openapi-client-go/pkg/custom_models"}}')"
 
 
 # Write the schema to a file

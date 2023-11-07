@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // QueryHistoryDTO query history DTO
@@ -30,7 +32,7 @@ type QueryHistoryDTO struct {
 	DatasourceUID string `json:"datasourceUid,omitempty"`
 
 	// queries
-	Queries JSON `json:"queries,omitempty"`
+	Queries custom_models.JSON `json:"queries,omitempty"`
 
 	// starred
 	Starred bool `json:"starred,omitempty"`
@@ -41,6 +43,23 @@ type QueryHistoryDTO struct {
 
 // Validate validates this query history DTO
 func (m *QueryHistoryDTO) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateQueries(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *QueryHistoryDTO) validateQueries(formats strfmt.Registry) error {
+	if swag.IsZero(m.Queries) { // not required
+		return nil
+	}
+
 	return nil
 }
 

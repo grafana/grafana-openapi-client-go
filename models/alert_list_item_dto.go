@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // AlertListItemDTO alert list item DTO
@@ -29,7 +30,7 @@ type AlertListItemDTO struct {
 	DashboardUID string `json:"dashboardUid,omitempty"`
 
 	// eval data
-	EvalData JSON `json:"evalData,omitempty"`
+	EvalData custom_models.JSON `json:"evalData,omitempty"`
 
 	// eval date
 	// Format: date-time
@@ -62,6 +63,10 @@ type AlertListItemDTO struct {
 func (m *AlertListItemDTO) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEvalData(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEvalDate(formats); err != nil {
 		res = append(res, err)
 	}
@@ -77,6 +82,14 @@ func (m *AlertListItemDTO) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AlertListItemDTO) validateEvalData(formats strfmt.Registry) error {
+	if swag.IsZero(m.EvalData) { // not required
+		return nil
+	}
+
 	return nil
 }
 

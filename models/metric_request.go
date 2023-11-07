@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // MetricRequest metric request
@@ -33,7 +34,7 @@ type MetricRequest struct {
 	// queries.intervalMs - Specifies the time interval in milliseconds of time series. Is optional and defaults to 1000.
 	// Example: [{"datasource":{"uid":"PD8C576611E62080A"},"format":"table","intervalMs":86400000,"maxDataPoints":1092,"rawSql":"SELECT 1 as valueOne, 2 as valueTwo","refId":"A"}]
 	// Required: true
-	Queries []JSON `json:"queries"`
+	Queries []custom_models.JSON `json:"queries"`
 
 	// To End time in epoch timestamps in milliseconds or relative using Grafana time units.
 	// Example: now

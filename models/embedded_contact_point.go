@@ -13,6 +13,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // EmbeddedContactPoint EmbeddedContactPoint is the contact point type that is used
@@ -36,7 +37,7 @@ type EmbeddedContactPoint struct {
 
 	// settings
 	// Required: true
-	Settings JSON `json:"settings"`
+	Settings *custom_models.JSON `json:"settings"`
 
 	// type
 	// Example: webhook
@@ -77,8 +78,8 @@ func (m *EmbeddedContactPoint) Validate(formats strfmt.Registry) error {
 
 func (m *EmbeddedContactPoint) validateSettings(formats strfmt.Registry) error {
 
-	if m.Settings == nil {
-		return errors.Required("settings", "body", nil)
+	if err := validate.Required("settings", "body", m.Settings); err != nil {
+		return err
 	}
 
 	return nil

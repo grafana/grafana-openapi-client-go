@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+	"github.com/grafana/grafana-openapi-client-go/pkg/custom_models"
 )
 
 // PostAnnotationsCmd post annotations cmd
@@ -26,7 +27,7 @@ type PostAnnotationsCmd struct {
 	DashboardUID string `json:"dashboardUID,omitempty"`
 
 	// data
-	Data JSON `json:"data,omitempty"`
+	Data custom_models.JSON `json:"data,omitempty"`
 
 	// panel Id
 	PanelID int64 `json:"panelId,omitempty"`
@@ -49,6 +50,10 @@ type PostAnnotationsCmd struct {
 func (m *PostAnnotationsCmd) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateText(formats); err != nil {
 		res = append(res, err)
 	}
@@ -56,6 +61,14 @@ func (m *PostAnnotationsCmd) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *PostAnnotationsCmd) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
+		return nil
+	}
+
 	return nil
 }
 
