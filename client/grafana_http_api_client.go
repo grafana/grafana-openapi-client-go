@@ -10,6 +10,8 @@ package client
 
 import (
 	"crypto/tls"
+	"encoding/json"
+	"io"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -399,5 +401,11 @@ func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
 	}
 
 	tr.DefaultAuthentication = httptransport.Compose(auth...)
+
+	// The default runtime.JSONConsumer uses `json.Number` for numbers which is unwieldy to use.
+	tr.Consumers[runtime.JSONMime] = runtime.ConsumerFunc(func(reader io.Reader, data interface{}) error {
+		return json.NewDecoder(reader).Decode(data)
+	})
+
 	return tr
 }
