@@ -113,6 +113,7 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli := new(GrafanaHTTPAPI)
 	cli.cfg = cfg
 	cli.Transport = transport
+	cli.formats = formats
 	cli.AccessControl = access_control.New(transport, formats)
 	cli.AccessControlProvisioning = access_control_provisioning.New(transport, formats)
 	cli.Admin = admin.New(transport, formats)
@@ -156,6 +157,13 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.UserPreferences = user_preferences.New(transport, formats)
 	cli.Users = users.New(transport, formats)
 	return cli
+}
+
+// Clone creates a clone of the grafana HTTP API client.
+// This new client can then be modified independently of the original client with the With* methods.
+func (c *GrafanaHTTPAPI) Clone() *GrafanaHTTPAPI {
+	cfg := *c.cfg
+	return New(c.Transport, &cfg, c.formats)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -306,7 +314,8 @@ type GrafanaHTTPAPI struct {
 
 	Transport runtime.ClientTransport
 	// cfg is private because it should only be read (for example, to get the OrgID) or set (and then the transport must be created again)
-	cfg *TransportConfig
+	cfg     *TransportConfig
+	formats strfmt.Registry
 }
 
 // SetTransport changes the transport on the client and all its subresources
