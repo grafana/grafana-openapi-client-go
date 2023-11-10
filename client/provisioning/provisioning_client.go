@@ -30,82 +30,82 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	RouteDeleteAlertRule(params *RouteDeleteAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteAlertRuleNoContent, error)
+	DeleteAlertRule(params *DeleteAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
 
-	RouteDeleteContactpoints(params *RouteDeleteContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteContactpointsNoContent, error)
+	DeleteContactpoints(params *DeleteContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
 
-	RouteDeleteMuteTiming(params *RouteDeleteMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteMuteTimingNoContent, error)
+	DeleteMuteTiming(params *DeleteMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
 
-	RouteDeleteTemplate(params *RouteDeleteTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteTemplateNoContent, error)
+	DeleteTemplate(params *DeleteTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTemplateNoContent, error)
 
-	RouteGetAlertRule(params *RouteGetAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleOK, error)
+	GetAlertRule(params *GetAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleOK, error)
 
-	RouteGetAlertRuleExport(params *RouteGetAlertRuleExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleExportOK, error)
+	GetAlertRuleExport(params *GetAlertRuleExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleExportOK, error)
 
-	RouteGetAlertRuleGroup(params *RouteGetAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleGroupOK, error)
+	GetAlertRuleGroup(params *GetAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleGroupOK, error)
 
-	RouteGetAlertRuleGroupExport(params *RouteGetAlertRuleGroupExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleGroupExportOK, error)
+	GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error)
 
-	RouteGetAlertRules(params *RouteGetAlertRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRulesOK, error)
+	GetAlertRules(params *GetAlertRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRulesOK, error)
 
-	RouteGetAlertRulesExport(params *RouteGetAlertRulesExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRulesExportOK, error)
+	GetAlertRulesExport(params *GetAlertRulesExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRulesExportOK, error)
 
-	RouteGetContactpoints(params *RouteGetContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetContactpointsOK, error)
+	GetContactpoints(params *GetContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContactpointsOK, error)
 
-	RouteGetContactpointsExport(params *RouteGetContactpointsExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetContactpointsExportOK, error)
+	GetContactpointsExport(params *GetContactpointsExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContactpointsExportOK, error)
 
-	RouteGetMuteTiming(params *RouteGetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingOK, error)
+	GetMuteTiming(params *GetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMuteTimingOK, error)
 
-	RouteGetMuteTimings(params *RouteGetMuteTimingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingsOK, error)
+	GetMuteTimings(params *GetMuteTimingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMuteTimingsOK, error)
 
-	RouteGetPolicyTree(params *RouteGetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetPolicyTreeOK, error)
+	GetPolicyTree(params *GetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyTreeOK, error)
 
-	RouteGetPolicyTreeExport(params *RouteGetPolicyTreeExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetPolicyTreeExportOK, error)
+	GetPolicyTreeExport(params *GetPolicyTreeExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyTreeExportOK, error)
 
-	RouteGetTemplate(params *RouteGetTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetTemplateOK, error)
+	GetTemplate(params *GetTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTemplateOK, error)
 
-	RouteGetTemplates(params *RouteGetTemplatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetTemplatesOK, error)
+	GetTemplates(params *GetTemplatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTemplatesOK, error)
 
-	RoutePostAlertRule(params *RoutePostAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostAlertRuleCreated, error)
+	PostAlertRule(params *PostAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertRuleCreated, error)
 
-	RoutePostContactpoints(params *RoutePostContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostContactpointsAccepted, error)
+	PostContactpoints(params *PostContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostContactpointsAccepted, error)
 
-	RoutePostMuteTiming(params *RoutePostMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostMuteTimingCreated, error)
+	PostMuteTiming(params *PostMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostMuteTimingCreated, error)
 
-	RoutePutAlertRule(params *RoutePutAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutAlertRuleOK, error)
+	PutAlertRule(params *PutAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertRuleOK, error)
 
-	RoutePutAlertRuleGroup(params *RoutePutAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutAlertRuleGroupOK, error)
+	PutAlertRuleGroup(params *PutAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertRuleGroupOK, error)
 
-	RoutePutContactpoint(params *RoutePutContactpointParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutContactpointAccepted, error)
+	PutContactpoint(params *PutContactpointParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutContactpointAccepted, error)
 
-	RoutePutMuteTiming(params *RoutePutMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutMuteTimingOK, error)
+	PutMuteTiming(params *PutMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutMuteTimingOK, error)
 
-	RoutePutPolicyTree(params *RoutePutPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutPolicyTreeAccepted, error)
+	PutPolicyTree(params *PutPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutPolicyTreeAccepted, error)
 
-	RoutePutTemplate(params *RoutePutTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutTemplateAccepted, error)
+	PutTemplate(params *PutTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutTemplateAccepted, error)
 
-	RouteResetPolicyTree(params *RouteResetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteResetPolicyTreeAccepted, error)
+	ResetPolicyTree(params *ResetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ResetPolicyTreeAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-RouteDeleteAlertRule deletes a specific alert rule by UID
+DeleteAlertRule deletes a specific alert rule by UID
 */
-func (a *Client) RouteDeleteAlertRule(params *RouteDeleteAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteAlertRuleNoContent, error) {
+func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteDeleteAlertRuleParams()
+		params = NewDeleteAlertRuleParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteDeleteAlertRule",
+		ID:                 "DeleteAlertRule",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/provisioning/alert-rules/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteDeleteAlertRuleReader{formats: a.formats},
+		Reader:             &DeleteAlertRuleReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -118,33 +118,33 @@ func (a *Client) RouteDeleteAlertRule(params *RouteDeleteAlertRuleParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteDeleteAlertRuleNoContent)
+	success, ok := result.(*DeleteAlertRuleNoContent)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteDeleteAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for DeleteAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteDeleteContactpoints deletes a contact point
+DeleteContactpoints deletes a contact point
 */
-func (a *Client) RouteDeleteContactpoints(params *RouteDeleteContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteContactpointsNoContent, error) {
+func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteContactpointsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteDeleteContactpointsParams()
+		params = NewDeleteContactpointsParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteDeleteContactpoints",
+		ID:                 "DeleteContactpoints",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/provisioning/contact-points/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteDeleteContactpointsReader{formats: a.formats},
+		Reader:             &DeleteContactpointsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -157,33 +157,33 @@ func (a *Client) RouteDeleteContactpoints(params *RouteDeleteContactpointsParams
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteDeleteContactpointsNoContent)
+	success, ok := result.(*DeleteContactpointsNoContent)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteDeleteContactpoints: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for DeleteContactpoints: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteDeleteMuteTiming deletes a mute timing
+DeleteMuteTiming deletes a mute timing
 */
-func (a *Client) RouteDeleteMuteTiming(params *RouteDeleteMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteMuteTimingNoContent, error) {
+func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteDeleteMuteTimingParams()
+		params = NewDeleteMuteTimingParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteDeleteMuteTiming",
+		ID:                 "DeleteMuteTiming",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/provisioning/mute-timings/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteDeleteMuteTimingReader{formats: a.formats},
+		Reader:             &DeleteMuteTimingReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -196,33 +196,33 @@ func (a *Client) RouteDeleteMuteTiming(params *RouteDeleteMuteTimingParams, auth
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteDeleteMuteTimingNoContent)
+	success, ok := result.(*DeleteMuteTimingNoContent)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteDeleteMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for DeleteMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteDeleteTemplate deletes a template
+DeleteTemplate deletes a template
 */
-func (a *Client) RouteDeleteTemplate(params *RouteDeleteTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteDeleteTemplateNoContent, error) {
+func (a *Client) DeleteTemplate(params *DeleteTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteDeleteTemplateParams()
+		params = NewDeleteTemplateParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteDeleteTemplate",
+		ID:                 "DeleteTemplate",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/provisioning/templates/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteDeleteTemplateReader{formats: a.formats},
+		Reader:             &DeleteTemplateReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -235,33 +235,33 @@ func (a *Client) RouteDeleteTemplate(params *RouteDeleteTemplateParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteDeleteTemplateNoContent)
+	success, ok := result.(*DeleteTemplateNoContent)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteDeleteTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for DeleteTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetAlertRule gets a specific alert rule by UID
+GetAlertRule gets a specific alert rule by UID
 */
-func (a *Client) RouteGetAlertRule(params *RouteGetAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleOK, error) {
+func (a *Client) GetAlertRule(params *GetAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetAlertRuleParams()
+		params = NewGetAlertRuleParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetAlertRule",
+		ID:                 "GetAlertRule",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/alert-rules/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetAlertRuleReader{formats: a.formats},
+		Reader:             &GetAlertRuleReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -274,33 +274,33 @@ func (a *Client) RouteGetAlertRule(params *RouteGetAlertRuleParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetAlertRuleOK)
+	success, ok := result.(*GetAlertRuleOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetAlertRuleExport exports an alert rule in provisioning file format
+GetAlertRuleExport exports an alert rule in provisioning file format
 */
-func (a *Client) RouteGetAlertRuleExport(params *RouteGetAlertRuleExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleExportOK, error) {
+func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleExportOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetAlertRuleExportParams()
+		params = NewGetAlertRuleExportParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetAlertRuleExport",
+		ID:                 "GetAlertRuleExport",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/alert-rules/{UID}/export",
 		ProducesMediaTypes: []string{"application/json", "application/yaml", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetAlertRuleExportReader{formats: a.formats},
+		Reader:             &GetAlertRuleExportReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -313,33 +313,33 @@ func (a *Client) RouteGetAlertRuleExport(params *RouteGetAlertRuleExportParams, 
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetAlertRuleExportOK)
+	success, ok := result.(*GetAlertRuleExportOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetAlertRuleExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetAlertRuleExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetAlertRuleGroup gets a rule group
+GetAlertRuleGroup gets a rule group
 */
-func (a *Client) RouteGetAlertRuleGroup(params *RouteGetAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleGroupOK, error) {
+func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetAlertRuleGroupParams()
+		params = NewGetAlertRuleGroupParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetAlertRuleGroup",
+		ID:                 "GetAlertRuleGroup",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetAlertRuleGroupReader{formats: a.formats},
+		Reader:             &GetAlertRuleGroupReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -352,33 +352,33 @@ func (a *Client) RouteGetAlertRuleGroup(params *RouteGetAlertRuleGroupParams, au
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetAlertRuleGroupOK)
+	success, ok := result.(*GetAlertRuleGroupOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetAlertRuleGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetAlertRuleGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetAlertRuleGroupExport exports an alert rule group in provisioning file format
+GetAlertRuleGroupExport exports an alert rule group in provisioning file format
 */
-func (a *Client) RouteGetAlertRuleGroupExport(params *RouteGetAlertRuleGroupExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRuleGroupExportOK, error) {
+func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetAlertRuleGroupExportParams()
+		params = NewGetAlertRuleGroupExportParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetAlertRuleGroupExport",
+		ID:                 "GetAlertRuleGroupExport",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export",
 		ProducesMediaTypes: []string{"application/json", "application/yaml", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetAlertRuleGroupExportReader{formats: a.formats},
+		Reader:             &GetAlertRuleGroupExportReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -391,33 +391,33 @@ func (a *Client) RouteGetAlertRuleGroupExport(params *RouteGetAlertRuleGroupExpo
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetAlertRuleGroupExportOK)
+	success, ok := result.(*GetAlertRuleGroupExportOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetAlertRuleGroupExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetAlertRuleGroupExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetAlertRules gets all the alert rules
+GetAlertRules gets all the alert rules
 */
-func (a *Client) RouteGetAlertRules(params *RouteGetAlertRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRulesOK, error) {
+func (a *Client) GetAlertRules(params *GetAlertRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRulesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetAlertRulesParams()
+		params = NewGetAlertRulesParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetAlertRules",
+		ID:                 "GetAlertRules",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/alert-rules",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetAlertRulesReader{formats: a.formats},
+		Reader:             &GetAlertRulesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -430,33 +430,33 @@ func (a *Client) RouteGetAlertRules(params *RouteGetAlertRulesParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetAlertRulesOK)
+	success, ok := result.(*GetAlertRulesOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetAlertRules: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetAlertRules: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetAlertRulesExport exports all alert rules in provisioning file format
+GetAlertRulesExport exports all alert rules in provisioning file format
 */
-func (a *Client) RouteGetAlertRulesExport(params *RouteGetAlertRulesExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetAlertRulesExportOK, error) {
+func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRulesExportOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetAlertRulesExportParams()
+		params = NewGetAlertRulesExportParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetAlertRulesExport",
+		ID:                 "GetAlertRulesExport",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/alert-rules/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetAlertRulesExportReader{formats: a.formats},
+		Reader:             &GetAlertRulesExportReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -469,33 +469,33 @@ func (a *Client) RouteGetAlertRulesExport(params *RouteGetAlertRulesExportParams
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetAlertRulesExportOK)
+	success, ok := result.(*GetAlertRulesExportOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetAlertRulesExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetAlertRulesExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetContactpoints gets all the contact points
+GetContactpoints gets all the contact points
 */
-func (a *Client) RouteGetContactpoints(params *RouteGetContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetContactpointsOK, error) {
+func (a *Client) GetContactpoints(params *GetContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContactpointsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetContactpointsParams()
+		params = NewGetContactpointsParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetContactpoints",
+		ID:                 "GetContactpoints",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/contact-points",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetContactpointsReader{formats: a.formats},
+		Reader:             &GetContactpointsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -508,33 +508,33 @@ func (a *Client) RouteGetContactpoints(params *RouteGetContactpointsParams, auth
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetContactpointsOK)
+	success, ok := result.(*GetContactpointsOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetContactpoints: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetContactpoints: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetContactpointsExport exports all contact points in provisioning file format
+GetContactpointsExport exports all contact points in provisioning file format
 */
-func (a *Client) RouteGetContactpointsExport(params *RouteGetContactpointsExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetContactpointsExportOK, error) {
+func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContactpointsExportOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetContactpointsExportParams()
+		params = NewGetContactpointsExportParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetContactpointsExport",
+		ID:                 "GetContactpointsExport",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/contact-points/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetContactpointsExportReader{formats: a.formats},
+		Reader:             &GetContactpointsExportReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -547,33 +547,33 @@ func (a *Client) RouteGetContactpointsExport(params *RouteGetContactpointsExport
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetContactpointsExportOK)
+	success, ok := result.(*GetContactpointsExportOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetContactpointsExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetContactpointsExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetMuteTiming gets a mute timing
+GetMuteTiming gets a mute timing
 */
-func (a *Client) RouteGetMuteTiming(params *RouteGetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingOK, error) {
+func (a *Client) GetMuteTiming(params *GetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMuteTimingOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetMuteTimingParams()
+		params = NewGetMuteTimingParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetMuteTiming",
+		ID:                 "GetMuteTiming",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/mute-timings/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetMuteTimingReader{formats: a.formats},
+		Reader:             &GetMuteTimingReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -586,33 +586,33 @@ func (a *Client) RouteGetMuteTiming(params *RouteGetMuteTimingParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetMuteTimingOK)
+	success, ok := result.(*GetMuteTimingOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetMuteTimings gets all the mute timings
+GetMuteTimings gets all the mute timings
 */
-func (a *Client) RouteGetMuteTimings(params *RouteGetMuteTimingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetMuteTimingsOK, error) {
+func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMuteTimingsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetMuteTimingsParams()
+		params = NewGetMuteTimingsParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetMuteTimings",
+		ID:                 "GetMuteTimings",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/mute-timings",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetMuteTimingsReader{formats: a.formats},
+		Reader:             &GetMuteTimingsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -625,33 +625,33 @@ func (a *Client) RouteGetMuteTimings(params *RouteGetMuteTimingsParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetMuteTimingsOK)
+	success, ok := result.(*GetMuteTimingsOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetMuteTimings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetMuteTimings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetPolicyTree gets the notification policy tree
+GetPolicyTree gets the notification policy tree
 */
-func (a *Client) RouteGetPolicyTree(params *RouteGetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetPolicyTreeOK, error) {
+func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyTreeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetPolicyTreeParams()
+		params = NewGetPolicyTreeParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetPolicyTree",
+		ID:                 "GetPolicyTree",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetPolicyTreeReader{formats: a.formats},
+		Reader:             &GetPolicyTreeReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -664,33 +664,33 @@ func (a *Client) RouteGetPolicyTree(params *RouteGetPolicyTreeParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetPolicyTreeOK)
+	success, ok := result.(*GetPolicyTreeOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetPolicyTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetPolicyTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetPolicyTreeExport exports the notification policy tree in provisioning file format
+GetPolicyTreeExport exports the notification policy tree in provisioning file format
 */
-func (a *Client) RouteGetPolicyTreeExport(params *RouteGetPolicyTreeExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetPolicyTreeExportOK, error) {
+func (a *Client) GetPolicyTreeExport(params *GetPolicyTreeExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyTreeExportOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetPolicyTreeExportParams()
+		params = NewGetPolicyTreeExportParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetPolicyTreeExport",
+		ID:                 "GetPolicyTreeExport",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/policies/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetPolicyTreeExportReader{formats: a.formats},
+		Reader:             &GetPolicyTreeExportReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -703,33 +703,33 @@ func (a *Client) RouteGetPolicyTreeExport(params *RouteGetPolicyTreeExportParams
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetPolicyTreeExportOK)
+	success, ok := result.(*GetPolicyTreeExportOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetPolicyTreeExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetPolicyTreeExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetTemplate gets a notification template
+GetTemplate gets a notification template
 */
-func (a *Client) RouteGetTemplate(params *RouteGetTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetTemplateOK, error) {
+func (a *Client) GetTemplate(params *GetTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTemplateOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetTemplateParams()
+		params = NewGetTemplateParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetTemplate",
+		ID:                 "GetTemplate",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/templates/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetTemplateReader{formats: a.formats},
+		Reader:             &GetTemplateReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -742,33 +742,33 @@ func (a *Client) RouteGetTemplate(params *RouteGetTemplateParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetTemplateOK)
+	success, ok := result.(*GetTemplateOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteGetTemplates gets all notification templates
+GetTemplates gets all notification templates
 */
-func (a *Client) RouteGetTemplates(params *RouteGetTemplatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteGetTemplatesOK, error) {
+func (a *Client) GetTemplates(params *GetTemplatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTemplatesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteGetTemplatesParams()
+		params = NewGetTemplatesParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteGetTemplates",
+		ID:                 "GetTemplates",
 		Method:             "GET",
 		PathPattern:        "/api/v1/provisioning/templates",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteGetTemplatesReader{formats: a.formats},
+		Reader:             &GetTemplatesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -781,33 +781,33 @@ func (a *Client) RouteGetTemplates(params *RouteGetTemplatesParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteGetTemplatesOK)
+	success, ok := result.(*GetTemplatesOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteGetTemplates: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetTemplates: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePostAlertRule creates a new alert rule
+PostAlertRule creates a new alert rule
 */
-func (a *Client) RoutePostAlertRule(params *RoutePostAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostAlertRuleCreated, error) {
+func (a *Client) PostAlertRule(params *PostAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertRuleCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePostAlertRuleParams()
+		params = NewPostAlertRuleParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePostAlertRule",
+		ID:                 "PostAlertRule",
 		Method:             "POST",
 		PathPattern:        "/api/v1/provisioning/alert-rules",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePostAlertRuleReader{formats: a.formats},
+		Reader:             &PostAlertRuleReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -820,33 +820,33 @@ func (a *Client) RoutePostAlertRule(params *RoutePostAlertRuleParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePostAlertRuleCreated)
+	success, ok := result.(*PostAlertRuleCreated)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePostAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PostAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePostContactpoints creates a contact point
+PostContactpoints creates a contact point
 */
-func (a *Client) RoutePostContactpoints(params *RoutePostContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostContactpointsAccepted, error) {
+func (a *Client) PostContactpoints(params *PostContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostContactpointsAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePostContactpointsParams()
+		params = NewPostContactpointsParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePostContactpoints",
+		ID:                 "PostContactpoints",
 		Method:             "POST",
 		PathPattern:        "/api/v1/provisioning/contact-points",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePostContactpointsReader{formats: a.formats},
+		Reader:             &PostContactpointsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -859,33 +859,33 @@ func (a *Client) RoutePostContactpoints(params *RoutePostContactpointsParams, au
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePostContactpointsAccepted)
+	success, ok := result.(*PostContactpointsAccepted)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePostContactpoints: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PostContactpoints: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePostMuteTiming creates a new mute timing
+PostMuteTiming creates a new mute timing
 */
-func (a *Client) RoutePostMuteTiming(params *RoutePostMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePostMuteTimingCreated, error) {
+func (a *Client) PostMuteTiming(params *PostMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostMuteTimingCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePostMuteTimingParams()
+		params = NewPostMuteTimingParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePostMuteTiming",
+		ID:                 "PostMuteTiming",
 		Method:             "POST",
 		PathPattern:        "/api/v1/provisioning/mute-timings",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePostMuteTimingReader{formats: a.formats},
+		Reader:             &PostMuteTimingReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -898,33 +898,33 @@ func (a *Client) RoutePostMuteTiming(params *RoutePostMuteTimingParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePostMuteTimingCreated)
+	success, ok := result.(*PostMuteTimingCreated)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePostMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PostMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePutAlertRule updates an existing alert rule
+PutAlertRule updates an existing alert rule
 */
-func (a *Client) RoutePutAlertRule(params *RoutePutAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutAlertRuleOK, error) {
+func (a *Client) PutAlertRule(params *PutAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertRuleOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePutAlertRuleParams()
+		params = NewPutAlertRuleParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePutAlertRule",
+		ID:                 "PutAlertRule",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/provisioning/alert-rules/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePutAlertRuleReader{formats: a.formats},
+		Reader:             &PutAlertRuleReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -937,33 +937,33 @@ func (a *Client) RoutePutAlertRule(params *RoutePutAlertRuleParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePutAlertRuleOK)
+	success, ok := result.(*PutAlertRuleOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePutAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PutAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePutAlertRuleGroup updates the interval of a rule group
+PutAlertRuleGroup updates the interval of a rule group
 */
-func (a *Client) RoutePutAlertRuleGroup(params *RoutePutAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutAlertRuleGroupOK, error) {
+func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertRuleGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePutAlertRuleGroupParams()
+		params = NewPutAlertRuleGroupParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePutAlertRuleGroup",
+		ID:                 "PutAlertRuleGroup",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePutAlertRuleGroupReader{formats: a.formats},
+		Reader:             &PutAlertRuleGroupReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -976,33 +976,33 @@ func (a *Client) RoutePutAlertRuleGroup(params *RoutePutAlertRuleGroupParams, au
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePutAlertRuleGroupOK)
+	success, ok := result.(*PutAlertRuleGroupOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePutAlertRuleGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PutAlertRuleGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePutContactpoint updates an existing contact point
+PutContactpoint updates an existing contact point
 */
-func (a *Client) RoutePutContactpoint(params *RoutePutContactpointParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutContactpointAccepted, error) {
+func (a *Client) PutContactpoint(params *PutContactpointParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutContactpointAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePutContactpointParams()
+		params = NewPutContactpointParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePutContactpoint",
+		ID:                 "PutContactpoint",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/provisioning/contact-points/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePutContactpointReader{formats: a.formats},
+		Reader:             &PutContactpointReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1015,33 +1015,33 @@ func (a *Client) RoutePutContactpoint(params *RoutePutContactpointParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePutContactpointAccepted)
+	success, ok := result.(*PutContactpointAccepted)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePutContactpoint: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PutContactpoint: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePutMuteTiming replaces an existing mute timing
+PutMuteTiming replaces an existing mute timing
 */
-func (a *Client) RoutePutMuteTiming(params *RoutePutMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutMuteTimingOK, error) {
+func (a *Client) PutMuteTiming(params *PutMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutMuteTimingOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePutMuteTimingParams()
+		params = NewPutMuteTimingParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePutMuteTiming",
+		ID:                 "PutMuteTiming",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/provisioning/mute-timings/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePutMuteTimingReader{formats: a.formats},
+		Reader:             &PutMuteTimingReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1054,33 +1054,33 @@ func (a *Client) RoutePutMuteTiming(params *RoutePutMuteTimingParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePutMuteTimingOK)
+	success, ok := result.(*PutMuteTimingOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePutMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PutMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePutPolicyTree sets the notification policy tree
+PutPolicyTree sets the notification policy tree
 */
-func (a *Client) RoutePutPolicyTree(params *RoutePutPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutPolicyTreeAccepted, error) {
+func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutPolicyTreeAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePutPolicyTreeParams()
+		params = NewPutPolicyTreeParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePutPolicyTree",
+		ID:                 "PutPolicyTree",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/provisioning/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePutPolicyTreeReader{formats: a.formats},
+		Reader:             &PutPolicyTreeReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1093,33 +1093,33 @@ func (a *Client) RoutePutPolicyTree(params *RoutePutPolicyTreeParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePutPolicyTreeAccepted)
+	success, ok := result.(*PutPolicyTreeAccepted)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePutPolicyTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PutPolicyTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RoutePutTemplate updates an existing notification template
+PutTemplate updates an existing notification template
 */
-func (a *Client) RoutePutTemplate(params *RoutePutTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RoutePutTemplateAccepted, error) {
+func (a *Client) PutTemplate(params *PutTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutTemplateAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRoutePutTemplateParams()
+		params = NewPutTemplateParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RoutePutTemplate",
+		ID:                 "PutTemplate",
 		Method:             "PUT",
 		PathPattern:        "/api/v1/provisioning/templates/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RoutePutTemplateReader{formats: a.formats},
+		Reader:             &PutTemplateReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1132,33 +1132,33 @@ func (a *Client) RoutePutTemplate(params *RoutePutTemplateParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RoutePutTemplateAccepted)
+	success, ok := result.(*PutTemplateAccepted)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RoutePutTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PutTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-RouteResetPolicyTree clears the notification policy tree
+ResetPolicyTree clears the notification policy tree
 */
-func (a *Client) RouteResetPolicyTree(params *RouteResetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RouteResetPolicyTreeAccepted, error) {
+func (a *Client) ResetPolicyTree(params *ResetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ResetPolicyTreeAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRouteResetPolicyTreeParams()
+		params = NewResetPolicyTreeParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "RouteResetPolicyTree",
+		ID:                 "ResetPolicyTree",
 		Method:             "DELETE",
 		PathPattern:        "/api/v1/provisioning/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &RouteResetPolicyTreeReader{formats: a.formats},
+		Reader:             &ResetPolicyTreeReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1171,13 +1171,13 @@ func (a *Client) RouteResetPolicyTree(params *RouteResetPolicyTreeParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RouteResetPolicyTreeAccepted)
+	success, ok := result.(*ResetPolicyTreeAccepted)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RouteResetPolicyTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for ResetPolicyTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
