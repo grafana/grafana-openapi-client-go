@@ -77,10 +77,18 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
   cli := new({{ pascalize .Name }})
   cli.cfg = cfg
   cli.Transport = transport
+  cli.formats = formats
   {{- range .OperationGroups }}
   cli.{{ pascalize .Name }} = {{ .PackageAlias }}.New(transport, formats)
   {{- end }}
   return cli
+}
+
+// Clone creates a clone of the {{ humanize .Name }} client.
+// This new client can then be modified independently of the original client with the With* methods.
+func (c *GrafanaHTTPAPI) Clone() *GrafanaHTTPAPI {
+	cfg := *c.cfg
+	return New(c.Transport, &cfg, c.formats)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -151,6 +159,7 @@ type {{ pascalize .Name }} struct {
   Transport runtime.ClientTransport
   // cfg is private because it should only be read (for example, to get the OrgID) or set (and then the transport must be created again)
   cfg *TransportConfig
+  formats strfmt.Registry
 }
 
 // SetTransport changes the transport on the client and all its subresources
