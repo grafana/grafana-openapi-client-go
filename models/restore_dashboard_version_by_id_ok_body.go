@@ -22,7 +22,7 @@ type RestoreDashboardVersionByIDOKBody struct {
 	// ID The unique identifier (id) of the created/updated dashboard.
 	// Example: 1
 	// Required: true
-	ID *string `json:"id"`
+	ID *int64 `json:"id"`
 
 	// Status status of the response.
 	// Example: success
