@@ -8,13 +8,19 @@ SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/${GRAFANA
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
-SCHEMA="$(echo "${SCHEMA}" | jq '.definitions.ItemDTO["x-go-name"] = "Annotation"')"
-SCHEMA="$(echo "${SCHEMA}" | jq '.definitions.Spec["x-go-name"] = "Preferences"')"
-SCHEMA="$(echo "${SCHEMA}" | jq 'del(.definitions.Item)')" # Old playlist item schema, PlaylistItem is more up to date
-SCHEMA="$(echo "${SCHEMA}" | jq '.responses.getPlaylistItemsResponse.schema.items["$ref"] = "#/definitions/PlaylistItem"')" # Currently pointing to Item (old PlaylistItem model)
-SCHEMA="$(echo "${SCHEMA}" | jq '.responses.updatePlaylistResponse.schema["$ref"] = "#/definitions/Playlist"')" # Currently pointing to Spec (Preferences)
-SCHEMA="$(echo "${SCHEMA}" | jq '.responses.getPlaylistResponse.schema["$ref"] = "#/definitions/Playlist"')" # Currently pointing to Spec (Preferences)
-SCHEMA="$(echo "${SCHEMA}" | jq '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)')" # Remove "Route" prefixes to operation IDs (ex: RouteGetxxx)
+modify() {
+    SCHEMA="$(echo "${SCHEMA}" | jq "${1}")"
+}
+
+modify '.definitions.ItemDTO["x-go-name"] = "Annotation"'
+modify '.definitions.Spec["x-go-name"] = "Preferences"'
+modify 'del(.definitions.Item)' # Old playlist item schema, PlaylistItem is more up to date
+modify '.responses.getPlaylistItemsResponse.schema.items["$ref"] = "#/definitions/PlaylistItem"' # Currently pointing to Item (old PlaylistItem model)
+modify '.responses.updatePlaylistResponse.schema["$ref"] = "#/definitions/Playlist"' # Currently pointing to Spec (Preferences)
+modify '.responses.getPlaylistResponse.schema["$ref"] = "#/definitions/Playlist"' # Currently pointing to Spec (Preferences)
+modify '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)' # Remove "Route" prefixes to operation IDs (ex: RouteGetxxx)
+modify '.responses.postDashboardResponse.schema.properties.id.type = "integer"' # Currently string, should be integer
+modify '.responses.postDashboardResponse.schema.properties.id.format = "int64"'
 
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
