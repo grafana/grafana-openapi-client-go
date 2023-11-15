@@ -36,7 +36,8 @@ modify '.responses.listTokensResponse.schema = {
     }
 }'
 
-# TODO: PR
+# This endpoint should return an array of LibraryElementDTOs, not a single LibraryElementDTO
+# Fixed in the grafana repo here: https://github.com/grafana/grafana/pull/78221
 modify '.paths["/library-elements/name/{library_element_name}"].get.responses["200"]["$ref"] = "#/responses/getLibraryElementArrayResponse"'
 modify '.definitions.LibraryElementArrayResponse = {
     "type": "object",
