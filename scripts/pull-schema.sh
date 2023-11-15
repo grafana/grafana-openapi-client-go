@@ -21,6 +21,7 @@ modify '.responses.getPlaylistResponse.schema["$ref"] = "#/definitions/Playlist"
 modify '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)' # Remove "Route" prefixes to operation IDs (ex: RouteGetxxx)
 modify '.responses.postDashboardResponse.schema.properties.id.type = "integer"' # Currently string, should be integer
 modify '.responses.postDashboardResponse.schema.properties.id.format = "int64"'
+modify '.responses.listTokensResponse.schema = {"type": "array", "items": {"$ref": "#/definitions/TokenDTO" }}' # Currently set as a single TokenDTO, not an array
 
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"

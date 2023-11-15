@@ -69,7 +69,7 @@ ListTokensOK describes a response with status code 200, with default header valu
 (empty)
 */
 type ListTokensOK struct {
-	Payload *models.TokenDTO
+	Payload []*models.TokenDTO
 }
 
 // IsSuccess returns true when this list tokens Ok response has a 2xx status code
@@ -110,16 +110,14 @@ func (o *ListTokensOK) String() string {
 	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensOk  %+v", 200, o.Payload)
 }
 
-func (o *ListTokensOK) GetPayload() *models.TokenDTO {
+func (o *ListTokensOK) GetPayload() []*models.TokenDTO {
 	return o.Payload
 }
 
 func (o *ListTokensOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.TokenDTO)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
