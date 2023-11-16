@@ -47,7 +47,8 @@ type ProvisionedAlertRule struct {
 
 	// for
 	// Required: true
-	For *Duration `json:"for"`
+	// Format: duration
+	For *strfmt.Duration `json:"for"`
 
 	// id
 	ID int64 `json:"id,omitempty"`
@@ -253,19 +254,8 @@ func (m *ProvisionedAlertRule) validateFor(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := validate.Required("for", "body", m.For); err != nil {
+	if err := validate.FormatOf("for", "body", "duration", m.For.String(), formats); err != nil {
 		return err
-	}
-
-	if m.For != nil {
-		if err := m.For.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("for")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("for")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -417,10 +407,6 @@ func (m *ProvisionedAlertRule) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateFor(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateProvenance(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -455,23 +441,6 @@ func (m *ProvisionedAlertRule) contextValidateData(ctx context.Context, formats 
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ProvisionedAlertRule) contextValidateFor(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.For != nil {
-
-		if err := m.For.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("for")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("for")
-			}
-			return err
-		}
 	}
 
 	return nil

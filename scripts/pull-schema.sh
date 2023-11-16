@@ -70,5 +70,10 @@ modify '.paths = (.paths | with_entries(.key |= sub("^/api"; "")))'
 # TODO: Upstream fix
 modify '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)' 
 
+modify '.definitions.ProvisionedAlertRule.properties.for = {
+    "type": "string",
+    "format": "duration"
+}'
+
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
