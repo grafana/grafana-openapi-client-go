@@ -30,7 +30,7 @@ func (o *GetAlertRulesReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/alert-rules] GetAlertRules", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/alert-rules] GetAlertRules", response, response.Code())
 	}
 }
 
@@ -79,11 +79,11 @@ func (o *GetAlertRulesOK) Code() int {
 }
 
 func (o *GetAlertRulesOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules][%d] getAlertRulesOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules][%d] getAlertRulesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRulesOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules][%d] getAlertRulesOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules][%d] getAlertRulesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRulesOK) GetPayload() models.ProvisionedAlertRules {

@@ -30,7 +30,7 @@ func (o *GetPolicyTreeReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/policies] GetPolicyTree", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/policies] GetPolicyTree", response, response.Code())
 	}
 }
 
@@ -79,11 +79,11 @@ func (o *GetPolicyTreeOK) Code() int {
 }
 
 func (o *GetPolicyTreeOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/policies][%d] getPolicyTreeOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies][%d] getPolicyTreeOk  %+v", 200, o.Payload)
 }
 
 func (o *GetPolicyTreeOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/policies][%d] getPolicyTreeOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies][%d] getPolicyTreeOk  %+v", 200, o.Payload)
 }
 
 func (o *GetPolicyTreeOK) GetPayload() *models.Route {

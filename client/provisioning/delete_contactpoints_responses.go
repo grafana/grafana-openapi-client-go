@@ -27,7 +27,7 @@ func (o *DeleteContactpointsReader) ReadResponse(response runtime.ClientResponse
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[DELETE /api/v1/provisioning/contact-points/{UID}] DeleteContactpoints", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /v1/provisioning/contact-points/{UID}] DeleteContactpoints", response, response.Code())
 	}
 }
 
@@ -75,11 +75,11 @@ func (o *DeleteContactpointsNoContent) Code() int {
 }
 
 func (o *DeleteContactpointsNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/provisioning/contact-points/{UID}][%d] deleteContactpointsNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsNoContent ", 204)
 }
 
 func (o *DeleteContactpointsNoContent) String() string {
-	return fmt.Sprintf("[DELETE /api/v1/provisioning/contact-points/{UID}][%d] deleteContactpointsNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsNoContent ", 204)
 }
 
 func (o *DeleteContactpointsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

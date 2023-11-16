@@ -36,7 +36,7 @@ func (o *GetAlertRuleReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/alert-rules/{UID}] GetAlertRule", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/alert-rules/{UID}] GetAlertRule", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *GetAlertRuleOK) Code() int {
 }
 
 func (o *GetAlertRuleOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}][%d] getAlertRuleOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}][%d] getAlertRuleOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRuleOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}][%d] getAlertRuleOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}][%d] getAlertRuleOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRuleOK) GetPayload() *models.ProvisionedAlertRule {
@@ -152,11 +152,11 @@ func (o *GetAlertRuleNotFound) Code() int {
 }
 
 func (o *GetAlertRuleNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}][%d] getAlertRuleNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}][%d] getAlertRuleNotFound ", 404)
 }
 
 func (o *GetAlertRuleNotFound) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}][%d] getAlertRuleNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}][%d] getAlertRuleNotFound ", 404)
 }
 
 func (o *GetAlertRuleNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

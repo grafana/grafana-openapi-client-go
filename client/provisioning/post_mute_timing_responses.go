@@ -36,7 +36,7 @@ func (o *PostMuteTimingReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[POST /api/v1/provisioning/mute-timings] PostMuteTiming", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /v1/provisioning/mute-timings] PostMuteTiming", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *PostMuteTimingCreated) Code() int {
 }
 
 func (o *PostMuteTimingCreated) Error() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/mute-timings][%d] postMuteTimingCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingCreated  %+v", 201, o.Payload)
 }
 
 func (o *PostMuteTimingCreated) String() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/mute-timings][%d] postMuteTimingCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingCreated  %+v", 201, o.Payload)
 }
 
 func (o *PostMuteTimingCreated) GetPayload() *models.MuteTimeInterval {
@@ -153,11 +153,11 @@ func (o *PostMuteTimingBadRequest) Code() int {
 }
 
 func (o *PostMuteTimingBadRequest) Error() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/mute-timings][%d] postMuteTimingBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PostMuteTimingBadRequest) String() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/mute-timings][%d] postMuteTimingBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PostMuteTimingBadRequest) GetPayload() *models.ValidationError {
