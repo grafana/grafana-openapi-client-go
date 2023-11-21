@@ -36,7 +36,7 @@ func (o *GetAlertRuleExportReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/alert-rules/{UID}/export] GetAlertRuleExport", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/alert-rules/{UID}/export] GetAlertRuleExport", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *GetAlertRuleExportOK) Code() int {
 }
 
 func (o *GetAlertRuleExportOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRuleExportOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRuleExportOK) GetPayload() *models.AlertingFileExport {
@@ -152,11 +152,11 @@ func (o *GetAlertRuleExportNotFound) Code() int {
 }
 
 func (o *GetAlertRuleExportNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportNotFound ", 404)
 }
 
 func (o *GetAlertRuleExportNotFound) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportNotFound ", 404)
 }
 
 func (o *GetAlertRuleExportNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

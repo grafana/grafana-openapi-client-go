@@ -36,7 +36,7 @@ func (o *PutContactpointReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[PUT /api/v1/provisioning/contact-points/{UID}] PutContactpoint", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /v1/provisioning/contact-points/{UID}] PutContactpoint", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *PutContactpointAccepted) Code() int {
 }
 
 func (o *PutContactpointAccepted) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/contact-points/{UID}][%d] putContactpointAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PutContactpointAccepted) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/contact-points/{UID}][%d] putContactpointAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PutContactpointAccepted) GetPayload() models.Ack {
@@ -151,11 +151,11 @@ func (o *PutContactpointBadRequest) Code() int {
 }
 
 func (o *PutContactpointBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/contact-points/{UID}][%d] putContactpointBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutContactpointBadRequest) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/contact-points/{UID}][%d] putContactpointBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutContactpointBadRequest) GetPayload() *models.ValidationError {

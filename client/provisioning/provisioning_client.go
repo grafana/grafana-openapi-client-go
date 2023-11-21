@@ -100,7 +100,7 @@ func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "DeleteAlertRule",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/provisioning/alert-rules/{UID}",
+		PathPattern:        "/v1/provisioning/alert-rules/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -139,7 +139,7 @@ func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, authInfo
 	op := &runtime.ClientOperation{
 		ID:                 "DeleteContactpoints",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/provisioning/contact-points/{UID}",
+		PathPattern:        "/v1/provisioning/contact-points/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -178,7 +178,7 @@ func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "DeleteMuteTiming",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/provisioning/mute-timings/{name}",
+		PathPattern:        "/v1/provisioning/mute-timings/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -217,7 +217,7 @@ func (a *Client) DeleteTemplate(params *DeleteTemplateParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "DeleteTemplate",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/provisioning/templates/{name}",
+		PathPattern:        "/v1/provisioning/templates/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -256,7 +256,7 @@ func (a *Client) GetAlertRule(params *GetAlertRuleParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "GetAlertRule",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/alert-rules/{UID}",
+		PathPattern:        "/v1/provisioning/alert-rules/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -295,7 +295,7 @@ func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, authInfo r
 	op := &runtime.ClientOperation{
 		ID:                 "GetAlertRuleExport",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/alert-rules/{UID}/export",
+		PathPattern:        "/v1/provisioning/alert-rules/{UID}/export",
 		ProducesMediaTypes: []string{"application/json", "application/yaml", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -334,7 +334,7 @@ func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, authInfo run
 	op := &runtime.ClientOperation{
 		ID:                 "GetAlertRuleGroup",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}",
+		PathPattern:        "/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -373,7 +373,7 @@ func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, 
 	op := &runtime.ClientOperation{
 		ID:                 "GetAlertRuleGroupExport",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export",
+		PathPattern:        "/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export",
 		ProducesMediaTypes: []string{"application/json", "application/yaml", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -412,7 +412,7 @@ func (a *Client) GetAlertRules(params *GetAlertRulesParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "GetAlertRules",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/alert-rules",
+		PathPattern:        "/v1/provisioning/alert-rules",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -451,7 +451,7 @@ func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, authInfo
 	op := &runtime.ClientOperation{
 		ID:                 "GetAlertRulesExport",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/alert-rules/export",
+		PathPattern:        "/v1/provisioning/alert-rules/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -490,7 +490,7 @@ func (a *Client) GetContactpoints(params *GetContactpointsParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "GetContactpoints",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/contact-points",
+		PathPattern:        "/v1/provisioning/contact-points",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -529,7 +529,7 @@ func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, au
 	op := &runtime.ClientOperation{
 		ID:                 "GetContactpointsExport",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/contact-points/export",
+		PathPattern:        "/v1/provisioning/contact-points/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -568,7 +568,7 @@ func (a *Client) GetMuteTiming(params *GetMuteTimingParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "GetMuteTiming",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/mute-timings/{name}",
+		PathPattern:        "/v1/provisioning/mute-timings/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -607,7 +607,7 @@ func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "GetMuteTimings",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/mute-timings",
+		PathPattern:        "/v1/provisioning/mute-timings",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -646,7 +646,7 @@ func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "GetPolicyTree",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/policies",
+		PathPattern:        "/v1/provisioning/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -685,7 +685,7 @@ func (a *Client) GetPolicyTreeExport(params *GetPolicyTreeExportParams, authInfo
 	op := &runtime.ClientOperation{
 		ID:                 "GetPolicyTreeExport",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/policies/export",
+		PathPattern:        "/v1/provisioning/policies/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -724,7 +724,7 @@ func (a *Client) GetTemplate(params *GetTemplateParams, authInfo runtime.ClientA
 	op := &runtime.ClientOperation{
 		ID:                 "GetTemplate",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/templates/{name}",
+		PathPattern:        "/v1/provisioning/templates/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -763,7 +763,7 @@ func (a *Client) GetTemplates(params *GetTemplatesParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "GetTemplates",
 		Method:             "GET",
-		PathPattern:        "/api/v1/provisioning/templates",
+		PathPattern:        "/v1/provisioning/templates",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -802,7 +802,7 @@ func (a *Client) PostAlertRule(params *PostAlertRuleParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "PostAlertRule",
 		Method:             "POST",
-		PathPattern:        "/api/v1/provisioning/alert-rules",
+		PathPattern:        "/v1/provisioning/alert-rules",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -841,7 +841,7 @@ func (a *Client) PostContactpoints(params *PostContactpointsParams, authInfo run
 	op := &runtime.ClientOperation{
 		ID:                 "PostContactpoints",
 		Method:             "POST",
-		PathPattern:        "/api/v1/provisioning/contact-points",
+		PathPattern:        "/v1/provisioning/contact-points",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -880,7 +880,7 @@ func (a *Client) PostMuteTiming(params *PostMuteTimingParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "PostMuteTiming",
 		Method:             "POST",
-		PathPattern:        "/api/v1/provisioning/mute-timings",
+		PathPattern:        "/v1/provisioning/mute-timings",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -919,7 +919,7 @@ func (a *Client) PutAlertRule(params *PutAlertRuleParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "PutAlertRule",
 		Method:             "PUT",
-		PathPattern:        "/api/v1/provisioning/alert-rules/{UID}",
+		PathPattern:        "/v1/provisioning/alert-rules/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -958,7 +958,7 @@ func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, authInfo run
 	op := &runtime.ClientOperation{
 		ID:                 "PutAlertRuleGroup",
 		Method:             "PUT",
-		PathPattern:        "/api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}",
+		PathPattern:        "/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -997,7 +997,7 @@ func (a *Client) PutContactpoint(params *PutContactpointParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "PutContactpoint",
 		Method:             "PUT",
-		PathPattern:        "/api/v1/provisioning/contact-points/{UID}",
+		PathPattern:        "/v1/provisioning/contact-points/{UID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -1036,7 +1036,7 @@ func (a *Client) PutMuteTiming(params *PutMuteTimingParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "PutMuteTiming",
 		Method:             "PUT",
-		PathPattern:        "/api/v1/provisioning/mute-timings/{name}",
+		PathPattern:        "/v1/provisioning/mute-timings/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -1075,7 +1075,7 @@ func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "PutPolicyTree",
 		Method:             "PUT",
-		PathPattern:        "/api/v1/provisioning/policies",
+		PathPattern:        "/v1/provisioning/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -1114,7 +1114,7 @@ func (a *Client) PutTemplate(params *PutTemplateParams, authInfo runtime.ClientA
 	op := &runtime.ClientOperation{
 		ID:                 "PutTemplate",
 		Method:             "PUT",
-		PathPattern:        "/api/v1/provisioning/templates/{name}",
+		PathPattern:        "/v1/provisioning/templates/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -1153,7 +1153,7 @@ func (a *Client) ResetPolicyTree(params *ResetPolicyTreeParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "ResetPolicyTree",
 		Method:             "DELETE",
-		PathPattern:        "/api/v1/provisioning/policies",
+		PathPattern:        "/v1/provisioning/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},

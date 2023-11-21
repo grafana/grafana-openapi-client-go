@@ -36,7 +36,7 @@ func (o *PutAlertRuleReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[PUT /api/v1/provisioning/alert-rules/{UID}] PutAlertRule", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /v1/provisioning/alert-rules/{UID}] PutAlertRule", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *PutAlertRuleOK) Code() int {
 }
 
 func (o *PutAlertRuleOK) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/alert-rules/{UID}][%d] putAlertRuleOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleOk  %+v", 200, o.Payload)
 }
 
 func (o *PutAlertRuleOK) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/alert-rules/{UID}][%d] putAlertRuleOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleOk  %+v", 200, o.Payload)
 }
 
 func (o *PutAlertRuleOK) GetPayload() *models.ProvisionedAlertRule {
@@ -153,11 +153,11 @@ func (o *PutAlertRuleBadRequest) Code() int {
 }
 
 func (o *PutAlertRuleBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/alert-rules/{UID}][%d] putAlertRuleBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutAlertRuleBadRequest) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/alert-rules/{UID}][%d] putAlertRuleBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutAlertRuleBadRequest) GetPayload() *models.ValidationError {

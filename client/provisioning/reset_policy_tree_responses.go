@@ -30,7 +30,7 @@ func (o *ResetPolicyTreeReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[DELETE /api/v1/provisioning/policies] ResetPolicyTree", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /v1/provisioning/policies] ResetPolicyTree", response, response.Code())
 	}
 }
 
@@ -79,11 +79,11 @@ func (o *ResetPolicyTreeAccepted) Code() int {
 }
 
 func (o *ResetPolicyTreeAccepted) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/provisioning/policies][%d] resetPolicyTreeAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/provisioning/policies][%d] resetPolicyTreeAccepted  %+v", 202, o.Payload)
 }
 
 func (o *ResetPolicyTreeAccepted) String() string {
-	return fmt.Sprintf("[DELETE /api/v1/provisioning/policies][%d] resetPolicyTreeAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/provisioning/policies][%d] resetPolicyTreeAccepted  %+v", 202, o.Payload)
 }
 
 func (o *ResetPolicyTreeAccepted) GetPayload() models.Ack {

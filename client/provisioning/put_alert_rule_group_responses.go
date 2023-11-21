@@ -36,7 +36,7 @@ func (o *PutAlertRuleGroupReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}] PutAlertRuleGroup", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}] PutAlertRuleGroup", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *PutAlertRuleGroupOK) Code() int {
 }
 
 func (o *PutAlertRuleGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupOk  %+v", 200, o.Payload)
 }
 
 func (o *PutAlertRuleGroupOK) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupOk  %+v", 200, o.Payload)
 }
 
 func (o *PutAlertRuleGroupOK) GetPayload() *models.AlertRuleGroup {
@@ -153,11 +153,11 @@ func (o *PutAlertRuleGroupBadRequest) Code() int {
 }
 
 func (o *PutAlertRuleGroupBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutAlertRuleGroupBadRequest) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutAlertRuleGroupBadRequest) GetPayload() *models.ValidationError {

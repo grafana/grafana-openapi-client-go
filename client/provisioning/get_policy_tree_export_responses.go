@@ -36,7 +36,7 @@ func (o *GetPolicyTreeExportReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/policies/export] GetPolicyTreeExport", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/policies/export] GetPolicyTreeExport", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *GetPolicyTreeExportOK) Code() int {
 }
 
 func (o *GetPolicyTreeExportOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/policies/export][%d] getPolicyTreeExportOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetPolicyTreeExportOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/policies/export][%d] getPolicyTreeExportOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetPolicyTreeExportOK) GetPayload() *models.AlertingFileExport {
@@ -153,11 +153,11 @@ func (o *GetPolicyTreeExportNotFound) Code() int {
 }
 
 func (o *GetPolicyTreeExportNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/policies/export][%d] getPolicyTreeExportNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPolicyTreeExportNotFound) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/policies/export][%d] getPolicyTreeExportNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPolicyTreeExportNotFound) GetPayload() models.NotFound {

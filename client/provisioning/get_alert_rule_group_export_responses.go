@@ -36,7 +36,7 @@ func (o *GetAlertRuleGroupExportReader) ReadResponse(response runtime.ClientResp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export] GetAlertRuleGroupExport", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export] GetAlertRuleGroupExport", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *GetAlertRuleGroupExportOK) Code() int {
 }
 
 func (o *GetAlertRuleGroupExportOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export][%d] getAlertRuleGroupExportOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export][%d] getAlertRuleGroupExportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRuleGroupExportOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export][%d] getAlertRuleGroupExportOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export][%d] getAlertRuleGroupExportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRuleGroupExportOK) GetPayload() *models.AlertingFileExport {
@@ -152,11 +152,11 @@ func (o *GetAlertRuleGroupExportNotFound) Code() int {
 }
 
 func (o *GetAlertRuleGroupExportNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export][%d] getAlertRuleGroupExportNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export][%d] getAlertRuleGroupExportNotFound ", 404)
 }
 
 func (o *GetAlertRuleGroupExportNotFound) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export][%d] getAlertRuleGroupExportNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export][%d] getAlertRuleGroupExportNotFound ", 404)
 }
 
 func (o *GetAlertRuleGroupExportNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
