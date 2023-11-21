@@ -64,7 +64,7 @@ AddAPIkeyParams contains all the parameters to send to the API endpoint
 type AddAPIkeyParams struct {
 
 	// Body.
-	Body *models.AddCommand
+	Body *models.AddAPIKeyCommand
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *AddAPIkeyParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the add a p ikey params
-func (o *AddAPIkeyParams) WithBody(body *models.AddCommand) *AddAPIkeyParams {
+func (o *AddAPIkeyParams) WithBody(body *models.AddAPIKeyCommand) *AddAPIkeyParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the add a p ikey params
-func (o *AddAPIkeyParams) SetBody(body *models.AddCommand) {
+func (o *AddAPIkeyParams) SetBody(body *models.AddAPIKeyCommand) {
 	o.Body = body
 }
 
