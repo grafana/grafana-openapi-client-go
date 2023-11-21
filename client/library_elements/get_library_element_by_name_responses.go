@@ -63,7 +63,7 @@ GetLibraryElementByNameOK describes a response with status code 200, with defaul
 (empty)
 */
 type GetLibraryElementByNameOK struct {
-	Payload *models.LibraryElementResponse
+	Payload *models.LibraryElementArrayResponse
 }
 
 // IsSuccess returns true when this get library element by name Ok response has a 2xx status code
@@ -104,13 +104,13 @@ func (o *GetLibraryElementByNameOK) String() string {
 	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameOk  %+v", 200, o.Payload)
 }
 
-func (o *GetLibraryElementByNameOK) GetPayload() *models.LibraryElementResponse {
+func (o *GetLibraryElementByNameOK) GetPayload() *models.LibraryElementArrayResponse {
 	return o.Payload
 }
 
 func (o *GetLibraryElementByNameOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.LibraryElementResponse)
+	o.Payload = new(models.LibraryElementArrayResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

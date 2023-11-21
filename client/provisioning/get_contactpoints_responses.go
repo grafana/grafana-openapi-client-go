@@ -30,7 +30,7 @@ func (o *GetContactpointsReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/contact-points] GetContactpoints", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/contact-points] GetContactpoints", response, response.Code())
 	}
 }
 
@@ -79,11 +79,11 @@ func (o *GetContactpointsOK) Code() int {
 }
 
 func (o *GetContactpointsOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points][%d] getContactpointsOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points][%d] getContactpointsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetContactpointsOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points][%d] getContactpointsOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points][%d] getContactpointsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetContactpointsOK) GetPayload() models.ContactPoints {

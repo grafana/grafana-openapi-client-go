@@ -36,7 +36,7 @@ func (o *PutPolicyTreeReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[PUT /api/v1/provisioning/policies] PutPolicyTree", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /v1/provisioning/policies] PutPolicyTree", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *PutPolicyTreeAccepted) Code() int {
 }
 
 func (o *PutPolicyTreeAccepted) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/policies][%d] putPolicyTreeAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PutPolicyTreeAccepted) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/policies][%d] putPolicyTreeAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PutPolicyTreeAccepted) GetPayload() models.Ack {
@@ -151,11 +151,11 @@ func (o *PutPolicyTreeBadRequest) Code() int {
 }
 
 func (o *PutPolicyTreeBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/policies][%d] putPolicyTreeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutPolicyTreeBadRequest) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/policies][%d] putPolicyTreeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutPolicyTreeBadRequest) GetPayload() *models.ValidationError {

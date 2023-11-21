@@ -36,7 +36,7 @@ func (o *GetContactpointsExportReader) ReadResponse(response runtime.ClientRespo
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/contact-points/export] GetContactpointsExport", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/contact-points/export] GetContactpointsExport", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *GetContactpointsExportOK) Code() int {
 }
 
 func (o *GetContactpointsExportOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points/export][%d] getContactpointsExportOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetContactpointsExportOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points/export][%d] getContactpointsExportOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportOk  %+v", 200, o.Payload)
 }
 
 func (o *GetContactpointsExportOK) GetPayload() *models.AlertingFileExport {
@@ -153,11 +153,11 @@ func (o *GetContactpointsExportForbidden) Code() int {
 }
 
 func (o *GetContactpointsExportForbidden) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points/export][%d] getContactpointsExportForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetContactpointsExportForbidden) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/contact-points/export][%d] getContactpointsExportForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetContactpointsExportForbidden) GetPayload() models.PermissionDenied {

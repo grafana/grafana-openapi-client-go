@@ -36,7 +36,7 @@ func (o *PostAlertRuleReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[POST /api/v1/provisioning/alert-rules] PostAlertRule", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /v1/provisioning/alert-rules] PostAlertRule", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *PostAlertRuleCreated) Code() int {
 }
 
 func (o *PostAlertRuleCreated) Error() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/alert-rules][%d] postAlertRuleCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleCreated  %+v", 201, o.Payload)
 }
 
 func (o *PostAlertRuleCreated) String() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/alert-rules][%d] postAlertRuleCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleCreated  %+v", 201, o.Payload)
 }
 
 func (o *PostAlertRuleCreated) GetPayload() *models.ProvisionedAlertRule {
@@ -153,11 +153,11 @@ func (o *PostAlertRuleBadRequest) Code() int {
 }
 
 func (o *PostAlertRuleBadRequest) Error() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/alert-rules][%d] postAlertRuleBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PostAlertRuleBadRequest) String() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/alert-rules][%d] postAlertRuleBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PostAlertRuleBadRequest) GetPayload() *models.ValidationError {

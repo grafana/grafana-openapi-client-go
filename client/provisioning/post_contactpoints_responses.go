@@ -36,7 +36,7 @@ func (o *PostContactpointsReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[POST /api/v1/provisioning/contact-points] PostContactpoints", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /v1/provisioning/contact-points] PostContactpoints", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *PostContactpointsAccepted) Code() int {
 }
 
 func (o *PostContactpointsAccepted) Error() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/contact-points][%d] postContactpointsAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PostContactpointsAccepted) String() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/contact-points][%d] postContactpointsAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PostContactpointsAccepted) GetPayload() *models.EmbeddedContactPoint {
@@ -153,11 +153,11 @@ func (o *PostContactpointsBadRequest) Code() int {
 }
 
 func (o *PostContactpointsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/contact-points][%d] postContactpointsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PostContactpointsBadRequest) String() string {
-	return fmt.Sprintf("[POST /api/v1/provisioning/contact-points][%d] postContactpointsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PostContactpointsBadRequest) GetPayload() *models.ValidationError {

@@ -36,7 +36,7 @@ func (o *GetAlertRuleGroupReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}] GetAlertRuleGroup", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}] GetAlertRuleGroup", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *GetAlertRuleGroupOK) Code() int {
 }
 
 func (o *GetAlertRuleGroupOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRuleGroupOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupOk  %+v", 200, o.Payload)
 }
 
 func (o *GetAlertRuleGroupOK) GetPayload() *models.AlertRuleGroup {
@@ -152,11 +152,11 @@ func (o *GetAlertRuleGroupNotFound) Code() int {
 }
 
 func (o *GetAlertRuleGroupNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupNotFound ", 404)
 }
 
 func (o *GetAlertRuleGroupNotFound) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupNotFound ", 404)
 }
 
 func (o *GetAlertRuleGroupNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

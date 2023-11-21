@@ -36,7 +36,7 @@ func (o *GetTemplatesReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/templates] GetTemplates", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/templates] GetTemplates", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *GetTemplatesOK) Code() int {
 }
 
 func (o *GetTemplatesOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/templates][%d] getTemplatesOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetTemplatesOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/templates][%d] getTemplatesOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesOk  %+v", 200, o.Payload)
 }
 
 func (o *GetTemplatesOK) GetPayload() models.NotificationTemplates {
@@ -150,11 +150,11 @@ func (o *GetTemplatesNotFound) Code() int {
 }
 
 func (o *GetTemplatesNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/templates][%d] getTemplatesNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesNotFound ", 404)
 }
 
 func (o *GetTemplatesNotFound) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/templates][%d] getTemplatesNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesNotFound ", 404)
 }
 
 func (o *GetTemplatesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

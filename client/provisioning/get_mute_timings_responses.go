@@ -30,7 +30,7 @@ func (o *GetMuteTimingsReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/mute-timings] GetMuteTimings", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/mute-timings] GetMuteTimings", response, response.Code())
 	}
 }
 
@@ -79,11 +79,11 @@ func (o *GetMuteTimingsOK) Code() int {
 }
 
 func (o *GetMuteTimingsOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/mute-timings][%d] getMuteTimingsOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings][%d] getMuteTimingsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetMuteTimingsOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/mute-timings][%d] getMuteTimingsOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings][%d] getMuteTimingsOk  %+v", 200, o.Payload)
 }
 
 func (o *GetMuteTimingsOK) GetPayload() models.MuteTimings {

@@ -27,7 +27,7 @@ func (o *DeleteAlertRuleReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[DELETE /api/v1/provisioning/alert-rules/{UID}] DeleteAlertRule", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /v1/provisioning/alert-rules/{UID}] DeleteAlertRule", response, response.Code())
 	}
 }
 
@@ -75,11 +75,11 @@ func (o *DeleteAlertRuleNoContent) Code() int {
 }
 
 func (o *DeleteAlertRuleNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/provisioning/alert-rules/{UID}][%d] deleteAlertRuleNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/alert-rules/{UID}][%d] deleteAlertRuleNoContent ", 204)
 }
 
 func (o *DeleteAlertRuleNoContent) String() string {
-	return fmt.Sprintf("[DELETE /api/v1/provisioning/alert-rules/{UID}][%d] deleteAlertRuleNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/alert-rules/{UID}][%d] deleteAlertRuleNoContent ", 204)
 }
 
 func (o *DeleteAlertRuleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

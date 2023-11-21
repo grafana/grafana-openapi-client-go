@@ -36,7 +36,7 @@ func (o *GetMuteTimingReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /api/v1/provisioning/mute-timings/{name}] GetMuteTiming", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /v1/provisioning/mute-timings/{name}] GetMuteTiming", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *GetMuteTimingOK) Code() int {
 }
 
 func (o *GetMuteTimingOK) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk  %+v", 200, o.Payload)
 }
 
 func (o *GetMuteTimingOK) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk  %+v", 200, o.Payload)
 }
 
 func (o *GetMuteTimingOK) GetPayload() *models.MuteTimeInterval {
@@ -152,11 +152,11 @@ func (o *GetMuteTimingNotFound) Code() int {
 }
 
 func (o *GetMuteTimingNotFound) Error() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/mute-timings/{name}][%d] getMuteTimingNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingNotFound ", 404)
 }
 
 func (o *GetMuteTimingNotFound) String() string {
-	return fmt.Sprintf("[GET /api/v1/provisioning/mute-timings/{name}][%d] getMuteTimingNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingNotFound ", 404)
 }
 
 func (o *GetMuteTimingNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

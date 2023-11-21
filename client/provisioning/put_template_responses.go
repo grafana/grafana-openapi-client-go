@@ -36,7 +36,7 @@ func (o *PutTemplateReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[PUT /api/v1/provisioning/templates/{name}] PutTemplate", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /v1/provisioning/templates/{name}] PutTemplate", response, response.Code())
 	}
 }
 
@@ -85,11 +85,11 @@ func (o *PutTemplateAccepted) Code() int {
 }
 
 func (o *PutTemplateAccepted) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/templates/{name}][%d] putTemplateAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PutTemplateAccepted) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/templates/{name}][%d] putTemplateAccepted  %+v", 202, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PutTemplateAccepted) GetPayload() *models.NotificationTemplate {
@@ -153,11 +153,11 @@ func (o *PutTemplateBadRequest) Code() int {
 }
 
 func (o *PutTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/templates/{name}][%d] putTemplateBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutTemplateBadRequest) String() string {
-	return fmt.Sprintf("[PUT /api/v1/provisioning/templates/{name}][%d] putTemplateBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PutTemplateBadRequest) GetPayload() *models.ValidationError {

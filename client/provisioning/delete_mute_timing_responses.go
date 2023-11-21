@@ -27,7 +27,7 @@ func (o *DeleteMuteTimingReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[DELETE /api/v1/provisioning/mute-timings/{name}] DeleteMuteTiming", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /v1/provisioning/mute-timings/{name}] DeleteMuteTiming", response, response.Code())
 	}
 }
 
@@ -75,11 +75,11 @@ func (o *DeleteMuteTimingNoContent) Code() int {
 }
 
 func (o *DeleteMuteTimingNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /api/v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingNoContent ", 204)
 }
 
 func (o *DeleteMuteTimingNoContent) String() string {
-	return fmt.Sprintf("[DELETE /api/v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingNoContent ", 204)
 }
 
 func (o *DeleteMuteTimingNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
