@@ -70,5 +70,12 @@ modify '.paths = (.paths | with_entries(.key |= sub("^/api"; "")))'
 # TODO: Upstream fix
 modify '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)' 
 
+# The "for" property returned by the API is a string (can't be unmarshaled to time.Duration)
+# TODO: Upstream fix
+modify '.definitions.ProvisionedAlertRule.properties.for = {
+    "type": "string",
+    "format": "duration"
+}'
+
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
