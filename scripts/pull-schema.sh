@@ -77,5 +77,13 @@ modify '.definitions.ProvisionedAlertRule.properties.for = {
     "format": "duration"
 }'
 
+# The global property is not in the RoleDTO model, it is added in the MarshalJSON method
+# As a result, it is not found by go-swagger, but it's still useful
+# TODO: Upstream fix
+modify '.definitions.RoleDTO.properties.global = {
+    "type": "boolean",
+    "description": "Whether the role is global or not."
+}'
+
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
