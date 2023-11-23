@@ -30,17 +30,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDashboardSnapshotOK, error)
+	CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, opts ...ClientOption) (*CreateDashboardSnapshotOK, error)
 
-	DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error)
+	DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error)
 
-	DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnapshotByDeleteKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error)
+	DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnapshotByDeleteKeyParams, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error)
 
-	GetDashboardSnapshot(params *GetDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardSnapshotOK, error)
+	GetDashboardSnapshot(params *GetDashboardSnapshotParams, opts ...ClientOption) (*GetDashboardSnapshotOK, error)
 
-	GetSharingOptions(params *GetSharingOptionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSharingOptionsOK, error)
+	GetSharingOptions(params *GetSharingOptionsParams, opts ...ClientOption) (*GetSharingOptionsOK, error)
 
-	SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchDashboardSnapshotsOK, error)
+	SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams, opts ...ClientOption) (*SearchDashboardSnapshotsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -50,8 +50,7 @@ CreateDashboardSnapshot whens creating a snapshot using the API you have to prov
 
 Snapshot public mode should be enabled or authentication is required.
 */
-func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDashboardSnapshotOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, opts ...ClientOption) (*CreateDashboardSnapshotOK, error) {
 	if params == nil {
 		params = NewCreateDashboardSnapshotParams()
 	}
@@ -64,7 +63,6 @@ func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateDashboardSnapshotReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -89,8 +87,7 @@ func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, 
 /*
 DeleteDashboardSnapshot deletes snapshot by key
 */
-func (a *Client) DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error) {
 	if params == nil {
 		params = NewDeleteDashboardSnapshotParams()
 	}
@@ -103,7 +100,6 @@ func (a *Client) DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteDashboardSnapshotReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -130,8 +126,7 @@ DeleteDashboardSnapshotByDeleteKey deletes snapshot by delete key
 
 Snapshot public mode should be enabled or authentication is required.
 */
-func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnapshotByDeleteKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnapshotByDeleteKeyParams, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error) {
 	if params == nil {
 		params = NewDeleteDashboardSnapshotByDeleteKeyParams()
 	}
@@ -144,7 +139,6 @@ func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnaps
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteDashboardSnapshotByDeleteKeyReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -169,8 +163,7 @@ func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnaps
 /*
 GetDashboardSnapshot gets snapshot by key
 */
-func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardSnapshotOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, opts ...ClientOption) (*GetDashboardSnapshotOK, error) {
 	if params == nil {
 		params = NewGetDashboardSnapshotParams()
 	}
@@ -183,7 +176,6 @@ func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardSnapshotReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -208,8 +200,7 @@ func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, authIn
 /*
 GetSharingOptions gets snapshot sharing settings
 */
-func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSharingOptionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, opts ...ClientOption) (*GetSharingOptionsOK, error) {
 	if params == nil {
 		params = NewGetSharingOptionsParams()
 	}
@@ -222,7 +213,6 @@ func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetSharingOptionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -247,8 +237,7 @@ func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, authInfo run
 /*
 SearchDashboardSnapshots lists snapshots
 */
-func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchDashboardSnapshotsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams, opts ...ClientOption) (*SearchDashboardSnapshotsOK, error) {
 	if params == nil {
 		params = NewSearchDashboardSnapshotsParams()
 	}
@@ -261,7 +250,6 @@ func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchDashboardSnapshotsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -286,4 +274,11 @@ func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

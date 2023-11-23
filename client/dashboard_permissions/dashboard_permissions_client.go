@@ -30,13 +30,13 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetDashboardPermissionsListByID(params *GetDashboardPermissionsListByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error)
+	GetDashboardPermissionsListByID(params *GetDashboardPermissionsListByIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error)
 
-	GetDashboardPermissionsListByUID(params *GetDashboardPermissionsListByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error)
+	GetDashboardPermissionsListByUID(params *GetDashboardPermissionsListByUIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error)
 
-	UpdateDashboardPermissionsByID(params *UpdateDashboardPermissionsByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error)
+	UpdateDashboardPermissionsByID(params *UpdateDashboardPermissionsByIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error)
 
-	UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissionsByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error)
+	UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissionsByUIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,8 +46,7 @@ GetDashboardPermissionsListByID gets all existing permissions for the given dash
 
 Please refer to [updated API](#/dashboard_permissions/getDashboardPermissionsListByUID) instead
 */
-func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissionsListByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissionsListByIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardPermissionsListByIDParams()
 	}
@@ -60,7 +59,6 @@ func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissions
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardPermissionsListByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -85,8 +83,7 @@ func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissions
 /*
 GetDashboardPermissionsListByUID gets all existing permissions for the given dashboard
 */
-func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermissionsListByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermissionsListByUIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardPermissionsListByUIDParams()
 	}
@@ -99,7 +96,6 @@ func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermission
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardPermissionsListByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -128,8 +124,7 @@ func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermission
 
 This operation will remove existing permissions if they’re not included in the request.
 */
-func (a *Client) UpdateDashboardPermissionsByID(params *UpdateDashboardPermissionsByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateDashboardPermissionsByID(params *UpdateDashboardPermissionsByIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error) {
 	if params == nil {
 		params = NewUpdateDashboardPermissionsByIDParams()
 	}
@@ -142,7 +137,6 @@ func (a *Client) UpdateDashboardPermissionsByID(params *UpdateDashboardPermissio
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateDashboardPermissionsByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -169,8 +163,7 @@ UpdateDashboardPermissionsByUID updates permissions for a dashboard
 
 This operation will remove existing permissions if they’re not included in the request.
 */
-func (a *Client) UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissionsByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissionsByUIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error) {
 	if params == nil {
 		params = NewUpdateDashboardPermissionsByUIDParams()
 	}
@@ -183,7 +176,6 @@ func (a *Client) UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissi
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateDashboardPermissionsByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -208,4 +200,11 @@ func (a *Client) UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissi
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,13 +30,13 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminProvisioningReloadDashboards(params *AdminProvisioningReloadDashboardsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error)
+	AdminProvisioningReloadDashboards(params *AdminProvisioningReloadDashboardsParams, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error)
 
-	AdminProvisioningReloadDatasources(params *AdminProvisioningReloadDatasourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error)
+	AdminProvisioningReloadDatasources(params *AdminProvisioningReloadDatasourcesParams, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error)
 
-	AdminProvisioningReloadNotifications(params *AdminProvisioningReloadNotificationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error)
+	AdminProvisioningReloadNotifications(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error)
 
-	AdminProvisioningReloadPlugins(params *AdminProvisioningReloadPluginsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error)
+	AdminProvisioningReloadPlugins(params *AdminProvisioningReloadPluginsParams, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -48,8 +48,7 @@ type ClientService interface {
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:dashboards`.
 */
-func (a *Client) AdminProvisioningReloadDashboards(params *AdminProvisioningReloadDashboardsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminProvisioningReloadDashboards(params *AdminProvisioningReloadDashboardsParams, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadDashboardsParams()
 	}
@@ -62,7 +61,6 @@ func (a *Client) AdminProvisioningReloadDashboards(params *AdminProvisioningRelo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminProvisioningReloadDashboardsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -91,8 +89,7 @@ func (a *Client) AdminProvisioningReloadDashboards(params *AdminProvisioningRelo
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:datasources`.
 */
-func (a *Client) AdminProvisioningReloadDatasources(params *AdminProvisioningReloadDatasourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminProvisioningReloadDatasources(params *AdminProvisioningReloadDatasourcesParams, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadDatasourcesParams()
 	}
@@ -105,7 +102,6 @@ func (a *Client) AdminProvisioningReloadDatasources(params *AdminProvisioningRel
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminProvisioningReloadDatasourcesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -134,8 +130,7 @@ func (a *Client) AdminProvisioningReloadDatasources(params *AdminProvisioningRel
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:notifications`.
 */
-func (a *Client) AdminProvisioningReloadNotifications(params *AdminProvisioningReloadNotificationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminProvisioningReloadNotifications(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadNotificationsParams()
 	}
@@ -148,7 +143,6 @@ func (a *Client) AdminProvisioningReloadNotifications(params *AdminProvisioningR
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminProvisioningReloadNotificationsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -177,8 +171,7 @@ func (a *Client) AdminProvisioningReloadNotifications(params *AdminProvisioningR
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:plugin`.
 */
-func (a *Client) AdminProvisioningReloadPlugins(params *AdminProvisioningReloadPluginsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminProvisioningReloadPlugins(params *AdminProvisioningReloadPluginsParams, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadPluginsParams()
 	}
@@ -191,7 +184,6 @@ func (a *Client) AdminProvisioningReloadPlugins(params *AdminProvisioningReloadP
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminProvisioningReloadPluginsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -216,4 +208,11 @@ func (a *Client) AdminProvisioningReloadPlugins(params *AdminProvisioningReloadP
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

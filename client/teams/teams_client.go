@@ -30,27 +30,27 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddTeamMember(params *AddTeamMemberParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddTeamMemberOK, error)
+	AddTeamMember(params *AddTeamMemberParams, opts ...ClientOption) (*AddTeamMemberOK, error)
 
-	CreateTeam(params *CreateTeamParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTeamOK, error)
+	CreateTeam(params *CreateTeamParams, opts ...ClientOption) (*CreateTeamOK, error)
 
-	DeleteTeamByID(params *DeleteTeamByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTeamByIDOK, error)
+	DeleteTeamByID(params *DeleteTeamByIDParams, opts ...ClientOption) (*DeleteTeamByIDOK, error)
 
-	GetTeamByID(params *GetTeamByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTeamByIDOK, error)
+	GetTeamByID(params *GetTeamByIDParams, opts ...ClientOption) (*GetTeamByIDOK, error)
 
-	GetTeamMembers(params *GetTeamMembersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTeamMembersOK, error)
+	GetTeamMembers(params *GetTeamMembersParams, opts ...ClientOption) (*GetTeamMembersOK, error)
 
-	GetTeamPreferences(params *GetTeamPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTeamPreferencesOK, error)
+	GetTeamPreferences(params *GetTeamPreferencesParams, opts ...ClientOption) (*GetTeamPreferencesOK, error)
 
-	RemoveTeamMember(params *RemoveTeamMemberParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveTeamMemberOK, error)
+	RemoveTeamMember(params *RemoveTeamMemberParams, opts ...ClientOption) (*RemoveTeamMemberOK, error)
 
-	SearchTeams(params *SearchTeamsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchTeamsOK, error)
+	SearchTeams(params *SearchTeamsParams, opts ...ClientOption) (*SearchTeamsOK, error)
 
-	UpdateTeam(params *UpdateTeamParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTeamOK, error)
+	UpdateTeam(params *UpdateTeamParams, opts ...ClientOption) (*UpdateTeamOK, error)
 
-	UpdateTeamMember(params *UpdateTeamMemberParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTeamMemberOK, error)
+	UpdateTeamMember(params *UpdateTeamMemberParams, opts ...ClientOption) (*UpdateTeamMemberOK, error)
 
-	UpdateTeamPreferences(params *UpdateTeamPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTeamPreferencesOK, error)
+	UpdateTeamPreferences(params *UpdateTeamPreferencesParams, opts ...ClientOption) (*UpdateTeamPreferencesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -58,8 +58,7 @@ type ClientService interface {
 /*
 AddTeamMember adds team member
 */
-func (a *Client) AddTeamMember(params *AddTeamMemberParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddTeamMemberOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddTeamMember(params *AddTeamMemberParams, opts ...ClientOption) (*AddTeamMemberOK, error) {
 	if params == nil {
 		params = NewAddTeamMemberParams()
 	}
@@ -72,7 +71,6 @@ func (a *Client) AddTeamMember(params *AddTeamMemberParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddTeamMemberReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -97,8 +95,7 @@ func (a *Client) AddTeamMember(params *AddTeamMemberParams, authInfo runtime.Cli
 /*
 CreateTeam adds team
 */
-func (a *Client) CreateTeam(params *CreateTeamParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTeamOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateTeam(params *CreateTeamParams, opts ...ClientOption) (*CreateTeamOK, error) {
 	if params == nil {
 		params = NewCreateTeamParams()
 	}
@@ -111,7 +108,6 @@ func (a *Client) CreateTeam(params *CreateTeamParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateTeamReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -136,8 +132,7 @@ func (a *Client) CreateTeam(params *CreateTeamParams, authInfo runtime.ClientAut
 /*
 DeleteTeamByID deletes team by ID
 */
-func (a *Client) DeleteTeamByID(params *DeleteTeamByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTeamByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteTeamByID(params *DeleteTeamByIDParams, opts ...ClientOption) (*DeleteTeamByIDOK, error) {
 	if params == nil {
 		params = NewDeleteTeamByIDParams()
 	}
@@ -150,7 +145,6 @@ func (a *Client) DeleteTeamByID(params *DeleteTeamByIDParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteTeamByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -175,8 +169,7 @@ func (a *Client) DeleteTeamByID(params *DeleteTeamByIDParams, authInfo runtime.C
 /*
 GetTeamByID gets team by ID
 */
-func (a *Client) GetTeamByID(params *GetTeamByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTeamByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetTeamByID(params *GetTeamByIDParams, opts ...ClientOption) (*GetTeamByIDOK, error) {
 	if params == nil {
 		params = NewGetTeamByIDParams()
 	}
@@ -189,7 +182,6 @@ func (a *Client) GetTeamByID(params *GetTeamByIDParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetTeamByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -214,8 +206,7 @@ func (a *Client) GetTeamByID(params *GetTeamByIDParams, authInfo runtime.ClientA
 /*
 GetTeamMembers gets team members
 */
-func (a *Client) GetTeamMembers(params *GetTeamMembersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTeamMembersOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetTeamMembers(params *GetTeamMembersParams, opts ...ClientOption) (*GetTeamMembersOK, error) {
 	if params == nil {
 		params = NewGetTeamMembersParams()
 	}
@@ -228,7 +219,6 @@ func (a *Client) GetTeamMembers(params *GetTeamMembersParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetTeamMembersReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -253,8 +243,7 @@ func (a *Client) GetTeamMembers(params *GetTeamMembersParams, authInfo runtime.C
 /*
 GetTeamPreferences gets team preferences
 */
-func (a *Client) GetTeamPreferences(params *GetTeamPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTeamPreferencesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetTeamPreferences(params *GetTeamPreferencesParams, opts ...ClientOption) (*GetTeamPreferencesOK, error) {
 	if params == nil {
 		params = NewGetTeamPreferencesParams()
 	}
@@ -267,7 +256,6 @@ func (a *Client) GetTeamPreferences(params *GetTeamPreferencesParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetTeamPreferencesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -292,8 +280,7 @@ func (a *Client) GetTeamPreferences(params *GetTeamPreferencesParams, authInfo r
 /*
 RemoveTeamMember removes member from team
 */
-func (a *Client) RemoveTeamMember(params *RemoveTeamMemberParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveTeamMemberOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RemoveTeamMember(params *RemoveTeamMemberParams, opts ...ClientOption) (*RemoveTeamMemberOK, error) {
 	if params == nil {
 		params = NewRemoveTeamMemberParams()
 	}
@@ -306,7 +293,6 @@ func (a *Client) RemoveTeamMember(params *RemoveTeamMemberParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RemoveTeamMemberReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -331,8 +317,7 @@ func (a *Client) RemoveTeamMember(params *RemoveTeamMemberParams, authInfo runti
 /*
 SearchTeams teams search with paging
 */
-func (a *Client) SearchTeams(params *SearchTeamsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchTeamsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchTeams(params *SearchTeamsParams, opts ...ClientOption) (*SearchTeamsOK, error) {
 	if params == nil {
 		params = NewSearchTeamsParams()
 	}
@@ -345,7 +330,6 @@ func (a *Client) SearchTeams(params *SearchTeamsParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchTeamsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -370,8 +354,7 @@ func (a *Client) SearchTeams(params *SearchTeamsParams, authInfo runtime.ClientA
 /*
 UpdateTeam updates team
 */
-func (a *Client) UpdateTeam(params *UpdateTeamParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTeamOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateTeam(params *UpdateTeamParams, opts ...ClientOption) (*UpdateTeamOK, error) {
 	if params == nil {
 		params = NewUpdateTeamParams()
 	}
@@ -384,7 +367,6 @@ func (a *Client) UpdateTeam(params *UpdateTeamParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateTeamReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -409,8 +391,7 @@ func (a *Client) UpdateTeam(params *UpdateTeamParams, authInfo runtime.ClientAut
 /*
 UpdateTeamMember updates team member
 */
-func (a *Client) UpdateTeamMember(params *UpdateTeamMemberParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTeamMemberOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateTeamMember(params *UpdateTeamMemberParams, opts ...ClientOption) (*UpdateTeamMemberOK, error) {
 	if params == nil {
 		params = NewUpdateTeamMemberParams()
 	}
@@ -423,7 +404,6 @@ func (a *Client) UpdateTeamMember(params *UpdateTeamMemberParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateTeamMemberReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -448,8 +428,7 @@ func (a *Client) UpdateTeamMember(params *UpdateTeamMemberParams, authInfo runti
 /*
 UpdateTeamPreferences updates team preferences
 */
-func (a *Client) UpdateTeamPreferences(params *UpdateTeamPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTeamPreferencesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateTeamPreferences(params *UpdateTeamPreferencesParams, opts ...ClientOption) (*UpdateTeamPreferencesOK, error) {
 	if params == nil {
 		params = NewUpdateTeamPreferencesParams()
 	}
@@ -462,7 +441,6 @@ func (a *Client) UpdateTeamPreferences(params *UpdateTeamPreferencesParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateTeamPreferencesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -487,4 +465,11 @@ func (a *Client) UpdateTeamPreferences(params *UpdateTeamPreferencesParams, auth
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

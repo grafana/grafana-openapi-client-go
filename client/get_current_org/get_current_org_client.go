@@ -30,7 +30,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetCurrentOrgQuota(params *GetCurrentOrgQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error)
+	GetCurrentOrgQuota(params *GetCurrentOrgQuotaParams, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -40,8 +40,7 @@ GetCurrentOrgQuota fetches organization quota
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `orgs.quotas:read` and scope `org:id:1` (orgIDScope).
 */
-func (a *Client) GetCurrentOrgQuota(params *GetCurrentOrgQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetCurrentOrgQuota(params *GetCurrentOrgQuotaParams, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error) {
 	if params == nil {
 		params = NewGetCurrentOrgQuotaParams()
 	}
@@ -54,7 +53,6 @@ func (a *Client) GetCurrentOrgQuota(params *GetCurrentOrgQuotaParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetCurrentOrgQuotaReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -79,4 +77,11 @@ func (a *Client) GetCurrentOrgQuota(params *GetCurrentOrgQuotaParams, authInfo r
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

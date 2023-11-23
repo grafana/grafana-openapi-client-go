@@ -30,15 +30,15 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddPermission(params *AddPermissionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddPermissionOK, error)
+	AddPermission(params *AddPermissionParams, opts ...ClientOption) (*AddPermissionOK, error)
 
-	DeletePermissions(params *DeletePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePermissionsOK, error)
+	DeletePermissions(params *DeletePermissionsParams, opts ...ClientOption) (*DeletePermissionsOK, error)
 
-	DisablePermissions(params *DisablePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DisablePermissionsOK, error)
+	DisablePermissions(params *DisablePermissionsParams, opts ...ClientOption) (*DisablePermissionsOK, error)
 
-	EnablePermissions(params *EnablePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*EnablePermissionsOK, error)
+	EnablePermissions(params *EnablePermissionsParams, opts ...ClientOption) (*EnablePermissionsOK, error)
 
-	GetAllPermissions(params *GetAllPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAllPermissionsOK, error)
+	GetAllPermissions(params *GetAllPermissionsParams, opts ...ClientOption) (*GetAllPermissionsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -51,8 +51,7 @@ type ClientService interface {
 Deprecated: true.
 Deprecated. Please use POST /api/access-control/datasources/:uid/users/:id, /api/access-control/datasources/:uid/teams/:id or /api/access-control/datasources/:uid/buildInRoles/:id
 */
-func (a *Client) AddPermission(params *AddPermissionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddPermissionOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddPermission(params *AddPermissionParams, opts ...ClientOption) (*AddPermissionOK, error) {
 	if params == nil {
 		params = NewAddPermissionParams()
 	}
@@ -65,7 +64,6 @@ func (a *Client) AddPermission(params *AddPermissionParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddPermissionReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -97,8 +95,7 @@ You need to have a permission with action `datasources.permissions:delete` and s
 Deprecated: true.
 Deprecated. Please use POST /api/access-control/datasources/:uid/users/:id, /api/access-control/datasources/:uid/teams/:id or /api/access-control/datasources/:uid/buildInRoles/:id
 */
-func (a *Client) DeletePermissions(params *DeletePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePermissionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeletePermissions(params *DeletePermissionsParams, opts ...ClientOption) (*DeletePermissionsOK, error) {
 	if params == nil {
 		params = NewDeletePermissionsParams()
 	}
@@ -111,7 +108,6 @@ func (a *Client) DeletePermissions(params *DeletePermissionsParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeletePermissionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -142,8 +138,7 @@ You need to have a permission with action `datasources.permissions:toggle` and s
 
 Deprecated: true.
 */
-func (a *Client) DisablePermissions(params *DisablePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DisablePermissionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DisablePermissions(params *DisablePermissionsParams, opts ...ClientOption) (*DisablePermissionsOK, error) {
 	if params == nil {
 		params = NewDisablePermissionsParams()
 	}
@@ -156,7 +151,6 @@ func (a *Client) DisablePermissions(params *DisablePermissionsParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DisablePermissionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -190,8 +184,7 @@ You need to have a permission with action `datasources.permissions:toggle` and s
 
 Deprecated: true.
 */
-func (a *Client) EnablePermissions(params *EnablePermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*EnablePermissionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) EnablePermissions(params *EnablePermissionsParams, opts ...ClientOption) (*EnablePermissionsOK, error) {
 	if params == nil {
 		params = NewEnablePermissionsParams()
 	}
@@ -204,7 +197,6 @@ func (a *Client) EnablePermissions(params *EnablePermissionsParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &EnablePermissionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -236,8 +228,7 @@ You need to have a permission with action `datasources.permissions:read` and sco
 Deprecated: true.
 Deprecated. Please use GET /api/access-control/datasources/:uid
 */
-func (a *Client) GetAllPermissions(params *GetAllPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAllPermissionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAllPermissions(params *GetAllPermissionsParams, opts ...ClientOption) (*GetAllPermissionsOK, error) {
 	if params == nil {
 		params = NewGetAllPermissionsParams()
 	}
@@ -250,7 +241,6 @@ func (a *Client) GetAllPermissions(params *GetAllPermissionsParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAllPermissionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -275,4 +265,11 @@ func (a *Client) GetAllPermissions(params *GetAllPermissionsParams, authInfo run
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

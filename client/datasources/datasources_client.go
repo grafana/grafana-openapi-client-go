@@ -30,47 +30,47 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddDataSource(params *AddDataSourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddDataSourceOK, error)
+	AddDataSource(params *AddDataSourceParams, opts ...ClientOption) (*AddDataSourceOK, error)
 
-	CallDatasourceResourceByID(params *CallDatasourceResourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error)
+	CallDatasourceResourceByID(params *CallDatasourceResourceByIDParams, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error)
 
-	CallDatasourceResourceWithUID(params *CallDatasourceResourceWithUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error)
+	CallDatasourceResourceWithUID(params *CallDatasourceResourceWithUIDParams, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error)
 
-	CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error)
+	CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDParams, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error)
 
-	CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error)
+	CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithUIDParams, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error)
 
-	DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error)
+	DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error)
 
-	DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error)
+	DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error)
 
-	DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error)
+	DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error)
 
-	DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error)
+	DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error)
 
-	DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyPOSTByUIDcallsCreated, *DatasourceProxyPOSTByUIDcallsAccepted, error)
+	DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyPOSTByUIDcallsCreated, *DatasourceProxyPOSTByUIDcallsAccepted, error)
 
-	DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyPOSTcallsCreated, *DatasourceProxyPOSTcallsAccepted, error)
+	DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams, opts ...ClientOption) (*DatasourceProxyPOSTcallsCreated, *DatasourceProxyPOSTcallsAccepted, error)
 
-	DeleteDataSourceByID(params *DeleteDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByIDOK, error)
+	DeleteDataSourceByID(params *DeleteDataSourceByIDParams, opts ...ClientOption) (*DeleteDataSourceByIDOK, error)
 
-	DeleteDataSourceByName(params *DeleteDataSourceByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByNameOK, error)
+	DeleteDataSourceByName(params *DeleteDataSourceByNameParams, opts ...ClientOption) (*DeleteDataSourceByNameOK, error)
 
-	DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error)
+	DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error)
 
-	GetDataSourceByID(params *GetDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByIDOK, error)
+	GetDataSourceByID(params *GetDataSourceByIDParams, opts ...ClientOption) (*GetDataSourceByIDOK, error)
 
-	GetDataSourceByName(params *GetDataSourceByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByNameOK, error)
+	GetDataSourceByName(params *GetDataSourceByNameParams, opts ...ClientOption) (*GetDataSourceByNameOK, error)
 
-	GetDataSourceByUID(params *GetDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByUIDOK, error)
+	GetDataSourceByUID(params *GetDataSourceByUIDParams, opts ...ClientOption) (*GetDataSourceByUIDOK, error)
 
-	GetDataSourceIDByName(params *GetDataSourceIDByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceIDByNameOK, error)
+	GetDataSourceIDByName(params *GetDataSourceIDByNameParams, opts ...ClientOption) (*GetDataSourceIDByNameOK, error)
 
-	GetDataSources(params *GetDataSourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourcesOK, error)
+	GetDataSources(params *GetDataSourcesParams, opts ...ClientOption) (*GetDataSourcesOK, error)
 
-	UpdateDataSourceByID(params *UpdateDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDataSourceByIDOK, error)
+	UpdateDataSourceByID(params *UpdateDataSourceByIDParams, opts ...ClientOption) (*UpdateDataSourceByIDOK, error)
 
-	UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error)
+	UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -86,8 +86,7 @@ The response then lists the encrypted fields under secureJsonFields.
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:create`
 */
-func (a *Client) AddDataSource(params *AddDataSourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddDataSourceOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddDataSource(params *AddDataSourceParams, opts ...ClientOption) (*AddDataSourceOK, error) {
 	if params == nil {
 		params = NewAddDataSourceParams()
 	}
@@ -100,7 +99,6 @@ func (a *Client) AddDataSource(params *AddDataSourceParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddDataSourceReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -127,8 +125,7 @@ CallDatasourceResourceByID fetches data source resources by Id
 
 Please refer to [updated API](#/datasources/callDatasourceResourceWithUID) instead
 */
-func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDParams, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error) {
 	if params == nil {
 		params = NewCallDatasourceResourceByIDParams()
 	}
@@ -141,7 +138,6 @@ func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDPa
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CallDatasourceResourceByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -166,8 +162,7 @@ func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDPa
 /*
 CallDatasourceResourceWithUID fetches data source resources
 */
-func (a *Client) CallDatasourceResourceWithUID(params *CallDatasourceResourceWithUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CallDatasourceResourceWithUID(params *CallDatasourceResourceWithUIDParams, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error) {
 	if params == nil {
 		params = NewCallDatasourceResourceWithUIDParams()
 	}
@@ -180,7 +175,6 @@ func (a *Client) CallDatasourceResourceWithUID(params *CallDatasourceResourceWit
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CallDatasourceResourceWithUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -207,8 +201,7 @@ CheckDatasourceHealthByID sends a health check request to the plugin datasource 
 
 Please refer to [updated API](#/datasources/checkDatasourceHealthWithUID) instead
 */
-func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDParams, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error) {
 	if params == nil {
 		params = NewCheckDatasourceHealthByIDParams()
 	}
@@ -221,7 +214,6 @@ func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDPara
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CheckDatasourceHealthByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -246,8 +238,7 @@ func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDPara
 /*
 CheckDatasourceHealthWithUID sends a health check request to the plugin datasource identified by the UID
 */
-func (a *Client) CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithUIDParams, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error) {
 	if params == nil {
 		params = NewCheckDatasourceHealthWithUIDParams()
 	}
@@ -260,7 +251,6 @@ func (a *Client) CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithU
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CheckDatasourceHealthWithUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -287,8 +277,7 @@ DatasourceProxyDELETEByUIDcalls data source proxy d e l e t e calls
 
 Proxies all calls to the actual data source.
 */
-func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error) {
 	if params == nil {
 		params = NewDatasourceProxyDELETEByUIDcallsParams()
 	}
@@ -301,7 +290,6 @@ func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEBy
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DatasourceProxyDELETEByUIDcallsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -330,8 +318,7 @@ func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEBy
 
 Please refer to [updated API](#/datasources/datasourceProxyDELETEByUIDcalls) instead
 */
-func (a *Client) DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error) {
 	if params == nil {
 		params = NewDatasourceProxyDELETEcallsParams()
 	}
@@ -344,7 +331,6 @@ func (a *Client) DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsPa
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DatasourceProxyDELETEcallsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -371,8 +357,7 @@ DatasourceProxyGETByUIDcalls data source proxy g e t calls
 
 Proxies all calls to the actual data source.
 */
-func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error) {
 	if params == nil {
 		params = NewDatasourceProxyGETByUIDcallsParams()
 	}
@@ -385,7 +370,6 @@ func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcal
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DatasourceProxyGETByUIDcallsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -414,8 +398,7 @@ func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcal
 
 Please refer to [updated API](#/datasources/datasourceProxyGETByUIDcalls) instead
 */
-func (a *Client) DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error) {
 	if params == nil {
 		params = NewDatasourceProxyGETcallsParams()
 	}
@@ -428,7 +411,6 @@ func (a *Client) DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DatasourceProxyGETcallsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -455,8 +437,7 @@ DatasourceProxyPOSTByUIDcalls data source proxy p o s t calls
 
 Proxies all calls to the actual data source. The data source should support POST methods for the specific path and role as defined
 */
-func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyPOSTByUIDcallsCreated, *DatasourceProxyPOSTByUIDcallsAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyPOSTByUIDcallsCreated, *DatasourceProxyPOSTByUIDcallsAccepted, error) {
 	if params == nil {
 		params = NewDatasourceProxyPOSTByUIDcallsParams()
 	}
@@ -469,7 +450,6 @@ func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDc
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DatasourceProxyPOSTByUIDcallsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -499,8 +479,7 @@ func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDc
 
 Please refer to [updated API](#/datasources/datasourceProxyPOSTByUIDcalls) instead
 */
-func (a *Client) DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DatasourceProxyPOSTcallsCreated, *DatasourceProxyPOSTcallsAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams, opts ...ClientOption) (*DatasourceProxyPOSTcallsCreated, *DatasourceProxyPOSTcallsAccepted, error) {
 	if params == nil {
 		params = NewDatasourceProxyPOSTcallsParams()
 	}
@@ -513,7 +492,6 @@ func (a *Client) DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DatasourceProxyPOSTcallsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -545,8 +523,7 @@ you need to have a permission with action: `datasources:delete` and scopes: `dat
 
 Please refer to [updated API](#/datasources/deleteDataSourceByUID) instead
 */
-func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, opts ...ClientOption) (*DeleteDataSourceByIDOK, error) {
 	if params == nil {
 		params = NewDeleteDataSourceByIDParams()
 	}
@@ -559,7 +536,6 @@ func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteDataSourceByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -588,8 +564,7 @@ func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, authIn
 
 you need to have a permission with action: `datasources:delete` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
-func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByNameOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, opts ...ClientOption) (*DeleteDataSourceByNameOK, error) {
 	if params == nil {
 		params = NewDeleteDataSourceByNameParams()
 	}
@@ -602,7 +577,6 @@ func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteDataSourceByNameReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -631,8 +605,7 @@ func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, au
 
 you need to have a permission with action: `datasources:delete` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:kLtEtcRGk` (single data source).
 */
-func (a *Client) DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error) {
 	if params == nil {
 		params = NewDeleteDataSourceByUIDParams()
 	}
@@ -645,7 +618,6 @@ func (a *Client) DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteDataSourceByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -676,8 +648,7 @@ you need to have a permission with action: `datasources:read` and scopes: `datas
 
 Please refer to [updated API](#/datasources/getDataSourceByUID) instead
 */
-func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, opts ...ClientOption) (*GetDataSourceByIDOK, error) {
 	if params == nil {
 		params = NewGetDataSourceByIDParams()
 	}
@@ -690,7 +661,6 @@ func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDataSourceByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -719,8 +689,7 @@ func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, authInfo run
 
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
-func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByNameOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, opts ...ClientOption) (*GetDataSourceByNameOK, error) {
 	if params == nil {
 		params = NewGetDataSourceByNameParams()
 	}
@@ -733,7 +702,6 @@ func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDataSourceByNameReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -762,8 +730,7 @@ func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, authInfo
 
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:kLtEtcRGk` (single data source).
 */
-func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, opts ...ClientOption) (*GetDataSourceByUIDOK, error) {
 	if params == nil {
 		params = NewGetDataSourceByUIDParams()
 	}
@@ -776,7 +743,6 @@ func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDataSourceByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -805,8 +771,7 @@ func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, authInfo r
 
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
-func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourceIDByNameOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, opts ...ClientOption) (*GetDataSourceIDByNameOK, error) {
 	if params == nil {
 		params = NewGetDataSourceIDByNameParams()
 	}
@@ -819,7 +784,6 @@ func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDataSourceIDByNameReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -848,8 +812,7 @@ func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, auth
 
 you need to have a permission with action: `datasources:read` and scope: `datasources:*`.
 */
-func (a *Client) GetDataSources(params *GetDataSourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataSourcesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDataSources(params *GetDataSourcesParams, opts ...ClientOption) (*GetDataSourcesOK, error) {
 	if params == nil {
 		params = NewGetDataSourcesParams()
 	}
@@ -862,7 +825,6 @@ func (a *Client) GetDataSources(params *GetDataSourcesParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDataSourcesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -897,8 +859,7 @@ you need to have a permission with action: `datasources:write` and scopes: `data
 
 Please refer to [updated API](#/datasources/updateDataSourceByUID) instead
 */
-func (a *Client) UpdateDataSourceByID(params *UpdateDataSourceByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDataSourceByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateDataSourceByID(params *UpdateDataSourceByIDParams, opts ...ClientOption) (*UpdateDataSourceByIDOK, error) {
 	if params == nil {
 		params = NewUpdateDataSourceByIDParams()
 	}
@@ -911,7 +872,6 @@ func (a *Client) UpdateDataSourceByID(params *UpdateDataSourceByIDParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateDataSourceByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -944,8 +904,7 @@ encrypted fields are listed under secureJsonFields section in the response.
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:write` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:1` (single data source).
 */
-func (a *Client) UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error) {
 	if params == nil {
 		params = NewUpdateDataSourceByUIDParams()
 	}
@@ -958,7 +917,6 @@ func (a *Client) UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateDataSourceByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -983,4 +941,11 @@ func (a *Client) UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, auth
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

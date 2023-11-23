@@ -30,21 +30,21 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateFolder(params *CreateFolderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateFolderOK, error)
+	CreateFolder(params *CreateFolderParams, opts ...ClientOption) (*CreateFolderOK, error)
 
-	DeleteFolder(params *DeleteFolderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteFolderOK, error)
+	DeleteFolder(params *DeleteFolderParams, opts ...ClientOption) (*DeleteFolderOK, error)
 
-	GetFolderByID(params *GetFolderByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderByIDOK, error)
+	GetFolderByID(params *GetFolderByIDParams, opts ...ClientOption) (*GetFolderByIDOK, error)
 
-	GetFolderByUID(params *GetFolderByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderByUIDOK, error)
+	GetFolderByUID(params *GetFolderByUIDParams, opts ...ClientOption) (*GetFolderByUIDOK, error)
 
-	GetFolderDescendantCounts(params *GetFolderDescendantCountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderDescendantCountsOK, error)
+	GetFolderDescendantCounts(params *GetFolderDescendantCountsParams, opts ...ClientOption) (*GetFolderDescendantCountsOK, error)
 
-	GetFolders(params *GetFoldersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFoldersOK, error)
+	GetFolders(params *GetFoldersParams, opts ...ClientOption) (*GetFoldersOK, error)
 
-	MoveFolder(params *MoveFolderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*MoveFolderOK, error)
+	MoveFolder(params *MoveFolderParams, opts ...ClientOption) (*MoveFolderOK, error)
 
-	UpdateFolder(params *UpdateFolderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateFolderOK, error)
+	UpdateFolder(params *UpdateFolderParams, opts ...ClientOption) (*UpdateFolderOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -54,8 +54,7 @@ CreateFolder creates folder
 
 If nested folders are enabled then it additionally expects the parent folder UID.
 */
-func (a *Client) CreateFolder(params *CreateFolderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateFolderOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateFolder(params *CreateFolderParams, opts ...ClientOption) (*CreateFolderOK, error) {
 	if params == nil {
 		params = NewCreateFolderParams()
 	}
@@ -68,7 +67,6 @@ func (a *Client) CreateFolder(params *CreateFolderParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateFolderReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -97,8 +95,7 @@ func (a *Client) CreateFolder(params *CreateFolderParams, authInfo runtime.Clien
 
 If nested folders are enabled then it also deletes all the subfolders.
 */
-func (a *Client) DeleteFolder(params *DeleteFolderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteFolderOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteFolder(params *DeleteFolderParams, opts ...ClientOption) (*DeleteFolderOK, error) {
 	if params == nil {
 		params = NewDeleteFolderParams()
 	}
@@ -111,7 +108,6 @@ func (a *Client) DeleteFolder(params *DeleteFolderParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteFolderReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -140,8 +136,7 @@ func (a *Client) DeleteFolder(params *DeleteFolderParams, authInfo runtime.Clien
 
 Please refer to [updated API](#/folders/getFolderByUID) instead
 */
-func (a *Client) GetFolderByID(params *GetFolderByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetFolderByID(params *GetFolderByIDParams, opts ...ClientOption) (*GetFolderByIDOK, error) {
 	if params == nil {
 		params = NewGetFolderByIDParams()
 	}
@@ -154,7 +149,6 @@ func (a *Client) GetFolderByID(params *GetFolderByIDParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetFolderByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -179,8 +173,7 @@ func (a *Client) GetFolderByID(params *GetFolderByIDParams, authInfo runtime.Cli
 /*
 GetFolderByUID gets folder by uid
 */
-func (a *Client) GetFolderByUID(params *GetFolderByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetFolderByUID(params *GetFolderByUIDParams, opts ...ClientOption) (*GetFolderByUIDOK, error) {
 	if params == nil {
 		params = NewGetFolderByUIDParams()
 	}
@@ -193,7 +186,6 @@ func (a *Client) GetFolderByUID(params *GetFolderByUIDParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetFolderByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -218,8 +210,7 @@ func (a *Client) GetFolderByUID(params *GetFolderByUIDParams, authInfo runtime.C
 /*
 GetFolderDescendantCounts gets the count of each descendant of a folder by kind the folder is identified by UID
 */
-func (a *Client) GetFolderDescendantCounts(params *GetFolderDescendantCountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderDescendantCountsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetFolderDescendantCounts(params *GetFolderDescendantCountsParams, opts ...ClientOption) (*GetFolderDescendantCountsOK, error) {
 	if params == nil {
 		params = NewGetFolderDescendantCountsParams()
 	}
@@ -232,7 +223,6 @@ func (a *Client) GetFolderDescendantCounts(params *GetFolderDescendantCountsPara
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetFolderDescendantCountsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -264,8 +254,7 @@ and returns the immediate subfolders that the authenticated user has permission 
 If the parameter is not supplied then it returns immediate subfolders under the root
 that the authenticated user has permission to view.
 */
-func (a *Client) GetFolders(params *GetFoldersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFoldersOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetFolders(params *GetFoldersParams, opts ...ClientOption) (*GetFoldersOK, error) {
 	if params == nil {
 		params = NewGetFoldersParams()
 	}
@@ -278,7 +267,6 @@ func (a *Client) GetFolders(params *GetFoldersParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetFoldersReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -303,8 +291,7 @@ func (a *Client) GetFolders(params *GetFoldersParams, authInfo runtime.ClientAut
 /*
 MoveFolder moves folder
 */
-func (a *Client) MoveFolder(params *MoveFolderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*MoveFolderOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) MoveFolder(params *MoveFolderParams, opts ...ClientOption) (*MoveFolderOK, error) {
 	if params == nil {
 		params = NewMoveFolderParams()
 	}
@@ -317,7 +304,6 @@ func (a *Client) MoveFolder(params *MoveFolderParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &MoveFolderReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -342,8 +328,7 @@ func (a *Client) MoveFolder(params *MoveFolderParams, authInfo runtime.ClientAut
 /*
 UpdateFolder updates folder
 */
-func (a *Client) UpdateFolder(params *UpdateFolderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateFolderOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateFolder(params *UpdateFolderParams, opts ...ClientOption) (*UpdateFolderOK, error) {
 	if params == nil {
 		params = NewUpdateFolderParams()
 	}
@@ -356,7 +341,6 @@ func (a *Client) UpdateFolder(params *UpdateFolderParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateFolderReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -381,4 +365,11 @@ func (a *Client) UpdateFolder(params *UpdateFolderParams, authInfo runtime.Clien
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,25 +30,25 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateAlertNotificationChannel(params *CreateAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAlertNotificationChannelOK, error)
+	CreateAlertNotificationChannel(params *CreateAlertNotificationChannelParams, opts ...ClientOption) (*CreateAlertNotificationChannelOK, error)
 
-	DeleteAlertNotificationChannel(params *DeleteAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertNotificationChannelOK, error)
+	DeleteAlertNotificationChannel(params *DeleteAlertNotificationChannelParams, opts ...ClientOption) (*DeleteAlertNotificationChannelOK, error)
 
-	DeleteAlertNotificationChannelByUID(params *DeleteAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertNotificationChannelByUIDOK, error)
+	DeleteAlertNotificationChannelByUID(params *DeleteAlertNotificationChannelByUIDParams, opts ...ClientOption) (*DeleteAlertNotificationChannelByUIDOK, error)
 
-	GetAlertNotificationChannelByID(params *GetAlertNotificationChannelByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelByIDOK, error)
+	GetAlertNotificationChannelByID(params *GetAlertNotificationChannelByIDParams, opts ...ClientOption) (*GetAlertNotificationChannelByIDOK, error)
 
-	GetAlertNotificationChannelByUID(params *GetAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelByUIDOK, error)
+	GetAlertNotificationChannelByUID(params *GetAlertNotificationChannelByUIDParams, opts ...ClientOption) (*GetAlertNotificationChannelByUIDOK, error)
 
-	GetAlertNotificationChannels(params *GetAlertNotificationChannelsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error)
+	GetAlertNotificationChannels(params *GetAlertNotificationChannelsParams, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error)
 
-	GetAlertNotificationLookup(params *GetAlertNotificationLookupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationLookupOK, error)
+	GetAlertNotificationLookup(params *GetAlertNotificationLookupParams, opts ...ClientOption) (*GetAlertNotificationLookupOK, error)
 
-	NotificationChannelTest(params *NotificationChannelTestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*NotificationChannelTestOK, error)
+	NotificationChannelTest(params *NotificationChannelTestParams, opts ...ClientOption) (*NotificationChannelTestOK, error)
 
-	UpdateAlertNotificationChannel(params *UpdateAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAlertNotificationChannelOK, error)
+	UpdateAlertNotificationChannel(params *UpdateAlertNotificationChannelParams, opts ...ClientOption) (*UpdateAlertNotificationChannelOK, error)
 
-	UpdateAlertNotificationChannelByUID(params *UpdateAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAlertNotificationChannelByUIDOK, error)
+	UpdateAlertNotificationChannelByUID(params *UpdateAlertNotificationChannelByUIDParams, opts ...ClientOption) (*UpdateAlertNotificationChannelByUIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -58,8 +58,7 @@ CreateAlertNotificationChannel creates notification channel
 
 You can find the full list of [supported notifiers](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/#list-of-supported-notifiers) on the alert notifiers page.
 */
-func (a *Client) CreateAlertNotificationChannel(params *CreateAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAlertNotificationChannelOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateAlertNotificationChannel(params *CreateAlertNotificationChannelParams, opts ...ClientOption) (*CreateAlertNotificationChannelOK, error) {
 	if params == nil {
 		params = NewCreateAlertNotificationChannelParams()
 	}
@@ -72,7 +71,6 @@ func (a *Client) CreateAlertNotificationChannel(params *CreateAlertNotificationC
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateAlertNotificationChannelReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -99,8 +97,7 @@ DeleteAlertNotificationChannel deletes alert notification by ID
 
 Deletes an existing notification channel identified by ID.
 */
-func (a *Client) DeleteAlertNotificationChannel(params *DeleteAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertNotificationChannelOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteAlertNotificationChannel(params *DeleteAlertNotificationChannelParams, opts ...ClientOption) (*DeleteAlertNotificationChannelOK, error) {
 	if params == nil {
 		params = NewDeleteAlertNotificationChannelParams()
 	}
@@ -113,7 +110,6 @@ func (a *Client) DeleteAlertNotificationChannel(params *DeleteAlertNotificationC
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteAlertNotificationChannelReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -140,8 +136,7 @@ DeleteAlertNotificationChannelByUID deletes alert notification by UID
 
 Deletes an existing notification channel identified by UID.
 */
-func (a *Client) DeleteAlertNotificationChannelByUID(params *DeleteAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertNotificationChannelByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteAlertNotificationChannelByUID(params *DeleteAlertNotificationChannelByUIDParams, opts ...ClientOption) (*DeleteAlertNotificationChannelByUIDOK, error) {
 	if params == nil {
 		params = NewDeleteAlertNotificationChannelByUIDParams()
 	}
@@ -154,7 +149,6 @@ func (a *Client) DeleteAlertNotificationChannelByUID(params *DeleteAlertNotifica
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteAlertNotificationChannelByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -181,8 +175,7 @@ GetAlertNotificationChannelByID gets notification channel by ID
 
 Returns the notification channel given the notification channel ID.
 */
-func (a *Client) GetAlertNotificationChannelByID(params *GetAlertNotificationChannelByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertNotificationChannelByID(params *GetAlertNotificationChannelByIDParams, opts ...ClientOption) (*GetAlertNotificationChannelByIDOK, error) {
 	if params == nil {
 		params = NewGetAlertNotificationChannelByIDParams()
 	}
@@ -195,7 +188,6 @@ func (a *Client) GetAlertNotificationChannelByID(params *GetAlertNotificationCha
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertNotificationChannelByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -222,8 +214,7 @@ GetAlertNotificationChannelByUID gets notification channel by UID
 
 Returns the notification channel given the notification channel UID.
 */
-func (a *Client) GetAlertNotificationChannelByUID(params *GetAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertNotificationChannelByUID(params *GetAlertNotificationChannelByUIDParams, opts ...ClientOption) (*GetAlertNotificationChannelByUIDOK, error) {
 	if params == nil {
 		params = NewGetAlertNotificationChannelByUIDParams()
 	}
@@ -236,7 +227,6 @@ func (a *Client) GetAlertNotificationChannelByUID(params *GetAlertNotificationCh
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertNotificationChannelByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -263,8 +253,7 @@ GetAlertNotificationChannels gets all notification channels
 
 Returns all notification channels that the authenticated user has permission to view.
 */
-func (a *Client) GetAlertNotificationChannels(params *GetAlertNotificationChannelsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertNotificationChannels(params *GetAlertNotificationChannelsParams, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error) {
 	if params == nil {
 		params = NewGetAlertNotificationChannelsParams()
 	}
@@ -277,7 +266,6 @@ func (a *Client) GetAlertNotificationChannels(params *GetAlertNotificationChanne
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertNotificationChannelsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -304,8 +292,7 @@ GetAlertNotificationLookup gets all notification channels lookup
 
 Returns all notification channels, but with less detailed information. Accessible by any authenticated user and is mainly used by providing alert notification channels in Grafana UI when configuring alert rule.
 */
-func (a *Client) GetAlertNotificationLookup(params *GetAlertNotificationLookupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertNotificationLookupOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertNotificationLookup(params *GetAlertNotificationLookupParams, opts ...ClientOption) (*GetAlertNotificationLookupOK, error) {
 	if params == nil {
 		params = NewGetAlertNotificationLookupParams()
 	}
@@ -318,7 +305,6 @@ func (a *Client) GetAlertNotificationLookup(params *GetAlertNotificationLookupPa
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertNotificationLookupReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -345,8 +331,7 @@ NotificationChannelTest tests notification channel
 
 Sends a test notification to the channel.
 */
-func (a *Client) NotificationChannelTest(params *NotificationChannelTestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*NotificationChannelTestOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) NotificationChannelTest(params *NotificationChannelTestParams, opts ...ClientOption) (*NotificationChannelTestOK, error) {
 	if params == nil {
 		params = NewNotificationChannelTestParams()
 	}
@@ -359,7 +344,6 @@ func (a *Client) NotificationChannelTest(params *NotificationChannelTestParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &NotificationChannelTestReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -386,8 +370,7 @@ UpdateAlertNotificationChannel updates notification channel by ID
 
 Updates an existing notification channel identified by ID.
 */
-func (a *Client) UpdateAlertNotificationChannel(params *UpdateAlertNotificationChannelParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAlertNotificationChannelOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateAlertNotificationChannel(params *UpdateAlertNotificationChannelParams, opts ...ClientOption) (*UpdateAlertNotificationChannelOK, error) {
 	if params == nil {
 		params = NewUpdateAlertNotificationChannelParams()
 	}
@@ -400,7 +383,6 @@ func (a *Client) UpdateAlertNotificationChannel(params *UpdateAlertNotificationC
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateAlertNotificationChannelReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -427,8 +409,7 @@ UpdateAlertNotificationChannelByUID updates notification channel by UID
 
 Updates an existing notification channel identified by uid.
 */
-func (a *Client) UpdateAlertNotificationChannelByUID(params *UpdateAlertNotificationChannelByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAlertNotificationChannelByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateAlertNotificationChannelByUID(params *UpdateAlertNotificationChannelByUIDParams, opts ...ClientOption) (*UpdateAlertNotificationChannelByUIDOK, error) {
 	if params == nil {
 		params = NewUpdateAlertNotificationChannelByUIDParams()
 	}
@@ -441,7 +422,6 @@ func (a *Client) UpdateAlertNotificationChannelByUID(params *UpdateAlertNotifica
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateAlertNotificationChannelByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -466,4 +446,11 @@ func (a *Client) UpdateAlertNotificationChannelByUID(params *UpdateAlertNotifica
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

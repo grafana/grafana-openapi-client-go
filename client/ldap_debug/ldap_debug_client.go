@@ -30,7 +30,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetSyncStatus(params *GetSyncStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSyncStatusOK, error)
+	GetSyncStatus(params *GetSyncStatusParams, opts ...ClientOption) (*GetSyncStatusOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -40,8 +40,7 @@ GetSyncStatus returns the current state of the LDAP background sync integration
 
 You need to have a permission with action `ldap.status:read`.
 */
-func (a *Client) GetSyncStatus(params *GetSyncStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSyncStatusOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetSyncStatus(params *GetSyncStatusParams, opts ...ClientOption) (*GetSyncStatusOK, error) {
 	if params == nil {
 		params = NewGetSyncStatusParams()
 	}
@@ -54,7 +53,6 @@ func (a *Client) GetSyncStatus(params *GetSyncStatusParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetSyncStatusReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -79,4 +77,11 @@ func (a *Client) GetSyncStatus(params *GetSyncStatusParams, authInfo runtime.Cli
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

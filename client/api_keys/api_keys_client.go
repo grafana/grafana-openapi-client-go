@@ -30,11 +30,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddAPIkey(params *AddAPIkeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddAPIkeyOK, error)
+	AddAPIkey(params *AddAPIkeyParams, opts ...ClientOption) (*AddAPIkeyOK, error)
 
-	DeleteAPIkey(params *DeleteAPIkeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAPIkeyOK, error)
+	DeleteAPIkey(params *DeleteAPIkeyParams, opts ...ClientOption) (*DeleteAPIkeyOK, error)
 
-	GetAPIkeys(params *GetAPIkeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAPIkeysOK, error)
+	GetAPIkeys(params *GetAPIkeysParams, opts ...ClientOption) (*GetAPIkeysOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -44,8 +44,7 @@ AddAPIkey creates an API key
 
 Will return details of the created API key.
 */
-func (a *Client) AddAPIkey(params *AddAPIkeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddAPIkeyOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddAPIkey(params *AddAPIkeyParams, opts ...ClientOption) (*AddAPIkeyOK, error) {
 	if params == nil {
 		params = NewAddAPIkeyParams()
 	}
@@ -58,7 +57,6 @@ func (a *Client) AddAPIkey(params *AddAPIkeyParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddAPIkeyReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -87,8 +85,7 @@ func (a *Client) AddAPIkey(params *AddAPIkeyParams, authInfo runtime.ClientAuthI
 
 Deprecated. See: https://grafana.com/docs/grafana/next/administration/api-keys/#migrate-api-keys-to-grafana-service-accounts-using-the-api.
 */
-func (a *Client) DeleteAPIkey(params *DeleteAPIkeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAPIkeyOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteAPIkey(params *DeleteAPIkeyParams, opts ...ClientOption) (*DeleteAPIkeyOK, error) {
 	if params == nil {
 		params = NewDeleteAPIkeyParams()
 	}
@@ -101,7 +98,6 @@ func (a *Client) DeleteAPIkey(params *DeleteAPIkeyParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteAPIkeyReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -133,8 +129,7 @@ Deprecated: true.
 Deprecated. Please use GET /api/serviceaccounts and GET /api/serviceaccounts/{id}/tokens instead
 see https://grafana.com/docs/grafana/next/administration/api-keys/#migrate-api-keys-to-grafana-service-accounts-using-the-api.
 */
-func (a *Client) GetAPIkeys(params *GetAPIkeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAPIkeysOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAPIkeys(params *GetAPIkeysParams, opts ...ClientOption) (*GetAPIkeysOK, error) {
 	if params == nil {
 		params = NewGetAPIkeysParams()
 	}
@@ -147,7 +142,6 @@ func (a *Client) GetAPIkeys(params *GetAPIkeysParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAPIkeysReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -172,4 +166,11 @@ func (a *Client) GetAPIkeys(params *GetAPIkeysParams, authInfo runtime.ClientAut
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

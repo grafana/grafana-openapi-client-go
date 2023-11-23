@@ -30,11 +30,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetSettings(params *AdminGetSettingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminGetSettingsOK, error)
+	AdminGetSettings(params *AdminGetSettingsParams, opts ...ClientOption) (*AdminGetSettingsOK, error)
 
-	AdminGetStats(params *AdminGetStatsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminGetStatsOK, error)
+	AdminGetStats(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error)
 
-	PauseAllAlerts(params *PauseAllAlertsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PauseAllAlertsOK, error)
+	PauseAllAlerts(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -44,8 +44,7 @@ AdminGetSettings fetches settings
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `settings:read` and scopes: `settings:*`, `settings:auth.saml:` and `settings:auth.saml:enabled` (property level).
 */
-func (a *Client) AdminGetSettings(params *AdminGetSettingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminGetSettingsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminGetSettings(params *AdminGetSettingsParams, opts ...ClientOption) (*AdminGetSettingsOK, error) {
 	if params == nil {
 		params = NewAdminGetSettingsParams()
 	}
@@ -58,7 +57,6 @@ func (a *Client) AdminGetSettings(params *AdminGetSettingsParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminGetSettingsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -87,8 +85,7 @@ func (a *Client) AdminGetSettings(params *AdminGetSettingsParams, authInfo runti
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `server:stats:read`.
 */
-func (a *Client) AdminGetStats(params *AdminGetStatsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminGetStatsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminGetStats(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error) {
 	if params == nil {
 		params = NewAdminGetStatsParams()
 	}
@@ -101,7 +98,6 @@ func (a *Client) AdminGetStats(params *AdminGetStatsParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminGetStatsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -126,8 +122,7 @@ func (a *Client) AdminGetStats(params *AdminGetStatsParams, authInfo runtime.Cli
 /*
 PauseAllAlerts pauses unpause all legacy alerts
 */
-func (a *Client) PauseAllAlerts(params *PauseAllAlertsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PauseAllAlertsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PauseAllAlerts(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error) {
 	if params == nil {
 		params = NewPauseAllAlertsParams()
 	}
@@ -140,7 +135,6 @@ func (a *Client) PauseAllAlerts(params *PauseAllAlertsParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PauseAllAlertsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -165,4 +159,11 @@ func (a *Client) PauseAllAlerts(params *PauseAllAlertsParams, authInfo runtime.C
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

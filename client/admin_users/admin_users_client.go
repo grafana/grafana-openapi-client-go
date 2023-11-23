@@ -30,27 +30,27 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminCreateUser(params *AdminCreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminCreateUserOK, error)
+	AdminCreateUser(params *AdminCreateUserParams, opts ...ClientOption) (*AdminCreateUserOK, error)
 
-	AdminDeleteUser(params *AdminDeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminDeleteUserOK, error)
+	AdminDeleteUser(params *AdminDeleteUserParams, opts ...ClientOption) (*AdminDeleteUserOK, error)
 
-	AdminDisableUser(params *AdminDisableUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminDisableUserOK, error)
+	AdminDisableUser(params *AdminDisableUserParams, opts ...ClientOption) (*AdminDisableUserOK, error)
 
-	AdminEnableUser(params *AdminEnableUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminEnableUserOK, error)
+	AdminEnableUser(params *AdminEnableUserParams, opts ...ClientOption) (*AdminEnableUserOK, error)
 
-	AdminGetUserAuthTokens(params *AdminGetUserAuthTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminGetUserAuthTokensOK, error)
+	AdminGetUserAuthTokens(params *AdminGetUserAuthTokensParams, opts ...ClientOption) (*AdminGetUserAuthTokensOK, error)
 
-	AdminLogoutUser(params *AdminLogoutUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminLogoutUserOK, error)
+	AdminLogoutUser(params *AdminLogoutUserParams, opts ...ClientOption) (*AdminLogoutUserOK, error)
 
-	AdminRevokeUserAuthToken(params *AdminRevokeUserAuthTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminRevokeUserAuthTokenOK, error)
+	AdminRevokeUserAuthToken(params *AdminRevokeUserAuthTokenParams, opts ...ClientOption) (*AdminRevokeUserAuthTokenOK, error)
 
-	AdminUpdateUserPassword(params *AdminUpdateUserPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminUpdateUserPasswordOK, error)
+	AdminUpdateUserPassword(params *AdminUpdateUserPasswordParams, opts ...ClientOption) (*AdminUpdateUserPasswordOK, error)
 
-	AdminUpdateUserPermissions(params *AdminUpdateUserPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminUpdateUserPermissionsOK, error)
+	AdminUpdateUserPermissions(params *AdminUpdateUserPermissionsParams, opts ...ClientOption) (*AdminUpdateUserPermissionsOK, error)
 
-	GetUserQuota(params *GetUserQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserQuotaOK, error)
+	GetUserQuota(params *GetUserQuotaParams, opts ...ClientOption) (*GetUserQuotaOK, error)
 
-	UpdateUserQuota(params *UpdateUserQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserQuotaOK, error)
+	UpdateUserQuota(params *UpdateUserQuotaParams, opts ...ClientOption) (*UpdateUserQuotaOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -62,8 +62,7 @@ type ClientService interface {
 
 Note that OrgId is an optional parameter that can be used to assign a new user to a different organization when `auto_assign_org` is set to `true`.
 */
-func (a *Client) AdminCreateUser(params *AdminCreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminCreateUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminCreateUser(params *AdminCreateUserParams, opts ...ClientOption) (*AdminCreateUserOK, error) {
 	if params == nil {
 		params = NewAdminCreateUserParams()
 	}
@@ -76,7 +75,6 @@ func (a *Client) AdminCreateUser(params *AdminCreateUserParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminCreateUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -103,8 +101,7 @@ AdminDeleteUser deletes global user
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users:delete` and scope `global.users:*`.
 */
-func (a *Client) AdminDeleteUser(params *AdminDeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminDeleteUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminDeleteUser(params *AdminDeleteUserParams, opts ...ClientOption) (*AdminDeleteUserOK, error) {
 	if params == nil {
 		params = NewAdminDeleteUserParams()
 	}
@@ -117,7 +114,6 @@ func (a *Client) AdminDeleteUser(params *AdminDeleteUserParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminDeleteUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -144,8 +140,7 @@ AdminDisableUser disables user
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users:disable` and scope `global.users:1` (userIDScope).
 */
-func (a *Client) AdminDisableUser(params *AdminDisableUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminDisableUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminDisableUser(params *AdminDisableUserParams, opts ...ClientOption) (*AdminDisableUserOK, error) {
 	if params == nil {
 		params = NewAdminDisableUserParams()
 	}
@@ -158,7 +153,6 @@ func (a *Client) AdminDisableUser(params *AdminDisableUserParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminDisableUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -185,8 +179,7 @@ AdminEnableUser enables user
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users:enable` and scope `global.users:1` (userIDScope).
 */
-func (a *Client) AdminEnableUser(params *AdminEnableUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminEnableUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminEnableUser(params *AdminEnableUserParams, opts ...ClientOption) (*AdminEnableUserOK, error) {
 	if params == nil {
 		params = NewAdminEnableUserParams()
 	}
@@ -199,7 +192,6 @@ func (a *Client) AdminEnableUser(params *AdminEnableUserParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminEnableUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -226,8 +218,7 @@ AdminGetUserAuthTokens returns a list of all auth tokens devices that the user c
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users.authtoken:list` and scope `global.users:*`.
 */
-func (a *Client) AdminGetUserAuthTokens(params *AdminGetUserAuthTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminGetUserAuthTokensOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminGetUserAuthTokens(params *AdminGetUserAuthTokensParams, opts ...ClientOption) (*AdminGetUserAuthTokensOK, error) {
 	if params == nil {
 		params = NewAdminGetUserAuthTokensParams()
 	}
@@ -240,7 +231,6 @@ func (a *Client) AdminGetUserAuthTokens(params *AdminGetUserAuthTokensParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminGetUserAuthTokensReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -267,8 +257,7 @@ AdminLogoutUser logouts user revokes all auth tokens devices for the user user o
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users.logout` and scope `global.users:*`.
 */
-func (a *Client) AdminLogoutUser(params *AdminLogoutUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminLogoutUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminLogoutUser(params *AdminLogoutUserParams, opts ...ClientOption) (*AdminLogoutUserOK, error) {
 	if params == nil {
 		params = NewAdminLogoutUserParams()
 	}
@@ -281,7 +270,6 @@ func (a *Client) AdminLogoutUser(params *AdminLogoutUserParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminLogoutUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -310,8 +298,7 @@ func (a *Client) AdminLogoutUser(params *AdminLogoutUserParams, authInfo runtime
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users.authtoken:update` and scope `global.users:*`.
 */
-func (a *Client) AdminRevokeUserAuthToken(params *AdminRevokeUserAuthTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminRevokeUserAuthTokenOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminRevokeUserAuthToken(params *AdminRevokeUserAuthTokenParams, opts ...ClientOption) (*AdminRevokeUserAuthTokenOK, error) {
 	if params == nil {
 		params = NewAdminRevokeUserAuthTokenParams()
 	}
@@ -324,7 +311,6 @@ func (a *Client) AdminRevokeUserAuthToken(params *AdminRevokeUserAuthTokenParams
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminRevokeUserAuthTokenReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -351,8 +337,7 @@ AdminUpdateUserPassword sets password for user
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users.password:update` and scope `global.users:*`.
 */
-func (a *Client) AdminUpdateUserPassword(params *AdminUpdateUserPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminUpdateUserPasswordOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminUpdateUserPassword(params *AdminUpdateUserPasswordParams, opts ...ClientOption) (*AdminUpdateUserPasswordOK, error) {
 	if params == nil {
 		params = NewAdminUpdateUserPasswordParams()
 	}
@@ -365,7 +350,6 @@ func (a *Client) AdminUpdateUserPassword(params *AdminUpdateUserPasswordParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserPasswordReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -394,8 +378,7 @@ func (a *Client) AdminUpdateUserPassword(params *AdminUpdateUserPasswordParams, 
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users.permissions:update` and scope `global.users:*`.
 */
-func (a *Client) AdminUpdateUserPermissions(params *AdminUpdateUserPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminUpdateUserPermissionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminUpdateUserPermissions(params *AdminUpdateUserPermissionsParams, opts ...ClientOption) (*AdminUpdateUserPermissionsOK, error) {
 	if params == nil {
 		params = NewAdminUpdateUserPermissionsParams()
 	}
@@ -408,7 +391,6 @@ func (a *Client) AdminUpdateUserPermissions(params *AdminUpdateUserPermissionsPa
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserPermissionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -435,8 +417,7 @@ GetUserQuota fetches user quota
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users.quotas:list` and scope `global.users:1` (userIDScope).
 */
-func (a *Client) GetUserQuota(params *GetUserQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserQuotaOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserQuota(params *GetUserQuotaParams, opts ...ClientOption) (*GetUserQuotaOK, error) {
 	if params == nil {
 		params = NewGetUserQuotaParams()
 	}
@@ -449,7 +430,6 @@ func (a *Client) GetUserQuota(params *GetUserQuotaParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserQuotaReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -476,8 +456,7 @@ UpdateUserQuota updates user quota
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `users.quotas:update` and scope `global.users:1` (userIDScope).
 */
-func (a *Client) UpdateUserQuota(params *UpdateUserQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserQuotaOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateUserQuota(params *UpdateUserQuotaParams, opts ...ClientOption) (*UpdateUserQuotaOK, error) {
 	if params == nil {
 		params = NewUpdateUserQuotaParams()
 	}
@@ -490,7 +469,6 @@ func (a *Client) UpdateUserQuota(params *UpdateUserQuotaParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateUserQuotaReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -515,4 +493,11 @@ func (a *Client) UpdateUserQuota(params *UpdateUserQuotaParams, authInfo runtime
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

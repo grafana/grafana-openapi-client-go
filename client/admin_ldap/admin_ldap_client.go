@@ -30,13 +30,13 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetLDAPStatus(params *GetLDAPStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLDAPStatusOK, error)
+	GetLDAPStatus(params *GetLDAPStatusParams, opts ...ClientOption) (*GetLDAPStatusOK, error)
 
-	GetUserFromLDAP(params *GetUserFromLDAPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserFromLDAPOK, error)
+	GetUserFromLDAP(params *GetUserFromLDAPParams, opts ...ClientOption) (*GetUserFromLDAPOK, error)
 
-	PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error)
+	PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error)
 
-	ReloadLDAPCfg(params *ReloadLDAPCfgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ReloadLDAPCfgOK, error)
+	ReloadLDAPCfg(params *ReloadLDAPCfgParams, opts ...ClientOption) (*ReloadLDAPCfgOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,8 +46,7 @@ GetLDAPStatus attempts to connect to all the configured LDAP servers and returns
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.status:read`.
 */
-func (a *Client) GetLDAPStatus(params *GetLDAPStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLDAPStatusOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetLDAPStatus(params *GetLDAPStatusParams, opts ...ClientOption) (*GetLDAPStatusOK, error) {
 	if params == nil {
 		params = NewGetLDAPStatusParams()
 	}
@@ -60,7 +59,6 @@ func (a *Client) GetLDAPStatus(params *GetLDAPStatusParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetLDAPStatusReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -87,8 +85,7 @@ GetUserFromLDAP finds an user based on a username in LDAP this helps illustrate 
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.user:read`.
 */
-func (a *Client) GetUserFromLDAP(params *GetUserFromLDAPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserFromLDAPOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserFromLDAP(params *GetUserFromLDAPParams, opts ...ClientOption) (*GetUserFromLDAPOK, error) {
 	if params == nil {
 		params = NewGetUserFromLDAPParams()
 	}
@@ -101,7 +98,6 @@ func (a *Client) GetUserFromLDAP(params *GetUserFromLDAPParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserFromLDAPReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -128,8 +124,7 @@ PostSyncUserWithLDAP enables a single grafana user to be synchronized against LD
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.user:sync`.
 */
-func (a *Client) PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error) {
 	if params == nil {
 		params = NewPostSyncUserWithLDAPParams()
 	}
@@ -142,7 +137,6 @@ func (a *Client) PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostSyncUserWithLDAPReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -169,8 +163,7 @@ ReloadLDAPCfg reloads the LDAP configuration
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.config:reload`.
 */
-func (a *Client) ReloadLDAPCfg(params *ReloadLDAPCfgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ReloadLDAPCfgOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ReloadLDAPCfg(params *ReloadLDAPCfgParams, opts ...ClientOption) (*ReloadLDAPCfgOK, error) {
 	if params == nil {
 		params = NewReloadLDAPCfgParams()
 	}
@@ -183,7 +176,6 @@ func (a *Client) ReloadLDAPCfg(params *ReloadLDAPCfgParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ReloadLDAPCfgReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -208,4 +200,11 @@ func (a *Client) ReloadLDAPCfg(params *ReloadLDAPCfgParams, authInfo runtime.Cli
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

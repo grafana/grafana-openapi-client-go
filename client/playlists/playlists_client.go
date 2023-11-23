@@ -30,17 +30,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreatePlaylist(params *CreatePlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePlaylistOK, error)
+	CreatePlaylist(params *CreatePlaylistParams, opts ...ClientOption) (*CreatePlaylistOK, error)
 
-	DeletePlaylist(params *DeletePlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePlaylistOK, error)
+	DeletePlaylist(params *DeletePlaylistParams, opts ...ClientOption) (*DeletePlaylistOK, error)
 
-	GetPlaylist(params *GetPlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPlaylistOK, error)
+	GetPlaylist(params *GetPlaylistParams, opts ...ClientOption) (*GetPlaylistOK, error)
 
-	GetPlaylistItems(params *GetPlaylistItemsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPlaylistItemsOK, error)
+	GetPlaylistItems(params *GetPlaylistItemsParams, opts ...ClientOption) (*GetPlaylistItemsOK, error)
 
-	SearchPlaylists(params *SearchPlaylistsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchPlaylistsOK, error)
+	SearchPlaylists(params *SearchPlaylistsParams, opts ...ClientOption) (*SearchPlaylistsOK, error)
 
-	UpdatePlaylist(params *UpdatePlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdatePlaylistOK, error)
+	UpdatePlaylist(params *UpdatePlaylistParams, opts ...ClientOption) (*UpdatePlaylistOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -48,8 +48,7 @@ type ClientService interface {
 /*
 CreatePlaylist creates playlist
 */
-func (a *Client) CreatePlaylist(params *CreatePlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePlaylistOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreatePlaylist(params *CreatePlaylistParams, opts ...ClientOption) (*CreatePlaylistOK, error) {
 	if params == nil {
 		params = NewCreatePlaylistParams()
 	}
@@ -62,7 +61,6 @@ func (a *Client) CreatePlaylist(params *CreatePlaylistParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreatePlaylistReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -87,8 +85,7 @@ func (a *Client) CreatePlaylist(params *CreatePlaylistParams, authInfo runtime.C
 /*
 DeletePlaylist deletes playlist
 */
-func (a *Client) DeletePlaylist(params *DeletePlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePlaylistOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeletePlaylist(params *DeletePlaylistParams, opts ...ClientOption) (*DeletePlaylistOK, error) {
 	if params == nil {
 		params = NewDeletePlaylistParams()
 	}
@@ -101,7 +98,6 @@ func (a *Client) DeletePlaylist(params *DeletePlaylistParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeletePlaylistReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -126,8 +122,7 @@ func (a *Client) DeletePlaylist(params *DeletePlaylistParams, authInfo runtime.C
 /*
 GetPlaylist gets playlist
 */
-func (a *Client) GetPlaylist(params *GetPlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPlaylistOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetPlaylist(params *GetPlaylistParams, opts ...ClientOption) (*GetPlaylistOK, error) {
 	if params == nil {
 		params = NewGetPlaylistParams()
 	}
@@ -140,7 +135,6 @@ func (a *Client) GetPlaylist(params *GetPlaylistParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetPlaylistReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -165,8 +159,7 @@ func (a *Client) GetPlaylist(params *GetPlaylistParams, authInfo runtime.ClientA
 /*
 GetPlaylistItems gets playlist items
 */
-func (a *Client) GetPlaylistItems(params *GetPlaylistItemsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPlaylistItemsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetPlaylistItems(params *GetPlaylistItemsParams, opts ...ClientOption) (*GetPlaylistItemsOK, error) {
 	if params == nil {
 		params = NewGetPlaylistItemsParams()
 	}
@@ -179,7 +172,6 @@ func (a *Client) GetPlaylistItems(params *GetPlaylistItemsParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetPlaylistItemsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -204,8 +196,7 @@ func (a *Client) GetPlaylistItems(params *GetPlaylistItemsParams, authInfo runti
 /*
 SearchPlaylists gets playlists
 */
-func (a *Client) SearchPlaylists(params *SearchPlaylistsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchPlaylistsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchPlaylists(params *SearchPlaylistsParams, opts ...ClientOption) (*SearchPlaylistsOK, error) {
 	if params == nil {
 		params = NewSearchPlaylistsParams()
 	}
@@ -218,7 +209,6 @@ func (a *Client) SearchPlaylists(params *SearchPlaylistsParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchPlaylistsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -243,8 +233,7 @@ func (a *Client) SearchPlaylists(params *SearchPlaylistsParams, authInfo runtime
 /*
 UpdatePlaylist updates playlist
 */
-func (a *Client) UpdatePlaylist(params *UpdatePlaylistParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdatePlaylistOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdatePlaylist(params *UpdatePlaylistParams, opts ...ClientOption) (*UpdatePlaylistOK, error) {
 	if params == nil {
 		params = NewUpdatePlaylistParams()
 	}
@@ -257,7 +246,6 @@ func (a *Client) UpdatePlaylist(params *UpdatePlaylistParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdatePlaylistReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -282,4 +270,11 @@ func (a *Client) UpdatePlaylist(params *UpdatePlaylistParams, authInfo runtime.C
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

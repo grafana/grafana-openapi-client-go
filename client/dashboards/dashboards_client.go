@@ -30,21 +30,21 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CalculateDashboardDiff(params *CalculateDashboardDiffParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CalculateDashboardDiffOK, error)
+	CalculateDashboardDiff(params *CalculateDashboardDiffParams, opts ...ClientOption) (*CalculateDashboardDiffOK, error)
 
-	DeleteDashboardByUID(params *DeleteDashboardByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDashboardByUIDOK, error)
+	DeleteDashboardByUID(params *DeleteDashboardByUIDParams, opts ...ClientOption) (*DeleteDashboardByUIDOK, error)
 
-	GetDashboardByUID(params *GetDashboardByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardByUIDOK, error)
+	GetDashboardByUID(params *GetDashboardByUIDParams, opts ...ClientOption) (*GetDashboardByUIDOK, error)
 
-	GetDashboardTags(params *GetDashboardTagsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardTagsOK, error)
+	GetDashboardTags(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error)
 
-	GetHomeDashboard(params *GetHomeDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetHomeDashboardOK, error)
+	GetHomeDashboard(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error)
 
-	ImportDashboard(params *ImportDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportDashboardOK, error)
+	ImportDashboard(params *ImportDashboardParams, opts ...ClientOption) (*ImportDashboardOK, error)
 
-	PostDashboard(params *PostDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostDashboardOK, error)
+	PostDashboard(params *PostDashboardParams, opts ...ClientOption) (*PostDashboardOK, error)
 
-	TrimDashboard(params *TrimDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TrimDashboardOK, error)
+	TrimDashboard(params *TrimDashboardParams, opts ...ClientOption) (*TrimDashboardOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -52,8 +52,7 @@ type ClientService interface {
 /*
 CalculateDashboardDiff performs diff on two dashboards
 */
-func (a *Client) CalculateDashboardDiff(params *CalculateDashboardDiffParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CalculateDashboardDiffOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CalculateDashboardDiff(params *CalculateDashboardDiffParams, opts ...ClientOption) (*CalculateDashboardDiffOK, error) {
 	if params == nil {
 		params = NewCalculateDashboardDiffParams()
 	}
@@ -66,7 +65,6 @@ func (a *Client) CalculateDashboardDiff(params *CalculateDashboardDiffParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CalculateDashboardDiffReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -93,8 +91,7 @@ DeleteDashboardByUID deletes dashboard by uid
 
 Will delete the dashboard given the specified unique identifier (uid).
 */
-func (a *Client) DeleteDashboardByUID(params *DeleteDashboardByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDashboardByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteDashboardByUID(params *DeleteDashboardByUIDParams, opts ...ClientOption) (*DeleteDashboardByUIDOK, error) {
 	if params == nil {
 		params = NewDeleteDashboardByUIDParams()
 	}
@@ -107,7 +104,6 @@ func (a *Client) DeleteDashboardByUID(params *DeleteDashboardByUIDParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteDashboardByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -134,8 +130,7 @@ GetDashboardByUID gets dashboard by uid
 
 Will return the dashboard given the dashboard unique identifier (uid).
 */
-func (a *Client) GetDashboardByUID(params *GetDashboardByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardByUID(params *GetDashboardByUIDParams, opts ...ClientOption) (*GetDashboardByUIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardByUIDParams()
 	}
@@ -148,7 +143,6 @@ func (a *Client) GetDashboardByUID(params *GetDashboardByUIDParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -173,8 +167,7 @@ func (a *Client) GetDashboardByUID(params *GetDashboardByUIDParams, authInfo run
 /*
 GetDashboardTags gets all dashboards tags of an organisation
 */
-func (a *Client) GetDashboardTags(params *GetDashboardTagsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardTagsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardTags(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error) {
 	if params == nil {
 		params = NewGetDashboardTagsParams()
 	}
@@ -187,7 +180,6 @@ func (a *Client) GetDashboardTags(params *GetDashboardTagsParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardTagsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -212,8 +204,7 @@ func (a *Client) GetDashboardTags(params *GetDashboardTagsParams, authInfo runti
 /*
 GetHomeDashboard gets home dashboard
 */
-func (a *Client) GetHomeDashboard(params *GetHomeDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetHomeDashboardOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetHomeDashboard(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error) {
 	if params == nil {
 		params = NewGetHomeDashboardParams()
 	}
@@ -226,7 +217,6 @@ func (a *Client) GetHomeDashboard(params *GetHomeDashboardParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetHomeDashboardReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -251,8 +241,7 @@ func (a *Client) GetHomeDashboard(params *GetHomeDashboardParams, authInfo runti
 /*
 ImportDashboard imports dashboard
 */
-func (a *Client) ImportDashboard(params *ImportDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportDashboardOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ImportDashboard(params *ImportDashboardParams, opts ...ClientOption) (*ImportDashboardOK, error) {
 	if params == nil {
 		params = NewImportDashboardParams()
 	}
@@ -265,7 +254,6 @@ func (a *Client) ImportDashboard(params *ImportDashboardParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ImportDashboardReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -292,8 +280,7 @@ PostDashboard creates update dashboard
 
 Creates a new dashboard or updates an existing dashboard.
 */
-func (a *Client) PostDashboard(params *PostDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostDashboardOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostDashboard(params *PostDashboardParams, opts ...ClientOption) (*PostDashboardOK, error) {
 	if params == nil {
 		params = NewPostDashboardParams()
 	}
@@ -306,7 +293,6 @@ func (a *Client) PostDashboard(params *PostDashboardParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostDashboardReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -331,8 +317,7 @@ func (a *Client) PostDashboard(params *PostDashboardParams, authInfo runtime.Cli
 /*
 TrimDashboard trims defaults from dashboard
 */
-func (a *Client) TrimDashboard(params *TrimDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TrimDashboardOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) TrimDashboard(params *TrimDashboardParams, opts ...ClientOption) (*TrimDashboardOK, error) {
 	if params == nil {
 		params = NewTrimDashboardParams()
 	}
@@ -345,7 +330,6 @@ func (a *Client) TrimDashboard(params *TrimDashboardParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &TrimDashboardReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -370,4 +354,11 @@ func (a *Client) TrimDashboard(params *TrimDashboardParams, authInfo runtime.Cli
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,17 +30,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateCorrelation(params *CreateCorrelationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCorrelationOK, error)
+	CreateCorrelation(params *CreateCorrelationParams, opts ...ClientOption) (*CreateCorrelationOK, error)
 
-	DeleteCorrelation(params *DeleteCorrelationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteCorrelationOK, error)
+	DeleteCorrelation(params *DeleteCorrelationParams, opts ...ClientOption) (*DeleteCorrelationOK, error)
 
-	GetCorrelation(params *GetCorrelationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCorrelationOK, error)
+	GetCorrelation(params *GetCorrelationParams, opts ...ClientOption) (*GetCorrelationOK, error)
 
-	GetCorrelations(params *GetCorrelationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCorrelationsOK, error)
+	GetCorrelations(params *GetCorrelationsParams, opts ...ClientOption) (*GetCorrelationsOK, error)
 
-	GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error)
+	GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDParams, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error)
 
-	UpdateCorrelation(params *UpdateCorrelationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCorrelationOK, error)
+	UpdateCorrelation(params *UpdateCorrelationParams, opts ...ClientOption) (*UpdateCorrelationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -48,8 +48,7 @@ type ClientService interface {
 /*
 CreateCorrelation adds correlation
 */
-func (a *Client) CreateCorrelation(params *CreateCorrelationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCorrelationOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateCorrelation(params *CreateCorrelationParams, opts ...ClientOption) (*CreateCorrelationOK, error) {
 	if params == nil {
 		params = NewCreateCorrelationParams()
 	}
@@ -62,7 +61,6 @@ func (a *Client) CreateCorrelation(params *CreateCorrelationParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateCorrelationReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -87,8 +85,7 @@ func (a *Client) CreateCorrelation(params *CreateCorrelationParams, authInfo run
 /*
 DeleteCorrelation deletes a correlation
 */
-func (a *Client) DeleteCorrelation(params *DeleteCorrelationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteCorrelationOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteCorrelation(params *DeleteCorrelationParams, opts ...ClientOption) (*DeleteCorrelationOK, error) {
 	if params == nil {
 		params = NewDeleteCorrelationParams()
 	}
@@ -101,7 +98,6 @@ func (a *Client) DeleteCorrelation(params *DeleteCorrelationParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteCorrelationReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -126,8 +122,7 @@ func (a *Client) DeleteCorrelation(params *DeleteCorrelationParams, authInfo run
 /*
 GetCorrelation gets a correlation
 */
-func (a *Client) GetCorrelation(params *GetCorrelationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCorrelationOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetCorrelation(params *GetCorrelationParams, opts ...ClientOption) (*GetCorrelationOK, error) {
 	if params == nil {
 		params = NewGetCorrelationParams()
 	}
@@ -140,7 +135,6 @@ func (a *Client) GetCorrelation(params *GetCorrelationParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetCorrelationReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -165,8 +159,7 @@ func (a *Client) GetCorrelation(params *GetCorrelationParams, authInfo runtime.C
 /*
 GetCorrelations gets all correlations
 */
-func (a *Client) GetCorrelations(params *GetCorrelationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCorrelationsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetCorrelations(params *GetCorrelationsParams, opts ...ClientOption) (*GetCorrelationsOK, error) {
 	if params == nil {
 		params = NewGetCorrelationsParams()
 	}
@@ -179,7 +172,6 @@ func (a *Client) GetCorrelations(params *GetCorrelationsParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetCorrelationsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -204,8 +196,7 @@ func (a *Client) GetCorrelations(params *GetCorrelationsParams, authInfo runtime
 /*
 GetCorrelationsBySourceUID gets all correlations originating from the given data source
 */
-func (a *Client) GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDParams, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error) {
 	if params == nil {
 		params = NewGetCorrelationsBySourceUIDParams()
 	}
@@ -218,7 +209,6 @@ func (a *Client) GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDPa
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetCorrelationsBySourceUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -243,8 +233,7 @@ func (a *Client) GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDPa
 /*
 UpdateCorrelation updates a correlation
 */
-func (a *Client) UpdateCorrelation(params *UpdateCorrelationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCorrelationOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateCorrelation(params *UpdateCorrelationParams, opts ...ClientOption) (*UpdateCorrelationOK, error) {
 	if params == nil {
 		params = NewUpdateCorrelationParams()
 	}
@@ -257,7 +246,6 @@ func (a *Client) UpdateCorrelation(params *UpdateCorrelationParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateCorrelationReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -282,4 +270,11 @@ func (a *Client) UpdateCorrelation(params *UpdateCorrelationParams, authInfo run
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

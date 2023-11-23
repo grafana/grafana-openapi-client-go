@@ -30,9 +30,9 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetFolderPermissionList(params *GetFolderPermissionListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderPermissionListOK, error)
+	GetFolderPermissionList(params *GetFolderPermissionListParams, opts ...ClientOption) (*GetFolderPermissionListOK, error)
 
-	UpdateFolderPermissions(params *UpdateFolderPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateFolderPermissionsOK, error)
+	UpdateFolderPermissions(params *UpdateFolderPermissionsParams, opts ...ClientOption) (*UpdateFolderPermissionsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -40,8 +40,7 @@ type ClientService interface {
 /*
 GetFolderPermissionList gets all existing permissions for the folder with the given uid
 */
-func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFolderPermissionListOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, opts ...ClientOption) (*GetFolderPermissionListOK, error) {
 	if params == nil {
 		params = NewGetFolderPermissionListParams()
 	}
@@ -54,7 +53,6 @@ func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetFolderPermissionListReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -79,8 +77,7 @@ func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, 
 /*
 UpdateFolderPermissions updates permissions for a folder this operation will remove existing permissions if they re not included in the request
 */
-func (a *Client) UpdateFolderPermissions(params *UpdateFolderPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateFolderPermissionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateFolderPermissions(params *UpdateFolderPermissionsParams, opts ...ClientOption) (*UpdateFolderPermissionsOK, error) {
 	if params == nil {
 		params = NewUpdateFolderPermissionsParams()
 	}
@@ -93,7 +90,6 @@ func (a *Client) UpdateFolderPermissions(params *UpdateFolderPermissionsParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateFolderPermissionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -118,4 +114,11 @@ func (a *Client) UpdateFolderPermissions(params *UpdateFolderPermissionsParams, 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

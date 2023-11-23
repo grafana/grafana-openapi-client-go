@@ -30,11 +30,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddOrgInvite(params *AddOrgInviteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddOrgInviteOK, error)
+	AddOrgInvite(params *AddOrgInviteParams, opts ...ClientOption) (*AddOrgInviteOK, error)
 
-	GetPendingOrgInvites(params *GetPendingOrgInvitesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPendingOrgInvitesOK, error)
+	GetPendingOrgInvites(params *GetPendingOrgInvitesParams, opts ...ClientOption) (*GetPendingOrgInvitesOK, error)
 
-	RevokeInvite(params *RevokeInviteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeInviteOK, error)
+	RevokeInvite(params *RevokeInviteParams, opts ...ClientOption) (*RevokeInviteOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -42,8 +42,7 @@ type ClientService interface {
 /*
 AddOrgInvite adds invite
 */
-func (a *Client) AddOrgInvite(params *AddOrgInviteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddOrgInviteOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddOrgInvite(params *AddOrgInviteParams, opts ...ClientOption) (*AddOrgInviteOK, error) {
 	if params == nil {
 		params = NewAddOrgInviteParams()
 	}
@@ -56,7 +55,6 @@ func (a *Client) AddOrgInvite(params *AddOrgInviteParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddOrgInviteReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -81,8 +79,7 @@ func (a *Client) AddOrgInvite(params *AddOrgInviteParams, authInfo runtime.Clien
 /*
 GetPendingOrgInvites gets pending invites
 */
-func (a *Client) GetPendingOrgInvites(params *GetPendingOrgInvitesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPendingOrgInvitesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetPendingOrgInvites(params *GetPendingOrgInvitesParams, opts ...ClientOption) (*GetPendingOrgInvitesOK, error) {
 	if params == nil {
 		params = NewGetPendingOrgInvitesParams()
 	}
@@ -95,7 +92,6 @@ func (a *Client) GetPendingOrgInvites(params *GetPendingOrgInvitesParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetPendingOrgInvitesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -120,8 +116,7 @@ func (a *Client) GetPendingOrgInvites(params *GetPendingOrgInvitesParams, authIn
 /*
 RevokeInvite revokes invite
 */
-func (a *Client) RevokeInvite(params *RevokeInviteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeInviteOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RevokeInvite(params *RevokeInviteParams, opts ...ClientOption) (*RevokeInviteOK, error) {
 	if params == nil {
 		params = NewRevokeInviteParams()
 	}
@@ -134,7 +129,6 @@ func (a *Client) RevokeInvite(params *RevokeInviteParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RevokeInviteReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -159,4 +153,11 @@ func (a *Client) RevokeInvite(params *RevokeInviteParams, authInfo runtime.Clien
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

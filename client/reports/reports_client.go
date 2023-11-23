@@ -30,27 +30,27 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateReport(params *CreateReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateReportOK, error)
+	CreateReport(params *CreateReportParams, opts ...ClientOption) (*CreateReportOK, error)
 
-	DeleteReport(params *DeleteReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteReportOK, error)
+	DeleteReport(params *DeleteReportParams, opts ...ClientOption) (*DeleteReportOK, error)
 
-	GetReport(params *GetReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReportOK, error)
+	GetReport(params *GetReportParams, opts ...ClientOption) (*GetReportOK, error)
 
-	GetReportSettings(params *GetReportSettingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReportSettingsOK, error)
+	GetReportSettings(params *GetReportSettingsParams, opts ...ClientOption) (*GetReportSettingsOK, error)
 
-	GetReports(params *GetReportsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReportsOK, error)
+	GetReports(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error)
 
-	RenderReportPDF(params *RenderReportPDFParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RenderReportPDFOK, error)
+	RenderReportPDF(params *RenderReportPDFParams, opts ...ClientOption) (*RenderReportPDFOK, error)
 
-	RenderReportPDFs(params *RenderReportPDFsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RenderReportPDFsOK, error)
+	RenderReportPDFs(params *RenderReportPDFsParams, opts ...ClientOption) (*RenderReportPDFsOK, error)
 
-	SaveReportSettings(params *SaveReportSettingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SaveReportSettingsOK, error)
+	SaveReportSettings(params *SaveReportSettingsParams, opts ...ClientOption) (*SaveReportSettingsOK, error)
 
-	SendReport(params *SendReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SendReportOK, error)
+	SendReport(params *SendReportParams, opts ...ClientOption) (*SendReportOK, error)
 
-	SendTestEmail(params *SendTestEmailParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SendTestEmailOK, error)
+	SendTestEmail(params *SendTestEmailParams, opts ...ClientOption) (*SendTestEmailOK, error)
 
-	UpdateReport(params *UpdateReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateReportOK, error)
+	UpdateReport(params *UpdateReportParams, opts ...ClientOption) (*UpdateReportOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -62,8 +62,7 @@ type ClientService interface {
 
 You need to have a permission with action `reports.admin:create`.
 */
-func (a *Client) CreateReport(params *CreateReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateReportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateReport(params *CreateReportParams, opts ...ClientOption) (*CreateReportOK, error) {
 	if params == nil {
 		params = NewCreateReportParams()
 	}
@@ -76,7 +75,6 @@ func (a *Client) CreateReport(params *CreateReportParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateReportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -105,8 +103,7 @@ func (a *Client) CreateReport(params *CreateReportParams, authInfo runtime.Clien
 
 You need to have a permission with action `reports.delete` with scope `reports:id:<report ID>`.
 */
-func (a *Client) DeleteReport(params *DeleteReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteReportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteReport(params *DeleteReportParams, opts ...ClientOption) (*DeleteReportOK, error) {
 	if params == nil {
 		params = NewDeleteReportParams()
 	}
@@ -119,7 +116,6 @@ func (a *Client) DeleteReport(params *DeleteReportParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteReportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -148,8 +144,7 @@ func (a *Client) DeleteReport(params *DeleteReportParams, authInfo runtime.Clien
 
 You need to have a permission with action `reports:read` with scope `reports:id:<report ID>`.
 */
-func (a *Client) GetReport(params *GetReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetReport(params *GetReportParams, opts ...ClientOption) (*GetReportOK, error) {
 	if params == nil {
 		params = NewGetReportParams()
 	}
@@ -162,7 +157,6 @@ func (a *Client) GetReport(params *GetReportParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetReportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -191,8 +185,7 @@ func (a *Client) GetReport(params *GetReportParams, authInfo runtime.ClientAuthI
 
 You need to have a permission with action `reports.settings:read`x.
 */
-func (a *Client) GetReportSettings(params *GetReportSettingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReportSettingsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetReportSettings(params *GetReportSettingsParams, opts ...ClientOption) (*GetReportSettingsOK, error) {
 	if params == nil {
 		params = NewGetReportSettingsParams()
 	}
@@ -205,7 +198,6 @@ func (a *Client) GetReportSettings(params *GetReportSettingsParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetReportSettingsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -234,8 +226,7 @@ func (a *Client) GetReportSettings(params *GetReportSettingsParams, authInfo run
 
 You need to have a permission with action `reports:read` with scope `reports:*`.
 */
-func (a *Client) GetReports(params *GetReportsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReportsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetReports(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error) {
 	if params == nil {
 		params = NewGetReportsParams()
 	}
@@ -248,7 +239,6 @@ func (a *Client) GetReports(params *GetReportsParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetReportsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -275,8 +265,7 @@ RenderReportPDF renders report for dashboard
 
 Please refer to [reports enterprise](#/reports/renderReportPDFs) instead. This will be removed in Grafana 10.
 */
-func (a *Client) RenderReportPDF(params *RenderReportPDFParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RenderReportPDFOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RenderReportPDF(params *RenderReportPDFParams, opts ...ClientOption) (*RenderReportPDFOK, error) {
 	if params == nil {
 		params = NewRenderReportPDFParams()
 	}
@@ -289,7 +278,6 @@ func (a *Client) RenderReportPDF(params *RenderReportPDFParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RenderReportPDFReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -316,8 +304,7 @@ RenderReportPDFs renders report for multiple dashboards
 
 Available to all users and with a valid license.
 */
-func (a *Client) RenderReportPDFs(params *RenderReportPDFsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RenderReportPDFsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RenderReportPDFs(params *RenderReportPDFsParams, opts ...ClientOption) (*RenderReportPDFsOK, error) {
 	if params == nil {
 		params = NewRenderReportPDFsParams()
 	}
@@ -330,7 +317,6 @@ func (a *Client) RenderReportPDFs(params *RenderReportPDFsParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RenderReportPDFsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -359,8 +345,7 @@ func (a *Client) RenderReportPDFs(params *RenderReportPDFsParams, authInfo runti
 
 You need to have a permission with action `reports.settings:write`xx.
 */
-func (a *Client) SaveReportSettings(params *SaveReportSettingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SaveReportSettingsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SaveReportSettings(params *SaveReportSettingsParams, opts ...ClientOption) (*SaveReportSettingsOK, error) {
 	if params == nil {
 		params = NewSaveReportSettingsParams()
 	}
@@ -373,7 +358,6 @@ func (a *Client) SaveReportSettings(params *SaveReportSettingsParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SaveReportSettingsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -405,8 +389,7 @@ This API endpoint is experimental and may be deprecated in a future release. On 
 
 You need to have a permission with action `reports:send`.
 */
-func (a *Client) SendReport(params *SendReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SendReportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SendReport(params *SendReportParams, opts ...ClientOption) (*SendReportOK, error) {
 	if params == nil {
 		params = NewSendReportParams()
 	}
@@ -419,7 +402,6 @@ func (a *Client) SendReport(params *SendReportParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SendReportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -448,8 +430,7 @@ func (a *Client) SendReport(params *SendReportParams, authInfo runtime.ClientAut
 
 You need to have a permission with action `reports:send`.
 */
-func (a *Client) SendTestEmail(params *SendTestEmailParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SendTestEmailOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SendTestEmail(params *SendTestEmailParams, opts ...ClientOption) (*SendTestEmailOK, error) {
 	if params == nil {
 		params = NewSendTestEmailParams()
 	}
@@ -462,7 +443,6 @@ func (a *Client) SendTestEmail(params *SendTestEmailParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SendTestEmailReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -491,8 +471,7 @@ func (a *Client) SendTestEmail(params *SendTestEmailParams, authInfo runtime.Cli
 
 You need to have a permission with action `reports.admin:write` with scope `reports:id:<report ID>`.
 */
-func (a *Client) UpdateReport(params *UpdateReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateReportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateReport(params *UpdateReportParams, opts ...ClientOption) (*UpdateReportOK, error) {
 	if params == nil {
 		params = NewUpdateReportParams()
 	}
@@ -505,7 +484,6 @@ func (a *Client) UpdateReport(params *UpdateReportParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateReportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -530,4 +508,11 @@ func (a *Client) UpdateReport(params *UpdateReportParams, authInfo runtime.Clien
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

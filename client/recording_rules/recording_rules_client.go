@@ -30,21 +30,21 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateRecordingRule(params *CreateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRecordingRuleOK, error)
+	CreateRecordingRule(params *CreateRecordingRuleParams, opts ...ClientOption) (*CreateRecordingRuleOK, error)
 
-	CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error)
+	CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWriteTargetParams, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error)
 
-	DeleteRecordingRule(params *DeleteRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRecordingRuleOK, error)
+	DeleteRecordingRule(params *DeleteRecordingRuleParams, opts ...ClientOption) (*DeleteRecordingRuleOK, error)
 
-	DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error)
+	DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWriteTargetParams, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error)
 
-	GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error)
+	GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTargetParams, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error)
 
-	ListRecordingRules(params *ListRecordingRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListRecordingRulesOK, error)
+	ListRecordingRules(params *ListRecordingRulesParams, opts ...ClientOption) (*ListRecordingRulesOK, error)
 
-	TestCreateRecordingRule(params *TestCreateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestCreateRecordingRuleOK, error)
+	TestCreateRecordingRule(params *TestCreateRecordingRuleParams, opts ...ClientOption) (*TestCreateRecordingRuleOK, error)
 
-	UpdateRecordingRule(params *UpdateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateRecordingRuleOK, error)
+	UpdateRecordingRule(params *UpdateRecordingRuleParams, opts ...ClientOption) (*UpdateRecordingRuleOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -52,8 +52,7 @@ type ClientService interface {
 /*
 CreateRecordingRule creates a recording rule that is then registered and started
 */
-func (a *Client) CreateRecordingRule(params *CreateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRecordingRuleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateRecordingRule(params *CreateRecordingRuleParams, opts ...ClientOption) (*CreateRecordingRuleOK, error) {
 	if params == nil {
 		params = NewCreateRecordingRuleParams()
 	}
@@ -66,7 +65,6 @@ func (a *Client) CreateRecordingRule(params *CreateRecordingRuleParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateRecordingRuleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -93,8 +91,7 @@ CreateRecordingRuleWriteTarget creates a remote write target
 
 It returns a 422 if there is not an existing prometheus data source configured.
 */
-func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWriteTargetParams, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error) {
 	if params == nil {
 		params = NewCreateRecordingRuleWriteTargetParams()
 	}
@@ -107,7 +104,6 @@ func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWrite
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateRecordingRuleWriteTargetReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -132,8 +128,7 @@ func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWrite
 /*
 DeleteRecordingRule deletes removes the rule from the registry and stops it
 */
-func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRecordingRuleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, opts ...ClientOption) (*DeleteRecordingRuleOK, error) {
 	if params == nil {
 		params = NewDeleteRecordingRuleParams()
 	}
@@ -146,7 +141,6 @@ func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteRecordingRuleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -171,8 +165,7 @@ func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, authInfo
 /*
 DeleteRecordingRuleWriteTarget deletes the remote write target
 */
-func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWriteTargetParams, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error) {
 	if params == nil {
 		params = NewDeleteRecordingRuleWriteTargetParams()
 	}
@@ -185,7 +178,6 @@ func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWrite
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteRecordingRuleWriteTargetReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -210,8 +202,7 @@ func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWrite
 /*
 GetRecordingRuleWriteTarget returns the prometheus remote write target
 */
-func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTargetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTargetParams, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error) {
 	if params == nil {
 		params = NewGetRecordingRuleWriteTargetParams()
 	}
@@ -224,7 +215,6 @@ func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTarget
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetRecordingRuleWriteTargetReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -249,8 +239,7 @@ func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTarget
 /*
 ListRecordingRules lists all rules in the database active or deleted
 */
-func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListRecordingRulesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, opts ...ClientOption) (*ListRecordingRulesOK, error) {
 	if params == nil {
 		params = NewListRecordingRulesParams()
 	}
@@ -263,7 +252,6 @@ func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ListRecordingRulesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -288,8 +276,7 @@ func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, authInfo r
 /*
 TestCreateRecordingRule tests a recording rule
 */
-func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestCreateRecordingRuleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, opts ...ClientOption) (*TestCreateRecordingRuleOK, error) {
 	if params == nil {
 		params = NewTestCreateRecordingRuleParams()
 	}
@@ -302,7 +289,6 @@ func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &TestCreateRecordingRuleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -327,8 +313,7 @@ func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, 
 /*
 UpdateRecordingRule updates the active status of a rule
 */
-func (a *Client) UpdateRecordingRule(params *UpdateRecordingRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateRecordingRuleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateRecordingRule(params *UpdateRecordingRuleParams, opts ...ClientOption) (*UpdateRecordingRuleOK, error) {
 	if params == nil {
 		params = NewUpdateRecordingRuleParams()
 	}
@@ -341,7 +326,6 @@ func (a *Client) UpdateRecordingRule(params *UpdateRecordingRuleParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateRecordingRuleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -366,4 +350,11 @@ func (a *Client) UpdateRecordingRule(params *UpdateRecordingRuleParams, authInfo
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,35 +30,35 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ChangeUserPassword(params *ChangeUserPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangeUserPasswordOK, error)
+	ChangeUserPassword(params *ChangeUserPasswordParams, opts ...ClientOption) (*ChangeUserPasswordOK, error)
 
-	ClearHelpFlags(params *ClearHelpFlagsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ClearHelpFlagsOK, error)
+	ClearHelpFlags(params *ClearHelpFlagsParams, opts ...ClientOption) (*ClearHelpFlagsOK, error)
 
-	GetSignedInUser(params *GetSignedInUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSignedInUserOK, error)
+	GetSignedInUser(params *GetSignedInUserParams, opts ...ClientOption) (*GetSignedInUserOK, error)
 
-	GetSignedInUserOrgList(params *GetSignedInUserOrgListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSignedInUserOrgListOK, error)
+	GetSignedInUserOrgList(params *GetSignedInUserOrgListParams, opts ...ClientOption) (*GetSignedInUserOrgListOK, error)
 
-	GetSignedInUserTeamList(params *GetSignedInUserTeamListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSignedInUserTeamListOK, error)
+	GetSignedInUserTeamList(params *GetSignedInUserTeamListParams, opts ...ClientOption) (*GetSignedInUserTeamListOK, error)
 
-	GetUserAuthTokens(params *GetUserAuthTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserAuthTokensOK, error)
+	GetUserAuthTokens(params *GetUserAuthTokensParams, opts ...ClientOption) (*GetUserAuthTokensOK, error)
 
-	GetUserQuotas(params *GetUserQuotasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserQuotasOK, error)
+	GetUserQuotas(params *GetUserQuotasParams, opts ...ClientOption) (*GetUserQuotasOK, error)
 
-	RevokeUserAuthToken(params *RevokeUserAuthTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeUserAuthTokenOK, error)
+	RevokeUserAuthToken(params *RevokeUserAuthTokenParams, opts ...ClientOption) (*RevokeUserAuthTokenOK, error)
 
-	SetHelpFlag(params *SetHelpFlagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetHelpFlagOK, error)
+	SetHelpFlag(params *SetHelpFlagParams, opts ...ClientOption) (*SetHelpFlagOK, error)
 
-	StarDashboard(params *StarDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*StarDashboardOK, error)
+	StarDashboard(params *StarDashboardParams, opts ...ClientOption) (*StarDashboardOK, error)
 
-	StarDashboardByUID(params *StarDashboardByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*StarDashboardByUIDOK, error)
+	StarDashboardByUID(params *StarDashboardByUIDParams, opts ...ClientOption) (*StarDashboardByUIDOK, error)
 
-	UnstarDashboard(params *UnstarDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnstarDashboardOK, error)
+	UnstarDashboard(params *UnstarDashboardParams, opts ...ClientOption) (*UnstarDashboardOK, error)
 
-	UnstarDashboardByUID(params *UnstarDashboardByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnstarDashboardByUIDOK, error)
+	UnstarDashboardByUID(params *UnstarDashboardByUIDParams, opts ...ClientOption) (*UnstarDashboardByUIDOK, error)
 
-	UpdateSignedInUser(params *UpdateSignedInUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSignedInUserOK, error)
+	UpdateSignedInUser(params *UpdateSignedInUserParams, opts ...ClientOption) (*UpdateSignedInUserOK, error)
 
-	UserSetUsingOrg(params *UserSetUsingOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UserSetUsingOrgOK, error)
+	UserSetUsingOrg(params *UserSetUsingOrgParams, opts ...ClientOption) (*UserSetUsingOrgOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -68,8 +68,7 @@ ChangeUserPassword changes password
 
 Changes the password for the user.
 */
-func (a *Client) ChangeUserPassword(params *ChangeUserPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangeUserPasswordOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ChangeUserPassword(params *ChangeUserPasswordParams, opts ...ClientOption) (*ChangeUserPasswordOK, error) {
 	if params == nil {
 		params = NewChangeUserPasswordParams()
 	}
@@ -82,7 +81,6 @@ func (a *Client) ChangeUserPassword(params *ChangeUserPasswordParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ChangeUserPasswordReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -107,8 +105,7 @@ func (a *Client) ChangeUserPassword(params *ChangeUserPasswordParams, authInfo r
 /*
 ClearHelpFlags clears user help flag
 */
-func (a *Client) ClearHelpFlags(params *ClearHelpFlagsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ClearHelpFlagsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ClearHelpFlags(params *ClearHelpFlagsParams, opts ...ClientOption) (*ClearHelpFlagsOK, error) {
 	if params == nil {
 		params = NewClearHelpFlagsParams()
 	}
@@ -121,7 +118,6 @@ func (a *Client) ClearHelpFlags(params *ClearHelpFlagsParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ClearHelpFlagsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -146,8 +142,7 @@ func (a *Client) ClearHelpFlags(params *ClearHelpFlagsParams, authInfo runtime.C
 /*
 GetSignedInUser Get (current authenticated user)
 */
-func (a *Client) GetSignedInUser(params *GetSignedInUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSignedInUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetSignedInUser(params *GetSignedInUserParams, opts ...ClientOption) (*GetSignedInUserOK, error) {
 	if params == nil {
 		params = NewGetSignedInUserParams()
 	}
@@ -160,7 +155,6 @@ func (a *Client) GetSignedInUser(params *GetSignedInUserParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetSignedInUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -187,8 +181,7 @@ GetSignedInUserOrgList organizations of the actual user
 
 Return a list of all organizations of the current user.
 */
-func (a *Client) GetSignedInUserOrgList(params *GetSignedInUserOrgListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSignedInUserOrgListOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetSignedInUserOrgList(params *GetSignedInUserOrgListParams, opts ...ClientOption) (*GetSignedInUserOrgListOK, error) {
 	if params == nil {
 		params = NewGetSignedInUserOrgListParams()
 	}
@@ -201,7 +194,6 @@ func (a *Client) GetSignedInUserOrgList(params *GetSignedInUserOrgListParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetSignedInUserOrgListReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -228,8 +220,7 @@ GetSignedInUserTeamList teams that the actual user is member of
 
 Return a list of all teams that the current user is member of.
 */
-func (a *Client) GetSignedInUserTeamList(params *GetSignedInUserTeamListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSignedInUserTeamListOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetSignedInUserTeamList(params *GetSignedInUserTeamListParams, opts ...ClientOption) (*GetSignedInUserTeamListOK, error) {
 	if params == nil {
 		params = NewGetSignedInUserTeamListParams()
 	}
@@ -242,7 +233,6 @@ func (a *Client) GetSignedInUserTeamList(params *GetSignedInUserTeamListParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetSignedInUserTeamListReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -269,8 +259,7 @@ GetUserAuthTokens auths tokens of the actual user
 
 Return a list of all auth tokens (devices) that the actual user currently have logged in from.
 */
-func (a *Client) GetUserAuthTokens(params *GetUserAuthTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserAuthTokensOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserAuthTokens(params *GetUserAuthTokensParams, opts ...ClientOption) (*GetUserAuthTokensOK, error) {
 	if params == nil {
 		params = NewGetUserAuthTokensParams()
 	}
@@ -283,7 +272,6 @@ func (a *Client) GetUserAuthTokens(params *GetUserAuthTokensParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserAuthTokensReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -308,8 +296,7 @@ func (a *Client) GetUserAuthTokens(params *GetUserAuthTokensParams, authInfo run
 /*
 GetUserQuotas fetches user quota
 */
-func (a *Client) GetUserQuotas(params *GetUserQuotasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserQuotasOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserQuotas(params *GetUserQuotasParams, opts ...ClientOption) (*GetUserQuotasOK, error) {
 	if params == nil {
 		params = NewGetUserQuotasParams()
 	}
@@ -322,7 +309,6 @@ func (a *Client) GetUserQuotas(params *GetUserQuotasParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserQuotasReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -349,8 +335,7 @@ RevokeUserAuthToken revokes an auth token of the actual user
 
 Revokes the given auth token (device) for the actual user. User of issued auth token (device) will no longer be logged in and will be required to authenticate again upon next activity.
 */
-func (a *Client) RevokeUserAuthToken(params *RevokeUserAuthTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeUserAuthTokenOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RevokeUserAuthToken(params *RevokeUserAuthTokenParams, opts ...ClientOption) (*RevokeUserAuthTokenOK, error) {
 	if params == nil {
 		params = NewRevokeUserAuthTokenParams()
 	}
@@ -363,7 +348,6 @@ func (a *Client) RevokeUserAuthToken(params *RevokeUserAuthTokenParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RevokeUserAuthTokenReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -388,8 +372,7 @@ func (a *Client) RevokeUserAuthToken(params *RevokeUserAuthTokenParams, authInfo
 /*
 SetHelpFlag sets user help flag
 */
-func (a *Client) SetHelpFlag(params *SetHelpFlagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetHelpFlagOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SetHelpFlag(params *SetHelpFlagParams, opts ...ClientOption) (*SetHelpFlagOK, error) {
 	if params == nil {
 		params = NewSetHelpFlagParams()
 	}
@@ -402,7 +385,6 @@ func (a *Client) SetHelpFlag(params *SetHelpFlagParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SetHelpFlagReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -429,8 +411,7 @@ StarDashboard stars a dashboard
 
 Stars the given Dashboard for the actual user.
 */
-func (a *Client) StarDashboard(params *StarDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*StarDashboardOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) StarDashboard(params *StarDashboardParams, opts ...ClientOption) (*StarDashboardOK, error) {
 	if params == nil {
 		params = NewStarDashboardParams()
 	}
@@ -443,7 +424,6 @@ func (a *Client) StarDashboard(params *StarDashboardParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &StarDashboardReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -470,8 +450,7 @@ StarDashboardByUID stars a dashboard
 
 Stars the given Dashboard for the actual user.
 */
-func (a *Client) StarDashboardByUID(params *StarDashboardByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*StarDashboardByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) StarDashboardByUID(params *StarDashboardByUIDParams, opts ...ClientOption) (*StarDashboardByUIDOK, error) {
 	if params == nil {
 		params = NewStarDashboardByUIDParams()
 	}
@@ -484,7 +463,6 @@ func (a *Client) StarDashboardByUID(params *StarDashboardByUIDParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &StarDashboardByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -511,8 +489,7 @@ UnstarDashboard unstars a dashboard
 
 Deletes the starring of the given Dashboard for the actual user.
 */
-func (a *Client) UnstarDashboard(params *UnstarDashboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnstarDashboardOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UnstarDashboard(params *UnstarDashboardParams, opts ...ClientOption) (*UnstarDashboardOK, error) {
 	if params == nil {
 		params = NewUnstarDashboardParams()
 	}
@@ -525,7 +502,6 @@ func (a *Client) UnstarDashboard(params *UnstarDashboardParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UnstarDashboardReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -552,8 +528,7 @@ UnstarDashboardByUID unstars a dashboard
 
 Deletes the starring of the given Dashboard for the actual user.
 */
-func (a *Client) UnstarDashboardByUID(params *UnstarDashboardByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnstarDashboardByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UnstarDashboardByUID(params *UnstarDashboardByUIDParams, opts ...ClientOption) (*UnstarDashboardByUIDOK, error) {
 	if params == nil {
 		params = NewUnstarDashboardByUIDParams()
 	}
@@ -566,7 +541,6 @@ func (a *Client) UnstarDashboardByUID(params *UnstarDashboardByUIDParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UnstarDashboardByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -591,8 +565,7 @@ func (a *Client) UnstarDashboardByUID(params *UnstarDashboardByUIDParams, authIn
 /*
 UpdateSignedInUser updates signed in user
 */
-func (a *Client) UpdateSignedInUser(params *UpdateSignedInUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSignedInUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateSignedInUser(params *UpdateSignedInUserParams, opts ...ClientOption) (*UpdateSignedInUserOK, error) {
 	if params == nil {
 		params = NewUpdateSignedInUserParams()
 	}
@@ -605,7 +578,6 @@ func (a *Client) UpdateSignedInUser(params *UpdateSignedInUserParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateSignedInUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -632,8 +604,7 @@ UserSetUsingOrg switches user context for signed in user
 
 Switch user context to the given organization.
 */
-func (a *Client) UserSetUsingOrg(params *UserSetUsingOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UserSetUsingOrgOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UserSetUsingOrg(params *UserSetUsingOrgParams, opts ...ClientOption) (*UserSetUsingOrgOK, error) {
 	if params == nil {
 		params = NewUserSetUsingOrgParams()
 	}
@@ -646,7 +617,6 @@ func (a *Client) UserSetUsingOrg(params *UserSetUsingOrgParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UserSetUsingOrgReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -671,4 +641,11 @@ func (a *Client) UserSetUsingOrg(params *UserSetUsingOrgParams, authInfo runtime
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,17 +30,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateQuery(params *CreateQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateQueryOK, error)
+	CreateQuery(params *CreateQueryParams, opts ...ClientOption) (*CreateQueryOK, error)
 
-	DeleteQuery(params *DeleteQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteQueryOK, error)
+	DeleteQuery(params *DeleteQueryParams, opts ...ClientOption) (*DeleteQueryOK, error)
 
-	PatchQueryComment(params *PatchQueryCommentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchQueryCommentOK, error)
+	PatchQueryComment(params *PatchQueryCommentParams, opts ...ClientOption) (*PatchQueryCommentOK, error)
 
-	SearchQueries(params *SearchQueriesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchQueriesOK, error)
+	SearchQueries(params *SearchQueriesParams, opts ...ClientOption) (*SearchQueriesOK, error)
 
-	StarQuery(params *StarQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*StarQueryOK, error)
+	StarQuery(params *StarQueryParams, opts ...ClientOption) (*StarQueryOK, error)
 
-	UnstarQuery(params *UnstarQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnstarQueryOK, error)
+	UnstarQuery(params *UnstarQueryParams, opts ...ClientOption) (*UnstarQueryOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -50,8 +50,7 @@ CreateQuery adds query to query history
 
 Adds new query to query history.
 */
-func (a *Client) CreateQuery(params *CreateQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateQueryOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateQuery(params *CreateQueryParams, opts ...ClientOption) (*CreateQueryOK, error) {
 	if params == nil {
 		params = NewCreateQueryParams()
 	}
@@ -64,7 +63,6 @@ func (a *Client) CreateQuery(params *CreateQueryParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateQueryReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -91,8 +89,7 @@ DeleteQuery deletes query in query history
 
 Deletes an existing query in query history as specified by the UID. This operation cannot be reverted.
 */
-func (a *Client) DeleteQuery(params *DeleteQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteQueryOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteQuery(params *DeleteQueryParams, opts ...ClientOption) (*DeleteQueryOK, error) {
 	if params == nil {
 		params = NewDeleteQueryParams()
 	}
@@ -105,7 +102,6 @@ func (a *Client) DeleteQuery(params *DeleteQueryParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteQueryReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -132,8 +128,7 @@ PatchQueryComment updates comment for query in query history
 
 Updates comment for query in query history as specified by the UID.
 */
-func (a *Client) PatchQueryComment(params *PatchQueryCommentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchQueryCommentOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PatchQueryComment(params *PatchQueryCommentParams, opts ...ClientOption) (*PatchQueryCommentOK, error) {
 	if params == nil {
 		params = NewPatchQueryCommentParams()
 	}
@@ -146,7 +141,6 @@ func (a *Client) PatchQueryComment(params *PatchQueryCommentParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PatchQueryCommentReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -176,8 +170,7 @@ func (a *Client) PatchQueryComment(params *PatchQueryCommentParams, authInfo run
 Query history search supports pagination. Use the `limit` parameter to control the maximum number of queries returned; the default limit is 100.
 You can also use the `page` query parameter to fetch queries from any page other than the first one.
 */
-func (a *Client) SearchQueries(params *SearchQueriesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchQueriesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchQueries(params *SearchQueriesParams, opts ...ClientOption) (*SearchQueriesOK, error) {
 	if params == nil {
 		params = NewSearchQueriesParams()
 	}
@@ -190,7 +183,6 @@ func (a *Client) SearchQueries(params *SearchQueriesParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchQueriesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -217,8 +209,7 @@ StarQuery adds star to query in query history
 
 Adds star to query in query history as specified by the UID.
 */
-func (a *Client) StarQuery(params *StarQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*StarQueryOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) StarQuery(params *StarQueryParams, opts ...ClientOption) (*StarQueryOK, error) {
 	if params == nil {
 		params = NewStarQueryParams()
 	}
@@ -231,7 +222,6 @@ func (a *Client) StarQuery(params *StarQueryParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &StarQueryReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -258,8 +248,7 @@ UnstarQuery removes star to query in query history
 
 Removes star from query in query history as specified by the UID.
 */
-func (a *Client) UnstarQuery(params *UnstarQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnstarQueryOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UnstarQuery(params *UnstarQueryParams, opts ...ClientOption) (*UnstarQueryOK, error) {
 	if params == nil {
 		params = NewUnstarQueryParams()
 	}
@@ -272,7 +261,6 @@ func (a *Client) UnstarQuery(params *UnstarQueryParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UnstarQueryReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -297,4 +285,11 @@ func (a *Client) UnstarQuery(params *UnstarQueryParams, authInfo runtime.ClientA
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }
