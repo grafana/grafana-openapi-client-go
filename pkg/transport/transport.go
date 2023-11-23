@@ -8,8 +8,6 @@ import (
 	"net/http"
 	"strconv"
 	"time"
-
-	"github.com/grafana/grafana-openapi-client-go/pkg/errors"
 )
 
 const DefaultTimeout = time.Second * 5
@@ -84,15 +82,6 @@ func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error
 	}
 	if err != nil {
 		return resp, err
-	}
-
-	switch {
-	case resp.StatusCode == http.StatusNotFound:
-		return resp, errors.ErrNotFound{
-			BodyContents: respBodyContents,
-		}
-	case resp.StatusCode >= http.StatusBadRequest:
-		return resp, fmt.Errorf("status: %d, body: %v", resp.StatusCode, string(respBodyContents))
 	}
 
 	resp.Body = io.NopCloser(bytes.NewBuffer(respBodyContents))
