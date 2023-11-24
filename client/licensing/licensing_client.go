@@ -30,21 +30,21 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteLicenseToken(params *DeleteLicenseTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error)
+	DeleteLicenseToken(params *DeleteLicenseTokenParams, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error)
 
-	GetCustomPermissionsCSV(params *GetCustomPermissionsCSVParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
+	GetCustomPermissionsCSV(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
 
-	GetCustomPermissionsReport(params *GetCustomPermissionsReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomPermissionsReportOK, error)
+	GetCustomPermissionsReport(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error)
 
-	GetLicenseToken(params *GetLicenseTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLicenseTokenOK, error)
+	GetLicenseToken(params *GetLicenseTokenParams, opts ...ClientOption) (*GetLicenseTokenOK, error)
 
-	GetStatus(params *GetStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStatusOK, error)
+	GetStatus(params *GetStatusParams, opts ...ClientOption) (*GetStatusOK, error)
 
-	PostLicenseToken(params *PostLicenseTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostLicenseTokenOK, error)
+	PostLicenseToken(params *PostLicenseTokenParams, opts ...ClientOption) (*PostLicenseTokenOK, error)
 
-	PostRenewLicenseToken(params *PostRenewLicenseTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostRenewLicenseTokenOK, error)
+	PostRenewLicenseToken(params *PostRenewLicenseTokenParams, opts ...ClientOption) (*PostRenewLicenseTokenOK, error)
 
-	RefreshLicenseStats(params *RefreshLicenseStatsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshLicenseStatsOK, error)
+	RefreshLicenseStats(params *RefreshLicenseStatsParams, opts ...ClientOption) (*RefreshLicenseStatsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -56,8 +56,7 @@ type ClientService interface {
 
 You need to have a permission with action `licensing:delete`.
 */
-func (a *Client) DeleteLicenseToken(params *DeleteLicenseTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteLicenseToken(params *DeleteLicenseTokenParams, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error) {
 	if params == nil {
 		params = NewDeleteLicenseTokenParams()
 	}
@@ -70,12 +69,13 @@ func (a *Client) DeleteLicenseToken(params *DeleteLicenseTokenParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteLicenseTokenReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -97,8 +97,7 @@ GetCustomPermissionsCSV gets custom permissions report in CSV format
 
 You need to have a permission with action `licensing.reports:read`.
 */
-func (a *Client) GetCustomPermissionsCSV(params *GetCustomPermissionsCSVParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetCustomPermissionsCSV(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
 	if params == nil {
 		params = NewGetCustomPermissionsCSVParams()
 	}
@@ -111,12 +110,13 @@ func (a *Client) GetCustomPermissionsCSV(params *GetCustomPermissionsCSVParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetCustomPermissionsCSVReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -138,8 +138,7 @@ GetCustomPermissionsReport gets custom permissions report
 
 You need to have a permission with action `licensing.reports:read`.
 */
-func (a *Client) GetCustomPermissionsReport(params *GetCustomPermissionsReportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetCustomPermissionsReport(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
 	if params == nil {
 		params = NewGetCustomPermissionsReportParams()
 	}
@@ -152,12 +151,13 @@ func (a *Client) GetCustomPermissionsReport(params *GetCustomPermissionsReportPa
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetCustomPermissionsReportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -179,8 +179,7 @@ GetLicenseToken gets license token
 
 You need to have a permission with action `licensing:read`.
 */
-func (a *Client) GetLicenseToken(params *GetLicenseTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLicenseTokenOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetLicenseToken(params *GetLicenseTokenParams, opts ...ClientOption) (*GetLicenseTokenOK, error) {
 	if params == nil {
 		params = NewGetLicenseTokenParams()
 	}
@@ -193,12 +192,13 @@ func (a *Client) GetLicenseToken(params *GetLicenseTokenParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetLicenseTokenReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -218,8 +218,7 @@ func (a *Client) GetLicenseToken(params *GetLicenseTokenParams, authInfo runtime
 /*
 GetStatus checks license availability
 */
-func (a *Client) GetStatus(params *GetStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStatusOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetStatus(params *GetStatusParams, opts ...ClientOption) (*GetStatusOK, error) {
 	if params == nil {
 		params = NewGetStatusParams()
 	}
@@ -232,12 +231,13 @@ func (a *Client) GetStatus(params *GetStatusParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetStatusReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -259,8 +259,7 @@ PostLicenseToken creates license token
 
 You need to have a permission with action `licensing:update`.
 */
-func (a *Client) PostLicenseToken(params *PostLicenseTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostLicenseTokenOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostLicenseToken(params *PostLicenseTokenParams, opts ...ClientOption) (*PostLicenseTokenOK, error) {
 	if params == nil {
 		params = NewPostLicenseTokenParams()
 	}
@@ -273,12 +272,13 @@ func (a *Client) PostLicenseToken(params *PostLicenseTokenParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostLicenseTokenReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -302,8 +302,7 @@ func (a *Client) PostLicenseToken(params *PostLicenseTokenParams, authInfo runti
 
 You need to have a permission with action `licensing:update`.
 */
-func (a *Client) PostRenewLicenseToken(params *PostRenewLicenseTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostRenewLicenseTokenOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostRenewLicenseToken(params *PostRenewLicenseTokenParams, opts ...ClientOption) (*PostRenewLicenseTokenOK, error) {
 	if params == nil {
 		params = NewPostRenewLicenseTokenParams()
 	}
@@ -316,12 +315,13 @@ func (a *Client) PostRenewLicenseToken(params *PostRenewLicenseTokenParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostRenewLicenseTokenReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -343,8 +343,7 @@ RefreshLicenseStats refreshes license stats
 
 You need to have a permission with action `licensing:read`.
 */
-func (a *Client) RefreshLicenseStats(params *RefreshLicenseStatsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshLicenseStatsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RefreshLicenseStats(params *RefreshLicenseStatsParams, opts ...ClientOption) (*RefreshLicenseStatsOK, error) {
 	if params == nil {
 		params = NewRefreshLicenseStatsParams()
 	}
@@ -357,12 +356,13 @@ func (a *Client) RefreshLicenseStats(params *RefreshLicenseStatsParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RefreshLicenseStatsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -382,4 +382,11 @@ func (a *Client) RefreshLicenseStats(params *RefreshLicenseStatsParams, authInfo
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

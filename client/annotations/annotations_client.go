@@ -30,23 +30,23 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteAnnotationByID(params *DeleteAnnotationByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAnnotationByIDOK, error)
+	DeleteAnnotationByID(params *DeleteAnnotationByIDParams, opts ...ClientOption) (*DeleteAnnotationByIDOK, error)
 
-	GetAnnotationByID(params *GetAnnotationByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAnnotationByIDOK, error)
+	GetAnnotationByID(params *GetAnnotationByIDParams, opts ...ClientOption) (*GetAnnotationByIDOK, error)
 
-	GetAnnotationTags(params *GetAnnotationTagsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAnnotationTagsOK, error)
+	GetAnnotationTags(params *GetAnnotationTagsParams, opts ...ClientOption) (*GetAnnotationTagsOK, error)
 
-	GetAnnotations(params *GetAnnotationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAnnotationsOK, error)
+	GetAnnotations(params *GetAnnotationsParams, opts ...ClientOption) (*GetAnnotationsOK, error)
 
-	MassDeleteAnnotations(params *MassDeleteAnnotationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*MassDeleteAnnotationsOK, error)
+	MassDeleteAnnotations(params *MassDeleteAnnotationsParams, opts ...ClientOption) (*MassDeleteAnnotationsOK, error)
 
-	PatchAnnotation(params *PatchAnnotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchAnnotationOK, error)
+	PatchAnnotation(params *PatchAnnotationParams, opts ...ClientOption) (*PatchAnnotationOK, error)
 
-	PostAnnotation(params *PostAnnotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAnnotationOK, error)
+	PostAnnotation(params *PostAnnotationParams, opts ...ClientOption) (*PostAnnotationOK, error)
 
-	PostGraphiteAnnotation(params *PostGraphiteAnnotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostGraphiteAnnotationOK, error)
+	PostGraphiteAnnotation(params *PostGraphiteAnnotationParams, opts ...ClientOption) (*PostGraphiteAnnotationOK, error)
 
-	UpdateAnnotation(params *UpdateAnnotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAnnotationOK, error)
+	UpdateAnnotation(params *UpdateAnnotationParams, opts ...ClientOption) (*UpdateAnnotationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -56,8 +56,7 @@ DeleteAnnotationByID deletes annotation by ID
 
 Deletes the annotation that matches the specified ID.
 */
-func (a *Client) DeleteAnnotationByID(params *DeleteAnnotationByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAnnotationByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteAnnotationByID(params *DeleteAnnotationByIDParams, opts ...ClientOption) (*DeleteAnnotationByIDOK, error) {
 	if params == nil {
 		params = NewDeleteAnnotationByIDParams()
 	}
@@ -70,12 +69,13 @@ func (a *Client) DeleteAnnotationByID(params *DeleteAnnotationByIDParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteAnnotationByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -95,8 +95,7 @@ func (a *Client) DeleteAnnotationByID(params *DeleteAnnotationByIDParams, authIn
 /*
 GetAnnotationByID gets annotation by ID
 */
-func (a *Client) GetAnnotationByID(params *GetAnnotationByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAnnotationByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAnnotationByID(params *GetAnnotationByIDParams, opts ...ClientOption) (*GetAnnotationByIDOK, error) {
 	if params == nil {
 		params = NewGetAnnotationByIDParams()
 	}
@@ -109,12 +108,13 @@ func (a *Client) GetAnnotationByID(params *GetAnnotationByIDParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAnnotationByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -136,8 +136,7 @@ GetAnnotationTags finds annotations tags
 
 Find all the event tags created in the annotations.
 */
-func (a *Client) GetAnnotationTags(params *GetAnnotationTagsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAnnotationTagsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAnnotationTags(params *GetAnnotationTagsParams, opts ...ClientOption) (*GetAnnotationTagsOK, error) {
 	if params == nil {
 		params = NewGetAnnotationTagsParams()
 	}
@@ -150,12 +149,13 @@ func (a *Client) GetAnnotationTags(params *GetAnnotationTagsParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAnnotationTagsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -177,8 +177,7 @@ GetAnnotations finds annotations
 
 Starting in Grafana v6.4 regions annotations are now returned in one entity that now includes the timeEnd property.
 */
-func (a *Client) GetAnnotations(params *GetAnnotationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAnnotationsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAnnotations(params *GetAnnotationsParams, opts ...ClientOption) (*GetAnnotationsOK, error) {
 	if params == nil {
 		params = NewGetAnnotationsParams()
 	}
@@ -191,12 +190,13 @@ func (a *Client) GetAnnotations(params *GetAnnotationsParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAnnotationsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -216,8 +216,7 @@ func (a *Client) GetAnnotations(params *GetAnnotationsParams, authInfo runtime.C
 /*
 MassDeleteAnnotations deletes multiple annotations
 */
-func (a *Client) MassDeleteAnnotations(params *MassDeleteAnnotationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*MassDeleteAnnotationsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) MassDeleteAnnotations(params *MassDeleteAnnotationsParams, opts ...ClientOption) (*MassDeleteAnnotationsOK, error) {
 	if params == nil {
 		params = NewMassDeleteAnnotationsParams()
 	}
@@ -230,12 +229,13 @@ func (a *Client) MassDeleteAnnotations(params *MassDeleteAnnotationsParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &MassDeleteAnnotationsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -260,8 +260,7 @@ func (a *Client) MassDeleteAnnotations(params *MassDeleteAnnotationsParams, auth
 This operation currently supports updating of the `text`, `tags`, `time` and `timeEnd` properties.
 This is available in Grafana 6.0.0-beta2 and above.
 */
-func (a *Client) PatchAnnotation(params *PatchAnnotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchAnnotationOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PatchAnnotation(params *PatchAnnotationParams, opts ...ClientOption) (*PatchAnnotationOK, error) {
 	if params == nil {
 		params = NewPatchAnnotationParams()
 	}
@@ -274,12 +273,13 @@ func (a *Client) PatchAnnotation(params *PatchAnnotationParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PatchAnnotationReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -304,8 +304,7 @@ func (a *Client) PatchAnnotation(params *PatchAnnotationParams, authInfo runtime
 The format for `time` and `timeEnd` should be epoch numbers in millisecond resolution.
 The response for this HTTP request is slightly different in versions prior to v6.4. In prior versions you would also get an endId if you where creating a region. But in 6.4 regions are represented using a single event with time and timeEnd properties.
 */
-func (a *Client) PostAnnotation(params *PostAnnotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAnnotationOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostAnnotation(params *PostAnnotationParams, opts ...ClientOption) (*PostAnnotationOK, error) {
 	if params == nil {
 		params = NewPostAnnotationParams()
 	}
@@ -318,12 +317,13 @@ func (a *Client) PostAnnotation(params *PostAnnotationParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostAnnotationReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -345,8 +345,7 @@ PostGraphiteAnnotation creates annotation in graphite format
 
 Creates an annotation by using Graphite-compatible event format. The `when` and `data` fields are optional. If `when` is not specified then the current time will be used as annotation’s timestamp. The `tags` field can also be in prior to Graphite `0.10.0` format (string with multiple tags being separated by a space).
 */
-func (a *Client) PostGraphiteAnnotation(params *PostGraphiteAnnotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostGraphiteAnnotationOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostGraphiteAnnotation(params *PostGraphiteAnnotationParams, opts ...ClientOption) (*PostGraphiteAnnotationOK, error) {
 	if params == nil {
 		params = NewPostGraphiteAnnotationParams()
 	}
@@ -359,12 +358,13 @@ func (a *Client) PostGraphiteAnnotation(params *PostGraphiteAnnotationParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostGraphiteAnnotationReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -386,8 +386,7 @@ UpdateAnnotation updates annotation
 
 Updates all properties of an annotation that matches the specified id. To only update certain property, consider using the Patch Annotation operation.
 */
-func (a *Client) UpdateAnnotation(params *UpdateAnnotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAnnotationOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateAnnotation(params *UpdateAnnotationParams, opts ...ClientOption) (*UpdateAnnotationOK, error) {
 	if params == nil {
 		params = NewUpdateAnnotationParams()
 	}
@@ -400,12 +399,13 @@ func (a *Client) UpdateAnnotation(params *UpdateAnnotationParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateAnnotationReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -425,4 +425,11 @@ func (a *Client) UpdateAnnotation(params *UpdateAnnotationParams, authInfo runti
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

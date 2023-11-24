@@ -30,19 +30,19 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateLibraryElement(params *CreateLibraryElementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateLibraryElementOK, error)
+	CreateLibraryElement(params *CreateLibraryElementParams, opts ...ClientOption) (*CreateLibraryElementOK, error)
 
-	DeleteLibraryElementByUID(params *DeleteLibraryElementByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error)
+	DeleteLibraryElementByUID(params *DeleteLibraryElementByUIDParams, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error)
 
-	GetLibraryElementByName(params *GetLibraryElementByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLibraryElementByNameOK, error)
+	GetLibraryElementByName(params *GetLibraryElementByNameParams, opts ...ClientOption) (*GetLibraryElementByNameOK, error)
 
-	GetLibraryElementByUID(params *GetLibraryElementByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLibraryElementByUIDOK, error)
+	GetLibraryElementByUID(params *GetLibraryElementByUIDParams, opts ...ClientOption) (*GetLibraryElementByUIDOK, error)
 
-	GetLibraryElementConnections(params *GetLibraryElementConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error)
+	GetLibraryElementConnections(params *GetLibraryElementConnectionsParams, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error)
 
-	GetLibraryElements(params *GetLibraryElementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLibraryElementsOK, error)
+	GetLibraryElements(params *GetLibraryElementsParams, opts ...ClientOption) (*GetLibraryElementsOK, error)
 
-	UpdateLibraryElement(params *UpdateLibraryElementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateLibraryElementOK, error)
+	UpdateLibraryElement(params *UpdateLibraryElementParams, opts ...ClientOption) (*UpdateLibraryElementOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -52,8 +52,7 @@ CreateLibraryElement creates library element
 
 Creates a new library element.
 */
-func (a *Client) CreateLibraryElement(params *CreateLibraryElementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateLibraryElementOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateLibraryElement(params *CreateLibraryElementParams, opts ...ClientOption) (*CreateLibraryElementOK, error) {
 	if params == nil {
 		params = NewCreateLibraryElementParams()
 	}
@@ -66,12 +65,13 @@ func (a *Client) CreateLibraryElement(params *CreateLibraryElementParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateLibraryElementReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -95,8 +95,7 @@ func (a *Client) CreateLibraryElement(params *CreateLibraryElementParams, authIn
 
 You cannot delete a library element that is connected. This operation cannot be reverted.
 */
-func (a *Client) DeleteLibraryElementByUID(params *DeleteLibraryElementByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteLibraryElementByUID(params *DeleteLibraryElementByUIDParams, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error) {
 	if params == nil {
 		params = NewDeleteLibraryElementByUIDParams()
 	}
@@ -109,12 +108,13 @@ func (a *Client) DeleteLibraryElementByUID(params *DeleteLibraryElementByUIDPara
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteLibraryElementByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -136,8 +136,7 @@ GetLibraryElementByName gets library element by name
 
 Returns a library element with the given name.
 */
-func (a *Client) GetLibraryElementByName(params *GetLibraryElementByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLibraryElementByNameOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetLibraryElementByName(params *GetLibraryElementByNameParams, opts ...ClientOption) (*GetLibraryElementByNameOK, error) {
 	if params == nil {
 		params = NewGetLibraryElementByNameParams()
 	}
@@ -150,12 +149,13 @@ func (a *Client) GetLibraryElementByName(params *GetLibraryElementByNameParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetLibraryElementByNameReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -177,8 +177,7 @@ GetLibraryElementByUID gets library element by UID
 
 Returns a library element with the given UID.
 */
-func (a *Client) GetLibraryElementByUID(params *GetLibraryElementByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLibraryElementByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetLibraryElementByUID(params *GetLibraryElementByUIDParams, opts ...ClientOption) (*GetLibraryElementByUIDOK, error) {
 	if params == nil {
 		params = NewGetLibraryElementByUIDParams()
 	}
@@ -191,12 +190,13 @@ func (a *Client) GetLibraryElementByUID(params *GetLibraryElementByUIDParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetLibraryElementByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -218,8 +218,7 @@ GetLibraryElementConnections gets library element connections
 
 Returns a list of connections for a library element based on the UID specified.
 */
-func (a *Client) GetLibraryElementConnections(params *GetLibraryElementConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetLibraryElementConnections(params *GetLibraryElementConnectionsParams, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error) {
 	if params == nil {
 		params = NewGetLibraryElementConnectionsParams()
 	}
@@ -232,12 +231,13 @@ func (a *Client) GetLibraryElementConnections(params *GetLibraryElementConnectio
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetLibraryElementConnectionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -262,8 +262,7 @@ func (a *Client) GetLibraryElementConnections(params *GetLibraryElementConnectio
 Use the `perPage` query parameter to control the maximum number of library elements returned; the default limit is `100`.
 You can also use the `page` query parameter to fetch library elements from any page other than the first one.
 */
-func (a *Client) GetLibraryElements(params *GetLibraryElementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLibraryElementsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetLibraryElements(params *GetLibraryElementsParams, opts ...ClientOption) (*GetLibraryElementsOK, error) {
 	if params == nil {
 		params = NewGetLibraryElementsParams()
 	}
@@ -276,12 +275,13 @@ func (a *Client) GetLibraryElements(params *GetLibraryElementsParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetLibraryElementsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -303,8 +303,7 @@ UpdateLibraryElement updates library element
 
 Updates an existing library element identified by uid.
 */
-func (a *Client) UpdateLibraryElement(params *UpdateLibraryElementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateLibraryElementOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateLibraryElement(params *UpdateLibraryElementParams, opts ...ClientOption) (*UpdateLibraryElementOK, error) {
 	if params == nil {
 		params = NewUpdateLibraryElementParams()
 	}
@@ -317,12 +316,13 @@ func (a *Client) UpdateLibraryElement(params *UpdateLibraryElementParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateLibraryElementReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -342,4 +342,11 @@ func (a *Client) UpdateLibraryElement(params *UpdateLibraryElementParams, authIn
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

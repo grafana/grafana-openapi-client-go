@@ -30,9 +30,9 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ListSortOptions(params *ListSortOptionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSortOptionsOK, error)
+	ListSortOptions(params *ListSortOptionsParams, opts ...ClientOption) (*ListSortOptionsOK, error)
 
-	Search(params *SearchParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchOK, error)
+	Search(params *SearchParams, opts ...ClientOption) (*SearchOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -40,8 +40,7 @@ type ClientService interface {
 /*
 ListSortOptions lists search sorting options
 */
-func (a *Client) ListSortOptions(params *ListSortOptionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSortOptionsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ListSortOptions(params *ListSortOptionsParams, opts ...ClientOption) (*ListSortOptionsOK, error) {
 	if params == nil {
 		params = NewListSortOptionsParams()
 	}
@@ -54,12 +53,13 @@ func (a *Client) ListSortOptions(params *ListSortOptionsParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ListSortOptionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -79,8 +79,7 @@ func (a *Client) ListSortOptions(params *ListSortOptionsParams, authInfo runtime
 /*
 Search search API
 */
-func (a *Client) Search(params *SearchParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) Search(params *SearchParams, opts ...ClientOption) (*SearchOK, error) {
 	if params == nil {
 		params = NewSearchParams()
 	}
@@ -93,12 +92,13 @@ func (a *Client) Search(params *SearchParams, authInfo runtime.ClientAuthInfoWri
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -118,4 +118,11 @@ func (a *Client) Search(params *SearchParams, authInfo runtime.ClientAuthInfoWri
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,61 +30,61 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteAlertRule(params *DeleteAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
+	DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
 
-	DeleteContactpoints(params *DeleteContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
+	DeleteContactpoints(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
 
-	DeleteMuteTiming(params *DeleteMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
+	DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
 
-	DeleteTemplate(params *DeleteTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTemplateNoContent, error)
+	DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error)
 
-	GetAlertRule(params *GetAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleOK, error)
+	GetAlertRule(params *GetAlertRuleParams, opts ...ClientOption) (*GetAlertRuleOK, error)
 
-	GetAlertRuleExport(params *GetAlertRuleExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleExportOK, error)
+	GetAlertRuleExport(params *GetAlertRuleExportParams, opts ...ClientOption) (*GetAlertRuleExportOK, error)
 
-	GetAlertRuleGroup(params *GetAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleGroupOK, error)
+	GetAlertRuleGroup(params *GetAlertRuleGroupParams, opts ...ClientOption) (*GetAlertRuleGroupOK, error)
 
-	GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error)
+	GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error)
 
-	GetAlertRules(params *GetAlertRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRulesOK, error)
+	GetAlertRules(params *GetAlertRulesParams, opts ...ClientOption) (*GetAlertRulesOK, error)
 
-	GetAlertRulesExport(params *GetAlertRulesExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRulesExportOK, error)
+	GetAlertRulesExport(params *GetAlertRulesExportParams, opts ...ClientOption) (*GetAlertRulesExportOK, error)
 
-	GetContactpoints(params *GetContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContactpointsOK, error)
+	GetContactpoints(params *GetContactpointsParams, opts ...ClientOption) (*GetContactpointsOK, error)
 
-	GetContactpointsExport(params *GetContactpointsExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContactpointsExportOK, error)
+	GetContactpointsExport(params *GetContactpointsExportParams, opts ...ClientOption) (*GetContactpointsExportOK, error)
 
-	GetMuteTiming(params *GetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMuteTimingOK, error)
+	GetMuteTiming(params *GetMuteTimingParams, opts ...ClientOption) (*GetMuteTimingOK, error)
 
-	GetMuteTimings(params *GetMuteTimingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMuteTimingsOK, error)
+	GetMuteTimings(params *GetMuteTimingsParams, opts ...ClientOption) (*GetMuteTimingsOK, error)
 
-	GetPolicyTree(params *GetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyTreeOK, error)
+	GetPolicyTree(params *GetPolicyTreeParams, opts ...ClientOption) (*GetPolicyTreeOK, error)
 
-	GetPolicyTreeExport(params *GetPolicyTreeExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyTreeExportOK, error)
+	GetPolicyTreeExport(params *GetPolicyTreeExportParams, opts ...ClientOption) (*GetPolicyTreeExportOK, error)
 
-	GetTemplate(params *GetTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTemplateOK, error)
+	GetTemplate(params *GetTemplateParams, opts ...ClientOption) (*GetTemplateOK, error)
 
-	GetTemplates(params *GetTemplatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTemplatesOK, error)
+	GetTemplates(params *GetTemplatesParams, opts ...ClientOption) (*GetTemplatesOK, error)
 
-	PostAlertRule(params *PostAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertRuleCreated, error)
+	PostAlertRule(params *PostAlertRuleParams, opts ...ClientOption) (*PostAlertRuleCreated, error)
 
-	PostContactpoints(params *PostContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostContactpointsAccepted, error)
+	PostContactpoints(params *PostContactpointsParams, opts ...ClientOption) (*PostContactpointsAccepted, error)
 
-	PostMuteTiming(params *PostMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostMuteTimingCreated, error)
+	PostMuteTiming(params *PostMuteTimingParams, opts ...ClientOption) (*PostMuteTimingCreated, error)
 
-	PutAlertRule(params *PutAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertRuleOK, error)
+	PutAlertRule(params *PutAlertRuleParams, opts ...ClientOption) (*PutAlertRuleOK, error)
 
-	PutAlertRuleGroup(params *PutAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertRuleGroupOK, error)
+	PutAlertRuleGroup(params *PutAlertRuleGroupParams, opts ...ClientOption) (*PutAlertRuleGroupOK, error)
 
-	PutContactpoint(params *PutContactpointParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutContactpointAccepted, error)
+	PutContactpoint(params *PutContactpointParams, opts ...ClientOption) (*PutContactpointAccepted, error)
 
-	PutMuteTiming(params *PutMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutMuteTimingOK, error)
+	PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption) (*PutMuteTimingOK, error)
 
-	PutPolicyTree(params *PutPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutPolicyTreeAccepted, error)
+	PutPolicyTree(params *PutPolicyTreeParams, opts ...ClientOption) (*PutPolicyTreeAccepted, error)
 
-	PutTemplate(params *PutTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutTemplateAccepted, error)
+	PutTemplate(params *PutTemplateParams, opts ...ClientOption) (*PutTemplateAccepted, error)
 
-	ResetPolicyTree(params *ResetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ResetPolicyTreeAccepted, error)
+	ResetPolicyTree(params *ResetPolicyTreeParams, opts ...ClientOption) (*ResetPolicyTreeAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -92,8 +92,7 @@ type ClientService interface {
 /*
 DeleteAlertRule deletes a specific alert rule by UID
 */
-func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
 	if params == nil {
 		params = NewDeleteAlertRuleParams()
 	}
@@ -106,12 +105,13 @@ func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteAlertRuleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -131,8 +131,7 @@ func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, authInfo runtime
 /*
 DeleteContactpoints deletes a contact point
 */
-func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteContactpointsNoContent, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error) {
 	if params == nil {
 		params = NewDeleteContactpointsParams()
 	}
@@ -145,12 +144,13 @@ func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteContactpointsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -170,8 +170,7 @@ func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, authInfo
 /*
 DeleteMuteTiming deletes a mute timing
 */
-func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
 	if params == nil {
 		params = NewDeleteMuteTimingParams()
 	}
@@ -184,12 +183,13 @@ func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteMuteTimingReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -209,8 +209,7 @@ func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, authInfo runti
 /*
 DeleteTemplate deletes a template
 */
-func (a *Client) DeleteTemplate(params *DeleteTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
 	if params == nil {
 		params = NewDeleteTemplateParams()
 	}
@@ -223,12 +222,13 @@ func (a *Client) DeleteTemplate(params *DeleteTemplateParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -248,8 +248,7 @@ func (a *Client) DeleteTemplate(params *DeleteTemplateParams, authInfo runtime.C
 /*
 GetAlertRule gets a specific alert rule by UID
 */
-func (a *Client) GetAlertRule(params *GetAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertRule(params *GetAlertRuleParams, opts ...ClientOption) (*GetAlertRuleOK, error) {
 	if params == nil {
 		params = NewGetAlertRuleParams()
 	}
@@ -262,12 +261,13 @@ func (a *Client) GetAlertRule(params *GetAlertRuleParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertRuleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -287,8 +287,7 @@ func (a *Client) GetAlertRule(params *GetAlertRuleParams, authInfo runtime.Clien
 /*
 GetAlertRuleExport exports an alert rule in provisioning file format
 */
-func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleExportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, opts ...ClientOption) (*GetAlertRuleExportOK, error) {
 	if params == nil {
 		params = NewGetAlertRuleExportParams()
 	}
@@ -301,12 +300,13 @@ func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertRuleExportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -326,8 +326,7 @@ func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, authInfo r
 /*
 GetAlertRuleGroup gets a rule group
 */
-func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleGroupOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, opts ...ClientOption) (*GetAlertRuleGroupOK, error) {
 	if params == nil {
 		params = NewGetAlertRuleGroupParams()
 	}
@@ -340,12 +339,13 @@ func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertRuleGroupReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -365,8 +365,7 @@ func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, authInfo run
 /*
 GetAlertRuleGroupExport exports an alert rule group in provisioning file format
 */
-func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error) {
 	if params == nil {
 		params = NewGetAlertRuleGroupExportParams()
 	}
@@ -379,12 +378,13 @@ func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertRuleGroupExportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -404,8 +404,7 @@ func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, 
 /*
 GetAlertRules gets all the alert rules
 */
-func (a *Client) GetAlertRules(params *GetAlertRulesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRulesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertRules(params *GetAlertRulesParams, opts ...ClientOption) (*GetAlertRulesOK, error) {
 	if params == nil {
 		params = NewGetAlertRulesParams()
 	}
@@ -418,12 +417,13 @@ func (a *Client) GetAlertRules(params *GetAlertRulesParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertRulesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -443,8 +443,7 @@ func (a *Client) GetAlertRules(params *GetAlertRulesParams, authInfo runtime.Cli
 /*
 GetAlertRulesExport exports all alert rules in provisioning file format
 */
-func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertRulesExportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, opts ...ClientOption) (*GetAlertRulesExportOK, error) {
 	if params == nil {
 		params = NewGetAlertRulesExportParams()
 	}
@@ -457,12 +456,13 @@ func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertRulesExportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -482,8 +482,7 @@ func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, authInfo
 /*
 GetContactpoints gets all the contact points
 */
-func (a *Client) GetContactpoints(params *GetContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContactpointsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetContactpoints(params *GetContactpointsParams, opts ...ClientOption) (*GetContactpointsOK, error) {
 	if params == nil {
 		params = NewGetContactpointsParams()
 	}
@@ -496,12 +495,13 @@ func (a *Client) GetContactpoints(params *GetContactpointsParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetContactpointsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -521,8 +521,7 @@ func (a *Client) GetContactpoints(params *GetContactpointsParams, authInfo runti
 /*
 GetContactpointsExport exports all contact points in provisioning file format
 */
-func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContactpointsExportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, opts ...ClientOption) (*GetContactpointsExportOK, error) {
 	if params == nil {
 		params = NewGetContactpointsExportParams()
 	}
@@ -535,12 +534,13 @@ func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetContactpointsExportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -560,8 +560,7 @@ func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, au
 /*
 GetMuteTiming gets a mute timing
 */
-func (a *Client) GetMuteTiming(params *GetMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMuteTimingOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetMuteTiming(params *GetMuteTimingParams, opts ...ClientOption) (*GetMuteTimingOK, error) {
 	if params == nil {
 		params = NewGetMuteTimingParams()
 	}
@@ -574,12 +573,13 @@ func (a *Client) GetMuteTiming(params *GetMuteTimingParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetMuteTimingReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -599,8 +599,7 @@ func (a *Client) GetMuteTiming(params *GetMuteTimingParams, authInfo runtime.Cli
 /*
 GetMuteTimings gets all the mute timings
 */
-func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMuteTimingsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, opts ...ClientOption) (*GetMuteTimingsOK, error) {
 	if params == nil {
 		params = NewGetMuteTimingsParams()
 	}
@@ -613,12 +612,13 @@ func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetMuteTimingsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -638,8 +638,7 @@ func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, authInfo runtime.C
 /*
 GetPolicyTree gets the notification policy tree
 */
-func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyTreeOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, opts ...ClientOption) (*GetPolicyTreeOK, error) {
 	if params == nil {
 		params = NewGetPolicyTreeParams()
 	}
@@ -652,12 +651,13 @@ func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetPolicyTreeReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -677,8 +677,7 @@ func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, authInfo runtime.Cli
 /*
 GetPolicyTreeExport exports the notification policy tree in provisioning file format
 */
-func (a *Client) GetPolicyTreeExport(params *GetPolicyTreeExportParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyTreeExportOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetPolicyTreeExport(params *GetPolicyTreeExportParams, opts ...ClientOption) (*GetPolicyTreeExportOK, error) {
 	if params == nil {
 		params = NewGetPolicyTreeExportParams()
 	}
@@ -691,12 +690,13 @@ func (a *Client) GetPolicyTreeExport(params *GetPolicyTreeExportParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetPolicyTreeExportReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -716,8 +716,7 @@ func (a *Client) GetPolicyTreeExport(params *GetPolicyTreeExportParams, authInfo
 /*
 GetTemplate gets a notification template
 */
-func (a *Client) GetTemplate(params *GetTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTemplateOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetTemplate(params *GetTemplateParams, opts ...ClientOption) (*GetTemplateOK, error) {
 	if params == nil {
 		params = NewGetTemplateParams()
 	}
@@ -730,12 +729,13 @@ func (a *Client) GetTemplate(params *GetTemplateParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -755,8 +755,7 @@ func (a *Client) GetTemplate(params *GetTemplateParams, authInfo runtime.ClientA
 /*
 GetTemplates gets all notification templates
 */
-func (a *Client) GetTemplates(params *GetTemplatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTemplatesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetTemplates(params *GetTemplatesParams, opts ...ClientOption) (*GetTemplatesOK, error) {
 	if params == nil {
 		params = NewGetTemplatesParams()
 	}
@@ -769,12 +768,13 @@ func (a *Client) GetTemplates(params *GetTemplatesParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetTemplatesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -794,8 +794,7 @@ func (a *Client) GetTemplates(params *GetTemplatesParams, authInfo runtime.Clien
 /*
 PostAlertRule creates a new alert rule
 */
-func (a *Client) PostAlertRule(params *PostAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertRuleCreated, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostAlertRule(params *PostAlertRuleParams, opts ...ClientOption) (*PostAlertRuleCreated, error) {
 	if params == nil {
 		params = NewPostAlertRuleParams()
 	}
@@ -808,12 +807,13 @@ func (a *Client) PostAlertRule(params *PostAlertRuleParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostAlertRuleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -833,8 +833,7 @@ func (a *Client) PostAlertRule(params *PostAlertRuleParams, authInfo runtime.Cli
 /*
 PostContactpoints creates a contact point
 */
-func (a *Client) PostContactpoints(params *PostContactpointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostContactpointsAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostContactpoints(params *PostContactpointsParams, opts ...ClientOption) (*PostContactpointsAccepted, error) {
 	if params == nil {
 		params = NewPostContactpointsParams()
 	}
@@ -847,12 +846,13 @@ func (a *Client) PostContactpoints(params *PostContactpointsParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostContactpointsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -872,8 +872,7 @@ func (a *Client) PostContactpoints(params *PostContactpointsParams, authInfo run
 /*
 PostMuteTiming creates a new mute timing
 */
-func (a *Client) PostMuteTiming(params *PostMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostMuteTimingCreated, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PostMuteTiming(params *PostMuteTimingParams, opts ...ClientOption) (*PostMuteTimingCreated, error) {
 	if params == nil {
 		params = NewPostMuteTimingParams()
 	}
@@ -886,12 +885,13 @@ func (a *Client) PostMuteTiming(params *PostMuteTimingParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostMuteTimingReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -911,8 +911,7 @@ func (a *Client) PostMuteTiming(params *PostMuteTimingParams, authInfo runtime.C
 /*
 PutAlertRule updates an existing alert rule
 */
-func (a *Client) PutAlertRule(params *PutAlertRuleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertRuleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PutAlertRule(params *PutAlertRuleParams, opts ...ClientOption) (*PutAlertRuleOK, error) {
 	if params == nil {
 		params = NewPutAlertRuleParams()
 	}
@@ -925,12 +924,13 @@ func (a *Client) PutAlertRule(params *PutAlertRuleParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PutAlertRuleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -950,8 +950,7 @@ func (a *Client) PutAlertRule(params *PutAlertRuleParams, authInfo runtime.Clien
 /*
 PutAlertRuleGroup updates the interval of a rule group
 */
-func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertRuleGroupOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, opts ...ClientOption) (*PutAlertRuleGroupOK, error) {
 	if params == nil {
 		params = NewPutAlertRuleGroupParams()
 	}
@@ -964,12 +963,13 @@ func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PutAlertRuleGroupReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -989,8 +989,7 @@ func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, authInfo run
 /*
 PutContactpoint updates an existing contact point
 */
-func (a *Client) PutContactpoint(params *PutContactpointParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutContactpointAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PutContactpoint(params *PutContactpointParams, opts ...ClientOption) (*PutContactpointAccepted, error) {
 	if params == nil {
 		params = NewPutContactpointParams()
 	}
@@ -1003,12 +1002,13 @@ func (a *Client) PutContactpoint(params *PutContactpointParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PutContactpointReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -1028,8 +1028,7 @@ func (a *Client) PutContactpoint(params *PutContactpointParams, authInfo runtime
 /*
 PutMuteTiming replaces an existing mute timing
 */
-func (a *Client) PutMuteTiming(params *PutMuteTimingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutMuteTimingOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption) (*PutMuteTimingOK, error) {
 	if params == nil {
 		params = NewPutMuteTimingParams()
 	}
@@ -1042,12 +1041,13 @@ func (a *Client) PutMuteTiming(params *PutMuteTimingParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PutMuteTimingReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -1067,8 +1067,7 @@ func (a *Client) PutMuteTiming(params *PutMuteTimingParams, authInfo runtime.Cli
 /*
 PutPolicyTree sets the notification policy tree
 */
-func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutPolicyTreeAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, opts ...ClientOption) (*PutPolicyTreeAccepted, error) {
 	if params == nil {
 		params = NewPutPolicyTreeParams()
 	}
@@ -1081,12 +1080,13 @@ func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PutPolicyTreeReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -1106,8 +1106,7 @@ func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, authInfo runtime.Cli
 /*
 PutTemplate updates an existing notification template
 */
-func (a *Client) PutTemplate(params *PutTemplateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutTemplateAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PutTemplate(params *PutTemplateParams, opts ...ClientOption) (*PutTemplateAccepted, error) {
 	if params == nil {
 		params = NewPutTemplateParams()
 	}
@@ -1120,12 +1119,13 @@ func (a *Client) PutTemplate(params *PutTemplateParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PutTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -1145,8 +1145,7 @@ func (a *Client) PutTemplate(params *PutTemplateParams, authInfo runtime.ClientA
 /*
 ResetPolicyTree clears the notification policy tree
 */
-func (a *Client) ResetPolicyTree(params *ResetPolicyTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ResetPolicyTreeAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ResetPolicyTree(params *ResetPolicyTreeParams, opts ...ClientOption) (*ResetPolicyTreeAccepted, error) {
 	if params == nil {
 		params = NewResetPolicyTreeParams()
 	}
@@ -1159,12 +1158,13 @@ func (a *Client) ResetPolicyTree(params *ResetPolicyTreeParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ResetPolicyTreeReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -1184,4 +1184,11 @@ func (a *Client) ResetPolicyTree(params *ResetPolicyTreeParams, authInfo runtime
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

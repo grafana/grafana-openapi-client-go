@@ -30,17 +30,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetDashboardVersionByID(params *GetDashboardVersionByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionByIDOK, error)
+	GetDashboardVersionByID(params *GetDashboardVersionByIDParams, opts ...ClientOption) (*GetDashboardVersionByIDOK, error)
 
-	GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error)
+	GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error)
 
-	GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error)
+	GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error)
 
-	GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionsByUIDOK, error)
+	GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDParams, opts ...ClientOption) (*GetDashboardVersionsByUIDOK, error)
 
-	RestoreDashboardVersionByID(params *RestoreDashboardVersionByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error)
+	RestoreDashboardVersionByID(params *RestoreDashboardVersionByIDParams, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error)
 
-	RestoreDashboardVersionByUID(params *RestoreDashboardVersionByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error)
+	RestoreDashboardVersionByUID(params *RestoreDashboardVersionByUIDParams, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -50,8 +50,7 @@ GetDashboardVersionByID gets a specific dashboard version
 
 Please refer to [updated API](#/dashboard_versions/getDashboardVersionByUID) instead
 */
-func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, opts ...ClientOption) (*GetDashboardVersionByIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardVersionByIDParams()
 	}
@@ -64,12 +63,13 @@ func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardVersionByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -89,8 +89,7 @@ func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, 
 /*
 GetDashboardVersionByUID gets a specific dashboard version using UID
 */
-func (a *Client) GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardVersionByUIDParams()
 	}
@@ -103,12 +102,13 @@ func (a *Client) GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardVersionByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -130,8 +130,7 @@ GetDashboardVersionsByID gets all existing versions for the dashboard
 
 Please refer to [updated API](#/dashboard_versions/getDashboardVersionsByUID) instead
 */
-func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardVersionsByIDParams()
 	}
@@ -144,12 +143,13 @@ func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardVersionsByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -169,8 +169,7 @@ func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams
 /*
 GetDashboardVersionsByUID gets all existing versions for the dashboard using UID
 */
-func (a *Client) GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardVersionsByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDParams, opts ...ClientOption) (*GetDashboardVersionsByUIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardVersionsByUIDParams()
 	}
@@ -183,12 +182,13 @@ func (a *Client) GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDPara
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardVersionsByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -210,8 +210,7 @@ RestoreDashboardVersionByID restores a dashboard to a given dashboard version
 
 Please refer to [updated API](#/dashboard_versions/restoreDashboardVersionByUID) instead
 */
-func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByIDParams, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error) {
 	if params == nil {
 		params = NewRestoreDashboardVersionByIDParams()
 	}
@@ -224,12 +223,13 @@ func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByID
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RestoreDashboardVersionByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -249,8 +249,7 @@ func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByID
 /*
 RestoreDashboardVersionByUID restores a dashboard to a given dashboard version using UID
 */
-func (a *Client) RestoreDashboardVersionByUID(params *RestoreDashboardVersionByUIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RestoreDashboardVersionByUID(params *RestoreDashboardVersionByUIDParams, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error) {
 	if params == nil {
 		params = NewRestoreDashboardVersionByUIDParams()
 	}
@@ -263,12 +262,13 @@ func (a *Client) RestoreDashboardVersionByUID(params *RestoreDashboardVersionByU
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RestoreDashboardVersionByUIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -288,4 +288,11 @@ func (a *Client) RestoreDashboardVersionByUID(params *RestoreDashboardVersionByU
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

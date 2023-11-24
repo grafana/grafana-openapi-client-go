@@ -30,13 +30,13 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddTeamGroupAPI(params *AddTeamGroupAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddTeamGroupAPIOK, error)
+	AddTeamGroupAPI(params *AddTeamGroupAPIParams, opts ...ClientOption) (*AddTeamGroupAPIOK, error)
 
-	GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTeamGroupsAPIOK, error)
+	GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, opts ...ClientOption) (*GetTeamGroupsAPIOK, error)
 
-	RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error)
+	RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error)
 
-	RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveTeamGroupAPIQueryOK, error)
+	RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, opts ...ClientOption) (*RemoveTeamGroupAPIQueryOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -44,8 +44,7 @@ type ClientService interface {
 /*
 AddTeamGroupAPI adds external group
 */
-func (a *Client) AddTeamGroupAPI(params *AddTeamGroupAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddTeamGroupAPIOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddTeamGroupAPI(params *AddTeamGroupAPIParams, opts ...ClientOption) (*AddTeamGroupAPIOK, error) {
 	if params == nil {
 		params = NewAddTeamGroupAPIParams()
 	}
@@ -58,12 +57,13 @@ func (a *Client) AddTeamGroupAPI(params *AddTeamGroupAPIParams, authInfo runtime
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddTeamGroupAPIReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -83,8 +83,7 @@ func (a *Client) AddTeamGroupAPI(params *AddTeamGroupAPIParams, authInfo runtime
 /*
 GetTeamGroupsAPI gets external groups
 */
-func (a *Client) GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTeamGroupsAPIOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, opts ...ClientOption) (*GetTeamGroupsAPIOK, error) {
 	if params == nil {
 		params = NewGetTeamGroupsAPIParams()
 	}
@@ -97,12 +96,13 @@ func (a *Client) GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetTeamGroupsAPIReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -122,8 +122,7 @@ func (a *Client) GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, authInfo runti
 /*
 RemoveTeamGroupAPI removes external group
 */
-func (a *Client) RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error) {
 	if params == nil {
 		params = NewRemoveTeamGroupAPIParams()
 	}
@@ -136,12 +135,13 @@ func (a *Client) RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RemoveTeamGroupAPIReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -161,8 +161,7 @@ func (a *Client) RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, authInfo r
 /*
 RemoveTeamGroupAPIQuery removes external group
 */
-func (a *Client) RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveTeamGroupAPIQueryOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, opts ...ClientOption) (*RemoveTeamGroupAPIQueryOK, error) {
 	if params == nil {
 		params = NewRemoveTeamGroupAPIQueryParams()
 	}
@@ -175,12 +174,13 @@ func (a *Client) RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, 
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RemoveTeamGroupAPIQueryReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -200,4 +200,11 @@ func (a *Client) RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

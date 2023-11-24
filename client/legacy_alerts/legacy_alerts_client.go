@@ -30,15 +30,15 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetAlertByID(params *GetAlertByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertByIDOK, error)
+	GetAlertByID(params *GetAlertByIDParams, opts ...ClientOption) (*GetAlertByIDOK, error)
 
-	GetAlerts(params *GetAlertsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertsOK, error)
+	GetAlerts(params *GetAlertsParams, opts ...ClientOption) (*GetAlertsOK, error)
 
-	GetDashboardStates(params *GetDashboardStatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardStatesOK, error)
+	GetDashboardStates(params *GetDashboardStatesParams, opts ...ClientOption) (*GetDashboardStatesOK, error)
 
-	PauseAlert(params *PauseAlertParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PauseAlertOK, error)
+	PauseAlert(params *PauseAlertParams, opts ...ClientOption) (*PauseAlertOK, error)
 
-	TestAlert(params *TestAlertParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestAlertOK, error)
+	TestAlert(params *TestAlertParams, opts ...ClientOption) (*TestAlertOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -50,8 +50,7 @@ type ClientService interface {
 
 If data from one server triggers the alert first and, before that server is seen leaving alerting state, a second server also enters a state that would trigger the alert, the second server will not be visible in “evalMatches” data.
 */
-func (a *Client) GetAlertByID(params *GetAlertByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlertByID(params *GetAlertByIDParams, opts ...ClientOption) (*GetAlertByIDOK, error) {
 	if params == nil {
 		params = NewGetAlertByIDParams()
 	}
@@ -64,12 +63,13 @@ func (a *Client) GetAlertByID(params *GetAlertByIDParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -89,8 +89,7 @@ func (a *Client) GetAlertByID(params *GetAlertByIDParams, authInfo runtime.Clien
 /*
 GetAlerts gets legacy alerts
 */
-func (a *Client) GetAlerts(params *GetAlertsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAlerts(params *GetAlertsParams, opts ...ClientOption) (*GetAlertsOK, error) {
 	if params == nil {
 		params = NewGetAlertsParams()
 	}
@@ -103,12 +102,13 @@ func (a *Client) GetAlerts(params *GetAlertsParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAlertsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -128,8 +128,7 @@ func (a *Client) GetAlerts(params *GetAlertsParams, authInfo runtime.ClientAuthI
 /*
 GetDashboardStates gets alert states for a dashboard
 */
-func (a *Client) GetDashboardStates(params *GetDashboardStatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDashboardStatesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetDashboardStates(params *GetDashboardStatesParams, opts ...ClientOption) (*GetDashboardStatesOK, error) {
 	if params == nil {
 		params = NewGetDashboardStatesParams()
 	}
@@ -142,12 +141,13 @@ func (a *Client) GetDashboardStates(params *GetDashboardStatesParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetDashboardStatesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -167,8 +167,7 @@ func (a *Client) GetDashboardStates(params *GetDashboardStatesParams, authInfo r
 /*
 PauseAlert pauses unpause alert by id
 */
-func (a *Client) PauseAlert(params *PauseAlertParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PauseAlertOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PauseAlert(params *PauseAlertParams, opts ...ClientOption) (*PauseAlertOK, error) {
 	if params == nil {
 		params = NewPauseAlertParams()
 	}
@@ -181,12 +180,13 @@ func (a *Client) PauseAlert(params *PauseAlertParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PauseAlertReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -206,8 +206,7 @@ func (a *Client) PauseAlert(params *PauseAlertParams, authInfo runtime.ClientAut
 /*
 TestAlert tests alert
 */
-func (a *Client) TestAlert(params *TestAlertParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestAlertOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) TestAlert(params *TestAlertParams, opts ...ClientOption) (*TestAlertOK, error) {
 	if params == nil {
 		params = NewTestAlertParams()
 	}
@@ -220,12 +219,13 @@ func (a *Client) TestAlert(params *TestAlertParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &TestAlertReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -245,4 +245,11 @@ func (a *Client) TestAlert(params *TestAlertParams, authInfo runtime.ClientAuthI
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

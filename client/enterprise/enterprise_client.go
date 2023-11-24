@@ -30,7 +30,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	SearchResult(params *SearchResultParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchResultOK, error)
+	SearchResult(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -43,8 +43,7 @@ type ClientService interface {
 You need to have a permission with action `teams.roles:read` on scope `teams:*`
 and a permission with action `users.roles:read` on scope `users:*`.
 */
-func (a *Client) SearchResult(params *SearchResultParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchResultOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchResult(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error) {
 	if params == nil {
 		params = NewSearchResultParams()
 	}
@@ -57,12 +56,13 @@ func (a *Client) SearchResult(params *SearchResultParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchResultReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -82,4 +82,11 @@ func (a *Client) SearchResult(params *SearchResultParams, authInfo runtime.Clien
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,7 +30,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	QueryMetricsWithExpressions(params *QueryMetricsWithExpressionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error)
+	QueryMetricsWithExpressions(params *QueryMetricsWithExpressionsParams, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -42,8 +42,7 @@ type ClientService interface {
 
 you need to have a permission with action: `datasources:query`.
 */
-func (a *Client) QueryMetricsWithExpressions(params *QueryMetricsWithExpressionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error) {
-	// TODO: Validate the params before sending
+func (a *Client) QueryMetricsWithExpressions(params *QueryMetricsWithExpressionsParams, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error) {
 	if params == nil {
 		params = NewQueryMetricsWithExpressionsParams()
 	}
@@ -56,12 +55,13 @@ func (a *Client) QueryMetricsWithExpressions(params *QueryMetricsWithExpressions
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &QueryMetricsWithExpressionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -82,4 +82,11 @@ func (a *Client) QueryMetricsWithExpressions(params *QueryMetricsWithExpressions
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

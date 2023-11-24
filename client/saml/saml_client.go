@@ -30,15 +30,15 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetMetadata(params *GetMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetadataOK, error)
+	GetMetadata(params *GetMetadataParams, opts ...ClientOption) (*GetMetadataOK, error)
 
-	GetSAMLLogout(params *GetSAMLLogoutParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error
+	GetSAMLLogout(params *GetSAMLLogoutParams, opts ...ClientOption) error
 
-	GetSLO(params *GetSLOParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error
+	GetSLO(params *GetSLOParams, opts ...ClientOption) error
 
-	PostACS(params *PostACSParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error
+	PostACS(params *PostACSParams, opts ...ClientOption) error
 
-	PostSLO(params *PostSLOParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error
+	PostSLO(params *PostSLOParams, opts ...ClientOption) error
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,8 +46,7 @@ type ClientService interface {
 /*
 GetMetadata its exposes the s p grafana s metadata for the Id p s consumption
 */
-func (a *Client) GetMetadata(params *GetMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetadataOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetMetadata(params *GetMetadataParams, opts ...ClientOption) (*GetMetadataOK, error) {
 	if params == nil {
 		params = NewGetMetadataParams()
 	}
@@ -60,12 +59,13 @@ func (a *Client) GetMetadata(params *GetMetadataParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetMetadataReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -85,8 +85,7 @@ func (a *Client) GetMetadata(params *GetMetadataParams, authInfo runtime.ClientA
 /*
 GetSAMLLogout gets logout initiates single logout process
 */
-func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
-	// TODO: Validate the params before sending
+func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewGetSAMLLogoutParams()
 	}
@@ -99,12 +98,13 @@ func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetSAMLLogoutReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	_, err := a.transport.Submit(op)
@@ -123,8 +123,7 @@ func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, authInfo runtime.Cli
 2. Logout request when another SP initiates single logout and IdP sends logout request to the Grafana,
 or in case of IdP-initiated logout.
 */
-func (a *Client) GetSLO(params *GetSLOParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
-	// TODO: Validate the params before sending
+func (a *Client) GetSLO(params *GetSLOParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewGetSLOParams()
 	}
@@ -137,12 +136,13 @@ func (a *Client) GetSLO(params *GetSLOParams, authInfo runtime.ClientAuthInfoWri
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetSLOReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	_, err := a.transport.Submit(op)
@@ -155,8 +155,7 @@ func (a *Client) GetSLO(params *GetSLOParams, authInfo runtime.ClientAuthInfoWri
 /*
 PostACS its performs assertion consumer service a c s
 */
-func (a *Client) PostACS(params *PostACSParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
-	// TODO: Validate the params before sending
+func (a *Client) PostACS(params *PostACSParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewPostACSParams()
 	}
@@ -169,12 +168,13 @@ func (a *Client) PostACS(params *PostACSParams, authInfo runtime.ClientAuthInfoW
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostACSReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	_, err := a.transport.Submit(op)
@@ -193,8 +193,7 @@ func (a *Client) PostACS(params *PostACSParams, authInfo runtime.ClientAuthInfoW
 2. Logout request when another SP initiates single logout and IdP sends logout request to the Grafana,
 or in case of IdP-initiated logout.
 */
-func (a *Client) PostSLO(params *PostSLOParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
-	// TODO: Validate the params before sending
+func (a *Client) PostSLO(params *PostSLOParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewPostSLOParams()
 	}
@@ -207,12 +206,13 @@ func (a *Client) PostSLO(params *PostSLOParams, authInfo runtime.ClientAuthInfoW
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PostSLOReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	_, err := a.transport.Submit(op)
@@ -225,4 +225,11 @@ func (a *Client) PostSLO(params *PostSLOParams, authInfo runtime.ClientAuthInfoW
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,7 +30,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminProvisioningReloadAccessControl(params *AdminProvisioningReloadAccessControlParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error)
+	AdminProvisioningReloadAccessControl(params *AdminProvisioningReloadAccessControlParams, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -38,8 +38,7 @@ type ClientService interface {
 /*
 AdminProvisioningReloadAccessControl yous need to have a permission with action provisioning reload with scope provisioners accesscontrol
 */
-func (a *Client) AdminProvisioningReloadAccessControl(params *AdminProvisioningReloadAccessControlParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AdminProvisioningReloadAccessControl(params *AdminProvisioningReloadAccessControlParams, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadAccessControlParams()
 	}
@@ -52,12 +51,13 @@ func (a *Client) AdminProvisioningReloadAccessControl(params *AdminProvisioningR
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AdminProvisioningReloadAccessControlReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -77,4 +77,11 @@ func (a *Client) AdminProvisioningReloadAccessControl(params *AdminProvisioningR
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

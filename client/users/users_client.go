@@ -30,19 +30,19 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetUserByID(params *GetUserByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserByIDOK, error)
+	GetUserByID(params *GetUserByIDParams, opts ...ClientOption) (*GetUserByIDOK, error)
 
-	GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error)
+	GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error)
 
-	GetUserOrgList(params *GetUserOrgListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOrgListOK, error)
+	GetUserOrgList(params *GetUserOrgListParams, opts ...ClientOption) (*GetUserOrgListOK, error)
 
-	GetUserTeams(params *GetUserTeamsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserTeamsOK, error)
+	GetUserTeams(params *GetUserTeamsParams, opts ...ClientOption) (*GetUserTeamsOK, error)
 
-	SearchUsers(params *SearchUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchUsersOK, error)
+	SearchUsers(params *SearchUsersParams, opts ...ClientOption) (*SearchUsersOK, error)
 
-	SearchUsersWithPaging(params *SearchUsersWithPagingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchUsersWithPagingOK, error)
+	SearchUsersWithPaging(params *SearchUsersWithPagingParams, opts ...ClientOption) (*SearchUsersWithPagingOK, error)
 
-	UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error)
+	UpdateUser(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -50,8 +50,7 @@ type ClientService interface {
 /*
 GetUserByID gets user by id
 */
-func (a *Client) GetUserByID(params *GetUserByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserByID(params *GetUserByIDParams, opts ...ClientOption) (*GetUserByIDOK, error) {
 	if params == nil {
 		params = NewGetUserByIDParams()
 	}
@@ -64,12 +63,13 @@ func (a *Client) GetUserByID(params *GetUserByIDParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -89,8 +89,7 @@ func (a *Client) GetUserByID(params *GetUserByIDParams, authInfo runtime.ClientA
 /*
 GetUserByLoginOrEmail gets user by login or email
 */
-func (a *Client) GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error) {
 	if params == nil {
 		params = NewGetUserByLoginOrEmailParams()
 	}
@@ -103,12 +102,13 @@ func (a *Client) GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserByLoginOrEmailReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -130,8 +130,7 @@ GetUserOrgList gets organizations for user
 
 Get organizations for user identified by id.
 */
-func (a *Client) GetUserOrgList(params *GetUserOrgListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOrgListOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserOrgList(params *GetUserOrgListParams, opts ...ClientOption) (*GetUserOrgListOK, error) {
 	if params == nil {
 		params = NewGetUserOrgListParams()
 	}
@@ -144,12 +143,13 @@ func (a *Client) GetUserOrgList(params *GetUserOrgListParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserOrgListReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -171,8 +171,7 @@ GetUserTeams gets teams for user
 
 Get teams for user identified by id.
 */
-func (a *Client) GetUserTeams(params *GetUserTeamsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserTeamsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserTeams(params *GetUserTeamsParams, opts ...ClientOption) (*GetUserTeamsOK, error) {
 	if params == nil {
 		params = NewGetUserTeamsParams()
 	}
@@ -185,12 +184,13 @@ func (a *Client) GetUserTeams(params *GetUserTeamsParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserTeamsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -212,8 +212,7 @@ SearchUsers gets users
 
 Returns all users that the authenticated user has permission to view, admin permission required.
 */
-func (a *Client) SearchUsers(params *SearchUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchUsersOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchUsers(params *SearchUsersParams, opts ...ClientOption) (*SearchUsersOK, error) {
 	if params == nil {
 		params = NewSearchUsersParams()
 	}
@@ -226,12 +225,13 @@ func (a *Client) SearchUsers(params *SearchUsersParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchUsersReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -251,8 +251,7 @@ func (a *Client) SearchUsers(params *SearchUsersParams, authInfo runtime.ClientA
 /*
 SearchUsersWithPaging gets users with paging
 */
-func (a *Client) SearchUsersWithPaging(params *SearchUsersWithPagingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchUsersWithPagingOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchUsersWithPaging(params *SearchUsersWithPagingParams, opts ...ClientOption) (*SearchUsersWithPagingOK, error) {
 	if params == nil {
 		params = NewSearchUsersWithPagingParams()
 	}
@@ -265,12 +264,13 @@ func (a *Client) SearchUsersWithPaging(params *SearchUsersWithPagingParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchUsersWithPagingReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -292,8 +292,7 @@ UpdateUser updates user
 
 Update the user identified by id.
 */
-func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateUser(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error) {
 	if params == nil {
 		params = NewUpdateUserParams()
 	}
@@ -306,12 +305,13 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -331,4 +331,11 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

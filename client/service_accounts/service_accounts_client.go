@@ -30,21 +30,21 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateServiceAccount(params *CreateServiceAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateServiceAccountCreated, error)
+	CreateServiceAccount(params *CreateServiceAccountParams, opts ...ClientOption) (*CreateServiceAccountCreated, error)
 
-	CreateToken(params *CreateTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTokenOK, error)
+	CreateToken(params *CreateTokenParams, opts ...ClientOption) (*CreateTokenOK, error)
 
-	DeleteServiceAccount(params *DeleteServiceAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteServiceAccountOK, error)
+	DeleteServiceAccount(params *DeleteServiceAccountParams, opts ...ClientOption) (*DeleteServiceAccountOK, error)
 
-	DeleteToken(params *DeleteTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTokenOK, error)
+	DeleteToken(params *DeleteTokenParams, opts ...ClientOption) (*DeleteTokenOK, error)
 
-	ListTokens(params *ListTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTokensOK, error)
+	ListTokens(params *ListTokensParams, opts ...ClientOption) (*ListTokensOK, error)
 
-	RetrieveServiceAccount(params *RetrieveServiceAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RetrieveServiceAccountOK, error)
+	RetrieveServiceAccount(params *RetrieveServiceAccountParams, opts ...ClientOption) (*RetrieveServiceAccountOK, error)
 
-	SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAccountsWithPagingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchOrgServiceAccountsWithPagingOK, error)
+	SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAccountsWithPagingParams, opts ...ClientOption) (*SearchOrgServiceAccountsWithPagingOK, error)
 
-	UpdateServiceAccount(params *UpdateServiceAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateServiceAccountOK, error)
+	UpdateServiceAccount(params *UpdateServiceAccountParams, opts ...ClientOption) (*UpdateServiceAccountOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -58,8 +58,7 @@ action: `serviceaccounts:write` scope: `serviceaccounts:*`
 
 Requires basic authentication and that the authenticated user is a Grafana Admin.
 */
-func (a *Client) CreateServiceAccount(params *CreateServiceAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateServiceAccountCreated, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateServiceAccount(params *CreateServiceAccountParams, opts ...ClientOption) (*CreateServiceAccountCreated, error) {
 	if params == nil {
 		params = NewCreateServiceAccountParams()
 	}
@@ -72,12 +71,13 @@ func (a *Client) CreateServiceAccount(params *CreateServiceAccountParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateServiceAccountReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -101,8 +101,7 @@ func (a *Client) CreateServiceAccount(params *CreateServiceAccountParams, authIn
 
 action: `serviceaccounts:write` scope: `serviceaccounts:id:1` (single service account)
 */
-func (a *Client) CreateToken(params *CreateTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTokenOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateToken(params *CreateTokenParams, opts ...ClientOption) (*CreateTokenOK, error) {
 	if params == nil {
 		params = NewCreateTokenParams()
 	}
@@ -115,12 +114,13 @@ func (a *Client) CreateToken(params *CreateTokenParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateTokenReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -144,8 +144,7 @@ func (a *Client) CreateToken(params *CreateTokenParams, authInfo runtime.ClientA
 
 action: `serviceaccounts:delete` scope: `serviceaccounts:id:1` (single service account)
 */
-func (a *Client) DeleteServiceAccount(params *DeleteServiceAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteServiceAccountOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteServiceAccount(params *DeleteServiceAccountParams, opts ...ClientOption) (*DeleteServiceAccountOK, error) {
 	if params == nil {
 		params = NewDeleteServiceAccountParams()
 	}
@@ -158,12 +157,13 @@ func (a *Client) DeleteServiceAccount(params *DeleteServiceAccountParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteServiceAccountReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -189,8 +189,7 @@ action: `serviceaccounts:write` scope: `serviceaccounts:id:1` (single service ac
 
 Requires basic authentication and that the authenticated user is a Grafana Admin.
 */
-func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTokenOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteToken(params *DeleteTokenParams, opts ...ClientOption) (*DeleteTokenOK, error) {
 	if params == nil {
 		params = NewDeleteTokenParams()
 	}
@@ -203,12 +202,13 @@ func (a *Client) DeleteToken(params *DeleteTokenParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteTokenReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -234,8 +234,7 @@ action: `serviceaccounts:read` scope: `global:serviceaccounts:id:1` (single serv
 
 Requires basic authentication and that the authenticated user is a Grafana Admin.
 */
-func (a *Client) ListTokens(params *ListTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTokensOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ListTokens(params *ListTokensParams, opts ...ClientOption) (*ListTokensOK, error) {
 	if params == nil {
 		params = NewListTokensParams()
 	}
@@ -248,12 +247,13 @@ func (a *Client) ListTokens(params *ListTokensParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ListTokensReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -277,8 +277,7 @@ func (a *Client) ListTokens(params *ListTokensParams, authInfo runtime.ClientAut
 
 action: `serviceaccounts:read` scope: `serviceaccounts:id:1` (single service account)
 */
-func (a *Client) RetrieveServiceAccount(params *RetrieveServiceAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RetrieveServiceAccountOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RetrieveServiceAccount(params *RetrieveServiceAccountParams, opts ...ClientOption) (*RetrieveServiceAccountOK, error) {
 	if params == nil {
 		params = NewRetrieveServiceAccountParams()
 	}
@@ -291,12 +290,13 @@ func (a *Client) RetrieveServiceAccount(params *RetrieveServiceAccountParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RetrieveServiceAccountReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -320,8 +320,7 @@ func (a *Client) RetrieveServiceAccount(params *RetrieveServiceAccountParams, au
 
 action: `serviceaccounts:read` scope: `serviceaccounts:*`
 */
-func (a *Client) SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAccountsWithPagingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchOrgServiceAccountsWithPagingOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAccountsWithPagingParams, opts ...ClientOption) (*SearchOrgServiceAccountsWithPagingOK, error) {
 	if params == nil {
 		params = NewSearchOrgServiceAccountsWithPagingParams()
 	}
@@ -334,12 +333,13 @@ func (a *Client) SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAcco
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchOrgServiceAccountsWithPagingReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -363,8 +363,7 @@ func (a *Client) SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAcco
 
 action: `serviceaccounts:write` scope: `serviceaccounts:id:1` (single service account)
 */
-func (a *Client) UpdateServiceAccount(params *UpdateServiceAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateServiceAccountOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateServiceAccount(params *UpdateServiceAccountParams, opts ...ClientOption) (*UpdateServiceAccountOK, error) {
 	if params == nil {
 		params = NewUpdateServiceAccountParams()
 	}
@@ -377,12 +376,13 @@ func (a *Client) UpdateServiceAccount(params *UpdateServiceAccountParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateServiceAccountReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -402,4 +402,11 @@ func (a *Client) UpdateServiceAccount(params *UpdateServiceAccountParams, authIn
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

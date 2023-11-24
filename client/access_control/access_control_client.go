@@ -30,37 +30,37 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddTeamRole(params *AddTeamRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddTeamRoleOK, error)
+	AddTeamRole(params *AddTeamRoleParams, opts ...ClientOption) (*AddTeamRoleOK, error)
 
-	AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddUserRoleOK, error)
+	AddUserRole(params *AddUserRoleParams, opts ...ClientOption) (*AddUserRoleOK, error)
 
-	CreateRole(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRoleCreated, error)
+	CreateRole(params *CreateRoleParams, opts ...ClientOption) (*CreateRoleCreated, error)
 
-	DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRoleOK, error)
+	DeleteRole(params *DeleteRoleParams, opts ...ClientOption) (*DeleteRoleOK, error)
 
-	GetAccessControlStatus(params *GetAccessControlStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccessControlStatusOK, error)
+	GetAccessControlStatus(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error)
 
-	GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRoleOK, error)
+	GetRole(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error)
 
-	GetRoleAssignments(params *GetRoleAssignmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRoleAssignmentsOK, error)
+	GetRoleAssignments(params *GetRoleAssignmentsParams, opts ...ClientOption) (*GetRoleAssignmentsOK, error)
 
-	ListRoles(params *ListRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListRolesOK, error)
+	ListRoles(params *ListRolesParams, opts ...ClientOption) (*ListRolesOK, error)
 
-	ListTeamRoles(params *ListTeamRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTeamRolesOK, error)
+	ListTeamRoles(params *ListTeamRolesParams, opts ...ClientOption) (*ListTeamRolesOK, error)
 
-	ListUserRoles(params *ListUserRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserRolesOK, error)
+	ListUserRoles(params *ListUserRolesParams, opts ...ClientOption) (*ListUserRolesOK, error)
 
-	RemoveTeamRole(params *RemoveTeamRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveTeamRoleOK, error)
+	RemoveTeamRole(params *RemoveTeamRoleParams, opts ...ClientOption) (*RemoveTeamRoleOK, error)
 
-	RemoveUserRole(params *RemoveUserRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveUserRoleOK, error)
+	RemoveUserRole(params *RemoveUserRoleParams, opts ...ClientOption) (*RemoveUserRoleOK, error)
 
-	SetRoleAssignments(params *SetRoleAssignmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetRoleAssignmentsOK, error)
+	SetRoleAssignments(params *SetRoleAssignmentsParams, opts ...ClientOption) (*SetRoleAssignmentsOK, error)
 
-	SetTeamRoles(params *SetTeamRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTeamRolesOK, error)
+	SetTeamRoles(params *SetTeamRolesParams, opts ...ClientOption) (*SetTeamRolesOK, error)
 
-	SetUserRoles(params *SetUserRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetUserRolesOK, error)
+	SetUserRoles(params *SetUserRolesParams, opts ...ClientOption) (*SetUserRolesOK, error)
 
-	UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateRoleOK, error)
+	UpdateRole(params *UpdateRoleParams, opts ...ClientOption) (*UpdateRoleOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -70,8 +70,7 @@ AddTeamRole adds team role
 
 You need to have a permission with action `teams.roles:add` and scope `permissions:type:delegate`.
 */
-func (a *Client) AddTeamRole(params *AddTeamRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddTeamRoleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddTeamRole(params *AddTeamRoleParams, opts ...ClientOption) (*AddTeamRoleOK, error) {
 	if params == nil {
 		params = NewAddTeamRoleParams()
 	}
@@ -84,12 +83,13 @@ func (a *Client) AddTeamRole(params *AddTeamRoleParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddTeamRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -113,8 +113,7 @@ func (a *Client) AddTeamRole(params *AddTeamRoleParams, authInfo runtime.ClientA
 
 You need to have a permission with action `users.roles:add` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only assign roles which have same, or a subset of permissions which the user has. For example, if a user does not have required permissions for creating users, they won’t be able to assign a role which will allow to do that. This is done to prevent escalation of privileges.
 */
-func (a *Client) AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddUserRoleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddUserRole(params *AddUserRoleParams, opts ...ClientOption) (*AddUserRoleOK, error) {
 	if params == nil {
 		params = NewAddUserRoleParams()
 	}
@@ -127,12 +126,13 @@ func (a *Client) AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddUserRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -157,8 +157,7 @@ func (a *Client) AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientA
 You need to have a permission with action `roles:write` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only create custom roles with the same, or a subset of permissions which the user has.
 For example, if a user does not have required permissions for creating users, they won’t be able to create a custom role which allows to do that. This is done to prevent escalation of privileges.
 */
-func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateRoleCreated, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateRole(params *CreateRoleParams, opts ...ClientOption) (*CreateRoleCreated, error) {
 	if params == nil {
 		params = NewCreateRoleParams()
 	}
@@ -171,12 +170,13 @@ func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -200,8 +200,7 @@ func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAut
 
 You need to have a permission with action `roles:delete` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only delete a custom role with the same, or a subset of permissions which the user has. For example, if a user does not have required permissions for creating users, they won’t be able to delete a custom role which allows to do that.
 */
-func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRoleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteRole(params *DeleteRoleParams, opts ...ClientOption) (*DeleteRoleOK, error) {
 	if params == nil {
 		params = NewDeleteRoleParams()
 	}
@@ -214,12 +213,13 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -243,8 +243,7 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAut
 
 You need to have a permission with action `status:accesscontrol` and scope `services:accesscontrol`.
 */
-func (a *Client) GetAccessControlStatus(params *GetAccessControlStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccessControlStatusOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetAccessControlStatus(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error) {
 	if params == nil {
 		params = NewGetAccessControlStatusParams()
 	}
@@ -257,12 +256,13 @@ func (a *Client) GetAccessControlStatus(params *GetAccessControlStatusParams, au
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetAccessControlStatusReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -286,8 +286,7 @@ func (a *Client) GetAccessControlStatus(params *GetAccessControlStatusParams, au
 
 You need to have a permission with action `roles:read` and scope `roles:*`.
 */
-func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRoleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetRole(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error) {
 	if params == nil {
 		params = NewGetRoleParams()
 	}
@@ -300,12 +299,13 @@ func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoW
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -329,8 +329,7 @@ func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoW
 
 You need to have a permission with action `teams.roles:list` and scope `teams:id:*` and `users.roles:list` and scope `users:id:*`.
 */
-func (a *Client) GetRoleAssignments(params *GetRoleAssignmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRoleAssignmentsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetRoleAssignments(params *GetRoleAssignmentsParams, opts ...ClientOption) (*GetRoleAssignmentsOK, error) {
 	if params == nil {
 		params = NewGetRoleAssignmentsParams()
 	}
@@ -343,12 +342,13 @@ func (a *Client) GetRoleAssignments(params *GetRoleAssignmentsParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetRoleAssignmentsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -372,8 +372,7 @@ func (a *Client) GetRoleAssignments(params *GetRoleAssignmentsParams, authInfo r
 
 You need to have a permission with action `roles:read` and scope `roles:*`.
 */
-func (a *Client) ListRoles(params *ListRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListRolesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ListRoles(params *ListRolesParams, opts ...ClientOption) (*ListRolesOK, error) {
 	if params == nil {
 		params = NewListRolesParams()
 	}
@@ -386,12 +385,13 @@ func (a *Client) ListRoles(params *ListRolesParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ListRolesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -413,8 +413,7 @@ ListTeamRoles gets team roles
 
 You need to have a permission with action `teams.roles:read` and scope `teams:id:<team ID>`.
 */
-func (a *Client) ListTeamRoles(params *ListTeamRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTeamRolesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ListTeamRoles(params *ListTeamRolesParams, opts ...ClientOption) (*ListTeamRolesOK, error) {
 	if params == nil {
 		params = NewListTeamRolesParams()
 	}
@@ -427,12 +426,13 @@ func (a *Client) ListTeamRoles(params *ListTeamRolesParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ListTeamRolesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -456,8 +456,7 @@ func (a *Client) ListTeamRoles(params *ListTeamRolesParams, authInfo runtime.Cli
 
 You need to have a permission with action `users.roles:read` and scope `users:id:<user ID>`.
 */
-func (a *Client) ListUserRoles(params *ListUserRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserRolesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) ListUserRoles(params *ListUserRolesParams, opts ...ClientOption) (*ListUserRolesOK, error) {
 	if params == nil {
 		params = NewListUserRolesParams()
 	}
@@ -470,12 +469,13 @@ func (a *Client) ListUserRoles(params *ListUserRolesParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &ListUserRolesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -497,8 +497,7 @@ RemoveTeamRole removes team role
 
 You need to have a permission with action `teams.roles:remove` and scope `permissions:type:delegate`.
 */
-func (a *Client) RemoveTeamRole(params *RemoveTeamRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveTeamRoleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RemoveTeamRole(params *RemoveTeamRoleParams, opts ...ClientOption) (*RemoveTeamRoleOK, error) {
 	if params == nil {
 		params = NewRemoveTeamRoleParams()
 	}
@@ -511,12 +510,13 @@ func (a *Client) RemoveTeamRole(params *RemoveTeamRoleParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RemoveTeamRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -540,8 +540,7 @@ func (a *Client) RemoveTeamRole(params *RemoveTeamRoleParams, authInfo runtime.C
 
 You need to have a permission with action `users.roles:remove` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only unassign roles which have same, or a subset of permissions which the user has. For example, if a user does not have required permissions for creating users, they won’t be able to unassign a role which will allow to do that. This is done to prevent escalation of privileges.
 */
-func (a *Client) RemoveUserRole(params *RemoveUserRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveUserRoleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RemoveUserRole(params *RemoveUserRoleParams, opts ...ClientOption) (*RemoveUserRoleOK, error) {
 	if params == nil {
 		params = NewRemoveUserRoleParams()
 	}
@@ -554,12 +553,13 @@ func (a *Client) RemoveUserRole(params *RemoveUserRoleParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RemoveUserRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -583,8 +583,7 @@ func (a *Client) RemoveUserRole(params *RemoveUserRoleParams, authInfo runtime.C
 
 You need to have a permission with action `teams.roles:add` and `teams.roles:remove` and scope `permissions:type:delegate`, and `users.roles:add` and `users.roles:remove` and scope `permissions:type:delegate`.
 */
-func (a *Client) SetRoleAssignments(params *SetRoleAssignmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetRoleAssignmentsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SetRoleAssignments(params *SetRoleAssignmentsParams, opts ...ClientOption) (*SetRoleAssignmentsOK, error) {
 	if params == nil {
 		params = NewSetRoleAssignmentsParams()
 	}
@@ -597,12 +596,13 @@ func (a *Client) SetRoleAssignments(params *SetRoleAssignmentsParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SetRoleAssignmentsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -624,8 +624,7 @@ SetTeamRoles updates team role
 
 You need to have a permission with action `teams.roles:add` and `teams.roles:remove` and scope `permissions:type:delegate` for each.
 */
-func (a *Client) SetTeamRoles(params *SetTeamRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTeamRolesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SetTeamRoles(params *SetTeamRolesParams, opts ...ClientOption) (*SetTeamRolesOK, error) {
 	if params == nil {
 		params = NewSetTeamRolesParams()
 	}
@@ -638,12 +637,13 @@ func (a *Client) SetTeamRoles(params *SetTeamRolesParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SetTeamRolesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -669,8 +669,7 @@ If you want to add or remove a single role, consider using Add a user role assig
 
 You need to have a permission with action `users.roles:add` and `users.roles:remove` and scope `permissions:type:delegate` for each. `permissions:type:delegate`  scope ensures that users can only assign or unassign roles which have same, or a subset of permissions which the user has. For example, if a user does not have required permissions for creating users, they won’t be able to assign or unassign a role which will allow to do that. This is done to prevent escalation of privileges.
 */
-func (a *Client) SetUserRoles(params *SetUserRolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetUserRolesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SetUserRoles(params *SetUserRolesParams, opts ...ClientOption) (*SetUserRolesOK, error) {
 	if params == nil {
 		params = NewSetUserRolesParams()
 	}
@@ -683,12 +682,13 @@ func (a *Client) SetUserRoles(params *SetUserRolesParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SetUserRolesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -710,8 +710,7 @@ UpdateRole updates a custom role
 
 You need to have a permission with action `roles:write` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only create custom roles with the same, or a subset of permissions which the user has.
 */
-func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateRoleOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateRole(params *UpdateRoleParams, opts ...ClientOption) (*UpdateRoleOK, error) {
 	if params == nil {
 		params = NewUpdateRoleParams()
 	}
@@ -724,12 +723,13 @@ func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -749,4 +749,11 @@ func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAut
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

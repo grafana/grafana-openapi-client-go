@@ -30,33 +30,33 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddOrgUser(params *AddOrgUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddOrgUserOK, error)
+	AddOrgUser(params *AddOrgUserParams, opts ...ClientOption) (*AddOrgUserOK, error)
 
-	CreateOrg(params *CreateOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrgOK, error)
+	CreateOrg(params *CreateOrgParams, opts ...ClientOption) (*CreateOrgOK, error)
 
-	DeleteOrgByID(params *DeleteOrgByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOrgByIDOK, error)
+	DeleteOrgByID(params *DeleteOrgByIDParams, opts ...ClientOption) (*DeleteOrgByIDOK, error)
 
-	GetOrgByID(params *GetOrgByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgByIDOK, error)
+	GetOrgByID(params *GetOrgByIDParams, opts ...ClientOption) (*GetOrgByIDOK, error)
 
-	GetOrgByName(params *GetOrgByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgByNameOK, error)
+	GetOrgByName(params *GetOrgByNameParams, opts ...ClientOption) (*GetOrgByNameOK, error)
 
-	GetOrgQuota(params *GetOrgQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgQuotaOK, error)
+	GetOrgQuota(params *GetOrgQuotaParams, opts ...ClientOption) (*GetOrgQuotaOK, error)
 
-	GetOrgUsers(params *GetOrgUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgUsersOK, error)
+	GetOrgUsers(params *GetOrgUsersParams, opts ...ClientOption) (*GetOrgUsersOK, error)
 
-	RemoveOrgUser(params *RemoveOrgUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveOrgUserOK, error)
+	RemoveOrgUser(params *RemoveOrgUserParams, opts ...ClientOption) (*RemoveOrgUserOK, error)
 
-	SearchOrgUsers(params *SearchOrgUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchOrgUsersOK, error)
+	SearchOrgUsers(params *SearchOrgUsersParams, opts ...ClientOption) (*SearchOrgUsersOK, error)
 
-	SearchOrgs(params *SearchOrgsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchOrgsOK, error)
+	SearchOrgs(params *SearchOrgsParams, opts ...ClientOption) (*SearchOrgsOK, error)
 
-	UpdateOrg(params *UpdateOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgOK, error)
+	UpdateOrg(params *UpdateOrgParams, opts ...ClientOption) (*UpdateOrgOK, error)
 
-	UpdateOrgAddress(params *UpdateOrgAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgAddressOK, error)
+	UpdateOrgAddress(params *UpdateOrgAddressParams, opts ...ClientOption) (*UpdateOrgAddressOK, error)
 
-	UpdateOrgQuota(params *UpdateOrgQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgQuotaOK, error)
+	UpdateOrgQuota(params *UpdateOrgQuotaParams, opts ...ClientOption) (*UpdateOrgQuotaOK, error)
 
-	UpdateOrgUser(params *UpdateOrgUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgUserOK, error)
+	UpdateOrgUser(params *UpdateOrgUserParams, opts ...ClientOption) (*UpdateOrgUserOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -69,8 +69,7 @@ type ClientService interface {
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:add` with scope `users:*`.
 */
-func (a *Client) AddOrgUser(params *AddOrgUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddOrgUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) AddOrgUser(params *AddOrgUserParams, opts ...ClientOption) (*AddOrgUserOK, error) {
 	if params == nil {
 		params = NewAddOrgUserParams()
 	}
@@ -83,12 +82,13 @@ func (a *Client) AddOrgUser(params *AddOrgUserParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &AddOrgUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -110,8 +110,7 @@ CreateOrg creates organization
 
 Only works if [users.allow_org_create](https://grafana.com/docs/grafana/latest/administration/configuration/#allow_org_create) is set.
 */
-func (a *Client) CreateOrg(params *CreateOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrgOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) CreateOrg(params *CreateOrgParams, opts ...ClientOption) (*CreateOrgOK, error) {
 	if params == nil {
 		params = NewCreateOrgParams()
 	}
@@ -124,12 +123,13 @@ func (a *Client) CreateOrg(params *CreateOrgParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &CreateOrgReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -149,8 +149,7 @@ func (a *Client) CreateOrg(params *CreateOrgParams, authInfo runtime.ClientAuthI
 /*
 DeleteOrgByID deletes organization
 */
-func (a *Client) DeleteOrgByID(params *DeleteOrgByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOrgByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) DeleteOrgByID(params *DeleteOrgByIDParams, opts ...ClientOption) (*DeleteOrgByIDOK, error) {
 	if params == nil {
 		params = NewDeleteOrgByIDParams()
 	}
@@ -163,12 +162,13 @@ func (a *Client) DeleteOrgByID(params *DeleteOrgByIDParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &DeleteOrgByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -188,8 +188,7 @@ func (a *Client) DeleteOrgByID(params *DeleteOrgByIDParams, authInfo runtime.Cli
 /*
 GetOrgByID gets organization by ID
 */
-func (a *Client) GetOrgByID(params *GetOrgByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgByIDOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetOrgByID(params *GetOrgByIDParams, opts ...ClientOption) (*GetOrgByIDOK, error) {
 	if params == nil {
 		params = NewGetOrgByIDParams()
 	}
@@ -202,12 +201,13 @@ func (a *Client) GetOrgByID(params *GetOrgByIDParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetOrgByIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -227,8 +227,7 @@ func (a *Client) GetOrgByID(params *GetOrgByIDParams, authInfo runtime.ClientAut
 /*
 GetOrgByName gets organization by ID
 */
-func (a *Client) GetOrgByName(params *GetOrgByNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgByNameOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetOrgByName(params *GetOrgByNameParams, opts ...ClientOption) (*GetOrgByNameOK, error) {
 	if params == nil {
 		params = NewGetOrgByNameParams()
 	}
@@ -241,12 +240,13 @@ func (a *Client) GetOrgByName(params *GetOrgByNameParams, authInfo runtime.Clien
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetOrgByNameReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -268,8 +268,7 @@ GetOrgQuota fetches organization quota
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `orgs.quotas:read` and scope `org:id:1` (orgIDScope).
 */
-func (a *Client) GetOrgQuota(params *GetOrgQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgQuotaOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetOrgQuota(params *GetOrgQuotaParams, opts ...ClientOption) (*GetOrgQuotaOK, error) {
 	if params == nil {
 		params = NewGetOrgQuotaParams()
 	}
@@ -282,12 +281,13 @@ func (a *Client) GetOrgQuota(params *GetOrgQuotaParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetOrgQuotaReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -311,8 +311,7 @@ func (a *Client) GetOrgQuota(params *GetOrgQuotaParams, authInfo runtime.ClientA
 
 you need to have a permission with action: `org.users:read` with scope `users:*`.
 */
-func (a *Client) GetOrgUsers(params *GetOrgUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgUsersOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetOrgUsers(params *GetOrgUsersParams, opts ...ClientOption) (*GetOrgUsersOK, error) {
 	if params == nil {
 		params = NewGetOrgUsersParams()
 	}
@@ -325,12 +324,13 @@ func (a *Client) GetOrgUsers(params *GetOrgUsersParams, authInfo runtime.ClientA
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetOrgUsersReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -354,8 +354,7 @@ func (a *Client) GetOrgUsers(params *GetOrgUsersParams, authInfo runtime.ClientA
 
 you need to have a permission with action: `org.users:remove` with scope `users:*`.
 */
-func (a *Client) RemoveOrgUser(params *RemoveOrgUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveOrgUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) RemoveOrgUser(params *RemoveOrgUserParams, opts ...ClientOption) (*RemoveOrgUserOK, error) {
 	if params == nil {
 		params = NewRemoveOrgUserParams()
 	}
@@ -368,12 +367,13 @@ func (a *Client) RemoveOrgUser(params *RemoveOrgUserParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &RemoveOrgUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -397,8 +397,7 @@ func (a *Client) RemoveOrgUser(params *RemoveOrgUserParams, authInfo runtime.Cli
 
 you need to have a permission with action: `org.users:read` with scope `users:*`.
 */
-func (a *Client) SearchOrgUsers(params *SearchOrgUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchOrgUsersOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchOrgUsers(params *SearchOrgUsersParams, opts ...ClientOption) (*SearchOrgUsersOK, error) {
 	if params == nil {
 		params = NewSearchOrgUsersParams()
 	}
@@ -411,12 +410,13 @@ func (a *Client) SearchOrgUsers(params *SearchOrgUsersParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchOrgUsersReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -436,8 +436,7 @@ func (a *Client) SearchOrgUsers(params *SearchOrgUsersParams, authInfo runtime.C
 /*
 SearchOrgs searches all organizations
 */
-func (a *Client) SearchOrgs(params *SearchOrgsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SearchOrgsOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) SearchOrgs(params *SearchOrgsParams, opts ...ClientOption) (*SearchOrgsOK, error) {
 	if params == nil {
 		params = NewSearchOrgsParams()
 	}
@@ -450,12 +449,13 @@ func (a *Client) SearchOrgs(params *SearchOrgsParams, authInfo runtime.ClientAut
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &SearchOrgsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -475,8 +475,7 @@ func (a *Client) SearchOrgs(params *SearchOrgsParams, authInfo runtime.ClientAut
 /*
 UpdateOrg updates organization
 */
-func (a *Client) UpdateOrg(params *UpdateOrgParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateOrg(params *UpdateOrgParams, opts ...ClientOption) (*UpdateOrgOK, error) {
 	if params == nil {
 		params = NewUpdateOrgParams()
 	}
@@ -489,12 +488,13 @@ func (a *Client) UpdateOrg(params *UpdateOrgParams, authInfo runtime.ClientAuthI
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateOrgReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -514,8 +514,7 @@ func (a *Client) UpdateOrg(params *UpdateOrgParams, authInfo runtime.ClientAuthI
 /*
 UpdateOrgAddress updates organization s address
 */
-func (a *Client) UpdateOrgAddress(params *UpdateOrgAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgAddressOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateOrgAddress(params *UpdateOrgAddressParams, opts ...ClientOption) (*UpdateOrgAddressOK, error) {
 	if params == nil {
 		params = NewUpdateOrgAddressParams()
 	}
@@ -528,12 +527,13 @@ func (a *Client) UpdateOrgAddress(params *UpdateOrgAddressParams, authInfo runti
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateOrgAddressReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -555,8 +555,7 @@ UpdateOrgQuota updates user quota
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `orgs.quotas:write` and scope `org:id:1` (orgIDScope).
 */
-func (a *Client) UpdateOrgQuota(params *UpdateOrgQuotaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgQuotaOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateOrgQuota(params *UpdateOrgQuotaParams, opts ...ClientOption) (*UpdateOrgQuotaOK, error) {
 	if params == nil {
 		params = NewUpdateOrgQuotaParams()
 	}
@@ -569,12 +568,13 @@ func (a *Client) UpdateOrgQuota(params *UpdateOrgQuotaParams, authInfo runtime.C
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateOrgQuotaReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -598,8 +598,7 @@ func (a *Client) UpdateOrgQuota(params *UpdateOrgQuotaParams, authInfo runtime.C
 
 you need to have a permission with action: `org.users.role:update` with scope `users:*`.
 */
-func (a *Client) UpdateOrgUser(params *UpdateOrgUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgUserOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateOrgUser(params *UpdateOrgUserParams, opts ...ClientOption) (*UpdateOrgUserOK, error) {
 	if params == nil {
 		params = NewUpdateOrgUserParams()
 	}
@@ -612,12 +611,13 @@ func (a *Client) UpdateOrgUser(params *UpdateOrgUserParams, authInfo runtime.Cli
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateOrgUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -637,4 +637,11 @@ func (a *Client) UpdateOrgUser(params *UpdateOrgUserParams, authInfo runtime.Cli
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

@@ -30,11 +30,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetOrgPreferences(params *GetOrgPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgPreferencesOK, error)
+	GetOrgPreferences(params *GetOrgPreferencesParams, opts ...ClientOption) (*GetOrgPreferencesOK, error)
 
-	PatchOrgPreferences(params *PatchOrgPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchOrgPreferencesOK, error)
+	PatchOrgPreferences(params *PatchOrgPreferencesParams, opts ...ClientOption) (*PatchOrgPreferencesOK, error)
 
-	UpdateOrgPreferences(params *UpdateOrgPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgPreferencesOK, error)
+	UpdateOrgPreferences(params *UpdateOrgPreferencesParams, opts ...ClientOption) (*UpdateOrgPreferencesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -42,8 +42,7 @@ type ClientService interface {
 /*
 GetOrgPreferences gets current org prefs
 */
-func (a *Client) GetOrgPreferences(params *GetOrgPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOrgPreferencesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetOrgPreferences(params *GetOrgPreferencesParams, opts ...ClientOption) (*GetOrgPreferencesOK, error) {
 	if params == nil {
 		params = NewGetOrgPreferencesParams()
 	}
@@ -56,12 +55,13 @@ func (a *Client) GetOrgPreferences(params *GetOrgPreferencesParams, authInfo run
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetOrgPreferencesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -81,8 +81,7 @@ func (a *Client) GetOrgPreferences(params *GetOrgPreferencesParams, authInfo run
 /*
 PatchOrgPreferences patches current org prefs
 */
-func (a *Client) PatchOrgPreferences(params *PatchOrgPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchOrgPreferencesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PatchOrgPreferences(params *PatchOrgPreferencesParams, opts ...ClientOption) (*PatchOrgPreferencesOK, error) {
 	if params == nil {
 		params = NewPatchOrgPreferencesParams()
 	}
@@ -95,12 +94,13 @@ func (a *Client) PatchOrgPreferences(params *PatchOrgPreferencesParams, authInfo
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PatchOrgPreferencesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -120,8 +120,7 @@ func (a *Client) PatchOrgPreferences(params *PatchOrgPreferencesParams, authInfo
 /*
 UpdateOrgPreferences updates current org prefs
 */
-func (a *Client) UpdateOrgPreferences(params *UpdateOrgPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOrgPreferencesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateOrgPreferences(params *UpdateOrgPreferencesParams, opts ...ClientOption) (*UpdateOrgPreferencesOK, error) {
 	if params == nil {
 		params = NewUpdateOrgPreferencesParams()
 	}
@@ -134,12 +133,13 @@ func (a *Client) UpdateOrgPreferences(params *UpdateOrgPreferencesParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateOrgPreferencesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -159,4 +159,11 @@ func (a *Client) UpdateOrgPreferences(params *UpdateOrgPreferencesParams, authIn
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }

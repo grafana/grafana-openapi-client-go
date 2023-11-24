@@ -30,11 +30,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetUserPreferences(params *GetUserPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserPreferencesOK, error)
+	GetUserPreferences(params *GetUserPreferencesParams, opts ...ClientOption) (*GetUserPreferencesOK, error)
 
-	PatchUserPreferences(params *PatchUserPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchUserPreferencesOK, error)
+	PatchUserPreferences(params *PatchUserPreferencesParams, opts ...ClientOption) (*PatchUserPreferencesOK, error)
 
-	UpdateUserPreferences(params *UpdateUserPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserPreferencesOK, error)
+	UpdateUserPreferences(params *UpdateUserPreferencesParams, opts ...ClientOption) (*UpdateUserPreferencesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -42,8 +42,7 @@ type ClientService interface {
 /*
 GetUserPreferences gets user preferences
 */
-func (a *Client) GetUserPreferences(params *GetUserPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserPreferencesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) GetUserPreferences(params *GetUserPreferencesParams, opts ...ClientOption) (*GetUserPreferencesOK, error) {
 	if params == nil {
 		params = NewGetUserPreferencesParams()
 	}
@@ -56,12 +55,13 @@ func (a *Client) GetUserPreferences(params *GetUserPreferencesParams, authInfo r
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &GetUserPreferencesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -81,8 +81,7 @@ func (a *Client) GetUserPreferences(params *GetUserPreferencesParams, authInfo r
 /*
 PatchUserPreferences patches user preferences
 */
-func (a *Client) PatchUserPreferences(params *PatchUserPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchUserPreferencesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) PatchUserPreferences(params *PatchUserPreferencesParams, opts ...ClientOption) (*PatchUserPreferencesOK, error) {
 	if params == nil {
 		params = NewPatchUserPreferencesParams()
 	}
@@ -95,12 +94,13 @@ func (a *Client) PatchUserPreferences(params *PatchUserPreferencesParams, authIn
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &PatchUserPreferencesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -122,8 +122,7 @@ UpdateUserPreferences updates user preferences
 
 Omitting a key (`theme`, `homeDashboardId`, `timezone`) will cause the current value to be replaced with the system default value.
 */
-func (a *Client) UpdateUserPreferences(params *UpdateUserPreferencesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserPreferencesOK, error) {
-	// TODO: Validate the params before sending
+func (a *Client) UpdateUserPreferences(params *UpdateUserPreferencesParams, opts ...ClientOption) (*UpdateUserPreferencesOK, error) {
 	if params == nil {
 		params = NewUpdateUserPreferencesParams()
 	}
@@ -136,12 +135,13 @@ func (a *Client) UpdateUserPreferences(params *UpdateUserPreferencesParams, auth
 		Schemes:            []string{"http", "https"},
 		Params:             params,
 		Reader:             &UpdateUserPreferencesReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -161,4 +161,11 @@ func (a *Client) UpdateUserPreferences(params *UpdateUserPreferencesParams, auth
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+// WithAuthInfo changes the transport on the client
+func WithAuthInfo(authInfo runtime.ClientAuthInfoWriter) ClientOption {
+	return func(op *runtime.ClientOperation) {
+		op.AuthInfo = authInfo
+	}
 }
