@@ -30,13 +30,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminProvisioningReloadDashboards(params *AdminProvisioningReloadDashboardsParams, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error)
+	AdminProvisioningReloadDashboards(opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error)
+	AdminProvisioningReloadDashboardsWithParams(params *AdminProvisioningReloadDashboardsParams, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error)
 
-	AdminProvisioningReloadDatasources(params *AdminProvisioningReloadDatasourcesParams, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error)
+	AdminProvisioningReloadDatasources(opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error)
+	AdminProvisioningReloadDatasourcesWithParams(params *AdminProvisioningReloadDatasourcesParams, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error)
 
-	AdminProvisioningReloadNotifications(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error)
+	AdminProvisioningReloadNotifications(opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error)
+	AdminProvisioningReloadNotificationsWithParams(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error)
 
-	AdminProvisioningReloadPlugins(params *AdminProvisioningReloadPluginsParams, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error)
+	AdminProvisioningReloadPlugins(opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error)
+	AdminProvisioningReloadPluginsWithParams(params *AdminProvisioningReloadPluginsParams, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -48,7 +52,11 @@ type ClientService interface {
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:dashboards`.
 */
-func (a *Client) AdminProvisioningReloadDashboards(params *AdminProvisioningReloadDashboardsParams, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error) {
+func (a *Client) AdminProvisioningReloadDashboards(opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error) {
+	return a.AdminProvisioningReloadDashboardsWithParams(nil, opts...)
+}
+
+func (a *Client) AdminProvisioningReloadDashboardsWithParams(params *AdminProvisioningReloadDashboardsParams, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadDashboardsParams()
 	}
@@ -91,7 +99,11 @@ func (a *Client) AdminProvisioningReloadDashboards(params *AdminProvisioningRelo
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:datasources`.
 */
-func (a *Client) AdminProvisioningReloadDatasources(params *AdminProvisioningReloadDatasourcesParams, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error) {
+func (a *Client) AdminProvisioningReloadDatasources(opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error) {
+	return a.AdminProvisioningReloadDatasourcesWithParams(nil, opts...)
+}
+
+func (a *Client) AdminProvisioningReloadDatasourcesWithParams(params *AdminProvisioningReloadDatasourcesParams, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadDatasourcesParams()
 	}
@@ -134,7 +146,11 @@ func (a *Client) AdminProvisioningReloadDatasources(params *AdminProvisioningRel
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:notifications`.
 */
-func (a *Client) AdminProvisioningReloadNotifications(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
+func (a *Client) AdminProvisioningReloadNotifications(opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
+	return a.AdminProvisioningReloadNotificationsWithParams(nil, opts...)
+}
+
+func (a *Client) AdminProvisioningReloadNotificationsWithParams(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadNotificationsParams()
 	}
@@ -177,7 +193,11 @@ func (a *Client) AdminProvisioningReloadNotifications(params *AdminProvisioningR
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:plugin`.
 */
-func (a *Client) AdminProvisioningReloadPlugins(params *AdminProvisioningReloadPluginsParams, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error) {
+func (a *Client) AdminProvisioningReloadPlugins(opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error) {
+	return a.AdminProvisioningReloadPluginsWithParams(nil, opts...)
+}
+
+func (a *Client) AdminProvisioningReloadPluginsWithParams(params *AdminProvisioningReloadPluginsParams, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadPluginsParams()
 	}

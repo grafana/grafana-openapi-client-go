@@ -38,7 +38,8 @@ type ClientService interface {
 
 	GetDashboardSnapshot(params *GetDashboardSnapshotParams, opts ...ClientOption) (*GetDashboardSnapshotOK, error)
 
-	GetSharingOptions(params *GetSharingOptionsParams, opts ...ClientOption) (*GetSharingOptionsOK, error)
+	GetSharingOptions(opts ...ClientOption) (*GetSharingOptionsOK, error)
+	GetSharingOptionsWithParams(params *GetSharingOptionsParams, opts ...ClientOption) (*GetSharingOptionsOK, error)
 
 	SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams, opts ...ClientOption) (*SearchDashboardSnapshotsOK, error)
 
@@ -208,7 +209,11 @@ func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, opts .
 /*
 GetSharingOptions gets snapshot sharing settings
 */
-func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, opts ...ClientOption) (*GetSharingOptionsOK, error) {
+func (a *Client) GetSharingOptions(opts ...ClientOption) (*GetSharingOptionsOK, error) {
+	return a.GetSharingOptionsWithParams(nil, opts...)
+}
+
+func (a *Client) GetSharingOptionsWithParams(params *GetSharingOptionsParams, opts ...ClientOption) (*GetSharingOptionsOK, error) {
 	if params == nil {
 		params = NewGetSharingOptionsParams()
 	}

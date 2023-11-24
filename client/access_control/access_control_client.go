@@ -38,7 +38,8 @@ type ClientService interface {
 
 	DeleteRole(params *DeleteRoleParams, opts ...ClientOption) (*DeleteRoleOK, error)
 
-	GetAccessControlStatus(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error)
+	GetAccessControlStatus(opts ...ClientOption) (*GetAccessControlStatusOK, error)
+	GetAccessControlStatusWithParams(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error)
 
 	GetRole(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error)
 
@@ -243,7 +244,11 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, opts ...ClientOption) (*De
 
 You need to have a permission with action `status:accesscontrol` and scope `services:accesscontrol`.
 */
-func (a *Client) GetAccessControlStatus(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error) {
+func (a *Client) GetAccessControlStatus(opts ...ClientOption) (*GetAccessControlStatusOK, error) {
+	return a.GetAccessControlStatusWithParams(nil, opts...)
+}
+
+func (a *Client) GetAccessControlStatusWithParams(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error) {
 	if params == nil {
 		params = NewGetAccessControlStatusParams()
 	}

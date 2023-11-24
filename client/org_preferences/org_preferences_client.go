@@ -30,7 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetOrgPreferences(params *GetOrgPreferencesParams, opts ...ClientOption) (*GetOrgPreferencesOK, error)
+	GetOrgPreferences(opts ...ClientOption) (*GetOrgPreferencesOK, error)
+	GetOrgPreferencesWithParams(params *GetOrgPreferencesParams, opts ...ClientOption) (*GetOrgPreferencesOK, error)
 
 	PatchOrgPreferences(params *PatchOrgPreferencesParams, opts ...ClientOption) (*PatchOrgPreferencesOK, error)
 
@@ -42,7 +43,11 @@ type ClientService interface {
 /*
 GetOrgPreferences gets current org prefs
 */
-func (a *Client) GetOrgPreferences(params *GetOrgPreferencesParams, opts ...ClientOption) (*GetOrgPreferencesOK, error) {
+func (a *Client) GetOrgPreferences(opts ...ClientOption) (*GetOrgPreferencesOK, error) {
+	return a.GetOrgPreferencesWithParams(nil, opts...)
+}
+
+func (a *Client) GetOrgPreferencesWithParams(params *GetOrgPreferencesParams, opts ...ClientOption) (*GetOrgPreferencesOK, error) {
 	if params == nil {
 		params = NewGetOrgPreferencesParams()
 	}

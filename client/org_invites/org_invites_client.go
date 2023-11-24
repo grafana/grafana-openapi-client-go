@@ -32,7 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	AddOrgInvite(params *AddOrgInviteParams, opts ...ClientOption) (*AddOrgInviteOK, error)
 
-	GetPendingOrgInvites(params *GetPendingOrgInvitesParams, opts ...ClientOption) (*GetPendingOrgInvitesOK, error)
+	GetPendingOrgInvites(opts ...ClientOption) (*GetPendingOrgInvitesOK, error)
+	GetPendingOrgInvitesWithParams(params *GetPendingOrgInvitesParams, opts ...ClientOption) (*GetPendingOrgInvitesOK, error)
 
 	RevokeInvite(params *RevokeInviteParams, opts ...ClientOption) (*RevokeInviteOK, error)
 
@@ -81,7 +82,11 @@ func (a *Client) AddOrgInvite(params *AddOrgInviteParams, opts ...ClientOption) 
 /*
 GetPendingOrgInvites gets pending invites
 */
-func (a *Client) GetPendingOrgInvites(params *GetPendingOrgInvitesParams, opts ...ClientOption) (*GetPendingOrgInvitesOK, error) {
+func (a *Client) GetPendingOrgInvites(opts ...ClientOption) (*GetPendingOrgInvitesOK, error) {
+	return a.GetPendingOrgInvitesWithParams(nil, opts...)
+}
+
+func (a *Client) GetPendingOrgInvitesWithParams(params *GetPendingOrgInvitesParams, opts ...ClientOption) (*GetPendingOrgInvitesOK, error) {
 	if params == nil {
 		params = NewGetPendingOrgInvitesParams()
 	}

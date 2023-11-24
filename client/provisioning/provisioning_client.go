@@ -46,7 +46,8 @@ type ClientService interface {
 
 	GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error)
 
-	GetAlertRules(params *GetAlertRulesParams, opts ...ClientOption) (*GetAlertRulesOK, error)
+	GetAlertRules(opts ...ClientOption) (*GetAlertRulesOK, error)
+	GetAlertRulesWithParams(params *GetAlertRulesParams, opts ...ClientOption) (*GetAlertRulesOK, error)
 
 	GetAlertRulesExport(params *GetAlertRulesExportParams, opts ...ClientOption) (*GetAlertRulesExportOK, error)
 
@@ -56,15 +57,19 @@ type ClientService interface {
 
 	GetMuteTiming(params *GetMuteTimingParams, opts ...ClientOption) (*GetMuteTimingOK, error)
 
-	GetMuteTimings(params *GetMuteTimingsParams, opts ...ClientOption) (*GetMuteTimingsOK, error)
+	GetMuteTimings(opts ...ClientOption) (*GetMuteTimingsOK, error)
+	GetMuteTimingsWithParams(params *GetMuteTimingsParams, opts ...ClientOption) (*GetMuteTimingsOK, error)
 
-	GetPolicyTree(params *GetPolicyTreeParams, opts ...ClientOption) (*GetPolicyTreeOK, error)
+	GetPolicyTree(opts ...ClientOption) (*GetPolicyTreeOK, error)
+	GetPolicyTreeWithParams(params *GetPolicyTreeParams, opts ...ClientOption) (*GetPolicyTreeOK, error)
 
-	GetPolicyTreeExport(params *GetPolicyTreeExportParams, opts ...ClientOption) (*GetPolicyTreeExportOK, error)
+	GetPolicyTreeExport(opts ...ClientOption) (*GetPolicyTreeExportOK, error)
+	GetPolicyTreeExportWithParams(params *GetPolicyTreeExportParams, opts ...ClientOption) (*GetPolicyTreeExportOK, error)
 
 	GetTemplate(params *GetTemplateParams, opts ...ClientOption) (*GetTemplateOK, error)
 
-	GetTemplates(params *GetTemplatesParams, opts ...ClientOption) (*GetTemplatesOK, error)
+	GetTemplates(opts ...ClientOption) (*GetTemplatesOK, error)
+	GetTemplatesWithParams(params *GetTemplatesParams, opts ...ClientOption) (*GetTemplatesOK, error)
 
 	PostAlertRule(params *PostAlertRuleParams, opts ...ClientOption) (*PostAlertRuleCreated, error)
 
@@ -84,7 +89,8 @@ type ClientService interface {
 
 	PutTemplate(params *PutTemplateParams, opts ...ClientOption) (*PutTemplateAccepted, error)
 
-	ResetPolicyTree(params *ResetPolicyTreeParams, opts ...ClientOption) (*ResetPolicyTreeAccepted, error)
+	ResetPolicyTree(opts ...ClientOption) (*ResetPolicyTreeAccepted, error)
+	ResetPolicyTreeWithParams(params *ResetPolicyTreeParams, opts ...ClientOption) (*ResetPolicyTreeAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -404,7 +410,11 @@ func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, 
 /*
 GetAlertRules gets all the alert rules
 */
-func (a *Client) GetAlertRules(params *GetAlertRulesParams, opts ...ClientOption) (*GetAlertRulesOK, error) {
+func (a *Client) GetAlertRules(opts ...ClientOption) (*GetAlertRulesOK, error) {
+	return a.GetAlertRulesWithParams(nil, opts...)
+}
+
+func (a *Client) GetAlertRulesWithParams(params *GetAlertRulesParams, opts ...ClientOption) (*GetAlertRulesOK, error) {
 	if params == nil {
 		params = NewGetAlertRulesParams()
 	}
@@ -599,7 +609,11 @@ func (a *Client) GetMuteTiming(params *GetMuteTimingParams, opts ...ClientOption
 /*
 GetMuteTimings gets all the mute timings
 */
-func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, opts ...ClientOption) (*GetMuteTimingsOK, error) {
+func (a *Client) GetMuteTimings(opts ...ClientOption) (*GetMuteTimingsOK, error) {
+	return a.GetMuteTimingsWithParams(nil, opts...)
+}
+
+func (a *Client) GetMuteTimingsWithParams(params *GetMuteTimingsParams, opts ...ClientOption) (*GetMuteTimingsOK, error) {
 	if params == nil {
 		params = NewGetMuteTimingsParams()
 	}
@@ -638,7 +652,11 @@ func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, opts ...ClientOpti
 /*
 GetPolicyTree gets the notification policy tree
 */
-func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, opts ...ClientOption) (*GetPolicyTreeOK, error) {
+func (a *Client) GetPolicyTree(opts ...ClientOption) (*GetPolicyTreeOK, error) {
+	return a.GetPolicyTreeWithParams(nil, opts...)
+}
+
+func (a *Client) GetPolicyTreeWithParams(params *GetPolicyTreeParams, opts ...ClientOption) (*GetPolicyTreeOK, error) {
 	if params == nil {
 		params = NewGetPolicyTreeParams()
 	}
@@ -677,7 +695,11 @@ func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, opts ...ClientOption
 /*
 GetPolicyTreeExport exports the notification policy tree in provisioning file format
 */
-func (a *Client) GetPolicyTreeExport(params *GetPolicyTreeExportParams, opts ...ClientOption) (*GetPolicyTreeExportOK, error) {
+func (a *Client) GetPolicyTreeExport(opts ...ClientOption) (*GetPolicyTreeExportOK, error) {
+	return a.GetPolicyTreeExportWithParams(nil, opts...)
+}
+
+func (a *Client) GetPolicyTreeExportWithParams(params *GetPolicyTreeExportParams, opts ...ClientOption) (*GetPolicyTreeExportOK, error) {
 	if params == nil {
 		params = NewGetPolicyTreeExportParams()
 	}
@@ -755,7 +777,11 @@ func (a *Client) GetTemplate(params *GetTemplateParams, opts ...ClientOption) (*
 /*
 GetTemplates gets all notification templates
 */
-func (a *Client) GetTemplates(params *GetTemplatesParams, opts ...ClientOption) (*GetTemplatesOK, error) {
+func (a *Client) GetTemplates(opts ...ClientOption) (*GetTemplatesOK, error) {
+	return a.GetTemplatesWithParams(nil, opts...)
+}
+
+func (a *Client) GetTemplatesWithParams(params *GetTemplatesParams, opts ...ClientOption) (*GetTemplatesOK, error) {
 	if params == nil {
 		params = NewGetTemplatesParams()
 	}
@@ -1145,7 +1171,11 @@ func (a *Client) PutTemplate(params *PutTemplateParams, opts ...ClientOption) (*
 /*
 ResetPolicyTree clears the notification policy tree
 */
-func (a *Client) ResetPolicyTree(params *ResetPolicyTreeParams, opts ...ClientOption) (*ResetPolicyTreeAccepted, error) {
+func (a *Client) ResetPolicyTree(opts ...ClientOption) (*ResetPolicyTreeAccepted, error) {
+	return a.ResetPolicyTreeWithParams(nil, opts...)
+}
+
+func (a *Client) ResetPolicyTreeWithParams(params *ResetPolicyTreeParams, opts ...ClientOption) (*ResetPolicyTreeAccepted, error) {
 	if params == nil {
 		params = NewResetPolicyTreeParams()
 	}

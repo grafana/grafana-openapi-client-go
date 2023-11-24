@@ -30,11 +30,14 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetMetadata(params *GetMetadataParams, opts ...ClientOption) (*GetMetadataOK, error)
+	GetMetadata(opts ...ClientOption) (*GetMetadataOK, error)
+	GetMetadataWithParams(params *GetMetadataParams, opts ...ClientOption) (*GetMetadataOK, error)
 
-	GetSAMLLogout(params *GetSAMLLogoutParams, opts ...ClientOption) error
+	GetSAMLLogout(opts ...ClientOption) error
+	GetSAMLLogoutWithParams(params *GetSAMLLogoutParams, opts ...ClientOption) error
 
-	GetSLO(params *GetSLOParams, opts ...ClientOption) error
+	GetSLO(opts ...ClientOption) error
+	GetSLOWithParams(params *GetSLOParams, opts ...ClientOption) error
 
 	PostACS(params *PostACSParams, opts ...ClientOption) error
 
@@ -46,7 +49,11 @@ type ClientService interface {
 /*
 GetMetadata its exposes the s p grafana s metadata for the Id p s consumption
 */
-func (a *Client) GetMetadata(params *GetMetadataParams, opts ...ClientOption) (*GetMetadataOK, error) {
+func (a *Client) GetMetadata(opts ...ClientOption) (*GetMetadataOK, error) {
+	return a.GetMetadataWithParams(nil, opts...)
+}
+
+func (a *Client) GetMetadataWithParams(params *GetMetadataParams, opts ...ClientOption) (*GetMetadataOK, error) {
 	if params == nil {
 		params = NewGetMetadataParams()
 	}
@@ -85,7 +92,11 @@ func (a *Client) GetMetadata(params *GetMetadataParams, opts ...ClientOption) (*
 /*
 GetSAMLLogout gets logout initiates single logout process
 */
-func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, opts ...ClientOption) error {
+func (a *Client) GetSAMLLogout(opts ...ClientOption) error {
+	return a.GetSAMLLogoutWithParams(nil, opts...)
+}
+
+func (a *Client) GetSAMLLogoutWithParams(params *GetSAMLLogoutParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewGetSAMLLogoutParams()
 	}
@@ -123,7 +134,11 @@ func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, opts ...ClientOption
 2. Logout request when another SP initiates single logout and IdP sends logout request to the Grafana,
 or in case of IdP-initiated logout.
 */
-func (a *Client) GetSLO(params *GetSLOParams, opts ...ClientOption) error {
+func (a *Client) GetSLO(opts ...ClientOption) error {
+	return a.GetSLOWithParams(nil, opts...)
+}
+
+func (a *Client) GetSLOWithParams(params *GetSLOParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewGetSLOParams()
 	}

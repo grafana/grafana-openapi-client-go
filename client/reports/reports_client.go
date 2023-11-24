@@ -36,9 +36,11 @@ type ClientService interface {
 
 	GetReport(params *GetReportParams, opts ...ClientOption) (*GetReportOK, error)
 
-	GetReportSettings(params *GetReportSettingsParams, opts ...ClientOption) (*GetReportSettingsOK, error)
+	GetReportSettings(opts ...ClientOption) (*GetReportSettingsOK, error)
+	GetReportSettingsWithParams(params *GetReportSettingsParams, opts ...ClientOption) (*GetReportSettingsOK, error)
 
-	GetReports(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error)
+	GetReports(opts ...ClientOption) (*GetReportsOK, error)
+	GetReportsWithParams(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error)
 
 	RenderReportPDF(params *RenderReportPDFParams, opts ...ClientOption) (*RenderReportPDFOK, error)
 
@@ -191,7 +193,11 @@ func (a *Client) GetReport(params *GetReportParams, opts ...ClientOption) (*GetR
 
 You need to have a permission with action `reports.settings:read`x.
 */
-func (a *Client) GetReportSettings(params *GetReportSettingsParams, opts ...ClientOption) (*GetReportSettingsOK, error) {
+func (a *Client) GetReportSettings(opts ...ClientOption) (*GetReportSettingsOK, error) {
+	return a.GetReportSettingsWithParams(nil, opts...)
+}
+
+func (a *Client) GetReportSettingsWithParams(params *GetReportSettingsParams, opts ...ClientOption) (*GetReportSettingsOK, error) {
 	if params == nil {
 		params = NewGetReportSettingsParams()
 	}
@@ -234,7 +240,11 @@ func (a *Client) GetReportSettings(params *GetReportSettingsParams, opts ...Clie
 
 You need to have a permission with action `reports:read` with scope `reports:*`.
 */
-func (a *Client) GetReports(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error) {
+func (a *Client) GetReports(opts ...ClientOption) (*GetReportsOK, error) {
+	return a.GetReportsWithParams(nil, opts...)
+}
+
+func (a *Client) GetReportsWithParams(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error) {
 	if params == nil {
 		params = NewGetReportsParams()
 	}

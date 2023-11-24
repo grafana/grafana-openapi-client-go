@@ -30,7 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetCurrentOrgQuota(params *GetCurrentOrgQuotaParams, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error)
+	GetCurrentOrgQuota(opts ...ClientOption) (*GetCurrentOrgQuotaOK, error)
+	GetCurrentOrgQuotaWithParams(params *GetCurrentOrgQuotaParams, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -40,7 +41,11 @@ GetCurrentOrgQuota fetches organization quota
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `orgs.quotas:read` and scope `org:id:1` (orgIDScope).
 */
-func (a *Client) GetCurrentOrgQuota(params *GetCurrentOrgQuotaParams, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error) {
+func (a *Client) GetCurrentOrgQuota(opts ...ClientOption) (*GetCurrentOrgQuotaOK, error) {
+	return a.GetCurrentOrgQuotaWithParams(nil, opts...)
+}
+
+func (a *Client) GetCurrentOrgQuotaWithParams(params *GetCurrentOrgQuotaParams, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error) {
 	if params == nil {
 		params = NewGetCurrentOrgQuotaParams()
 	}

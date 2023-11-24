@@ -32,17 +32,23 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	ChangeUserPassword(params *ChangeUserPasswordParams, opts ...ClientOption) (*ChangeUserPasswordOK, error)
 
-	ClearHelpFlags(params *ClearHelpFlagsParams, opts ...ClientOption) (*ClearHelpFlagsOK, error)
+	ClearHelpFlags(opts ...ClientOption) (*ClearHelpFlagsOK, error)
+	ClearHelpFlagsWithParams(params *ClearHelpFlagsParams, opts ...ClientOption) (*ClearHelpFlagsOK, error)
 
-	GetSignedInUser(params *GetSignedInUserParams, opts ...ClientOption) (*GetSignedInUserOK, error)
+	GetSignedInUser(opts ...ClientOption) (*GetSignedInUserOK, error)
+	GetSignedInUserWithParams(params *GetSignedInUserParams, opts ...ClientOption) (*GetSignedInUserOK, error)
 
-	GetSignedInUserOrgList(params *GetSignedInUserOrgListParams, opts ...ClientOption) (*GetSignedInUserOrgListOK, error)
+	GetSignedInUserOrgList(opts ...ClientOption) (*GetSignedInUserOrgListOK, error)
+	GetSignedInUserOrgListWithParams(params *GetSignedInUserOrgListParams, opts ...ClientOption) (*GetSignedInUserOrgListOK, error)
 
-	GetSignedInUserTeamList(params *GetSignedInUserTeamListParams, opts ...ClientOption) (*GetSignedInUserTeamListOK, error)
+	GetSignedInUserTeamList(opts ...ClientOption) (*GetSignedInUserTeamListOK, error)
+	GetSignedInUserTeamListWithParams(params *GetSignedInUserTeamListParams, opts ...ClientOption) (*GetSignedInUserTeamListOK, error)
 
-	GetUserAuthTokens(params *GetUserAuthTokensParams, opts ...ClientOption) (*GetUserAuthTokensOK, error)
+	GetUserAuthTokens(opts ...ClientOption) (*GetUserAuthTokensOK, error)
+	GetUserAuthTokensWithParams(params *GetUserAuthTokensParams, opts ...ClientOption) (*GetUserAuthTokensOK, error)
 
-	GetUserQuotas(params *GetUserQuotasParams, opts ...ClientOption) (*GetUserQuotasOK, error)
+	GetUserQuotas(opts ...ClientOption) (*GetUserQuotasOK, error)
+	GetUserQuotasWithParams(params *GetUserQuotasParams, opts ...ClientOption) (*GetUserQuotasOK, error)
 
 	RevokeUserAuthToken(params *RevokeUserAuthTokenParams, opts ...ClientOption) (*RevokeUserAuthTokenOK, error)
 
@@ -107,7 +113,11 @@ func (a *Client) ChangeUserPassword(params *ChangeUserPasswordParams, opts ...Cl
 /*
 ClearHelpFlags clears user help flag
 */
-func (a *Client) ClearHelpFlags(params *ClearHelpFlagsParams, opts ...ClientOption) (*ClearHelpFlagsOK, error) {
+func (a *Client) ClearHelpFlags(opts ...ClientOption) (*ClearHelpFlagsOK, error) {
+	return a.ClearHelpFlagsWithParams(nil, opts...)
+}
+
+func (a *Client) ClearHelpFlagsWithParams(params *ClearHelpFlagsParams, opts ...ClientOption) (*ClearHelpFlagsOK, error) {
 	if params == nil {
 		params = NewClearHelpFlagsParams()
 	}
@@ -146,7 +156,11 @@ func (a *Client) ClearHelpFlags(params *ClearHelpFlagsParams, opts ...ClientOpti
 /*
 GetSignedInUser Get (current authenticated user)
 */
-func (a *Client) GetSignedInUser(params *GetSignedInUserParams, opts ...ClientOption) (*GetSignedInUserOK, error) {
+func (a *Client) GetSignedInUser(opts ...ClientOption) (*GetSignedInUserOK, error) {
+	return a.GetSignedInUserWithParams(nil, opts...)
+}
+
+func (a *Client) GetSignedInUserWithParams(params *GetSignedInUserParams, opts ...ClientOption) (*GetSignedInUserOK, error) {
 	if params == nil {
 		params = NewGetSignedInUserParams()
 	}
@@ -187,7 +201,11 @@ GetSignedInUserOrgList organizations of the actual user
 
 Return a list of all organizations of the current user.
 */
-func (a *Client) GetSignedInUserOrgList(params *GetSignedInUserOrgListParams, opts ...ClientOption) (*GetSignedInUserOrgListOK, error) {
+func (a *Client) GetSignedInUserOrgList(opts ...ClientOption) (*GetSignedInUserOrgListOK, error) {
+	return a.GetSignedInUserOrgListWithParams(nil, opts...)
+}
+
+func (a *Client) GetSignedInUserOrgListWithParams(params *GetSignedInUserOrgListParams, opts ...ClientOption) (*GetSignedInUserOrgListOK, error) {
 	if params == nil {
 		params = NewGetSignedInUserOrgListParams()
 	}
@@ -228,7 +246,11 @@ GetSignedInUserTeamList teams that the actual user is member of
 
 Return a list of all teams that the current user is member of.
 */
-func (a *Client) GetSignedInUserTeamList(params *GetSignedInUserTeamListParams, opts ...ClientOption) (*GetSignedInUserTeamListOK, error) {
+func (a *Client) GetSignedInUserTeamList(opts ...ClientOption) (*GetSignedInUserTeamListOK, error) {
+	return a.GetSignedInUserTeamListWithParams(nil, opts...)
+}
+
+func (a *Client) GetSignedInUserTeamListWithParams(params *GetSignedInUserTeamListParams, opts ...ClientOption) (*GetSignedInUserTeamListOK, error) {
 	if params == nil {
 		params = NewGetSignedInUserTeamListParams()
 	}
@@ -269,7 +291,11 @@ GetUserAuthTokens auths tokens of the actual user
 
 Return a list of all auth tokens (devices) that the actual user currently have logged in from.
 */
-func (a *Client) GetUserAuthTokens(params *GetUserAuthTokensParams, opts ...ClientOption) (*GetUserAuthTokensOK, error) {
+func (a *Client) GetUserAuthTokens(opts ...ClientOption) (*GetUserAuthTokensOK, error) {
+	return a.GetUserAuthTokensWithParams(nil, opts...)
+}
+
+func (a *Client) GetUserAuthTokensWithParams(params *GetUserAuthTokensParams, opts ...ClientOption) (*GetUserAuthTokensOK, error) {
 	if params == nil {
 		params = NewGetUserAuthTokensParams()
 	}
@@ -308,7 +334,11 @@ func (a *Client) GetUserAuthTokens(params *GetUserAuthTokensParams, opts ...Clie
 /*
 GetUserQuotas fetches user quota
 */
-func (a *Client) GetUserQuotas(params *GetUserQuotasParams, opts ...ClientOption) (*GetUserQuotasOK, error) {
+func (a *Client) GetUserQuotas(opts ...ClientOption) (*GetUserQuotasOK, error) {
+	return a.GetUserQuotasWithParams(nil, opts...)
+}
+
+func (a *Client) GetUserQuotasWithParams(params *GetUserQuotasParams, opts ...ClientOption) (*GetUserQuotasOK, error) {
 	if params == nil {
 		params = NewGetUserQuotasParams()
 	}

@@ -30,9 +30,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetSettings(params *AdminGetSettingsParams, opts ...ClientOption) (*AdminGetSettingsOK, error)
+	AdminGetSettings(opts ...ClientOption) (*AdminGetSettingsOK, error)
+	AdminGetSettingsWithParams(params *AdminGetSettingsParams, opts ...ClientOption) (*AdminGetSettingsOK, error)
 
-	AdminGetStats(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error)
+	AdminGetStats(opts ...ClientOption) (*AdminGetStatsOK, error)
+	AdminGetStatsWithParams(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error)
 
 	PauseAllAlerts(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error)
 
@@ -44,7 +46,11 @@ AdminGetSettings fetches settings
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `settings:read` and scopes: `settings:*`, `settings:auth.saml:` and `settings:auth.saml:enabled` (property level).
 */
-func (a *Client) AdminGetSettings(params *AdminGetSettingsParams, opts ...ClientOption) (*AdminGetSettingsOK, error) {
+func (a *Client) AdminGetSettings(opts ...ClientOption) (*AdminGetSettingsOK, error) {
+	return a.AdminGetSettingsWithParams(nil, opts...)
+}
+
+func (a *Client) AdminGetSettingsWithParams(params *AdminGetSettingsParams, opts ...ClientOption) (*AdminGetSettingsOK, error) {
 	if params == nil {
 		params = NewAdminGetSettingsParams()
 	}
@@ -87,7 +93,11 @@ func (a *Client) AdminGetSettings(params *AdminGetSettingsParams, opts ...Client
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `server:stats:read`.
 */
-func (a *Client) AdminGetStats(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error) {
+func (a *Client) AdminGetStats(opts ...ClientOption) (*AdminGetStatsOK, error) {
+	return a.AdminGetStatsWithParams(nil, opts...)
+}
+
+func (a *Client) AdminGetStatsWithParams(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error) {
 	if params == nil {
 		params = NewAdminGetStatsParams()
 	}

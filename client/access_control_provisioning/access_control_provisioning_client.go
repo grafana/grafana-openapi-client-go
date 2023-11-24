@@ -30,7 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminProvisioningReloadAccessControl(params *AdminProvisioningReloadAccessControlParams, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error)
+	AdminProvisioningReloadAccessControl(opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error)
+	AdminProvisioningReloadAccessControlWithParams(params *AdminProvisioningReloadAccessControlParams, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -38,7 +39,11 @@ type ClientService interface {
 /*
 AdminProvisioningReloadAccessControl yous need to have a permission with action provisioning reload with scope provisioners accesscontrol
 */
-func (a *Client) AdminProvisioningReloadAccessControl(params *AdminProvisioningReloadAccessControlParams, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error) {
+func (a *Client) AdminProvisioningReloadAccessControl(opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error) {
+	return a.AdminProvisioningReloadAccessControlWithParams(nil, opts...)
+}
+
+func (a *Client) AdminProvisioningReloadAccessControlWithParams(params *AdminProvisioningReloadAccessControlParams, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error) {
 	if params == nil {
 		params = NewAdminProvisioningReloadAccessControlParams()
 	}

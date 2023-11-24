@@ -36,9 +36,11 @@ type ClientService interface {
 
 	GetDashboardByUID(params *GetDashboardByUIDParams, opts ...ClientOption) (*GetDashboardByUIDOK, error)
 
-	GetDashboardTags(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error)
+	GetDashboardTags(opts ...ClientOption) (*GetDashboardTagsOK, error)
+	GetDashboardTagsWithParams(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error)
 
-	GetHomeDashboard(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error)
+	GetHomeDashboard(opts ...ClientOption) (*GetHomeDashboardOK, error)
+	GetHomeDashboardWithParams(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error)
 
 	ImportDashboard(params *ImportDashboardParams, opts ...ClientOption) (*ImportDashboardOK, error)
 
@@ -173,7 +175,11 @@ func (a *Client) GetDashboardByUID(params *GetDashboardByUIDParams, opts ...Clie
 /*
 GetDashboardTags gets all dashboards tags of an organisation
 */
-func (a *Client) GetDashboardTags(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error) {
+func (a *Client) GetDashboardTags(opts ...ClientOption) (*GetDashboardTagsOK, error) {
+	return a.GetDashboardTagsWithParams(nil, opts...)
+}
+
+func (a *Client) GetDashboardTagsWithParams(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error) {
 	if params == nil {
 		params = NewGetDashboardTagsParams()
 	}
@@ -212,7 +218,11 @@ func (a *Client) GetDashboardTags(params *GetDashboardTagsParams, opts ...Client
 /*
 GetHomeDashboard gets home dashboard
 */
-func (a *Client) GetHomeDashboard(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error) {
+func (a *Client) GetHomeDashboard(opts ...ClientOption) (*GetHomeDashboardOK, error) {
+	return a.GetHomeDashboardWithParams(nil, opts...)
+}
+
+func (a *Client) GetHomeDashboardWithParams(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error) {
 	if params == nil {
 		params = NewGetHomeDashboardParams()
 	}

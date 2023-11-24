@@ -30,7 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	SearchResult(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error)
+	SearchResult(opts ...ClientOption) (*SearchResultOK, error)
+	SearchResultWithParams(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -43,7 +44,11 @@ type ClientService interface {
 You need to have a permission with action `teams.roles:read` on scope `teams:*`
 and a permission with action `users.roles:read` on scope `users:*`.
 */
-func (a *Client) SearchResult(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error) {
+func (a *Client) SearchResult(opts ...ClientOption) (*SearchResultOK, error) {
+	return a.SearchResultWithParams(nil, opts...)
+}
+
+func (a *Client) SearchResultWithParams(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error) {
 	if params == nil {
 		params = NewSearchResultParams()
 	}

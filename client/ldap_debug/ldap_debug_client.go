@@ -30,7 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetSyncStatus(params *GetSyncStatusParams, opts ...ClientOption) (*GetSyncStatusOK, error)
+	GetSyncStatus(opts ...ClientOption) (*GetSyncStatusOK, error)
+	GetSyncStatusWithParams(params *GetSyncStatusParams, opts ...ClientOption) (*GetSyncStatusOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -40,7 +41,11 @@ GetSyncStatus returns the current state of the LDAP background sync integration
 
 You need to have a permission with action `ldap.status:read`.
 */
-func (a *Client) GetSyncStatus(params *GetSyncStatusParams, opts ...ClientOption) (*GetSyncStatusOK, error) {
+func (a *Client) GetSyncStatus(opts ...ClientOption) (*GetSyncStatusOK, error) {
+	return a.GetSyncStatusWithParams(nil, opts...)
+}
+
+func (a *Client) GetSyncStatusWithParams(params *GetSyncStatusParams, opts ...ClientOption) (*GetSyncStatusOK, error) {
 	if params == nil {
 		params = NewGetSyncStatusParams()
 	}

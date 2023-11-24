@@ -66,7 +66,8 @@ type ClientService interface {
 
 	GetDataSourceIDByName(params *GetDataSourceIDByNameParams, opts ...ClientOption) (*GetDataSourceIDByNameOK, error)
 
-	GetDataSources(params *GetDataSourcesParams, opts ...ClientOption) (*GetDataSourcesOK, error)
+	GetDataSources(opts ...ClientOption) (*GetDataSourcesOK, error)
+	GetDataSourcesWithParams(params *GetDataSourcesParams, opts ...ClientOption) (*GetDataSourcesOK, error)
 
 	UpdateDataSourceByID(params *UpdateDataSourceByIDParams, opts ...ClientOption) (*UpdateDataSourceByIDOK, error)
 
@@ -848,7 +849,11 @@ func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, opts
 
 you need to have a permission with action: `datasources:read` and scope: `datasources:*`.
 */
-func (a *Client) GetDataSources(params *GetDataSourcesParams, opts ...ClientOption) (*GetDataSourcesOK, error) {
+func (a *Client) GetDataSources(opts ...ClientOption) (*GetDataSourcesOK, error) {
+	return a.GetDataSourcesWithParams(nil, opts...)
+}
+
+func (a *Client) GetDataSourcesWithParams(params *GetDataSourcesParams, opts ...ClientOption) (*GetDataSourcesOK, error) {
 	if params == nil {
 		params = NewGetDataSourcesParams()
 	}

@@ -30,7 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetUserPreferences(params *GetUserPreferencesParams, opts ...ClientOption) (*GetUserPreferencesOK, error)
+	GetUserPreferences(opts ...ClientOption) (*GetUserPreferencesOK, error)
+	GetUserPreferencesWithParams(params *GetUserPreferencesParams, opts ...ClientOption) (*GetUserPreferencesOK, error)
 
 	PatchUserPreferences(params *PatchUserPreferencesParams, opts ...ClientOption) (*PatchUserPreferencesOK, error)
 
@@ -42,7 +43,11 @@ type ClientService interface {
 /*
 GetUserPreferences gets user preferences
 */
-func (a *Client) GetUserPreferences(params *GetUserPreferencesParams, opts ...ClientOption) (*GetUserPreferencesOK, error) {
+func (a *Client) GetUserPreferences(opts ...ClientOption) (*GetUserPreferencesOK, error) {
+	return a.GetUserPreferencesWithParams(nil, opts...)
+}
+
+func (a *Client) GetUserPreferencesWithParams(params *GetUserPreferencesParams, opts ...ClientOption) (*GetUserPreferencesOK, error) {
 	if params == nil {
 		params = NewGetUserPreferencesParams()
 	}
