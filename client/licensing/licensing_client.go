@@ -32,19 +32,24 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	DeleteLicenseToken(params *DeleteLicenseTokenParams, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error)
 
-	GetCustomPermissionsCSV(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
+	GetCustomPermissionsCSV(opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
+	GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
 
-	GetCustomPermissionsReport(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error)
+	GetCustomPermissionsReport(opts ...ClientOption) (*GetCustomPermissionsReportOK, error)
+	GetCustomPermissionsReportWithParams(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error)
 
-	GetLicenseToken(params *GetLicenseTokenParams, opts ...ClientOption) (*GetLicenseTokenOK, error)
+	GetLicenseToken(opts ...ClientOption) (*GetLicenseTokenOK, error)
+	GetLicenseTokenWithParams(params *GetLicenseTokenParams, opts ...ClientOption) (*GetLicenseTokenOK, error)
 
-	GetStatus(params *GetStatusParams, opts ...ClientOption) (*GetStatusOK, error)
+	GetStatus(opts ...ClientOption) (*GetStatusOK, error)
+	GetStatusWithParams(params *GetStatusParams, opts ...ClientOption) (*GetStatusOK, error)
 
 	PostLicenseToken(params *PostLicenseTokenParams, opts ...ClientOption) (*PostLicenseTokenOK, error)
 
 	PostRenewLicenseToken(params *PostRenewLicenseTokenParams, opts ...ClientOption) (*PostRenewLicenseTokenOK, error)
 
-	RefreshLicenseStats(params *RefreshLicenseStatsParams, opts ...ClientOption) (*RefreshLicenseStatsOK, error)
+	RefreshLicenseStats(opts ...ClientOption) (*RefreshLicenseStatsOK, error)
+	RefreshLicenseStatsWithParams(params *RefreshLicenseStatsParams, opts ...ClientOption) (*RefreshLicenseStatsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -97,7 +102,11 @@ GetCustomPermissionsCSV gets custom permissions report in CSV format
 
 You need to have a permission with action `licensing.reports:read`.
 */
-func (a *Client) GetCustomPermissionsCSV(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
+func (a *Client) GetCustomPermissionsCSV(opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
+	return a.GetCustomPermissionsCSVWithParams(nil, opts...)
+}
+
+func (a *Client) GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
 	if params == nil {
 		params = NewGetCustomPermissionsCSVParams()
 	}
@@ -138,7 +147,11 @@ GetCustomPermissionsReport gets custom permissions report
 
 You need to have a permission with action `licensing.reports:read`.
 */
-func (a *Client) GetCustomPermissionsReport(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
+func (a *Client) GetCustomPermissionsReport(opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
+	return a.GetCustomPermissionsReportWithParams(nil, opts...)
+}
+
+func (a *Client) GetCustomPermissionsReportWithParams(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
 	if params == nil {
 		params = NewGetCustomPermissionsReportParams()
 	}
@@ -179,7 +192,11 @@ GetLicenseToken gets license token
 
 You need to have a permission with action `licensing:read`.
 */
-func (a *Client) GetLicenseToken(params *GetLicenseTokenParams, opts ...ClientOption) (*GetLicenseTokenOK, error) {
+func (a *Client) GetLicenseToken(opts ...ClientOption) (*GetLicenseTokenOK, error) {
+	return a.GetLicenseTokenWithParams(nil, opts...)
+}
+
+func (a *Client) GetLicenseTokenWithParams(params *GetLicenseTokenParams, opts ...ClientOption) (*GetLicenseTokenOK, error) {
 	if params == nil {
 		params = NewGetLicenseTokenParams()
 	}
@@ -218,7 +235,11 @@ func (a *Client) GetLicenseToken(params *GetLicenseTokenParams, opts ...ClientOp
 /*
 GetStatus checks license availability
 */
-func (a *Client) GetStatus(params *GetStatusParams, opts ...ClientOption) (*GetStatusOK, error) {
+func (a *Client) GetStatus(opts ...ClientOption) (*GetStatusOK, error) {
+	return a.GetStatusWithParams(nil, opts...)
+}
+
+func (a *Client) GetStatusWithParams(params *GetStatusParams, opts ...ClientOption) (*GetStatusOK, error) {
 	if params == nil {
 		params = NewGetStatusParams()
 	}
@@ -343,7 +364,11 @@ RefreshLicenseStats refreshes license stats
 
 You need to have a permission with action `licensing:read`.
 */
-func (a *Client) RefreshLicenseStats(params *RefreshLicenseStatsParams, opts ...ClientOption) (*RefreshLicenseStatsOK, error) {
+func (a *Client) RefreshLicenseStats(opts ...ClientOption) (*RefreshLicenseStatsOK, error) {
+	return a.RefreshLicenseStatsWithParams(nil, opts...)
+}
+
+func (a *Client) RefreshLicenseStatsWithParams(params *RefreshLicenseStatsParams, opts ...ClientOption) (*RefreshLicenseStatsOK, error) {
 	if params == nil {
 		params = NewRefreshLicenseStatsParams()
 	}

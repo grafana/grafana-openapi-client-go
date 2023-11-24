@@ -36,11 +36,14 @@ type ClientService interface {
 
 	DeleteRecordingRule(params *DeleteRecordingRuleParams, opts ...ClientOption) (*DeleteRecordingRuleOK, error)
 
-	DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWriteTargetParams, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error)
+	DeleteRecordingRuleWriteTarget(opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error)
+	DeleteRecordingRuleWriteTargetWithParams(params *DeleteRecordingRuleWriteTargetParams, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error)
 
-	GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTargetParams, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error)
+	GetRecordingRuleWriteTarget(opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error)
+	GetRecordingRuleWriteTargetWithParams(params *GetRecordingRuleWriteTargetParams, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error)
 
-	ListRecordingRules(params *ListRecordingRulesParams, opts ...ClientOption) (*ListRecordingRulesOK, error)
+	ListRecordingRules(opts ...ClientOption) (*ListRecordingRulesOK, error)
+	ListRecordingRulesWithParams(params *ListRecordingRulesParams, opts ...ClientOption) (*ListRecordingRulesOK, error)
 
 	TestCreateRecordingRule(params *TestCreateRecordingRuleParams, opts ...ClientOption) (*TestCreateRecordingRuleOK, error)
 
@@ -171,7 +174,11 @@ func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, opts ...
 /*
 DeleteRecordingRuleWriteTarget deletes the remote write target
 */
-func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWriteTargetParams, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error) {
+func (a *Client) DeleteRecordingRuleWriteTarget(opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error) {
+	return a.DeleteRecordingRuleWriteTargetWithParams(nil, opts...)
+}
+
+func (a *Client) DeleteRecordingRuleWriteTargetWithParams(params *DeleteRecordingRuleWriteTargetParams, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error) {
 	if params == nil {
 		params = NewDeleteRecordingRuleWriteTargetParams()
 	}
@@ -210,7 +217,11 @@ func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWrite
 /*
 GetRecordingRuleWriteTarget returns the prometheus remote write target
 */
-func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTargetParams, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error) {
+func (a *Client) GetRecordingRuleWriteTarget(opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error) {
+	return a.GetRecordingRuleWriteTargetWithParams(nil, opts...)
+}
+
+func (a *Client) GetRecordingRuleWriteTargetWithParams(params *GetRecordingRuleWriteTargetParams, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error) {
 	if params == nil {
 		params = NewGetRecordingRuleWriteTargetParams()
 	}
@@ -249,7 +260,11 @@ func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTarget
 /*
 ListRecordingRules lists all rules in the database active or deleted
 */
-func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, opts ...ClientOption) (*ListRecordingRulesOK, error) {
+func (a *Client) ListRecordingRules(opts ...ClientOption) (*ListRecordingRulesOK, error) {
+	return a.ListRecordingRulesWithParams(nil, opts...)
+}
+
+func (a *Client) ListRecordingRulesWithParams(params *ListRecordingRulesParams, opts ...ClientOption) (*ListRecordingRulesOK, error) {
 	if params == nil {
 		params = NewListRecordingRulesParams()
 	}

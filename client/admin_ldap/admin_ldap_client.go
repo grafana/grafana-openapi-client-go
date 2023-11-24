@@ -30,13 +30,15 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetLDAPStatus(params *GetLDAPStatusParams, opts ...ClientOption) (*GetLDAPStatusOK, error)
+	GetLDAPStatus(opts ...ClientOption) (*GetLDAPStatusOK, error)
+	GetLDAPStatusWithParams(params *GetLDAPStatusParams, opts ...ClientOption) (*GetLDAPStatusOK, error)
 
 	GetUserFromLDAP(params *GetUserFromLDAPParams, opts ...ClientOption) (*GetUserFromLDAPOK, error)
 
 	PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error)
 
-	ReloadLDAPCfg(params *ReloadLDAPCfgParams, opts ...ClientOption) (*ReloadLDAPCfgOK, error)
+	ReloadLDAPCfg(opts ...ClientOption) (*ReloadLDAPCfgOK, error)
+	ReloadLDAPCfgWithParams(params *ReloadLDAPCfgParams, opts ...ClientOption) (*ReloadLDAPCfgOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,7 +48,11 @@ GetLDAPStatus attempts to connect to all the configured LDAP servers and returns
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.status:read`.
 */
-func (a *Client) GetLDAPStatus(params *GetLDAPStatusParams, opts ...ClientOption) (*GetLDAPStatusOK, error) {
+func (a *Client) GetLDAPStatus(opts ...ClientOption) (*GetLDAPStatusOK, error) {
+	return a.GetLDAPStatusWithParams(nil, opts...)
+}
+
+func (a *Client) GetLDAPStatusWithParams(params *GetLDAPStatusParams, opts ...ClientOption) (*GetLDAPStatusOK, error) {
 	if params == nil {
 		params = NewGetLDAPStatusParams()
 	}
@@ -169,7 +175,11 @@ ReloadLDAPCfg reloads the LDAP configuration
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.config:reload`.
 */
-func (a *Client) ReloadLDAPCfg(params *ReloadLDAPCfgParams, opts ...ClientOption) (*ReloadLDAPCfgOK, error) {
+func (a *Client) ReloadLDAPCfg(opts ...ClientOption) (*ReloadLDAPCfgOK, error) {
+	return a.ReloadLDAPCfgWithParams(nil, opts...)
+}
+
+func (a *Client) ReloadLDAPCfgWithParams(params *ReloadLDAPCfgParams, opts ...ClientOption) (*ReloadLDAPCfgOK, error) {
 	if params == nil {
 		params = NewReloadLDAPCfgParams()
 	}

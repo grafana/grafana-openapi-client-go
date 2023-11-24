@@ -32,9 +32,11 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	AddOrgUserToCurrentOrg(params *AddOrgUserToCurrentOrgParams, opts ...ClientOption) (*AddOrgUserToCurrentOrgOK, error)
 
-	GetCurrentOrg(params *GetCurrentOrgParams, opts ...ClientOption) (*GetCurrentOrgOK, error)
+	GetCurrentOrg(opts ...ClientOption) (*GetCurrentOrgOK, error)
+	GetCurrentOrgWithParams(params *GetCurrentOrgParams, opts ...ClientOption) (*GetCurrentOrgOK, error)
 
-	GetOrgUsersForCurrentOrg(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error)
+	GetOrgUsersForCurrentOrg(opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error)
+	GetOrgUsersForCurrentOrgWithParams(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error)
 
 	GetOrgUsersForCurrentOrgLookup(params *GetOrgUsersForCurrentOrgLookupParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgLookupOK, error)
 
@@ -96,7 +98,11 @@ func (a *Client) AddOrgUserToCurrentOrg(params *AddOrgUserToCurrentOrgParams, op
 /*
 GetCurrentOrg gets current organization
 */
-func (a *Client) GetCurrentOrg(params *GetCurrentOrgParams, opts ...ClientOption) (*GetCurrentOrgOK, error) {
+func (a *Client) GetCurrentOrg(opts ...ClientOption) (*GetCurrentOrgOK, error) {
+	return a.GetCurrentOrgWithParams(nil, opts...)
+}
+
+func (a *Client) GetCurrentOrgWithParams(params *GetCurrentOrgParams, opts ...ClientOption) (*GetCurrentOrgOK, error) {
 	if params == nil {
 		params = NewGetCurrentOrgParams()
 	}
@@ -140,7 +146,11 @@ func (a *Client) GetCurrentOrg(params *GetCurrentOrgParams, opts ...ClientOption
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:read` with scope `users:*`.
 */
-func (a *Client) GetOrgUsersForCurrentOrg(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
+func (a *Client) GetOrgUsersForCurrentOrg(opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
+	return a.GetOrgUsersForCurrentOrgWithParams(nil, opts...)
+}
+
+func (a *Client) GetOrgUsersForCurrentOrgWithParams(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
 	if params == nil {
 		params = NewGetOrgUsersForCurrentOrgParams()
 	}

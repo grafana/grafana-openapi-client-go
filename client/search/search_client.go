@@ -30,7 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ListSortOptions(params *ListSortOptionsParams, opts ...ClientOption) (*ListSortOptionsOK, error)
+	ListSortOptions(opts ...ClientOption) (*ListSortOptionsOK, error)
+	ListSortOptionsWithParams(params *ListSortOptionsParams, opts ...ClientOption) (*ListSortOptionsOK, error)
 
 	Search(params *SearchParams, opts ...ClientOption) (*SearchOK, error)
 
@@ -40,7 +41,11 @@ type ClientService interface {
 /*
 ListSortOptions lists search sorting options
 */
-func (a *Client) ListSortOptions(params *ListSortOptionsParams, opts ...ClientOption) (*ListSortOptionsOK, error) {
+func (a *Client) ListSortOptions(opts ...ClientOption) (*ListSortOptionsOK, error) {
+	return a.ListSortOptionsWithParams(nil, opts...)
+}
+
+func (a *Client) ListSortOptionsWithParams(params *ListSortOptionsParams, opts ...ClientOption) (*ListSortOptionsOK, error) {
 	if params == nil {
 		params = NewListSortOptionsParams()
 	}

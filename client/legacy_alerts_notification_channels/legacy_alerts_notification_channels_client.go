@@ -40,9 +40,11 @@ type ClientService interface {
 
 	GetAlertNotificationChannelByUID(params *GetAlertNotificationChannelByUIDParams, opts ...ClientOption) (*GetAlertNotificationChannelByUIDOK, error)
 
-	GetAlertNotificationChannels(params *GetAlertNotificationChannelsParams, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error)
+	GetAlertNotificationChannels(opts ...ClientOption) (*GetAlertNotificationChannelsOK, error)
+	GetAlertNotificationChannelsWithParams(params *GetAlertNotificationChannelsParams, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error)
 
-	GetAlertNotificationLookup(params *GetAlertNotificationLookupParams, opts ...ClientOption) (*GetAlertNotificationLookupOK, error)
+	GetAlertNotificationLookup(opts ...ClientOption) (*GetAlertNotificationLookupOK, error)
+	GetAlertNotificationLookupWithParams(params *GetAlertNotificationLookupParams, opts ...ClientOption) (*GetAlertNotificationLookupOK, error)
 
 	NotificationChannelTest(params *NotificationChannelTestParams, opts ...ClientOption) (*NotificationChannelTestOK, error)
 
@@ -263,7 +265,11 @@ GetAlertNotificationChannels gets all notification channels
 
 Returns all notification channels that the authenticated user has permission to view.
 */
-func (a *Client) GetAlertNotificationChannels(params *GetAlertNotificationChannelsParams, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error) {
+func (a *Client) GetAlertNotificationChannels(opts ...ClientOption) (*GetAlertNotificationChannelsOK, error) {
+	return a.GetAlertNotificationChannelsWithParams(nil, opts...)
+}
+
+func (a *Client) GetAlertNotificationChannelsWithParams(params *GetAlertNotificationChannelsParams, opts ...ClientOption) (*GetAlertNotificationChannelsOK, error) {
 	if params == nil {
 		params = NewGetAlertNotificationChannelsParams()
 	}
@@ -304,7 +310,11 @@ GetAlertNotificationLookup gets all notification channels lookup
 
 Returns all notification channels, but with less detailed information. Accessible by any authenticated user and is mainly used by providing alert notification channels in Grafana UI when configuring alert rule.
 */
-func (a *Client) GetAlertNotificationLookup(params *GetAlertNotificationLookupParams, opts ...ClientOption) (*GetAlertNotificationLookupOK, error) {
+func (a *Client) GetAlertNotificationLookup(opts ...ClientOption) (*GetAlertNotificationLookupOK, error) {
+	return a.GetAlertNotificationLookupWithParams(nil, opts...)
+}
+
+func (a *Client) GetAlertNotificationLookupWithParams(params *GetAlertNotificationLookupParams, opts ...ClientOption) (*GetAlertNotificationLookupOK, error) {
 	if params == nil {
 		params = NewGetAlertNotificationLookupParams()
 	}

@@ -40,7 +40,8 @@ type ClientService interface {
 
 	SearchUsers(params *SearchUsersParams, opts ...ClientOption) (*SearchUsersOK, error)
 
-	SearchUsersWithPaging(params *SearchUsersWithPagingParams, opts ...ClientOption) (*SearchUsersWithPagingOK, error)
+	SearchUsersWithPaging(opts ...ClientOption) (*SearchUsersWithPagingOK, error)
+	SearchUsersWithPagingWithParams(params *SearchUsersWithPagingParams, opts ...ClientOption) (*SearchUsersWithPagingOK, error)
 
 	UpdateUser(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error)
 
@@ -251,7 +252,11 @@ func (a *Client) SearchUsers(params *SearchUsersParams, opts ...ClientOption) (*
 /*
 SearchUsersWithPaging gets users with paging
 */
-func (a *Client) SearchUsersWithPaging(params *SearchUsersWithPagingParams, opts ...ClientOption) (*SearchUsersWithPagingOK, error) {
+func (a *Client) SearchUsersWithPaging(opts ...ClientOption) (*SearchUsersWithPagingOK, error) {
+	return a.SearchUsersWithPagingWithParams(nil, opts...)
+}
+
+func (a *Client) SearchUsersWithPagingWithParams(params *SearchUsersWithPagingParams, opts ...ClientOption) (*SearchUsersWithPagingOK, error) {
 	if params == nil {
 		params = NewSearchUsersWithPagingParams()
 	}
