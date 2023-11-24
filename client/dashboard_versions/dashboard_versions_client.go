@@ -67,7 +67,9 @@ func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -104,7 +106,9 @@ func (a *Client) GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -143,7 +147,9 @@ func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -180,7 +186,9 @@ func (a *Client) GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDPara
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -219,7 +227,9 @@ func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByID
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -256,7 +266,9 @@ func (a *Client) RestoreDashboardVersionByUID(params *RestoreDashboardVersionByU
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

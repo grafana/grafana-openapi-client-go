@@ -75,7 +75,9 @@ func (a *Client) AddTeamMember(params *AddTeamMemberParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -112,7 +114,9 @@ func (a *Client) CreateTeam(params *CreateTeamParams, opts ...ClientOption) (*Cr
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -149,7 +153,9 @@ func (a *Client) DeleteTeamByID(params *DeleteTeamByIDParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -186,7 +192,9 @@ func (a *Client) GetTeamByID(params *GetTeamByIDParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -223,7 +231,9 @@ func (a *Client) GetTeamMembers(params *GetTeamMembersParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -260,7 +270,9 @@ func (a *Client) GetTeamPreferences(params *GetTeamPreferencesParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -297,7 +309,9 @@ func (a *Client) RemoveTeamMember(params *RemoveTeamMemberParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -334,7 +348,9 @@ func (a *Client) SearchTeams(params *SearchTeamsParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -371,7 +387,9 @@ func (a *Client) UpdateTeam(params *UpdateTeamParams, opts ...ClientOption) (*Up
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -408,7 +426,9 @@ func (a *Client) UpdateTeamMember(params *UpdateTeamMemberParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -445,7 +465,9 @@ func (a *Client) UpdateTeamPreferences(params *UpdateTeamPreferencesParams, opts
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

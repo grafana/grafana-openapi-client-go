@@ -61,7 +61,9 @@ func (a *Client) AddTeamGroupAPI(params *AddTeamGroupAPIParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -98,7 +100,9 @@ func (a *Client) GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -135,7 +139,9 @@ func (a *Client) RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -172,7 +178,9 @@ func (a *Client) RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

@@ -57,7 +57,9 @@ func (a *Client) GetSyncStatus(params *GetSyncStatusParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

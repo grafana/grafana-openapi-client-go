@@ -67,7 +67,9 @@ func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -104,7 +106,9 @@ func (a *Client) DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -143,7 +147,9 @@ func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnaps
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -180,7 +186,9 @@ func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -217,7 +225,9 @@ func (a *Client) GetSharingOptions(params *GetSharingOptionsParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -254,7 +264,9 @@ func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

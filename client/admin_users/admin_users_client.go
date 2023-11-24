@@ -79,7 +79,9 @@ func (a *Client) AdminCreateUser(params *AdminCreateUserParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -118,7 +120,9 @@ func (a *Client) AdminDeleteUser(params *AdminDeleteUserParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -157,7 +161,9 @@ func (a *Client) AdminDisableUser(params *AdminDisableUserParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -196,7 +202,9 @@ func (a *Client) AdminEnableUser(params *AdminEnableUserParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -235,7 +243,9 @@ func (a *Client) AdminGetUserAuthTokens(params *AdminGetUserAuthTokensParams, op
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -274,7 +284,9 @@ func (a *Client) AdminLogoutUser(params *AdminLogoutUserParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -315,7 +327,9 @@ func (a *Client) AdminRevokeUserAuthToken(params *AdminRevokeUserAuthTokenParams
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -354,7 +368,9 @@ func (a *Client) AdminUpdateUserPassword(params *AdminUpdateUserPasswordParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -395,7 +411,9 @@ func (a *Client) AdminUpdateUserPermissions(params *AdminUpdateUserPermissionsPa
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -434,7 +452,9 @@ func (a *Client) GetUserQuota(params *GetUserQuotaParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -473,7 +493,9 @@ func (a *Client) UpdateUserQuota(params *UpdateUserQuotaParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

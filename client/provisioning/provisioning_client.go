@@ -109,7 +109,9 @@ func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -146,7 +148,9 @@ func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -183,7 +187,9 @@ func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -220,7 +226,9 @@ func (a *Client) DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -257,7 +265,9 @@ func (a *Client) GetAlertRule(params *GetAlertRuleParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -294,7 +304,9 @@ func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -331,7 +343,9 @@ func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -368,7 +382,9 @@ func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -405,7 +421,9 @@ func (a *Client) GetAlertRules(params *GetAlertRulesParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -442,7 +460,9 @@ func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -479,7 +499,9 @@ func (a *Client) GetContactpoints(params *GetContactpointsParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -516,7 +538,9 @@ func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, op
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -553,7 +577,9 @@ func (a *Client) GetMuteTiming(params *GetMuteTimingParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -590,7 +616,9 @@ func (a *Client) GetMuteTimings(params *GetMuteTimingsParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -627,7 +655,9 @@ func (a *Client) GetPolicyTree(params *GetPolicyTreeParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -664,7 +694,9 @@ func (a *Client) GetPolicyTreeExport(params *GetPolicyTreeExportParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -701,7 +733,9 @@ func (a *Client) GetTemplate(params *GetTemplateParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -738,7 +772,9 @@ func (a *Client) GetTemplates(params *GetTemplatesParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -775,7 +811,9 @@ func (a *Client) PostAlertRule(params *PostAlertRuleParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -812,7 +850,9 @@ func (a *Client) PostContactpoints(params *PostContactpointsParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -849,7 +889,9 @@ func (a *Client) PostMuteTiming(params *PostMuteTimingParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -886,7 +928,9 @@ func (a *Client) PutAlertRule(params *PutAlertRuleParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -923,7 +967,9 @@ func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -960,7 +1006,9 @@ func (a *Client) PutContactpoint(params *PutContactpointParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -997,7 +1045,9 @@ func (a *Client) PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -1034,7 +1084,9 @@ func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -1071,7 +1123,9 @@ func (a *Client) PutTemplate(params *PutTemplateParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -1108,7 +1162,9 @@ func (a *Client) ResetPolicyTree(params *ResetPolicyTreeParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

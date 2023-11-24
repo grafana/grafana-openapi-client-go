@@ -57,7 +57,9 @@ func (a *Client) ListSortOptions(params *ListSortOptionsParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -94,7 +96,9 @@ func (a *Client) Search(params *SearchParams, opts ...ClientOption) (*SearchOK, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

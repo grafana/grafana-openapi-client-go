@@ -75,7 +75,9 @@ func (a *Client) CreateAlertNotificationChannel(params *CreateAlertNotificationC
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -114,7 +116,9 @@ func (a *Client) DeleteAlertNotificationChannel(params *DeleteAlertNotificationC
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -153,7 +157,9 @@ func (a *Client) DeleteAlertNotificationChannelByUID(params *DeleteAlertNotifica
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -192,7 +198,9 @@ func (a *Client) GetAlertNotificationChannelByID(params *GetAlertNotificationCha
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -231,7 +239,9 @@ func (a *Client) GetAlertNotificationChannelByUID(params *GetAlertNotificationCh
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -270,7 +280,9 @@ func (a *Client) GetAlertNotificationChannels(params *GetAlertNotificationChanne
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -309,7 +321,9 @@ func (a *Client) GetAlertNotificationLookup(params *GetAlertNotificationLookupPa
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -348,7 +362,9 @@ func (a *Client) NotificationChannelTest(params *NotificationChannelTestParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -387,7 +403,9 @@ func (a *Client) UpdateAlertNotificationChannel(params *UpdateAlertNotificationC
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -426,7 +444,9 @@ func (a *Client) UpdateAlertNotificationChannelByUID(params *UpdateAlertNotifica
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

@@ -67,7 +67,9 @@ func (a *Client) GetAlertByID(params *GetAlertByIDParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -104,7 +106,9 @@ func (a *Client) GetAlerts(params *GetAlertsParams, opts ...ClientOption) (*GetA
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -141,7 +145,9 @@ func (a *Client) GetDashboardStates(params *GetDashboardStatesParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -178,7 +184,9 @@ func (a *Client) PauseAlert(params *PauseAlertParams, opts ...ClientOption) (*Pa
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -215,7 +223,9 @@ func (a *Client) TestAlert(params *TestAlertParams, opts ...ClientOption) (*Test
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

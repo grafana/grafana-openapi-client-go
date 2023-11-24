@@ -73,7 +73,9 @@ func (a *Client) DeleteLicenseToken(params *DeleteLicenseTokenParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -112,7 +114,9 @@ func (a *Client) GetCustomPermissionsCSV(params *GetCustomPermissionsCSVParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -151,7 +155,9 @@ func (a *Client) GetCustomPermissionsReport(params *GetCustomPermissionsReportPa
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -190,7 +196,9 @@ func (a *Client) GetLicenseToken(params *GetLicenseTokenParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -227,7 +235,9 @@ func (a *Client) GetStatus(params *GetStatusParams, opts ...ClientOption) (*GetS
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -266,7 +276,9 @@ func (a *Client) PostLicenseToken(params *PostLicenseTokenParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -307,7 +319,9 @@ func (a *Client) PostRenewLicenseToken(params *PostRenewLicenseTokenParams, opts
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -346,7 +360,9 @@ func (a *Client) RefreshLicenseStats(params *RefreshLicenseStatsParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

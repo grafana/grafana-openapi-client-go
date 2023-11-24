@@ -69,7 +69,9 @@ func (a *Client) CalculateDashboardDiff(params *CalculateDashboardDiffParams, op
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -108,7 +110,9 @@ func (a *Client) DeleteDashboardByUID(params *DeleteDashboardByUIDParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -147,7 +151,9 @@ func (a *Client) GetDashboardByUID(params *GetDashboardByUIDParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -184,7 +190,9 @@ func (a *Client) GetDashboardTags(params *GetDashboardTagsParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -221,7 +229,9 @@ func (a *Client) GetHomeDashboard(params *GetHomeDashboardParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -258,7 +268,9 @@ func (a *Client) ImportDashboard(params *ImportDashboardParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -297,7 +309,9 @@ func (a *Client) PostDashboard(params *PostDashboardParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -334,7 +348,9 @@ func (a *Client) TrimDashboard(params *TrimDashboardParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

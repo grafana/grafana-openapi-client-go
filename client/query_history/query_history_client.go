@@ -67,7 +67,9 @@ func (a *Client) CreateQuery(params *CreateQueryParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -106,7 +108,9 @@ func (a *Client) DeleteQuery(params *DeleteQueryParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -145,7 +149,9 @@ func (a *Client) PatchQueryComment(params *PatchQueryCommentParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -187,7 +193,9 @@ func (a *Client) SearchQueries(params *SearchQueriesParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -226,7 +234,9 @@ func (a *Client) StarQuery(params *StarQueryParams, opts ...ClientOption) (*Star
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -265,7 +275,9 @@ func (a *Client) UnstarQuery(params *UnstarQueryParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

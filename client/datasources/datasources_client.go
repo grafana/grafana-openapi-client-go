@@ -103,7 +103,9 @@ func (a *Client) AddDataSource(params *AddDataSourceParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -142,7 +144,9 @@ func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDPa
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -179,7 +183,9 @@ func (a *Client) CallDatasourceResourceWithUID(params *CallDatasourceResourceWit
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -218,7 +224,9 @@ func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDPara
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -255,7 +263,9 @@ func (a *Client) CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithU
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -294,7 +304,9 @@ func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEBy
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -335,7 +347,9 @@ func (a *Client) DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsPa
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -374,7 +388,9 @@ func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcal
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -415,7 +431,9 @@ func (a *Client) DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -454,7 +472,9 @@ func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDc
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -496,7 +516,9 @@ func (a *Client) DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -540,7 +562,9 @@ func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -581,7 +605,9 @@ func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, op
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -622,7 +648,9 @@ func (a *Client) DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, opts
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -665,7 +693,9 @@ func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -706,7 +736,9 @@ func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -747,7 +779,9 @@ func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -788,7 +822,9 @@ func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, opts
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -829,7 +865,9 @@ func (a *Client) GetDataSources(params *GetDataSourcesParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -876,7 +914,9 @@ func (a *Client) UpdateDataSourceByID(params *UpdateDataSourceByIDParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -921,7 +961,9 @@ func (a *Client) UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, opts
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

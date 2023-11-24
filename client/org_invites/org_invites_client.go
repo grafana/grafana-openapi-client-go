@@ -59,7 +59,9 @@ func (a *Client) AddOrgInvite(params *AddOrgInviteParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -96,7 +98,9 @@ func (a *Client) GetPendingOrgInvites(params *GetPendingOrgInvitesParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -133,7 +137,9 @@ func (a *Client) RevokeInvite(params *RevokeInviteParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

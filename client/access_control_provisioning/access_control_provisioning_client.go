@@ -55,7 +55,9 @@ func (a *Client) AdminProvisioningReloadAccessControl(params *AdminProvisioningR
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

@@ -63,7 +63,9 @@ func (a *Client) GetMetadata(params *GetMetadataParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -100,7 +102,9 @@ func (a *Client) GetSAMLLogout(params *GetSAMLLogoutParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	_, err := a.transport.Submit(op)
@@ -136,7 +140,9 @@ func (a *Client) GetSLO(params *GetSLOParams, opts ...ClientOption) error {
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	_, err := a.transport.Submit(op)
@@ -166,7 +172,9 @@ func (a *Client) PostACS(params *PostACSParams, opts ...ClientOption) error {
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	_, err := a.transport.Submit(op)
@@ -202,7 +210,9 @@ func (a *Client) PostSLO(params *PostSLOParams, opts ...ClientOption) error {
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	_, err := a.transport.Submit(op)

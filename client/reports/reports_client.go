@@ -79,7 +79,9 @@ func (a *Client) CreateReport(params *CreateReportParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -120,7 +122,9 @@ func (a *Client) DeleteReport(params *DeleteReportParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -161,7 +165,9 @@ func (a *Client) GetReport(params *GetReportParams, opts ...ClientOption) (*GetR
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -202,7 +208,9 @@ func (a *Client) GetReportSettings(params *GetReportSettingsParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -243,7 +251,9 @@ func (a *Client) GetReports(params *GetReportsParams, opts ...ClientOption) (*Ge
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -282,7 +292,9 @@ func (a *Client) RenderReportPDF(params *RenderReportPDFParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -321,7 +333,9 @@ func (a *Client) RenderReportPDFs(params *RenderReportPDFsParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -362,7 +376,9 @@ func (a *Client) SaveReportSettings(params *SaveReportSettingsParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -406,7 +422,9 @@ func (a *Client) SendReport(params *SendReportParams, opts ...ClientOption) (*Se
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -447,7 +465,9 @@ func (a *Client) SendTestEmail(params *SendTestEmailParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -488,7 +508,9 @@ func (a *Client) UpdateReport(params *UpdateReportParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

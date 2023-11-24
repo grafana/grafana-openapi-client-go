@@ -71,7 +71,9 @@ func (a *Client) CreateFolder(params *CreateFolderParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -112,7 +114,9 @@ func (a *Client) DeleteFolder(params *DeleteFolderParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -153,7 +157,9 @@ func (a *Client) GetFolderByID(params *GetFolderByIDParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -190,7 +196,9 @@ func (a *Client) GetFolderByUID(params *GetFolderByUIDParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -227,7 +235,9 @@ func (a *Client) GetFolderDescendantCounts(params *GetFolderDescendantCountsPara
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -271,7 +281,9 @@ func (a *Client) GetFolders(params *GetFoldersParams, opts ...ClientOption) (*Ge
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -308,7 +320,9 @@ func (a *Client) MoveFolder(params *MoveFolderParams, opts ...ClientOption) (*Mo
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -345,7 +359,9 @@ func (a *Client) UpdateFolder(params *UpdateFolderParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

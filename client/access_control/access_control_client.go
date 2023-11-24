@@ -87,7 +87,9 @@ func (a *Client) AddTeamRole(params *AddTeamRoleParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -128,7 +130,9 @@ func (a *Client) AddUserRole(params *AddUserRoleParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -170,7 +174,9 @@ func (a *Client) CreateRole(params *CreateRoleParams, opts ...ClientOption) (*Cr
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -211,7 +217,9 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, opts ...ClientOption) (*De
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -252,7 +260,9 @@ func (a *Client) GetAccessControlStatus(params *GetAccessControlStatusParams, op
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -293,7 +303,9 @@ func (a *Client) GetRole(params *GetRoleParams, opts ...ClientOption) (*GetRoleO
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -334,7 +346,9 @@ func (a *Client) GetRoleAssignments(params *GetRoleAssignmentsParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -375,7 +389,9 @@ func (a *Client) ListRoles(params *ListRolesParams, opts ...ClientOption) (*List
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -414,7 +430,9 @@ func (a *Client) ListTeamRoles(params *ListTeamRolesParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -455,7 +473,9 @@ func (a *Client) ListUserRoles(params *ListUserRolesParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -494,7 +514,9 @@ func (a *Client) RemoveTeamRole(params *RemoveTeamRoleParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -535,7 +557,9 @@ func (a *Client) RemoveUserRole(params *RemoveUserRoleParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -576,7 +600,9 @@ func (a *Client) SetRoleAssignments(params *SetRoleAssignmentsParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -615,7 +641,9 @@ func (a *Client) SetTeamRoles(params *SetTeamRolesParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -658,7 +686,9 @@ func (a *Client) SetUserRoles(params *SetUserRolesParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -697,7 +727,9 @@ func (a *Client) UpdateRole(params *UpdateRoleParams, opts ...ClientOption) (*Up
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

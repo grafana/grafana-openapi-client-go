@@ -63,7 +63,9 @@ func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissions
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -100,7 +102,9 @@ func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermission
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -141,7 +145,9 @@ func (a *Client) UpdateDashboardPermissionsByID(params *UpdateDashboardPermissio
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -180,7 +186,9 @@ func (a *Client) UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissi
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

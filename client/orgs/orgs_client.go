@@ -86,7 +86,9 @@ func (a *Client) AddOrgUser(params *AddOrgUserParams, opts ...ClientOption) (*Ad
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -125,7 +127,9 @@ func (a *Client) CreateOrg(params *CreateOrgParams, opts ...ClientOption) (*Crea
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -162,7 +166,9 @@ func (a *Client) DeleteOrgByID(params *DeleteOrgByIDParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -199,7 +205,9 @@ func (a *Client) GetOrgByID(params *GetOrgByIDParams, opts ...ClientOption) (*Ge
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -236,7 +244,9 @@ func (a *Client) GetOrgByName(params *GetOrgByNameParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -275,7 +285,9 @@ func (a *Client) GetOrgQuota(params *GetOrgQuotaParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -316,7 +328,9 @@ func (a *Client) GetOrgUsers(params *GetOrgUsersParams, opts ...ClientOption) (*
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -357,7 +371,9 @@ func (a *Client) RemoveOrgUser(params *RemoveOrgUserParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -398,7 +414,9 @@ func (a *Client) SearchOrgUsers(params *SearchOrgUsersParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -435,7 +453,9 @@ func (a *Client) SearchOrgs(params *SearchOrgsParams, opts ...ClientOption) (*Se
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -472,7 +492,9 @@ func (a *Client) UpdateOrg(params *UpdateOrgParams, opts ...ClientOption) (*Upda
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -509,7 +531,9 @@ func (a *Client) UpdateOrgAddress(params *UpdateOrgAddressParams, opts ...Client
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -548,7 +572,9 @@ func (a *Client) UpdateOrgQuota(params *UpdateOrgQuotaParams, opts ...ClientOpti
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -589,7 +615,9 @@ func (a *Client) UpdateOrgUser(params *UpdateOrgUserParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

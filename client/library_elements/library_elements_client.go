@@ -69,7 +69,9 @@ func (a *Client) CreateLibraryElement(params *CreateLibraryElementParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -110,7 +112,9 @@ func (a *Client) DeleteLibraryElementByUID(params *DeleteLibraryElementByUIDPara
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -149,7 +153,9 @@ func (a *Client) GetLibraryElementByName(params *GetLibraryElementByNameParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -188,7 +194,9 @@ func (a *Client) GetLibraryElementByUID(params *GetLibraryElementByUIDParams, op
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -227,7 +235,9 @@ func (a *Client) GetLibraryElementConnections(params *GetLibraryElementConnectio
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -269,7 +279,9 @@ func (a *Client) GetLibraryElements(params *GetLibraryElementsParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -308,7 +320,9 @@ func (a *Client) UpdateLibraryElement(params *UpdateLibraryElementParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

@@ -65,7 +65,9 @@ func (a *Client) AdminProvisioningReloadDashboards(params *AdminProvisioningRelo
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -106,7 +108,9 @@ func (a *Client) AdminProvisioningReloadDatasources(params *AdminProvisioningRel
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -147,7 +151,9 @@ func (a *Client) AdminProvisioningReloadNotifications(params *AdminProvisioningR
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -188,7 +194,9 @@ func (a *Client) AdminProvisioningReloadPlugins(params *AdminProvisioningReloadP
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

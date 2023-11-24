@@ -74,7 +74,9 @@ func (a *Client) {{ pascalize .Name }}(params *{{ pascalize .Name }}Params{{ if 
     Client: params.HTTPClient,
   }
 	for _, opt := range opts {
-		opt(op)
+    if opt != nil {
+      opt(op)
+    }
 	}
   {{ $length := len .SuccessResponses }}
   {{ if .SuccessResponse }}result{{else}}_{{ end }}, err := a.transport.Submit(op)

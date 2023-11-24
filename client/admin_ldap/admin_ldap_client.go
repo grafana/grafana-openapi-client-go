@@ -63,7 +63,9 @@ func (a *Client) GetLDAPStatus(params *GetLDAPStatusParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -102,7 +104,9 @@ func (a *Client) GetUserFromLDAP(params *GetUserFromLDAPParams, opts ...ClientOp
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -141,7 +145,9 @@ func (a *Client) PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -180,7 +186,9 @@ func (a *Client) ReloadLDAPCfg(params *ReloadLDAPCfgParams, opts ...ClientOption
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

@@ -57,7 +57,9 @@ func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -94,7 +96,9 @@ func (a *Client) UpdateFolderPermissions(params *UpdateFolderPermissionsParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

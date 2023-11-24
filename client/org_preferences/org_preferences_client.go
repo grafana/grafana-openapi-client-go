@@ -59,7 +59,9 @@ func (a *Client) GetOrgPreferences(params *GetOrgPreferencesParams, opts ...Clie
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -96,7 +98,9 @@ func (a *Client) PatchOrgPreferences(params *PatchOrgPreferencesParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -133,7 +137,9 @@ func (a *Client) UpdateOrgPreferences(params *UpdateOrgPreferencesParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

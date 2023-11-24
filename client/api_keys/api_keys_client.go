@@ -61,7 +61,9 @@ func (a *Client) AddAPIkey(params *AddAPIkeyParams, opts ...ClientOption) (*AddA
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -102,7 +104,9 @@ func (a *Client) DeleteAPIkey(params *DeleteAPIkeyParams, opts ...ClientOption) 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -146,7 +150,9 @@ func (a *Client) GetAPIkeys(params *GetAPIkeysParams, opts ...ClientOption) (*Ge
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

@@ -69,7 +69,9 @@ func (a *Client) CreateRecordingRule(params *CreateRecordingRuleParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -108,7 +110,9 @@ func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWrite
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -145,7 +149,9 @@ func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -182,7 +188,9 @@ func (a *Client) DeleteRecordingRuleWriteTarget(params *DeleteRecordingRuleWrite
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -219,7 +227,9 @@ func (a *Client) GetRecordingRuleWriteTarget(params *GetRecordingRuleWriteTarget
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -256,7 +266,9 @@ func (a *Client) ListRecordingRules(params *ListRecordingRulesParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -293,7 +305,9 @@ func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, 
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -330,7 +344,9 @@ func (a *Client) UpdateRecordingRule(params *UpdateRecordingRuleParams, opts ...
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)

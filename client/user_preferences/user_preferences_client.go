@@ -59,7 +59,9 @@ func (a *Client) GetUserPreferences(params *GetUserPreferencesParams, opts ...Cl
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -96,7 +98,9 @@ func (a *Client) PatchUserPreferences(params *PatchUserPreferencesParams, opts .
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
@@ -135,7 +139,9 @@ func (a *Client) UpdateUserPreferences(params *UpdateUserPreferencesParams, opts
 		Client:             params.HTTPClient,
 	}
 	for _, opt := range opts {
-		opt(op)
+		if opt != nil {
+			opt(op)
+		}
 	}
 
 	result, err := a.transport.Submit(op)
