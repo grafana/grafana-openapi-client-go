@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new query history API client.
@@ -30,17 +32,22 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateQuery(params *CreateQueryParams, opts ...ClientOption) (*CreateQueryOK, error)
+	CreateQuery(body *models.CreateQueryInQueryHistoryCommand, opts ...ClientOption) (*CreateQueryOK, error)
+	CreateQueryWithParams(params *CreateQueryParams, opts ...ClientOption) (*CreateQueryOK, error)
 
-	DeleteQuery(params *DeleteQueryParams, opts ...ClientOption) (*DeleteQueryOK, error)
+	DeleteQuery(queryHistoryUID string, opts ...ClientOption) (*DeleteQueryOK, error)
+	DeleteQueryWithParams(params *DeleteQueryParams, opts ...ClientOption) (*DeleteQueryOK, error)
 
-	PatchQueryComment(params *PatchQueryCommentParams, opts ...ClientOption) (*PatchQueryCommentOK, error)
+	PatchQueryComment(queryHistoryUID string, body *models.PatchQueryCommentInQueryHistoryCommand, opts ...ClientOption) (*PatchQueryCommentOK, error)
+	PatchQueryCommentWithParams(params *PatchQueryCommentParams, opts ...ClientOption) (*PatchQueryCommentOK, error)
 
 	SearchQueries(params *SearchQueriesParams, opts ...ClientOption) (*SearchQueriesOK, error)
 
-	StarQuery(params *StarQueryParams, opts ...ClientOption) (*StarQueryOK, error)
+	StarQuery(queryHistoryUID string, opts ...ClientOption) (*StarQueryOK, error)
+	StarQueryWithParams(params *StarQueryParams, opts ...ClientOption) (*StarQueryOK, error)
 
-	UnstarQuery(params *UnstarQueryParams, opts ...ClientOption) (*UnstarQueryOK, error)
+	UnstarQuery(queryHistoryUID string, opts ...ClientOption) (*UnstarQueryOK, error)
+	UnstarQueryWithParams(params *UnstarQueryParams, opts ...ClientOption) (*UnstarQueryOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -50,7 +57,12 @@ CreateQuery adds query to query history
 
 Adds new query to query history.
 */
-func (a *Client) CreateQuery(params *CreateQueryParams, opts ...ClientOption) (*CreateQueryOK, error) {
+func (a *Client) CreateQuery(body *models.CreateQueryInQueryHistoryCommand, opts ...ClientOption) (*CreateQueryOK, error) {
+	params := NewCreateQueryParams().WithBody(body)
+	return a.CreateQueryWithParams(params, opts...)
+}
+
+func (a *Client) CreateQueryWithParams(params *CreateQueryParams, opts ...ClientOption) (*CreateQueryOK, error) {
 	if params == nil {
 		params = NewCreateQueryParams()
 	}
@@ -91,7 +103,12 @@ DeleteQuery deletes query in query history
 
 Deletes an existing query in query history as specified by the UID. This operation cannot be reverted.
 */
-func (a *Client) DeleteQuery(params *DeleteQueryParams, opts ...ClientOption) (*DeleteQueryOK, error) {
+func (a *Client) DeleteQuery(queryHistoryUID string, opts ...ClientOption) (*DeleteQueryOK, error) {
+	params := NewDeleteQueryParams().WithQueryHistoryUID(queryHistoryUID)
+	return a.DeleteQueryWithParams(params, opts...)
+}
+
+func (a *Client) DeleteQueryWithParams(params *DeleteQueryParams, opts ...ClientOption) (*DeleteQueryOK, error) {
 	if params == nil {
 		params = NewDeleteQueryParams()
 	}
@@ -132,7 +149,12 @@ PatchQueryComment updates comment for query in query history
 
 Updates comment for query in query history as specified by the UID.
 */
-func (a *Client) PatchQueryComment(params *PatchQueryCommentParams, opts ...ClientOption) (*PatchQueryCommentOK, error) {
+func (a *Client) PatchQueryComment(queryHistoryUID string, body *models.PatchQueryCommentInQueryHistoryCommand, opts ...ClientOption) (*PatchQueryCommentOK, error) {
+	params := NewPatchQueryCommentParams().WithBody(body).WithQueryHistoryUID(queryHistoryUID)
+	return a.PatchQueryCommentWithParams(params, opts...)
+}
+
+func (a *Client) PatchQueryCommentWithParams(params *PatchQueryCommentParams, opts ...ClientOption) (*PatchQueryCommentOK, error) {
 	if params == nil {
 		params = NewPatchQueryCommentParams()
 	}
@@ -169,13 +191,13 @@ func (a *Client) PatchQueryComment(params *PatchQueryCommentParams, opts ...Clie
 }
 
 /*
-	SearchQueries queries history search
+SearchQueries queries history search
 
-	Returns a list of queries in the query history that matches the search criteria.
-
+Returns a list of queries in the query history that matches the search criteria.
 Query history search supports pagination. Use the `limit` parameter to control the maximum number of queries returned; the default limit is 100.
 You can also use the `page` query parameter to fetch queries from any page other than the first one.
 */
+
 func (a *Client) SearchQueries(params *SearchQueriesParams, opts ...ClientOption) (*SearchQueriesOK, error) {
 	if params == nil {
 		params = NewSearchQueriesParams()
@@ -217,7 +239,12 @@ StarQuery adds star to query in query history
 
 Adds star to query in query history as specified by the UID.
 */
-func (a *Client) StarQuery(params *StarQueryParams, opts ...ClientOption) (*StarQueryOK, error) {
+func (a *Client) StarQuery(queryHistoryUID string, opts ...ClientOption) (*StarQueryOK, error) {
+	params := NewStarQueryParams().WithQueryHistoryUID(queryHistoryUID)
+	return a.StarQueryWithParams(params, opts...)
+}
+
+func (a *Client) StarQueryWithParams(params *StarQueryParams, opts ...ClientOption) (*StarQueryOK, error) {
 	if params == nil {
 		params = NewStarQueryParams()
 	}
@@ -258,7 +285,12 @@ UnstarQuery removes star to query in query history
 
 Removes star from query in query history as specified by the UID.
 */
-func (a *Client) UnstarQuery(params *UnstarQueryParams, opts ...ClientOption) (*UnstarQueryOK, error) {
+func (a *Client) UnstarQuery(queryHistoryUID string, opts ...ClientOption) (*UnstarQueryOK, error) {
+	params := NewUnstarQueryParams().WithQueryHistoryUID(queryHistoryUID)
+	return a.UnstarQueryWithParams(params, opts...)
+}
+
+func (a *Client) UnstarQueryWithParams(params *UnstarQueryParams, opts ...ClientOption) (*UnstarQueryOK, error) {
 	if params == nil {
 		params = NewUnstarQueryParams()
 	}

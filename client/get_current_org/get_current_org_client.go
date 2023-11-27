@@ -42,7 +42,8 @@ GetCurrentOrgQuota fetches organization quota
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `orgs.quotas:read` and scope `org:id:1` (orgIDScope).
 */
 func (a *Client) GetCurrentOrgQuota(opts ...ClientOption) (*GetCurrentOrgQuotaOK, error) {
-	return a.GetCurrentOrgQuotaWithParams(nil, opts...)
+	params := NewGetCurrentOrgQuotaParams()
+	return a.GetCurrentOrgQuotaWithParams(params, opts...)
 }
 
 func (a *Client) GetCurrentOrgQuotaWithParams(params *GetCurrentOrgQuotaParams, opts ...ClientOption) (*GetCurrentOrgQuotaOK, error) {

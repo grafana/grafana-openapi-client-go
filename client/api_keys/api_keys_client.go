@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new api keys API client.
@@ -30,9 +32,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddAPIkey(params *AddAPIkeyParams, opts ...ClientOption) (*AddAPIkeyOK, error)
+	AddAPIkey(body *models.AddCommand, opts ...ClientOption) (*AddAPIkeyOK, error)
+	AddAPIkeyWithParams(params *AddAPIkeyParams, opts ...ClientOption) (*AddAPIkeyOK, error)
 
-	DeleteAPIkey(params *DeleteAPIkeyParams, opts ...ClientOption) (*DeleteAPIkeyOK, error)
+	DeleteAPIkey(id int64, opts ...ClientOption) (*DeleteAPIkeyOK, error)
+	DeleteAPIkeyWithParams(params *DeleteAPIkeyParams, opts ...ClientOption) (*DeleteAPIkeyOK, error)
 
 	GetAPIkeys(params *GetAPIkeysParams, opts ...ClientOption) (*GetAPIkeysOK, error)
 
@@ -44,7 +48,12 @@ AddAPIkey creates an API key
 
 Will return details of the created API key.
 */
-func (a *Client) AddAPIkey(params *AddAPIkeyParams, opts ...ClientOption) (*AddAPIkeyOK, error) {
+func (a *Client) AddAPIkey(body *models.AddCommand, opts ...ClientOption) (*AddAPIkeyOK, error) {
+	params := NewAddAPIkeyParams().WithBody(body)
+	return a.AddAPIkeyWithParams(params, opts...)
+}
+
+func (a *Client) AddAPIkeyWithParams(params *AddAPIkeyParams, opts ...ClientOption) (*AddAPIkeyOK, error) {
 	if params == nil {
 		params = NewAddAPIkeyParams()
 	}
@@ -81,13 +90,17 @@ func (a *Client) AddAPIkey(params *AddAPIkeyParams, opts ...ClientOption) (*AddA
 }
 
 /*
-	DeleteAPIkey deletes API key
+DeleteAPIkey deletes API key
 
-	Deletes an API key.
-
+Deletes an API key.
 Deprecated. See: https://grafana.com/docs/grafana/next/administration/api-keys/#migrate-api-keys-to-grafana-service-accounts-using-the-api.
 */
-func (a *Client) DeleteAPIkey(params *DeleteAPIkeyParams, opts ...ClientOption) (*DeleteAPIkeyOK, error) {
+func (a *Client) DeleteAPIkey(id int64, opts ...ClientOption) (*DeleteAPIkeyOK, error) {
+	params := NewDeleteAPIkeyParams().WithID(id)
+	return a.DeleteAPIkeyWithParams(params, opts...)
+}
+
+func (a *Client) DeleteAPIkeyWithParams(params *DeleteAPIkeyParams, opts ...ClientOption) (*DeleteAPIkeyOK, error) {
 	if params == nil {
 		params = NewDeleteAPIkeyParams()
 	}
@@ -124,15 +137,16 @@ func (a *Client) DeleteAPIkey(params *DeleteAPIkeyParams, opts ...ClientOption) 
 }
 
 /*
-	GetAPIkeys gets auth keys
+GetAPIkeys gets auth keys
 
-	Will return auth keys.
+Will return auth keys.
 
 Deprecated: true.
 
 Deprecated. Please use GET /api/serviceaccounts and GET /api/serviceaccounts/{id}/tokens instead
 see https://grafana.com/docs/grafana/next/administration/api-keys/#migrate-api-keys-to-grafana-service-accounts-using-the-api.
 */
+
 func (a *Client) GetAPIkeys(params *GetAPIkeysParams, opts ...ClientOption) (*GetAPIkeysOK, error) {
 	if params == nil {
 		params = NewGetAPIkeysParams()

@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new folders API client.
@@ -30,21 +32,27 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateFolder(params *CreateFolderParams, opts ...ClientOption) (*CreateFolderOK, error)
+	CreateFolder(body *models.CreateFolderCommand, opts ...ClientOption) (*CreateFolderOK, error)
+	CreateFolderWithParams(params *CreateFolderParams, opts ...ClientOption) (*CreateFolderOK, error)
 
 	DeleteFolder(params *DeleteFolderParams, opts ...ClientOption) (*DeleteFolderOK, error)
 
-	GetFolderByID(params *GetFolderByIDParams, opts ...ClientOption) (*GetFolderByIDOK, error)
+	GetFolderByID(folderID int64, opts ...ClientOption) (*GetFolderByIDOK, error)
+	GetFolderByIDWithParams(params *GetFolderByIDParams, opts ...ClientOption) (*GetFolderByIDOK, error)
 
-	GetFolderByUID(params *GetFolderByUIDParams, opts ...ClientOption) (*GetFolderByUIDOK, error)
+	GetFolderByUID(folderUID string, opts ...ClientOption) (*GetFolderByUIDOK, error)
+	GetFolderByUIDWithParams(params *GetFolderByUIDParams, opts ...ClientOption) (*GetFolderByUIDOK, error)
 
-	GetFolderDescendantCounts(params *GetFolderDescendantCountsParams, opts ...ClientOption) (*GetFolderDescendantCountsOK, error)
+	GetFolderDescendantCounts(folderUID string, opts ...ClientOption) (*GetFolderDescendantCountsOK, error)
+	GetFolderDescendantCountsWithParams(params *GetFolderDescendantCountsParams, opts ...ClientOption) (*GetFolderDescendantCountsOK, error)
 
 	GetFolders(params *GetFoldersParams, opts ...ClientOption) (*GetFoldersOK, error)
 
-	MoveFolder(params *MoveFolderParams, opts ...ClientOption) (*MoveFolderOK, error)
+	MoveFolder(folderUID string, body *models.MoveFolderCommand, opts ...ClientOption) (*MoveFolderOK, error)
+	MoveFolderWithParams(params *MoveFolderParams, opts ...ClientOption) (*MoveFolderOK, error)
 
-	UpdateFolder(params *UpdateFolderParams, opts ...ClientOption) (*UpdateFolderOK, error)
+	UpdateFolder(folderUID string, body *models.UpdateFolderCommand, opts ...ClientOption) (*UpdateFolderOK, error)
+	UpdateFolderWithParams(params *UpdateFolderParams, opts ...ClientOption) (*UpdateFolderOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -54,7 +62,12 @@ CreateFolder creates folder
 
 If nested folders are enabled then it additionally expects the parent folder UID.
 */
-func (a *Client) CreateFolder(params *CreateFolderParams, opts ...ClientOption) (*CreateFolderOK, error) {
+func (a *Client) CreateFolder(body *models.CreateFolderCommand, opts ...ClientOption) (*CreateFolderOK, error) {
+	params := NewCreateFolderParams().WithBody(body)
+	return a.CreateFolderWithParams(params, opts...)
+}
+
+func (a *Client) CreateFolderWithParams(params *CreateFolderParams, opts ...ClientOption) (*CreateFolderOK, error) {
 	if params == nil {
 		params = NewCreateFolderParams()
 	}
@@ -91,12 +104,12 @@ func (a *Client) CreateFolder(params *CreateFolderParams, opts ...ClientOption) 
 }
 
 /*
-	DeleteFolder deletes folder
+DeleteFolder deletes folder
 
-	Deletes an existing folder identified by UID along with all dashboards (and their alerts) stored in the folder. This operation cannot be reverted.
-
+Deletes an existing folder identified by UID along with all dashboards (and their alerts) stored in the folder. This operation cannot be reverted.
 If nested folders are enabled then it also deletes all the subfolders.
 */
+
 func (a *Client) DeleteFolder(params *DeleteFolderParams, opts ...ClientOption) (*DeleteFolderOK, error) {
 	if params == nil {
 		params = NewDeleteFolderParams()
@@ -134,13 +147,17 @@ func (a *Client) DeleteFolder(params *DeleteFolderParams, opts ...ClientOption) 
 }
 
 /*
-	GetFolderByID gets folder by id
+GetFolderByID gets folder by id
 
-	Returns the folder identified by id. This is deprecated.
-
+Returns the folder identified by id. This is deprecated.
 Please refer to [updated API](#/folders/getFolderByUID) instead
 */
-func (a *Client) GetFolderByID(params *GetFolderByIDParams, opts ...ClientOption) (*GetFolderByIDOK, error) {
+func (a *Client) GetFolderByID(folderID int64, opts ...ClientOption) (*GetFolderByIDOK, error) {
+	params := NewGetFolderByIDParams().WithFolderID(folderID)
+	return a.GetFolderByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetFolderByIDWithParams(params *GetFolderByIDParams, opts ...ClientOption) (*GetFolderByIDOK, error) {
 	if params == nil {
 		params = NewGetFolderByIDParams()
 	}
@@ -179,7 +196,12 @@ func (a *Client) GetFolderByID(params *GetFolderByIDParams, opts ...ClientOption
 /*
 GetFolderByUID gets folder by uid
 */
-func (a *Client) GetFolderByUID(params *GetFolderByUIDParams, opts ...ClientOption) (*GetFolderByUIDOK, error) {
+func (a *Client) GetFolderByUID(folderUID string, opts ...ClientOption) (*GetFolderByUIDOK, error) {
+	params := NewGetFolderByUIDParams().WithFolderUID(folderUID)
+	return a.GetFolderByUIDWithParams(params, opts...)
+}
+
+func (a *Client) GetFolderByUIDWithParams(params *GetFolderByUIDParams, opts ...ClientOption) (*GetFolderByUIDOK, error) {
 	if params == nil {
 		params = NewGetFolderByUIDParams()
 	}
@@ -218,7 +240,12 @@ func (a *Client) GetFolderByUID(params *GetFolderByUIDParams, opts ...ClientOpti
 /*
 GetFolderDescendantCounts gets the count of each descendant of a folder by kind the folder is identified by UID
 */
-func (a *Client) GetFolderDescendantCounts(params *GetFolderDescendantCountsParams, opts ...ClientOption) (*GetFolderDescendantCountsOK, error) {
+func (a *Client) GetFolderDescendantCounts(folderUID string, opts ...ClientOption) (*GetFolderDescendantCountsOK, error) {
+	params := NewGetFolderDescendantCountsParams().WithFolderUID(folderUID)
+	return a.GetFolderDescendantCountsWithParams(params, opts...)
+}
+
+func (a *Client) GetFolderDescendantCountsWithParams(params *GetFolderDescendantCountsParams, opts ...ClientOption) (*GetFolderDescendantCountsOK, error) {
 	if params == nil {
 		params = NewGetFolderDescendantCountsParams()
 	}
@@ -255,15 +282,15 @@ func (a *Client) GetFolderDescendantCounts(params *GetFolderDescendantCountsPara
 }
 
 /*
-	GetFolders gets all folders
+GetFolders gets all folders
 
-	Returns all folders that the authenticated user has permission to view.
-
+Returns all folders that the authenticated user has permission to view.
 If nested folders are enabled, it expects an additional query parameter with the parent folder UID
 and returns the immediate subfolders that the authenticated user has permission to view.
 If the parameter is not supplied then it returns immediate subfolders under the root
 that the authenticated user has permission to view.
 */
+
 func (a *Client) GetFolders(params *GetFoldersParams, opts ...ClientOption) (*GetFoldersOK, error) {
 	if params == nil {
 		params = NewGetFoldersParams()
@@ -303,7 +330,12 @@ func (a *Client) GetFolders(params *GetFoldersParams, opts ...ClientOption) (*Ge
 /*
 MoveFolder moves folder
 */
-func (a *Client) MoveFolder(params *MoveFolderParams, opts ...ClientOption) (*MoveFolderOK, error) {
+func (a *Client) MoveFolder(folderUID string, body *models.MoveFolderCommand, opts ...ClientOption) (*MoveFolderOK, error) {
+	params := NewMoveFolderParams().WithBody(body).WithFolderUID(folderUID)
+	return a.MoveFolderWithParams(params, opts...)
+}
+
+func (a *Client) MoveFolderWithParams(params *MoveFolderParams, opts ...ClientOption) (*MoveFolderOK, error) {
 	if params == nil {
 		params = NewMoveFolderParams()
 	}
@@ -342,7 +374,12 @@ func (a *Client) MoveFolder(params *MoveFolderParams, opts ...ClientOption) (*Mo
 /*
 UpdateFolder updates folder
 */
-func (a *Client) UpdateFolder(params *UpdateFolderParams, opts ...ClientOption) (*UpdateFolderOK, error) {
+func (a *Client) UpdateFolder(folderUID string, body *models.UpdateFolderCommand, opts ...ClientOption) (*UpdateFolderOK, error) {
+	params := NewUpdateFolderParams().WithBody(body).WithFolderUID(folderUID)
+	return a.UpdateFolderWithParams(params, opts...)
+}
+
+func (a *Client) UpdateFolderWithParams(params *UpdateFolderParams, opts ...ClientOption) (*UpdateFolderOK, error) {
 	if params == nil {
 		params = NewUpdateFolderParams()
 	}

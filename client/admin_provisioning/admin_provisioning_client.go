@@ -46,14 +46,14 @@ type ClientService interface {
 }
 
 /*
-	AdminProvisioningReloadDashboards reloads dashboard provisioning configurations
+AdminProvisioningReloadDashboards reloads dashboard provisioning configurations
 
-	Reloads the provisioning config files for dashboards again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
-
+Reloads the provisioning config files for dashboards again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:dashboards`.
 */
 func (a *Client) AdminProvisioningReloadDashboards(opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error) {
-	return a.AdminProvisioningReloadDashboardsWithParams(nil, opts...)
+	params := NewAdminProvisioningReloadDashboardsParams()
+	return a.AdminProvisioningReloadDashboardsWithParams(params, opts...)
 }
 
 func (a *Client) AdminProvisioningReloadDashboardsWithParams(params *AdminProvisioningReloadDashboardsParams, opts ...ClientOption) (*AdminProvisioningReloadDashboardsOK, error) {
@@ -93,14 +93,14 @@ func (a *Client) AdminProvisioningReloadDashboardsWithParams(params *AdminProvis
 }
 
 /*
-	AdminProvisioningReloadDatasources reloads datasource provisioning configurations
+AdminProvisioningReloadDatasources reloads datasource provisioning configurations
 
-	Reloads the provisioning config files for datasources again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
-
+Reloads the provisioning config files for datasources again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:datasources`.
 */
 func (a *Client) AdminProvisioningReloadDatasources(opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error) {
-	return a.AdminProvisioningReloadDatasourcesWithParams(nil, opts...)
+	params := NewAdminProvisioningReloadDatasourcesParams()
+	return a.AdminProvisioningReloadDatasourcesWithParams(params, opts...)
 }
 
 func (a *Client) AdminProvisioningReloadDatasourcesWithParams(params *AdminProvisioningReloadDatasourcesParams, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error) {
@@ -140,14 +140,14 @@ func (a *Client) AdminProvisioningReloadDatasourcesWithParams(params *AdminProvi
 }
 
 /*
-	AdminProvisioningReloadNotifications reloads legacy alert notifier provisioning configurations
+AdminProvisioningReloadNotifications reloads legacy alert notifier provisioning configurations
 
-	Reloads the provisioning config files for legacy alert notifiers again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
-
+Reloads the provisioning config files for legacy alert notifiers again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:notifications`.
 */
 func (a *Client) AdminProvisioningReloadNotifications(opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
-	return a.AdminProvisioningReloadNotificationsWithParams(nil, opts...)
+	params := NewAdminProvisioningReloadNotificationsParams()
+	return a.AdminProvisioningReloadNotificationsWithParams(params, opts...)
 }
 
 func (a *Client) AdminProvisioningReloadNotificationsWithParams(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
@@ -187,14 +187,14 @@ func (a *Client) AdminProvisioningReloadNotificationsWithParams(params *AdminPro
 }
 
 /*
-	AdminProvisioningReloadPlugins reloads plugin provisioning configurations
+AdminProvisioningReloadPlugins reloads plugin provisioning configurations
 
-	Reloads the provisioning config files for plugins again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
-
+Reloads the provisioning config files for plugins again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:plugin`.
 */
 func (a *Client) AdminProvisioningReloadPlugins(opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error) {
-	return a.AdminProvisioningReloadPluginsWithParams(nil, opts...)
+	params := NewAdminProvisioningReloadPluginsParams()
+	return a.AdminProvisioningReloadPluginsWithParams(params, opts...)
 }
 
 func (a *Client) AdminProvisioningReloadPluginsWithParams(params *AdminProvisioningReloadPluginsParams, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error) {

@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new snapshots API client.
@@ -30,13 +32,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, opts ...ClientOption) (*CreateDashboardSnapshotOK, error)
+	CreateDashboardSnapshot(body *models.CreateDashboardSnapshotCommand, opts ...ClientOption) (*CreateDashboardSnapshotOK, error)
+	CreateDashboardSnapshotWithParams(params *CreateDashboardSnapshotParams, opts ...ClientOption) (*CreateDashboardSnapshotOK, error)
 
-	DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error)
+	DeleteDashboardSnapshot(key string, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error)
+	DeleteDashboardSnapshotWithParams(params *DeleteDashboardSnapshotParams, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error)
 
-	DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnapshotByDeleteKeyParams, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error)
+	DeleteDashboardSnapshotByDeleteKey(deleteKey string, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error)
+	DeleteDashboardSnapshotByDeleteKeyWithParams(params *DeleteDashboardSnapshotByDeleteKeyParams, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error)
 
-	GetDashboardSnapshot(params *GetDashboardSnapshotParams, opts ...ClientOption) (*GetDashboardSnapshotOK, error)
+	GetDashboardSnapshot(key string, opts ...ClientOption) (*GetDashboardSnapshotOK, error)
+	GetDashboardSnapshotWithParams(params *GetDashboardSnapshotParams, opts ...ClientOption) (*GetDashboardSnapshotOK, error)
 
 	GetSharingOptions(opts ...ClientOption) (*GetSharingOptionsOK, error)
 	GetSharingOptionsWithParams(params *GetSharingOptionsParams, opts ...ClientOption) (*GetSharingOptionsOK, error)
@@ -51,7 +57,12 @@ CreateDashboardSnapshot whens creating a snapshot using the API you have to prov
 
 Snapshot public mode should be enabled or authentication is required.
 */
-func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, opts ...ClientOption) (*CreateDashboardSnapshotOK, error) {
+func (a *Client) CreateDashboardSnapshot(body *models.CreateDashboardSnapshotCommand, opts ...ClientOption) (*CreateDashboardSnapshotOK, error) {
+	params := NewCreateDashboardSnapshotParams().WithBody(body)
+	return a.CreateDashboardSnapshotWithParams(params, opts...)
+}
+
+func (a *Client) CreateDashboardSnapshotWithParams(params *CreateDashboardSnapshotParams, opts ...ClientOption) (*CreateDashboardSnapshotOK, error) {
 	if params == nil {
 		params = NewCreateDashboardSnapshotParams()
 	}
@@ -90,7 +101,12 @@ func (a *Client) CreateDashboardSnapshot(params *CreateDashboardSnapshotParams, 
 /*
 DeleteDashboardSnapshot deletes snapshot by key
 */
-func (a *Client) DeleteDashboardSnapshot(params *DeleteDashboardSnapshotParams, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error) {
+func (a *Client) DeleteDashboardSnapshot(key string, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error) {
+	params := NewDeleteDashboardSnapshotParams().WithKey(key)
+	return a.DeleteDashboardSnapshotWithParams(params, opts...)
+}
+
+func (a *Client) DeleteDashboardSnapshotWithParams(params *DeleteDashboardSnapshotParams, opts ...ClientOption) (*DeleteDashboardSnapshotOK, error) {
 	if params == nil {
 		params = NewDeleteDashboardSnapshotParams()
 	}
@@ -131,7 +147,12 @@ DeleteDashboardSnapshotByDeleteKey deletes snapshot by delete key
 
 Snapshot public mode should be enabled or authentication is required.
 */
-func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnapshotByDeleteKeyParams, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error) {
+func (a *Client) DeleteDashboardSnapshotByDeleteKey(deleteKey string, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error) {
+	params := NewDeleteDashboardSnapshotByDeleteKeyParams().WithDeleteKey(deleteKey)
+	return a.DeleteDashboardSnapshotByDeleteKeyWithParams(params, opts...)
+}
+
+func (a *Client) DeleteDashboardSnapshotByDeleteKeyWithParams(params *DeleteDashboardSnapshotByDeleteKeyParams, opts ...ClientOption) (*DeleteDashboardSnapshotByDeleteKeyOK, error) {
 	if params == nil {
 		params = NewDeleteDashboardSnapshotByDeleteKeyParams()
 	}
@@ -170,7 +191,12 @@ func (a *Client) DeleteDashboardSnapshotByDeleteKey(params *DeleteDashboardSnaps
 /*
 GetDashboardSnapshot gets snapshot by key
 */
-func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, opts ...ClientOption) (*GetDashboardSnapshotOK, error) {
+func (a *Client) GetDashboardSnapshot(key string, opts ...ClientOption) (*GetDashboardSnapshotOK, error) {
+	params := NewGetDashboardSnapshotParams().WithKey(key)
+	return a.GetDashboardSnapshotWithParams(params, opts...)
+}
+
+func (a *Client) GetDashboardSnapshotWithParams(params *GetDashboardSnapshotParams, opts ...ClientOption) (*GetDashboardSnapshotOK, error) {
 	if params == nil {
 		params = NewGetDashboardSnapshotParams()
 	}
@@ -210,7 +236,8 @@ func (a *Client) GetDashboardSnapshot(params *GetDashboardSnapshotParams, opts .
 GetSharingOptions gets snapshot sharing settings
 */
 func (a *Client) GetSharingOptions(opts ...ClientOption) (*GetSharingOptionsOK, error) {
-	return a.GetSharingOptionsWithParams(nil, opts...)
+	params := NewGetSharingOptionsParams()
+	return a.GetSharingOptionsWithParams(params, opts...)
 }
 
 func (a *Client) GetSharingOptionsWithParams(params *GetSharingOptionsParams, opts ...ClientOption) (*GetSharingOptionsOK, error) {
@@ -252,6 +279,7 @@ func (a *Client) GetSharingOptionsWithParams(params *GetSharingOptionsParams, op
 /*
 SearchDashboardSnapshots lists snapshots
 */
+
 func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams, opts ...ClientOption) (*SearchDashboardSnapshotsOK, error) {
 	if params == nil {
 		params = NewSearchDashboardSnapshotsParams()

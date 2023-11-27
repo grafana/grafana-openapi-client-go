@@ -34,13 +34,17 @@ type ClientService interface {
 
 	CreateToken(params *CreateTokenParams, opts ...ClientOption) (*CreateTokenOK, error)
 
-	DeleteServiceAccount(params *DeleteServiceAccountParams, opts ...ClientOption) (*DeleteServiceAccountOK, error)
+	DeleteServiceAccount(serviceAccountID int64, opts ...ClientOption) (*DeleteServiceAccountOK, error)
+	DeleteServiceAccountWithParams(params *DeleteServiceAccountParams, opts ...ClientOption) (*DeleteServiceAccountOK, error)
 
-	DeleteToken(params *DeleteTokenParams, opts ...ClientOption) (*DeleteTokenOK, error)
+	DeleteToken(tokenID int64, serviceAccountID int64, opts ...ClientOption) (*DeleteTokenOK, error)
+	DeleteTokenWithParams(params *DeleteTokenParams, opts ...ClientOption) (*DeleteTokenOK, error)
 
-	ListTokens(params *ListTokensParams, opts ...ClientOption) (*ListTokensOK, error)
+	ListTokens(serviceAccountID int64, opts ...ClientOption) (*ListTokensOK, error)
+	ListTokensWithParams(params *ListTokensParams, opts ...ClientOption) (*ListTokensOK, error)
 
-	RetrieveServiceAccount(params *RetrieveServiceAccountParams, opts ...ClientOption) (*RetrieveServiceAccountOK, error)
+	RetrieveServiceAccount(serviceAccountID int64, opts ...ClientOption) (*RetrieveServiceAccountOK, error)
+	RetrieveServiceAccountWithParams(params *RetrieveServiceAccountParams, opts ...ClientOption) (*RetrieveServiceAccountOK, error)
 
 	SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAccountsWithPagingParams, opts ...ClientOption) (*SearchOrgServiceAccountsWithPagingOK, error)
 
@@ -50,14 +54,14 @@ type ClientService interface {
 }
 
 /*
-	CreateServiceAccount creates service account
+CreateServiceAccount creates service account
 
-	Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
-
+Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
 action: `serviceaccounts:write` scope: `serviceaccounts:*`
 
 Requires basic authentication and that the authenticated user is a Grafana Admin.
 */
+
 func (a *Client) CreateServiceAccount(params *CreateServiceAccountParams, opts ...ClientOption) (*CreateServiceAccountCreated, error) {
 	if params == nil {
 		params = NewCreateServiceAccountParams()
@@ -95,12 +99,12 @@ func (a *Client) CreateServiceAccount(params *CreateServiceAccountParams, opts .
 }
 
 /*
-	CreateToken creates new token adds a token to a service account
+CreateToken creates new token adds a token to a service account
 
-	Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
-
+Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
 action: `serviceaccounts:write` scope: `serviceaccounts:id:1` (single service account)
 */
+
 func (a *Client) CreateToken(params *CreateTokenParams, opts ...ClientOption) (*CreateTokenOK, error) {
 	if params == nil {
 		params = NewCreateTokenParams()
@@ -138,13 +142,17 @@ func (a *Client) CreateToken(params *CreateTokenParams, opts ...ClientOption) (*
 }
 
 /*
-	DeleteServiceAccount deletes service account
+DeleteServiceAccount deletes service account
 
-	Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
-
+Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
 action: `serviceaccounts:delete` scope: `serviceaccounts:id:1` (single service account)
 */
-func (a *Client) DeleteServiceAccount(params *DeleteServiceAccountParams, opts ...ClientOption) (*DeleteServiceAccountOK, error) {
+func (a *Client) DeleteServiceAccount(serviceAccountID int64, opts ...ClientOption) (*DeleteServiceAccountOK, error) {
+	params := NewDeleteServiceAccountParams().WithServiceAccountID(serviceAccountID)
+	return a.DeleteServiceAccountWithParams(params, opts...)
+}
+
+func (a *Client) DeleteServiceAccountWithParams(params *DeleteServiceAccountParams, opts ...ClientOption) (*DeleteServiceAccountOK, error) {
 	if params == nil {
 		params = NewDeleteServiceAccountParams()
 	}
@@ -181,15 +189,19 @@ func (a *Client) DeleteServiceAccount(params *DeleteServiceAccountParams, opts .
 }
 
 /*
-	DeleteToken deletes token deletes service account tokens
+DeleteToken deletes token deletes service account tokens
 
-	Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
-
+Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
 action: `serviceaccounts:write` scope: `serviceaccounts:id:1` (single service account)
 
 Requires basic authentication and that the authenticated user is a Grafana Admin.
 */
-func (a *Client) DeleteToken(params *DeleteTokenParams, opts ...ClientOption) (*DeleteTokenOK, error) {
+func (a *Client) DeleteToken(tokenID int64, serviceAccountID int64, opts ...ClientOption) (*DeleteTokenOK, error) {
+	params := NewDeleteTokenParams().WithServiceAccountID(serviceAccountID).WithTokenID(tokenID)
+	return a.DeleteTokenWithParams(params, opts...)
+}
+
+func (a *Client) DeleteTokenWithParams(params *DeleteTokenParams, opts ...ClientOption) (*DeleteTokenOK, error) {
 	if params == nil {
 		params = NewDeleteTokenParams()
 	}
@@ -226,15 +238,19 @@ func (a *Client) DeleteToken(params *DeleteTokenParams, opts ...ClientOption) (*
 }
 
 /*
-	ListTokens gets service account tokens
+ListTokens gets service account tokens
 
-	Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
-
+Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
 action: `serviceaccounts:read` scope: `global:serviceaccounts:id:1` (single service account)
 
 Requires basic authentication and that the authenticated user is a Grafana Admin.
 */
-func (a *Client) ListTokens(params *ListTokensParams, opts ...ClientOption) (*ListTokensOK, error) {
+func (a *Client) ListTokens(serviceAccountID int64, opts ...ClientOption) (*ListTokensOK, error) {
+	params := NewListTokensParams().WithServiceAccountID(serviceAccountID)
+	return a.ListTokensWithParams(params, opts...)
+}
+
+func (a *Client) ListTokensWithParams(params *ListTokensParams, opts ...ClientOption) (*ListTokensOK, error) {
 	if params == nil {
 		params = NewListTokensParams()
 	}
@@ -271,13 +287,17 @@ func (a *Client) ListTokens(params *ListTokensParams, opts ...ClientOption) (*Li
 }
 
 /*
-	RetrieveServiceAccount gets single serviceaccount by Id
+RetrieveServiceAccount gets single serviceaccount by Id
 
-	Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
-
+Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
 action: `serviceaccounts:read` scope: `serviceaccounts:id:1` (single service account)
 */
-func (a *Client) RetrieveServiceAccount(params *RetrieveServiceAccountParams, opts ...ClientOption) (*RetrieveServiceAccountOK, error) {
+func (a *Client) RetrieveServiceAccount(serviceAccountID int64, opts ...ClientOption) (*RetrieveServiceAccountOK, error) {
+	params := NewRetrieveServiceAccountParams().WithServiceAccountID(serviceAccountID)
+	return a.RetrieveServiceAccountWithParams(params, opts...)
+}
+
+func (a *Client) RetrieveServiceAccountWithParams(params *RetrieveServiceAccountParams, opts ...ClientOption) (*RetrieveServiceAccountOK, error) {
 	if params == nil {
 		params = NewRetrieveServiceAccountParams()
 	}
@@ -314,12 +334,12 @@ func (a *Client) RetrieveServiceAccount(params *RetrieveServiceAccountParams, op
 }
 
 /*
-	SearchOrgServiceAccountsWithPaging searches service accounts with paging
+SearchOrgServiceAccountsWithPaging searches service accounts with paging
 
-	Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
-
+Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
 action: `serviceaccounts:read` scope: `serviceaccounts:*`
 */
+
 func (a *Client) SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAccountsWithPagingParams, opts ...ClientOption) (*SearchOrgServiceAccountsWithPagingOK, error) {
 	if params == nil {
 		params = NewSearchOrgServiceAccountsWithPagingParams()
@@ -357,12 +377,12 @@ func (a *Client) SearchOrgServiceAccountsWithPaging(params *SearchOrgServiceAcco
 }
 
 /*
-	UpdateServiceAccount updates service account
+UpdateServiceAccount updates service account
 
-	Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
-
+Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation):
 action: `serviceaccounts:write` scope: `serviceaccounts:id:1` (single service account)
 */
+
 func (a *Client) UpdateServiceAccount(params *UpdateServiceAccountParams, opts ...ClientOption) (*UpdateServiceAccountOK, error) {
 	if params == nil {
 		params = NewUpdateServiceAccountParams()

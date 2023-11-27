@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new licensing API client.
@@ -30,7 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteLicenseToken(params *DeleteLicenseTokenParams, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error)
+	DeleteLicenseToken(body *models.DeleteTokenCommand, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error)
+	DeleteLicenseTokenWithParams(params *DeleteLicenseTokenParams, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error)
 
 	GetCustomPermissionsCSV(opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
 	GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
@@ -44,9 +47,11 @@ type ClientService interface {
 	GetStatus(opts ...ClientOption) (*GetStatusOK, error)
 	GetStatusWithParams(params *GetStatusParams, opts ...ClientOption) (*GetStatusOK, error)
 
-	PostLicenseToken(params *PostLicenseTokenParams, opts ...ClientOption) (*PostLicenseTokenOK, error)
+	PostLicenseToken(body *models.DeleteTokenCommand, opts ...ClientOption) (*PostLicenseTokenOK, error)
+	PostLicenseTokenWithParams(params *PostLicenseTokenParams, opts ...ClientOption) (*PostLicenseTokenOK, error)
 
-	PostRenewLicenseToken(params *PostRenewLicenseTokenParams, opts ...ClientOption) (*PostRenewLicenseTokenOK, error)
+	PostRenewLicenseToken(body interface{}, opts ...ClientOption) (*PostRenewLicenseTokenOK, error)
+	PostRenewLicenseTokenWithParams(params *PostRenewLicenseTokenParams, opts ...ClientOption) (*PostRenewLicenseTokenOK, error)
 
 	RefreshLicenseStats(opts ...ClientOption) (*RefreshLicenseStatsOK, error)
 	RefreshLicenseStatsWithParams(params *RefreshLicenseStatsParams, opts ...ClientOption) (*RefreshLicenseStatsOK, error)
@@ -55,13 +60,18 @@ type ClientService interface {
 }
 
 /*
-	DeleteLicenseToken removes license from database
+DeleteLicenseToken removes license from database
 
-	Removes the license stored in the Grafana database. Available in Grafana Enterprise v7.4+.
+Removes the license stored in the Grafana database. Available in Grafana Enterprise v7.4+.
 
 You need to have a permission with action `licensing:delete`.
 */
-func (a *Client) DeleteLicenseToken(params *DeleteLicenseTokenParams, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error) {
+func (a *Client) DeleteLicenseToken(body *models.DeleteTokenCommand, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error) {
+	params := NewDeleteLicenseTokenParams().WithBody(body)
+	return a.DeleteLicenseTokenWithParams(params, opts...)
+}
+
+func (a *Client) DeleteLicenseTokenWithParams(params *DeleteLicenseTokenParams, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error) {
 	if params == nil {
 		params = NewDeleteLicenseTokenParams()
 	}
@@ -103,7 +113,8 @@ GetCustomPermissionsCSV gets custom permissions report in CSV format
 You need to have a permission with action `licensing.reports:read`.
 */
 func (a *Client) GetCustomPermissionsCSV(opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
-	return a.GetCustomPermissionsCSVWithParams(nil, opts...)
+	params := NewGetCustomPermissionsCSVParams()
+	return a.GetCustomPermissionsCSVWithParams(params, opts...)
 }
 
 func (a *Client) GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
@@ -148,7 +159,8 @@ GetCustomPermissionsReport gets custom permissions report
 You need to have a permission with action `licensing.reports:read`.
 */
 func (a *Client) GetCustomPermissionsReport(opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
-	return a.GetCustomPermissionsReportWithParams(nil, opts...)
+	params := NewGetCustomPermissionsReportParams()
+	return a.GetCustomPermissionsReportWithParams(params, opts...)
 }
 
 func (a *Client) GetCustomPermissionsReportWithParams(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
@@ -193,7 +205,8 @@ GetLicenseToken gets license token
 You need to have a permission with action `licensing:read`.
 */
 func (a *Client) GetLicenseToken(opts ...ClientOption) (*GetLicenseTokenOK, error) {
-	return a.GetLicenseTokenWithParams(nil, opts...)
+	params := NewGetLicenseTokenParams()
+	return a.GetLicenseTokenWithParams(params, opts...)
 }
 
 func (a *Client) GetLicenseTokenWithParams(params *GetLicenseTokenParams, opts ...ClientOption) (*GetLicenseTokenOK, error) {
@@ -236,7 +249,8 @@ func (a *Client) GetLicenseTokenWithParams(params *GetLicenseTokenParams, opts .
 GetStatus checks license availability
 */
 func (a *Client) GetStatus(opts ...ClientOption) (*GetStatusOK, error) {
-	return a.GetStatusWithParams(nil, opts...)
+	params := NewGetStatusParams()
+	return a.GetStatusWithParams(params, opts...)
 }
 
 func (a *Client) GetStatusWithParams(params *GetStatusParams, opts ...ClientOption) (*GetStatusOK, error) {
@@ -280,7 +294,12 @@ PostLicenseToken creates license token
 
 You need to have a permission with action `licensing:update`.
 */
-func (a *Client) PostLicenseToken(params *PostLicenseTokenParams, opts ...ClientOption) (*PostLicenseTokenOK, error) {
+func (a *Client) PostLicenseToken(body *models.DeleteTokenCommand, opts ...ClientOption) (*PostLicenseTokenOK, error) {
+	params := NewPostLicenseTokenParams().WithBody(body)
+	return a.PostLicenseTokenWithParams(params, opts...)
+}
+
+func (a *Client) PostLicenseTokenWithParams(params *PostLicenseTokenParams, opts ...ClientOption) (*PostLicenseTokenOK, error) {
 	if params == nil {
 		params = NewPostLicenseTokenParams()
 	}
@@ -317,13 +336,18 @@ func (a *Client) PostLicenseToken(params *PostLicenseTokenParams, opts ...Client
 }
 
 /*
-	PostRenewLicenseToken manuallies force license refresh
+PostRenewLicenseToken manuallies force license refresh
 
-	Manually ask license issuer for a new token. Available in Grafana Enterprise v7.4+.
+Manually ask license issuer for a new token. Available in Grafana Enterprise v7.4+.
 
 You need to have a permission with action `licensing:update`.
 */
-func (a *Client) PostRenewLicenseToken(params *PostRenewLicenseTokenParams, opts ...ClientOption) (*PostRenewLicenseTokenOK, error) {
+func (a *Client) PostRenewLicenseToken(body interface{}, opts ...ClientOption) (*PostRenewLicenseTokenOK, error) {
+	params := NewPostRenewLicenseTokenParams().WithBody(body)
+	return a.PostRenewLicenseTokenWithParams(params, opts...)
+}
+
+func (a *Client) PostRenewLicenseTokenWithParams(params *PostRenewLicenseTokenParams, opts ...ClientOption) (*PostRenewLicenseTokenOK, error) {
 	if params == nil {
 		params = NewPostRenewLicenseTokenParams()
 	}
@@ -365,7 +389,8 @@ RefreshLicenseStats refreshes license stats
 You need to have a permission with action `licensing:read`.
 */
 func (a *Client) RefreshLicenseStats(opts ...ClientOption) (*RefreshLicenseStatsOK, error) {
-	return a.RefreshLicenseStatsWithParams(nil, opts...)
+	params := NewRefreshLicenseStatsParams()
+	return a.RefreshLicenseStatsWithParams(params, opts...)
 }
 
 func (a *Client) RefreshLicenseStatsWithParams(params *RefreshLicenseStatsParams, opts ...ClientOption) (*RefreshLicenseStatsOK, error) {

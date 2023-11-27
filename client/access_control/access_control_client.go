@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new access control API client.
@@ -30,38 +32,50 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddTeamRole(params *AddTeamRoleParams, opts ...ClientOption) (*AddTeamRoleOK, error)
+	AddTeamRole(teamID int64, body *models.AddTeamRoleCommand, opts ...ClientOption) (*AddTeamRoleOK, error)
+	AddTeamRoleWithParams(params *AddTeamRoleParams, opts ...ClientOption) (*AddTeamRoleOK, error)
 
-	AddUserRole(params *AddUserRoleParams, opts ...ClientOption) (*AddUserRoleOK, error)
+	AddUserRole(userID int64, body *models.AddUserRoleCommand, opts ...ClientOption) (*AddUserRoleOK, error)
+	AddUserRoleWithParams(params *AddUserRoleParams, opts ...ClientOption) (*AddUserRoleOK, error)
 
-	CreateRole(params *CreateRoleParams, opts ...ClientOption) (*CreateRoleCreated, error)
+	CreateRole(body *models.CreateRoleForm, opts ...ClientOption) (*CreateRoleCreated, error)
+	CreateRoleWithParams(params *CreateRoleParams, opts ...ClientOption) (*CreateRoleCreated, error)
 
 	DeleteRole(params *DeleteRoleParams, opts ...ClientOption) (*DeleteRoleOK, error)
 
 	GetAccessControlStatus(opts ...ClientOption) (*GetAccessControlStatusOK, error)
 	GetAccessControlStatusWithParams(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error)
 
-	GetRole(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error)
+	GetRole(roleUID string, opts ...ClientOption) (*GetRoleOK, error)
+	GetRoleWithParams(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error)
 
-	GetRoleAssignments(params *GetRoleAssignmentsParams, opts ...ClientOption) (*GetRoleAssignmentsOK, error)
+	GetRoleAssignments(roleUID string, opts ...ClientOption) (*GetRoleAssignmentsOK, error)
+	GetRoleAssignmentsWithParams(params *GetRoleAssignmentsParams, opts ...ClientOption) (*GetRoleAssignmentsOK, error)
 
 	ListRoles(params *ListRolesParams, opts ...ClientOption) (*ListRolesOK, error)
 
-	ListTeamRoles(params *ListTeamRolesParams, opts ...ClientOption) (*ListTeamRolesOK, error)
+	ListTeamRoles(teamID int64, opts ...ClientOption) (*ListTeamRolesOK, error)
+	ListTeamRolesWithParams(params *ListTeamRolesParams, opts ...ClientOption) (*ListTeamRolesOK, error)
 
-	ListUserRoles(params *ListUserRolesParams, opts ...ClientOption) (*ListUserRolesOK, error)
+	ListUserRoles(userID int64, opts ...ClientOption) (*ListUserRolesOK, error)
+	ListUserRolesWithParams(params *ListUserRolesParams, opts ...ClientOption) (*ListUserRolesOK, error)
 
-	RemoveTeamRole(params *RemoveTeamRoleParams, opts ...ClientOption) (*RemoveTeamRoleOK, error)
+	RemoveTeamRole(teamID int64, roleUID string, opts ...ClientOption) (*RemoveTeamRoleOK, error)
+	RemoveTeamRoleWithParams(params *RemoveTeamRoleParams, opts ...ClientOption) (*RemoveTeamRoleOK, error)
 
 	RemoveUserRole(params *RemoveUserRoleParams, opts ...ClientOption) (*RemoveUserRoleOK, error)
 
-	SetRoleAssignments(params *SetRoleAssignmentsParams, opts ...ClientOption) (*SetRoleAssignmentsOK, error)
+	SetRoleAssignments(roleUID string, body *models.SetRoleAssignmentsCommand, opts ...ClientOption) (*SetRoleAssignmentsOK, error)
+	SetRoleAssignmentsWithParams(params *SetRoleAssignmentsParams, opts ...ClientOption) (*SetRoleAssignmentsOK, error)
 
-	SetTeamRoles(params *SetTeamRolesParams, opts ...ClientOption) (*SetTeamRolesOK, error)
+	SetTeamRoles(teamID int64, opts ...ClientOption) (*SetTeamRolesOK, error)
+	SetTeamRolesWithParams(params *SetTeamRolesParams, opts ...ClientOption) (*SetTeamRolesOK, error)
 
-	SetUserRoles(params *SetUserRolesParams, opts ...ClientOption) (*SetUserRolesOK, error)
+	SetUserRoles(userID int64, body *models.SetUserRolesCommand, opts ...ClientOption) (*SetUserRolesOK, error)
+	SetUserRolesWithParams(params *SetUserRolesParams, opts ...ClientOption) (*SetUserRolesOK, error)
 
-	UpdateRole(params *UpdateRoleParams, opts ...ClientOption) (*UpdateRoleOK, error)
+	UpdateRole(roleUID string, body *models.UpdateRoleCommand, opts ...ClientOption) (*UpdateRoleOK, error)
+	UpdateRoleWithParams(params *UpdateRoleParams, opts ...ClientOption) (*UpdateRoleOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -71,7 +85,12 @@ AddTeamRole adds team role
 
 You need to have a permission with action `teams.roles:add` and scope `permissions:type:delegate`.
 */
-func (a *Client) AddTeamRole(params *AddTeamRoleParams, opts ...ClientOption) (*AddTeamRoleOK, error) {
+func (a *Client) AddTeamRole(teamID int64, body *models.AddTeamRoleCommand, opts ...ClientOption) (*AddTeamRoleOK, error) {
+	params := NewAddTeamRoleParams().WithBody(body).WithTeamID(teamID)
+	return a.AddTeamRoleWithParams(params, opts...)
+}
+
+func (a *Client) AddTeamRoleWithParams(params *AddTeamRoleParams, opts ...ClientOption) (*AddTeamRoleOK, error) {
 	if params == nil {
 		params = NewAddTeamRoleParams()
 	}
@@ -108,13 +127,18 @@ func (a *Client) AddTeamRole(params *AddTeamRoleParams, opts ...ClientOption) (*
 }
 
 /*
-	AddUserRole adds a user role assignment
+AddUserRole adds a user role assignment
 
-	Assign a role to a specific user. For bulk updates consider Set user role assignments.
+Assign a role to a specific user. For bulk updates consider Set user role assignments.
 
 You need to have a permission with action `users.roles:add` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only assign roles which have same, or a subset of permissions which the user has. For example, if a user does not have required permissions for creating users, they won’t be able to assign a role which will allow to do that. This is done to prevent escalation of privileges.
 */
-func (a *Client) AddUserRole(params *AddUserRoleParams, opts ...ClientOption) (*AddUserRoleOK, error) {
+func (a *Client) AddUserRole(userID int64, body *models.AddUserRoleCommand, opts ...ClientOption) (*AddUserRoleOK, error) {
+	params := NewAddUserRoleParams().WithBody(body).WithUserID(userID)
+	return a.AddUserRoleWithParams(params, opts...)
+}
+
+func (a *Client) AddUserRoleWithParams(params *AddUserRoleParams, opts ...ClientOption) (*AddUserRoleOK, error) {
 	if params == nil {
 		params = NewAddUserRoleParams()
 	}
@@ -151,14 +175,19 @@ func (a *Client) AddUserRole(params *AddUserRoleParams, opts ...ClientOption) (*
 }
 
 /*
-	CreateRole creates a new custom role
+CreateRole creates a new custom role
 
-	Creates a new custom role and maps given permissions to that role. Note that roles with the same prefix as Fixed Roles can’t be created.
+Creates a new custom role and maps given permissions to that role. Note that roles with the same prefix as Fixed Roles can’t be created.
 
 You need to have a permission with action `roles:write` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only create custom roles with the same, or a subset of permissions which the user has.
 For example, if a user does not have required permissions for creating users, they won’t be able to create a custom role which allows to do that. This is done to prevent escalation of privileges.
 */
-func (a *Client) CreateRole(params *CreateRoleParams, opts ...ClientOption) (*CreateRoleCreated, error) {
+func (a *Client) CreateRole(body *models.CreateRoleForm, opts ...ClientOption) (*CreateRoleCreated, error) {
+	params := NewCreateRoleParams().WithBody(body)
+	return a.CreateRoleWithParams(params, opts...)
+}
+
+func (a *Client) CreateRoleWithParams(params *CreateRoleParams, opts ...ClientOption) (*CreateRoleCreated, error) {
 	if params == nil {
 		params = NewCreateRoleParams()
 	}
@@ -195,12 +224,13 @@ func (a *Client) CreateRole(params *CreateRoleParams, opts ...ClientOption) (*Cr
 }
 
 /*
-	DeleteRole deletes a custom role
+DeleteRole deletes a custom role
 
-	Delete a role with the given UID, and it’s permissions. If the role is assigned to a built-in role, the deletion operation will fail, unless force query param is set to true, and in that case all assignments will also be deleted.
+Delete a role with the given UID, and it’s permissions. If the role is assigned to a built-in role, the deletion operation will fail, unless force query param is set to true, and in that case all assignments will also be deleted.
 
 You need to have a permission with action `roles:delete` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only delete a custom role with the same, or a subset of permissions which the user has. For example, if a user does not have required permissions for creating users, they won’t be able to delete a custom role which allows to do that.
 */
+
 func (a *Client) DeleteRole(params *DeleteRoleParams, opts ...ClientOption) (*DeleteRoleOK, error) {
 	if params == nil {
 		params = NewDeleteRoleParams()
@@ -238,14 +268,15 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, opts ...ClientOption) (*De
 }
 
 /*
-	GetAccessControlStatus gets status
+GetAccessControlStatus gets status
 
-	Returns an indicator to check if fine-grained access control is enabled or not.
+Returns an indicator to check if fine-grained access control is enabled or not.
 
 You need to have a permission with action `status:accesscontrol` and scope `services:accesscontrol`.
 */
 func (a *Client) GetAccessControlStatus(opts ...ClientOption) (*GetAccessControlStatusOK, error) {
-	return a.GetAccessControlStatusWithParams(nil, opts...)
+	params := NewGetAccessControlStatusParams()
+	return a.GetAccessControlStatusWithParams(params, opts...)
 }
 
 func (a *Client) GetAccessControlStatusWithParams(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error) {
@@ -285,13 +316,18 @@ func (a *Client) GetAccessControlStatusWithParams(params *GetAccessControlStatus
 }
 
 /*
-	GetRole gets a role
+GetRole gets a role
 
-	Get a role for the given UID.
+Get a role for the given UID.
 
 You need to have a permission with action `roles:read` and scope `roles:*`.
 */
-func (a *Client) GetRole(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error) {
+func (a *Client) GetRole(roleUID string, opts ...ClientOption) (*GetRoleOK, error) {
+	params := NewGetRoleParams().WithRoleUID(roleUID)
+	return a.GetRoleWithParams(params, opts...)
+}
+
+func (a *Client) GetRoleWithParams(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error) {
 	if params == nil {
 		params = NewGetRoleParams()
 	}
@@ -328,13 +364,18 @@ func (a *Client) GetRole(params *GetRoleParams, opts ...ClientOption) (*GetRoleO
 }
 
 /*
-	GetRoleAssignments gets role assignments
+GetRoleAssignments gets role assignments
 
-	Get role assignments for the role with the given UID.
+Get role assignments for the role with the given UID.
 
 You need to have a permission with action `teams.roles:list` and scope `teams:id:*` and `users.roles:list` and scope `users:id:*`.
 */
-func (a *Client) GetRoleAssignments(params *GetRoleAssignmentsParams, opts ...ClientOption) (*GetRoleAssignmentsOK, error) {
+func (a *Client) GetRoleAssignments(roleUID string, opts ...ClientOption) (*GetRoleAssignmentsOK, error) {
+	params := NewGetRoleAssignmentsParams().WithRoleUID(roleUID)
+	return a.GetRoleAssignmentsWithParams(params, opts...)
+}
+
+func (a *Client) GetRoleAssignmentsWithParams(params *GetRoleAssignmentsParams, opts ...ClientOption) (*GetRoleAssignmentsOK, error) {
 	if params == nil {
 		params = NewGetRoleAssignmentsParams()
 	}
@@ -371,12 +412,13 @@ func (a *Client) GetRoleAssignments(params *GetRoleAssignmentsParams, opts ...Cl
 }
 
 /*
-	ListRoles gets all roles
+ListRoles gets all roles
 
-	Gets all existing roles. The response contains all global and organization local roles, for the organization which user is signed in.
+Gets all existing roles. The response contains all global and organization local roles, for the organization which user is signed in.
 
 You need to have a permission with action `roles:read` and scope `roles:*`.
 */
+
 func (a *Client) ListRoles(params *ListRolesParams, opts ...ClientOption) (*ListRolesOK, error) {
 	if params == nil {
 		params = NewListRolesParams()
@@ -418,7 +460,12 @@ ListTeamRoles gets team roles
 
 You need to have a permission with action `teams.roles:read` and scope `teams:id:<team ID>`.
 */
-func (a *Client) ListTeamRoles(params *ListTeamRolesParams, opts ...ClientOption) (*ListTeamRolesOK, error) {
+func (a *Client) ListTeamRoles(teamID int64, opts ...ClientOption) (*ListTeamRolesOK, error) {
+	params := NewListTeamRolesParams().WithTeamID(teamID)
+	return a.ListTeamRolesWithParams(params, opts...)
+}
+
+func (a *Client) ListTeamRolesWithParams(params *ListTeamRolesParams, opts ...ClientOption) (*ListTeamRolesOK, error) {
 	if params == nil {
 		params = NewListTeamRolesParams()
 	}
@@ -455,13 +502,18 @@ func (a *Client) ListTeamRoles(params *ListTeamRolesParams, opts ...ClientOption
 }
 
 /*
-	ListUserRoles lists roles assigned to a user
+ListUserRoles lists roles assigned to a user
 
-	Lists the roles that have been directly assigned to a given user. The list does not include built-in roles (Viewer, Editor, Admin or Grafana Admin), and it does not include roles that have been inherited from a team.
+Lists the roles that have been directly assigned to a given user. The list does not include built-in roles (Viewer, Editor, Admin or Grafana Admin), and it does not include roles that have been inherited from a team.
 
 You need to have a permission with action `users.roles:read` and scope `users:id:<user ID>`.
 */
-func (a *Client) ListUserRoles(params *ListUserRolesParams, opts ...ClientOption) (*ListUserRolesOK, error) {
+func (a *Client) ListUserRoles(userID int64, opts ...ClientOption) (*ListUserRolesOK, error) {
+	params := NewListUserRolesParams().WithUserID(userID)
+	return a.ListUserRolesWithParams(params, opts...)
+}
+
+func (a *Client) ListUserRolesWithParams(params *ListUserRolesParams, opts ...ClientOption) (*ListUserRolesOK, error) {
 	if params == nil {
 		params = NewListUserRolesParams()
 	}
@@ -502,7 +554,12 @@ RemoveTeamRole removes team role
 
 You need to have a permission with action `teams.roles:remove` and scope `permissions:type:delegate`.
 */
-func (a *Client) RemoveTeamRole(params *RemoveTeamRoleParams, opts ...ClientOption) (*RemoveTeamRoleOK, error) {
+func (a *Client) RemoveTeamRole(teamID int64, roleUID string, opts ...ClientOption) (*RemoveTeamRoleOK, error) {
+	params := NewRemoveTeamRoleParams().WithRoleUID(roleUID).WithTeamID(teamID)
+	return a.RemoveTeamRoleWithParams(params, opts...)
+}
+
+func (a *Client) RemoveTeamRoleWithParams(params *RemoveTeamRoleParams, opts ...ClientOption) (*RemoveTeamRoleOK, error) {
 	if params == nil {
 		params = NewRemoveTeamRoleParams()
 	}
@@ -539,12 +596,13 @@ func (a *Client) RemoveTeamRole(params *RemoveTeamRoleParams, opts ...ClientOpti
 }
 
 /*
-	RemoveUserRole removes a user role assignment
+RemoveUserRole removes a user role assignment
 
-	Revoke a role from a user. For bulk updates consider Set user role assignments.
+Revoke a role from a user. For bulk updates consider Set user role assignments.
 
 You need to have a permission with action `users.roles:remove` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only unassign roles which have same, or a subset of permissions which the user has. For example, if a user does not have required permissions for creating users, they won’t be able to unassign a role which will allow to do that. This is done to prevent escalation of privileges.
 */
+
 func (a *Client) RemoveUserRole(params *RemoveUserRoleParams, opts ...ClientOption) (*RemoveUserRoleOK, error) {
 	if params == nil {
 		params = NewRemoveUserRoleParams()
@@ -582,13 +640,18 @@ func (a *Client) RemoveUserRole(params *RemoveUserRoleParams, opts ...ClientOpti
 }
 
 /*
-	SetRoleAssignments sets role assignments
+SetRoleAssignments sets role assignments
 
-	Set role assignments for the role with the given UID.
+Set role assignments for the role with the given UID.
 
 You need to have a permission with action `teams.roles:add` and `teams.roles:remove` and scope `permissions:type:delegate`, and `users.roles:add` and `users.roles:remove` and scope `permissions:type:delegate`.
 */
-func (a *Client) SetRoleAssignments(params *SetRoleAssignmentsParams, opts ...ClientOption) (*SetRoleAssignmentsOK, error) {
+func (a *Client) SetRoleAssignments(roleUID string, body *models.SetRoleAssignmentsCommand, opts ...ClientOption) (*SetRoleAssignmentsOK, error) {
+	params := NewSetRoleAssignmentsParams().WithBody(body).WithRoleUID(roleUID)
+	return a.SetRoleAssignmentsWithParams(params, opts...)
+}
+
+func (a *Client) SetRoleAssignmentsWithParams(params *SetRoleAssignmentsParams, opts ...ClientOption) (*SetRoleAssignmentsOK, error) {
 	if params == nil {
 		params = NewSetRoleAssignmentsParams()
 	}
@@ -629,7 +692,12 @@ SetTeamRoles updates team role
 
 You need to have a permission with action `teams.roles:add` and `teams.roles:remove` and scope `permissions:type:delegate` for each.
 */
-func (a *Client) SetTeamRoles(params *SetTeamRolesParams, opts ...ClientOption) (*SetTeamRolesOK, error) {
+func (a *Client) SetTeamRoles(teamID int64, opts ...ClientOption) (*SetTeamRolesOK, error) {
+	params := NewSetTeamRolesParams().WithTeamID(teamID)
+	return a.SetTeamRolesWithParams(params, opts...)
+}
+
+func (a *Client) SetTeamRolesWithParams(params *SetTeamRolesParams, opts ...ClientOption) (*SetTeamRolesOK, error) {
 	if params == nil {
 		params = NewSetTeamRolesParams()
 	}
@@ -666,15 +734,19 @@ func (a *Client) SetTeamRoles(params *SetTeamRolesParams, opts ...ClientOption) 
 }
 
 /*
-	SetUserRoles sets user role assignments
+SetUserRoles sets user role assignments
 
-	Update the user’s role assignments to match the provided set of UIDs. This will remove any assigned roles that aren’t in the request and add roles that are in the set but are not already assigned to the user.
-
+Update the user’s role assignments to match the provided set of UIDs. This will remove any assigned roles that aren’t in the request and add roles that are in the set but are not already assigned to the user.
 If you want to add or remove a single role, consider using Add a user role assignment or Remove a user role assignment instead.
 
 You need to have a permission with action `users.roles:add` and `users.roles:remove` and scope `permissions:type:delegate` for each. `permissions:type:delegate`  scope ensures that users can only assign or unassign roles which have same, or a subset of permissions which the user has. For example, if a user does not have required permissions for creating users, they won’t be able to assign or unassign a role which will allow to do that. This is done to prevent escalation of privileges.
 */
-func (a *Client) SetUserRoles(params *SetUserRolesParams, opts ...ClientOption) (*SetUserRolesOK, error) {
+func (a *Client) SetUserRoles(userID int64, body *models.SetUserRolesCommand, opts ...ClientOption) (*SetUserRolesOK, error) {
+	params := NewSetUserRolesParams().WithBody(body).WithUserID(userID)
+	return a.SetUserRolesWithParams(params, opts...)
+}
+
+func (a *Client) SetUserRolesWithParams(params *SetUserRolesParams, opts ...ClientOption) (*SetUserRolesOK, error) {
 	if params == nil {
 		params = NewSetUserRolesParams()
 	}
@@ -715,7 +787,12 @@ UpdateRole updates a custom role
 
 You need to have a permission with action `roles:write` and scope `permissions:type:delegate`. `permissions:type:delegate` scope ensures that users can only create custom roles with the same, or a subset of permissions which the user has.
 */
-func (a *Client) UpdateRole(params *UpdateRoleParams, opts ...ClientOption) (*UpdateRoleOK, error) {
+func (a *Client) UpdateRole(roleUID string, body *models.UpdateRoleCommand, opts ...ClientOption) (*UpdateRoleOK, error) {
+	params := NewUpdateRoleParams().WithBody(body).WithRoleUID(roleUID)
+	return a.UpdateRoleWithParams(params, opts...)
+}
+
+func (a *Client) UpdateRoleWithParams(params *UpdateRoleParams, opts ...ClientOption) (*UpdateRoleOK, error) {
 	if params == nil {
 		params = NewUpdateRoleParams()
 	}

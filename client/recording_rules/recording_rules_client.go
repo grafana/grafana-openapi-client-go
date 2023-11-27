@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new recording rules API client.
@@ -30,11 +32,14 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateRecordingRule(params *CreateRecordingRuleParams, opts ...ClientOption) (*CreateRecordingRuleOK, error)
+	CreateRecordingRule(body *models.RecordingRuleJSON, opts ...ClientOption) (*CreateRecordingRuleOK, error)
+	CreateRecordingRuleWithParams(params *CreateRecordingRuleParams, opts ...ClientOption) (*CreateRecordingRuleOK, error)
 
-	CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWriteTargetParams, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error)
+	CreateRecordingRuleWriteTarget(body *models.PrometheusRemoteWriteTargetJSON, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error)
+	CreateRecordingRuleWriteTargetWithParams(params *CreateRecordingRuleWriteTargetParams, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error)
 
-	DeleteRecordingRule(params *DeleteRecordingRuleParams, opts ...ClientOption) (*DeleteRecordingRuleOK, error)
+	DeleteRecordingRule(recordingRuleID int64, opts ...ClientOption) (*DeleteRecordingRuleOK, error)
+	DeleteRecordingRuleWithParams(params *DeleteRecordingRuleParams, opts ...ClientOption) (*DeleteRecordingRuleOK, error)
 
 	DeleteRecordingRuleWriteTarget(opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error)
 	DeleteRecordingRuleWriteTargetWithParams(params *DeleteRecordingRuleWriteTargetParams, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error)
@@ -45,9 +50,11 @@ type ClientService interface {
 	ListRecordingRules(opts ...ClientOption) (*ListRecordingRulesOK, error)
 	ListRecordingRulesWithParams(params *ListRecordingRulesParams, opts ...ClientOption) (*ListRecordingRulesOK, error)
 
-	TestCreateRecordingRule(params *TestCreateRecordingRuleParams, opts ...ClientOption) (*TestCreateRecordingRuleOK, error)
+	TestCreateRecordingRule(body *models.RecordingRuleJSON, opts ...ClientOption) (*TestCreateRecordingRuleOK, error)
+	TestCreateRecordingRuleWithParams(params *TestCreateRecordingRuleParams, opts ...ClientOption) (*TestCreateRecordingRuleOK, error)
 
-	UpdateRecordingRule(params *UpdateRecordingRuleParams, opts ...ClientOption) (*UpdateRecordingRuleOK, error)
+	UpdateRecordingRule(body *models.RecordingRuleJSON, opts ...ClientOption) (*UpdateRecordingRuleOK, error)
+	UpdateRecordingRuleWithParams(params *UpdateRecordingRuleParams, opts ...ClientOption) (*UpdateRecordingRuleOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -55,7 +62,12 @@ type ClientService interface {
 /*
 CreateRecordingRule creates a recording rule that is then registered and started
 */
-func (a *Client) CreateRecordingRule(params *CreateRecordingRuleParams, opts ...ClientOption) (*CreateRecordingRuleOK, error) {
+func (a *Client) CreateRecordingRule(body *models.RecordingRuleJSON, opts ...ClientOption) (*CreateRecordingRuleOK, error) {
+	params := NewCreateRecordingRuleParams().WithBody(body)
+	return a.CreateRecordingRuleWithParams(params, opts...)
+}
+
+func (a *Client) CreateRecordingRuleWithParams(params *CreateRecordingRuleParams, opts ...ClientOption) (*CreateRecordingRuleOK, error) {
 	if params == nil {
 		params = NewCreateRecordingRuleParams()
 	}
@@ -96,7 +108,12 @@ CreateRecordingRuleWriteTarget creates a remote write target
 
 It returns a 422 if there is not an existing prometheus data source configured.
 */
-func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWriteTargetParams, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error) {
+func (a *Client) CreateRecordingRuleWriteTarget(body *models.PrometheusRemoteWriteTargetJSON, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error) {
+	params := NewCreateRecordingRuleWriteTargetParams().WithBody(body)
+	return a.CreateRecordingRuleWriteTargetWithParams(params, opts...)
+}
+
+func (a *Client) CreateRecordingRuleWriteTargetWithParams(params *CreateRecordingRuleWriteTargetParams, opts ...ClientOption) (*CreateRecordingRuleWriteTargetOK, error) {
 	if params == nil {
 		params = NewCreateRecordingRuleWriteTargetParams()
 	}
@@ -135,7 +152,12 @@ func (a *Client) CreateRecordingRuleWriteTarget(params *CreateRecordingRuleWrite
 /*
 DeleteRecordingRule deletes removes the rule from the registry and stops it
 */
-func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, opts ...ClientOption) (*DeleteRecordingRuleOK, error) {
+func (a *Client) DeleteRecordingRule(recordingRuleID int64, opts ...ClientOption) (*DeleteRecordingRuleOK, error) {
+	params := NewDeleteRecordingRuleParams().WithRecordingRuleID(recordingRuleID)
+	return a.DeleteRecordingRuleWithParams(params, opts...)
+}
+
+func (a *Client) DeleteRecordingRuleWithParams(params *DeleteRecordingRuleParams, opts ...ClientOption) (*DeleteRecordingRuleOK, error) {
 	if params == nil {
 		params = NewDeleteRecordingRuleParams()
 	}
@@ -175,7 +197,8 @@ func (a *Client) DeleteRecordingRule(params *DeleteRecordingRuleParams, opts ...
 DeleteRecordingRuleWriteTarget deletes the remote write target
 */
 func (a *Client) DeleteRecordingRuleWriteTarget(opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error) {
-	return a.DeleteRecordingRuleWriteTargetWithParams(nil, opts...)
+	params := NewDeleteRecordingRuleWriteTargetParams()
+	return a.DeleteRecordingRuleWriteTargetWithParams(params, opts...)
 }
 
 func (a *Client) DeleteRecordingRuleWriteTargetWithParams(params *DeleteRecordingRuleWriteTargetParams, opts ...ClientOption) (*DeleteRecordingRuleWriteTargetOK, error) {
@@ -218,7 +241,8 @@ func (a *Client) DeleteRecordingRuleWriteTargetWithParams(params *DeleteRecordin
 GetRecordingRuleWriteTarget returns the prometheus remote write target
 */
 func (a *Client) GetRecordingRuleWriteTarget(opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error) {
-	return a.GetRecordingRuleWriteTargetWithParams(nil, opts...)
+	params := NewGetRecordingRuleWriteTargetParams()
+	return a.GetRecordingRuleWriteTargetWithParams(params, opts...)
 }
 
 func (a *Client) GetRecordingRuleWriteTargetWithParams(params *GetRecordingRuleWriteTargetParams, opts ...ClientOption) (*GetRecordingRuleWriteTargetOK, error) {
@@ -261,7 +285,8 @@ func (a *Client) GetRecordingRuleWriteTargetWithParams(params *GetRecordingRuleW
 ListRecordingRules lists all rules in the database active or deleted
 */
 func (a *Client) ListRecordingRules(opts ...ClientOption) (*ListRecordingRulesOK, error) {
-	return a.ListRecordingRulesWithParams(nil, opts...)
+	params := NewListRecordingRulesParams()
+	return a.ListRecordingRulesWithParams(params, opts...)
 }
 
 func (a *Client) ListRecordingRulesWithParams(params *ListRecordingRulesParams, opts ...ClientOption) (*ListRecordingRulesOK, error) {
@@ -303,7 +328,12 @@ func (a *Client) ListRecordingRulesWithParams(params *ListRecordingRulesParams, 
 /*
 TestCreateRecordingRule tests a recording rule
 */
-func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, opts ...ClientOption) (*TestCreateRecordingRuleOK, error) {
+func (a *Client) TestCreateRecordingRule(body *models.RecordingRuleJSON, opts ...ClientOption) (*TestCreateRecordingRuleOK, error) {
+	params := NewTestCreateRecordingRuleParams().WithBody(body)
+	return a.TestCreateRecordingRuleWithParams(params, opts...)
+}
+
+func (a *Client) TestCreateRecordingRuleWithParams(params *TestCreateRecordingRuleParams, opts ...ClientOption) (*TestCreateRecordingRuleOK, error) {
 	if params == nil {
 		params = NewTestCreateRecordingRuleParams()
 	}
@@ -342,7 +372,12 @@ func (a *Client) TestCreateRecordingRule(params *TestCreateRecordingRuleParams, 
 /*
 UpdateRecordingRule updates the active status of a rule
 */
-func (a *Client) UpdateRecordingRule(params *UpdateRecordingRuleParams, opts ...ClientOption) (*UpdateRecordingRuleOK, error) {
+func (a *Client) UpdateRecordingRule(body *models.RecordingRuleJSON, opts ...ClientOption) (*UpdateRecordingRuleOK, error) {
+	params := NewUpdateRecordingRuleParams().WithBody(body)
+	return a.UpdateRecordingRuleWithParams(params, opts...)
+}
+
+func (a *Client) UpdateRecordingRuleWithParams(params *UpdateRecordingRuleParams, opts ...ClientOption) (*UpdateRecordingRuleOK, error) {
 	if params == nil {
 		params = NewUpdateRecordingRuleParams()
 	}

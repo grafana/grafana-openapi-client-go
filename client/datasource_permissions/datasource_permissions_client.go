@@ -32,25 +32,30 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	AddPermission(params *AddPermissionParams, opts ...ClientOption) (*AddPermissionOK, error)
 
-	DeletePermissions(params *DeletePermissionsParams, opts ...ClientOption) (*DeletePermissionsOK, error)
+	DeletePermissions(permissionID string, datasourceID string, opts ...ClientOption) (*DeletePermissionsOK, error)
+	DeletePermissionsWithParams(params *DeletePermissionsParams, opts ...ClientOption) (*DeletePermissionsOK, error)
 
-	DisablePermissions(params *DisablePermissionsParams, opts ...ClientOption) (*DisablePermissionsOK, error)
+	DisablePermissions(datasourceID string, opts ...ClientOption) (*DisablePermissionsOK, error)
+	DisablePermissionsWithParams(params *DisablePermissionsParams, opts ...ClientOption) (*DisablePermissionsOK, error)
 
-	EnablePermissions(params *EnablePermissionsParams, opts ...ClientOption) (*EnablePermissionsOK, error)
+	EnablePermissions(datasourceID string, opts ...ClientOption) (*EnablePermissionsOK, error)
+	EnablePermissionsWithParams(params *EnablePermissionsParams, opts ...ClientOption) (*EnablePermissionsOK, error)
 
-	GetAllPermissions(params *GetAllPermissionsParams, opts ...ClientOption) (*GetAllPermissionsOK, error)
+	GetAllPermissions(datasourceID string, opts ...ClientOption) (*GetAllPermissionsOK, error)
+	GetAllPermissionsWithParams(params *GetAllPermissionsParams, opts ...ClientOption) (*GetAllPermissionsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-	AddPermission adds permissions for a data source
+AddPermission adds permissions for a data source
 
-	You need to have a permission with action `datasources.permissions:read` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
+You need to have a permission with action `datasources.permissions:read` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 
 Deprecated: true.
 Deprecated. Please use POST /api/access-control/datasources/:uid/users/:id, /api/access-control/datasources/:uid/teams/:id or /api/access-control/datasources/:uid/buildInRoles/:id
 */
+
 func (a *Client) AddPermission(params *AddPermissionParams, opts ...ClientOption) (*AddPermissionOK, error) {
 	if params == nil {
 		params = NewAddPermissionParams()
@@ -88,16 +93,21 @@ func (a *Client) AddPermission(params *AddPermissionParams, opts ...ClientOption
 }
 
 /*
-	DeletePermissions removes permission for a data source
+DeletePermissions removes permission for a data source
 
-	Removes the permission with the given permissionId for the data source with the given id.
+Removes the permission with the given permissionId for the data source with the given id.
 
 You need to have a permission with action `datasources.permissions:delete` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 
 Deprecated: true.
 Deprecated. Please use POST /api/access-control/datasources/:uid/users/:id, /api/access-control/datasources/:uid/teams/:id or /api/access-control/datasources/:uid/buildInRoles/:id
 */
-func (a *Client) DeletePermissions(params *DeletePermissionsParams, opts ...ClientOption) (*DeletePermissionsOK, error) {
+func (a *Client) DeletePermissions(permissionID string, datasourceID string, opts ...ClientOption) (*DeletePermissionsOK, error) {
+	params := NewDeletePermissionsParams().WithDatasourceID(datasourceID).WithPermissionID(permissionID)
+	return a.DeletePermissionsWithParams(params, opts...)
+}
+
+func (a *Client) DeletePermissionsWithParams(params *DeletePermissionsParams, opts ...ClientOption) (*DeletePermissionsOK, error) {
 	if params == nil {
 		params = NewDeletePermissionsParams()
 	}
@@ -134,15 +144,20 @@ func (a *Client) DeletePermissions(params *DeletePermissionsParams, opts ...Clie
 }
 
 /*
-	DisablePermissions disables permissions for a data source
+DisablePermissions disables permissions for a data source
 
-	Disables permissions for the data source with the given id. All existing permissions will be removed and anyone will be able to query the data source.
+Disables permissions for the data source with the given id. All existing permissions will be removed and anyone will be able to query the data source.
 
 You need to have a permission with action `datasources.permissions:toggle` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 
 Deprecated: true.
 */
-func (a *Client) DisablePermissions(params *DisablePermissionsParams, opts ...ClientOption) (*DisablePermissionsOK, error) {
+func (a *Client) DisablePermissions(datasourceID string, opts ...ClientOption) (*DisablePermissionsOK, error) {
+	params := NewDisablePermissionsParams().WithDatasourceID(datasourceID)
+	return a.DisablePermissionsWithParams(params, opts...)
+}
+
+func (a *Client) DisablePermissionsWithParams(params *DisablePermissionsParams, opts ...ClientOption) (*DisablePermissionsOK, error) {
 	if params == nil {
 		params = NewDisablePermissionsParams()
 	}
@@ -179,10 +194,9 @@ func (a *Client) DisablePermissions(params *DisablePermissionsParams, opts ...Cl
 }
 
 /*
-	EnablePermissions enables permissions for a data source
+EnablePermissions enables permissions for a data source
 
-	Enables permissions for the data source with the given id.
-
+Enables permissions for the data source with the given id.
 No one except Org Admins will be able to query the data source until permissions have been added
 which permit certain users or teams to query the data source.
 
@@ -190,7 +204,12 @@ You need to have a permission with action `datasources.permissions:toggle` and s
 
 Deprecated: true.
 */
-func (a *Client) EnablePermissions(params *EnablePermissionsParams, opts ...ClientOption) (*EnablePermissionsOK, error) {
+func (a *Client) EnablePermissions(datasourceID string, opts ...ClientOption) (*EnablePermissionsOK, error) {
+	params := NewEnablePermissionsParams().WithDatasourceID(datasourceID)
+	return a.EnablePermissionsWithParams(params, opts...)
+}
+
+func (a *Client) EnablePermissionsWithParams(params *EnablePermissionsParams, opts ...ClientOption) (*EnablePermissionsOK, error) {
 	if params == nil {
 		params = NewEnablePermissionsParams()
 	}
@@ -227,16 +246,21 @@ func (a *Client) EnablePermissions(params *EnablePermissionsParams, opts ...Clie
 }
 
 /*
-	GetAllPermissions gets permissions for a data source
+GetAllPermissions gets permissions for a data source
 
-	Gets all existing permissions for the data source with the given id.
+Gets all existing permissions for the data source with the given id.
 
 You need to have a permission with action `datasources.permissions:read` and scopes `datasources:*`, `datasources:id:*`, `datasources:id:1` (single data source).
 
 Deprecated: true.
 Deprecated. Please use GET /api/access-control/datasources/:uid
 */
-func (a *Client) GetAllPermissions(params *GetAllPermissionsParams, opts ...ClientOption) (*GetAllPermissionsOK, error) {
+func (a *Client) GetAllPermissions(datasourceID string, opts ...ClientOption) (*GetAllPermissionsOK, error) {
+	params := NewGetAllPermissionsParams().WithDatasourceID(datasourceID)
+	return a.GetAllPermissionsWithParams(params, opts...)
+}
+
+func (a *Client) GetAllPermissionsWithParams(params *GetAllPermissionsParams, opts ...ClientOption) (*GetAllPermissionsOK, error) {
 	if params == nil {
 		params = NewGetAllPermissionsParams()
 	}

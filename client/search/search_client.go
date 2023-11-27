@@ -42,7 +42,8 @@ type ClientService interface {
 ListSortOptions lists search sorting options
 */
 func (a *Client) ListSortOptions(opts ...ClientOption) (*ListSortOptionsOK, error) {
-	return a.ListSortOptionsWithParams(nil, opts...)
+	params := NewListSortOptionsParams()
+	return a.ListSortOptionsWithParams(params, opts...)
 }
 
 func (a *Client) ListSortOptionsWithParams(params *ListSortOptionsParams, opts ...ClientOption) (*ListSortOptionsOK, error) {
@@ -84,6 +85,7 @@ func (a *Client) ListSortOptionsWithParams(params *ListSortOptionsParams, opts .
 /*
 Search search API
 */
+
 func (a *Client) Search(params *SearchParams, opts ...ClientOption) (*SearchOK, error) {
 	if params == nil {
 		params = NewSearchParams()

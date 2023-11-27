@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new annotations API client.
@@ -30,23 +32,30 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteAnnotationByID(params *DeleteAnnotationByIDParams, opts ...ClientOption) (*DeleteAnnotationByIDOK, error)
+	DeleteAnnotationByID(annotationID string, opts ...ClientOption) (*DeleteAnnotationByIDOK, error)
+	DeleteAnnotationByIDWithParams(params *DeleteAnnotationByIDParams, opts ...ClientOption) (*DeleteAnnotationByIDOK, error)
 
-	GetAnnotationByID(params *GetAnnotationByIDParams, opts ...ClientOption) (*GetAnnotationByIDOK, error)
+	GetAnnotationByID(annotationID string, opts ...ClientOption) (*GetAnnotationByIDOK, error)
+	GetAnnotationByIDWithParams(params *GetAnnotationByIDParams, opts ...ClientOption) (*GetAnnotationByIDOK, error)
 
 	GetAnnotationTags(params *GetAnnotationTagsParams, opts ...ClientOption) (*GetAnnotationTagsOK, error)
 
 	GetAnnotations(params *GetAnnotationsParams, opts ...ClientOption) (*GetAnnotationsOK, error)
 
-	MassDeleteAnnotations(params *MassDeleteAnnotationsParams, opts ...ClientOption) (*MassDeleteAnnotationsOK, error)
+	MassDeleteAnnotations(body *models.MassDeleteAnnotationsCmd, opts ...ClientOption) (*MassDeleteAnnotationsOK, error)
+	MassDeleteAnnotationsWithParams(params *MassDeleteAnnotationsParams, opts ...ClientOption) (*MassDeleteAnnotationsOK, error)
 
-	PatchAnnotation(params *PatchAnnotationParams, opts ...ClientOption) (*PatchAnnotationOK, error)
+	PatchAnnotation(annotationID string, body *models.PatchAnnotationsCmd, opts ...ClientOption) (*PatchAnnotationOK, error)
+	PatchAnnotationWithParams(params *PatchAnnotationParams, opts ...ClientOption) (*PatchAnnotationOK, error)
 
-	PostAnnotation(params *PostAnnotationParams, opts ...ClientOption) (*PostAnnotationOK, error)
+	PostAnnotation(body *models.PostAnnotationsCmd, opts ...ClientOption) (*PostAnnotationOK, error)
+	PostAnnotationWithParams(params *PostAnnotationParams, opts ...ClientOption) (*PostAnnotationOK, error)
 
-	PostGraphiteAnnotation(params *PostGraphiteAnnotationParams, opts ...ClientOption) (*PostGraphiteAnnotationOK, error)
+	PostGraphiteAnnotation(body *models.PostGraphiteAnnotationsCmd, opts ...ClientOption) (*PostGraphiteAnnotationOK, error)
+	PostGraphiteAnnotationWithParams(params *PostGraphiteAnnotationParams, opts ...ClientOption) (*PostGraphiteAnnotationOK, error)
 
-	UpdateAnnotation(params *UpdateAnnotationParams, opts ...ClientOption) (*UpdateAnnotationOK, error)
+	UpdateAnnotation(annotationID string, body *models.UpdateAnnotationsCmd, opts ...ClientOption) (*UpdateAnnotationOK, error)
+	UpdateAnnotationWithParams(params *UpdateAnnotationParams, opts ...ClientOption) (*UpdateAnnotationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -56,7 +65,12 @@ DeleteAnnotationByID deletes annotation by ID
 
 Deletes the annotation that matches the specified ID.
 */
-func (a *Client) DeleteAnnotationByID(params *DeleteAnnotationByIDParams, opts ...ClientOption) (*DeleteAnnotationByIDOK, error) {
+func (a *Client) DeleteAnnotationByID(annotationID string, opts ...ClientOption) (*DeleteAnnotationByIDOK, error) {
+	params := NewDeleteAnnotationByIDParams().WithAnnotationID(annotationID)
+	return a.DeleteAnnotationByIDWithParams(params, opts...)
+}
+
+func (a *Client) DeleteAnnotationByIDWithParams(params *DeleteAnnotationByIDParams, opts ...ClientOption) (*DeleteAnnotationByIDOK, error) {
 	if params == nil {
 		params = NewDeleteAnnotationByIDParams()
 	}
@@ -95,7 +109,12 @@ func (a *Client) DeleteAnnotationByID(params *DeleteAnnotationByIDParams, opts .
 /*
 GetAnnotationByID gets annotation by ID
 */
-func (a *Client) GetAnnotationByID(params *GetAnnotationByIDParams, opts ...ClientOption) (*GetAnnotationByIDOK, error) {
+func (a *Client) GetAnnotationByID(annotationID string, opts ...ClientOption) (*GetAnnotationByIDOK, error) {
+	params := NewGetAnnotationByIDParams().WithAnnotationID(annotationID)
+	return a.GetAnnotationByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetAnnotationByIDWithParams(params *GetAnnotationByIDParams, opts ...ClientOption) (*GetAnnotationByIDOK, error) {
 	if params == nil {
 		params = NewGetAnnotationByIDParams()
 	}
@@ -136,6 +155,7 @@ GetAnnotationTags finds annotations tags
 
 Find all the event tags created in the annotations.
 */
+
 func (a *Client) GetAnnotationTags(params *GetAnnotationTagsParams, opts ...ClientOption) (*GetAnnotationTagsOK, error) {
 	if params == nil {
 		params = NewGetAnnotationTagsParams()
@@ -177,6 +197,7 @@ GetAnnotations finds annotations
 
 Starting in Grafana v6.4 regions annotations are now returned in one entity that now includes the timeEnd property.
 */
+
 func (a *Client) GetAnnotations(params *GetAnnotationsParams, opts ...ClientOption) (*GetAnnotationsOK, error) {
 	if params == nil {
 		params = NewGetAnnotationsParams()
@@ -216,7 +237,12 @@ func (a *Client) GetAnnotations(params *GetAnnotationsParams, opts ...ClientOpti
 /*
 MassDeleteAnnotations deletes multiple annotations
 */
-func (a *Client) MassDeleteAnnotations(params *MassDeleteAnnotationsParams, opts ...ClientOption) (*MassDeleteAnnotationsOK, error) {
+func (a *Client) MassDeleteAnnotations(body *models.MassDeleteAnnotationsCmd, opts ...ClientOption) (*MassDeleteAnnotationsOK, error) {
+	params := NewMassDeleteAnnotationsParams().WithBody(body)
+	return a.MassDeleteAnnotationsWithParams(params, opts...)
+}
+
+func (a *Client) MassDeleteAnnotationsWithParams(params *MassDeleteAnnotationsParams, opts ...ClientOption) (*MassDeleteAnnotationsOK, error) {
 	if params == nil {
 		params = NewMassDeleteAnnotationsParams()
 	}
@@ -253,14 +279,18 @@ func (a *Client) MassDeleteAnnotations(params *MassDeleteAnnotationsParams, opts
 }
 
 /*
-	PatchAnnotation patches annotation
+PatchAnnotation patches annotation
 
-	Updates one or more properties of an annotation that matches the specified ID.
-
+Updates one or more properties of an annotation that matches the specified ID.
 This operation currently supports updating of the `text`, `tags`, `time` and `timeEnd` properties.
 This is available in Grafana 6.0.0-beta2 and above.
 */
-func (a *Client) PatchAnnotation(params *PatchAnnotationParams, opts ...ClientOption) (*PatchAnnotationOK, error) {
+func (a *Client) PatchAnnotation(annotationID string, body *models.PatchAnnotationsCmd, opts ...ClientOption) (*PatchAnnotationOK, error) {
+	params := NewPatchAnnotationParams().WithAnnotationID(annotationID).WithBody(body)
+	return a.PatchAnnotationWithParams(params, opts...)
+}
+
+func (a *Client) PatchAnnotationWithParams(params *PatchAnnotationParams, opts ...ClientOption) (*PatchAnnotationOK, error) {
 	if params == nil {
 		params = NewPatchAnnotationParams()
 	}
@@ -297,14 +327,18 @@ func (a *Client) PatchAnnotation(params *PatchAnnotationParams, opts ...ClientOp
 }
 
 /*
-	PostAnnotation creates annotation
+PostAnnotation creates annotation
 
-	Creates an annotation in the Grafana database. The dashboardId and panelId fields are optional. If they are not specified then an organization annotation is created and can be queried in any dashboard that adds the Grafana annotations data source. When creating a region annotation include the timeEnd property.
-
+Creates an annotation in the Grafana database. The dashboardId and panelId fields are optional. If they are not specified then an organization annotation is created and can be queried in any dashboard that adds the Grafana annotations data source. When creating a region annotation include the timeEnd property.
 The format for `time` and `timeEnd` should be epoch numbers in millisecond resolution.
 The response for this HTTP request is slightly different in versions prior to v6.4. In prior versions you would also get an endId if you where creating a region. But in 6.4 regions are represented using a single event with time and timeEnd properties.
 */
-func (a *Client) PostAnnotation(params *PostAnnotationParams, opts ...ClientOption) (*PostAnnotationOK, error) {
+func (a *Client) PostAnnotation(body *models.PostAnnotationsCmd, opts ...ClientOption) (*PostAnnotationOK, error) {
+	params := NewPostAnnotationParams().WithBody(body)
+	return a.PostAnnotationWithParams(params, opts...)
+}
+
+func (a *Client) PostAnnotationWithParams(params *PostAnnotationParams, opts ...ClientOption) (*PostAnnotationOK, error) {
 	if params == nil {
 		params = NewPostAnnotationParams()
 	}
@@ -345,7 +379,12 @@ PostGraphiteAnnotation creates annotation in graphite format
 
 Creates an annotation by using Graphite-compatible event format. The `when` and `data` fields are optional. If `when` is not specified then the current time will be used as annotation’s timestamp. The `tags` field can also be in prior to Graphite `0.10.0` format (string with multiple tags being separated by a space).
 */
-func (a *Client) PostGraphiteAnnotation(params *PostGraphiteAnnotationParams, opts ...ClientOption) (*PostGraphiteAnnotationOK, error) {
+func (a *Client) PostGraphiteAnnotation(body *models.PostGraphiteAnnotationsCmd, opts ...ClientOption) (*PostGraphiteAnnotationOK, error) {
+	params := NewPostGraphiteAnnotationParams().WithBody(body)
+	return a.PostGraphiteAnnotationWithParams(params, opts...)
+}
+
+func (a *Client) PostGraphiteAnnotationWithParams(params *PostGraphiteAnnotationParams, opts ...ClientOption) (*PostGraphiteAnnotationOK, error) {
 	if params == nil {
 		params = NewPostGraphiteAnnotationParams()
 	}
@@ -386,7 +425,12 @@ UpdateAnnotation updates annotation
 
 Updates all properties of an annotation that matches the specified id. To only update certain property, consider using the Patch Annotation operation.
 */
-func (a *Client) UpdateAnnotation(params *UpdateAnnotationParams, opts ...ClientOption) (*UpdateAnnotationOK, error) {
+func (a *Client) UpdateAnnotation(annotationID string, body *models.UpdateAnnotationsCmd, opts ...ClientOption) (*UpdateAnnotationOK, error) {
+	params := NewUpdateAnnotationParams().WithAnnotationID(annotationID).WithBody(body)
+	return a.UpdateAnnotationWithParams(params, opts...)
+}
+
+func (a *Client) UpdateAnnotationWithParams(params *UpdateAnnotationParams, opts ...ClientOption) (*UpdateAnnotationOK, error) {
 	if params == nil {
 		params = NewUpdateAnnotationParams()
 	}

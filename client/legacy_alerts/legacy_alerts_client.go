@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new legacy alerts API client.
@@ -30,13 +32,16 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetAlertByID(params *GetAlertByIDParams, opts ...ClientOption) (*GetAlertByIDOK, error)
+	GetAlertByID(alertID string, opts ...ClientOption) (*GetAlertByIDOK, error)
+	GetAlertByIDWithParams(params *GetAlertByIDParams, opts ...ClientOption) (*GetAlertByIDOK, error)
 
 	GetAlerts(params *GetAlertsParams, opts ...ClientOption) (*GetAlertsOK, error)
 
-	GetDashboardStates(params *GetDashboardStatesParams, opts ...ClientOption) (*GetDashboardStatesOK, error)
+	GetDashboardStates(dashboardID int64, opts ...ClientOption) (*GetDashboardStatesOK, error)
+	GetDashboardStatesWithParams(params *GetDashboardStatesParams, opts ...ClientOption) (*GetDashboardStatesOK, error)
 
-	PauseAlert(params *PauseAlertParams, opts ...ClientOption) (*PauseAlertOK, error)
+	PauseAlert(alertID string, body *models.PauseAlertCommand, opts ...ClientOption) (*PauseAlertOK, error)
+	PauseAlertWithParams(params *PauseAlertParams, opts ...ClientOption) (*PauseAlertOK, error)
 
 	TestAlert(params *TestAlertParams, opts ...ClientOption) (*TestAlertOK, error)
 
@@ -44,13 +49,17 @@ type ClientService interface {
 }
 
 /*
-	GetAlertByID gets alert by ID
+GetAlertByID gets alert by ID
 
-	“evalMatches” data in the response is cached in the db when and only when the state of the alert changes (e.g. transitioning from “ok” to “alerting” state).
-
+“evalMatches” data in the response is cached in the db when and only when the state of the alert changes (e.g. transitioning from “ok” to “alerting” state).
 If data from one server triggers the alert first and, before that server is seen leaving alerting state, a second server also enters a state that would trigger the alert, the second server will not be visible in “evalMatches” data.
 */
-func (a *Client) GetAlertByID(params *GetAlertByIDParams, opts ...ClientOption) (*GetAlertByIDOK, error) {
+func (a *Client) GetAlertByID(alertID string, opts ...ClientOption) (*GetAlertByIDOK, error) {
+	params := NewGetAlertByIDParams().WithAlertID(alertID)
+	return a.GetAlertByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetAlertByIDWithParams(params *GetAlertByIDParams, opts ...ClientOption) (*GetAlertByIDOK, error) {
 	if params == nil {
 		params = NewGetAlertByIDParams()
 	}
@@ -89,6 +98,7 @@ func (a *Client) GetAlertByID(params *GetAlertByIDParams, opts ...ClientOption) 
 /*
 GetAlerts gets legacy alerts
 */
+
 func (a *Client) GetAlerts(params *GetAlertsParams, opts ...ClientOption) (*GetAlertsOK, error) {
 	if params == nil {
 		params = NewGetAlertsParams()
@@ -128,7 +138,12 @@ func (a *Client) GetAlerts(params *GetAlertsParams, opts ...ClientOption) (*GetA
 /*
 GetDashboardStates gets alert states for a dashboard
 */
-func (a *Client) GetDashboardStates(params *GetDashboardStatesParams, opts ...ClientOption) (*GetDashboardStatesOK, error) {
+func (a *Client) GetDashboardStates(dashboardID int64, opts ...ClientOption) (*GetDashboardStatesOK, error) {
+	params := NewGetDashboardStatesParams().WithDashboardID(dashboardID)
+	return a.GetDashboardStatesWithParams(params, opts...)
+}
+
+func (a *Client) GetDashboardStatesWithParams(params *GetDashboardStatesParams, opts ...ClientOption) (*GetDashboardStatesOK, error) {
 	if params == nil {
 		params = NewGetDashboardStatesParams()
 	}
@@ -167,7 +182,12 @@ func (a *Client) GetDashboardStates(params *GetDashboardStatesParams, opts ...Cl
 /*
 PauseAlert pauses unpause alert by id
 */
-func (a *Client) PauseAlert(params *PauseAlertParams, opts ...ClientOption) (*PauseAlertOK, error) {
+func (a *Client) PauseAlert(alertID string, body *models.PauseAlertCommand, opts ...ClientOption) (*PauseAlertOK, error) {
+	params := NewPauseAlertParams().WithAlertID(alertID).WithBody(body)
+	return a.PauseAlertWithParams(params, opts...)
+}
+
+func (a *Client) PauseAlertWithParams(params *PauseAlertParams, opts ...ClientOption) (*PauseAlertOK, error) {
 	if params == nil {
 		params = NewPauseAlertParams()
 	}
@@ -206,6 +226,7 @@ func (a *Client) PauseAlert(params *PauseAlertParams, opts ...ClientOption) (*Pa
 /*
 TestAlert tests alert
 */
+
 func (a *Client) TestAlert(params *TestAlertParams, opts ...ClientOption) (*TestAlertOK, error) {
 	if params == nil {
 		params = NewTestAlertParams()

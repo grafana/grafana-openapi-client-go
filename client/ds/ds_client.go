@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new ds API client.
@@ -30,19 +32,24 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	QueryMetricsWithExpressions(params *QueryMetricsWithExpressionsParams, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error)
+	QueryMetricsWithExpressions(body *models.MetricRequest, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error)
+	QueryMetricsWithExpressionsWithParams(params *QueryMetricsWithExpressionsParams, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-	QueryMetricsWithExpressions data source query metrics with expressions
+QueryMetricsWithExpressions data source query metrics with expressions
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:query`.
 */
-func (a *Client) QueryMetricsWithExpressions(params *QueryMetricsWithExpressionsParams, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error) {
+func (a *Client) QueryMetricsWithExpressions(body *models.MetricRequest, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error) {
+	params := NewQueryMetricsWithExpressionsParams().WithBody(body)
+	return a.QueryMetricsWithExpressionsWithParams(params, opts...)
+}
+
+func (a *Client) QueryMetricsWithExpressionsWithParams(params *QueryMetricsWithExpressionsParams, opts ...ClientOption) (*QueryMetricsWithExpressionsOK, *QueryMetricsWithExpressionsMultiStatus, error) {
 	if params == nil {
 		params = NewQueryMetricsWithExpressionsParams()
 	}

@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new correlations API client.
@@ -30,15 +32,19 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateCorrelation(params *CreateCorrelationParams, opts ...ClientOption) (*CreateCorrelationOK, error)
+	CreateCorrelation(sourceUID string, body *models.CreateCorrelationCommand, opts ...ClientOption) (*CreateCorrelationOK, error)
+	CreateCorrelationWithParams(params *CreateCorrelationParams, opts ...ClientOption) (*CreateCorrelationOK, error)
 
-	DeleteCorrelation(params *DeleteCorrelationParams, opts ...ClientOption) (*DeleteCorrelationOK, error)
+	DeleteCorrelation(uid string, correlationUID string, opts ...ClientOption) (*DeleteCorrelationOK, error)
+	DeleteCorrelationWithParams(params *DeleteCorrelationParams, opts ...ClientOption) (*DeleteCorrelationOK, error)
 
-	GetCorrelation(params *GetCorrelationParams, opts ...ClientOption) (*GetCorrelationOK, error)
+	GetCorrelation(sourceUID string, correlationUID string, opts ...ClientOption) (*GetCorrelationOK, error)
+	GetCorrelationWithParams(params *GetCorrelationParams, opts ...ClientOption) (*GetCorrelationOK, error)
 
 	GetCorrelations(params *GetCorrelationsParams, opts ...ClientOption) (*GetCorrelationsOK, error)
 
-	GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDParams, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error)
+	GetCorrelationsBySourceUID(sourceUID string, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error)
+	GetCorrelationsBySourceUIDWithParams(params *GetCorrelationsBySourceUIDParams, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error)
 
 	UpdateCorrelation(params *UpdateCorrelationParams, opts ...ClientOption) (*UpdateCorrelationOK, error)
 
@@ -48,7 +54,12 @@ type ClientService interface {
 /*
 CreateCorrelation adds correlation
 */
-func (a *Client) CreateCorrelation(params *CreateCorrelationParams, opts ...ClientOption) (*CreateCorrelationOK, error) {
+func (a *Client) CreateCorrelation(sourceUID string, body *models.CreateCorrelationCommand, opts ...ClientOption) (*CreateCorrelationOK, error) {
+	params := NewCreateCorrelationParams().WithBody(body).WithSourceUID(sourceUID)
+	return a.CreateCorrelationWithParams(params, opts...)
+}
+
+func (a *Client) CreateCorrelationWithParams(params *CreateCorrelationParams, opts ...ClientOption) (*CreateCorrelationOK, error) {
 	if params == nil {
 		params = NewCreateCorrelationParams()
 	}
@@ -87,7 +98,12 @@ func (a *Client) CreateCorrelation(params *CreateCorrelationParams, opts ...Clie
 /*
 DeleteCorrelation deletes a correlation
 */
-func (a *Client) DeleteCorrelation(params *DeleteCorrelationParams, opts ...ClientOption) (*DeleteCorrelationOK, error) {
+func (a *Client) DeleteCorrelation(uid string, correlationUID string, opts ...ClientOption) (*DeleteCorrelationOK, error) {
+	params := NewDeleteCorrelationParams().WithCorrelationUID(correlationUID).WithUID(uid)
+	return a.DeleteCorrelationWithParams(params, opts...)
+}
+
+func (a *Client) DeleteCorrelationWithParams(params *DeleteCorrelationParams, opts ...ClientOption) (*DeleteCorrelationOK, error) {
 	if params == nil {
 		params = NewDeleteCorrelationParams()
 	}
@@ -126,7 +142,12 @@ func (a *Client) DeleteCorrelation(params *DeleteCorrelationParams, opts ...Clie
 /*
 GetCorrelation gets a correlation
 */
-func (a *Client) GetCorrelation(params *GetCorrelationParams, opts ...ClientOption) (*GetCorrelationOK, error) {
+func (a *Client) GetCorrelation(sourceUID string, correlationUID string, opts ...ClientOption) (*GetCorrelationOK, error) {
+	params := NewGetCorrelationParams().WithCorrelationUID(correlationUID).WithSourceUID(sourceUID)
+	return a.GetCorrelationWithParams(params, opts...)
+}
+
+func (a *Client) GetCorrelationWithParams(params *GetCorrelationParams, opts ...ClientOption) (*GetCorrelationOK, error) {
 	if params == nil {
 		params = NewGetCorrelationParams()
 	}
@@ -165,6 +186,7 @@ func (a *Client) GetCorrelation(params *GetCorrelationParams, opts ...ClientOpti
 /*
 GetCorrelations gets all correlations
 */
+
 func (a *Client) GetCorrelations(params *GetCorrelationsParams, opts ...ClientOption) (*GetCorrelationsOK, error) {
 	if params == nil {
 		params = NewGetCorrelationsParams()
@@ -204,7 +226,12 @@ func (a *Client) GetCorrelations(params *GetCorrelationsParams, opts ...ClientOp
 /*
 GetCorrelationsBySourceUID gets all correlations originating from the given data source
 */
-func (a *Client) GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDParams, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error) {
+func (a *Client) GetCorrelationsBySourceUID(sourceUID string, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error) {
+	params := NewGetCorrelationsBySourceUIDParams().WithSourceUID(sourceUID)
+	return a.GetCorrelationsBySourceUIDWithParams(params, opts...)
+}
+
+func (a *Client) GetCorrelationsBySourceUIDWithParams(params *GetCorrelationsBySourceUIDParams, opts ...ClientOption) (*GetCorrelationsBySourceUIDOK, error) {
 	if params == nil {
 		params = NewGetCorrelationsBySourceUIDParams()
 	}
@@ -243,6 +270,7 @@ func (a *Client) GetCorrelationsBySourceUID(params *GetCorrelationsBySourceUIDPa
 /*
 UpdateCorrelation updates a correlation
 */
+
 func (a *Client) UpdateCorrelation(params *UpdateCorrelationParams, opts ...ClientOption) (*UpdateCorrelationOK, error) {
 	if params == nil {
 		params = NewUpdateCorrelationParams()

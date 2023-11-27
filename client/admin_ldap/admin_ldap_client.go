@@ -33,9 +33,11 @@ type ClientService interface {
 	GetLDAPStatus(opts ...ClientOption) (*GetLDAPStatusOK, error)
 	GetLDAPStatusWithParams(params *GetLDAPStatusParams, opts ...ClientOption) (*GetLDAPStatusOK, error)
 
-	GetUserFromLDAP(params *GetUserFromLDAPParams, opts ...ClientOption) (*GetUserFromLDAPOK, error)
+	GetUserFromLDAP(userName string, opts ...ClientOption) (*GetUserFromLDAPOK, error)
+	GetUserFromLDAPWithParams(params *GetUserFromLDAPParams, opts ...ClientOption) (*GetUserFromLDAPOK, error)
 
-	PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error)
+	PostSyncUserWithLDAP(userID int64, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error)
+	PostSyncUserWithLDAPWithParams(params *PostSyncUserWithLDAPParams, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error)
 
 	ReloadLDAPCfg(opts ...ClientOption) (*ReloadLDAPCfgOK, error)
 	ReloadLDAPCfgWithParams(params *ReloadLDAPCfgParams, opts ...ClientOption) (*ReloadLDAPCfgOK, error)
@@ -49,7 +51,8 @@ GetLDAPStatus attempts to connect to all the configured LDAP servers and returns
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.status:read`.
 */
 func (a *Client) GetLDAPStatus(opts ...ClientOption) (*GetLDAPStatusOK, error) {
-	return a.GetLDAPStatusWithParams(nil, opts...)
+	params := NewGetLDAPStatusParams()
+	return a.GetLDAPStatusWithParams(params, opts...)
 }
 
 func (a *Client) GetLDAPStatusWithParams(params *GetLDAPStatusParams, opts ...ClientOption) (*GetLDAPStatusOK, error) {
@@ -93,7 +96,12 @@ GetUserFromLDAP finds an user based on a username in LDAP this helps illustrate 
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.user:read`.
 */
-func (a *Client) GetUserFromLDAP(params *GetUserFromLDAPParams, opts ...ClientOption) (*GetUserFromLDAPOK, error) {
+func (a *Client) GetUserFromLDAP(userName string, opts ...ClientOption) (*GetUserFromLDAPOK, error) {
+	params := NewGetUserFromLDAPParams().WithUserName(userName)
+	return a.GetUserFromLDAPWithParams(params, opts...)
+}
+
+func (a *Client) GetUserFromLDAPWithParams(params *GetUserFromLDAPParams, opts ...ClientOption) (*GetUserFromLDAPOK, error) {
 	if params == nil {
 		params = NewGetUserFromLDAPParams()
 	}
@@ -134,7 +142,12 @@ PostSyncUserWithLDAP enables a single grafana user to be synchronized against LD
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.user:sync`.
 */
-func (a *Client) PostSyncUserWithLDAP(params *PostSyncUserWithLDAPParams, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error) {
+func (a *Client) PostSyncUserWithLDAP(userID int64, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error) {
+	params := NewPostSyncUserWithLDAPParams().WithUserID(userID)
+	return a.PostSyncUserWithLDAPWithParams(params, opts...)
+}
+
+func (a *Client) PostSyncUserWithLDAPWithParams(params *PostSyncUserWithLDAPParams, opts ...ClientOption) (*PostSyncUserWithLDAPOK, error) {
 	if params == nil {
 		params = NewPostSyncUserWithLDAPParams()
 	}
@@ -176,7 +189,8 @@ ReloadLDAPCfg reloads the LDAP configuration
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.config:reload`.
 */
 func (a *Client) ReloadLDAPCfg(opts ...ClientOption) (*ReloadLDAPCfgOK, error) {
-	return a.ReloadLDAPCfgWithParams(nil, opts...)
+	params := NewReloadLDAPCfgParams()
+	return a.ReloadLDAPCfgWithParams(params, opts...)
 }
 
 func (a *Client) ReloadLDAPCfgWithParams(params *ReloadLDAPCfgParams, opts ...ClientOption) (*ReloadLDAPCfgOK, error) {

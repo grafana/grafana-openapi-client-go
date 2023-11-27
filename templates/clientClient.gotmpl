@@ -45,35 +45,43 @@ type ClientOption func(*runtime.ClientOperation)
 // ClientService is the interface for Client methods
 type ClientService interface {
 	{{ range .Operations }}
+  {{- $allParamsRequired := not .Params }}
+  {{- if eq (len .Params) 1 }}{{- $allParamsRequired = (index .Params 0).Required }}{{- end }}
+  {{- if eq (len .Params) 2 }}{{- $allParamsRequired = and (index .Params 0).Required (index .Params 1).Required }}{{- end }}
 
-  {{/* META COMMENT: If there are no required params by default, remove params as a default argument and add another function (WithParams) if users want to specify longform params */}}
-  {{ if not .Params }}
-	{{ pascalize .Name }}({{ if .HasStreamingResponse }}writer io.Writer, {{ end }}opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }}
-	{{ pascalize .Name }}WithParams(params *{{ pascalize .Name }}Params{{ if .HasStreamingResponse }}, writer io.Writer{{ end }}, opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }}
-  {{ else }}
-	{{ pascalize .Name }}(params *{{ pascalize .Name }}Params{{ if .HasStreamingResponse }}, writer io.Writer{{ end }}, opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }}
-  {{ end }}
+   {{- /* 
+    META COMMENT: 
+    If there are two or less params and they are all required, remove params object as a default argument and add another function (WithParams) if users want to specify longform params 
+    Param generation taken from https://github.com/go-swagger/go-swagger/blob/master/generator/templates/client/parameter.gotmpl
+  */}}
+  {{ if $allParamsRequired }}
 
-	{{ end }}
+  {{ pascalize .Name }}({{- template "operationArguments" . }}) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }}
+	{{ end }} {{- /* if $allParamsRequired */}}
+	{{- pascalize .Name }}{{ if $allParamsRequired }}WithParams{{ end }}(params *{{ pascalize .Name }}Params{{ if .HasStreamingResponse }}, writer io.Writer{{ end }}, opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }}
+
+  {{ end }} {{- /* range .Operations */}}
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 {{ range .Operations }}
+{{- $allParamsRequired := not .Params }}
+{{- if eq (len .Params) 1 }}{{- $allParamsRequired = (index .Params 0).Required }}{{- end }}
+{{- if eq (len .Params) 2 }}{{- $allParamsRequired = and (index .Params 0).Required (index .Params 1).Required }}{{- end }}
 /*
-  {{ pascalize .Name }} {{ if .Summary }}{{ pluralizeFirstWord (humanize .Summary) }}{{ if .Description }}
+{{ pascalize .Name }} {{ if .Summary }}{{ pluralizeFirstWord (humanize .Summary) }}{{ if .Description }}
 
-  {{ blockcomment .Description }}{{ end }}{{ else if .Description}}{{ blockcomment .Description }}{{ else }}{{ humanize .Name }} API{{ end }}
+{{ blockcomment .Description }}{{ end }}{{ else if .Description}}{{ blockcomment .Description }}{{ else }}{{ humanize .Name }} API{{ end }}
 */
-{{- if not .Params }}
-func (a *Client) {{ pascalize .Name }}({{ if .HasStreamingResponse }}writer io.Writer, {{ end }}opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }} {
-  return a.{{ pascalize .Name }}WithParams(nil{{ if .HasStreamingResponse }}, writer{{ end }}, opts...)
+{{- if $allParamsRequired }}
+func (a *Client) {{ pascalize .Name }}({{- template "operationArguments" . }}) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }} {
+  params := New{{ pascalize .Name }}Params(){{ range .Params }}.With{{ pascalize .Name }}({{ varname .Name }}){{ end }}
+  return a.{{ pascalize .Name }}WithParams(params{{ if .HasStreamingResponse }}, writer{{ end }}, opts...)
 }
-
-func (a *Client) {{ pascalize .Name }}WithParams(params *{{ pascalize .Name }}Params{{ if .HasStreamingResponse }}, writer io.Writer{{ end }}, opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }} {
-{{- else }}
-func (a *Client) {{ pascalize .Name }}(params *{{ pascalize .Name }}Params{{ if .HasStreamingResponse }}, writer io.Writer{{ end }}, opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }} {
 {{- end }}
+
+func (a *Client) {{ pascalize .Name }}{{ if $allParamsRequired }}WithParams{{ end }}(params *{{ pascalize .Name }}Params{{ if .HasStreamingResponse }}, writer io.Writer{{ end }}, opts ...ClientOption) {{ if .SuccessResponse }}({{ range .SuccessResponses }}*{{ pascalize .Name }}, {{ end }}{{ end }}error{{ if .SuccessResponse }}){{ end }} {
   if params == nil {
     params = New{{ pascalize .Name }}Params()
   }

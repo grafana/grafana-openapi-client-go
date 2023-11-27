@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new datasources API client.
@@ -30,64 +32,86 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddDataSource(params *AddDataSourceParams, opts ...ClientOption) (*AddDataSourceOK, error)
+	AddDataSource(body *models.AddDataSourceCommand, opts ...ClientOption) (*AddDataSourceOK, error)
+	AddDataSourceWithParams(params *AddDataSourceParams, opts ...ClientOption) (*AddDataSourceOK, error)
 
-	CallDatasourceResourceByID(params *CallDatasourceResourceByIDParams, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error)
+	CallDatasourceResourceByID(id string, datasourceProxyRoute string, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error)
+	CallDatasourceResourceByIDWithParams(params *CallDatasourceResourceByIDParams, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error)
 
-	CallDatasourceResourceWithUID(params *CallDatasourceResourceWithUIDParams, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error)
+	CallDatasourceResourceWithUID(uid string, datasourceProxyRoute string, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error)
+	CallDatasourceResourceWithUIDWithParams(params *CallDatasourceResourceWithUIDParams, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error)
 
-	CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDParams, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error)
+	CheckDatasourceHealthByID(id string, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error)
+	CheckDatasourceHealthByIDWithParams(params *CheckDatasourceHealthByIDParams, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error)
 
-	CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithUIDParams, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error)
+	CheckDatasourceHealthWithUID(uid string, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error)
+	CheckDatasourceHealthWithUIDWithParams(params *CheckDatasourceHealthWithUIDParams, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error)
 
-	DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error)
+	DatasourceProxyDELETEByUIDcalls(uid string, datasourceProxyRoute string, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error)
+	DatasourceProxyDELETEByUIDcallsWithParams(params *DatasourceProxyDELETEByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error)
 
-	DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error)
+	DatasourceProxyDELETEcalls(id string, datasourceProxyRoute string, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error)
+	DatasourceProxyDELETEcallsWithParams(params *DatasourceProxyDELETEcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error)
 
-	DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error)
+	DatasourceProxyGETByUIDcalls(uid string, datasourceProxyRoute string, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error)
+	DatasourceProxyGETByUIDcallsWithParams(params *DatasourceProxyGETByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error)
 
-	DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error)
+	DatasourceProxyGETcalls(id string, datasourceProxyRoute string, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error)
+	DatasourceProxyGETcallsWithParams(params *DatasourceProxyGETcallsParams, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error)
 
 	DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyPOSTByUIDcallsCreated, *DatasourceProxyPOSTByUIDcallsAccepted, error)
 
 	DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams, opts ...ClientOption) (*DatasourceProxyPOSTcallsCreated, *DatasourceProxyPOSTcallsAccepted, error)
 
-	DeleteDataSourceByID(params *DeleteDataSourceByIDParams, opts ...ClientOption) (*DeleteDataSourceByIDOK, error)
+	DeleteDataSourceByID(id string, opts ...ClientOption) (*DeleteDataSourceByIDOK, error)
+	DeleteDataSourceByIDWithParams(params *DeleteDataSourceByIDParams, opts ...ClientOption) (*DeleteDataSourceByIDOK, error)
 
-	DeleteDataSourceByName(params *DeleteDataSourceByNameParams, opts ...ClientOption) (*DeleteDataSourceByNameOK, error)
+	DeleteDataSourceByName(name string, opts ...ClientOption) (*DeleteDataSourceByNameOK, error)
+	DeleteDataSourceByNameWithParams(params *DeleteDataSourceByNameParams, opts ...ClientOption) (*DeleteDataSourceByNameOK, error)
 
-	DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error)
+	DeleteDataSourceByUID(uid string, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error)
+	DeleteDataSourceByUIDWithParams(params *DeleteDataSourceByUIDParams, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error)
 
-	GetDataSourceByID(params *GetDataSourceByIDParams, opts ...ClientOption) (*GetDataSourceByIDOK, error)
+	GetDataSourceByID(id string, opts ...ClientOption) (*GetDataSourceByIDOK, error)
+	GetDataSourceByIDWithParams(params *GetDataSourceByIDParams, opts ...ClientOption) (*GetDataSourceByIDOK, error)
 
-	GetDataSourceByName(params *GetDataSourceByNameParams, opts ...ClientOption) (*GetDataSourceByNameOK, error)
+	GetDataSourceByName(name string, opts ...ClientOption) (*GetDataSourceByNameOK, error)
+	GetDataSourceByNameWithParams(params *GetDataSourceByNameParams, opts ...ClientOption) (*GetDataSourceByNameOK, error)
 
-	GetDataSourceByUID(params *GetDataSourceByUIDParams, opts ...ClientOption) (*GetDataSourceByUIDOK, error)
+	GetDataSourceByUID(uid string, opts ...ClientOption) (*GetDataSourceByUIDOK, error)
+	GetDataSourceByUIDWithParams(params *GetDataSourceByUIDParams, opts ...ClientOption) (*GetDataSourceByUIDOK, error)
 
-	GetDataSourceIDByName(params *GetDataSourceIDByNameParams, opts ...ClientOption) (*GetDataSourceIDByNameOK, error)
+	GetDataSourceIDByName(name string, opts ...ClientOption) (*GetDataSourceIDByNameOK, error)
+	GetDataSourceIDByNameWithParams(params *GetDataSourceIDByNameParams, opts ...ClientOption) (*GetDataSourceIDByNameOK, error)
 
 	GetDataSources(opts ...ClientOption) (*GetDataSourcesOK, error)
 	GetDataSourcesWithParams(params *GetDataSourcesParams, opts ...ClientOption) (*GetDataSourcesOK, error)
 
-	UpdateDataSourceByID(params *UpdateDataSourceByIDParams, opts ...ClientOption) (*UpdateDataSourceByIDOK, error)
+	UpdateDataSourceByID(id string, body *models.UpdateDataSourceCommand, opts ...ClientOption) (*UpdateDataSourceByIDOK, error)
+	UpdateDataSourceByIDWithParams(params *UpdateDataSourceByIDParams, opts ...ClientOption) (*UpdateDataSourceByIDOK, error)
 
-	UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error)
+	UpdateDataSourceByUID(uid string, body *models.UpdateDataSourceCommand, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error)
+	UpdateDataSourceByUIDWithParams(params *UpdateDataSourceByUIDParams, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-	AddDataSource creates a data source
+AddDataSource creates a data source
 
-	By defining `password` and `basicAuthPassword` under secureJsonData property
-
+By defining `password` and `basicAuthPassword` under secureJsonData property
 Grafana encrypts them securely as an encrypted blob in the database.
 The response then lists the encrypted fields under secureJsonFields.
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:create`
 */
-func (a *Client) AddDataSource(params *AddDataSourceParams, opts ...ClientOption) (*AddDataSourceOK, error) {
+func (a *Client) AddDataSource(body *models.AddDataSourceCommand, opts ...ClientOption) (*AddDataSourceOK, error) {
+	params := NewAddDataSourceParams().WithBody(body)
+	return a.AddDataSourceWithParams(params, opts...)
+}
+
+func (a *Client) AddDataSourceWithParams(params *AddDataSourceParams, opts ...ClientOption) (*AddDataSourceOK, error) {
 	if params == nil {
 		params = NewAddDataSourceParams()
 	}
@@ -128,7 +152,12 @@ CallDatasourceResourceByID fetches data source resources by Id
 
 Please refer to [updated API](#/datasources/callDatasourceResourceWithUID) instead
 */
-func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDParams, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error) {
+func (a *Client) CallDatasourceResourceByID(id string, datasourceProxyRoute string, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error) {
+	params := NewCallDatasourceResourceByIDParams().WithDatasourceProxyRoute(datasourceProxyRoute).WithID(id)
+	return a.CallDatasourceResourceByIDWithParams(params, opts...)
+}
+
+func (a *Client) CallDatasourceResourceByIDWithParams(params *CallDatasourceResourceByIDParams, opts ...ClientOption) (*CallDatasourceResourceByIDOK, error) {
 	if params == nil {
 		params = NewCallDatasourceResourceByIDParams()
 	}
@@ -167,7 +196,12 @@ func (a *Client) CallDatasourceResourceByID(params *CallDatasourceResourceByIDPa
 /*
 CallDatasourceResourceWithUID fetches data source resources
 */
-func (a *Client) CallDatasourceResourceWithUID(params *CallDatasourceResourceWithUIDParams, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error) {
+func (a *Client) CallDatasourceResourceWithUID(uid string, datasourceProxyRoute string, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error) {
+	params := NewCallDatasourceResourceWithUIDParams().WithDatasourceProxyRoute(datasourceProxyRoute).WithUID(uid)
+	return a.CallDatasourceResourceWithUIDWithParams(params, opts...)
+}
+
+func (a *Client) CallDatasourceResourceWithUIDWithParams(params *CallDatasourceResourceWithUIDParams, opts ...ClientOption) (*CallDatasourceResourceWithUIDOK, error) {
 	if params == nil {
 		params = NewCallDatasourceResourceWithUIDParams()
 	}
@@ -208,7 +242,12 @@ CheckDatasourceHealthByID sends a health check request to the plugin datasource 
 
 Please refer to [updated API](#/datasources/checkDatasourceHealthWithUID) instead
 */
-func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDParams, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error) {
+func (a *Client) CheckDatasourceHealthByID(id string, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error) {
+	params := NewCheckDatasourceHealthByIDParams().WithID(id)
+	return a.CheckDatasourceHealthByIDWithParams(params, opts...)
+}
+
+func (a *Client) CheckDatasourceHealthByIDWithParams(params *CheckDatasourceHealthByIDParams, opts ...ClientOption) (*CheckDatasourceHealthByIDOK, error) {
 	if params == nil {
 		params = NewCheckDatasourceHealthByIDParams()
 	}
@@ -247,7 +286,12 @@ func (a *Client) CheckDatasourceHealthByID(params *CheckDatasourceHealthByIDPara
 /*
 CheckDatasourceHealthWithUID sends a health check request to the plugin datasource identified by the UID
 */
-func (a *Client) CheckDatasourceHealthWithUID(params *CheckDatasourceHealthWithUIDParams, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error) {
+func (a *Client) CheckDatasourceHealthWithUID(uid string, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error) {
+	params := NewCheckDatasourceHealthWithUIDParams().WithUID(uid)
+	return a.CheckDatasourceHealthWithUIDWithParams(params, opts...)
+}
+
+func (a *Client) CheckDatasourceHealthWithUIDWithParams(params *CheckDatasourceHealthWithUIDParams, opts ...ClientOption) (*CheckDatasourceHealthWithUIDOK, error) {
 	if params == nil {
 		params = NewCheckDatasourceHealthWithUIDParams()
 	}
@@ -288,7 +332,12 @@ DatasourceProxyDELETEByUIDcalls data source proxy d e l e t e calls
 
 Proxies all calls to the actual data source.
 */
-func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error) {
+func (a *Client) DatasourceProxyDELETEByUIDcalls(uid string, datasourceProxyRoute string, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error) {
+	params := NewDatasourceProxyDELETEByUIDcallsParams().WithDatasourceProxyRoute(datasourceProxyRoute).WithUID(uid)
+	return a.DatasourceProxyDELETEByUIDcallsWithParams(params, opts...)
+}
+
+func (a *Client) DatasourceProxyDELETEByUIDcallsWithParams(params *DatasourceProxyDELETEByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEByUIDcallsAccepted, error) {
 	if params == nil {
 		params = NewDatasourceProxyDELETEByUIDcallsParams()
 	}
@@ -325,13 +374,18 @@ func (a *Client) DatasourceProxyDELETEByUIDcalls(params *DatasourceProxyDELETEBy
 }
 
 /*
-	DatasourceProxyDELETEcalls data source proxy d e l e t e calls
+DatasourceProxyDELETEcalls data source proxy d e l e t e calls
 
-	Proxies all calls to the actual data source.
+Proxies all calls to the actual data source.
 
 Please refer to [updated API](#/datasources/datasourceProxyDELETEByUIDcalls) instead
 */
-func (a *Client) DatasourceProxyDELETEcalls(params *DatasourceProxyDELETEcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error) {
+func (a *Client) DatasourceProxyDELETEcalls(id string, datasourceProxyRoute string, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error) {
+	params := NewDatasourceProxyDELETEcallsParams().WithDatasourceProxyRoute(datasourceProxyRoute).WithID(id)
+	return a.DatasourceProxyDELETEcallsWithParams(params, opts...)
+}
+
+func (a *Client) DatasourceProxyDELETEcallsWithParams(params *DatasourceProxyDELETEcallsParams, opts ...ClientOption) (*DatasourceProxyDELETEcallsAccepted, error) {
 	if params == nil {
 		params = NewDatasourceProxyDELETEcallsParams()
 	}
@@ -372,7 +426,12 @@ DatasourceProxyGETByUIDcalls data source proxy g e t calls
 
 Proxies all calls to the actual data source.
 */
-func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error) {
+func (a *Client) DatasourceProxyGETByUIDcalls(uid string, datasourceProxyRoute string, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error) {
+	params := NewDatasourceProxyGETByUIDcallsParams().WithDatasourceProxyRoute(datasourceProxyRoute).WithUID(uid)
+	return a.DatasourceProxyGETByUIDcallsWithParams(params, opts...)
+}
+
+func (a *Client) DatasourceProxyGETByUIDcallsWithParams(params *DatasourceProxyGETByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyGETByUIDcallsOK, error) {
 	if params == nil {
 		params = NewDatasourceProxyGETByUIDcallsParams()
 	}
@@ -409,13 +468,18 @@ func (a *Client) DatasourceProxyGETByUIDcalls(params *DatasourceProxyGETByUIDcal
 }
 
 /*
-	DatasourceProxyGETcalls data source proxy g e t calls
+DatasourceProxyGETcalls data source proxy g e t calls
 
-	Proxies all calls to the actual data source.
+Proxies all calls to the actual data source.
 
 Please refer to [updated API](#/datasources/datasourceProxyGETByUIDcalls) instead
 */
-func (a *Client) DatasourceProxyGETcalls(params *DatasourceProxyGETcallsParams, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error) {
+func (a *Client) DatasourceProxyGETcalls(id string, datasourceProxyRoute string, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error) {
+	params := NewDatasourceProxyGETcallsParams().WithDatasourceProxyRoute(datasourceProxyRoute).WithID(id)
+	return a.DatasourceProxyGETcallsWithParams(params, opts...)
+}
+
+func (a *Client) DatasourceProxyGETcallsWithParams(params *DatasourceProxyGETcallsParams, opts ...ClientOption) (*DatasourceProxyGETcallsOK, error) {
 	if params == nil {
 		params = NewDatasourceProxyGETcallsParams()
 	}
@@ -456,6 +520,7 @@ DatasourceProxyPOSTByUIDcalls data source proxy p o s t calls
 
 Proxies all calls to the actual data source. The data source should support POST methods for the specific path and role as defined
 */
+
 func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDcallsParams, opts ...ClientOption) (*DatasourceProxyPOSTByUIDcallsCreated, *DatasourceProxyPOSTByUIDcallsAccepted, error) {
 	if params == nil {
 		params = NewDatasourceProxyPOSTByUIDcallsParams()
@@ -494,12 +559,13 @@ func (a *Client) DatasourceProxyPOSTByUIDcalls(params *DatasourceProxyPOSTByUIDc
 }
 
 /*
-	DatasourceProxyPOSTcalls data source proxy p o s t calls
+DatasourceProxyPOSTcalls data source proxy p o s t calls
 
-	Proxies all calls to the actual data source. The data source should support POST methods for the specific path and role as defined
+Proxies all calls to the actual data source. The data source should support POST methods for the specific path and role as defined
 
 Please refer to [updated API](#/datasources/datasourceProxyPOSTByUIDcalls) instead
 */
+
 func (a *Client) DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams, opts ...ClientOption) (*DatasourceProxyPOSTcallsCreated, *DatasourceProxyPOSTcallsAccepted, error) {
 	if params == nil {
 		params = NewDatasourceProxyPOSTcallsParams()
@@ -538,15 +604,19 @@ func (a *Client) DatasourceProxyPOSTcalls(params *DatasourceProxyPOSTcallsParams
 }
 
 /*
-	DeleteDataSourceByID deletes an existing data source by id
+DeleteDataSourceByID deletes an existing data source by id
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:delete` and scopes: `datasources:*`, `datasources:id:*` and `datasources:id:1` (single data source).
 
 Please refer to [updated API](#/datasources/deleteDataSourceByUID) instead
 */
-func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, opts ...ClientOption) (*DeleteDataSourceByIDOK, error) {
+func (a *Client) DeleteDataSourceByID(id string, opts ...ClientOption) (*DeleteDataSourceByIDOK, error) {
+	params := NewDeleteDataSourceByIDParams().WithID(id)
+	return a.DeleteDataSourceByIDWithParams(params, opts...)
+}
+
+func (a *Client) DeleteDataSourceByIDWithParams(params *DeleteDataSourceByIDParams, opts ...ClientOption) (*DeleteDataSourceByIDOK, error) {
 	if params == nil {
 		params = NewDeleteDataSourceByIDParams()
 	}
@@ -583,13 +653,17 @@ func (a *Client) DeleteDataSourceByID(params *DeleteDataSourceByIDParams, opts .
 }
 
 /*
-	DeleteDataSourceByName deletes an existing data source by name
+DeleteDataSourceByName deletes an existing data source by name
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:delete` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
-func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, opts ...ClientOption) (*DeleteDataSourceByNameOK, error) {
+func (a *Client) DeleteDataSourceByName(name string, opts ...ClientOption) (*DeleteDataSourceByNameOK, error) {
+	params := NewDeleteDataSourceByNameParams().WithName(name)
+	return a.DeleteDataSourceByNameWithParams(params, opts...)
+}
+
+func (a *Client) DeleteDataSourceByNameWithParams(params *DeleteDataSourceByNameParams, opts ...ClientOption) (*DeleteDataSourceByNameOK, error) {
 	if params == nil {
 		params = NewDeleteDataSourceByNameParams()
 	}
@@ -626,13 +700,17 @@ func (a *Client) DeleteDataSourceByName(params *DeleteDataSourceByNameParams, op
 }
 
 /*
-	DeleteDataSourceByUID deletes an existing data source by UID
+DeleteDataSourceByUID deletes an existing data source by UID
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:delete` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:kLtEtcRGk` (single data source).
 */
-func (a *Client) DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error) {
+func (a *Client) DeleteDataSourceByUID(uid string, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error) {
+	params := NewDeleteDataSourceByUIDParams().WithUID(uid)
+	return a.DeleteDataSourceByUIDWithParams(params, opts...)
+}
+
+func (a *Client) DeleteDataSourceByUIDWithParams(params *DeleteDataSourceByUIDParams, opts ...ClientOption) (*DeleteDataSourceByUIDOK, error) {
 	if params == nil {
 		params = NewDeleteDataSourceByUIDParams()
 	}
@@ -669,15 +747,19 @@ func (a *Client) DeleteDataSourceByUID(params *DeleteDataSourceByUIDParams, opts
 }
 
 /*
-	GetDataSourceByID gets a single data source by Id
+GetDataSourceByID gets a single data source by Id
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:id:*` and `datasources:id:1` (single data source).
 
 Please refer to [updated API](#/datasources/getDataSourceByUID) instead
 */
-func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, opts ...ClientOption) (*GetDataSourceByIDOK, error) {
+func (a *Client) GetDataSourceByID(id string, opts ...ClientOption) (*GetDataSourceByIDOK, error) {
+	params := NewGetDataSourceByIDParams().WithID(id)
+	return a.GetDataSourceByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetDataSourceByIDWithParams(params *GetDataSourceByIDParams, opts ...ClientOption) (*GetDataSourceByIDOK, error) {
 	if params == nil {
 		params = NewGetDataSourceByIDParams()
 	}
@@ -714,13 +796,17 @@ func (a *Client) GetDataSourceByID(params *GetDataSourceByIDParams, opts ...Clie
 }
 
 /*
-	GetDataSourceByName gets a single data source by name
+GetDataSourceByName gets a single data source by name
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
-func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, opts ...ClientOption) (*GetDataSourceByNameOK, error) {
+func (a *Client) GetDataSourceByName(name string, opts ...ClientOption) (*GetDataSourceByNameOK, error) {
+	params := NewGetDataSourceByNameParams().WithName(name)
+	return a.GetDataSourceByNameWithParams(params, opts...)
+}
+
+func (a *Client) GetDataSourceByNameWithParams(params *GetDataSourceByNameParams, opts ...ClientOption) (*GetDataSourceByNameOK, error) {
 	if params == nil {
 		params = NewGetDataSourceByNameParams()
 	}
@@ -757,13 +843,17 @@ func (a *Client) GetDataSourceByName(params *GetDataSourceByNameParams, opts ...
 }
 
 /*
-	GetDataSourceByUID gets a single data source by UID
+GetDataSourceByUID gets a single data source by UID
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:kLtEtcRGk` (single data source).
 */
-func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, opts ...ClientOption) (*GetDataSourceByUIDOK, error) {
+func (a *Client) GetDataSourceByUID(uid string, opts ...ClientOption) (*GetDataSourceByUIDOK, error) {
+	params := NewGetDataSourceByUIDParams().WithUID(uid)
+	return a.GetDataSourceByUIDWithParams(params, opts...)
+}
+
+func (a *Client) GetDataSourceByUIDWithParams(params *GetDataSourceByUIDParams, opts ...ClientOption) (*GetDataSourceByUIDOK, error) {
 	if params == nil {
 		params = NewGetDataSourceByUIDParams()
 	}
@@ -800,13 +890,17 @@ func (a *Client) GetDataSourceByUID(params *GetDataSourceByUIDParams, opts ...Cl
 }
 
 /*
-	GetDataSourceIDByName gets data source Id by name
+GetDataSourceIDByName gets data source Id by name
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:read` and scopes: `datasources:*`, `datasources:name:*` and `datasources:name:test_datasource` (single data source).
 */
-func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, opts ...ClientOption) (*GetDataSourceIDByNameOK, error) {
+func (a *Client) GetDataSourceIDByName(name string, opts ...ClientOption) (*GetDataSourceIDByNameOK, error) {
+	params := NewGetDataSourceIDByNameParams().WithName(name)
+	return a.GetDataSourceIDByNameWithParams(params, opts...)
+}
+
+func (a *Client) GetDataSourceIDByNameWithParams(params *GetDataSourceIDByNameParams, opts ...ClientOption) (*GetDataSourceIDByNameOK, error) {
 	if params == nil {
 		params = NewGetDataSourceIDByNameParams()
 	}
@@ -843,14 +937,14 @@ func (a *Client) GetDataSourceIDByName(params *GetDataSourceIDByNameParams, opts
 }
 
 /*
-	GetDataSources gets all data sources
+GetDataSources gets all data sources
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:read` and scope: `datasources:*`.
 */
 func (a *Client) GetDataSources(opts ...ClientOption) (*GetDataSourcesOK, error) {
-	return a.GetDataSourcesWithParams(nil, opts...)
+	params := NewGetDataSourcesParams()
+	return a.GetDataSourcesWithParams(params, opts...)
 }
 
 func (a *Client) GetDataSourcesWithParams(params *GetDataSourcesParams, opts ...ClientOption) (*GetDataSourcesOK, error) {
@@ -890,10 +984,9 @@ func (a *Client) GetDataSourcesWithParams(params *GetDataSourcesParams, opts ...
 }
 
 /*
-	UpdateDataSourceByID updates an existing data source by its sequential ID
+UpdateDataSourceByID updates an existing data source by its sequential ID
 
-	Similar to creating a data source, `password` and `basicAuthPassword` should be defined under
-
+Similar to creating a data source, `password` and `basicAuthPassword` should be defined under
 secureJsonData in order to be stored securely as an encrypted blob in the database. Then, the
 encrypted fields are listed under secureJsonFields section in the response.
 
@@ -902,7 +995,12 @@ you need to have a permission with action: `datasources:write` and scopes: `data
 
 Please refer to [updated API](#/datasources/updateDataSourceByUID) instead
 */
-func (a *Client) UpdateDataSourceByID(params *UpdateDataSourceByIDParams, opts ...ClientOption) (*UpdateDataSourceByIDOK, error) {
+func (a *Client) UpdateDataSourceByID(id string, body *models.UpdateDataSourceCommand, opts ...ClientOption) (*UpdateDataSourceByIDOK, error) {
+	params := NewUpdateDataSourceByIDParams().WithBody(body).WithID(id)
+	return a.UpdateDataSourceByIDWithParams(params, opts...)
+}
+
+func (a *Client) UpdateDataSourceByIDWithParams(params *UpdateDataSourceByIDParams, opts ...ClientOption) (*UpdateDataSourceByIDOK, error) {
 	if params == nil {
 		params = NewUpdateDataSourceByIDParams()
 	}
@@ -939,17 +1037,21 @@ func (a *Client) UpdateDataSourceByID(params *UpdateDataSourceByIDParams, opts .
 }
 
 /*
-	UpdateDataSourceByUID updates an existing data source
+UpdateDataSourceByUID updates an existing data source
 
-	Similar to creating a data source, `password` and `basicAuthPassword` should be defined under
-
+Similar to creating a data source, `password` and `basicAuthPassword` should be defined under
 secureJsonData in order to be stored securely as an encrypted blob in the database. Then, the
 encrypted fields are listed under secureJsonFields section in the response.
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `datasources:write` and scopes: `datasources:*`, `datasources:uid:*` and `datasources:uid:1` (single data source).
 */
-func (a *Client) UpdateDataSourceByUID(params *UpdateDataSourceByUIDParams, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error) {
+func (a *Client) UpdateDataSourceByUID(uid string, body *models.UpdateDataSourceCommand, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error) {
+	params := NewUpdateDataSourceByUIDParams().WithBody(body).WithUID(uid)
+	return a.UpdateDataSourceByUIDWithParams(params, opts...)
+}
+
+func (a *Client) UpdateDataSourceByUIDWithParams(params *UpdateDataSourceByUIDParams, opts ...ClientOption) (*UpdateDataSourceByUIDOK, error) {
 	if params == nil {
 		params = NewUpdateDataSourceByUIDParams()
 	}
