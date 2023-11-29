@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new org preferences API client.
@@ -33,9 +35,11 @@ type ClientService interface {
 	GetOrgPreferences(opts ...ClientOption) (*GetOrgPreferencesOK, error)
 	GetOrgPreferencesWithParams(params *GetOrgPreferencesParams, opts ...ClientOption) (*GetOrgPreferencesOK, error)
 
-	PatchOrgPreferences(params *PatchOrgPreferencesParams, opts ...ClientOption) (*PatchOrgPreferencesOK, error)
+	PatchOrgPreferences(body *models.PatchPrefsCmd, opts ...ClientOption) (*PatchOrgPreferencesOK, error)
+	PatchOrgPreferencesWithParams(params *PatchOrgPreferencesParams, opts ...ClientOption) (*PatchOrgPreferencesOK, error)
 
-	UpdateOrgPreferences(params *UpdateOrgPreferencesParams, opts ...ClientOption) (*UpdateOrgPreferencesOK, error)
+	UpdateOrgPreferences(body *models.UpdatePrefsCmd, opts ...ClientOption) (*UpdateOrgPreferencesOK, error)
+	UpdateOrgPreferencesWithParams(params *UpdateOrgPreferencesParams, opts ...ClientOption) (*UpdateOrgPreferencesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -44,7 +48,8 @@ type ClientService interface {
 GetOrgPreferences gets current org prefs
 */
 func (a *Client) GetOrgPreferences(opts ...ClientOption) (*GetOrgPreferencesOK, error) {
-	return a.GetOrgPreferencesWithParams(nil, opts...)
+	params := NewGetOrgPreferencesParams()
+	return a.GetOrgPreferencesWithParams(params, opts...)
 }
 
 func (a *Client) GetOrgPreferencesWithParams(params *GetOrgPreferencesParams, opts ...ClientOption) (*GetOrgPreferencesOK, error) {
@@ -86,7 +91,12 @@ func (a *Client) GetOrgPreferencesWithParams(params *GetOrgPreferencesParams, op
 /*
 PatchOrgPreferences patches current org prefs
 */
-func (a *Client) PatchOrgPreferences(params *PatchOrgPreferencesParams, opts ...ClientOption) (*PatchOrgPreferencesOK, error) {
+func (a *Client) PatchOrgPreferences(body *models.PatchPrefsCmd, opts ...ClientOption) (*PatchOrgPreferencesOK, error) {
+	params := NewPatchOrgPreferencesParams().WithBody(body)
+	return a.PatchOrgPreferencesWithParams(params, opts...)
+}
+
+func (a *Client) PatchOrgPreferencesWithParams(params *PatchOrgPreferencesParams, opts ...ClientOption) (*PatchOrgPreferencesOK, error) {
 	if params == nil {
 		params = NewPatchOrgPreferencesParams()
 	}
@@ -125,7 +135,12 @@ func (a *Client) PatchOrgPreferences(params *PatchOrgPreferencesParams, opts ...
 /*
 UpdateOrgPreferences updates current org prefs
 */
-func (a *Client) UpdateOrgPreferences(params *UpdateOrgPreferencesParams, opts ...ClientOption) (*UpdateOrgPreferencesOK, error) {
+func (a *Client) UpdateOrgPreferences(body *models.UpdatePrefsCmd, opts ...ClientOption) (*UpdateOrgPreferencesOK, error) {
+	params := NewUpdateOrgPreferencesParams().WithBody(body)
+	return a.UpdateOrgPreferencesWithParams(params, opts...)
+}
+
+func (a *Client) UpdateOrgPreferencesWithParams(params *UpdateOrgPreferencesParams, opts ...ClientOption) (*UpdateOrgPreferencesOK, error) {
 	if params == nil {
 		params = NewUpdateOrgPreferencesParams()
 	}

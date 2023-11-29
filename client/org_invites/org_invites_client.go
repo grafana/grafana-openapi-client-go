@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new org invites API client.
@@ -30,12 +32,14 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddOrgInvite(params *AddOrgInviteParams, opts ...ClientOption) (*AddOrgInviteOK, error)
+	AddOrgInvite(body *models.AddInviteForm, opts ...ClientOption) (*AddOrgInviteOK, error)
+	AddOrgInviteWithParams(params *AddOrgInviteParams, opts ...ClientOption) (*AddOrgInviteOK, error)
 
 	GetPendingOrgInvites(opts ...ClientOption) (*GetPendingOrgInvitesOK, error)
 	GetPendingOrgInvitesWithParams(params *GetPendingOrgInvitesParams, opts ...ClientOption) (*GetPendingOrgInvitesOK, error)
 
-	RevokeInvite(params *RevokeInviteParams, opts ...ClientOption) (*RevokeInviteOK, error)
+	RevokeInvite(invitationCode string, opts ...ClientOption) (*RevokeInviteOK, error)
+	RevokeInviteWithParams(params *RevokeInviteParams, opts ...ClientOption) (*RevokeInviteOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -43,7 +47,12 @@ type ClientService interface {
 /*
 AddOrgInvite adds invite
 */
-func (a *Client) AddOrgInvite(params *AddOrgInviteParams, opts ...ClientOption) (*AddOrgInviteOK, error) {
+func (a *Client) AddOrgInvite(body *models.AddInviteForm, opts ...ClientOption) (*AddOrgInviteOK, error) {
+	params := NewAddOrgInviteParams().WithBody(body)
+	return a.AddOrgInviteWithParams(params, opts...)
+}
+
+func (a *Client) AddOrgInviteWithParams(params *AddOrgInviteParams, opts ...ClientOption) (*AddOrgInviteOK, error) {
 	if params == nil {
 		params = NewAddOrgInviteParams()
 	}
@@ -83,7 +92,8 @@ func (a *Client) AddOrgInvite(params *AddOrgInviteParams, opts ...ClientOption) 
 GetPendingOrgInvites gets pending invites
 */
 func (a *Client) GetPendingOrgInvites(opts ...ClientOption) (*GetPendingOrgInvitesOK, error) {
-	return a.GetPendingOrgInvitesWithParams(nil, opts...)
+	params := NewGetPendingOrgInvitesParams()
+	return a.GetPendingOrgInvitesWithParams(params, opts...)
 }
 
 func (a *Client) GetPendingOrgInvitesWithParams(params *GetPendingOrgInvitesParams, opts ...ClientOption) (*GetPendingOrgInvitesOK, error) {
@@ -125,7 +135,12 @@ func (a *Client) GetPendingOrgInvitesWithParams(params *GetPendingOrgInvitesPara
 /*
 RevokeInvite revokes invite
 */
-func (a *Client) RevokeInvite(params *RevokeInviteParams, opts ...ClientOption) (*RevokeInviteOK, error) {
+func (a *Client) RevokeInvite(invitationCode string, opts ...ClientOption) (*RevokeInviteOK, error) {
+	params := NewRevokeInviteParams().WithInvitationCode(invitationCode)
+	return a.RevokeInviteWithParams(params, opts...)
+}
+
+func (a *Client) RevokeInviteWithParams(params *RevokeInviteParams, opts ...ClientOption) (*RevokeInviteOK, error) {
 	if params == nil {
 		params = NewRevokeInviteParams()
 	}

@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new playlists API client.
@@ -30,17 +32,22 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreatePlaylist(params *CreatePlaylistParams, opts ...ClientOption) (*CreatePlaylistOK, error)
+	CreatePlaylist(body *models.CreatePlaylistCommand, opts ...ClientOption) (*CreatePlaylistOK, error)
+	CreatePlaylistWithParams(params *CreatePlaylistParams, opts ...ClientOption) (*CreatePlaylistOK, error)
 
-	DeletePlaylist(params *DeletePlaylistParams, opts ...ClientOption) (*DeletePlaylistOK, error)
+	DeletePlaylist(uid string, opts ...ClientOption) (*DeletePlaylistOK, error)
+	DeletePlaylistWithParams(params *DeletePlaylistParams, opts ...ClientOption) (*DeletePlaylistOK, error)
 
-	GetPlaylist(params *GetPlaylistParams, opts ...ClientOption) (*GetPlaylistOK, error)
+	GetPlaylist(uid string, opts ...ClientOption) (*GetPlaylistOK, error)
+	GetPlaylistWithParams(params *GetPlaylistParams, opts ...ClientOption) (*GetPlaylistOK, error)
 
-	GetPlaylistItems(params *GetPlaylistItemsParams, opts ...ClientOption) (*GetPlaylistItemsOK, error)
+	GetPlaylistItems(uid string, opts ...ClientOption) (*GetPlaylistItemsOK, error)
+	GetPlaylistItemsWithParams(params *GetPlaylistItemsParams, opts ...ClientOption) (*GetPlaylistItemsOK, error)
 
 	SearchPlaylists(params *SearchPlaylistsParams, opts ...ClientOption) (*SearchPlaylistsOK, error)
 
-	UpdatePlaylist(params *UpdatePlaylistParams, opts ...ClientOption) (*UpdatePlaylistOK, error)
+	UpdatePlaylist(uid string, body *models.UpdatePlaylistCommand, opts ...ClientOption) (*UpdatePlaylistOK, error)
+	UpdatePlaylistWithParams(params *UpdatePlaylistParams, opts ...ClientOption) (*UpdatePlaylistOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -48,7 +55,12 @@ type ClientService interface {
 /*
 CreatePlaylist creates playlist
 */
-func (a *Client) CreatePlaylist(params *CreatePlaylistParams, opts ...ClientOption) (*CreatePlaylistOK, error) {
+func (a *Client) CreatePlaylist(body *models.CreatePlaylistCommand, opts ...ClientOption) (*CreatePlaylistOK, error) {
+	params := NewCreatePlaylistParams().WithBody(body)
+	return a.CreatePlaylistWithParams(params, opts...)
+}
+
+func (a *Client) CreatePlaylistWithParams(params *CreatePlaylistParams, opts ...ClientOption) (*CreatePlaylistOK, error) {
 	if params == nil {
 		params = NewCreatePlaylistParams()
 	}
@@ -87,7 +99,12 @@ func (a *Client) CreatePlaylist(params *CreatePlaylistParams, opts ...ClientOpti
 /*
 DeletePlaylist deletes playlist
 */
-func (a *Client) DeletePlaylist(params *DeletePlaylistParams, opts ...ClientOption) (*DeletePlaylistOK, error) {
+func (a *Client) DeletePlaylist(uid string, opts ...ClientOption) (*DeletePlaylistOK, error) {
+	params := NewDeletePlaylistParams().WithUID(uid)
+	return a.DeletePlaylistWithParams(params, opts...)
+}
+
+func (a *Client) DeletePlaylistWithParams(params *DeletePlaylistParams, opts ...ClientOption) (*DeletePlaylistOK, error) {
 	if params == nil {
 		params = NewDeletePlaylistParams()
 	}
@@ -126,7 +143,12 @@ func (a *Client) DeletePlaylist(params *DeletePlaylistParams, opts ...ClientOpti
 /*
 GetPlaylist gets playlist
 */
-func (a *Client) GetPlaylist(params *GetPlaylistParams, opts ...ClientOption) (*GetPlaylistOK, error) {
+func (a *Client) GetPlaylist(uid string, opts ...ClientOption) (*GetPlaylistOK, error) {
+	params := NewGetPlaylistParams().WithUID(uid)
+	return a.GetPlaylistWithParams(params, opts...)
+}
+
+func (a *Client) GetPlaylistWithParams(params *GetPlaylistParams, opts ...ClientOption) (*GetPlaylistOK, error) {
 	if params == nil {
 		params = NewGetPlaylistParams()
 	}
@@ -165,7 +187,12 @@ func (a *Client) GetPlaylist(params *GetPlaylistParams, opts ...ClientOption) (*
 /*
 GetPlaylistItems gets playlist items
 */
-func (a *Client) GetPlaylistItems(params *GetPlaylistItemsParams, opts ...ClientOption) (*GetPlaylistItemsOK, error) {
+func (a *Client) GetPlaylistItems(uid string, opts ...ClientOption) (*GetPlaylistItemsOK, error) {
+	params := NewGetPlaylistItemsParams().WithUID(uid)
+	return a.GetPlaylistItemsWithParams(params, opts...)
+}
+
+func (a *Client) GetPlaylistItemsWithParams(params *GetPlaylistItemsParams, opts ...ClientOption) (*GetPlaylistItemsOK, error) {
 	if params == nil {
 		params = NewGetPlaylistItemsParams()
 	}
@@ -204,6 +231,7 @@ func (a *Client) GetPlaylistItems(params *GetPlaylistItemsParams, opts ...Client
 /*
 SearchPlaylists gets playlists
 */
+
 func (a *Client) SearchPlaylists(params *SearchPlaylistsParams, opts ...ClientOption) (*SearchPlaylistsOK, error) {
 	if params == nil {
 		params = NewSearchPlaylistsParams()
@@ -243,7 +271,12 @@ func (a *Client) SearchPlaylists(params *SearchPlaylistsParams, opts ...ClientOp
 /*
 UpdatePlaylist updates playlist
 */
-func (a *Client) UpdatePlaylist(params *UpdatePlaylistParams, opts ...ClientOption) (*UpdatePlaylistOK, error) {
+func (a *Client) UpdatePlaylist(uid string, body *models.UpdatePlaylistCommand, opts ...ClientOption) (*UpdatePlaylistOK, error) {
+	params := NewUpdatePlaylistParams().WithBody(body).WithUID(uid)
+	return a.UpdatePlaylistWithParams(params, opts...)
+}
+
+func (a *Client) UpdatePlaylistWithParams(params *UpdatePlaylistParams, opts ...ClientOption) (*UpdatePlaylistOK, error) {
 	if params == nil {
 		params = NewUpdatePlaylistParams()
 	}

@@ -1,0 +1,29 @@
+{{- /* 
+    Param generation taken from https://github.com/go-swagger/go-swagger/blob/master/generator/templates/client/parameter.gotmpl
+    Only meant to be used for max 2 params
+    If the arg is body, it will be put at the end
+*/}}
+
+{{- $arguments := "" }}
+{{- range .Params }}
+    {{- $arg := printf "%s " (varname .Name) }}
+    {{- if and (not .IsArray) (not .IsMap)  (not .HasDiscriminator) (not .IsStream) (or .IsNullable) }}
+        {{- $arg = printf "%s* " $arg }}
+    {{- end }}
+    {{- if .IsFileParam }}
+        {{- $arg = printf "%sruntime.NamedReadCloser" $arg }}
+    {{- else }}
+        {{- $arg = printf "%s%s" $arg .GoType }}
+    {{- end }}
+
+    {{- if eq "body" .Name }}
+        {{- $arguments = printf "%s%s," $arguments $arg }}
+    {{- else }}
+        {{- $arguments = printf "%s,%s" $arg $arguments }}
+    {{- end }}
+{{- end }}
+{{- if .HasStreamingResponse }}
+    {{- $arguments = printf "%swriter io.Writer," $arguments }}
+{{- end }}
+
+{{-  printf "%sopts ...ClientOption" $arguments -}}

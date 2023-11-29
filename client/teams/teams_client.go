@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new teams API client.
@@ -30,27 +32,36 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddTeamMember(params *AddTeamMemberParams, opts ...ClientOption) (*AddTeamMemberOK, error)
+	AddTeamMember(teamID string, body *models.AddTeamMemberCommand, opts ...ClientOption) (*AddTeamMemberOK, error)
+	AddTeamMemberWithParams(params *AddTeamMemberParams, opts ...ClientOption) (*AddTeamMemberOK, error)
 
-	CreateTeam(params *CreateTeamParams, opts ...ClientOption) (*CreateTeamOK, error)
+	CreateTeam(body *models.CreateTeamCommand, opts ...ClientOption) (*CreateTeamOK, error)
+	CreateTeamWithParams(params *CreateTeamParams, opts ...ClientOption) (*CreateTeamOK, error)
 
-	DeleteTeamByID(params *DeleteTeamByIDParams, opts ...ClientOption) (*DeleteTeamByIDOK, error)
+	DeleteTeamByID(teamID string, opts ...ClientOption) (*DeleteTeamByIDOK, error)
+	DeleteTeamByIDWithParams(params *DeleteTeamByIDParams, opts ...ClientOption) (*DeleteTeamByIDOK, error)
 
-	GetTeamByID(params *GetTeamByIDParams, opts ...ClientOption) (*GetTeamByIDOK, error)
+	GetTeamByID(teamID string, opts ...ClientOption) (*GetTeamByIDOK, error)
+	GetTeamByIDWithParams(params *GetTeamByIDParams, opts ...ClientOption) (*GetTeamByIDOK, error)
 
-	GetTeamMembers(params *GetTeamMembersParams, opts ...ClientOption) (*GetTeamMembersOK, error)
+	GetTeamMembers(teamID string, opts ...ClientOption) (*GetTeamMembersOK, error)
+	GetTeamMembersWithParams(params *GetTeamMembersParams, opts ...ClientOption) (*GetTeamMembersOK, error)
 
-	GetTeamPreferences(params *GetTeamPreferencesParams, opts ...ClientOption) (*GetTeamPreferencesOK, error)
+	GetTeamPreferences(teamID string, opts ...ClientOption) (*GetTeamPreferencesOK, error)
+	GetTeamPreferencesWithParams(params *GetTeamPreferencesParams, opts ...ClientOption) (*GetTeamPreferencesOK, error)
 
-	RemoveTeamMember(params *RemoveTeamMemberParams, opts ...ClientOption) (*RemoveTeamMemberOK, error)
+	RemoveTeamMember(userID int64, teamID string, opts ...ClientOption) (*RemoveTeamMemberOK, error)
+	RemoveTeamMemberWithParams(params *RemoveTeamMemberParams, opts ...ClientOption) (*RemoveTeamMemberOK, error)
 
 	SearchTeams(params *SearchTeamsParams, opts ...ClientOption) (*SearchTeamsOK, error)
 
-	UpdateTeam(params *UpdateTeamParams, opts ...ClientOption) (*UpdateTeamOK, error)
+	UpdateTeam(teamID string, body *models.UpdateTeamCommand, opts ...ClientOption) (*UpdateTeamOK, error)
+	UpdateTeamWithParams(params *UpdateTeamParams, opts ...ClientOption) (*UpdateTeamOK, error)
 
 	UpdateTeamMember(params *UpdateTeamMemberParams, opts ...ClientOption) (*UpdateTeamMemberOK, error)
 
-	UpdateTeamPreferences(params *UpdateTeamPreferencesParams, opts ...ClientOption) (*UpdateTeamPreferencesOK, error)
+	UpdateTeamPreferences(teamID string, body *models.UpdatePrefsCmd, opts ...ClientOption) (*UpdateTeamPreferencesOK, error)
+	UpdateTeamPreferencesWithParams(params *UpdateTeamPreferencesParams, opts ...ClientOption) (*UpdateTeamPreferencesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -58,7 +69,12 @@ type ClientService interface {
 /*
 AddTeamMember adds team member
 */
-func (a *Client) AddTeamMember(params *AddTeamMemberParams, opts ...ClientOption) (*AddTeamMemberOK, error) {
+func (a *Client) AddTeamMember(teamID string, body *models.AddTeamMemberCommand, opts ...ClientOption) (*AddTeamMemberOK, error) {
+	params := NewAddTeamMemberParams().WithBody(body).WithTeamID(teamID)
+	return a.AddTeamMemberWithParams(params, opts...)
+}
+
+func (a *Client) AddTeamMemberWithParams(params *AddTeamMemberParams, opts ...ClientOption) (*AddTeamMemberOK, error) {
 	if params == nil {
 		params = NewAddTeamMemberParams()
 	}
@@ -97,7 +113,12 @@ func (a *Client) AddTeamMember(params *AddTeamMemberParams, opts ...ClientOption
 /*
 CreateTeam adds team
 */
-func (a *Client) CreateTeam(params *CreateTeamParams, opts ...ClientOption) (*CreateTeamOK, error) {
+func (a *Client) CreateTeam(body *models.CreateTeamCommand, opts ...ClientOption) (*CreateTeamOK, error) {
+	params := NewCreateTeamParams().WithBody(body)
+	return a.CreateTeamWithParams(params, opts...)
+}
+
+func (a *Client) CreateTeamWithParams(params *CreateTeamParams, opts ...ClientOption) (*CreateTeamOK, error) {
 	if params == nil {
 		params = NewCreateTeamParams()
 	}
@@ -136,7 +157,12 @@ func (a *Client) CreateTeam(params *CreateTeamParams, opts ...ClientOption) (*Cr
 /*
 DeleteTeamByID deletes team by ID
 */
-func (a *Client) DeleteTeamByID(params *DeleteTeamByIDParams, opts ...ClientOption) (*DeleteTeamByIDOK, error) {
+func (a *Client) DeleteTeamByID(teamID string, opts ...ClientOption) (*DeleteTeamByIDOK, error) {
+	params := NewDeleteTeamByIDParams().WithTeamID(teamID)
+	return a.DeleteTeamByIDWithParams(params, opts...)
+}
+
+func (a *Client) DeleteTeamByIDWithParams(params *DeleteTeamByIDParams, opts ...ClientOption) (*DeleteTeamByIDOK, error) {
 	if params == nil {
 		params = NewDeleteTeamByIDParams()
 	}
@@ -175,7 +201,12 @@ func (a *Client) DeleteTeamByID(params *DeleteTeamByIDParams, opts ...ClientOpti
 /*
 GetTeamByID gets team by ID
 */
-func (a *Client) GetTeamByID(params *GetTeamByIDParams, opts ...ClientOption) (*GetTeamByIDOK, error) {
+func (a *Client) GetTeamByID(teamID string, opts ...ClientOption) (*GetTeamByIDOK, error) {
+	params := NewGetTeamByIDParams().WithTeamID(teamID)
+	return a.GetTeamByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetTeamByIDWithParams(params *GetTeamByIDParams, opts ...ClientOption) (*GetTeamByIDOK, error) {
 	if params == nil {
 		params = NewGetTeamByIDParams()
 	}
@@ -214,7 +245,12 @@ func (a *Client) GetTeamByID(params *GetTeamByIDParams, opts ...ClientOption) (*
 /*
 GetTeamMembers gets team members
 */
-func (a *Client) GetTeamMembers(params *GetTeamMembersParams, opts ...ClientOption) (*GetTeamMembersOK, error) {
+func (a *Client) GetTeamMembers(teamID string, opts ...ClientOption) (*GetTeamMembersOK, error) {
+	params := NewGetTeamMembersParams().WithTeamID(teamID)
+	return a.GetTeamMembersWithParams(params, opts...)
+}
+
+func (a *Client) GetTeamMembersWithParams(params *GetTeamMembersParams, opts ...ClientOption) (*GetTeamMembersOK, error) {
 	if params == nil {
 		params = NewGetTeamMembersParams()
 	}
@@ -253,7 +289,12 @@ func (a *Client) GetTeamMembers(params *GetTeamMembersParams, opts ...ClientOpti
 /*
 GetTeamPreferences gets team preferences
 */
-func (a *Client) GetTeamPreferences(params *GetTeamPreferencesParams, opts ...ClientOption) (*GetTeamPreferencesOK, error) {
+func (a *Client) GetTeamPreferences(teamID string, opts ...ClientOption) (*GetTeamPreferencesOK, error) {
+	params := NewGetTeamPreferencesParams().WithTeamID(teamID)
+	return a.GetTeamPreferencesWithParams(params, opts...)
+}
+
+func (a *Client) GetTeamPreferencesWithParams(params *GetTeamPreferencesParams, opts ...ClientOption) (*GetTeamPreferencesOK, error) {
 	if params == nil {
 		params = NewGetTeamPreferencesParams()
 	}
@@ -292,7 +333,12 @@ func (a *Client) GetTeamPreferences(params *GetTeamPreferencesParams, opts ...Cl
 /*
 RemoveTeamMember removes member from team
 */
-func (a *Client) RemoveTeamMember(params *RemoveTeamMemberParams, opts ...ClientOption) (*RemoveTeamMemberOK, error) {
+func (a *Client) RemoveTeamMember(userID int64, teamID string, opts ...ClientOption) (*RemoveTeamMemberOK, error) {
+	params := NewRemoveTeamMemberParams().WithTeamID(teamID).WithUserID(userID)
+	return a.RemoveTeamMemberWithParams(params, opts...)
+}
+
+func (a *Client) RemoveTeamMemberWithParams(params *RemoveTeamMemberParams, opts ...ClientOption) (*RemoveTeamMemberOK, error) {
 	if params == nil {
 		params = NewRemoveTeamMemberParams()
 	}
@@ -331,6 +377,7 @@ func (a *Client) RemoveTeamMember(params *RemoveTeamMemberParams, opts ...Client
 /*
 SearchTeams teams search with paging
 */
+
 func (a *Client) SearchTeams(params *SearchTeamsParams, opts ...ClientOption) (*SearchTeamsOK, error) {
 	if params == nil {
 		params = NewSearchTeamsParams()
@@ -370,7 +417,12 @@ func (a *Client) SearchTeams(params *SearchTeamsParams, opts ...ClientOption) (*
 /*
 UpdateTeam updates team
 */
-func (a *Client) UpdateTeam(params *UpdateTeamParams, opts ...ClientOption) (*UpdateTeamOK, error) {
+func (a *Client) UpdateTeam(teamID string, body *models.UpdateTeamCommand, opts ...ClientOption) (*UpdateTeamOK, error) {
+	params := NewUpdateTeamParams().WithBody(body).WithTeamID(teamID)
+	return a.UpdateTeamWithParams(params, opts...)
+}
+
+func (a *Client) UpdateTeamWithParams(params *UpdateTeamParams, opts ...ClientOption) (*UpdateTeamOK, error) {
 	if params == nil {
 		params = NewUpdateTeamParams()
 	}
@@ -409,6 +461,7 @@ func (a *Client) UpdateTeam(params *UpdateTeamParams, opts ...ClientOption) (*Up
 /*
 UpdateTeamMember updates team member
 */
+
 func (a *Client) UpdateTeamMember(params *UpdateTeamMemberParams, opts ...ClientOption) (*UpdateTeamMemberOK, error) {
 	if params == nil {
 		params = NewUpdateTeamMemberParams()
@@ -448,7 +501,12 @@ func (a *Client) UpdateTeamMember(params *UpdateTeamMemberParams, opts ...Client
 /*
 UpdateTeamPreferences updates team preferences
 */
-func (a *Client) UpdateTeamPreferences(params *UpdateTeamPreferencesParams, opts ...ClientOption) (*UpdateTeamPreferencesOK, error) {
+func (a *Client) UpdateTeamPreferences(teamID string, body *models.UpdatePrefsCmd, opts ...ClientOption) (*UpdateTeamPreferencesOK, error) {
+	params := NewUpdateTeamPreferencesParams().WithBody(body).WithTeamID(teamID)
+	return a.UpdateTeamPreferencesWithParams(params, opts...)
+}
+
+func (a *Client) UpdateTeamPreferencesWithParams(params *UpdateTeamPreferencesParams, opts ...ClientOption) (*UpdateTeamPreferencesOK, error) {
 	if params == nil {
 		params = NewUpdateTeamPreferencesParams()
 	}

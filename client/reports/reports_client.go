@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new reports API client.
@@ -30,11 +32,14 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateReport(params *CreateReportParams, opts ...ClientOption) (*CreateReportOK, error)
+	CreateReport(body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*CreateReportOK, error)
+	CreateReportWithParams(params *CreateReportParams, opts ...ClientOption) (*CreateReportOK, error)
 
-	DeleteReport(params *DeleteReportParams, opts ...ClientOption) (*DeleteReportOK, error)
+	DeleteReport(id int64, opts ...ClientOption) (*DeleteReportOK, error)
+	DeleteReportWithParams(params *DeleteReportParams, opts ...ClientOption) (*DeleteReportOK, error)
 
-	GetReport(params *GetReportParams, opts ...ClientOption) (*GetReportOK, error)
+	GetReport(id int64, opts ...ClientOption) (*GetReportOK, error)
+	GetReportWithParams(params *GetReportParams, opts ...ClientOption) (*GetReportOK, error)
 
 	GetReportSettings(opts ...ClientOption) (*GetReportSettingsOK, error)
 	GetReportSettingsWithParams(params *GetReportSettingsParams, opts ...ClientOption) (*GetReportSettingsOK, error)
@@ -46,25 +51,34 @@ type ClientService interface {
 
 	RenderReportPDFs(params *RenderReportPDFsParams, opts ...ClientOption) (*RenderReportPDFsOK, error)
 
-	SaveReportSettings(params *SaveReportSettingsParams, opts ...ClientOption) (*SaveReportSettingsOK, error)
+	SaveReportSettings(body *models.SettingsDTO, opts ...ClientOption) (*SaveReportSettingsOK, error)
+	SaveReportSettingsWithParams(params *SaveReportSettingsParams, opts ...ClientOption) (*SaveReportSettingsOK, error)
 
-	SendReport(params *SendReportParams, opts ...ClientOption) (*SendReportOK, error)
+	SendReport(body *models.ReportEmailDTO, opts ...ClientOption) (*SendReportOK, error)
+	SendReportWithParams(params *SendReportParams, opts ...ClientOption) (*SendReportOK, error)
 
-	SendTestEmail(params *SendTestEmailParams, opts ...ClientOption) (*SendTestEmailOK, error)
+	SendTestEmail(body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*SendTestEmailOK, error)
+	SendTestEmailWithParams(params *SendTestEmailParams, opts ...ClientOption) (*SendTestEmailOK, error)
 
-	UpdateReport(params *UpdateReportParams, opts ...ClientOption) (*UpdateReportOK, error)
+	UpdateReport(id int64, body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*UpdateReportOK, error)
+	UpdateReportWithParams(params *UpdateReportParams, opts ...ClientOption) (*UpdateReportOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-	CreateReport creates a report
+CreateReport creates a report
 
-	Available to org admins only and with a valid license.
+Available to org admins only and with a valid license.
 
 You need to have a permission with action `reports.admin:create`.
 */
-func (a *Client) CreateReport(params *CreateReportParams, opts ...ClientOption) (*CreateReportOK, error) {
+func (a *Client) CreateReport(body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*CreateReportOK, error) {
+	params := NewCreateReportParams().WithBody(body)
+	return a.CreateReportWithParams(params, opts...)
+}
+
+func (a *Client) CreateReportWithParams(params *CreateReportParams, opts ...ClientOption) (*CreateReportOK, error) {
 	if params == nil {
 		params = NewCreateReportParams()
 	}
@@ -101,13 +115,18 @@ func (a *Client) CreateReport(params *CreateReportParams, opts ...ClientOption) 
 }
 
 /*
-	DeleteReport deletes a report
+DeleteReport deletes a report
 
-	Available to org admins only and with a valid or expired license.
+Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.delete` with scope `reports:id:<report ID>`.
 */
-func (a *Client) DeleteReport(params *DeleteReportParams, opts ...ClientOption) (*DeleteReportOK, error) {
+func (a *Client) DeleteReport(id int64, opts ...ClientOption) (*DeleteReportOK, error) {
+	params := NewDeleteReportParams().WithID(id)
+	return a.DeleteReportWithParams(params, opts...)
+}
+
+func (a *Client) DeleteReportWithParams(params *DeleteReportParams, opts ...ClientOption) (*DeleteReportOK, error) {
 	if params == nil {
 		params = NewDeleteReportParams()
 	}
@@ -144,13 +163,18 @@ func (a *Client) DeleteReport(params *DeleteReportParams, opts ...ClientOption) 
 }
 
 /*
-	GetReport gets a report
+GetReport gets a report
 
-	Available to org admins only and with a valid or expired license.
+Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports:read` with scope `reports:id:<report ID>`.
 */
-func (a *Client) GetReport(params *GetReportParams, opts ...ClientOption) (*GetReportOK, error) {
+func (a *Client) GetReport(id int64, opts ...ClientOption) (*GetReportOK, error) {
+	params := NewGetReportParams().WithID(id)
+	return a.GetReportWithParams(params, opts...)
+}
+
+func (a *Client) GetReportWithParams(params *GetReportParams, opts ...ClientOption) (*GetReportOK, error) {
 	if params == nil {
 		params = NewGetReportParams()
 	}
@@ -187,14 +211,15 @@ func (a *Client) GetReport(params *GetReportParams, opts ...ClientOption) (*GetR
 }
 
 /*
-	GetReportSettings gets settings
+GetReportSettings gets settings
 
-	Available to org admins only and with a valid or expired license.
+Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.settings:read`x.
 */
 func (a *Client) GetReportSettings(opts ...ClientOption) (*GetReportSettingsOK, error) {
-	return a.GetReportSettingsWithParams(nil, opts...)
+	params := NewGetReportSettingsParams()
+	return a.GetReportSettingsWithParams(params, opts...)
 }
 
 func (a *Client) GetReportSettingsWithParams(params *GetReportSettingsParams, opts ...ClientOption) (*GetReportSettingsOK, error) {
@@ -234,14 +259,15 @@ func (a *Client) GetReportSettingsWithParams(params *GetReportSettingsParams, op
 }
 
 /*
-	GetReports lists reports
+GetReports lists reports
 
-	Available to org admins only and with a valid or expired license.
+Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports:read` with scope `reports:*`.
 */
 func (a *Client) GetReports(opts ...ClientOption) (*GetReportsOK, error) {
-	return a.GetReportsWithParams(nil, opts...)
+	params := NewGetReportsParams()
+	return a.GetReportsWithParams(params, opts...)
 }
 
 func (a *Client) GetReportsWithParams(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error) {
@@ -285,6 +311,7 @@ RenderReportPDF renders report for dashboard
 
 Please refer to [reports enterprise](#/reports/renderReportPDFs) instead. This will be removed in Grafana 10.
 */
+
 func (a *Client) RenderReportPDF(params *RenderReportPDFParams, opts ...ClientOption) (*RenderReportPDFOK, error) {
 	if params == nil {
 		params = NewRenderReportPDFParams()
@@ -326,6 +353,7 @@ RenderReportPDFs renders report for multiple dashboards
 
 Available to all users and with a valid license.
 */
+
 func (a *Client) RenderReportPDFs(params *RenderReportPDFsParams, opts ...ClientOption) (*RenderReportPDFsOK, error) {
 	if params == nil {
 		params = NewRenderReportPDFsParams()
@@ -363,13 +391,18 @@ func (a *Client) RenderReportPDFs(params *RenderReportPDFsParams, opts ...Client
 }
 
 /*
-	SaveReportSettings saves settings
+SaveReportSettings saves settings
 
-	Available to org admins only and with a valid or expired license.
+Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.settings:write`xx.
 */
-func (a *Client) SaveReportSettings(params *SaveReportSettingsParams, opts ...ClientOption) (*SaveReportSettingsOK, error) {
+func (a *Client) SaveReportSettings(body *models.SettingsDTO, opts ...ClientOption) (*SaveReportSettingsOK, error) {
+	params := NewSaveReportSettingsParams().WithBody(body)
+	return a.SaveReportSettingsWithParams(params, opts...)
+}
+
+func (a *Client) SaveReportSettingsWithParams(params *SaveReportSettingsParams, opts ...ClientOption) (*SaveReportSettingsOK, error) {
 	if params == nil {
 		params = NewSaveReportSettingsParams()
 	}
@@ -406,16 +439,21 @@ func (a *Client) SaveReportSettings(params *SaveReportSettingsParams, opts ...Cl
 }
 
 /*
-	SendReport sends a report
+SendReport sends a report
 
-	Generate and send a report. This API waits for the report to be generated before returning. We recommend that you set the client’s timeout to at least 60 seconds. Available to org admins only and with a valid license.
+Generate and send a report. This API waits for the report to be generated before returning. We recommend that you set the client’s timeout to at least 60 seconds. Available to org admins only and with a valid license.
 
 Only available in Grafana Enterprise v7.0+.
 This API endpoint is experimental and may be deprecated in a future release. On deprecation, a migration strategy will be provided and the endpoint will remain functional until the next major release of Grafana.
 
 You need to have a permission with action `reports:send`.
 */
-func (a *Client) SendReport(params *SendReportParams, opts ...ClientOption) (*SendReportOK, error) {
+func (a *Client) SendReport(body *models.ReportEmailDTO, opts ...ClientOption) (*SendReportOK, error) {
+	params := NewSendReportParams().WithBody(body)
+	return a.SendReportWithParams(params, opts...)
+}
+
+func (a *Client) SendReportWithParams(params *SendReportParams, opts ...ClientOption) (*SendReportOK, error) {
 	if params == nil {
 		params = NewSendReportParams()
 	}
@@ -452,13 +490,18 @@ func (a *Client) SendReport(params *SendReportParams, opts ...ClientOption) (*Se
 }
 
 /*
-	SendTestEmail sends test report via email
+SendTestEmail sends test report via email
 
-	Available to org admins only and with a valid license.
+Available to org admins only and with a valid license.
 
 You need to have a permission with action `reports:send`.
 */
-func (a *Client) SendTestEmail(params *SendTestEmailParams, opts ...ClientOption) (*SendTestEmailOK, error) {
+func (a *Client) SendTestEmail(body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*SendTestEmailOK, error) {
+	params := NewSendTestEmailParams().WithBody(body)
+	return a.SendTestEmailWithParams(params, opts...)
+}
+
+func (a *Client) SendTestEmailWithParams(params *SendTestEmailParams, opts ...ClientOption) (*SendTestEmailOK, error) {
 	if params == nil {
 		params = NewSendTestEmailParams()
 	}
@@ -495,13 +538,18 @@ func (a *Client) SendTestEmail(params *SendTestEmailParams, opts ...ClientOption
 }
 
 /*
-	UpdateReport updates a report
+UpdateReport updates a report
 
-	Available to org admins only and with a valid or expired license.
+Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.admin:write` with scope `reports:id:<report ID>`.
 */
-func (a *Client) UpdateReport(params *UpdateReportParams, opts ...ClientOption) (*UpdateReportOK, error) {
+func (a *Client) UpdateReport(id int64, body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*UpdateReportOK, error) {
+	params := NewUpdateReportParams().WithBody(body).WithID(id)
+	return a.UpdateReportWithParams(params, opts...)
+}
+
+func (a *Client) UpdateReportWithParams(params *UpdateReportParams, opts ...ClientOption) (*UpdateReportOK, error) {
 	if params == nil {
 		params = NewUpdateReportParams()
 	}

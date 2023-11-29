@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new folder permissions API client.
@@ -30,9 +32,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetFolderPermissionList(params *GetFolderPermissionListParams, opts ...ClientOption) (*GetFolderPermissionListOK, error)
+	GetFolderPermissionList(folderUID string, opts ...ClientOption) (*GetFolderPermissionListOK, error)
+	GetFolderPermissionListWithParams(params *GetFolderPermissionListParams, opts ...ClientOption) (*GetFolderPermissionListOK, error)
 
-	UpdateFolderPermissions(params *UpdateFolderPermissionsParams, opts ...ClientOption) (*UpdateFolderPermissionsOK, error)
+	UpdateFolderPermissions(folderUID string, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateFolderPermissionsOK, error)
+	UpdateFolderPermissionsWithParams(params *UpdateFolderPermissionsParams, opts ...ClientOption) (*UpdateFolderPermissionsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -40,7 +44,12 @@ type ClientService interface {
 /*
 GetFolderPermissionList gets all existing permissions for the folder with the given uid
 */
-func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, opts ...ClientOption) (*GetFolderPermissionListOK, error) {
+func (a *Client) GetFolderPermissionList(folderUID string, opts ...ClientOption) (*GetFolderPermissionListOK, error) {
+	params := NewGetFolderPermissionListParams().WithFolderUID(folderUID)
+	return a.GetFolderPermissionListWithParams(params, opts...)
+}
+
+func (a *Client) GetFolderPermissionListWithParams(params *GetFolderPermissionListParams, opts ...ClientOption) (*GetFolderPermissionListOK, error) {
 	if params == nil {
 		params = NewGetFolderPermissionListParams()
 	}
@@ -79,7 +88,12 @@ func (a *Client) GetFolderPermissionList(params *GetFolderPermissionListParams, 
 /*
 UpdateFolderPermissions updates permissions for a folder this operation will remove existing permissions if they re not included in the request
 */
-func (a *Client) UpdateFolderPermissions(params *UpdateFolderPermissionsParams, opts ...ClientOption) (*UpdateFolderPermissionsOK, error) {
+func (a *Client) UpdateFolderPermissions(folderUID string, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateFolderPermissionsOK, error) {
+	params := NewUpdateFolderPermissionsParams().WithBody(body).WithFolderUID(folderUID)
+	return a.UpdateFolderPermissionsWithParams(params, opts...)
+}
+
+func (a *Client) UpdateFolderPermissionsWithParams(params *UpdateFolderPermissionsParams, opts ...ClientOption) (*UpdateFolderPermissionsOK, error) {
 	if params == nil {
 		params = NewUpdateFolderPermissionsParams()
 	}

@@ -40,7 +40,8 @@ type ClientService interface {
 AdminProvisioningReloadAccessControl yous need to have a permission with action provisioning reload with scope provisioners accesscontrol
 */
 func (a *Client) AdminProvisioningReloadAccessControl(opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error) {
-	return a.AdminProvisioningReloadAccessControlWithParams(nil, opts...)
+	params := NewAdminProvisioningReloadAccessControlParams()
+	return a.AdminProvisioningReloadAccessControlWithParams(params, opts...)
 }
 
 func (a *Client) AdminProvisioningReloadAccessControlWithParams(params *AdminProvisioningReloadAccessControlParams, opts ...ClientOption) (*AdminProvisioningReloadAccessControlAccepted, error) {

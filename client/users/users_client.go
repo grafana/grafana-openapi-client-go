@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new users API client.
@@ -30,20 +32,25 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetUserByID(params *GetUserByIDParams, opts ...ClientOption) (*GetUserByIDOK, error)
+	GetUserByID(userID int64, opts ...ClientOption) (*GetUserByIDOK, error)
+	GetUserByIDWithParams(params *GetUserByIDParams, opts ...ClientOption) (*GetUserByIDOK, error)
 
-	GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error)
+	GetUserByLoginOrEmail(loginOrEmail string, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error)
+	GetUserByLoginOrEmailWithParams(params *GetUserByLoginOrEmailParams, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error)
 
-	GetUserOrgList(params *GetUserOrgListParams, opts ...ClientOption) (*GetUserOrgListOK, error)
+	GetUserOrgList(userID int64, opts ...ClientOption) (*GetUserOrgListOK, error)
+	GetUserOrgListWithParams(params *GetUserOrgListParams, opts ...ClientOption) (*GetUserOrgListOK, error)
 
-	GetUserTeams(params *GetUserTeamsParams, opts ...ClientOption) (*GetUserTeamsOK, error)
+	GetUserTeams(userID int64, opts ...ClientOption) (*GetUserTeamsOK, error)
+	GetUserTeamsWithParams(params *GetUserTeamsParams, opts ...ClientOption) (*GetUserTeamsOK, error)
 
 	SearchUsers(params *SearchUsersParams, opts ...ClientOption) (*SearchUsersOK, error)
 
 	SearchUsersWithPaging(opts ...ClientOption) (*SearchUsersWithPagingOK, error)
 	SearchUsersWithPagingWithParams(params *SearchUsersWithPagingParams, opts ...ClientOption) (*SearchUsersWithPagingOK, error)
 
-	UpdateUser(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error)
+	UpdateUser(userID int64, body *models.UpdateUserCommand, opts ...ClientOption) (*UpdateUserOK, error)
+	UpdateUserWithParams(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -51,7 +58,12 @@ type ClientService interface {
 /*
 GetUserByID gets user by id
 */
-func (a *Client) GetUserByID(params *GetUserByIDParams, opts ...ClientOption) (*GetUserByIDOK, error) {
+func (a *Client) GetUserByID(userID int64, opts ...ClientOption) (*GetUserByIDOK, error) {
+	params := NewGetUserByIDParams().WithUserID(userID)
+	return a.GetUserByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetUserByIDWithParams(params *GetUserByIDParams, opts ...ClientOption) (*GetUserByIDOK, error) {
 	if params == nil {
 		params = NewGetUserByIDParams()
 	}
@@ -90,7 +102,12 @@ func (a *Client) GetUserByID(params *GetUserByIDParams, opts ...ClientOption) (*
 /*
 GetUserByLoginOrEmail gets user by login or email
 */
-func (a *Client) GetUserByLoginOrEmail(params *GetUserByLoginOrEmailParams, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error) {
+func (a *Client) GetUserByLoginOrEmail(loginOrEmail string, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error) {
+	params := NewGetUserByLoginOrEmailParams().WithLoginOrEmail(loginOrEmail)
+	return a.GetUserByLoginOrEmailWithParams(params, opts...)
+}
+
+func (a *Client) GetUserByLoginOrEmailWithParams(params *GetUserByLoginOrEmailParams, opts ...ClientOption) (*GetUserByLoginOrEmailOK, error) {
 	if params == nil {
 		params = NewGetUserByLoginOrEmailParams()
 	}
@@ -131,7 +148,12 @@ GetUserOrgList gets organizations for user
 
 Get organizations for user identified by id.
 */
-func (a *Client) GetUserOrgList(params *GetUserOrgListParams, opts ...ClientOption) (*GetUserOrgListOK, error) {
+func (a *Client) GetUserOrgList(userID int64, opts ...ClientOption) (*GetUserOrgListOK, error) {
+	params := NewGetUserOrgListParams().WithUserID(userID)
+	return a.GetUserOrgListWithParams(params, opts...)
+}
+
+func (a *Client) GetUserOrgListWithParams(params *GetUserOrgListParams, opts ...ClientOption) (*GetUserOrgListOK, error) {
 	if params == nil {
 		params = NewGetUserOrgListParams()
 	}
@@ -172,7 +194,12 @@ GetUserTeams gets teams for user
 
 Get teams for user identified by id.
 */
-func (a *Client) GetUserTeams(params *GetUserTeamsParams, opts ...ClientOption) (*GetUserTeamsOK, error) {
+func (a *Client) GetUserTeams(userID int64, opts ...ClientOption) (*GetUserTeamsOK, error) {
+	params := NewGetUserTeamsParams().WithUserID(userID)
+	return a.GetUserTeamsWithParams(params, opts...)
+}
+
+func (a *Client) GetUserTeamsWithParams(params *GetUserTeamsParams, opts ...ClientOption) (*GetUserTeamsOK, error) {
 	if params == nil {
 		params = NewGetUserTeamsParams()
 	}
@@ -213,6 +240,7 @@ SearchUsers gets users
 
 Returns all users that the authenticated user has permission to view, admin permission required.
 */
+
 func (a *Client) SearchUsers(params *SearchUsersParams, opts ...ClientOption) (*SearchUsersOK, error) {
 	if params == nil {
 		params = NewSearchUsersParams()
@@ -253,7 +281,8 @@ func (a *Client) SearchUsers(params *SearchUsersParams, opts ...ClientOption) (*
 SearchUsersWithPaging gets users with paging
 */
 func (a *Client) SearchUsersWithPaging(opts ...ClientOption) (*SearchUsersWithPagingOK, error) {
-	return a.SearchUsersWithPagingWithParams(nil, opts...)
+	params := NewSearchUsersWithPagingParams()
+	return a.SearchUsersWithPagingWithParams(params, opts...)
 }
 
 func (a *Client) SearchUsersWithPagingWithParams(params *SearchUsersWithPagingParams, opts ...ClientOption) (*SearchUsersWithPagingOK, error) {
@@ -297,7 +326,12 @@ UpdateUser updates user
 
 Update the user identified by id.
 */
-func (a *Client) UpdateUser(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error) {
+func (a *Client) UpdateUser(userID int64, body *models.UpdateUserCommand, opts ...ClientOption) (*UpdateUserOK, error) {
+	params := NewUpdateUserParams().WithBody(body).WithUserID(userID)
+	return a.UpdateUserWithParams(params, opts...)
+}
+
+func (a *Client) UpdateUserWithParams(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error) {
 	if params == nil {
 		params = NewUpdateUserParams()
 	}

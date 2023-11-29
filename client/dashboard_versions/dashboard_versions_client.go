@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new dashboard versions API client.
@@ -30,17 +32,22 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetDashboardVersionByID(params *GetDashboardVersionByIDParams, opts ...ClientOption) (*GetDashboardVersionByIDOK, error)
+	GetDashboardVersionByID(dashboardVersionID int64, dashboardID int64, opts ...ClientOption) (*GetDashboardVersionByIDOK, error)
+	GetDashboardVersionByIDWithParams(params *GetDashboardVersionByIDParams, opts ...ClientOption) (*GetDashboardVersionByIDOK, error)
 
-	GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error)
+	GetDashboardVersionByUID(uid string, dashboardVersionID int64, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error)
+	GetDashboardVersionByUIDWithParams(params *GetDashboardVersionByUIDParams, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error)
 
-	GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error)
+	GetDashboardVersionsByID(dashboardID int64, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error)
+	GetDashboardVersionsByIDWithParams(params *GetDashboardVersionsByIDParams, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error)
 
 	GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDParams, opts ...ClientOption) (*GetDashboardVersionsByUIDOK, error)
 
-	RestoreDashboardVersionByID(params *RestoreDashboardVersionByIDParams, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error)
+	RestoreDashboardVersionByID(dashboardID int64, body *models.RestoreDashboardVersionCommand, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error)
+	RestoreDashboardVersionByIDWithParams(params *RestoreDashboardVersionByIDParams, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error)
 
-	RestoreDashboardVersionByUID(params *RestoreDashboardVersionByUIDParams, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error)
+	RestoreDashboardVersionByUID(uid string, body *models.RestoreDashboardVersionCommand, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error)
+	RestoreDashboardVersionByUIDWithParams(params *RestoreDashboardVersionByUIDParams, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -50,7 +57,12 @@ GetDashboardVersionByID gets a specific dashboard version
 
 Please refer to [updated API](#/dashboard_versions/getDashboardVersionByUID) instead
 */
-func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, opts ...ClientOption) (*GetDashboardVersionByIDOK, error) {
+func (a *Client) GetDashboardVersionByID(dashboardVersionID int64, dashboardID int64, opts ...ClientOption) (*GetDashboardVersionByIDOK, error) {
+	params := NewGetDashboardVersionByIDParams().WithDashboardID(dashboardID).WithDashboardVersionID(dashboardVersionID)
+	return a.GetDashboardVersionByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetDashboardVersionByIDWithParams(params *GetDashboardVersionByIDParams, opts ...ClientOption) (*GetDashboardVersionByIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardVersionByIDParams()
 	}
@@ -89,7 +101,12 @@ func (a *Client) GetDashboardVersionByID(params *GetDashboardVersionByIDParams, 
 /*
 GetDashboardVersionByUID gets a specific dashboard version using UID
 */
-func (a *Client) GetDashboardVersionByUID(params *GetDashboardVersionByUIDParams, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error) {
+func (a *Client) GetDashboardVersionByUID(uid string, dashboardVersionID int64, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error) {
+	params := NewGetDashboardVersionByUIDParams().WithDashboardVersionID(dashboardVersionID).WithUID(uid)
+	return a.GetDashboardVersionByUIDWithParams(params, opts...)
+}
+
+func (a *Client) GetDashboardVersionByUIDWithParams(params *GetDashboardVersionByUIDParams, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardVersionByUIDParams()
 	}
@@ -130,7 +147,12 @@ GetDashboardVersionsByID gets all existing versions for the dashboard
 
 Please refer to [updated API](#/dashboard_versions/getDashboardVersionsByUID) instead
 */
-func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error) {
+func (a *Client) GetDashboardVersionsByID(dashboardID int64, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error) {
+	params := NewGetDashboardVersionsByIDParams().WithDashboardID(dashboardID)
+	return a.GetDashboardVersionsByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetDashboardVersionsByIDWithParams(params *GetDashboardVersionsByIDParams, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardVersionsByIDParams()
 	}
@@ -169,6 +191,7 @@ func (a *Client) GetDashboardVersionsByID(params *GetDashboardVersionsByIDParams
 /*
 GetDashboardVersionsByUID gets all existing versions for the dashboard using UID
 */
+
 func (a *Client) GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDParams, opts ...ClientOption) (*GetDashboardVersionsByUIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardVersionsByUIDParams()
@@ -210,7 +233,12 @@ RestoreDashboardVersionByID restores a dashboard to a given dashboard version
 
 Please refer to [updated API](#/dashboard_versions/restoreDashboardVersionByUID) instead
 */
-func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByIDParams, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error) {
+func (a *Client) RestoreDashboardVersionByID(dashboardID int64, body *models.RestoreDashboardVersionCommand, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error) {
+	params := NewRestoreDashboardVersionByIDParams().WithBody(body).WithDashboardID(dashboardID)
+	return a.RestoreDashboardVersionByIDWithParams(params, opts...)
+}
+
+func (a *Client) RestoreDashboardVersionByIDWithParams(params *RestoreDashboardVersionByIDParams, opts ...ClientOption) (*RestoreDashboardVersionByIDOK, error) {
 	if params == nil {
 		params = NewRestoreDashboardVersionByIDParams()
 	}
@@ -249,7 +277,12 @@ func (a *Client) RestoreDashboardVersionByID(params *RestoreDashboardVersionByID
 /*
 RestoreDashboardVersionByUID restores a dashboard to a given dashboard version using UID
 */
-func (a *Client) RestoreDashboardVersionByUID(params *RestoreDashboardVersionByUIDParams, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error) {
+func (a *Client) RestoreDashboardVersionByUID(uid string, body *models.RestoreDashboardVersionCommand, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error) {
+	params := NewRestoreDashboardVersionByUIDParams().WithBody(body).WithUID(uid)
+	return a.RestoreDashboardVersionByUIDWithParams(params, opts...)
+}
+
+func (a *Client) RestoreDashboardVersionByUIDWithParams(params *RestoreDashboardVersionByUIDParams, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error) {
 	if params == nil {
 		params = NewRestoreDashboardVersionByUIDParams()
 	}

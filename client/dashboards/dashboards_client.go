@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new dashboards API client.
@@ -30,11 +32,14 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CalculateDashboardDiff(params *CalculateDashboardDiffParams, opts ...ClientOption) (*CalculateDashboardDiffOK, error)
+	CalculateDashboardDiff(body *models.CalculateDashboardDiffParamsBody, opts ...ClientOption) (*CalculateDashboardDiffOK, error)
+	CalculateDashboardDiffWithParams(params *CalculateDashboardDiffParams, opts ...ClientOption) (*CalculateDashboardDiffOK, error)
 
-	DeleteDashboardByUID(params *DeleteDashboardByUIDParams, opts ...ClientOption) (*DeleteDashboardByUIDOK, error)
+	DeleteDashboardByUID(uid string, opts ...ClientOption) (*DeleteDashboardByUIDOK, error)
+	DeleteDashboardByUIDWithParams(params *DeleteDashboardByUIDParams, opts ...ClientOption) (*DeleteDashboardByUIDOK, error)
 
-	GetDashboardByUID(params *GetDashboardByUIDParams, opts ...ClientOption) (*GetDashboardByUIDOK, error)
+	GetDashboardByUID(uid string, opts ...ClientOption) (*GetDashboardByUIDOK, error)
+	GetDashboardByUIDWithParams(params *GetDashboardByUIDParams, opts ...ClientOption) (*GetDashboardByUIDOK, error)
 
 	GetDashboardTags(opts ...ClientOption) (*GetDashboardTagsOK, error)
 	GetDashboardTagsWithParams(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error)
@@ -42,11 +47,14 @@ type ClientService interface {
 	GetHomeDashboard(opts ...ClientOption) (*GetHomeDashboardOK, error)
 	GetHomeDashboardWithParams(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error)
 
-	ImportDashboard(params *ImportDashboardParams, opts ...ClientOption) (*ImportDashboardOK, error)
+	ImportDashboard(body *models.ImportDashboardRequest, opts ...ClientOption) (*ImportDashboardOK, error)
+	ImportDashboardWithParams(params *ImportDashboardParams, opts ...ClientOption) (*ImportDashboardOK, error)
 
-	PostDashboard(params *PostDashboardParams, opts ...ClientOption) (*PostDashboardOK, error)
+	PostDashboard(body *models.SaveDashboardCommand, opts ...ClientOption) (*PostDashboardOK, error)
+	PostDashboardWithParams(params *PostDashboardParams, opts ...ClientOption) (*PostDashboardOK, error)
 
-	TrimDashboard(params *TrimDashboardParams, opts ...ClientOption) (*TrimDashboardOK, error)
+	TrimDashboard(body *models.TrimDashboardCommand, opts ...ClientOption) (*TrimDashboardOK, error)
+	TrimDashboardWithParams(params *TrimDashboardParams, opts ...ClientOption) (*TrimDashboardOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -54,7 +62,12 @@ type ClientService interface {
 /*
 CalculateDashboardDiff performs diff on two dashboards
 */
-func (a *Client) CalculateDashboardDiff(params *CalculateDashboardDiffParams, opts ...ClientOption) (*CalculateDashboardDiffOK, error) {
+func (a *Client) CalculateDashboardDiff(body *models.CalculateDashboardDiffParamsBody, opts ...ClientOption) (*CalculateDashboardDiffOK, error) {
+	params := NewCalculateDashboardDiffParams().WithBody(body)
+	return a.CalculateDashboardDiffWithParams(params, opts...)
+}
+
+func (a *Client) CalculateDashboardDiffWithParams(params *CalculateDashboardDiffParams, opts ...ClientOption) (*CalculateDashboardDiffOK, error) {
 	if params == nil {
 		params = NewCalculateDashboardDiffParams()
 	}
@@ -95,7 +108,12 @@ DeleteDashboardByUID deletes dashboard by uid
 
 Will delete the dashboard given the specified unique identifier (uid).
 */
-func (a *Client) DeleteDashboardByUID(params *DeleteDashboardByUIDParams, opts ...ClientOption) (*DeleteDashboardByUIDOK, error) {
+func (a *Client) DeleteDashboardByUID(uid string, opts ...ClientOption) (*DeleteDashboardByUIDOK, error) {
+	params := NewDeleteDashboardByUIDParams().WithUID(uid)
+	return a.DeleteDashboardByUIDWithParams(params, opts...)
+}
+
+func (a *Client) DeleteDashboardByUIDWithParams(params *DeleteDashboardByUIDParams, opts ...ClientOption) (*DeleteDashboardByUIDOK, error) {
 	if params == nil {
 		params = NewDeleteDashboardByUIDParams()
 	}
@@ -136,7 +154,12 @@ GetDashboardByUID gets dashboard by uid
 
 Will return the dashboard given the dashboard unique identifier (uid).
 */
-func (a *Client) GetDashboardByUID(params *GetDashboardByUIDParams, opts ...ClientOption) (*GetDashboardByUIDOK, error) {
+func (a *Client) GetDashboardByUID(uid string, opts ...ClientOption) (*GetDashboardByUIDOK, error) {
+	params := NewGetDashboardByUIDParams().WithUID(uid)
+	return a.GetDashboardByUIDWithParams(params, opts...)
+}
+
+func (a *Client) GetDashboardByUIDWithParams(params *GetDashboardByUIDParams, opts ...ClientOption) (*GetDashboardByUIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardByUIDParams()
 	}
@@ -176,7 +199,8 @@ func (a *Client) GetDashboardByUID(params *GetDashboardByUIDParams, opts ...Clie
 GetDashboardTags gets all dashboards tags of an organisation
 */
 func (a *Client) GetDashboardTags(opts ...ClientOption) (*GetDashboardTagsOK, error) {
-	return a.GetDashboardTagsWithParams(nil, opts...)
+	params := NewGetDashboardTagsParams()
+	return a.GetDashboardTagsWithParams(params, opts...)
 }
 
 func (a *Client) GetDashboardTagsWithParams(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error) {
@@ -219,7 +243,8 @@ func (a *Client) GetDashboardTagsWithParams(params *GetDashboardTagsParams, opts
 GetHomeDashboard gets home dashboard
 */
 func (a *Client) GetHomeDashboard(opts ...ClientOption) (*GetHomeDashboardOK, error) {
-	return a.GetHomeDashboardWithParams(nil, opts...)
+	params := NewGetHomeDashboardParams()
+	return a.GetHomeDashboardWithParams(params, opts...)
 }
 
 func (a *Client) GetHomeDashboardWithParams(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error) {
@@ -261,7 +286,12 @@ func (a *Client) GetHomeDashboardWithParams(params *GetHomeDashboardParams, opts
 /*
 ImportDashboard imports dashboard
 */
-func (a *Client) ImportDashboard(params *ImportDashboardParams, opts ...ClientOption) (*ImportDashboardOK, error) {
+func (a *Client) ImportDashboard(body *models.ImportDashboardRequest, opts ...ClientOption) (*ImportDashboardOK, error) {
+	params := NewImportDashboardParams().WithBody(body)
+	return a.ImportDashboardWithParams(params, opts...)
+}
+
+func (a *Client) ImportDashboardWithParams(params *ImportDashboardParams, opts ...ClientOption) (*ImportDashboardOK, error) {
 	if params == nil {
 		params = NewImportDashboardParams()
 	}
@@ -302,7 +332,12 @@ PostDashboard creates update dashboard
 
 Creates a new dashboard or updates an existing dashboard.
 */
-func (a *Client) PostDashboard(params *PostDashboardParams, opts ...ClientOption) (*PostDashboardOK, error) {
+func (a *Client) PostDashboard(body *models.SaveDashboardCommand, opts ...ClientOption) (*PostDashboardOK, error) {
+	params := NewPostDashboardParams().WithBody(body)
+	return a.PostDashboardWithParams(params, opts...)
+}
+
+func (a *Client) PostDashboardWithParams(params *PostDashboardParams, opts ...ClientOption) (*PostDashboardOK, error) {
 	if params == nil {
 		params = NewPostDashboardParams()
 	}
@@ -341,7 +376,12 @@ func (a *Client) PostDashboard(params *PostDashboardParams, opts ...ClientOption
 /*
 TrimDashboard trims defaults from dashboard
 */
-func (a *Client) TrimDashboard(params *TrimDashboardParams, opts ...ClientOption) (*TrimDashboardOK, error) {
+func (a *Client) TrimDashboard(body *models.TrimDashboardCommand, opts ...ClientOption) (*TrimDashboardOK, error) {
+	params := NewTrimDashboardParams().WithBody(body)
+	return a.TrimDashboardWithParams(params, opts...)
+}
+
+func (a *Client) TrimDashboardWithParams(params *TrimDashboardParams, opts ...ClientOption) (*TrimDashboardOK, error) {
 	if params == nil {
 		params = NewTrimDashboardParams()
 	}

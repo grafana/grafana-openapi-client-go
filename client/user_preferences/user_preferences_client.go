@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new user preferences API client.
@@ -33,9 +35,11 @@ type ClientService interface {
 	GetUserPreferences(opts ...ClientOption) (*GetUserPreferencesOK, error)
 	GetUserPreferencesWithParams(params *GetUserPreferencesParams, opts ...ClientOption) (*GetUserPreferencesOK, error)
 
-	PatchUserPreferences(params *PatchUserPreferencesParams, opts ...ClientOption) (*PatchUserPreferencesOK, error)
+	PatchUserPreferences(body *models.PatchPrefsCmd, opts ...ClientOption) (*PatchUserPreferencesOK, error)
+	PatchUserPreferencesWithParams(params *PatchUserPreferencesParams, opts ...ClientOption) (*PatchUserPreferencesOK, error)
 
-	UpdateUserPreferences(params *UpdateUserPreferencesParams, opts ...ClientOption) (*UpdateUserPreferencesOK, error)
+	UpdateUserPreferences(body *models.UpdatePrefsCmd, opts ...ClientOption) (*UpdateUserPreferencesOK, error)
+	UpdateUserPreferencesWithParams(params *UpdateUserPreferencesParams, opts ...ClientOption) (*UpdateUserPreferencesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -44,7 +48,8 @@ type ClientService interface {
 GetUserPreferences gets user preferences
 */
 func (a *Client) GetUserPreferences(opts ...ClientOption) (*GetUserPreferencesOK, error) {
-	return a.GetUserPreferencesWithParams(nil, opts...)
+	params := NewGetUserPreferencesParams()
+	return a.GetUserPreferencesWithParams(params, opts...)
 }
 
 func (a *Client) GetUserPreferencesWithParams(params *GetUserPreferencesParams, opts ...ClientOption) (*GetUserPreferencesOK, error) {
@@ -86,7 +91,12 @@ func (a *Client) GetUserPreferencesWithParams(params *GetUserPreferencesParams, 
 /*
 PatchUserPreferences patches user preferences
 */
-func (a *Client) PatchUserPreferences(params *PatchUserPreferencesParams, opts ...ClientOption) (*PatchUserPreferencesOK, error) {
+func (a *Client) PatchUserPreferences(body *models.PatchPrefsCmd, opts ...ClientOption) (*PatchUserPreferencesOK, error) {
+	params := NewPatchUserPreferencesParams().WithBody(body)
+	return a.PatchUserPreferencesWithParams(params, opts...)
+}
+
+func (a *Client) PatchUserPreferencesWithParams(params *PatchUserPreferencesParams, opts ...ClientOption) (*PatchUserPreferencesOK, error) {
 	if params == nil {
 		params = NewPatchUserPreferencesParams()
 	}
@@ -127,7 +137,12 @@ UpdateUserPreferences updates user preferences
 
 Omitting a key (`theme`, `homeDashboardId`, `timezone`) will cause the current value to be replaced with the system default value.
 */
-func (a *Client) UpdateUserPreferences(params *UpdateUserPreferencesParams, opts ...ClientOption) (*UpdateUserPreferencesOK, error) {
+func (a *Client) UpdateUserPreferences(body *models.UpdatePrefsCmd, opts ...ClientOption) (*UpdateUserPreferencesOK, error) {
+	params := NewUpdateUserPreferencesParams().WithBody(body)
+	return a.UpdateUserPreferencesWithParams(params, opts...)
+}
+
+func (a *Client) UpdateUserPreferencesWithParams(params *UpdateUserPreferencesParams, opts ...ClientOption) (*UpdateUserPreferencesOK, error) {
 	if params == nil {
 		params = NewUpdateUserPreferencesParams()
 	}

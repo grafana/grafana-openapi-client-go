@@ -50,7 +50,8 @@ type ClientService interface {
 GetMetadata its exposes the s p grafana s metadata for the Id p s consumption
 */
 func (a *Client) GetMetadata(opts ...ClientOption) (*GetMetadataOK, error) {
-	return a.GetMetadataWithParams(nil, opts...)
+	params := NewGetMetadataParams()
+	return a.GetMetadataWithParams(params, opts...)
 }
 
 func (a *Client) GetMetadataWithParams(params *GetMetadataParams, opts ...ClientOption) (*GetMetadataOK, error) {
@@ -93,7 +94,8 @@ func (a *Client) GetMetadataWithParams(params *GetMetadataParams, opts ...Client
 GetSAMLLogout gets logout initiates single logout process
 */
 func (a *Client) GetSAMLLogout(opts ...ClientOption) error {
-	return a.GetSAMLLogoutWithParams(nil, opts...)
+	params := NewGetSAMLLogoutParams()
+	return a.GetSAMLLogoutWithParams(params, opts...)
 }
 
 func (a *Client) GetSAMLLogoutWithParams(params *GetSAMLLogoutParams, opts ...ClientOption) error {
@@ -126,16 +128,16 @@ func (a *Client) GetSAMLLogoutWithParams(params *GetSAMLLogoutParams, opts ...Cl
 }
 
 /*
-	GetSLO its performs single logout s l o callback
+GetSLO its performs single logout s l o callback
 
-	There might be two possible requests:
-
+There might be two possible requests:
 1. Logout response (callback) when Grafana initiates single logout and IdP returns response to logout request.
 2. Logout request when another SP initiates single logout and IdP sends logout request to the Grafana,
 or in case of IdP-initiated logout.
 */
 func (a *Client) GetSLO(opts ...ClientOption) error {
-	return a.GetSLOWithParams(nil, opts...)
+	params := NewGetSLOParams()
+	return a.GetSLOWithParams(params, opts...)
 }
 
 func (a *Client) GetSLOWithParams(params *GetSLOParams, opts ...ClientOption) error {
@@ -170,6 +172,7 @@ func (a *Client) GetSLOWithParams(params *GetSLOParams, opts ...ClientOption) er
 /*
 PostACS its performs assertion consumer service a c s
 */
+
 func (a *Client) PostACS(params *PostACSParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewPostACSParams()
@@ -200,14 +203,14 @@ func (a *Client) PostACS(params *PostACSParams, opts ...ClientOption) error {
 }
 
 /*
-	PostSLO its performs single logout s l o callback
+PostSLO its performs single logout s l o callback
 
-	There might be two possible requests:
-
+There might be two possible requests:
 1. Logout response (callback) when Grafana initiates single logout and IdP returns response to logout request.
 2. Logout request when another SP initiates single logout and IdP sends logout request to the Grafana,
 or in case of IdP-initiated logout.
 */
+
 func (a *Client) PostSLO(params *PostSLOParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewPostSLOParams()

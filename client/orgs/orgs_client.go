@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new orgs API client.
@@ -30,29 +32,40 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddOrgUser(params *AddOrgUserParams, opts ...ClientOption) (*AddOrgUserOK, error)
+	AddOrgUser(orgID int64, body *models.AddOrgUserCommand, opts ...ClientOption) (*AddOrgUserOK, error)
+	AddOrgUserWithParams(params *AddOrgUserParams, opts ...ClientOption) (*AddOrgUserOK, error)
 
-	CreateOrg(params *CreateOrgParams, opts ...ClientOption) (*CreateOrgOK, error)
+	CreateOrg(body *models.CreateOrgCommand, opts ...ClientOption) (*CreateOrgOK, error)
+	CreateOrgWithParams(params *CreateOrgParams, opts ...ClientOption) (*CreateOrgOK, error)
 
-	DeleteOrgByID(params *DeleteOrgByIDParams, opts ...ClientOption) (*DeleteOrgByIDOK, error)
+	DeleteOrgByID(orgID int64, opts ...ClientOption) (*DeleteOrgByIDOK, error)
+	DeleteOrgByIDWithParams(params *DeleteOrgByIDParams, opts ...ClientOption) (*DeleteOrgByIDOK, error)
 
-	GetOrgByID(params *GetOrgByIDParams, opts ...ClientOption) (*GetOrgByIDOK, error)
+	GetOrgByID(orgID int64, opts ...ClientOption) (*GetOrgByIDOK, error)
+	GetOrgByIDWithParams(params *GetOrgByIDParams, opts ...ClientOption) (*GetOrgByIDOK, error)
 
-	GetOrgByName(params *GetOrgByNameParams, opts ...ClientOption) (*GetOrgByNameOK, error)
+	GetOrgByName(orgName string, opts ...ClientOption) (*GetOrgByNameOK, error)
+	GetOrgByNameWithParams(params *GetOrgByNameParams, opts ...ClientOption) (*GetOrgByNameOK, error)
 
-	GetOrgQuota(params *GetOrgQuotaParams, opts ...ClientOption) (*GetOrgQuotaOK, error)
+	GetOrgQuota(orgID int64, opts ...ClientOption) (*GetOrgQuotaOK, error)
+	GetOrgQuotaWithParams(params *GetOrgQuotaParams, opts ...ClientOption) (*GetOrgQuotaOK, error)
 
-	GetOrgUsers(params *GetOrgUsersParams, opts ...ClientOption) (*GetOrgUsersOK, error)
+	GetOrgUsers(orgID int64, opts ...ClientOption) (*GetOrgUsersOK, error)
+	GetOrgUsersWithParams(params *GetOrgUsersParams, opts ...ClientOption) (*GetOrgUsersOK, error)
 
-	RemoveOrgUser(params *RemoveOrgUserParams, opts ...ClientOption) (*RemoveOrgUserOK, error)
+	RemoveOrgUser(userID int64, orgID int64, opts ...ClientOption) (*RemoveOrgUserOK, error)
+	RemoveOrgUserWithParams(params *RemoveOrgUserParams, opts ...ClientOption) (*RemoveOrgUserOK, error)
 
-	SearchOrgUsers(params *SearchOrgUsersParams, opts ...ClientOption) (*SearchOrgUsersOK, error)
+	SearchOrgUsers(orgID int64, opts ...ClientOption) (*SearchOrgUsersOK, error)
+	SearchOrgUsersWithParams(params *SearchOrgUsersParams, opts ...ClientOption) (*SearchOrgUsersOK, error)
 
 	SearchOrgs(params *SearchOrgsParams, opts ...ClientOption) (*SearchOrgsOK, error)
 
-	UpdateOrg(params *UpdateOrgParams, opts ...ClientOption) (*UpdateOrgOK, error)
+	UpdateOrg(orgID int64, body *models.UpdateOrgForm, opts ...ClientOption) (*UpdateOrgOK, error)
+	UpdateOrgWithParams(params *UpdateOrgParams, opts ...ClientOption) (*UpdateOrgOK, error)
 
-	UpdateOrgAddress(params *UpdateOrgAddressParams, opts ...ClientOption) (*UpdateOrgAddressOK, error)
+	UpdateOrgAddress(orgID int64, body *models.UpdateOrgAddressForm, opts ...ClientOption) (*UpdateOrgAddressOK, error)
+	UpdateOrgAddressWithParams(params *UpdateOrgAddressParams, opts ...ClientOption) (*UpdateOrgAddressOK, error)
 
 	UpdateOrgQuota(params *UpdateOrgQuotaParams, opts ...ClientOption) (*UpdateOrgQuotaOK, error)
 
@@ -62,14 +75,19 @@ type ClientService interface {
 }
 
 /*
-	AddOrgUser adds a new user to the current organization
+AddOrgUser adds a new user to the current organization
 
-	Adds a global user to the current organization.
+Adds a global user to the current organization.
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:add` with scope `users:*`.
 */
-func (a *Client) AddOrgUser(params *AddOrgUserParams, opts ...ClientOption) (*AddOrgUserOK, error) {
+func (a *Client) AddOrgUser(orgID int64, body *models.AddOrgUserCommand, opts ...ClientOption) (*AddOrgUserOK, error) {
+	params := NewAddOrgUserParams().WithBody(body).WithOrgID(orgID)
+	return a.AddOrgUserWithParams(params, opts...)
+}
+
+func (a *Client) AddOrgUserWithParams(params *AddOrgUserParams, opts ...ClientOption) (*AddOrgUserOK, error) {
 	if params == nil {
 		params = NewAddOrgUserParams()
 	}
@@ -110,7 +128,12 @@ CreateOrg creates organization
 
 Only works if [users.allow_org_create](https://grafana.com/docs/grafana/latest/administration/configuration/#allow_org_create) is set.
 */
-func (a *Client) CreateOrg(params *CreateOrgParams, opts ...ClientOption) (*CreateOrgOK, error) {
+func (a *Client) CreateOrg(body *models.CreateOrgCommand, opts ...ClientOption) (*CreateOrgOK, error) {
+	params := NewCreateOrgParams().WithBody(body)
+	return a.CreateOrgWithParams(params, opts...)
+}
+
+func (a *Client) CreateOrgWithParams(params *CreateOrgParams, opts ...ClientOption) (*CreateOrgOK, error) {
 	if params == nil {
 		params = NewCreateOrgParams()
 	}
@@ -149,7 +172,12 @@ func (a *Client) CreateOrg(params *CreateOrgParams, opts ...ClientOption) (*Crea
 /*
 DeleteOrgByID deletes organization
 */
-func (a *Client) DeleteOrgByID(params *DeleteOrgByIDParams, opts ...ClientOption) (*DeleteOrgByIDOK, error) {
+func (a *Client) DeleteOrgByID(orgID int64, opts ...ClientOption) (*DeleteOrgByIDOK, error) {
+	params := NewDeleteOrgByIDParams().WithOrgID(orgID)
+	return a.DeleteOrgByIDWithParams(params, opts...)
+}
+
+func (a *Client) DeleteOrgByIDWithParams(params *DeleteOrgByIDParams, opts ...ClientOption) (*DeleteOrgByIDOK, error) {
 	if params == nil {
 		params = NewDeleteOrgByIDParams()
 	}
@@ -188,7 +216,12 @@ func (a *Client) DeleteOrgByID(params *DeleteOrgByIDParams, opts ...ClientOption
 /*
 GetOrgByID gets organization by ID
 */
-func (a *Client) GetOrgByID(params *GetOrgByIDParams, opts ...ClientOption) (*GetOrgByIDOK, error) {
+func (a *Client) GetOrgByID(orgID int64, opts ...ClientOption) (*GetOrgByIDOK, error) {
+	params := NewGetOrgByIDParams().WithOrgID(orgID)
+	return a.GetOrgByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetOrgByIDWithParams(params *GetOrgByIDParams, opts ...ClientOption) (*GetOrgByIDOK, error) {
 	if params == nil {
 		params = NewGetOrgByIDParams()
 	}
@@ -227,7 +260,12 @@ func (a *Client) GetOrgByID(params *GetOrgByIDParams, opts ...ClientOption) (*Ge
 /*
 GetOrgByName gets organization by ID
 */
-func (a *Client) GetOrgByName(params *GetOrgByNameParams, opts ...ClientOption) (*GetOrgByNameOK, error) {
+func (a *Client) GetOrgByName(orgName string, opts ...ClientOption) (*GetOrgByNameOK, error) {
+	params := NewGetOrgByNameParams().WithOrgName(orgName)
+	return a.GetOrgByNameWithParams(params, opts...)
+}
+
+func (a *Client) GetOrgByNameWithParams(params *GetOrgByNameParams, opts ...ClientOption) (*GetOrgByNameOK, error) {
 	if params == nil {
 		params = NewGetOrgByNameParams()
 	}
@@ -268,7 +306,12 @@ GetOrgQuota fetches organization quota
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `orgs.quotas:read` and scope `org:id:1` (orgIDScope).
 */
-func (a *Client) GetOrgQuota(params *GetOrgQuotaParams, opts ...ClientOption) (*GetOrgQuotaOK, error) {
+func (a *Client) GetOrgQuota(orgID int64, opts ...ClientOption) (*GetOrgQuotaOK, error) {
+	params := NewGetOrgQuotaParams().WithOrgID(orgID)
+	return a.GetOrgQuotaWithParams(params, opts...)
+}
+
+func (a *Client) GetOrgQuotaWithParams(params *GetOrgQuotaParams, opts ...ClientOption) (*GetOrgQuotaOK, error) {
 	if params == nil {
 		params = NewGetOrgQuotaParams()
 	}
@@ -305,13 +348,17 @@ func (a *Client) GetOrgQuota(params *GetOrgQuotaParams, opts ...ClientOption) (*
 }
 
 /*
-	GetOrgUsers gets users in organization
+GetOrgUsers gets users in organization
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:read` with scope `users:*`.
 */
-func (a *Client) GetOrgUsers(params *GetOrgUsersParams, opts ...ClientOption) (*GetOrgUsersOK, error) {
+func (a *Client) GetOrgUsers(orgID int64, opts ...ClientOption) (*GetOrgUsersOK, error) {
+	params := NewGetOrgUsersParams().WithOrgID(orgID)
+	return a.GetOrgUsersWithParams(params, opts...)
+}
+
+func (a *Client) GetOrgUsersWithParams(params *GetOrgUsersParams, opts ...ClientOption) (*GetOrgUsersOK, error) {
 	if params == nil {
 		params = NewGetOrgUsersParams()
 	}
@@ -348,13 +395,17 @@ func (a *Client) GetOrgUsers(params *GetOrgUsersParams, opts ...ClientOption) (*
 }
 
 /*
-	RemoveOrgUser deletes user in current organization
+RemoveOrgUser deletes user in current organization
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:remove` with scope `users:*`.
 */
-func (a *Client) RemoveOrgUser(params *RemoveOrgUserParams, opts ...ClientOption) (*RemoveOrgUserOK, error) {
+func (a *Client) RemoveOrgUser(userID int64, orgID int64, opts ...ClientOption) (*RemoveOrgUserOK, error) {
+	params := NewRemoveOrgUserParams().WithOrgID(orgID).WithUserID(userID)
+	return a.RemoveOrgUserWithParams(params, opts...)
+}
+
+func (a *Client) RemoveOrgUserWithParams(params *RemoveOrgUserParams, opts ...ClientOption) (*RemoveOrgUserOK, error) {
 	if params == nil {
 		params = NewRemoveOrgUserParams()
 	}
@@ -391,13 +442,17 @@ func (a *Client) RemoveOrgUser(params *RemoveOrgUserParams, opts ...ClientOption
 }
 
 /*
-	SearchOrgUsers searches users in organization
+SearchOrgUsers searches users in organization
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:read` with scope `users:*`.
 */
-func (a *Client) SearchOrgUsers(params *SearchOrgUsersParams, opts ...ClientOption) (*SearchOrgUsersOK, error) {
+func (a *Client) SearchOrgUsers(orgID int64, opts ...ClientOption) (*SearchOrgUsersOK, error) {
+	params := NewSearchOrgUsersParams().WithOrgID(orgID)
+	return a.SearchOrgUsersWithParams(params, opts...)
+}
+
+func (a *Client) SearchOrgUsersWithParams(params *SearchOrgUsersParams, opts ...ClientOption) (*SearchOrgUsersOK, error) {
 	if params == nil {
 		params = NewSearchOrgUsersParams()
 	}
@@ -436,6 +491,7 @@ func (a *Client) SearchOrgUsers(params *SearchOrgUsersParams, opts ...ClientOpti
 /*
 SearchOrgs searches all organizations
 */
+
 func (a *Client) SearchOrgs(params *SearchOrgsParams, opts ...ClientOption) (*SearchOrgsOK, error) {
 	if params == nil {
 		params = NewSearchOrgsParams()
@@ -475,7 +531,12 @@ func (a *Client) SearchOrgs(params *SearchOrgsParams, opts ...ClientOption) (*Se
 /*
 UpdateOrg updates organization
 */
-func (a *Client) UpdateOrg(params *UpdateOrgParams, opts ...ClientOption) (*UpdateOrgOK, error) {
+func (a *Client) UpdateOrg(orgID int64, body *models.UpdateOrgForm, opts ...ClientOption) (*UpdateOrgOK, error) {
+	params := NewUpdateOrgParams().WithBody(body).WithOrgID(orgID)
+	return a.UpdateOrgWithParams(params, opts...)
+}
+
+func (a *Client) UpdateOrgWithParams(params *UpdateOrgParams, opts ...ClientOption) (*UpdateOrgOK, error) {
 	if params == nil {
 		params = NewUpdateOrgParams()
 	}
@@ -514,7 +575,12 @@ func (a *Client) UpdateOrg(params *UpdateOrgParams, opts ...ClientOption) (*Upda
 /*
 UpdateOrgAddress updates organization s address
 */
-func (a *Client) UpdateOrgAddress(params *UpdateOrgAddressParams, opts ...ClientOption) (*UpdateOrgAddressOK, error) {
+func (a *Client) UpdateOrgAddress(orgID int64, body *models.UpdateOrgAddressForm, opts ...ClientOption) (*UpdateOrgAddressOK, error) {
+	params := NewUpdateOrgAddressParams().WithBody(body).WithOrgID(orgID)
+	return a.UpdateOrgAddressWithParams(params, opts...)
+}
+
+func (a *Client) UpdateOrgAddressWithParams(params *UpdateOrgAddressParams, opts ...ClientOption) (*UpdateOrgAddressOK, error) {
 	if params == nil {
 		params = NewUpdateOrgAddressParams()
 	}
@@ -555,6 +621,7 @@ UpdateOrgQuota updates user quota
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `orgs.quotas:write` and scope `org:id:1` (orgIDScope).
 */
+
 func (a *Client) UpdateOrgQuota(params *UpdateOrgQuotaParams, opts ...ClientOption) (*UpdateOrgQuotaOK, error) {
 	if params == nil {
 		params = NewUpdateOrgQuotaParams()
@@ -592,12 +659,12 @@ func (a *Client) UpdateOrgQuota(params *UpdateOrgQuotaParams, opts ...ClientOpti
 }
 
 /*
-	UpdateOrgUser updates users in organization
+UpdateOrgUser updates users in organization
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users.role:update` with scope `users:*`.
 */
+
 func (a *Client) UpdateOrgUser(params *UpdateOrgUserParams, opts ...ClientOption) (*UpdateOrgUserOK, error) {
 	if params == nil {
 		params = NewUpdateOrgUserParams()

@@ -30,19 +30,25 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
+	DeleteAlertRule(uid string, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
+	DeleteAlertRuleWithParams(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
 
-	DeleteContactpoints(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
+	DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
+	DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
 
-	DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
+	DeleteMuteTiming(name string, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
+	DeleteMuteTimingWithParams(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
 
-	DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error)
+	DeleteTemplate(name string, opts ...ClientOption) (*DeleteTemplateNoContent, error)
+	DeleteTemplateWithParams(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error)
 
-	GetAlertRule(params *GetAlertRuleParams, opts ...ClientOption) (*GetAlertRuleOK, error)
+	GetAlertRule(uid string, opts ...ClientOption) (*GetAlertRuleOK, error)
+	GetAlertRuleWithParams(params *GetAlertRuleParams, opts ...ClientOption) (*GetAlertRuleOK, error)
 
 	GetAlertRuleExport(params *GetAlertRuleExportParams, opts ...ClientOption) (*GetAlertRuleExportOK, error)
 
-	GetAlertRuleGroup(params *GetAlertRuleGroupParams, opts ...ClientOption) (*GetAlertRuleGroupOK, error)
+	GetAlertRuleGroup(group string, folderUID string, opts ...ClientOption) (*GetAlertRuleGroupOK, error)
+	GetAlertRuleGroupWithParams(params *GetAlertRuleGroupParams, opts ...ClientOption) (*GetAlertRuleGroupOK, error)
 
 	GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error)
 
@@ -55,7 +61,8 @@ type ClientService interface {
 
 	GetContactpointsExport(params *GetContactpointsExportParams, opts ...ClientOption) (*GetContactpointsExportOK, error)
 
-	GetMuteTiming(params *GetMuteTimingParams, opts ...ClientOption) (*GetMuteTimingOK, error)
+	GetMuteTiming(name string, opts ...ClientOption) (*GetMuteTimingOK, error)
+	GetMuteTimingWithParams(params *GetMuteTimingParams, opts ...ClientOption) (*GetMuteTimingOK, error)
 
 	GetMuteTimings(opts ...ClientOption) (*GetMuteTimingsOK, error)
 	GetMuteTimingsWithParams(params *GetMuteTimingsParams, opts ...ClientOption) (*GetMuteTimingsOK, error)
@@ -66,7 +73,8 @@ type ClientService interface {
 	GetPolicyTreeExport(opts ...ClientOption) (*GetPolicyTreeExportOK, error)
 	GetPolicyTreeExportWithParams(params *GetPolicyTreeExportParams, opts ...ClientOption) (*GetPolicyTreeExportOK, error)
 
-	GetTemplate(params *GetTemplateParams, opts ...ClientOption) (*GetTemplateOK, error)
+	GetTemplate(name string, opts ...ClientOption) (*GetTemplateOK, error)
+	GetTemplateWithParams(params *GetTemplateParams, opts ...ClientOption) (*GetTemplateOK, error)
 
 	GetTemplates(opts ...ClientOption) (*GetTemplatesOK, error)
 	GetTemplatesWithParams(params *GetTemplatesParams, opts ...ClientOption) (*GetTemplatesOK, error)
@@ -98,7 +106,12 @@ type ClientService interface {
 /*
 DeleteAlertRule deletes a specific alert rule by UID
 */
-func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
+func (a *Client) DeleteAlertRule(uid string, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
+	params := NewDeleteAlertRuleParams().WithUID(uid)
+	return a.DeleteAlertRuleWithParams(params, opts...)
+}
+
+func (a *Client) DeleteAlertRuleWithParams(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
 	if params == nil {
 		params = NewDeleteAlertRuleParams()
 	}
@@ -137,7 +150,12 @@ func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOp
 /*
 DeleteContactpoints deletes a contact point
 */
-func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error) {
+func (a *Client) DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsNoContent, error) {
+	params := NewDeleteContactpointsParams().WithUID(uid)
+	return a.DeleteContactpointsWithParams(params, opts...)
+}
+
+func (a *Client) DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error) {
 	if params == nil {
 		params = NewDeleteContactpointsParams()
 	}
@@ -176,7 +194,12 @@ func (a *Client) DeleteContactpoints(params *DeleteContactpointsParams, opts ...
 /*
 DeleteMuteTiming deletes a mute timing
 */
-func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
+func (a *Client) DeleteMuteTiming(name string, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
+	params := NewDeleteMuteTimingParams().WithName(name)
+	return a.DeleteMuteTimingWithParams(params, opts...)
+}
+
+func (a *Client) DeleteMuteTimingWithParams(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
 	if params == nil {
 		params = NewDeleteMuteTimingParams()
 	}
@@ -215,7 +238,12 @@ func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...Client
 /*
 DeleteTemplate deletes a template
 */
-func (a *Client) DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
+func (a *Client) DeleteTemplate(name string, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
+	params := NewDeleteTemplateParams().WithName(name)
+	return a.DeleteTemplateWithParams(params, opts...)
+}
+
+func (a *Client) DeleteTemplateWithParams(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
 	if params == nil {
 		params = NewDeleteTemplateParams()
 	}
@@ -254,7 +282,12 @@ func (a *Client) DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOpti
 /*
 GetAlertRule gets a specific alert rule by UID
 */
-func (a *Client) GetAlertRule(params *GetAlertRuleParams, opts ...ClientOption) (*GetAlertRuleOK, error) {
+func (a *Client) GetAlertRule(uid string, opts ...ClientOption) (*GetAlertRuleOK, error) {
+	params := NewGetAlertRuleParams().WithUID(uid)
+	return a.GetAlertRuleWithParams(params, opts...)
+}
+
+func (a *Client) GetAlertRuleWithParams(params *GetAlertRuleParams, opts ...ClientOption) (*GetAlertRuleOK, error) {
 	if params == nil {
 		params = NewGetAlertRuleParams()
 	}
@@ -293,6 +326,7 @@ func (a *Client) GetAlertRule(params *GetAlertRuleParams, opts ...ClientOption) 
 /*
 GetAlertRuleExport exports an alert rule in provisioning file format
 */
+
 func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, opts ...ClientOption) (*GetAlertRuleExportOK, error) {
 	if params == nil {
 		params = NewGetAlertRuleExportParams()
@@ -332,7 +366,12 @@ func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, opts ...Cl
 /*
 GetAlertRuleGroup gets a rule group
 */
-func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, opts ...ClientOption) (*GetAlertRuleGroupOK, error) {
+func (a *Client) GetAlertRuleGroup(group string, folderUID string, opts ...ClientOption) (*GetAlertRuleGroupOK, error) {
+	params := NewGetAlertRuleGroupParams().WithFolderUID(folderUID).WithGroup(group)
+	return a.GetAlertRuleGroupWithParams(params, opts...)
+}
+
+func (a *Client) GetAlertRuleGroupWithParams(params *GetAlertRuleGroupParams, opts ...ClientOption) (*GetAlertRuleGroupOK, error) {
 	if params == nil {
 		params = NewGetAlertRuleGroupParams()
 	}
@@ -371,6 +410,7 @@ func (a *Client) GetAlertRuleGroup(params *GetAlertRuleGroupParams, opts ...Clie
 /*
 GetAlertRuleGroupExport exports an alert rule group in provisioning file format
 */
+
 func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, opts ...ClientOption) (*GetAlertRuleGroupExportOK, error) {
 	if params == nil {
 		params = NewGetAlertRuleGroupExportParams()
@@ -411,7 +451,8 @@ func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, 
 GetAlertRules gets all the alert rules
 */
 func (a *Client) GetAlertRules(opts ...ClientOption) (*GetAlertRulesOK, error) {
-	return a.GetAlertRulesWithParams(nil, opts...)
+	params := NewGetAlertRulesParams()
+	return a.GetAlertRulesWithParams(params, opts...)
 }
 
 func (a *Client) GetAlertRulesWithParams(params *GetAlertRulesParams, opts ...ClientOption) (*GetAlertRulesOK, error) {
@@ -453,6 +494,7 @@ func (a *Client) GetAlertRulesWithParams(params *GetAlertRulesParams, opts ...Cl
 /*
 GetAlertRulesExport exports all alert rules in provisioning file format
 */
+
 func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, opts ...ClientOption) (*GetAlertRulesExportOK, error) {
 	if params == nil {
 		params = NewGetAlertRulesExportParams()
@@ -492,6 +534,7 @@ func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, opts ...
 /*
 GetContactpoints gets all the contact points
 */
+
 func (a *Client) GetContactpoints(params *GetContactpointsParams, opts ...ClientOption) (*GetContactpointsOK, error) {
 	if params == nil {
 		params = NewGetContactpointsParams()
@@ -531,6 +574,7 @@ func (a *Client) GetContactpoints(params *GetContactpointsParams, opts ...Client
 /*
 GetContactpointsExport exports all contact points in provisioning file format
 */
+
 func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, opts ...ClientOption) (*GetContactpointsExportOK, error) {
 	if params == nil {
 		params = NewGetContactpointsExportParams()
@@ -570,7 +614,12 @@ func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, op
 /*
 GetMuteTiming gets a mute timing
 */
-func (a *Client) GetMuteTiming(params *GetMuteTimingParams, opts ...ClientOption) (*GetMuteTimingOK, error) {
+func (a *Client) GetMuteTiming(name string, opts ...ClientOption) (*GetMuteTimingOK, error) {
+	params := NewGetMuteTimingParams().WithName(name)
+	return a.GetMuteTimingWithParams(params, opts...)
+}
+
+func (a *Client) GetMuteTimingWithParams(params *GetMuteTimingParams, opts ...ClientOption) (*GetMuteTimingOK, error) {
 	if params == nil {
 		params = NewGetMuteTimingParams()
 	}
@@ -610,7 +659,8 @@ func (a *Client) GetMuteTiming(params *GetMuteTimingParams, opts ...ClientOption
 GetMuteTimings gets all the mute timings
 */
 func (a *Client) GetMuteTimings(opts ...ClientOption) (*GetMuteTimingsOK, error) {
-	return a.GetMuteTimingsWithParams(nil, opts...)
+	params := NewGetMuteTimingsParams()
+	return a.GetMuteTimingsWithParams(params, opts...)
 }
 
 func (a *Client) GetMuteTimingsWithParams(params *GetMuteTimingsParams, opts ...ClientOption) (*GetMuteTimingsOK, error) {
@@ -653,7 +703,8 @@ func (a *Client) GetMuteTimingsWithParams(params *GetMuteTimingsParams, opts ...
 GetPolicyTree gets the notification policy tree
 */
 func (a *Client) GetPolicyTree(opts ...ClientOption) (*GetPolicyTreeOK, error) {
-	return a.GetPolicyTreeWithParams(nil, opts...)
+	params := NewGetPolicyTreeParams()
+	return a.GetPolicyTreeWithParams(params, opts...)
 }
 
 func (a *Client) GetPolicyTreeWithParams(params *GetPolicyTreeParams, opts ...ClientOption) (*GetPolicyTreeOK, error) {
@@ -696,7 +747,8 @@ func (a *Client) GetPolicyTreeWithParams(params *GetPolicyTreeParams, opts ...Cl
 GetPolicyTreeExport exports the notification policy tree in provisioning file format
 */
 func (a *Client) GetPolicyTreeExport(opts ...ClientOption) (*GetPolicyTreeExportOK, error) {
-	return a.GetPolicyTreeExportWithParams(nil, opts...)
+	params := NewGetPolicyTreeExportParams()
+	return a.GetPolicyTreeExportWithParams(params, opts...)
 }
 
 func (a *Client) GetPolicyTreeExportWithParams(params *GetPolicyTreeExportParams, opts ...ClientOption) (*GetPolicyTreeExportOK, error) {
@@ -738,7 +790,12 @@ func (a *Client) GetPolicyTreeExportWithParams(params *GetPolicyTreeExportParams
 /*
 GetTemplate gets a notification template
 */
-func (a *Client) GetTemplate(params *GetTemplateParams, opts ...ClientOption) (*GetTemplateOK, error) {
+func (a *Client) GetTemplate(name string, opts ...ClientOption) (*GetTemplateOK, error) {
+	params := NewGetTemplateParams().WithName(name)
+	return a.GetTemplateWithParams(params, opts...)
+}
+
+func (a *Client) GetTemplateWithParams(params *GetTemplateParams, opts ...ClientOption) (*GetTemplateOK, error) {
 	if params == nil {
 		params = NewGetTemplateParams()
 	}
@@ -778,7 +835,8 @@ func (a *Client) GetTemplate(params *GetTemplateParams, opts ...ClientOption) (*
 GetTemplates gets all notification templates
 */
 func (a *Client) GetTemplates(opts ...ClientOption) (*GetTemplatesOK, error) {
-	return a.GetTemplatesWithParams(nil, opts...)
+	params := NewGetTemplatesParams()
+	return a.GetTemplatesWithParams(params, opts...)
 }
 
 func (a *Client) GetTemplatesWithParams(params *GetTemplatesParams, opts ...ClientOption) (*GetTemplatesOK, error) {
@@ -820,6 +878,7 @@ func (a *Client) GetTemplatesWithParams(params *GetTemplatesParams, opts ...Clie
 /*
 PostAlertRule creates a new alert rule
 */
+
 func (a *Client) PostAlertRule(params *PostAlertRuleParams, opts ...ClientOption) (*PostAlertRuleCreated, error) {
 	if params == nil {
 		params = NewPostAlertRuleParams()
@@ -859,6 +918,7 @@ func (a *Client) PostAlertRule(params *PostAlertRuleParams, opts ...ClientOption
 /*
 PostContactpoints creates a contact point
 */
+
 func (a *Client) PostContactpoints(params *PostContactpointsParams, opts ...ClientOption) (*PostContactpointsAccepted, error) {
 	if params == nil {
 		params = NewPostContactpointsParams()
@@ -898,6 +958,7 @@ func (a *Client) PostContactpoints(params *PostContactpointsParams, opts ...Clie
 /*
 PostMuteTiming creates a new mute timing
 */
+
 func (a *Client) PostMuteTiming(params *PostMuteTimingParams, opts ...ClientOption) (*PostMuteTimingCreated, error) {
 	if params == nil {
 		params = NewPostMuteTimingParams()
@@ -937,6 +998,7 @@ func (a *Client) PostMuteTiming(params *PostMuteTimingParams, opts ...ClientOpti
 /*
 PutAlertRule updates an existing alert rule
 */
+
 func (a *Client) PutAlertRule(params *PutAlertRuleParams, opts ...ClientOption) (*PutAlertRuleOK, error) {
 	if params == nil {
 		params = NewPutAlertRuleParams()
@@ -976,6 +1038,7 @@ func (a *Client) PutAlertRule(params *PutAlertRuleParams, opts ...ClientOption) 
 /*
 PutAlertRuleGroup updates the interval of a rule group
 */
+
 func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, opts ...ClientOption) (*PutAlertRuleGroupOK, error) {
 	if params == nil {
 		params = NewPutAlertRuleGroupParams()
@@ -1015,6 +1078,7 @@ func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, opts ...Clie
 /*
 PutContactpoint updates an existing contact point
 */
+
 func (a *Client) PutContactpoint(params *PutContactpointParams, opts ...ClientOption) (*PutContactpointAccepted, error) {
 	if params == nil {
 		params = NewPutContactpointParams()
@@ -1054,6 +1118,7 @@ func (a *Client) PutContactpoint(params *PutContactpointParams, opts ...ClientOp
 /*
 PutMuteTiming replaces an existing mute timing
 */
+
 func (a *Client) PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption) (*PutMuteTimingOK, error) {
 	if params == nil {
 		params = NewPutMuteTimingParams()
@@ -1093,6 +1158,7 @@ func (a *Client) PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption
 /*
 PutPolicyTree sets the notification policy tree
 */
+
 func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, opts ...ClientOption) (*PutPolicyTreeAccepted, error) {
 	if params == nil {
 		params = NewPutPolicyTreeParams()
@@ -1132,6 +1198,7 @@ func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, opts ...ClientOption
 /*
 PutTemplate updates an existing notification template
 */
+
 func (a *Client) PutTemplate(params *PutTemplateParams, opts ...ClientOption) (*PutTemplateAccepted, error) {
 	if params == nil {
 		params = NewPutTemplateParams()
@@ -1172,7 +1239,8 @@ func (a *Client) PutTemplate(params *PutTemplateParams, opts ...ClientOption) (*
 ResetPolicyTree clears the notification policy tree
 */
 func (a *Client) ResetPolicyTree(opts ...ClientOption) (*ResetPolicyTreeAccepted, error) {
-	return a.ResetPolicyTreeWithParams(nil, opts...)
+	params := NewResetPolicyTreeParams()
+	return a.ResetPolicyTreeWithParams(params, opts...)
 }
 
 func (a *Client) ResetPolicyTreeWithParams(params *ResetPolicyTreeParams, opts ...ClientOption) (*ResetPolicyTreeAccepted, error) {

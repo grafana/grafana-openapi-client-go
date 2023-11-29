@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new admin API client.
@@ -36,7 +38,8 @@ type ClientService interface {
 	AdminGetStats(opts ...ClientOption) (*AdminGetStatsOK, error)
 	AdminGetStatsWithParams(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error)
 
-	PauseAllAlerts(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error)
+	PauseAllAlerts(body *models.PauseAllAlertsCommand, opts ...ClientOption) (*PauseAllAlertsOK, error)
+	PauseAllAlertsWithParams(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -47,7 +50,8 @@ AdminGetSettings fetches settings
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `settings:read` and scopes: `settings:*`, `settings:auth.saml:` and `settings:auth.saml:enabled` (property level).
 */
 func (a *Client) AdminGetSettings(opts ...ClientOption) (*AdminGetSettingsOK, error) {
-	return a.AdminGetSettingsWithParams(nil, opts...)
+	params := NewAdminGetSettingsParams()
+	return a.AdminGetSettingsWithParams(params, opts...)
 }
 
 func (a *Client) AdminGetSettingsWithParams(params *AdminGetSettingsParams, opts ...ClientOption) (*AdminGetSettingsOK, error) {
@@ -87,14 +91,14 @@ func (a *Client) AdminGetSettingsWithParams(params *AdminGetSettingsParams, opts
 }
 
 /*
-	AdminGetStats fetches grafana stats
+AdminGetStats fetches grafana stats
 
-	Only works with Basic Authentication (username and password). See introduction for an explanation.
-
+Only works with Basic Authentication (username and password). See introduction for an explanation.
 If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `server:stats:read`.
 */
 func (a *Client) AdminGetStats(opts ...ClientOption) (*AdminGetStatsOK, error) {
-	return a.AdminGetStatsWithParams(nil, opts...)
+	params := NewAdminGetStatsParams()
+	return a.AdminGetStatsWithParams(params, opts...)
 }
 
 func (a *Client) AdminGetStatsWithParams(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error) {
@@ -136,7 +140,12 @@ func (a *Client) AdminGetStatsWithParams(params *AdminGetStatsParams, opts ...Cl
 /*
 PauseAllAlerts pauses unpause all legacy alerts
 */
-func (a *Client) PauseAllAlerts(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error) {
+func (a *Client) PauseAllAlerts(body *models.PauseAllAlertsCommand, opts ...ClientOption) (*PauseAllAlertsOK, error) {
+	params := NewPauseAllAlertsParams().WithBody(body)
+	return a.PauseAllAlertsWithParams(params, opts...)
+}
+
+func (a *Client) PauseAllAlertsWithParams(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error) {
 	if params == nil {
 		params = NewPauseAllAlertsParams()
 	}

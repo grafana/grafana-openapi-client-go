@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new library elements API client.
@@ -30,19 +32,25 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateLibraryElement(params *CreateLibraryElementParams, opts ...ClientOption) (*CreateLibraryElementOK, error)
+	CreateLibraryElement(body *models.CreateLibraryElementCommand, opts ...ClientOption) (*CreateLibraryElementOK, error)
+	CreateLibraryElementWithParams(params *CreateLibraryElementParams, opts ...ClientOption) (*CreateLibraryElementOK, error)
 
-	DeleteLibraryElementByUID(params *DeleteLibraryElementByUIDParams, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error)
+	DeleteLibraryElementByUID(libraryElementUID string, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error)
+	DeleteLibraryElementByUIDWithParams(params *DeleteLibraryElementByUIDParams, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error)
 
-	GetLibraryElementByName(params *GetLibraryElementByNameParams, opts ...ClientOption) (*GetLibraryElementByNameOK, error)
+	GetLibraryElementByName(libraryElementName string, opts ...ClientOption) (*GetLibraryElementByNameOK, error)
+	GetLibraryElementByNameWithParams(params *GetLibraryElementByNameParams, opts ...ClientOption) (*GetLibraryElementByNameOK, error)
 
-	GetLibraryElementByUID(params *GetLibraryElementByUIDParams, opts ...ClientOption) (*GetLibraryElementByUIDOK, error)
+	GetLibraryElementByUID(libraryElementUID string, opts ...ClientOption) (*GetLibraryElementByUIDOK, error)
+	GetLibraryElementByUIDWithParams(params *GetLibraryElementByUIDParams, opts ...ClientOption) (*GetLibraryElementByUIDOK, error)
 
-	GetLibraryElementConnections(params *GetLibraryElementConnectionsParams, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error)
+	GetLibraryElementConnections(libraryElementUID string, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error)
+	GetLibraryElementConnectionsWithParams(params *GetLibraryElementConnectionsParams, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error)
 
 	GetLibraryElements(params *GetLibraryElementsParams, opts ...ClientOption) (*GetLibraryElementsOK, error)
 
-	UpdateLibraryElement(params *UpdateLibraryElementParams, opts ...ClientOption) (*UpdateLibraryElementOK, error)
+	UpdateLibraryElement(libraryElementUID string, body *models.PatchLibraryElementCommand, opts ...ClientOption) (*UpdateLibraryElementOK, error)
+	UpdateLibraryElementWithParams(params *UpdateLibraryElementParams, opts ...ClientOption) (*UpdateLibraryElementOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -52,7 +60,12 @@ CreateLibraryElement creates library element
 
 Creates a new library element.
 */
-func (a *Client) CreateLibraryElement(params *CreateLibraryElementParams, opts ...ClientOption) (*CreateLibraryElementOK, error) {
+func (a *Client) CreateLibraryElement(body *models.CreateLibraryElementCommand, opts ...ClientOption) (*CreateLibraryElementOK, error) {
+	params := NewCreateLibraryElementParams().WithBody(body)
+	return a.CreateLibraryElementWithParams(params, opts...)
+}
+
+func (a *Client) CreateLibraryElementWithParams(params *CreateLibraryElementParams, opts ...ClientOption) (*CreateLibraryElementOK, error) {
 	if params == nil {
 		params = NewCreateLibraryElementParams()
 	}
@@ -89,13 +102,17 @@ func (a *Client) CreateLibraryElement(params *CreateLibraryElementParams, opts .
 }
 
 /*
-	DeleteLibraryElementByUID deletes library element
+DeleteLibraryElementByUID deletes library element
 
-	Deletes an existing library element as specified by the UID. This operation cannot be reverted.
-
+Deletes an existing library element as specified by the UID. This operation cannot be reverted.
 You cannot delete a library element that is connected. This operation cannot be reverted.
 */
-func (a *Client) DeleteLibraryElementByUID(params *DeleteLibraryElementByUIDParams, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error) {
+func (a *Client) DeleteLibraryElementByUID(libraryElementUID string, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error) {
+	params := NewDeleteLibraryElementByUIDParams().WithLibraryElementUID(libraryElementUID)
+	return a.DeleteLibraryElementByUIDWithParams(params, opts...)
+}
+
+func (a *Client) DeleteLibraryElementByUIDWithParams(params *DeleteLibraryElementByUIDParams, opts ...ClientOption) (*DeleteLibraryElementByUIDOK, error) {
 	if params == nil {
 		params = NewDeleteLibraryElementByUIDParams()
 	}
@@ -136,7 +153,12 @@ GetLibraryElementByName gets library element by name
 
 Returns a library element with the given name.
 */
-func (a *Client) GetLibraryElementByName(params *GetLibraryElementByNameParams, opts ...ClientOption) (*GetLibraryElementByNameOK, error) {
+func (a *Client) GetLibraryElementByName(libraryElementName string, opts ...ClientOption) (*GetLibraryElementByNameOK, error) {
+	params := NewGetLibraryElementByNameParams().WithLibraryElementName(libraryElementName)
+	return a.GetLibraryElementByNameWithParams(params, opts...)
+}
+
+func (a *Client) GetLibraryElementByNameWithParams(params *GetLibraryElementByNameParams, opts ...ClientOption) (*GetLibraryElementByNameOK, error) {
 	if params == nil {
 		params = NewGetLibraryElementByNameParams()
 	}
@@ -177,7 +199,12 @@ GetLibraryElementByUID gets library element by UID
 
 Returns a library element with the given UID.
 */
-func (a *Client) GetLibraryElementByUID(params *GetLibraryElementByUIDParams, opts ...ClientOption) (*GetLibraryElementByUIDOK, error) {
+func (a *Client) GetLibraryElementByUID(libraryElementUID string, opts ...ClientOption) (*GetLibraryElementByUIDOK, error) {
+	params := NewGetLibraryElementByUIDParams().WithLibraryElementUID(libraryElementUID)
+	return a.GetLibraryElementByUIDWithParams(params, opts...)
+}
+
+func (a *Client) GetLibraryElementByUIDWithParams(params *GetLibraryElementByUIDParams, opts ...ClientOption) (*GetLibraryElementByUIDOK, error) {
 	if params == nil {
 		params = NewGetLibraryElementByUIDParams()
 	}
@@ -218,7 +245,12 @@ GetLibraryElementConnections gets library element connections
 
 Returns a list of connections for a library element based on the UID specified.
 */
-func (a *Client) GetLibraryElementConnections(params *GetLibraryElementConnectionsParams, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error) {
+func (a *Client) GetLibraryElementConnections(libraryElementUID string, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error) {
+	params := NewGetLibraryElementConnectionsParams().WithLibraryElementUID(libraryElementUID)
+	return a.GetLibraryElementConnectionsWithParams(params, opts...)
+}
+
+func (a *Client) GetLibraryElementConnectionsWithParams(params *GetLibraryElementConnectionsParams, opts ...ClientOption) (*GetLibraryElementConnectionsOK, error) {
 	if params == nil {
 		params = NewGetLibraryElementConnectionsParams()
 	}
@@ -255,13 +287,13 @@ func (a *Client) GetLibraryElementConnections(params *GetLibraryElementConnectio
 }
 
 /*
-	GetLibraryElements gets all library elements
+GetLibraryElements gets all library elements
 
-	Returns a list of all library elements the authenticated user has permission to view.
-
+Returns a list of all library elements the authenticated user has permission to view.
 Use the `perPage` query parameter to control the maximum number of library elements returned; the default limit is `100`.
 You can also use the `page` query parameter to fetch library elements from any page other than the first one.
 */
+
 func (a *Client) GetLibraryElements(params *GetLibraryElementsParams, opts ...ClientOption) (*GetLibraryElementsOK, error) {
 	if params == nil {
 		params = NewGetLibraryElementsParams()
@@ -303,7 +335,12 @@ UpdateLibraryElement updates library element
 
 Updates an existing library element identified by uid.
 */
-func (a *Client) UpdateLibraryElement(params *UpdateLibraryElementParams, opts ...ClientOption) (*UpdateLibraryElementOK, error) {
+func (a *Client) UpdateLibraryElement(libraryElementUID string, body *models.PatchLibraryElementCommand, opts ...ClientOption) (*UpdateLibraryElementOK, error) {
+	params := NewUpdateLibraryElementParams().WithBody(body).WithLibraryElementUID(libraryElementUID)
+	return a.UpdateLibraryElementWithParams(params, opts...)
+}
+
+func (a *Client) UpdateLibraryElementWithParams(params *UpdateLibraryElementParams, opts ...ClientOption) (*UpdateLibraryElementOK, error) {
 	if params == nil {
 		params = NewUpdateLibraryElementParams()
 	}

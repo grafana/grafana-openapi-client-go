@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new signed in user API client.
@@ -30,7 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ChangeUserPassword(params *ChangeUserPasswordParams, opts ...ClientOption) (*ChangeUserPasswordOK, error)
+	ChangeUserPassword(body *models.ChangeUserPasswordCommand, opts ...ClientOption) (*ChangeUserPasswordOK, error)
+	ChangeUserPasswordWithParams(params *ChangeUserPasswordParams, opts ...ClientOption) (*ChangeUserPasswordOK, error)
 
 	ClearHelpFlags(opts ...ClientOption) (*ClearHelpFlagsOK, error)
 	ClearHelpFlagsWithParams(params *ClearHelpFlagsParams, opts ...ClientOption) (*ClearHelpFlagsOK, error)
@@ -50,21 +53,29 @@ type ClientService interface {
 	GetUserQuotas(opts ...ClientOption) (*GetUserQuotasOK, error)
 	GetUserQuotasWithParams(params *GetUserQuotasParams, opts ...ClientOption) (*GetUserQuotasOK, error)
 
-	RevokeUserAuthToken(params *RevokeUserAuthTokenParams, opts ...ClientOption) (*RevokeUserAuthTokenOK, error)
+	RevokeUserAuthToken(body *models.RevokeAuthTokenCmd, opts ...ClientOption) (*RevokeUserAuthTokenOK, error)
+	RevokeUserAuthTokenWithParams(params *RevokeUserAuthTokenParams, opts ...ClientOption) (*RevokeUserAuthTokenOK, error)
 
-	SetHelpFlag(params *SetHelpFlagParams, opts ...ClientOption) (*SetHelpFlagOK, error)
+	SetHelpFlag(flagID string, opts ...ClientOption) (*SetHelpFlagOK, error)
+	SetHelpFlagWithParams(params *SetHelpFlagParams, opts ...ClientOption) (*SetHelpFlagOK, error)
 
-	StarDashboard(params *StarDashboardParams, opts ...ClientOption) (*StarDashboardOK, error)
+	StarDashboard(dashboardID string, opts ...ClientOption) (*StarDashboardOK, error)
+	StarDashboardWithParams(params *StarDashboardParams, opts ...ClientOption) (*StarDashboardOK, error)
 
-	StarDashboardByUID(params *StarDashboardByUIDParams, opts ...ClientOption) (*StarDashboardByUIDOK, error)
+	StarDashboardByUID(dashboardUID string, opts ...ClientOption) (*StarDashboardByUIDOK, error)
+	StarDashboardByUIDWithParams(params *StarDashboardByUIDParams, opts ...ClientOption) (*StarDashboardByUIDOK, error)
 
-	UnstarDashboard(params *UnstarDashboardParams, opts ...ClientOption) (*UnstarDashboardOK, error)
+	UnstarDashboard(dashboardID string, opts ...ClientOption) (*UnstarDashboardOK, error)
+	UnstarDashboardWithParams(params *UnstarDashboardParams, opts ...ClientOption) (*UnstarDashboardOK, error)
 
-	UnstarDashboardByUID(params *UnstarDashboardByUIDParams, opts ...ClientOption) (*UnstarDashboardByUIDOK, error)
+	UnstarDashboardByUID(dashboardUID string, opts ...ClientOption) (*UnstarDashboardByUIDOK, error)
+	UnstarDashboardByUIDWithParams(params *UnstarDashboardByUIDParams, opts ...ClientOption) (*UnstarDashboardByUIDOK, error)
 
-	UpdateSignedInUser(params *UpdateSignedInUserParams, opts ...ClientOption) (*UpdateSignedInUserOK, error)
+	UpdateSignedInUser(body *models.UpdateUserCommand, opts ...ClientOption) (*UpdateSignedInUserOK, error)
+	UpdateSignedInUserWithParams(params *UpdateSignedInUserParams, opts ...ClientOption) (*UpdateSignedInUserOK, error)
 
-	UserSetUsingOrg(params *UserSetUsingOrgParams, opts ...ClientOption) (*UserSetUsingOrgOK, error)
+	UserSetUsingOrg(orgID int64, opts ...ClientOption) (*UserSetUsingOrgOK, error)
+	UserSetUsingOrgWithParams(params *UserSetUsingOrgParams, opts ...ClientOption) (*UserSetUsingOrgOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -74,7 +85,12 @@ ChangeUserPassword changes password
 
 Changes the password for the user.
 */
-func (a *Client) ChangeUserPassword(params *ChangeUserPasswordParams, opts ...ClientOption) (*ChangeUserPasswordOK, error) {
+func (a *Client) ChangeUserPassword(body *models.ChangeUserPasswordCommand, opts ...ClientOption) (*ChangeUserPasswordOK, error) {
+	params := NewChangeUserPasswordParams().WithBody(body)
+	return a.ChangeUserPasswordWithParams(params, opts...)
+}
+
+func (a *Client) ChangeUserPasswordWithParams(params *ChangeUserPasswordParams, opts ...ClientOption) (*ChangeUserPasswordOK, error) {
 	if params == nil {
 		params = NewChangeUserPasswordParams()
 	}
@@ -114,7 +130,8 @@ func (a *Client) ChangeUserPassword(params *ChangeUserPasswordParams, opts ...Cl
 ClearHelpFlags clears user help flag
 */
 func (a *Client) ClearHelpFlags(opts ...ClientOption) (*ClearHelpFlagsOK, error) {
-	return a.ClearHelpFlagsWithParams(nil, opts...)
+	params := NewClearHelpFlagsParams()
+	return a.ClearHelpFlagsWithParams(params, opts...)
 }
 
 func (a *Client) ClearHelpFlagsWithParams(params *ClearHelpFlagsParams, opts ...ClientOption) (*ClearHelpFlagsOK, error) {
@@ -157,7 +174,8 @@ func (a *Client) ClearHelpFlagsWithParams(params *ClearHelpFlagsParams, opts ...
 GetSignedInUser Get (current authenticated user)
 */
 func (a *Client) GetSignedInUser(opts ...ClientOption) (*GetSignedInUserOK, error) {
-	return a.GetSignedInUserWithParams(nil, opts...)
+	params := NewGetSignedInUserParams()
+	return a.GetSignedInUserWithParams(params, opts...)
 }
 
 func (a *Client) GetSignedInUserWithParams(params *GetSignedInUserParams, opts ...ClientOption) (*GetSignedInUserOK, error) {
@@ -202,7 +220,8 @@ GetSignedInUserOrgList organizations of the actual user
 Return a list of all organizations of the current user.
 */
 func (a *Client) GetSignedInUserOrgList(opts ...ClientOption) (*GetSignedInUserOrgListOK, error) {
-	return a.GetSignedInUserOrgListWithParams(nil, opts...)
+	params := NewGetSignedInUserOrgListParams()
+	return a.GetSignedInUserOrgListWithParams(params, opts...)
 }
 
 func (a *Client) GetSignedInUserOrgListWithParams(params *GetSignedInUserOrgListParams, opts ...ClientOption) (*GetSignedInUserOrgListOK, error) {
@@ -247,7 +266,8 @@ GetSignedInUserTeamList teams that the actual user is member of
 Return a list of all teams that the current user is member of.
 */
 func (a *Client) GetSignedInUserTeamList(opts ...ClientOption) (*GetSignedInUserTeamListOK, error) {
-	return a.GetSignedInUserTeamListWithParams(nil, opts...)
+	params := NewGetSignedInUserTeamListParams()
+	return a.GetSignedInUserTeamListWithParams(params, opts...)
 }
 
 func (a *Client) GetSignedInUserTeamListWithParams(params *GetSignedInUserTeamListParams, opts ...ClientOption) (*GetSignedInUserTeamListOK, error) {
@@ -292,7 +312,8 @@ GetUserAuthTokens auths tokens of the actual user
 Return a list of all auth tokens (devices) that the actual user currently have logged in from.
 */
 func (a *Client) GetUserAuthTokens(opts ...ClientOption) (*GetUserAuthTokensOK, error) {
-	return a.GetUserAuthTokensWithParams(nil, opts...)
+	params := NewGetUserAuthTokensParams()
+	return a.GetUserAuthTokensWithParams(params, opts...)
 }
 
 func (a *Client) GetUserAuthTokensWithParams(params *GetUserAuthTokensParams, opts ...ClientOption) (*GetUserAuthTokensOK, error) {
@@ -335,7 +356,8 @@ func (a *Client) GetUserAuthTokensWithParams(params *GetUserAuthTokensParams, op
 GetUserQuotas fetches user quota
 */
 func (a *Client) GetUserQuotas(opts ...ClientOption) (*GetUserQuotasOK, error) {
-	return a.GetUserQuotasWithParams(nil, opts...)
+	params := NewGetUserQuotasParams()
+	return a.GetUserQuotasWithParams(params, opts...)
 }
 
 func (a *Client) GetUserQuotasWithParams(params *GetUserQuotasParams, opts ...ClientOption) (*GetUserQuotasOK, error) {
@@ -379,7 +401,12 @@ RevokeUserAuthToken revokes an auth token of the actual user
 
 Revokes the given auth token (device) for the actual user. User of issued auth token (device) will no longer be logged in and will be required to authenticate again upon next activity.
 */
-func (a *Client) RevokeUserAuthToken(params *RevokeUserAuthTokenParams, opts ...ClientOption) (*RevokeUserAuthTokenOK, error) {
+func (a *Client) RevokeUserAuthToken(body *models.RevokeAuthTokenCmd, opts ...ClientOption) (*RevokeUserAuthTokenOK, error) {
+	params := NewRevokeUserAuthTokenParams().WithBody(body)
+	return a.RevokeUserAuthTokenWithParams(params, opts...)
+}
+
+func (a *Client) RevokeUserAuthTokenWithParams(params *RevokeUserAuthTokenParams, opts ...ClientOption) (*RevokeUserAuthTokenOK, error) {
 	if params == nil {
 		params = NewRevokeUserAuthTokenParams()
 	}
@@ -418,7 +445,12 @@ func (a *Client) RevokeUserAuthToken(params *RevokeUserAuthTokenParams, opts ...
 /*
 SetHelpFlag sets user help flag
 */
-func (a *Client) SetHelpFlag(params *SetHelpFlagParams, opts ...ClientOption) (*SetHelpFlagOK, error) {
+func (a *Client) SetHelpFlag(flagID string, opts ...ClientOption) (*SetHelpFlagOK, error) {
+	params := NewSetHelpFlagParams().WithFlagID(flagID)
+	return a.SetHelpFlagWithParams(params, opts...)
+}
+
+func (a *Client) SetHelpFlagWithParams(params *SetHelpFlagParams, opts ...ClientOption) (*SetHelpFlagOK, error) {
 	if params == nil {
 		params = NewSetHelpFlagParams()
 	}
@@ -459,7 +491,12 @@ StarDashboard stars a dashboard
 
 Stars the given Dashboard for the actual user.
 */
-func (a *Client) StarDashboard(params *StarDashboardParams, opts ...ClientOption) (*StarDashboardOK, error) {
+func (a *Client) StarDashboard(dashboardID string, opts ...ClientOption) (*StarDashboardOK, error) {
+	params := NewStarDashboardParams().WithDashboardID(dashboardID)
+	return a.StarDashboardWithParams(params, opts...)
+}
+
+func (a *Client) StarDashboardWithParams(params *StarDashboardParams, opts ...ClientOption) (*StarDashboardOK, error) {
 	if params == nil {
 		params = NewStarDashboardParams()
 	}
@@ -500,7 +537,12 @@ StarDashboardByUID stars a dashboard
 
 Stars the given Dashboard for the actual user.
 */
-func (a *Client) StarDashboardByUID(params *StarDashboardByUIDParams, opts ...ClientOption) (*StarDashboardByUIDOK, error) {
+func (a *Client) StarDashboardByUID(dashboardUID string, opts ...ClientOption) (*StarDashboardByUIDOK, error) {
+	params := NewStarDashboardByUIDParams().WithDashboardUID(dashboardUID)
+	return a.StarDashboardByUIDWithParams(params, opts...)
+}
+
+func (a *Client) StarDashboardByUIDWithParams(params *StarDashboardByUIDParams, opts ...ClientOption) (*StarDashboardByUIDOK, error) {
 	if params == nil {
 		params = NewStarDashboardByUIDParams()
 	}
@@ -541,7 +583,12 @@ UnstarDashboard unstars a dashboard
 
 Deletes the starring of the given Dashboard for the actual user.
 */
-func (a *Client) UnstarDashboard(params *UnstarDashboardParams, opts ...ClientOption) (*UnstarDashboardOK, error) {
+func (a *Client) UnstarDashboard(dashboardID string, opts ...ClientOption) (*UnstarDashboardOK, error) {
+	params := NewUnstarDashboardParams().WithDashboardID(dashboardID)
+	return a.UnstarDashboardWithParams(params, opts...)
+}
+
+func (a *Client) UnstarDashboardWithParams(params *UnstarDashboardParams, opts ...ClientOption) (*UnstarDashboardOK, error) {
 	if params == nil {
 		params = NewUnstarDashboardParams()
 	}
@@ -582,7 +629,12 @@ UnstarDashboardByUID unstars a dashboard
 
 Deletes the starring of the given Dashboard for the actual user.
 */
-func (a *Client) UnstarDashboardByUID(params *UnstarDashboardByUIDParams, opts ...ClientOption) (*UnstarDashboardByUIDOK, error) {
+func (a *Client) UnstarDashboardByUID(dashboardUID string, opts ...ClientOption) (*UnstarDashboardByUIDOK, error) {
+	params := NewUnstarDashboardByUIDParams().WithDashboardUID(dashboardUID)
+	return a.UnstarDashboardByUIDWithParams(params, opts...)
+}
+
+func (a *Client) UnstarDashboardByUIDWithParams(params *UnstarDashboardByUIDParams, opts ...ClientOption) (*UnstarDashboardByUIDOK, error) {
 	if params == nil {
 		params = NewUnstarDashboardByUIDParams()
 	}
@@ -621,7 +673,12 @@ func (a *Client) UnstarDashboardByUID(params *UnstarDashboardByUIDParams, opts .
 /*
 UpdateSignedInUser updates signed in user
 */
-func (a *Client) UpdateSignedInUser(params *UpdateSignedInUserParams, opts ...ClientOption) (*UpdateSignedInUserOK, error) {
+func (a *Client) UpdateSignedInUser(body *models.UpdateUserCommand, opts ...ClientOption) (*UpdateSignedInUserOK, error) {
+	params := NewUpdateSignedInUserParams().WithBody(body)
+	return a.UpdateSignedInUserWithParams(params, opts...)
+}
+
+func (a *Client) UpdateSignedInUserWithParams(params *UpdateSignedInUserParams, opts ...ClientOption) (*UpdateSignedInUserOK, error) {
 	if params == nil {
 		params = NewUpdateSignedInUserParams()
 	}
@@ -662,7 +719,12 @@ UserSetUsingOrg switches user context for signed in user
 
 Switch user context to the given organization.
 */
-func (a *Client) UserSetUsingOrg(params *UserSetUsingOrgParams, opts ...ClientOption) (*UserSetUsingOrgOK, error) {
+func (a *Client) UserSetUsingOrg(orgID int64, opts ...ClientOption) (*UserSetUsingOrgOK, error) {
+	params := NewUserSetUsingOrgParams().WithOrgID(orgID)
+	return a.UserSetUsingOrgWithParams(params, opts...)
+}
+
+func (a *Client) UserSetUsingOrgWithParams(params *UserSetUsingOrgParams, opts ...ClientOption) (*UserSetUsingOrgOK, error) {
 	if params == nil {
 		params = NewUserSetUsingOrgParams()
 	}

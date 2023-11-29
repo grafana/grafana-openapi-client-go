@@ -42,7 +42,8 @@ GetSyncStatus returns the current state of the LDAP background sync integration
 You need to have a permission with action `ldap.status:read`.
 */
 func (a *Client) GetSyncStatus(opts ...ClientOption) (*GetSyncStatusOK, error) {
-	return a.GetSyncStatusWithParams(nil, opts...)
+	params := NewGetSyncStatusParams()
+	return a.GetSyncStatusWithParams(params, opts...)
 }
 
 func (a *Client) GetSyncStatusWithParams(params *GetSyncStatusParams, opts ...ClientOption) (*GetSyncStatusOK, error) {

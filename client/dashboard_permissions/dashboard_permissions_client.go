@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new dashboard permissions API client.
@@ -30,13 +32,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetDashboardPermissionsListByID(params *GetDashboardPermissionsListByIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error)
+	GetDashboardPermissionsListByID(dashboardID int64, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error)
+	GetDashboardPermissionsListByIDWithParams(params *GetDashboardPermissionsListByIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error)
 
-	GetDashboardPermissionsListByUID(params *GetDashboardPermissionsListByUIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error)
+	GetDashboardPermissionsListByUID(uid string, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error)
+	GetDashboardPermissionsListByUIDWithParams(params *GetDashboardPermissionsListByUIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error)
 
-	UpdateDashboardPermissionsByID(params *UpdateDashboardPermissionsByIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error)
+	UpdateDashboardPermissionsByID(dashboardID int64, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error)
+	UpdateDashboardPermissionsByIDWithParams(params *UpdateDashboardPermissionsByIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error)
 
-	UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissionsByUIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error)
+	UpdateDashboardPermissionsByUID(uid string, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error)
+	UpdateDashboardPermissionsByUIDWithParams(params *UpdateDashboardPermissionsByUIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,7 +52,12 @@ GetDashboardPermissionsListByID gets all existing permissions for the given dash
 
 Please refer to [updated API](#/dashboard_permissions/getDashboardPermissionsListByUID) instead
 */
-func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissionsListByIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error) {
+func (a *Client) GetDashboardPermissionsListByID(dashboardID int64, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error) {
+	params := NewGetDashboardPermissionsListByIDParams().WithDashboardID(dashboardID)
+	return a.GetDashboardPermissionsListByIDWithParams(params, opts...)
+}
+
+func (a *Client) GetDashboardPermissionsListByIDWithParams(params *GetDashboardPermissionsListByIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardPermissionsListByIDParams()
 	}
@@ -85,7 +96,12 @@ func (a *Client) GetDashboardPermissionsListByID(params *GetDashboardPermissions
 /*
 GetDashboardPermissionsListByUID gets all existing permissions for the given dashboard
 */
-func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermissionsListByUIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error) {
+func (a *Client) GetDashboardPermissionsListByUID(uid string, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error) {
+	params := NewGetDashboardPermissionsListByUIDParams().WithUID(uid)
+	return a.GetDashboardPermissionsListByUIDWithParams(params, opts...)
+}
+
+func (a *Client) GetDashboardPermissionsListByUIDWithParams(params *GetDashboardPermissionsListByUIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error) {
 	if params == nil {
 		params = NewGetDashboardPermissionsListByUIDParams()
 	}
@@ -122,13 +138,18 @@ func (a *Client) GetDashboardPermissionsListByUID(params *GetDashboardPermission
 }
 
 /*
-	UpdateDashboardPermissionsByID updates permissions for a dashboard
+UpdateDashboardPermissionsByID updates permissions for a dashboard
 
-	Please refer to [updated API](#/dashboard_permissions/updateDashboardPermissionsByUID) instead
+Please refer to [updated API](#/dashboard_permissions/updateDashboardPermissionsByUID) instead
 
 This operation will remove existing permissions if they’re not included in the request.
 */
-func (a *Client) UpdateDashboardPermissionsByID(params *UpdateDashboardPermissionsByIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error) {
+func (a *Client) UpdateDashboardPermissionsByID(dashboardID int64, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error) {
+	params := NewUpdateDashboardPermissionsByIDParams().WithBody(body).WithDashboardID(dashboardID)
+	return a.UpdateDashboardPermissionsByIDWithParams(params, opts...)
+}
+
+func (a *Client) UpdateDashboardPermissionsByIDWithParams(params *UpdateDashboardPermissionsByIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error) {
 	if params == nil {
 		params = NewUpdateDashboardPermissionsByIDParams()
 	}
@@ -169,7 +190,12 @@ UpdateDashboardPermissionsByUID updates permissions for a dashboard
 
 This operation will remove existing permissions if they’re not included in the request.
 */
-func (a *Client) UpdateDashboardPermissionsByUID(params *UpdateDashboardPermissionsByUIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error) {
+func (a *Client) UpdateDashboardPermissionsByUID(uid string, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error) {
+	params := NewUpdateDashboardPermissionsByUIDParams().WithBody(body).WithUID(uid)
+	return a.UpdateDashboardPermissionsByUIDWithParams(params, opts...)
+}
+
+func (a *Client) UpdateDashboardPermissionsByUIDWithParams(params *UpdateDashboardPermissionsByUIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error) {
 	if params == nil {
 		params = NewUpdateDashboardPermissionsByUIDParams()
 	}

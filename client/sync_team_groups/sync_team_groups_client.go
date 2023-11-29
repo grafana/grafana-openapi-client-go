@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new sync team groups API client.
@@ -30,11 +32,14 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddTeamGroupAPI(params *AddTeamGroupAPIParams, opts ...ClientOption) (*AddTeamGroupAPIOK, error)
+	AddTeamGroupAPI(teamID int64, body *models.TeamGroupMapping, opts ...ClientOption) (*AddTeamGroupAPIOK, error)
+	AddTeamGroupAPIWithParams(params *AddTeamGroupAPIParams, opts ...ClientOption) (*AddTeamGroupAPIOK, error)
 
-	GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, opts ...ClientOption) (*GetTeamGroupsAPIOK, error)
+	GetTeamGroupsAPI(teamID int64, opts ...ClientOption) (*GetTeamGroupsAPIOK, error)
+	GetTeamGroupsAPIWithParams(params *GetTeamGroupsAPIParams, opts ...ClientOption) (*GetTeamGroupsAPIOK, error)
 
-	RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error)
+	RemoveTeamGroupAPI(teamID int64, groupID string, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error)
+	RemoveTeamGroupAPIWithParams(params *RemoveTeamGroupAPIParams, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error)
 
 	RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, opts ...ClientOption) (*RemoveTeamGroupAPIQueryOK, error)
 
@@ -44,7 +49,12 @@ type ClientService interface {
 /*
 AddTeamGroupAPI adds external group
 */
-func (a *Client) AddTeamGroupAPI(params *AddTeamGroupAPIParams, opts ...ClientOption) (*AddTeamGroupAPIOK, error) {
+func (a *Client) AddTeamGroupAPI(teamID int64, body *models.TeamGroupMapping, opts ...ClientOption) (*AddTeamGroupAPIOK, error) {
+	params := NewAddTeamGroupAPIParams().WithBody(body).WithTeamID(teamID)
+	return a.AddTeamGroupAPIWithParams(params, opts...)
+}
+
+func (a *Client) AddTeamGroupAPIWithParams(params *AddTeamGroupAPIParams, opts ...ClientOption) (*AddTeamGroupAPIOK, error) {
 	if params == nil {
 		params = NewAddTeamGroupAPIParams()
 	}
@@ -83,7 +93,12 @@ func (a *Client) AddTeamGroupAPI(params *AddTeamGroupAPIParams, opts ...ClientOp
 /*
 GetTeamGroupsAPI gets external groups
 */
-func (a *Client) GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, opts ...ClientOption) (*GetTeamGroupsAPIOK, error) {
+func (a *Client) GetTeamGroupsAPI(teamID int64, opts ...ClientOption) (*GetTeamGroupsAPIOK, error) {
+	params := NewGetTeamGroupsAPIParams().WithTeamID(teamID)
+	return a.GetTeamGroupsAPIWithParams(params, opts...)
+}
+
+func (a *Client) GetTeamGroupsAPIWithParams(params *GetTeamGroupsAPIParams, opts ...ClientOption) (*GetTeamGroupsAPIOK, error) {
 	if params == nil {
 		params = NewGetTeamGroupsAPIParams()
 	}
@@ -122,7 +137,12 @@ func (a *Client) GetTeamGroupsAPI(params *GetTeamGroupsAPIParams, opts ...Client
 /*
 RemoveTeamGroupAPI removes external group
 */
-func (a *Client) RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error) {
+func (a *Client) RemoveTeamGroupAPI(teamID int64, groupID string, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error) {
+	params := NewRemoveTeamGroupAPIParams().WithGroupID(groupID).WithTeamID(teamID)
+	return a.RemoveTeamGroupAPIWithParams(params, opts...)
+}
+
+func (a *Client) RemoveTeamGroupAPIWithParams(params *RemoveTeamGroupAPIParams, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error) {
 	if params == nil {
 		params = NewRemoveTeamGroupAPIParams()
 	}
@@ -161,6 +181,7 @@ func (a *Client) RemoveTeamGroupAPI(params *RemoveTeamGroupAPIParams, opts ...Cl
 /*
 RemoveTeamGroupAPIQuery removes external group
 */
+
 func (a *Client) RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, opts ...ClientOption) (*RemoveTeamGroupAPIQueryOK, error) {
 	if params == nil {
 		params = NewRemoveTeamGroupAPIQueryParams()

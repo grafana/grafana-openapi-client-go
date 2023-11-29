@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new org API client.
@@ -30,7 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddOrgUserToCurrentOrg(params *AddOrgUserToCurrentOrgParams, opts ...ClientOption) (*AddOrgUserToCurrentOrgOK, error)
+	AddOrgUserToCurrentOrg(body *models.AddOrgUserCommand, opts ...ClientOption) (*AddOrgUserToCurrentOrgOK, error)
+	AddOrgUserToCurrentOrgWithParams(params *AddOrgUserToCurrentOrgParams, opts ...ClientOption) (*AddOrgUserToCurrentOrgOK, error)
 
 	GetCurrentOrg(opts ...ClientOption) (*GetCurrentOrgOK, error)
 	GetCurrentOrgWithParams(params *GetCurrentOrgParams, opts ...ClientOption) (*GetCurrentOrgOK, error)
@@ -40,26 +43,35 @@ type ClientService interface {
 
 	GetOrgUsersForCurrentOrgLookup(params *GetOrgUsersForCurrentOrgLookupParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgLookupOK, error)
 
-	RemoveOrgUserForCurrentOrg(params *RemoveOrgUserForCurrentOrgParams, opts ...ClientOption) (*RemoveOrgUserForCurrentOrgOK, error)
+	RemoveOrgUserForCurrentOrg(userID int64, opts ...ClientOption) (*RemoveOrgUserForCurrentOrgOK, error)
+	RemoveOrgUserForCurrentOrgWithParams(params *RemoveOrgUserForCurrentOrgParams, opts ...ClientOption) (*RemoveOrgUserForCurrentOrgOK, error)
 
-	UpdateCurrentOrg(params *UpdateCurrentOrgParams, opts ...ClientOption) (*UpdateCurrentOrgOK, error)
+	UpdateCurrentOrg(body *models.UpdateOrgForm, opts ...ClientOption) (*UpdateCurrentOrgOK, error)
+	UpdateCurrentOrgWithParams(params *UpdateCurrentOrgParams, opts ...ClientOption) (*UpdateCurrentOrgOK, error)
 
-	UpdateCurrentOrgAddress(params *UpdateCurrentOrgAddressParams, opts ...ClientOption) (*UpdateCurrentOrgAddressOK, error)
+	UpdateCurrentOrgAddress(body *models.UpdateOrgAddressForm, opts ...ClientOption) (*UpdateCurrentOrgAddressOK, error)
+	UpdateCurrentOrgAddressWithParams(params *UpdateCurrentOrgAddressParams, opts ...ClientOption) (*UpdateCurrentOrgAddressOK, error)
 
-	UpdateOrgUserForCurrentOrg(params *UpdateOrgUserForCurrentOrgParams, opts ...ClientOption) (*UpdateOrgUserForCurrentOrgOK, error)
+	UpdateOrgUserForCurrentOrg(userID int64, body *models.UpdateOrgUserCommand, opts ...ClientOption) (*UpdateOrgUserForCurrentOrgOK, error)
+	UpdateOrgUserForCurrentOrgWithParams(params *UpdateOrgUserForCurrentOrgParams, opts ...ClientOption) (*UpdateOrgUserForCurrentOrgOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-	AddOrgUserToCurrentOrg adds a new user to the current organization
+AddOrgUserToCurrentOrg adds a new user to the current organization
 
-	Adds a global user to the current organization.
+Adds a global user to the current organization.
 
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:add` with scope `users:*`.
 */
-func (a *Client) AddOrgUserToCurrentOrg(params *AddOrgUserToCurrentOrgParams, opts ...ClientOption) (*AddOrgUserToCurrentOrgOK, error) {
+func (a *Client) AddOrgUserToCurrentOrg(body *models.AddOrgUserCommand, opts ...ClientOption) (*AddOrgUserToCurrentOrgOK, error) {
+	params := NewAddOrgUserToCurrentOrgParams().WithBody(body)
+	return a.AddOrgUserToCurrentOrgWithParams(params, opts...)
+}
+
+func (a *Client) AddOrgUserToCurrentOrgWithParams(params *AddOrgUserToCurrentOrgParams, opts ...ClientOption) (*AddOrgUserToCurrentOrgOK, error) {
 	if params == nil {
 		params = NewAddOrgUserToCurrentOrgParams()
 	}
@@ -99,7 +111,8 @@ func (a *Client) AddOrgUserToCurrentOrg(params *AddOrgUserToCurrentOrgParams, op
 GetCurrentOrg gets current organization
 */
 func (a *Client) GetCurrentOrg(opts ...ClientOption) (*GetCurrentOrgOK, error) {
-	return a.GetCurrentOrgWithParams(nil, opts...)
+	params := NewGetCurrentOrgParams()
+	return a.GetCurrentOrgWithParams(params, opts...)
 }
 
 func (a *Client) GetCurrentOrgWithParams(params *GetCurrentOrgParams, opts ...ClientOption) (*GetCurrentOrgOK, error) {
@@ -139,15 +152,15 @@ func (a *Client) GetCurrentOrgWithParams(params *GetCurrentOrgParams, opts ...Cl
 }
 
 /*
-	GetOrgUsersForCurrentOrg gets all users within the current organization
+GetOrgUsersForCurrentOrg gets all users within the current organization
 
-	Returns all org users within the current organization. Accessible to users with org admin role.
-
+Returns all org users within the current organization. Accessible to users with org admin role.
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:read` with scope `users:*`.
 */
 func (a *Client) GetOrgUsersForCurrentOrg(opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
-	return a.GetOrgUsersForCurrentOrgWithParams(nil, opts...)
+	params := NewGetOrgUsersForCurrentOrgParams()
+	return a.GetOrgUsersForCurrentOrgWithParams(params, opts...)
 }
 
 func (a *Client) GetOrgUsersForCurrentOrgWithParams(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
@@ -187,13 +200,13 @@ func (a *Client) GetOrgUsersForCurrentOrgWithParams(params *GetOrgUsersForCurren
 }
 
 /*
-	GetOrgUsersForCurrentOrgLookup gets all users within the current organization lookup
+GetOrgUsersForCurrentOrgLookup gets all users within the current organization lookup
 
-	Returns all org users within the current organization, but with less detailed information.
-
+Returns all org users within the current organization, but with less detailed information.
 Accessible to users with org admin role, admin in any folder or admin of any team.
 Mainly used by Grafana UI for providing list of users when adding team members and when editing folder/dashboard permissions.
 */
+
 func (a *Client) GetOrgUsersForCurrentOrgLookup(params *GetOrgUsersForCurrentOrgLookupParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgLookupOK, error) {
 	if params == nil {
 		params = NewGetOrgUsersForCurrentOrgLookupParams()
@@ -231,13 +244,17 @@ func (a *Client) GetOrgUsersForCurrentOrgLookup(params *GetOrgUsersForCurrentOrg
 }
 
 /*
-	RemoveOrgUserForCurrentOrg deletes user in current organization
+RemoveOrgUserForCurrentOrg deletes user in current organization
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:remove` with scope `users:*`.
 */
-func (a *Client) RemoveOrgUserForCurrentOrg(params *RemoveOrgUserForCurrentOrgParams, opts ...ClientOption) (*RemoveOrgUserForCurrentOrgOK, error) {
+func (a *Client) RemoveOrgUserForCurrentOrg(userID int64, opts ...ClientOption) (*RemoveOrgUserForCurrentOrgOK, error) {
+	params := NewRemoveOrgUserForCurrentOrgParams().WithUserID(userID)
+	return a.RemoveOrgUserForCurrentOrgWithParams(params, opts...)
+}
+
+func (a *Client) RemoveOrgUserForCurrentOrgWithParams(params *RemoveOrgUserForCurrentOrgParams, opts ...ClientOption) (*RemoveOrgUserForCurrentOrgOK, error) {
 	if params == nil {
 		params = NewRemoveOrgUserForCurrentOrgParams()
 	}
@@ -276,7 +293,12 @@ func (a *Client) RemoveOrgUserForCurrentOrg(params *RemoveOrgUserForCurrentOrgPa
 /*
 UpdateCurrentOrg updates current organization
 */
-func (a *Client) UpdateCurrentOrg(params *UpdateCurrentOrgParams, opts ...ClientOption) (*UpdateCurrentOrgOK, error) {
+func (a *Client) UpdateCurrentOrg(body *models.UpdateOrgForm, opts ...ClientOption) (*UpdateCurrentOrgOK, error) {
+	params := NewUpdateCurrentOrgParams().WithBody(body)
+	return a.UpdateCurrentOrgWithParams(params, opts...)
+}
+
+func (a *Client) UpdateCurrentOrgWithParams(params *UpdateCurrentOrgParams, opts ...ClientOption) (*UpdateCurrentOrgOK, error) {
 	if params == nil {
 		params = NewUpdateCurrentOrgParams()
 	}
@@ -315,7 +337,12 @@ func (a *Client) UpdateCurrentOrg(params *UpdateCurrentOrgParams, opts ...Client
 /*
 UpdateCurrentOrgAddress updates current organization s address
 */
-func (a *Client) UpdateCurrentOrgAddress(params *UpdateCurrentOrgAddressParams, opts ...ClientOption) (*UpdateCurrentOrgAddressOK, error) {
+func (a *Client) UpdateCurrentOrgAddress(body *models.UpdateOrgAddressForm, opts ...ClientOption) (*UpdateCurrentOrgAddressOK, error) {
+	params := NewUpdateCurrentOrgAddressParams().WithBody(body)
+	return a.UpdateCurrentOrgAddressWithParams(params, opts...)
+}
+
+func (a *Client) UpdateCurrentOrgAddressWithParams(params *UpdateCurrentOrgAddressParams, opts ...ClientOption) (*UpdateCurrentOrgAddressOK, error) {
 	if params == nil {
 		params = NewUpdateCurrentOrgAddressParams()
 	}
@@ -352,13 +379,17 @@ func (a *Client) UpdateCurrentOrgAddress(params *UpdateCurrentOrgAddressParams, 
 }
 
 /*
-	UpdateOrgUserForCurrentOrg updates the given user
+UpdateOrgUserForCurrentOrg updates the given user
 
-	If you are running Grafana Enterprise and have Fine-grained access control enabled
-
+If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users.role:update` with scope `users:*`.
 */
-func (a *Client) UpdateOrgUserForCurrentOrg(params *UpdateOrgUserForCurrentOrgParams, opts ...ClientOption) (*UpdateOrgUserForCurrentOrgOK, error) {
+func (a *Client) UpdateOrgUserForCurrentOrg(userID int64, body *models.UpdateOrgUserCommand, opts ...ClientOption) (*UpdateOrgUserForCurrentOrgOK, error) {
+	params := NewUpdateOrgUserForCurrentOrgParams().WithBody(body).WithUserID(userID)
+	return a.UpdateOrgUserForCurrentOrgWithParams(params, opts...)
+}
+
+func (a *Client) UpdateOrgUserForCurrentOrgWithParams(params *UpdateOrgUserForCurrentOrgParams, opts ...ClientOption) (*UpdateOrgUserForCurrentOrgOK, error) {
 	if params == nil {
 		params = NewUpdateOrgUserForCurrentOrgParams()
 	}

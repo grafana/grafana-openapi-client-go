@@ -37,15 +37,16 @@ type ClientService interface {
 }
 
 /*
-	SearchResult debugs permissions
+SearchResult debugs permissions
 
-	Returns the result of the search through access-control role assignments.
+Returns the result of the search through access-control role assignments.
 
 You need to have a permission with action `teams.roles:read` on scope `teams:*`
 and a permission with action `users.roles:read` on scope `users:*`.
 */
 func (a *Client) SearchResult(opts ...ClientOption) (*SearchResultOK, error) {
-	return a.SearchResultWithParams(nil, opts...)
+	params := NewSearchResultParams()
+	return a.SearchResultWithParams(params, opts...)
 }
 
 func (a *Client) SearchResultWithParams(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error) {
