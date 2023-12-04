@@ -61,6 +61,9 @@ modify '.responses.getLibraryElementArrayResponse = {
 # Fixed in the grafana repo here: https://github.com/grafana/grafana/pull/78226
 modify '.definitions.Spec["x-go-name"] = "Preferences"'
 
+# Fixed in the grafana repo here: https://github.com/grafana/grafana/pull/78491
+modify '.definitions.AddCommand["x-go-name"] = "AddAPIKeyCommand"'
+
 # Any endpoint that starts with /api/ should be trimmed because it's redundant (API path is configured on the client), ex: /api/dashboards/ -> /dashboards/
 # TODO: Upstream fix
 # Move /api/ map keys to a new key without /api/ prefix

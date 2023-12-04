@@ -15,10 +15,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AddCommand add command
+// AddAPIKeyCommand add API key command
 //
-// swagger:model AddCommand
-type AddCommand struct {
+// swagger:model AddAPIKeyCommand
+type AddAPIKeyCommand struct {
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -31,8 +31,8 @@ type AddCommand struct {
 	SecondsToLive int64 `json:"secondsToLive,omitempty"`
 }
 
-// Validate validates this add command
-func (m *AddCommand) Validate(formats strfmt.Registry) error {
+// Validate validates this add API key command
+func (m *AddAPIKeyCommand) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRole(formats); err != nil {
@@ -45,7 +45,7 @@ func (m *AddCommand) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var addCommandTypeRolePropEnum []interface{}
+var addApiKeyCommandTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -53,34 +53,34 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		addCommandTypeRolePropEnum = append(addCommandTypeRolePropEnum, v)
+		addApiKeyCommandTypeRolePropEnum = append(addApiKeyCommandTypeRolePropEnum, v)
 	}
 }
 
 const (
 
-	// AddCommandRoleNone captures enum value "None"
-	AddCommandRoleNone string = "None"
+	// AddAPIKeyCommandRoleNone captures enum value "None"
+	AddAPIKeyCommandRoleNone string = "None"
 
-	// AddCommandRoleViewer captures enum value "Viewer"
-	AddCommandRoleViewer string = "Viewer"
+	// AddAPIKeyCommandRoleViewer captures enum value "Viewer"
+	AddAPIKeyCommandRoleViewer string = "Viewer"
 
-	// AddCommandRoleEditor captures enum value "Editor"
-	AddCommandRoleEditor string = "Editor"
+	// AddAPIKeyCommandRoleEditor captures enum value "Editor"
+	AddAPIKeyCommandRoleEditor string = "Editor"
 
-	// AddCommandRoleAdmin captures enum value "Admin"
-	AddCommandRoleAdmin string = "Admin"
+	// AddAPIKeyCommandRoleAdmin captures enum value "Admin"
+	AddAPIKeyCommandRoleAdmin string = "Admin"
 )
 
 // prop value enum
-func (m *AddCommand) validateRoleEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, addCommandTypeRolePropEnum, true); err != nil {
+func (m *AddAPIKeyCommand) validateRoleEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, addApiKeyCommandTypeRolePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *AddCommand) validateRole(formats strfmt.Registry) error {
+func (m *AddAPIKeyCommand) validateRole(formats strfmt.Registry) error {
 	if swag.IsZero(m.Role) { // not required
 		return nil
 	}
@@ -93,13 +93,13 @@ func (m *AddCommand) validateRole(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this add command based on context it is used
-func (m *AddCommand) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this add API key command based on context it is used
+func (m *AddAPIKeyCommand) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *AddCommand) MarshalBinary() ([]byte, error) {
+func (m *AddAPIKeyCommand) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -107,8 +107,8 @@ func (m *AddCommand) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *AddCommand) UnmarshalBinary(b []byte) error {
-	var res AddCommand
+func (m *AddAPIKeyCommand) UnmarshalBinary(b []byte) error {
+	var res AddAPIKeyCommand
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
