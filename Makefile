@@ -1,6 +1,6 @@
 include .bingo/Variables.mk
 
-.PHONY: drone, test, generate-client, pull-schema
+.PHONY: drone, test, generate-client, pull-schema, golangci-lint
 
 GRAFANA_TARGET_VERSION ?= v10.2.0
 
@@ -48,3 +48,10 @@ generate-client: ${SWAGGER} pull-schema
 	--template-dir=templates \
 	$(CLIENT_GENERATION_ARGS)
 	go mod tidy
+
+golangci-lint:
+	docker run \
+		--rm \
+		--volume "$(shell pwd):/src" \
+		--workdir "/src" \
+		golangci/golangci-lint:v1.55 golangci-lint run ./... -v
