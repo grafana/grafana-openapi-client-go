@@ -30,8 +30,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteAlertRule(uid string, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
-	DeleteAlertRuleWithParams(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
+	DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
 
 	DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
 	DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
@@ -106,12 +105,8 @@ type ClientService interface {
 /*
 DeleteAlertRule deletes a specific alert rule by UID
 */
-func (a *Client) DeleteAlertRule(uid string, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
-	params := NewDeleteAlertRuleParams().WithUID(uid)
-	return a.DeleteAlertRuleWithParams(params, opts...)
-}
 
-func (a *Client) DeleteAlertRuleWithParams(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
+func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error) {
 	if params == nil {
 		params = NewDeleteAlertRuleParams()
 	}

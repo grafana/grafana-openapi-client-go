@@ -66,6 +66,9 @@ type PostContactpointsParams struct {
 	// Body.
 	Body *models.EmbeddedContactPoint
 
+	// XDisableProvenance.
+	XDisableProvenance *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +133,17 @@ func (o *PostContactpointsParams) SetBody(body *models.EmbeddedContactPoint) {
 	o.Body = body
 }
 
+// WithXDisableProvenance adds the xDisableProvenance to the post contactpoints params
+func (o *PostContactpointsParams) WithXDisableProvenance(xDisableProvenance *string) *PostContactpointsParams {
+	o.SetXDisableProvenance(xDisableProvenance)
+	return o
+}
+
+// SetXDisableProvenance adds the xDisableProvenance to the post contactpoints params
+func (o *PostContactpointsParams) SetXDisableProvenance(xDisableProvenance *string) {
+	o.XDisableProvenance = xDisableProvenance
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PostContactpointsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +153,14 @@ func (o *PostContactpointsParams) WriteToRequest(r runtime.ClientRequest, reg st
 	var res []error
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
+
+	if o.XDisableProvenance != nil {
+
+		// header param X-Disable-Provenance
+		if err := r.SetHeaderParam("X-Disable-Provenance", *o.XDisableProvenance); err != nil {
 			return err
 		}
 	}
