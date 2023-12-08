@@ -32,7 +32,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddAPIkey(body *models.AddCommand, opts ...ClientOption) (*AddAPIkeyOK, error)
+	AddAPIkey(body *models.AddAPIKeyCommand, opts ...ClientOption) (*AddAPIkeyOK, error)
 	AddAPIkeyWithParams(params *AddAPIkeyParams, opts ...ClientOption) (*AddAPIkeyOK, error)
 
 	DeleteAPIkey(id int64, opts ...ClientOption) (*DeleteAPIkeyOK, error)
@@ -48,7 +48,7 @@ AddAPIkey creates an API key
 
 Will return details of the created API key.
 */
-func (a *Client) AddAPIkey(body *models.AddCommand, opts ...ClientOption) (*AddAPIkeyOK, error) {
+func (a *Client) AddAPIkey(body *models.AddAPIKeyCommand, opts ...ClientOption) (*AddAPIkeyOK, error) {
 	params := NewAddAPIkeyParams().WithBody(body)
 	return a.AddAPIkeyWithParams(params, opts...)
 }
