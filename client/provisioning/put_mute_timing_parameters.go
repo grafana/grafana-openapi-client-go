@@ -66,6 +66,9 @@ type PutMuteTimingParams struct {
 	// Body.
 	Body *models.MuteTimeInterval
 
+	// XDisableProvenance.
+	XDisableProvenance *string
+
 	/* Name.
 
 	   Mute timing name
@@ -136,6 +139,17 @@ func (o *PutMuteTimingParams) SetBody(body *models.MuteTimeInterval) {
 	o.Body = body
 }
 
+// WithXDisableProvenance adds the xDisableProvenance to the put mute timing params
+func (o *PutMuteTimingParams) WithXDisableProvenance(xDisableProvenance *string) *PutMuteTimingParams {
+	o.SetXDisableProvenance(xDisableProvenance)
+	return o
+}
+
+// SetXDisableProvenance adds the xDisableProvenance to the put mute timing params
+func (o *PutMuteTimingParams) SetXDisableProvenance(xDisableProvenance *string) {
+	o.XDisableProvenance = xDisableProvenance
+}
+
 // WithName adds the name to the put mute timing params
 func (o *PutMuteTimingParams) WithName(name string) *PutMuteTimingParams {
 	o.SetName(name)
@@ -156,6 +170,14 @@ func (o *PutMuteTimingParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
+
+	if o.XDisableProvenance != nil {
+
+		// header param X-Disable-Provenance
+		if err := r.SetHeaderParam("X-Disable-Provenance", *o.XDisableProvenance); err != nil {
 			return err
 		}
 	}

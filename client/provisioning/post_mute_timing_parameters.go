@@ -66,6 +66,9 @@ type PostMuteTimingParams struct {
 	// Body.
 	Body *models.MuteTimeInterval
 
+	// XDisableProvenance.
+	XDisableProvenance *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +133,17 @@ func (o *PostMuteTimingParams) SetBody(body *models.MuteTimeInterval) {
 	o.Body = body
 }
 
+// WithXDisableProvenance adds the xDisableProvenance to the post mute timing params
+func (o *PostMuteTimingParams) WithXDisableProvenance(xDisableProvenance *string) *PostMuteTimingParams {
+	o.SetXDisableProvenance(xDisableProvenance)
+	return o
+}
+
+// SetXDisableProvenance adds the xDisableProvenance to the post mute timing params
+func (o *PostMuteTimingParams) SetXDisableProvenance(xDisableProvenance *string) {
+	o.XDisableProvenance = xDisableProvenance
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PostMuteTimingParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +153,14 @@ func (o *PostMuteTimingParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	var res []error
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
+
+	if o.XDisableProvenance != nil {
+
+		// header param X-Disable-Provenance
+		if err := r.SetHeaderParam("X-Disable-Provenance", *o.XDisableProvenance); err != nil {
 			return err
 		}
 	}

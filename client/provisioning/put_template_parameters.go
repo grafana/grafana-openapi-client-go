@@ -66,6 +66,9 @@ type PutTemplateParams struct {
 	// Body.
 	Body *models.NotificationTemplateContent
 
+	// XDisableProvenance.
+	XDisableProvenance *string
+
 	/* Name.
 
 	   Template Name
@@ -136,6 +139,17 @@ func (o *PutTemplateParams) SetBody(body *models.NotificationTemplateContent) {
 	o.Body = body
 }
 
+// WithXDisableProvenance adds the xDisableProvenance to the put template params
+func (o *PutTemplateParams) WithXDisableProvenance(xDisableProvenance *string) *PutTemplateParams {
+	o.SetXDisableProvenance(xDisableProvenance)
+	return o
+}
+
+// SetXDisableProvenance adds the xDisableProvenance to the put template params
+func (o *PutTemplateParams) SetXDisableProvenance(xDisableProvenance *string) {
+	o.XDisableProvenance = xDisableProvenance
+}
+
 // WithName adds the name to the put template params
 func (o *PutTemplateParams) WithName(name string) *PutTemplateParams {
 	o.SetName(name)
@@ -156,6 +170,14 @@ func (o *PutTemplateParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	var res []error
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
+
+	if o.XDisableProvenance != nil {
+
+		// header param X-Disable-Provenance
+		if err := r.SetHeaderParam("X-Disable-Provenance", *o.XDisableProvenance); err != nil {
 			return err
 		}
 	}

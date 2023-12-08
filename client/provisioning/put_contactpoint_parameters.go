@@ -72,6 +72,9 @@ type PutContactpointParams struct {
 	*/
 	UID string
 
+	// XDisableProvenance.
+	XDisableProvenance *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -147,6 +150,17 @@ func (o *PutContactpointParams) SetUID(uid string) {
 	o.UID = uid
 }
 
+// WithXDisableProvenance adds the xDisableProvenance to the put contactpoint params
+func (o *PutContactpointParams) WithXDisableProvenance(xDisableProvenance *string) *PutContactpointParams {
+	o.SetXDisableProvenance(xDisableProvenance)
+	return o
+}
+
+// SetXDisableProvenance adds the xDisableProvenance to the put contactpoint params
+func (o *PutContactpointParams) SetXDisableProvenance(xDisableProvenance *string) {
+	o.XDisableProvenance = xDisableProvenance
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PutContactpointParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -163,6 +177,14 @@ func (o *PutContactpointParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	// path param UID
 	if err := r.SetPathParam("UID", o.UID); err != nil {
 		return err
+	}
+
+	if o.XDisableProvenance != nil {
+
+		// header param X-Disable-Provenance
+		if err := r.SetHeaderParam("X-Disable-Provenance", *o.XDisableProvenance); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

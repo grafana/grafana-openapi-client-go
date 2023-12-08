@@ -82,11 +82,19 @@ modify '.definitions.ProvisionedAlertRule.properties.for = {
 
 # The X-Disable-Provenance header is only on the alert-rules endpoint in the swagger spec, but it also works for entire rule groups
 # Fixed in the grafana repo here: https://github.com/grafana/grafana/pull/79278
-modify '.paths["/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}"].put.parameters += [{
+disable_provenance_header='[{
     "type": "string",
     "name": "X-Disable-Provenance",
     "in": "header"
 }]'
+modify '.paths["/v1/provisioning/alert-rules/{UID}"].delete.parameters += '"${disable_provenance_header}"
+modify '.paths["/v1/provisioning/contact-points"].post.parameters += '"${disable_provenance_header}"
+modify '.paths["/v1/provisioning/contact-points/{UID}"].put.parameters += '"${disable_provenance_header}"
+modify '.paths["/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}"].put.parameters += '"${disable_provenance_header}"
+modify '.paths["/v1/provisioning/policies"].put.parameters += '"${disable_provenance_header}"
+modify '.paths["/v1/provisioning/mute-timings"].post.parameters += '"${disable_provenance_header}"
+modify '.paths["/v1/provisioning/mute-timings/{name}"].put.parameters += '"${disable_provenance_header}"
+modify '.paths["/v1/provisioning/templates/{name}"].put.parameters += '"${disable_provenance_header}"
 
 # The global property is not in the RoleDTO model, it is added in the MarshalJSON method
 # As a result, it is not found by go-swagger, but it's still useful

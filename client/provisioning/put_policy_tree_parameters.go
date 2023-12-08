@@ -69,6 +69,9 @@ type PutPolicyTreeParams struct {
 	*/
 	Body *models.Route
 
+	// XDisableProvenance.
+	XDisableProvenance *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -133,6 +136,17 @@ func (o *PutPolicyTreeParams) SetBody(body *models.Route) {
 	o.Body = body
 }
 
+// WithXDisableProvenance adds the xDisableProvenance to the put policy tree params
+func (o *PutPolicyTreeParams) WithXDisableProvenance(xDisableProvenance *string) *PutPolicyTreeParams {
+	o.SetXDisableProvenance(xDisableProvenance)
+	return o
+}
+
+// SetXDisableProvenance adds the xDisableProvenance to the put policy tree params
+func (o *PutPolicyTreeParams) SetXDisableProvenance(xDisableProvenance *string) {
+	o.XDisableProvenance = xDisableProvenance
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PutPolicyTreeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,6 +156,14 @@ func (o *PutPolicyTreeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
+
+	if o.XDisableProvenance != nil {
+
+		// header param X-Disable-Provenance
+		if err := r.SetHeaderParam("X-Disable-Provenance", *o.XDisableProvenance); err != nil {
 			return err
 		}
 	}
