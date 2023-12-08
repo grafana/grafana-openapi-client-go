@@ -81,7 +81,7 @@ modify '.definitions.ProvisionedAlertRule.properties.for = {
 }'
 
 # The X-Disable-Provenance header is only on the alert-rules endpoint in the swagger spec, but it also works for entire rule groups
-# TODO: Upstream fix
+# Fixed in the grafana repo here: https://github.com/grafana/grafana/pull/79278
 modify '.paths["/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}"].put.parameters += [{
     "type": "string",
     "name": "X-Disable-Provenance",
