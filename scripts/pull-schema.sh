@@ -80,6 +80,14 @@ modify '.definitions.ProvisionedAlertRule.properties.for = {
     "format": "duration"
 }'
 
+# The X-Disable-Provenance header is only on the alert-rules endpoint in the swagger spec, but it also works for entire rule groups
+# TODO: Upstream fix
+modify '.paths["/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}"].put.parameters += [{
+    "type": "string",
+    "name": "X-Disable-Provenance",
+    "in": "header"
+}]'
+
 # The global property is not in the RoleDTO model, it is added in the MarshalJSON method
 # As a result, it is not found by go-swagger, but it's still useful
 # TODO: Upstream fix

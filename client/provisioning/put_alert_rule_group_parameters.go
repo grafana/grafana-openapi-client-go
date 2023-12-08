@@ -72,6 +72,9 @@ type PutAlertRuleGroupParams struct {
 	// Group.
 	Group string
 
+	// XDisableProvenance.
+	XDisableProvenance *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -158,6 +161,17 @@ func (o *PutAlertRuleGroupParams) SetGroup(group string) {
 	o.Group = group
 }
 
+// WithXDisableProvenance adds the xDisableProvenance to the put alert rule group params
+func (o *PutAlertRuleGroupParams) WithXDisableProvenance(xDisableProvenance *string) *PutAlertRuleGroupParams {
+	o.SetXDisableProvenance(xDisableProvenance)
+	return o
+}
+
+// SetXDisableProvenance adds the xDisableProvenance to the put alert rule group params
+func (o *PutAlertRuleGroupParams) SetXDisableProvenance(xDisableProvenance *string) {
+	o.XDisableProvenance = xDisableProvenance
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PutAlertRuleGroupParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -179,6 +193,14 @@ func (o *PutAlertRuleGroupParams) WriteToRequest(r runtime.ClientRequest, reg st
 	// path param Group
 	if err := r.SetPathParam("Group", o.Group); err != nil {
 		return err
+	}
+
+	if o.XDisableProvenance != nil {
+
+		// header param X-Disable-Provenance
+		if err := r.SetHeaderParam("X-Disable-Provenance", *o.XDisableProvenance); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {
