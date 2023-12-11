@@ -13,7 +13,7 @@ modify() {
 }
 
 # Playlist models are all messed up
-# TODO: Upstream fix
+# Fixed in Grafana 10.3
 modify 'del(.definitions.Item)' # Old playlist item schema, PlaylistItem is more up to date
 modify '.responses.getPlaylistItemsResponse.schema.items["$ref"] = "#/definitions/PlaylistItem"' # Currently pointing to Item (old PlaylistItem model)
 modify '.responses.updatePlaylistResponse.schema["$ref"] = "#/definitions/Playlist"' # Currently pointing to Spec (Preferences)
@@ -65,8 +65,8 @@ modify '.definitions.Spec["x-go-name"] = "Preferences"'
 modify '.definitions.AddCommand["x-go-name"] = "AddAPIKeyCommand"'
 
 # Any endpoint that starts with /api/ should be trimmed because it's redundant (API path is configured on the client), ex: /api/dashboards/ -> /dashboards/
-# TODO: Upstream fix
 # Move /api/ map keys to a new key without /api/ prefix
+# grafana fix: https://github.com/grafana/grafana/pull/79025
 modify '.paths = (.paths | with_entries(.key |= sub("^/api"; "")))'
 
 # Remove "Route" prefixes to operation IDs (ex: RouteGetxxx)
@@ -96,9 +96,16 @@ modify '.paths["/v1/provisioning/mute-timings"].post.parameters += '"${disable_p
 modify '.paths["/v1/provisioning/mute-timings/{name}"].put.parameters += '"${disable_provenance_header}"
 modify '.paths["/v1/provisioning/templates/{name}"].put.parameters += '"${disable_provenance_header}"
 
+# Mute timings are all wrong
+# TODO: Upstream fix
+SCHEMA="$(echo "${SCHEMA}" | sed 's/MuteTimeInterval/MuteTiming/g')"
+modify '.definitions += '"$(cat "${SCRIPT_DIR}/mute-timing-definitions.json")"
+
+
+
 # The global property is not in the RoleDTO model, it is added in the MarshalJSON method
 # As a result, it is not found by go-swagger, but it's still useful
-# TODO: Upstream fix
+# grafana fix: https://github.com/grafana/grafana/pull/79351
 modify '.definitions.RoleDTO.properties.global = {
     "type": "boolean",
     "description": "Whether the role is global or not."

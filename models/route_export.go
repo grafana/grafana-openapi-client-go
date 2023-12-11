@@ -69,10 +69,6 @@ func (m *RouteExport) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateObjectMatchers(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateRoutes(formats); err != nil {
 		res = append(res, err)
 	}
@@ -119,23 +115,6 @@ func (m *RouteExport) validateMatchers(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *RouteExport) validateObjectMatchers(formats strfmt.Registry) error {
-	if swag.IsZero(m.ObjectMatchers) { // not required
-		return nil
-	}
-
-	if err := m.ObjectMatchers.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("object_matchers")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("object_matchers")
-		}
-		return err
-	}
-
-	return nil
-}
-
 func (m *RouteExport) validateRoutes(formats strfmt.Registry) error {
 	if swag.IsZero(m.Routes) { // not required
 		return nil
@@ -174,10 +153,6 @@ func (m *RouteExport) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateObjectMatchers(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateRoutes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -213,20 +188,6 @@ func (m *RouteExport) contextValidateMatchers(ctx context.Context, formats strfm
 			return ve.ValidateName("matchers")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("matchers")
-		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *RouteExport) contextValidateObjectMatchers(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := m.ObjectMatchers.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("object_matchers")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("object_matchers")
 		}
 		return err
 	}

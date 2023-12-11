@@ -48,10 +48,10 @@ func NewPostMuteTimingCreated() *PostMuteTimingCreated {
 /*
 PostMuteTimingCreated describes a response with status code 201, with default header values.
 
-MuteTimeInterval
+MuteTiming
 */
 type PostMuteTimingCreated struct {
-	Payload *models.MuteTimeInterval
+	Payload *models.MuteTiming
 }
 
 // IsSuccess returns true when this post mute timing created response has a 2xx status code
@@ -92,13 +92,13 @@ func (o *PostMuteTimingCreated) String() string {
 	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingCreated  %+v", 201, o.Payload)
 }
 
-func (o *PostMuteTimingCreated) GetPayload() *models.MuteTimeInterval {
+func (o *PostMuteTimingCreated) GetPayload() *models.MuteTiming {
 	return o.Payload
 }
 
 func (o *PostMuteTimingCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.MuteTimeInterval)
+	o.Payload = new(models.MuteTiming)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

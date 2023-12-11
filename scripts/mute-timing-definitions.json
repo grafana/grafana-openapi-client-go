@@ -1,0 +1,76 @@
+{
+    "MuteTiming": {
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "provenance": {
+                "$ref": "#/definitions/Provenance"
+            },
+            "time_intervals": {
+                "items": {
+                    "$ref": "#/definitions/MuteTimingInterval"
+                },
+                "type": "array"
+            }
+        },
+        "type": "object"
+    },
+    "MuteTimingInterval": {
+        "properties": {
+            "days_of_month": {
+                "description": "an inclusive range of days of month, e.g. \"1\" or \"5:15\".",
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "location": {
+                "description": "a location time zone for the time interval in the IANA Time Zone Database format, e.g. \"America/New_York\".",
+                "type": "string"
+            },
+            "months": {
+                "description": "an inclusive range of months, e.g. \"january\" or \"february:april\".",
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "times": {
+                "description": "an inclusive range of times",
+                "items": {
+                    "$ref": "#/definitions/MuteTimingTimeRange"
+                },
+                "type": "array"
+            },
+            "weekdays": {
+                "description": "an inclusive range of weekdays, e.g. \"monday\" or \"tuesday:thursday\".",
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "years": {
+                "description": "an inclusive range of years, e.g. \"2019\" or \"2020:2022\".",
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            }
+        },
+        "type": "object"
+    },
+    "MuteTimingTimeRange": {
+        "properties": {
+            "end_time": {
+                "description": "the end time of the range in the format HH:MM, e.g. \"17:00\".",
+                "type": "string"
+            },
+            "start_time": {
+                "description": "the start time of the range in the format HH:MM, e.g. \"08:00\".",
+                "type": "string"
+            }
+        },
+        "type": "object"
+    }
+}

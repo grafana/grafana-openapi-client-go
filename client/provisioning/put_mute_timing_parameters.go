@@ -64,7 +64,7 @@ PutMuteTimingParams contains all the parameters to send to the API endpoint
 type PutMuteTimingParams struct {
 
 	// Body.
-	Body *models.MuteTimeInterval
+	Body *models.MuteTiming
 
 	// XDisableProvenance.
 	XDisableProvenance *string
@@ -129,13 +129,13 @@ func (o *PutMuteTimingParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the put mute timing params
-func (o *PutMuteTimingParams) WithBody(body *models.MuteTimeInterval) *PutMuteTimingParams {
+func (o *PutMuteTimingParams) WithBody(body *models.MuteTiming) *PutMuteTimingParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the put mute timing params
-func (o *PutMuteTimingParams) SetBody(body *models.MuteTimeInterval) {
+func (o *PutMuteTimingParams) SetBody(body *models.MuteTiming) {
 	o.Body = body
 }
 

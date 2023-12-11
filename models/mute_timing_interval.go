@@ -14,33 +14,32 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// TimeInterval TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
+// MuteTimingInterval mute timing interval
 //
-// swagger:model TimeInterval
-type TimeInterval struct {
+// swagger:model MuteTimingInterval
+type MuteTimingInterval struct {
 
-	// days of month
+	// an inclusive range of days of month, e.g. "1" or "5:15".
 	DaysOfMonth []string `json:"days_of_month"`
 
-	// location
+	// a location time zone for the time interval in the IANA Time Zone Database format, e.g. "America/New_York".
 	Location string `json:"location,omitempty"`
 
-	// months
+	// an inclusive range of months, e.g. "january" or "february:april".
 	Months []string `json:"months"`
 
-	// times
-	Times []*TimeRange `json:"times"`
+	// an inclusive range of times
+	Times []*MuteTimingTimeRange `json:"times"`
 
-	// weekdays
+	// an inclusive range of weekdays, e.g. "monday" or "tuesday:thursday".
 	Weekdays []string `json:"weekdays"`
 
-	// years
+	// an inclusive range of years, e.g. "2019" or "2020:2022".
 	Years []string `json:"years"`
 }
 
-// Validate validates this time interval
-func (m *TimeInterval) Validate(formats strfmt.Registry) error {
+// Validate validates this mute timing interval
+func (m *MuteTimingInterval) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateTimes(formats); err != nil {
@@ -53,7 +52,7 @@ func (m *TimeInterval) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TimeInterval) validateTimes(formats strfmt.Registry) error {
+func (m *MuteTimingInterval) validateTimes(formats strfmt.Registry) error {
 	if swag.IsZero(m.Times) { // not required
 		return nil
 	}
@@ -79,8 +78,8 @@ func (m *TimeInterval) validateTimes(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this time interval based on the context it is used
-func (m *TimeInterval) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this mute timing interval based on the context it is used
+func (m *MuteTimingInterval) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateTimes(ctx, formats); err != nil {
@@ -93,7 +92,7 @@ func (m *TimeInterval) ContextValidate(ctx context.Context, formats strfmt.Regis
 	return nil
 }
 
-func (m *TimeInterval) contextValidateTimes(ctx context.Context, formats strfmt.Registry) error {
+func (m *MuteTimingInterval) contextValidateTimes(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Times); i++ {
 
@@ -119,7 +118,7 @@ func (m *TimeInterval) contextValidateTimes(ctx context.Context, formats strfmt.
 }
 
 // MarshalBinary interface implementation
-func (m *TimeInterval) MarshalBinary() ([]byte, error) {
+func (m *MuteTimingInterval) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -127,8 +126,8 @@ func (m *TimeInterval) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *TimeInterval) UnmarshalBinary(b []byte) error {
-	var res TimeInterval
+func (m *MuteTimingInterval) UnmarshalBinary(b []byte) error {
+	var res MuteTimingInterval
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

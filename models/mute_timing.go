@@ -14,21 +14,28 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// MuteTimeInterval MuteTimeInterval represents a named set of time intervals for which a route should be muted.
+// MuteTiming mute timing
 //
-// swagger:model MuteTimeInterval
-type MuteTimeInterval struct {
+// swagger:model MuteTiming
+type MuteTiming struct {
 
 	// name
 	Name string `json:"name,omitempty"`
 
+	// provenance
+	Provenance Provenance `json:"provenance,omitempty"`
+
 	// time intervals
-	TimeIntervals []*TimeInterval `json:"time_intervals"`
+	TimeIntervals []*MuteTimingInterval `json:"time_intervals"`
 }
 
-// Validate validates this mute time interval
-func (m *MuteTimeInterval) Validate(formats strfmt.Registry) error {
+// Validate validates this mute timing
+func (m *MuteTiming) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateProvenance(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateTimeIntervals(formats); err != nil {
 		res = append(res, err)
@@ -40,7 +47,24 @@ func (m *MuteTimeInterval) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MuteTimeInterval) validateTimeIntervals(formats strfmt.Registry) error {
+func (m *MuteTiming) validateProvenance(formats strfmt.Registry) error {
+	if swag.IsZero(m.Provenance) { // not required
+		return nil
+	}
+
+	if err := m.Provenance.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("provenance")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("provenance")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *MuteTiming) validateTimeIntervals(formats strfmt.Registry) error {
 	if swag.IsZero(m.TimeIntervals) { // not required
 		return nil
 	}
@@ -66,9 +90,13 @@ func (m *MuteTimeInterval) validateTimeIntervals(formats strfmt.Registry) error 
 	return nil
 }
 
-// ContextValidate validate this mute time interval based on the context it is used
-func (m *MuteTimeInterval) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this mute timing based on the context it is used
+func (m *MuteTiming) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateProvenance(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateTimeIntervals(ctx, formats); err != nil {
 		res = append(res, err)
@@ -80,7 +108,25 @@ func (m *MuteTimeInterval) ContextValidate(ctx context.Context, formats strfmt.R
 	return nil
 }
 
-func (m *MuteTimeInterval) contextValidateTimeIntervals(ctx context.Context, formats strfmt.Registry) error {
+func (m *MuteTiming) contextValidateProvenance(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Provenance) { // not required
+		return nil
+	}
+
+	if err := m.Provenance.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("provenance")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("provenance")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *MuteTiming) contextValidateTimeIntervals(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.TimeIntervals); i++ {
 
@@ -106,7 +152,7 @@ func (m *MuteTimeInterval) contextValidateTimeIntervals(ctx context.Context, for
 }
 
 // MarshalBinary interface implementation
-func (m *MuteTimeInterval) MarshalBinary() ([]byte, error) {
+func (m *MuteTiming) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -114,8 +160,8 @@ func (m *MuteTimeInterval) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *MuteTimeInterval) UnmarshalBinary(b []byte) error {
-	var res MuteTimeInterval
+func (m *MuteTiming) UnmarshalBinary(b []byte) error {
+	var res MuteTiming
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

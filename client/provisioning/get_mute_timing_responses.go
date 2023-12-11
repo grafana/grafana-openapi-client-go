@@ -48,10 +48,10 @@ func NewGetMuteTimingOK() *GetMuteTimingOK {
 /*
 GetMuteTimingOK describes a response with status code 200, with default header values.
 
-MuteTimeInterval
+MuteTiming
 */
 type GetMuteTimingOK struct {
-	Payload *models.MuteTimeInterval
+	Payload *models.MuteTiming
 }
 
 // IsSuccess returns true when this get mute timing Ok response has a 2xx status code
@@ -92,13 +92,13 @@ func (o *GetMuteTimingOK) String() string {
 	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk  %+v", 200, o.Payload)
 }
 
-func (o *GetMuteTimingOK) GetPayload() *models.MuteTimeInterval {
+func (o *GetMuteTimingOK) GetPayload() *models.MuteTiming {
 	return o.Payload
 }
 
 func (o *GetMuteTimingOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.MuteTimeInterval)
+	o.Payload = new(models.MuteTiming)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

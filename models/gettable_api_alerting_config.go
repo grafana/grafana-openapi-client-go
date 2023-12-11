@@ -29,7 +29,7 @@ type GettableAPIAlertingConfig struct {
 	MuteTimeProvenances map[string]Provenance `json:"muteTimeProvenances,omitempty"`
 
 	// mute time intervals
-	MuteTimeIntervals []*MuteTimeInterval `json:"mute_time_intervals"`
+	MuteTimeIntervals []*MuteTiming `json:"mute_time_intervals"`
 
 	// Override with our superset receiver type
 	Receivers []*GettableAPIReceiver `json:"receivers"`

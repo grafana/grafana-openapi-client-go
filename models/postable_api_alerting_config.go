@@ -26,7 +26,7 @@ type PostableAPIAlertingConfig struct {
 	InhibitRules []*InhibitRule `json:"inhibit_rules"`
 
 	// mute time intervals
-	MuteTimeIntervals []*MuteTimeInterval `json:"mute_time_intervals"`
+	MuteTimeIntervals []*MuteTiming `json:"mute_time_intervals"`
 
 	// Override with our superset receiver type
 	Receivers []*PostableAPIReceiver `json:"receivers"`

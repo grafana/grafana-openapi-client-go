@@ -17,7 +17,7 @@ import (
 // MuteTimings mute timings
 //
 // swagger:model MuteTimings
-type MuteTimings []*MuteTimeInterval
+type MuteTimings []*MuteTiming
 
 // Validate validates this mute timings
 func (m MuteTimings) Validate(formats strfmt.Registry) error {
