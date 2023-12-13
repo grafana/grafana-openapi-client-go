@@ -104,5 +104,9 @@ modify '.definitions.RoleDTO.properties.global = {
     "description": "Whether the role is global or not."
 }'
 
+# StartDate and EndDate of reports must be nullable
+modify '.definitions.ScheduleDTO.properties.startDate["x-nullable"] = true'
+modify '.definitions.ScheduleDTO.properties.endDate["x-nullable"] = true'
+
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
