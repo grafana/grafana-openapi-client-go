@@ -104,9 +104,15 @@ modify '.definitions.RoleDTO.properties.global = {
     "description": "Whether the role is global or not."
 }'
 
+
 # Fixed here: https://github.com/grafana/grafana/pull/79415
 # Move response from 204 to 202
 modify '.paths["/v1/provisioning/contact-points/{UID}"].delete.responses |= with_entries(if .key == "204" then .key = "202" else . end)'
+
+# StartDate and EndDate of reports must be nullable
+modify '.definitions.ScheduleDTO.properties.startDate["x-nullable"] = true'
+modify '.definitions.ScheduleDTO.properties.endDate["x-nullable"] = true'
+
 
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
