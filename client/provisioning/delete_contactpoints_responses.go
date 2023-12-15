@@ -20,8 +20,8 @@ type DeleteContactpointsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteContactpointsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 204:
-		result := NewDeleteContactpointsNoContent()
+	case 202:
+		result := NewDeleteContactpointsAccepted()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -31,58 +31,58 @@ func (o *DeleteContactpointsReader) ReadResponse(response runtime.ClientResponse
 	}
 }
 
-// NewDeleteContactpointsNoContent creates a DeleteContactpointsNoContent with default headers values
-func NewDeleteContactpointsNoContent() *DeleteContactpointsNoContent {
-	return &DeleteContactpointsNoContent{}
+// NewDeleteContactpointsAccepted creates a DeleteContactpointsAccepted with default headers values
+func NewDeleteContactpointsAccepted() *DeleteContactpointsAccepted {
+	return &DeleteContactpointsAccepted{}
 }
 
 /*
-DeleteContactpointsNoContent describes a response with status code 204, with default header values.
+DeleteContactpointsAccepted describes a response with status code 202, with default header values.
 
 	The contact point was deleted successfully.
 */
-type DeleteContactpointsNoContent struct {
+type DeleteContactpointsAccepted struct {
 }
 
-// IsSuccess returns true when this delete contactpoints no content response has a 2xx status code
-func (o *DeleteContactpointsNoContent) IsSuccess() bool {
+// IsSuccess returns true when this delete contactpoints accepted response has a 2xx status code
+func (o *DeleteContactpointsAccepted) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete contactpoints no content response has a 3xx status code
-func (o *DeleteContactpointsNoContent) IsRedirect() bool {
+// IsRedirect returns true when this delete contactpoints accepted response has a 3xx status code
+func (o *DeleteContactpointsAccepted) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete contactpoints no content response has a 4xx status code
-func (o *DeleteContactpointsNoContent) IsClientError() bool {
+// IsClientError returns true when this delete contactpoints accepted response has a 4xx status code
+func (o *DeleteContactpointsAccepted) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete contactpoints no content response has a 5xx status code
-func (o *DeleteContactpointsNoContent) IsServerError() bool {
+// IsServerError returns true when this delete contactpoints accepted response has a 5xx status code
+func (o *DeleteContactpointsAccepted) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete contactpoints no content response a status code equal to that given
-func (o *DeleteContactpointsNoContent) IsCode(code int) bool {
-	return code == 204
+// IsCode returns true when this delete contactpoints accepted response a status code equal to that given
+func (o *DeleteContactpointsAccepted) IsCode(code int) bool {
+	return code == 202
 }
 
-// Code gets the status code for the delete contactpoints no content response
-func (o *DeleteContactpointsNoContent) Code() int {
-	return 204
+// Code gets the status code for the delete contactpoints accepted response
+func (o *DeleteContactpointsAccepted) Code() int {
+	return 202
 }
 
-func (o *DeleteContactpointsNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsNoContent ", 204)
+func (o *DeleteContactpointsAccepted) Error() string {
+	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsAccepted ", 202)
 }
 
-func (o *DeleteContactpointsNoContent) String() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsNoContent ", 204)
+func (o *DeleteContactpointsAccepted) String() string {
+	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsAccepted ", 202)
 }
 
-func (o *DeleteContactpointsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteContactpointsAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
