@@ -32,8 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
 
-	DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
-	DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error)
+	DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsAccepted, error)
+	DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsAccepted, error)
 
 	DeleteMuteTiming(name string, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
 	DeleteMuteTimingWithParams(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
@@ -145,12 +145,12 @@ func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOp
 /*
 DeleteContactpoints deletes a contact point
 */
-func (a *Client) DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsNoContent, error) {
+func (a *Client) DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsAccepted, error) {
 	params := NewDeleteContactpointsParams().WithUID(uid)
 	return a.DeleteContactpointsWithParams(params, opts...)
 }
 
-func (a *Client) DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsNoContent, error) {
+func (a *Client) DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsAccepted, error) {
 	if params == nil {
 		params = NewDeleteContactpointsParams()
 	}
@@ -176,7 +176,7 @@ func (a *Client) DeleteContactpointsWithParams(params *DeleteContactpointsParams
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*DeleteContactpointsNoContent)
+	success, ok := result.(*DeleteContactpointsAccepted)
 	if ok {
 		return success, nil
 	}
