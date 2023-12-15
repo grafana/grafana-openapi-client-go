@@ -75,7 +75,7 @@ GetReportOK describes a response with status code 200, with default header value
 (empty)
 */
 type GetReportOK struct {
-	Payload *models.ConfigDTO
+	Payload *models.Report
 }
 
 // IsSuccess returns true when this get report Ok response has a 2xx status code
@@ -116,13 +116,13 @@ func (o *GetReportOK) String() string {
 	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOk  %+v", 200, o.Payload)
 }
 
-func (o *GetReportOK) GetPayload() *models.ConfigDTO {
+func (o *GetReportOK) GetPayload() *models.Report {
 	return o.Payload
 }
 
 func (o *GetReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.ConfigDTO)
+	o.Payload = new(models.Report)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

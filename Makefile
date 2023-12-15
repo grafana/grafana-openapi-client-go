@@ -2,7 +2,6 @@ include .bingo/Variables.mk
 
 .PHONY: drone, test, generate-client, pull-schema, golangci-lint
 
-GRAFANA_TARGET_VERSION ?= v10.2.0
 
 drone:
 	drone jsonnet --stream --format --source .drone/drone.jsonnet --target .drone/drone.yml
@@ -28,7 +27,7 @@ $(info Generate model '$(MODEL)')
 endif
 
 pull-schema:
-	GRAFANA_TARGET_VERSION=$(GRAFANA_TARGET_VERSION) bash ./scripts/pull-schema.sh
+	bash ./scripts/pull-schema.sh
 
 generate-client: ${SWAGGER} pull-schema
 	rm -rf ./models ./client

@@ -23,7 +23,7 @@ type ImportDashboardResponse struct {
 	// description
 	Description string `json:"description,omitempty"`
 
-	// folder Id
+	// Deprecated: use FolderUID instead
 	FolderID int64 `json:"folderId,omitempty"`
 
 	// folder Uid

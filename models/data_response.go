@@ -24,6 +24,9 @@ type DataResponse struct {
 	// Error is a property to be set if the corresponding DataQuery has an error.
 	Error string `json:"Error,omitempty"`
 
+	// error source
+	ErrorSource ErrorSource `json:"ErrorSource,omitempty"`
+
 	// frames
 	Frames Frames `json:"Frames,omitempty"`
 
@@ -34,6 +37,10 @@ type DataResponse struct {
 // Validate validates this data response
 func (m *DataResponse) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateErrorSource(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateFrames(formats); err != nil {
 		res = append(res, err)
@@ -46,6 +53,23 @@ func (m *DataResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DataResponse) validateErrorSource(formats strfmt.Registry) error {
+	if swag.IsZero(m.ErrorSource) { // not required
+		return nil
+	}
+
+	if err := m.ErrorSource.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("ErrorSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("ErrorSource")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -87,6 +111,10 @@ func (m *DataResponse) validateStatus(formats strfmt.Registry) error {
 func (m *DataResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateErrorSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFrames(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -98,6 +126,24 @@ func (m *DataResponse) ContextValidate(ctx context.Context, formats strfmt.Regis
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DataResponse) contextValidateErrorSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ErrorSource) { // not required
+		return nil
+	}
+
+	if err := m.ErrorSource.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("ErrorSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("ErrorSource")
+		}
+		return err
+	}
+
 	return nil
 }
 

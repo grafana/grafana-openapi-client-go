@@ -27,7 +27,7 @@ type DashboardACLInfoDTO struct {
 	// dashboard Id
 	DashboardID int64 `json:"dashboardId,omitempty"`
 
-	// folder Id
+	// Deprecated: use FolderUID instead
 	FolderID int64 `json:"folderId,omitempty"`
 
 	// folder Uid

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Integration integration
+// Integration Integration integration
 //
 // swagger:model integration
 type Integration struct {

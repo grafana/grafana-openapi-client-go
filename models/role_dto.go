@@ -33,7 +33,7 @@ type RoleDTO struct {
 	// display name
 	DisplayName string `json:"displayName,omitempty"`
 
-	// Whether the role is global or not.
+	// global
 	Global bool `json:"global,omitempty"`
 
 	// group

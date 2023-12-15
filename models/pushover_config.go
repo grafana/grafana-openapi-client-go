@@ -54,6 +54,9 @@ type PushoverConfig struct {
 	// token file
 	TokenFile string `json:"token_file,omitempty"`
 
+	// ttl
+	TTL string `json:"ttl,omitempty"`
+
 	// url
 	URL string `json:"url,omitempty"`
 

@@ -53,9 +53,6 @@ type ClientService interface {
 	PostDashboard(body *models.SaveDashboardCommand, opts ...ClientOption) (*PostDashboardOK, error)
 	PostDashboardWithParams(params *PostDashboardParams, opts ...ClientOption) (*PostDashboardOK, error)
 
-	TrimDashboard(body *models.TrimDashboardCommand, opts ...ClientOption) (*TrimDashboardOK, error)
-	TrimDashboardWithParams(params *TrimDashboardParams, opts ...ClientOption) (*TrimDashboardOK, error)
-
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -370,50 +367,6 @@ func (a *Client) PostDashboardWithParams(params *PostDashboardParams, opts ...Cl
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for postDashboard: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-TrimDashboard trims defaults from dashboard
-*/
-func (a *Client) TrimDashboard(body *models.TrimDashboardCommand, opts ...ClientOption) (*TrimDashboardOK, error) {
-	params := NewTrimDashboardParams().WithBody(body)
-	return a.TrimDashboardWithParams(params, opts...)
-}
-
-func (a *Client) TrimDashboardWithParams(params *TrimDashboardParams, opts ...ClientOption) (*TrimDashboardOK, error) {
-	if params == nil {
-		params = NewTrimDashboardParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "trimDashboard",
-		Method:             "POST",
-		PathPattern:        "/dashboards/trim",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &TrimDashboardReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*TrimDashboardOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for trimDashboard: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

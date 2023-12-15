@@ -31,7 +31,7 @@ type AlertQueryExport struct {
 	RefID string `json:"refId,omitempty"`
 
 	// relative time range
-	RelativeTimeRange *RelativeTimeRange `json:"relativeTimeRange,omitempty"`
+	RelativeTimeRange *RelativeTimeRangeExport `json:"relativeTimeRange,omitempty"`
 }
 
 // Validate validates this alert query export

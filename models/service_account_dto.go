@@ -32,6 +32,10 @@ type ServiceAccountDTO struct {
 	// Example: false
 	IsDisabled bool `json:"isDisabled,omitempty"`
 
+	// is external
+	// Example: false
+	IsExternal bool `json:"isExternal,omitempty"`
+
 	// login
 	// Example: sa-grafana
 	Login string `json:"login,omitempty"`

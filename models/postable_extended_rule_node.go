@@ -33,6 +33,9 @@ type PostableExtendedRuleNode struct {
 	// grafana alert
 	GrafanaAlert *PostableGrafanaRule `json:"grafana_alert,omitempty"`
 
+	// keep firing for
+	KeepFiringFor string `json:"keep_firing_for,omitempty"`
+
 	// labels
 	Labels map[string]string `json:"labels,omitempty"`
 

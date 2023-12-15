@@ -18,7 +18,7 @@ import (
 // swagger:model Hit
 type Hit struct {
 
-	// folder Id
+	// Deprecated: use FolderUID instead
 	FolderID int64 `json:"folderId,omitempty"`
 
 	// folder title

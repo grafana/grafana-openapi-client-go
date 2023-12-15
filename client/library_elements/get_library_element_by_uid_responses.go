@@ -35,6 +35,12 @@ func (o *GetLibraryElementByUIDReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
+	case 403:
+		result := NewGetLibraryElementByUIDForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 404:
 		result := NewGetLibraryElementByUIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -177,6 +183,74 @@ func (o *GetLibraryElementByUIDUnauthorized) GetPayload() *models.ErrorResponseB
 }
 
 func (o *GetLibraryElementByUIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetLibraryElementByUIDForbidden creates a GetLibraryElementByUIDForbidden with default headers values
+func NewGetLibraryElementByUIDForbidden() *GetLibraryElementByUIDForbidden {
+	return &GetLibraryElementByUIDForbidden{}
+}
+
+/*
+GetLibraryElementByUIDForbidden describes a response with status code 403, with default header values.
+
+ForbiddenError is returned if the user/token has insufficient permissions to access the requested resource.
+*/
+type GetLibraryElementByUIDForbidden struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this get library element by Uid forbidden response has a 2xx status code
+func (o *GetLibraryElementByUIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get library element by Uid forbidden response has a 3xx status code
+func (o *GetLibraryElementByUIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get library element by Uid forbidden response has a 4xx status code
+func (o *GetLibraryElementByUIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get library element by Uid forbidden response has a 5xx status code
+func (o *GetLibraryElementByUIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get library element by Uid forbidden response a status code equal to that given
+func (o *GetLibraryElementByUIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
+// Code gets the status code for the get library element by Uid forbidden response
+func (o *GetLibraryElementByUIDForbidden) Code() int {
+	return 403
+}
+
+func (o *GetLibraryElementByUIDForbidden) Error() string {
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}][%d] getLibraryElementByUidForbidden  %+v", 403, o.Payload)
+}
+
+func (o *GetLibraryElementByUIDForbidden) String() string {
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}][%d] getLibraryElementByUidForbidden  %+v", 403, o.Payload)
+}
+
+func (o *GetLibraryElementByUIDForbidden) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *GetLibraryElementByUIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

@@ -41,6 +41,10 @@ type ClientService interface {
 	DeleteTemplate(name string, opts ...ClientOption) (*DeleteTemplateNoContent, error)
 	DeleteTemplateWithParams(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error)
 
+	ExportMuteTiming(params *ExportMuteTimingParams, opts ...ClientOption) (*ExportMuteTimingOK, error)
+
+	ExportMuteTimings(params *ExportMuteTimingsParams, opts ...ClientOption) (*ExportMuteTimingsOK, error)
+
 	GetAlertRule(uid string, opts ...ClientOption) (*GetAlertRuleOK, error)
 	GetAlertRuleWithParams(params *GetAlertRuleParams, opts ...ClientOption) (*GetAlertRuleOK, error)
 
@@ -271,6 +275,86 @@ func (a *Client) DeleteTemplateWithParams(params *DeleteTemplateParams, opts ...
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for DeleteTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ExportMuteTiming exports a mute timing in provisioning format
+*/
+
+func (a *Client) ExportMuteTiming(params *ExportMuteTimingParams, opts ...ClientOption) (*ExportMuteTimingOK, error) {
+	if params == nil {
+		params = NewExportMuteTimingParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "ExportMuteTiming",
+		Method:             "GET",
+		PathPattern:        "/v1/provisioning/mute-timings/{name}/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &ExportMuteTimingReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ExportMuteTimingOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for ExportMuteTiming: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ExportMuteTimings exports all mute timings in provisioning format
+*/
+
+func (a *Client) ExportMuteTimings(params *ExportMuteTimingsParams, opts ...ClientOption) (*ExportMuteTimingsOK, error) {
+	if params == nil {
+		params = NewExportMuteTimingsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "ExportMuteTimings",
+		Method:             "GET",
+		PathPattern:        "/v1/provisioning/mute-timings/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &ExportMuteTimingsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ExportMuteTimingsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for ExportMuteTimings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

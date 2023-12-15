@@ -14,7 +14,7 @@ import (
 // MatchRegexps MatchRegexps represents a map of Regexp.
 //
 // swagger:model MatchRegexps
-type MatchRegexps map[string]Regexp
+type MatchRegexps map[string]string
 
 // Validate validates this match regexps
 func (m MatchRegexps) Validate(formats strfmt.Registry) error {

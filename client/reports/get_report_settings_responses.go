@@ -63,7 +63,7 @@ GetReportSettingsOK describes a response with status code 200, with default head
 (empty)
 */
 type GetReportSettingsOK struct {
-	Payload *models.SettingsDTO
+	Payload *models.ReportSettings
 }
 
 // IsSuccess returns true when this get report settings Ok response has a 2xx status code
@@ -104,13 +104,13 @@ func (o *GetReportSettingsOK) String() string {
 	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOk  %+v", 200, o.Payload)
 }
 
-func (o *GetReportSettingsOK) GetPayload() *models.SettingsDTO {
+func (o *GetReportSettingsOK) GetPayload() *models.ReportSettings {
 	return o.Payload
 }
 
 func (o *GetReportSettingsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SettingsDTO)
+	o.Payload = new(models.ReportSettings)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

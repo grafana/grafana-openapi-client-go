@@ -26,6 +26,9 @@ type BasicAuth struct {
 
 	// username
 	Username string `json:"username,omitempty"`
+
+	// username file
+	UsernameFile string `json:"username_file,omitempty"`
 }
 
 // Validate validates this basic auth

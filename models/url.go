@@ -12,7 +12,27 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// URL URL is a custom URL type that allows validation at configuration load time.
+// URL A URL represents a parsed URL (technically, a URI reference).
+//
+// The general form represented is:
+//
+// [scheme:][//[userinfo@]host][/]path[?query][#fragment]
+//
+// URLs that do not start with a slash after the scheme are interpreted as:
+//
+// scheme:opaque[?query][#fragment]
+//
+// Note that the Path field is stored in decoded form: /%47%6f%2f becomes /Go/.
+// A consequence is that it is impossible to tell which slashes in the Path were
+// slashes in the raw URL and which were %2f. This distinction is rarely important,
+// but when it is, the code should use the EscapedPath method, which preserves
+// the original encoding of Path.
+//
+// The RawPath field is an optional field which is only set when the default
+// encoding of Path is different from the escaped path. See the EscapedPath method
+// for more details.
+//
+// URL's String method uses the EscapedPath method to obtain the path.
 //
 // swagger:model URL
 type URL struct {

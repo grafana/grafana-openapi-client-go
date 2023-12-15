@@ -64,7 +64,7 @@ SendTestEmailParams contains all the parameters to send to the API endpoint
 type SendTestEmailParams struct {
 
 	// Body.
-	Body *models.CreateOrUpdateConfigCmd
+	Body *models.CreateOrUpdateReportConfig
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *SendTestEmailParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the send test email params
-func (o *SendTestEmailParams) WithBody(body *models.CreateOrUpdateConfigCmd) *SendTestEmailParams {
+func (o *SendTestEmailParams) WithBody(body *models.CreateOrUpdateReportConfig) *SendTestEmailParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the send test email params
-func (o *SendTestEmailParams) SetBody(body *models.CreateOrUpdateConfigCmd) {
+func (o *SendTestEmailParams) SetBody(body *models.CreateOrUpdateReportConfig) {
 	o.Body = body
 }
 

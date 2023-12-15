@@ -28,6 +28,9 @@ type GettableAPIReceiver struct {
 	// grafana managed receiver configs
 	GrafanaManagedReceiverConfigs []*GettableGrafanaReceiver `json:"grafana_managed_receiver_configs"`
 
+	// msteams configs
+	MsteamsConfigs []*MSTeamsConfig `json:"msteams_configs"`
+
 	// A unique identifier for this receiver.
 	Name string `json:"name,omitempty"`
 
@@ -45,9 +48,6 @@ type GettableAPIReceiver struct {
 
 	// sns configs
 	SNSConfigs []*SNSConfig `json:"sns_configs"`
-
-	// teams configs
-	TeamsConfigs []*MSTeamsConfig `json:"teams_configs"`
 
 	// telegram configs
 	TelegramConfigs []*TelegramConfig `json:"telegram_configs"`
@@ -81,6 +81,10 @@ func (m *GettableAPIReceiver) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateMsteamsConfigs(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOpsgenieConfigs(formats); err != nil {
 		res = append(res, err)
 	}
@@ -98,10 +102,6 @@ func (m *GettableAPIReceiver) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSNSConfigs(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTeamsConfigs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -199,6 +199,32 @@ func (m *GettableAPIReceiver) validateGrafanaManagedReceiverConfigs(formats strf
 					return ve.ValidateName("grafana_managed_receiver_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("grafana_managed_receiver_configs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GettableAPIReceiver) validateMsteamsConfigs(formats strfmt.Registry) error {
+	if swag.IsZero(m.MsteamsConfigs) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.MsteamsConfigs); i++ {
+		if swag.IsZero(m.MsteamsConfigs[i]) { // not required
+			continue
+		}
+
+		if m.MsteamsConfigs[i] != nil {
+			if err := m.MsteamsConfigs[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("msteams_configs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("msteams_configs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -329,32 +355,6 @@ func (m *GettableAPIReceiver) validateSNSConfigs(formats strfmt.Registry) error 
 					return ve.ValidateName("sns_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("sns_configs" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *GettableAPIReceiver) validateTeamsConfigs(formats strfmt.Registry) error {
-	if swag.IsZero(m.TeamsConfigs) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.TeamsConfigs); i++ {
-		if swag.IsZero(m.TeamsConfigs[i]) { // not required
-			continue
-		}
-
-		if m.TeamsConfigs[i] != nil {
-			if err := m.TeamsConfigs[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("teams_configs" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("teams_configs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -511,6 +511,10 @@ func (m *GettableAPIReceiver) ContextValidate(ctx context.Context, formats strfm
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMsteamsConfigs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOpsgenieConfigs(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -528,10 +532,6 @@ func (m *GettableAPIReceiver) ContextValidate(ctx context.Context, formats strfm
 	}
 
 	if err := m.contextValidateSNSConfigs(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateTeamsConfigs(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -626,6 +626,31 @@ func (m *GettableAPIReceiver) contextValidateGrafanaManagedReceiverConfigs(ctx c
 					return ve.ValidateName("grafana_managed_receiver_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("grafana_managed_receiver_configs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GettableAPIReceiver) contextValidateMsteamsConfigs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.MsteamsConfigs); i++ {
+
+		if m.MsteamsConfigs[i] != nil {
+
+			if swag.IsZero(m.MsteamsConfigs[i]) { // not required
+				return nil
+			}
+
+			if err := m.MsteamsConfigs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("msteams_configs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("msteams_configs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -751,31 +776,6 @@ func (m *GettableAPIReceiver) contextValidateSNSConfigs(ctx context.Context, for
 					return ve.ValidateName("sns_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("sns_configs" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *GettableAPIReceiver) contextValidateTeamsConfigs(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.TeamsConfigs); i++ {
-
-		if m.TeamsConfigs[i] != nil {
-
-			if swag.IsZero(m.TeamsConfigs[i]) { // not required
-				return nil
-			}
-
-			if err := m.TeamsConfigs[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("teams_configs" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("teams_configs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
