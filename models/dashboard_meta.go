@@ -48,7 +48,7 @@ type DashboardMeta struct {
 	// Format: date-time
 	Expires strfmt.DateTime `json:"expires,omitempty"`
 
-	// folder Id
+	// Deprecated: use FolderUID instead
 	FolderID int64 `json:"folderId,omitempty"`
 
 	// folder title

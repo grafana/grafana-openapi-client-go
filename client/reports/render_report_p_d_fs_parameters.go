@@ -64,11 +64,20 @@ type RenderReportPDFsParams struct {
 	// DashboardID.
 	DashboardID *string
 
+	// IncludeTables.
+	IncludeTables *string
+
 	// Layout.
 	Layout *string
 
 	// Orientation.
 	Orientation *string
+
+	// ScaleFactor.
+	ScaleFactor *string
+
+	// Title.
+	Title *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -134,6 +143,17 @@ func (o *RenderReportPDFsParams) SetDashboardID(dashboardID *string) {
 	o.DashboardID = dashboardID
 }
 
+// WithIncludeTables adds the includeTables to the render report p d fs params
+func (o *RenderReportPDFsParams) WithIncludeTables(includeTables *string) *RenderReportPDFsParams {
+	o.SetIncludeTables(includeTables)
+	return o
+}
+
+// SetIncludeTables adds the includeTables to the render report p d fs params
+func (o *RenderReportPDFsParams) SetIncludeTables(includeTables *string) {
+	o.IncludeTables = includeTables
+}
+
 // WithLayout adds the layout to the render report p d fs params
 func (o *RenderReportPDFsParams) WithLayout(layout *string) *RenderReportPDFsParams {
 	o.SetLayout(layout)
@@ -156,6 +176,28 @@ func (o *RenderReportPDFsParams) SetOrientation(orientation *string) {
 	o.Orientation = orientation
 }
 
+// WithScaleFactor adds the scaleFactor to the render report p d fs params
+func (o *RenderReportPDFsParams) WithScaleFactor(scaleFactor *string) *RenderReportPDFsParams {
+	o.SetScaleFactor(scaleFactor)
+	return o
+}
+
+// SetScaleFactor adds the scaleFactor to the render report p d fs params
+func (o *RenderReportPDFsParams) SetScaleFactor(scaleFactor *string) {
+	o.ScaleFactor = scaleFactor
+}
+
+// WithTitle adds the title to the render report p d fs params
+func (o *RenderReportPDFsParams) WithTitle(title *string) *RenderReportPDFsParams {
+	o.SetTitle(title)
+	return o
+}
+
+// SetTitle adds the title to the render report p d fs params
+func (o *RenderReportPDFsParams) SetTitle(title *string) {
+	o.Title = title
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RenderReportPDFsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -176,6 +218,23 @@ func (o *RenderReportPDFsParams) WriteToRequest(r runtime.ClientRequest, reg str
 		if qDashboardID != "" {
 
 			if err := r.SetQueryParam("dashboardID", qDashboardID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.IncludeTables != nil {
+
+		// query param includeTables
+		var qrIncludeTables string
+
+		if o.IncludeTables != nil {
+			qrIncludeTables = *o.IncludeTables
+		}
+		qIncludeTables := qrIncludeTables
+		if qIncludeTables != "" {
+
+			if err := r.SetQueryParam("includeTables", qIncludeTables); err != nil {
 				return err
 			}
 		}
@@ -210,6 +269,40 @@ func (o *RenderReportPDFsParams) WriteToRequest(r runtime.ClientRequest, reg str
 		if qOrientation != "" {
 
 			if err := r.SetQueryParam("orientation", qOrientation); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ScaleFactor != nil {
+
+		// query param scaleFactor
+		var qrScaleFactor string
+
+		if o.ScaleFactor != nil {
+			qrScaleFactor = *o.ScaleFactor
+		}
+		qScaleFactor := qrScaleFactor
+		if qScaleFactor != "" {
+
+			if err := r.SetQueryParam("scaleFactor", qScaleFactor); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Title != nil {
+
+		// query param title
+		var qrTitle string
+
+		if o.Title != nil {
+			qrTitle = *o.Title
+		}
+		qTitle := qrTitle
+		if qTitle != "" {
+
+			if err := r.SetQueryParam("title", qTitle); err != nil {
 				return err
 			}
 		}

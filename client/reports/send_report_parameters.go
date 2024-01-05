@@ -64,7 +64,7 @@ SendReportParams contains all the parameters to send to the API endpoint
 type SendReportParams struct {
 
 	// Body.
-	Body *models.ReportEmailDTO
+	Body *models.ReportEmail
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *SendReportParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the send report params
-func (o *SendReportParams) WithBody(body *models.ReportEmailDTO) *SendReportParams {
+func (o *SendReportParams) WithBody(body *models.ReportEmail) *SendReportParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the send report params
-func (o *SendReportParams) SetBody(body *models.ReportEmailDTO) {
+func (o *SendReportParams) SetBody(body *models.ReportEmail) {
 	o.Body = body
 }
 

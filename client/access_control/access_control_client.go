@@ -46,6 +46,9 @@ type ClientService interface {
 	GetAccessControlStatus(opts ...ClientOption) (*GetAccessControlStatusOK, error)
 	GetAccessControlStatusWithParams(params *GetAccessControlStatusParams, opts ...ClientOption) (*GetAccessControlStatusOK, error)
 
+	GetResourceDescription(resource string, opts ...ClientOption) (*GetResourceDescriptionOK, error)
+	GetResourceDescriptionWithParams(params *GetResourceDescriptionParams, opts ...ClientOption) (*GetResourceDescriptionOK, error)
+
 	GetRole(roleUID string, opts ...ClientOption) (*GetRoleOK, error)
 	GetRoleWithParams(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error)
 
@@ -57,13 +60,27 @@ type ClientService interface {
 	ListTeamRoles(teamID int64, opts ...ClientOption) (*ListTeamRolesOK, error)
 	ListTeamRolesWithParams(params *ListTeamRolesParams, opts ...ClientOption) (*ListTeamRolesOK, error)
 
+	ListTeamsRoles(body *models.RolesSearchQuery, opts ...ClientOption) (*ListTeamsRolesOK, error)
+	ListTeamsRolesWithParams(params *ListTeamsRolesParams, opts ...ClientOption) (*ListTeamsRolesOK, error)
+
 	ListUserRoles(userID int64, opts ...ClientOption) (*ListUserRolesOK, error)
 	ListUserRolesWithParams(params *ListUserRolesParams, opts ...ClientOption) (*ListUserRolesOK, error)
+
+	ListUsersRoles(body *models.RolesSearchQuery, opts ...ClientOption) (*ListUsersRolesOK, error)
+	ListUsersRolesWithParams(params *ListUsersRolesParams, opts ...ClientOption) (*ListUsersRolesOK, error)
 
 	RemoveTeamRole(teamID int64, roleUID string, opts ...ClientOption) (*RemoveTeamRoleOK, error)
 	RemoveTeamRoleWithParams(params *RemoveTeamRoleParams, opts ...ClientOption) (*RemoveTeamRoleOK, error)
 
 	RemoveUserRole(params *RemoveUserRoleParams, opts ...ClientOption) (*RemoveUserRoleOK, error)
+
+	SetResourcePermissions(params *SetResourcePermissionsParams, opts ...ClientOption) (*SetResourcePermissionsOK, error)
+
+	SetResourcePermissionsForBuiltInRole(params *SetResourcePermissionsForBuiltInRoleParams, opts ...ClientOption) (*SetResourcePermissionsForBuiltInRoleOK, error)
+
+	SetResourcePermissionsForTeam(params *SetResourcePermissionsForTeamParams, opts ...ClientOption) (*SetResourcePermissionsForTeamOK, error)
+
+	SetResourcePermissionsForUser(params *SetResourcePermissionsForUserParams, opts ...ClientOption) (*SetResourcePermissionsForUserOK, error)
 
 	SetRoleAssignments(roleUID string, body *models.SetRoleAssignmentsCommand, opts ...ClientOption) (*SetRoleAssignmentsOK, error)
 	SetRoleAssignmentsWithParams(params *SetRoleAssignmentsParams, opts ...ClientOption) (*SetRoleAssignmentsOK, error)
@@ -316,6 +333,50 @@ func (a *Client) GetAccessControlStatusWithParams(params *GetAccessControlStatus
 }
 
 /*
+GetResourceDescription gets a description of a resource s access control properties
+*/
+func (a *Client) GetResourceDescription(resource string, opts ...ClientOption) (*GetResourceDescriptionOK, error) {
+	params := NewGetResourceDescriptionParams().WithResource(resource)
+	return a.GetResourceDescriptionWithParams(params, opts...)
+}
+
+func (a *Client) GetResourceDescriptionWithParams(params *GetResourceDescriptionParams, opts ...ClientOption) (*GetResourceDescriptionOK, error) {
+	if params == nil {
+		params = NewGetResourceDescriptionParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getResourceDescription",
+		Method:             "POST",
+		PathPattern:        "/access-control/{resource}/description",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetResourceDescriptionReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetResourceDescriptionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getResourceDescription: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 GetRole gets a role
 
 Get a role for the given UID.
@@ -502,6 +563,54 @@ func (a *Client) ListTeamRolesWithParams(params *ListTeamRolesParams, opts ...Cl
 }
 
 /*
+ListTeamsRoles lists roles assigned to multiple teams
+
+Lists the roles that have been directly assigned to the given teams.
+
+You need to have a permission with action `teams.roles:read` and scope `teams:id:*`.
+*/
+func (a *Client) ListTeamsRoles(body *models.RolesSearchQuery, opts ...ClientOption) (*ListTeamsRolesOK, error) {
+	params := NewListTeamsRolesParams().WithBody(body)
+	return a.ListTeamsRolesWithParams(params, opts...)
+}
+
+func (a *Client) ListTeamsRolesWithParams(params *ListTeamsRolesParams, opts ...ClientOption) (*ListTeamsRolesOK, error) {
+	if params == nil {
+		params = NewListTeamsRolesParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listTeamsRoles",
+		Method:             "POST",
+		PathPattern:        "/access-control/teams/roles/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &ListTeamsRolesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListTeamsRolesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listTeamsRoles: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 ListUserRoles lists roles assigned to a user
 
 Lists the roles that have been directly assigned to a given user. The list does not include built-in roles (Viewer, Editor, Admin or Grafana Admin), and it does not include roles that have been inherited from a team.
@@ -546,6 +655,54 @@ func (a *Client) ListUserRolesWithParams(params *ListUserRolesParams, opts ...Cl
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for listUserRoles: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ListUsersRoles lists roles assigned to multiple users
+
+Lists the roles that have been directly assigned to the given users. The list does not include built-in roles (Viewer, Editor, Admin or Grafana Admin), and it does not include roles that have been inherited from a team.
+
+You need to have a permission with action `users.roles:read` and scope `users:id:*`.
+*/
+func (a *Client) ListUsersRoles(body *models.RolesSearchQuery, opts ...ClientOption) (*ListUsersRolesOK, error) {
+	params := NewListUsersRolesParams().WithBody(body)
+	return a.ListUsersRolesWithParams(params, opts...)
+}
+
+func (a *Client) ListUsersRolesWithParams(params *ListUsersRolesParams, opts ...ClientOption) (*ListUsersRolesOK, error) {
+	if params == nil {
+		params = NewListUsersRolesParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listUsersRoles",
+		Method:             "POST",
+		PathPattern:        "/access-control/users/roles/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &ListUsersRolesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListUsersRolesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listUsersRoles: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -636,6 +793,182 @@ func (a *Client) RemoveUserRole(params *RemoveUserRoleParams, opts ...ClientOpti
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for removeUserRole: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SetResourcePermissions sets resource permissions
+
+Assigns permissions for a resource by a given type (`:resource`) and `:resourceID` to one or many
+assignment types. Allowed resources are `datasources`, `teams`, `dashboards`, `folders`, and `serviceaccounts`.
+Refer to the `/access-control/{resource}/description` endpoint for allowed Permissions.
+*/
+
+func (a *Client) SetResourcePermissions(params *SetResourcePermissionsParams, opts ...ClientOption) (*SetResourcePermissionsOK, error) {
+	if params == nil {
+		params = NewSetResourcePermissionsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setResourcePermissions",
+		Method:             "POST",
+		PathPattern:        "/access-control/{resource}/{resourceID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &SetResourcePermissionsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetResourcePermissionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setResourcePermissions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SetResourcePermissionsForBuiltInRole sets resource permissions for a built in role
+
+Assigns permissions for a resource by a given type (`:resource`) and `:resourceID` to a built-in role.
+Allowed resources are `datasources`, `teams`, `dashboards`, `folders`, and `serviceaccounts`.
+Refer to the `/access-control/{resource}/description` endpoint for allowed Permissions.
+*/
+
+func (a *Client) SetResourcePermissionsForBuiltInRole(params *SetResourcePermissionsForBuiltInRoleParams, opts ...ClientOption) (*SetResourcePermissionsForBuiltInRoleOK, error) {
+	if params == nil {
+		params = NewSetResourcePermissionsForBuiltInRoleParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setResourcePermissionsForBuiltInRole",
+		Method:             "POST",
+		PathPattern:        "/access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &SetResourcePermissionsForBuiltInRoleReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetResourcePermissionsForBuiltInRoleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setResourcePermissionsForBuiltInRole: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SetResourcePermissionsForTeam sets resource permissions for a team
+
+Assigns permissions for a resource by a given type (`:resource`) and `:resourceID` to a team.
+Allowed resources are `datasources`, `teams`, `dashboards`, `folders`, and `serviceaccounts`.
+Refer to the `/access-control/{resource}/description` endpoint for allowed Permissions.
+*/
+
+func (a *Client) SetResourcePermissionsForTeam(params *SetResourcePermissionsForTeamParams, opts ...ClientOption) (*SetResourcePermissionsForTeamOK, error) {
+	if params == nil {
+		params = NewSetResourcePermissionsForTeamParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setResourcePermissionsForTeam",
+		Method:             "POST",
+		PathPattern:        "/access-control/{resource}/{resourceID}/teams/{teamID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &SetResourcePermissionsForTeamReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetResourcePermissionsForTeamOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setResourcePermissionsForTeam: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SetResourcePermissionsForUser sets resource permissions for a user
+
+Assigns permissions for a resource by a given type (`:resource`) and `:resourceID` to a user or a service account.
+Allowed resources are `datasources`, `teams`, `dashboards`, `folders`, and `serviceaccounts`.
+Refer to the `/access-control/{resource}/description` endpoint for allowed Permissions.
+*/
+
+func (a *Client) SetResourcePermissionsForUser(params *SetResourcePermissionsForUserParams, opts ...ClientOption) (*SetResourcePermissionsForUserOK, error) {
+	if params == nil {
+		params = NewSetResourcePermissionsForUserParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setResourcePermissionsForUser",
+		Method:             "POST",
+		PathPattern:        "/access-control/{resource}/{resourceID}/users/{userID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &SetResourcePermissionsForUserReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetResourcePermissionsForUserOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setResourcePermissionsForUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

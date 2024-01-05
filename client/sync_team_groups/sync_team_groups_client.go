@@ -38,9 +38,6 @@ type ClientService interface {
 	GetTeamGroupsAPI(teamID int64, opts ...ClientOption) (*GetTeamGroupsAPIOK, error)
 	GetTeamGroupsAPIWithParams(params *GetTeamGroupsAPIParams, opts ...ClientOption) (*GetTeamGroupsAPIOK, error)
 
-	RemoveTeamGroupAPI(teamID int64, groupID string, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error)
-	RemoveTeamGroupAPIWithParams(params *RemoveTeamGroupAPIParams, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error)
-
 	RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, opts ...ClientOption) (*RemoveTeamGroupAPIQueryOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -131,50 +128,6 @@ func (a *Client) GetTeamGroupsAPIWithParams(params *GetTeamGroupsAPIParams, opts
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getTeamGroupsApi: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-RemoveTeamGroupAPI removes external group
-*/
-func (a *Client) RemoveTeamGroupAPI(teamID int64, groupID string, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error) {
-	params := NewRemoveTeamGroupAPIParams().WithGroupID(groupID).WithTeamID(teamID)
-	return a.RemoveTeamGroupAPIWithParams(params, opts...)
-}
-
-func (a *Client) RemoveTeamGroupAPIWithParams(params *RemoveTeamGroupAPIParams, opts ...ClientOption) (*RemoveTeamGroupAPIOK, error) {
-	if params == nil {
-		params = NewRemoveTeamGroupAPIParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "removeTeamGroupApi",
-		Method:             "DELETE",
-		PathPattern:        "/teams/{teamId}/groups/{groupId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &RemoveTeamGroupAPIReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*RemoveTeamGroupAPIOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for removeTeamGroupApi: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

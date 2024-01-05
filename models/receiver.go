@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Receiver receiver
+// Receiver Receiver receiver
 //
 // swagger:model receiver
 type Receiver struct {

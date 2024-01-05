@@ -13,7 +13,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Preferences Spec defines model for Spec.
+// Preferences Spec defines user, team or org Grafana preferences
 //
 // swagger:model Preferences
 type Preferences struct {

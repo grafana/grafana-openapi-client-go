@@ -64,7 +64,7 @@ SaveReportSettingsParams contains all the parameters to send to the API endpoint
 type SaveReportSettingsParams struct {
 
 	// Body.
-	Body *models.SettingsDTO
+	Body *models.ReportSettings
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *SaveReportSettingsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the save report settings params
-func (o *SaveReportSettingsParams) WithBody(body *models.SettingsDTO) *SaveReportSettingsParams {
+func (o *SaveReportSettingsParams) WithBody(body *models.ReportSettings) *SaveReportSettingsParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the save report settings params
-func (o *SaveReportSettingsParams) SetBody(body *models.SettingsDTO) {
+func (o *SaveReportSettingsParams) SetBody(body *models.ReportSettings) {
 	o.Body = body
 }
 

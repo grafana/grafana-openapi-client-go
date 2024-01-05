@@ -23,12 +23,6 @@ type GetCustomPermissionsCSVReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetCustomPermissionsCSVReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewGetCustomPermissionsCSVOK()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewGetCustomPermissionsCSVInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -38,72 +32,6 @@ func (o *GetCustomPermissionsCSVReader) ReadResponse(response runtime.ClientResp
 	default:
 		return nil, runtime.NewAPIError("[GET /licensing/custom-permissions-csv] getCustomPermissionsCSV", response, response.Code())
 	}
-}
-
-// NewGetCustomPermissionsCSVOK creates a GetCustomPermissionsCSVOK with default headers values
-func NewGetCustomPermissionsCSVOK() *GetCustomPermissionsCSVOK {
-	return &GetCustomPermissionsCSVOK{}
-}
-
-/*
-GetCustomPermissionsCSVOK describes a response with status code 200, with default header values.
-
-(empty)
-*/
-type GetCustomPermissionsCSVOK struct {
-	Payload []*models.CustomPermissionsRecordDTO
-}
-
-// IsSuccess returns true when this get custom permissions Csv Ok response has a 2xx status code
-func (o *GetCustomPermissionsCSVOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this get custom permissions Csv Ok response has a 3xx status code
-func (o *GetCustomPermissionsCSVOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this get custom permissions Csv Ok response has a 4xx status code
-func (o *GetCustomPermissionsCSVOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this get custom permissions Csv Ok response has a 5xx status code
-func (o *GetCustomPermissionsCSVOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this get custom permissions Csv Ok response a status code equal to that given
-func (o *GetCustomPermissionsCSVOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the get custom permissions Csv Ok response
-func (o *GetCustomPermissionsCSVOK) Code() int {
-	return 200
-}
-
-func (o *GetCustomPermissionsCSVOK) Error() string {
-	return fmt.Sprintf("[GET /licensing/custom-permissions-csv][%d] getCustomPermissionsCsvOk  %+v", 200, o.Payload)
-}
-
-func (o *GetCustomPermissionsCSVOK) String() string {
-	return fmt.Sprintf("[GET /licensing/custom-permissions-csv][%d] getCustomPermissionsCsvOk  %+v", 200, o.Payload)
-}
-
-func (o *GetCustomPermissionsCSVOK) GetPayload() []*models.CustomPermissionsRecordDTO {
-	return o.Payload
-}
-
-func (o *GetCustomPermissionsCSVOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
 }
 
 // NewGetCustomPermissionsCSVInternalServerError creates a GetCustomPermissionsCSVInternalServerError with default headers values

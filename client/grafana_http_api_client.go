@@ -33,10 +33,11 @@ import (
 	"github.com/grafana/grafana-openapi-client-go/client/api_keys"
 	"github.com/grafana/grafana-openapi-client-go/client/correlations"
 	"github.com/grafana/grafana-openapi-client-go/client/dashboard_permissions"
+	"github.com/grafana/grafana-openapi-client-go/client/dashboard_public"
 	"github.com/grafana/grafana-openapi-client-go/client/dashboard_versions"
 	"github.com/grafana/grafana-openapi-client-go/client/dashboards"
-	"github.com/grafana/grafana-openapi-client-go/client/datasource_permissions"
 	"github.com/grafana/grafana-openapi-client-go/client/datasources"
+	"github.com/grafana/grafana-openapi-client-go/client/devices"
 	"github.com/grafana/grafana-openapi-client-go/client/ds"
 	"github.com/grafana/grafana-openapi-client-go/client/enterprise"
 	"github.com/grafana/grafana-openapi-client-go/client/folder_permissions"
@@ -60,7 +61,9 @@ import (
 	"github.com/grafana/grafana-openapi-client-go/client/search"
 	"github.com/grafana/grafana-openapi-client-go/client/service_accounts"
 	"github.com/grafana/grafana-openapi-client-go/client/signed_in_user"
+	"github.com/grafana/grafana-openapi-client-go/client/signing_keys"
 	"github.com/grafana/grafana-openapi-client-go/client/snapshots"
+	"github.com/grafana/grafana-openapi-client-go/client/sso_settings"
 	"github.com/grafana/grafana-openapi-client-go/client/sync_team_groups"
 	"github.com/grafana/grafana-openapi-client-go/client/teams"
 	"github.com/grafana/grafana-openapi-client-go/client/user_preferences"
@@ -124,10 +127,11 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.APIKeys = api_keys.New(transport, formats)
 	cli.Correlations = correlations.New(transport, formats)
 	cli.DashboardPermissions = dashboard_permissions.New(transport, formats)
+	cli.DashboardPublic = dashboard_public.New(transport, formats)
 	cli.DashboardVersions = dashboard_versions.New(transport, formats)
 	cli.Dashboards = dashboards.New(transport, formats)
-	cli.DatasourcePermissions = datasource_permissions.New(transport, formats)
 	cli.Datasources = datasources.New(transport, formats)
+	cli.Devices = devices.New(transport, formats)
 	cli.Ds = ds.New(transport, formats)
 	cli.Enterprise = enterprise.New(transport, formats)
 	cli.FolderPermissions = folder_permissions.New(transport, formats)
@@ -151,7 +155,9 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.Search = search.New(transport, formats)
 	cli.ServiceAccounts = service_accounts.New(transport, formats)
 	cli.SignedInUser = signed_in_user.New(transport, formats)
+	cli.SigningKeys = signing_keys.New(transport, formats)
 	cli.Snapshots = snapshots.New(transport, formats)
+	cli.SsoSettings = sso_settings.New(transport, formats)
 	cli.SyncTeamGroups = sync_team_groups.New(transport, formats)
 	cli.Teams = teams.New(transport, formats)
 	cli.UserPreferences = user_preferences.New(transport, formats)
@@ -248,13 +254,15 @@ type GrafanaHTTPAPI struct {
 
 	DashboardPermissions dashboard_permissions.ClientService
 
+	DashboardPublic dashboard_public.ClientService
+
 	DashboardVersions dashboard_versions.ClientService
 
 	Dashboards dashboards.ClientService
 
-	DatasourcePermissions datasource_permissions.ClientService
-
 	Datasources datasources.ClientService
+
+	Devices devices.ClientService
 
 	Ds ds.ClientService
 
@@ -302,7 +310,11 @@ type GrafanaHTTPAPI struct {
 
 	SignedInUser signed_in_user.ClientService
 
+	SigningKeys signing_keys.ClientService
+
 	Snapshots snapshots.ClientService
+
+	SsoSettings sso_settings.ClientService
 
 	SyncTeamGroups sync_team_groups.ClientService
 
@@ -331,10 +343,11 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.APIKeys.SetTransport(transport)
 	c.Correlations.SetTransport(transport)
 	c.DashboardPermissions.SetTransport(transport)
+	c.DashboardPublic.SetTransport(transport)
 	c.DashboardVersions.SetTransport(transport)
 	c.Dashboards.SetTransport(transport)
-	c.DatasourcePermissions.SetTransport(transport)
 	c.Datasources.SetTransport(transport)
+	c.Devices.SetTransport(transport)
 	c.Ds.SetTransport(transport)
 	c.Enterprise.SetTransport(transport)
 	c.FolderPermissions.SetTransport(transport)
@@ -358,7 +371,9 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Search.SetTransport(transport)
 	c.ServiceAccounts.SetTransport(transport)
 	c.SignedInUser.SetTransport(transport)
+	c.SigningKeys.SetTransport(transport)
 	c.Snapshots.SetTransport(transport)
+	c.SsoSettings.SetTransport(transport)
 	c.SyncTeamGroups.SetTransport(transport)
 	c.Teams.SetTransport(transport)
 	c.UserPreferences.SetTransport(transport)

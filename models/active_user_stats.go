@@ -20,6 +20,9 @@ type ActiveUserStats struct {
 	// active admins and editors
 	ActiveAdminsAndEditors int64 `json:"active_admins_and_editors,omitempty"`
 
+	// active anonymous devices
+	ActiveAnonymousDevices int64 `json:"active_anonymous_devices,omitempty"`
+
 	// active users
 	ActiveUsers int64 `json:"active_users,omitempty"`
 

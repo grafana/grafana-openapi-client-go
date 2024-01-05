@@ -39,6 +39,10 @@ type ServiceAccountProfileDTO struct {
 	// Example: false
 	IsDisabled bool `json:"isDisabled,omitempty"`
 
+	// is external
+	// Example: false
+	IsExternal bool `json:"isExternal,omitempty"`
+
 	// login
 	// Example: sa-grafana
 	Login string `json:"login,omitempty"`
@@ -50,6 +54,10 @@ type ServiceAccountProfileDTO struct {
 	// org Id
 	// Example: 1
 	OrgID int64 `json:"orgId,omitempty"`
+
+	// required by
+	// Example: grafana-app
+	RequiredBy string `json:"requiredBy,omitempty"`
 
 	// role
 	// Example: Editor

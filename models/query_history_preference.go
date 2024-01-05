@@ -12,12 +12,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// QueryHistoryPreference query history preference
+// QueryHistoryPreference QueryHistoryPreference defines model for QueryHistoryPreference.
 //
 // swagger:model QueryHistoryPreference
 type QueryHistoryPreference struct {
 
-	// home tab
+	// HomeTab one of: '' | 'query' | 'starred';
 	HomeTab string `json:"homeTab,omitempty"`
 }
 

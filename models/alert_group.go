@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AlertGroup AlertGroup alert group
+// AlertGroup alert group
 //
 // swagger:model alertGroup
 type AlertGroup struct {

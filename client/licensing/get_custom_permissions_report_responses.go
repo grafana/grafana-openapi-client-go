@@ -23,12 +23,6 @@ type GetCustomPermissionsReportReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetCustomPermissionsReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewGetCustomPermissionsReportOK()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewGetCustomPermissionsReportInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -38,72 +32,6 @@ func (o *GetCustomPermissionsReportReader) ReadResponse(response runtime.ClientR
 	default:
 		return nil, runtime.NewAPIError("[GET /licensing/custom-permissions] getCustomPermissionsReport", response, response.Code())
 	}
-}
-
-// NewGetCustomPermissionsReportOK creates a GetCustomPermissionsReportOK with default headers values
-func NewGetCustomPermissionsReportOK() *GetCustomPermissionsReportOK {
-	return &GetCustomPermissionsReportOK{}
-}
-
-/*
-GetCustomPermissionsReportOK describes a response with status code 200, with default header values.
-
-(empty)
-*/
-type GetCustomPermissionsReportOK struct {
-	Payload []*models.CustomPermissionsRecordDTO
-}
-
-// IsSuccess returns true when this get custom permissions report Ok response has a 2xx status code
-func (o *GetCustomPermissionsReportOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this get custom permissions report Ok response has a 3xx status code
-func (o *GetCustomPermissionsReportOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this get custom permissions report Ok response has a 4xx status code
-func (o *GetCustomPermissionsReportOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this get custom permissions report Ok response has a 5xx status code
-func (o *GetCustomPermissionsReportOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this get custom permissions report Ok response a status code equal to that given
-func (o *GetCustomPermissionsReportOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the get custom permissions report Ok response
-func (o *GetCustomPermissionsReportOK) Code() int {
-	return 200
-}
-
-func (o *GetCustomPermissionsReportOK) Error() string {
-	return fmt.Sprintf("[GET /licensing/custom-permissions][%d] getCustomPermissionsReportOk  %+v", 200, o.Payload)
-}
-
-func (o *GetCustomPermissionsReportOK) String() string {
-	return fmt.Sprintf("[GET /licensing/custom-permissions][%d] getCustomPermissionsReportOk  %+v", 200, o.Payload)
-}
-
-func (o *GetCustomPermissionsReportOK) GetPayload() []*models.CustomPermissionsRecordDTO {
-	return o.Payload
-}
-
-func (o *GetCustomPermissionsReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
 }
 
 // NewGetCustomPermissionsReportInternalServerError creates a GetCustomPermissionsReportInternalServerError with default headers values

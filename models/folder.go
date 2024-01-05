@@ -45,8 +45,11 @@ type Folder struct {
 	// has Acl
 	HasACL bool `json:"hasAcl,omitempty"`
 
-	// id
+	// Deprecated: use UID instead
 	ID int64 `json:"id,omitempty"`
+
+	// org Id
+	OrgID int64 `json:"orgId,omitempty"`
 
 	// only used if nested folders are enabled
 	ParentUID string `json:"parentUid,omitempty"`

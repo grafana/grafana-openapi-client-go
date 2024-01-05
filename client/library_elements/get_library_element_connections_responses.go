@@ -35,6 +35,12 @@ func (o *GetLibraryElementConnectionsReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return nil, result
+	case 403:
+		result := NewGetLibraryElementConnectionsForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 404:
 		result := NewGetLibraryElementConnectionsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -177,6 +183,74 @@ func (o *GetLibraryElementConnectionsUnauthorized) GetPayload() *models.ErrorRes
 }
 
 func (o *GetLibraryElementConnectionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetLibraryElementConnectionsForbidden creates a GetLibraryElementConnectionsForbidden with default headers values
+func NewGetLibraryElementConnectionsForbidden() *GetLibraryElementConnectionsForbidden {
+	return &GetLibraryElementConnectionsForbidden{}
+}
+
+/*
+GetLibraryElementConnectionsForbidden describes a response with status code 403, with default header values.
+
+ForbiddenError is returned if the user/token has insufficient permissions to access the requested resource.
+*/
+type GetLibraryElementConnectionsForbidden struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this get library element connections forbidden response has a 2xx status code
+func (o *GetLibraryElementConnectionsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get library element connections forbidden response has a 3xx status code
+func (o *GetLibraryElementConnectionsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get library element connections forbidden response has a 4xx status code
+func (o *GetLibraryElementConnectionsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get library element connections forbidden response has a 5xx status code
+func (o *GetLibraryElementConnectionsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get library element connections forbidden response a status code equal to that given
+func (o *GetLibraryElementConnectionsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
+// Code gets the status code for the get library element connections forbidden response
+func (o *GetLibraryElementConnectionsForbidden) Code() int {
+	return 403
+}
+
+func (o *GetLibraryElementConnectionsForbidden) Error() string {
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsForbidden  %+v", 403, o.Payload)
+}
+
+func (o *GetLibraryElementConnectionsForbidden) String() string {
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsForbidden  %+v", 403, o.Payload)
+}
+
+func (o *GetLibraryElementConnectionsForbidden) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *GetLibraryElementConnectionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

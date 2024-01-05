@@ -28,6 +28,9 @@ type AlertingFileExport struct {
 	// groups
 	Groups []*AlertRuleGroupExport `json:"groups"`
 
+	// mute times
+	MuteTimes []*MuteTimeIntervalExport `json:"muteTimes"`
+
 	// policies
 	Policies []*NotificationPolicyExport `json:"policies"`
 }
@@ -41,6 +44,10 @@ func (m *AlertingFileExport) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMuteTimes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,6 +113,32 @@ func (m *AlertingFileExport) validateGroups(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AlertingFileExport) validateMuteTimes(formats strfmt.Registry) error {
+	if swag.IsZero(m.MuteTimes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.MuteTimes); i++ {
+		if swag.IsZero(m.MuteTimes[i]) { // not required
+			continue
+		}
+
+		if m.MuteTimes[i] != nil {
+			if err := m.MuteTimes[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("muteTimes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("muteTimes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *AlertingFileExport) validatePolicies(formats strfmt.Registry) error {
 	if swag.IsZero(m.Policies) { // not required
 		return nil
@@ -141,6 +174,10 @@ func (m *AlertingFileExport) ContextValidate(ctx context.Context, formats strfmt
 	}
 
 	if err := m.contextValidateGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMuteTimes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -194,6 +231,31 @@ func (m *AlertingFileExport) contextValidateGroups(ctx context.Context, formats 
 					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("groups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AlertingFileExport) contextValidateMuteTimes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.MuteTimes); i++ {
+
+		if m.MuteTimes[i] != nil {
+
+			if swag.IsZero(m.MuteTimes[i]) { // not required
+				return nil
+			}
+
+			if err := m.MuteTimes[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("muteTimes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("muteTimes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

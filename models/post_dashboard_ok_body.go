@@ -19,6 +19,9 @@ import (
 // swagger:model postDashboardOkBody
 type PostDashboardOKBody struct {
 
+	// FolderUID The unique identifier (uid) of the folder the dashboard belongs to.
+	FolderUID string `json:"folderUid,omitempty"`
+
 	// ID The unique identifier (id) of the created/updated dashboard.
 	// Example: 1
 	// Required: true

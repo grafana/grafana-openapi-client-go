@@ -33,24 +33,15 @@ type DashboardSnapshotDTO struct {
 	// external Url
 	ExternalURL string `json:"externalUrl,omitempty"`
 
-	// id
-	ID int64 `json:"id,omitempty"`
-
 	// key
 	Key string `json:"key,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
 
-	// org Id
-	OrgID int64 `json:"orgId,omitempty"`
-
 	// updated
 	// Format: date-time
 	Updated strfmt.DateTime `json:"updated,omitempty"`
-
-	// user Id
-	UserID int64 `json:"userId,omitempty"`
 }
 
 // Validate validates this dashboard snapshot DTO

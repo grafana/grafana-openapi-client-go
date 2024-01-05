@@ -21,6 +21,8 @@ import (
 type CreateLibraryElementCommand struct {
 
 	// ID of the folder where the library element is stored.
+	//
+	// Deprecated: use FolderUID instead
 	FolderID int64 `json:"folderId,omitempty"`
 
 	// UID of the folder where the library element is stored.

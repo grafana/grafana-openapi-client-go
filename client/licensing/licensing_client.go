@@ -35,11 +35,11 @@ type ClientService interface {
 	DeleteLicenseToken(body *models.DeleteTokenCommand, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error)
 	DeleteLicenseTokenWithParams(params *DeleteLicenseTokenParams, opts ...ClientOption) (*DeleteLicenseTokenAccepted, error)
 
-	GetCustomPermissionsCSV(opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
-	GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error)
+	GetCustomPermissionsCSV(opts ...ClientOption) error
+	GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsCSVParams, opts ...ClientOption) error
 
-	GetCustomPermissionsReport(opts ...ClientOption) (*GetCustomPermissionsReportOK, error)
-	GetCustomPermissionsReportWithParams(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error)
+	GetCustomPermissionsReport(opts ...ClientOption) error
+	GetCustomPermissionsReportWithParams(params *GetCustomPermissionsReportParams, opts ...ClientOption) error
 
 	GetLicenseToken(opts ...ClientOption) (*GetLicenseTokenOK, error)
 	GetLicenseTokenWithParams(params *GetLicenseTokenParams, opts ...ClientOption) (*GetLicenseTokenOK, error)
@@ -112,12 +112,12 @@ GetCustomPermissionsCSV gets custom permissions report in CSV format
 
 You need to have a permission with action `licensing.reports:read`.
 */
-func (a *Client) GetCustomPermissionsCSV(opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
+func (a *Client) GetCustomPermissionsCSV(opts ...ClientOption) error {
 	params := NewGetCustomPermissionsCSVParams()
 	return a.GetCustomPermissionsCSVWithParams(params, opts...)
 }
 
-func (a *Client) GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsCSVParams, opts ...ClientOption) (*GetCustomPermissionsCSVOK, error) {
+func (a *Client) GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsCSVParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewGetCustomPermissionsCSVParams()
 	}
@@ -139,18 +139,11 @@ func (a *Client) GetCustomPermissionsCSVWithParams(params *GetCustomPermissionsC
 		}
 	}
 
-	result, err := a.transport.Submit(op)
+	_, err := a.transport.Submit(op)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	success, ok := result.(*GetCustomPermissionsCSVOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getCustomPermissionsCSV: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	return nil
 }
 
 /*
@@ -158,12 +151,12 @@ GetCustomPermissionsReport gets custom permissions report
 
 You need to have a permission with action `licensing.reports:read`.
 */
-func (a *Client) GetCustomPermissionsReport(opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
+func (a *Client) GetCustomPermissionsReport(opts ...ClientOption) error {
 	params := NewGetCustomPermissionsReportParams()
 	return a.GetCustomPermissionsReportWithParams(params, opts...)
 }
 
-func (a *Client) GetCustomPermissionsReportWithParams(params *GetCustomPermissionsReportParams, opts ...ClientOption) (*GetCustomPermissionsReportOK, error) {
+func (a *Client) GetCustomPermissionsReportWithParams(params *GetCustomPermissionsReportParams, opts ...ClientOption) error {
 	if params == nil {
 		params = NewGetCustomPermissionsReportParams()
 	}
@@ -185,18 +178,11 @@ func (a *Client) GetCustomPermissionsReportWithParams(params *GetCustomPermissio
 		}
 	}
 
-	result, err := a.transport.Submit(op)
+	_, err := a.transport.Submit(op)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	success, ok := result.(*GetCustomPermissionsReportOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getCustomPermissionsReport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	return nil
 }
 
 /*

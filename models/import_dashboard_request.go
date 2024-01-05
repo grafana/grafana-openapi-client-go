@@ -22,7 +22,7 @@ type ImportDashboardRequest struct {
 	// dashboard
 	Dashboard JSON `json:"dashboard,omitempty"`
 
-	// folder Id
+	// Deprecated: use FolderUID instead
 	FolderID int64 `json:"folderId,omitempty"`
 
 	// folder Uid

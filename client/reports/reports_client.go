@@ -32,7 +32,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateReport(body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*CreateReportOK, error)
+	CreateReport(body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*CreateReportOK, error)
 	CreateReportWithParams(params *CreateReportParams, opts ...ClientOption) (*CreateReportOK, error)
 
 	DeleteReport(id int64, opts ...ClientOption) (*DeleteReportOK, error)
@@ -51,16 +51,16 @@ type ClientService interface {
 
 	RenderReportPDFs(params *RenderReportPDFsParams, opts ...ClientOption) (*RenderReportPDFsOK, error)
 
-	SaveReportSettings(body *models.SettingsDTO, opts ...ClientOption) (*SaveReportSettingsOK, error)
+	SaveReportSettings(body *models.ReportSettings, opts ...ClientOption) (*SaveReportSettingsOK, error)
 	SaveReportSettingsWithParams(params *SaveReportSettingsParams, opts ...ClientOption) (*SaveReportSettingsOK, error)
 
-	SendReport(body *models.ReportEmailDTO, opts ...ClientOption) (*SendReportOK, error)
+	SendReport(body *models.ReportEmail, opts ...ClientOption) (*SendReportOK, error)
 	SendReportWithParams(params *SendReportParams, opts ...ClientOption) (*SendReportOK, error)
 
-	SendTestEmail(body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*SendTestEmailOK, error)
+	SendTestEmail(body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*SendTestEmailOK, error)
 	SendTestEmailWithParams(params *SendTestEmailParams, opts ...ClientOption) (*SendTestEmailOK, error)
 
-	UpdateReport(id int64, body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*UpdateReportOK, error)
+	UpdateReport(id int64, body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*UpdateReportOK, error)
 	UpdateReportWithParams(params *UpdateReportParams, opts ...ClientOption) (*UpdateReportOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -73,7 +73,7 @@ Available to org admins only and with a valid license.
 
 You need to have a permission with action `reports.admin:create`.
 */
-func (a *Client) CreateReport(body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*CreateReportOK, error) {
+func (a *Client) CreateReport(body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*CreateReportOK, error) {
 	params := NewCreateReportParams().WithBody(body)
 	return a.CreateReportWithParams(params, opts...)
 }
@@ -397,7 +397,7 @@ Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.settings:write`xx.
 */
-func (a *Client) SaveReportSettings(body *models.SettingsDTO, opts ...ClientOption) (*SaveReportSettingsOK, error) {
+func (a *Client) SaveReportSettings(body *models.ReportSettings, opts ...ClientOption) (*SaveReportSettingsOK, error) {
 	params := NewSaveReportSettingsParams().WithBody(body)
 	return a.SaveReportSettingsWithParams(params, opts...)
 }
@@ -448,7 +448,7 @@ This API endpoint is experimental and may be deprecated in a future release. On 
 
 You need to have a permission with action `reports:send`.
 */
-func (a *Client) SendReport(body *models.ReportEmailDTO, opts ...ClientOption) (*SendReportOK, error) {
+func (a *Client) SendReport(body *models.ReportEmail, opts ...ClientOption) (*SendReportOK, error) {
 	params := NewSendReportParams().WithBody(body)
 	return a.SendReportWithParams(params, opts...)
 }
@@ -496,7 +496,7 @@ Available to org admins only and with a valid license.
 
 You need to have a permission with action `reports:send`.
 */
-func (a *Client) SendTestEmail(body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*SendTestEmailOK, error) {
+func (a *Client) SendTestEmail(body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*SendTestEmailOK, error) {
 	params := NewSendTestEmailParams().WithBody(body)
 	return a.SendTestEmailWithParams(params, opts...)
 }
@@ -544,7 +544,7 @@ Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.admin:write` with scope `reports:id:<report ID>`.
 */
-func (a *Client) UpdateReport(id int64, body *models.CreateOrUpdateConfigCmd, opts ...ClientOption) (*UpdateReportOK, error) {
+func (a *Client) UpdateReport(id int64, body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*UpdateReportOK, error) {
 	params := NewUpdateReportParams().WithBody(body).WithID(id)
 	return a.UpdateReportWithParams(params, opts...)
 }
