@@ -49,6 +49,9 @@ type ClientService interface {
 	GetResourceDescription(resource string, opts ...ClientOption) (*GetResourceDescriptionOK, error)
 	GetResourceDescriptionWithParams(params *GetResourceDescriptionParams, opts ...ClientOption) (*GetResourceDescriptionOK, error)
 
+	GetResourcePermissions(resourceID string, resource string, opts ...ClientOption) (*GetResourcePermissionsOK, error)
+	GetResourcePermissionsWithParams(params *GetResourcePermissionsParams, opts ...ClientOption) (*GetResourcePermissionsOK, error)
+
 	GetRole(roleUID string, opts ...ClientOption) (*GetRoleOK, error)
 	GetRoleWithParams(params *GetRoleParams, opts ...ClientOption) (*GetRoleOK, error)
 
@@ -346,7 +349,7 @@ func (a *Client) GetResourceDescriptionWithParams(params *GetResourceDescription
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "getResourceDescription",
-		Method:             "POST",
+		Method:             "GET",
 		PathPattern:        "/access-control/{resource}/description",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
@@ -373,6 +376,50 @@ func (a *Client) GetResourceDescriptionWithParams(params *GetResourceDescription
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getResourceDescription: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetResourcePermissions gets permissions for a resource
+*/
+func (a *Client) GetResourcePermissions(resourceID string, resource string, opts ...ClientOption) (*GetResourcePermissionsOK, error) {
+	params := NewGetResourcePermissionsParams().WithResource(resource).WithResourceID(resourceID)
+	return a.GetResourcePermissionsWithParams(params, opts...)
+}
+
+func (a *Client) GetResourcePermissionsWithParams(params *GetResourcePermissionsParams, opts ...ClientOption) (*GetResourcePermissionsOK, error) {
+	if params == nil {
+		params = NewGetResourcePermissionsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getResourcePermissions",
+		Method:             "GET",
+		PathPattern:        "/access-control/{resource}/{resourceID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetResourcePermissionsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetResourcePermissionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getResourcePermissions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

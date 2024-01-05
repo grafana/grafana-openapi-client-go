@@ -42,7 +42,7 @@ func (o *GetResourceDescriptionReader) ReadResponse(response runtime.ClientRespo
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[POST /access-control/{resource}/description] getResourceDescription", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /access-control/{resource}/description] getResourceDescription", response, response.Code())
 	}
 }
 
@@ -91,11 +91,11 @@ func (o *GetResourceDescriptionOK) Code() int {
 }
 
 func (o *GetResourceDescriptionOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/description][%d] getResourceDescriptionOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionOk  %+v", 200, o.Payload)
 }
 
 func (o *GetResourceDescriptionOK) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/description][%d] getResourceDescriptionOk  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionOk  %+v", 200, o.Payload)
 }
 
 func (o *GetResourceDescriptionOK) GetPayload() *models.Description {
@@ -159,11 +159,11 @@ func (o *GetResourceDescriptionForbidden) Code() int {
 }
 
 func (o *GetResourceDescriptionForbidden) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/description][%d] getResourceDescriptionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetResourceDescriptionForbidden) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/description][%d] getResourceDescriptionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetResourceDescriptionForbidden) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +227,11 @@ func (o *GetResourceDescriptionInternalServerError) Code() int {
 }
 
 func (o *GetResourceDescriptionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/description][%d] getResourceDescriptionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetResourceDescriptionInternalServerError) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/description][%d] getResourceDescriptionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetResourceDescriptionInternalServerError) GetPayload() *models.ErrorResponseBody {
