@@ -21,6 +21,9 @@ type Token struct {
 	// account
 	Account string `json:"account,omitempty"`
 
+	// anonymous ratio
+	AnonymousRatio int64 `json:"anonymousRatio,omitempty"`
+
 	// company
 	Company string `json:"company,omitempty"`
 

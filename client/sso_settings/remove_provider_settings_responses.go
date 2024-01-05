@@ -47,6 +47,12 @@ func (o *RemoveProviderSettingsReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
+	case 404:
+		result := NewRemoveProviderSettingsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewRemoveProviderSettingsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -319,6 +325,74 @@ func (o *RemoveProviderSettingsForbidden) GetPayload() *models.ErrorResponseBody
 }
 
 func (o *RemoveProviderSettingsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRemoveProviderSettingsNotFound creates a RemoveProviderSettingsNotFound with default headers values
+func NewRemoveProviderSettingsNotFound() *RemoveProviderSettingsNotFound {
+	return &RemoveProviderSettingsNotFound{}
+}
+
+/*
+RemoveProviderSettingsNotFound describes a response with status code 404, with default header values.
+
+NotFoundError is returned when the requested resource was not found.
+*/
+type RemoveProviderSettingsNotFound struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this remove provider settings not found response has a 2xx status code
+func (o *RemoveProviderSettingsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove provider settings not found response has a 3xx status code
+func (o *RemoveProviderSettingsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove provider settings not found response has a 4xx status code
+func (o *RemoveProviderSettingsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this remove provider settings not found response has a 5xx status code
+func (o *RemoveProviderSettingsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove provider settings not found response a status code equal to that given
+func (o *RemoveProviderSettingsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
+// Code gets the status code for the remove provider settings not found response
+func (o *RemoveProviderSettingsNotFound) Code() int {
+	return 404
+}
+
+func (o *RemoveProviderSettingsNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *RemoveProviderSettingsNotFound) String() string {
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *RemoveProviderSettingsNotFound) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *RemoveProviderSettingsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

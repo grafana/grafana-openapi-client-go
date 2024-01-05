@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new sso settings API client.
@@ -33,15 +35,18 @@ type ClientService interface {
 	RemoveProviderSettings(key string, opts ...ClientOption) (*RemoveProviderSettingsNoContent, error)
 	RemoveProviderSettingsWithParams(params *RemoveProviderSettingsParams, opts ...ClientOption) (*RemoveProviderSettingsNoContent, error)
 
+	UpdateProviderSettings(key string, body *models.SSOSettings, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error)
+	UpdateProviderSettingsWithParams(params *UpdateProviderSettingsParams, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
 RemoveProviderSettings removes s s o settings
 
-# Remove an SSO Settings entry by Key
+Removes the SSO Settings for a provider.
 
-You need to have a permission with action `settings:write` with scope `settings:auth.<provider>:*`.
+You need to have a permission with action `settings:write` and scope `settings:auth.<provider>:*`.
 */
 func (a *Client) RemoveProviderSettings(key string, opts ...ClientOption) (*RemoveProviderSettingsNoContent, error) {
 	params := NewRemoveProviderSettingsParams().WithKey(key)
@@ -81,6 +86,54 @@ func (a *Client) RemoveProviderSettingsWithParams(params *RemoveProviderSettings
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for removeProviderSettings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateProviderSettings updates s s o settings
+
+Inserts or updates the SSO Settings for a provider.
+
+You need to have a permission with action `settings:write` and scope `settings:auth.<provider>:*`.
+*/
+func (a *Client) UpdateProviderSettings(key string, body *models.SSOSettings, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error) {
+	params := NewUpdateProviderSettingsParams().WithBody(body).WithKey(key)
+	return a.UpdateProviderSettingsWithParams(params, opts...)
+}
+
+func (a *Client) UpdateProviderSettingsWithParams(params *UpdateProviderSettingsParams, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error) {
+	if params == nil {
+		params = NewUpdateProviderSettingsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateProviderSettings",
+		Method:             "PUT",
+		PathPattern:        "/v1/sso-settings/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &UpdateProviderSettingsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateProviderSettingsNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateProviderSettings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -40,9 +40,6 @@ type GettableGrafanaRule struct {
 	// is paused
 	IsPaused bool `json:"is_paused,omitempty"`
 
-	// namespace id
-	NamespaceID int64 `json:"namespace_id,omitempty"`
-
 	// namespace uid
 	NamespaceUID string `json:"namespace_uid,omitempty"`
 
