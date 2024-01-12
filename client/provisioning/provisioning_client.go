@@ -94,7 +94,7 @@ type ClientService interface {
 
 	PutContactpoint(params *PutContactpointParams, opts ...ClientOption) (*PutContactpointAccepted, error)
 
-	PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption) (*PutMuteTimingOK, error)
+	PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption) (*PutMuteTimingAccepted, error)
 
 	PutPolicyTree(params *PutPolicyTreeParams, opts ...ClientOption) (*PutPolicyTreeAccepted, error)
 
@@ -1198,7 +1198,7 @@ func (a *Client) PutContactpoint(params *PutContactpointParams, opts ...ClientOp
 PutMuteTiming replaces an existing mute timing
 */
 
-func (a *Client) PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption) (*PutMuteTimingOK, error) {
+func (a *Client) PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption) (*PutMuteTimingAccepted, error) {
 	if params == nil {
 		params = NewPutMuteTimingParams()
 	}
@@ -1224,7 +1224,7 @@ func (a *Client) PutMuteTiming(params *PutMuteTimingParams, opts ...ClientOption
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*PutMuteTimingOK)
+	success, ok := result.(*PutMuteTimingAccepted)
 	if ok {
 		return success, nil
 	}

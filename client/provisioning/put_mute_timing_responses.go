@@ -23,8 +23,8 @@ type PutMuteTimingReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PutMuteTimingReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewPutMuteTimingOK()
+	case 202:
+		result := NewPutMuteTimingAccepted()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -40,63 +40,63 @@ func (o *PutMuteTimingReader) ReadResponse(response runtime.ClientResponse, cons
 	}
 }
 
-// NewPutMuteTimingOK creates a PutMuteTimingOK with default headers values
-func NewPutMuteTimingOK() *PutMuteTimingOK {
-	return &PutMuteTimingOK{}
+// NewPutMuteTimingAccepted creates a PutMuteTimingAccepted with default headers values
+func NewPutMuteTimingAccepted() *PutMuteTimingAccepted {
+	return &PutMuteTimingAccepted{}
 }
 
 /*
-PutMuteTimingOK describes a response with status code 200, with default header values.
+PutMuteTimingAccepted describes a response with status code 202, with default header values.
 
 MuteTimeInterval
 */
-type PutMuteTimingOK struct {
+type PutMuteTimingAccepted struct {
 	Payload *models.MuteTimeInterval
 }
 
-// IsSuccess returns true when this put mute timing Ok response has a 2xx status code
-func (o *PutMuteTimingOK) IsSuccess() bool {
+// IsSuccess returns true when this put mute timing accepted response has a 2xx status code
+func (o *PutMuteTimingAccepted) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this put mute timing Ok response has a 3xx status code
-func (o *PutMuteTimingOK) IsRedirect() bool {
+// IsRedirect returns true when this put mute timing accepted response has a 3xx status code
+func (o *PutMuteTimingAccepted) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this put mute timing Ok response has a 4xx status code
-func (o *PutMuteTimingOK) IsClientError() bool {
+// IsClientError returns true when this put mute timing accepted response has a 4xx status code
+func (o *PutMuteTimingAccepted) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this put mute timing Ok response has a 5xx status code
-func (o *PutMuteTimingOK) IsServerError() bool {
+// IsServerError returns true when this put mute timing accepted response has a 5xx status code
+func (o *PutMuteTimingAccepted) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this put mute timing Ok response a status code equal to that given
-func (o *PutMuteTimingOK) IsCode(code int) bool {
-	return code == 200
+// IsCode returns true when this put mute timing accepted response a status code equal to that given
+func (o *PutMuteTimingAccepted) IsCode(code int) bool {
+	return code == 202
 }
 
-// Code gets the status code for the put mute timing Ok response
-func (o *PutMuteTimingOK) Code() int {
-	return 200
+// Code gets the status code for the put mute timing accepted response
+func (o *PutMuteTimingAccepted) Code() int {
+	return 202
 }
 
-func (o *PutMuteTimingOK) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingOk  %+v", 200, o.Payload)
+func (o *PutMuteTimingAccepted) Error() string {
+	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingAccepted  %+v", 202, o.Payload)
 }
 
-func (o *PutMuteTimingOK) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingOk  %+v", 200, o.Payload)
+func (o *PutMuteTimingAccepted) String() string {
+	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingAccepted  %+v", 202, o.Payload)
 }
 
-func (o *PutMuteTimingOK) GetPayload() *models.MuteTimeInterval {
+func (o *PutMuteTimingAccepted) GetPayload() *models.MuteTimeInterval {
 	return o.Payload
 }
 
-func (o *PutMuteTimingOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PutMuteTimingAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.MuteTimeInterval)
 

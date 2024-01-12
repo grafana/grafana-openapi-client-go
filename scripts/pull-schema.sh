@@ -58,6 +58,8 @@ modify '.definitions += {
 }'
 
 # Mutetiming TimeInterval is wrong
+modify '.paths["/v1/provisioning/mute-timings/{name}"].put.responses["202"] = .paths["/v1/provisioning/mute-timings/{name}"].put.responses["200"]'
+modify 'del(.paths["/v1/provisioning/mute-timings/{name}"].put.responses["200"])'
 modify '.definitions.TimeIntervalRange = {
     "type": "object",
     "properties": {
