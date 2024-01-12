@@ -12,6 +12,13 @@ modify() {
     SCHEMA="$(echo "${SCHEMA}" | jq "${1}")"
 }
 
+# TODO: Remove on next Terraform provider version
+# This is a deprecated attribute for newer Grafana versions
+modify '.definitions.Preferences.properties.homeDashboardId = {
+  "description": "ID for the home dashboard. This is deprecated and will be removed in a future version. Use homeDashboardUid instead.",
+  "type": "integer"
+}'
+
 # Playlist models are all messed up
 # TODO: Upstream fix
 modify 'del(.definitions.Item)' # Old playlist item schema, PlaylistItem is more up to date

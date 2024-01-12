@@ -21,6 +21,9 @@ type Preferences struct {
 	// cookie preferences
 	CookiePreferences *CookiePreferences `json:"cookiePreferences,omitempty"`
 
+	// ID for the home dashboard. This is deprecated and will be removed in a future version. Use homeDashboardUid instead.
+	HomeDashboardID int64 `json:"homeDashboardId,omitempty"`
+
 	// UID for the home dashboard
 	HomeDashboardUID string `json:"homeDashboardUID,omitempty"`
 
