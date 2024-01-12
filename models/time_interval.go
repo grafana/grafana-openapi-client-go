@@ -30,7 +30,7 @@ type TimeInterval struct {
 	Months []string `json:"months"`
 
 	// times
-	Times []*TimeRange `json:"times"`
+	Times []*TimeIntervalRange `json:"times"`
 
 	// weekdays
 	Weekdays []string `json:"weekdays"`
