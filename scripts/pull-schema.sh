@@ -57,5 +57,19 @@ modify '.definitions += {
     }
 }'
 
+# Mutetiming TimeInterval is wrong
+modify '.definitions.TimeIntervalRange = {
+    "type": "object",
+    "properties": {
+      "start_time": {
+        "type": "string",
+      },
+      "end_time": {
+        "type": "string",
+      }
+    }
+}'
+modify '.definitions.TimeInterval.properties.times.items["$ref"] = "#/definitions/TimeIntervalRange"'
+
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
