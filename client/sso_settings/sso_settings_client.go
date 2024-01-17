@@ -32,6 +32,9 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	GetProviderSettings(key string, opts ...ClientOption) (*GetProviderSettingsOK, error)
+	GetProviderSettingsWithParams(params *GetProviderSettingsParams, opts ...ClientOption) (*GetProviderSettingsOK, error)
+
 	RemoveProviderSettings(key string, opts ...ClientOption) (*RemoveProviderSettingsNoContent, error)
 	RemoveProviderSettingsWithParams(params *RemoveProviderSettingsParams, opts ...ClientOption) (*RemoveProviderSettingsNoContent, error)
 
@@ -39,6 +42,52 @@ type ClientService interface {
 	UpdateProviderSettingsWithParams(params *UpdateProviderSettingsParams, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+GetProviderSettings gets an s s o settings entry by key
+
+You need to have a permission with action `settings:read` with scope `settings:auth.<provider>:*`.
+*/
+func (a *Client) GetProviderSettings(key string, opts ...ClientOption) (*GetProviderSettingsOK, error) {
+	params := NewGetProviderSettingsParams().WithKey(key)
+	return a.GetProviderSettingsWithParams(params, opts...)
+}
+
+func (a *Client) GetProviderSettingsWithParams(params *GetProviderSettingsParams, opts ...ClientOption) (*GetProviderSettingsOK, error) {
+	if params == nil {
+		params = NewGetProviderSettingsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getProviderSettings",
+		Method:             "GET",
+		PathPattern:        "/v1/sso-settings/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetProviderSettingsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetProviderSettingsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getProviderSettings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*

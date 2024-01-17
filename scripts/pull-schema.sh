@@ -4,7 +4,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Pull the schema (main branch)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/c7f515b9b2186a823721caa59f1617b31cfb2083/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/dd7259b77e3b185eeb4b06b57b3cdae54c17da33/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
@@ -33,7 +33,7 @@ modify '.paths = (.paths | with_entries(.key |= sub("^/api"; "")))'
 
 # Remove "Route" prefixes to operation IDs (ex: RouteGetxxx)
 # TODO: Upstream fix
-modify '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)' 
+modify '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)'
 
 # The "for" property returned by the API is a string (can't be unmarshaled to time.Duration)
 # TODO: Upstream fix
