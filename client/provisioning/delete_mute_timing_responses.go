@@ -7,9 +7,12 @@ package provisioning
 
 import (
 	"fmt"
+	"io"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // DeleteMuteTimingReader is a Reader for the DeleteMuteTiming structure.
@@ -26,6 +29,12 @@ func (o *DeleteMuteTimingReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewDeleteMuteTimingConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("[DELETE /v1/provisioning/mute-timings/{name}] DeleteMuteTiming", response, response.Code())
 	}
@@ -83,6 +92,74 @@ func (o *DeleteMuteTimingNoContent) String() string {
 }
 
 func (o *DeleteMuteTimingNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteMuteTimingConflict creates a DeleteMuteTimingConflict with default headers values
+func NewDeleteMuteTimingConflict() *DeleteMuteTimingConflict {
+	return &DeleteMuteTimingConflict{}
+}
+
+/*
+DeleteMuteTimingConflict describes a response with status code 409, with default header values.
+
+GenericPublicError
+*/
+type DeleteMuteTimingConflict struct {
+	Payload *models.GenericPublicError
+}
+
+// IsSuccess returns true when this delete mute timing conflict response has a 2xx status code
+func (o *DeleteMuteTimingConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete mute timing conflict response has a 3xx status code
+func (o *DeleteMuteTimingConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete mute timing conflict response has a 4xx status code
+func (o *DeleteMuteTimingConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete mute timing conflict response has a 5xx status code
+func (o *DeleteMuteTimingConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete mute timing conflict response a status code equal to that given
+func (o *DeleteMuteTimingConflict) IsCode(code int) bool {
+	return code == 409
+}
+
+// Code gets the status code for the delete mute timing conflict response
+func (o *DeleteMuteTimingConflict) Code() int {
+	return 409
+}
+
+func (o *DeleteMuteTimingConflict) Error() string {
+	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingConflict  %+v", 409, o.Payload)
+}
+
+func (o *DeleteMuteTimingConflict) String() string {
+	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingConflict  %+v", 409, o.Payload)
+}
+
+func (o *DeleteMuteTimingConflict) GetPayload() *models.GenericPublicError {
+	return o.Payload
+}
+
+func (o *DeleteMuteTimingConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.GenericPublicError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
