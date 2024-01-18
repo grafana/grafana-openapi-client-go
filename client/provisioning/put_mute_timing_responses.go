@@ -48,9 +48,10 @@ func NewPutMuteTimingAccepted() *PutMuteTimingAccepted {
 /*
 PutMuteTimingAccepted describes a response with status code 202, with default header values.
 
-PutMuteTimingAccepted put mute timing accepted
+MuteTimeInterval
 */
 type PutMuteTimingAccepted struct {
+	Payload *models.MuteTimeInterval
 }
 
 // IsSuccess returns true when this put mute timing accepted response has a 2xx status code
@@ -84,14 +85,25 @@ func (o *PutMuteTimingAccepted) Code() int {
 }
 
 func (o *PutMuteTimingAccepted) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingAccepted ", 202)
+	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingAccepted  %+v", 202, o.Payload)
 }
 
 func (o *PutMuteTimingAccepted) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingAccepted ", 202)
+	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingAccepted  %+v", 202, o.Payload)
+}
+
+func (o *PutMuteTimingAccepted) GetPayload() *models.MuteTimeInterval {
+	return o.Payload
 }
 
 func (o *PutMuteTimingAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.MuteTimeInterval)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
