@@ -4,7 +4,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Pull the schema (main branch)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/dd7259b77e3b185eeb4b06b57b3cdae54c17da33/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/596725ac56494615f975bc2cdb996eebc0ba408f/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
@@ -26,10 +26,6 @@ modify '.responses.getPlaylistItemsResponse.schema.items["$ref"] = "#/definition
 modify '.responses.updatePlaylistResponse.schema["$ref"] = "#/definitions/Playlist"' # Currently pointing to Spec (Preferences)
 modify '.responses.getPlaylistResponse.schema["$ref"] = "#/definitions/Playlist"' # Currently pointing to Spec (Preferences)
 
-# Any endpoint that starts with /api/ should be trimmed because it's redundant (API path is configured on the client), ex: /api/dashboards/ -> /dashboards/
-# Move /api/ map keys to a new key without /api/ prefix
-# Fixed here: https://github.com/grafana/grafana/pull/79025
-modify '.paths = (.paths | with_entries(.key |= sub("^/api"; "")))'
 
 # Remove "Route" prefixes to operation IDs (ex: RouteGetxxx)
 # TODO: Upstream fix
@@ -65,8 +61,6 @@ modify '.definitions += {
 }'
 
 # Mutetiming TimeInterval is wrong
-modify '.paths["/v1/provisioning/mute-timings/{name}"].put.responses["202"] = .paths["/v1/provisioning/mute-timings/{name}"].put.responses["200"]'
-modify 'del(.paths["/v1/provisioning/mute-timings/{name}"].put.responses["200"])'
 modify '.definitions.TimeIntervalRange = {
     "type": "object",
     "properties": {
