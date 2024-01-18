@@ -17,9 +17,9 @@ import (
 // swagger:model ValidationError
 type ValidationError struct {
 
-	// msg
+	// message
 	// Example: error message
-	Msg string `json:"msg,omitempty"`
+	Message string `json:"message,omitempty"`
 }
 
 // Validate validates this validation error
