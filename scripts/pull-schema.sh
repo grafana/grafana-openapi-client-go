@@ -60,7 +60,13 @@ modify '.definitions += {
     }
 }'
 
+# Alerting validation error is wrong. Message doesn't show up
+# TODO: Upstream fix
+modify '.definitions.ValidationError.properties.message = .definitions.ValidationError.properties.msg'
+modify 'del(.definitions.ValidationError.properties.msg)'
+
 # Mutetiming TimeInterval is wrong
+# TODO: Upstream fix
 modify '.definitions.TimeIntervalRange = {
     "type": "object",
     "properties": {
