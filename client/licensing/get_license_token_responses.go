@@ -6,6 +6,7 @@ package licensing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -79,11 +80,13 @@ func (o *GetLicenseTokenOK) Code() int {
 }
 
 func (o *GetLicenseTokenOK) Error() string {
-	return fmt.Sprintf("[GET /licensing/token][%d] getLicenseTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/token][%d] getLicenseTokenOk %s", 200, payload)
 }
 
 func (o *GetLicenseTokenOK) String() string {
-	return fmt.Sprintf("[GET /licensing/token][%d] getLicenseTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/token][%d] getLicenseTokenOk %s", 200, payload)
 }
 
 func (o *GetLicenseTokenOK) GetPayload() *models.Token {

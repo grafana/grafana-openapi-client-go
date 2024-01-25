@@ -6,6 +6,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *AdminGetStatsOK) Code() int {
 }
 
 func (o *AdminGetStatsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsOk %s", 200, payload)
 }
 
 func (o *AdminGetStatsOK) String() string {
-	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsOk %s", 200, payload)
 }
 
 func (o *AdminGetStatsOK) GetPayload() *models.AdminStats {
@@ -165,11 +168,13 @@ func (o *AdminGetStatsUnauthorized) Code() int {
 }
 
 func (o *AdminGetStatsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminGetStatsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminGetStatsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *AdminGetStatsForbidden) Code() int {
 }
 
 func (o *AdminGetStatsForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsForbidden %s", 403, payload)
 }
 
 func (o *AdminGetStatsForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsForbidden %s", 403, payload)
 }
 
 func (o *AdminGetStatsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *AdminGetStatsInternalServerError) Code() int {
 }
 
 func (o *AdminGetStatsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsInternalServerError %s", 500, payload)
 }
 
 func (o *AdminGetStatsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/stats][%d] adminGetStatsInternalServerError %s", 500, payload)
 }
 
 func (o *AdminGetStatsInternalServerError) GetPayload() *models.ErrorResponseBody {

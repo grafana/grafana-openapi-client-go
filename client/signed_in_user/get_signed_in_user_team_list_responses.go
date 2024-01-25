@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetSignedInUserTeamListOK) Code() int {
 }
 
 func (o *GetSignedInUserTeamListOK) Error() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListOk %s", 200, payload)
 }
 
 func (o *GetSignedInUserTeamListOK) String() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListOk %s", 200, payload)
 }
 
 func (o *GetSignedInUserTeamListOK) GetPayload() []*models.TeamDTO {
@@ -163,11 +166,13 @@ func (o *GetSignedInUserTeamListUnauthorized) Code() int {
 }
 
 func (o *GetSignedInUserTeamListUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListUnauthorized %s", 401, payload)
 }
 
 func (o *GetSignedInUserTeamListUnauthorized) String() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListUnauthorized %s", 401, payload)
 }
 
 func (o *GetSignedInUserTeamListUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *GetSignedInUserTeamListForbidden) Code() int {
 }
 
 func (o *GetSignedInUserTeamListForbidden) Error() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListForbidden %s", 403, payload)
 }
 
 func (o *GetSignedInUserTeamListForbidden) String() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListForbidden %s", 403, payload)
 }
 
 func (o *GetSignedInUserTeamListForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *GetSignedInUserTeamListInternalServerError) Code() int {
 }
 
 func (o *GetSignedInUserTeamListInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListInternalServerError %s", 500, payload)
 }
 
 func (o *GetSignedInUserTeamListInternalServerError) String() string {
-	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/teams][%d] getSignedInUserTeamListInternalServerError %s", 500, payload)
 }
 
 func (o *GetSignedInUserTeamListInternalServerError) GetPayload() *models.ErrorResponseBody {

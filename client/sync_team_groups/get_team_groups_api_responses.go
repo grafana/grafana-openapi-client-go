@@ -6,6 +6,7 @@ package sync_team_groups
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *GetTeamGroupsAPIOK) Code() int {
 }
 
 func (o *GetTeamGroupsAPIOK) Error() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiOk %s", 200, payload)
 }
 
 func (o *GetTeamGroupsAPIOK) String() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiOk %s", 200, payload)
 }
 
 func (o *GetTeamGroupsAPIOK) GetPayload() []*models.TeamGroupDTO {
@@ -175,11 +178,13 @@ func (o *GetTeamGroupsAPIBadRequest) Code() int {
 }
 
 func (o *GetTeamGroupsAPIBadRequest) Error() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiBadRequest %s", 400, payload)
 }
 
 func (o *GetTeamGroupsAPIBadRequest) String() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiBadRequest %s", 400, payload)
 }
 
 func (o *GetTeamGroupsAPIBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -243,11 +248,13 @@ func (o *GetTeamGroupsAPIUnauthorized) Code() int {
 }
 
 func (o *GetTeamGroupsAPIUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiUnauthorized %s", 401, payload)
 }
 
 func (o *GetTeamGroupsAPIUnauthorized) String() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiUnauthorized %s", 401, payload)
 }
 
 func (o *GetTeamGroupsAPIUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -311,11 +318,13 @@ func (o *GetTeamGroupsAPIForbidden) Code() int {
 }
 
 func (o *GetTeamGroupsAPIForbidden) Error() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiForbidden %s", 403, payload)
 }
 
 func (o *GetTeamGroupsAPIForbidden) String() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiForbidden %s", 403, payload)
 }
 
 func (o *GetTeamGroupsAPIForbidden) GetPayload() *models.ErrorResponseBody {
@@ -379,11 +388,13 @@ func (o *GetTeamGroupsAPINotFound) Code() int {
 }
 
 func (o *GetTeamGroupsAPINotFound) Error() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiNotFound %s", 404, payload)
 }
 
 func (o *GetTeamGroupsAPINotFound) String() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiNotFound %s", 404, payload)
 }
 
 func (o *GetTeamGroupsAPINotFound) GetPayload() *models.ErrorResponseBody {
@@ -447,11 +458,13 @@ func (o *GetTeamGroupsAPIInternalServerError) Code() int {
 }
 
 func (o *GetTeamGroupsAPIInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiInternalServerError %s", 500, payload)
 }
 
 func (o *GetTeamGroupsAPIInternalServerError) String() string {
-	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{teamId}/groups][%d] getTeamGroupsApiInternalServerError %s", 500, payload)
 }
 
 func (o *GetTeamGroupsAPIInternalServerError) GetPayload() *models.ErrorResponseBody {

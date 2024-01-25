@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *DeleteRoleOK) Code() int {
 }
 
 func (o *DeleteRoleOK) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleOk %s", 200, payload)
 }
 
 func (o *DeleteRoleOK) String() string {
-	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleOk %s", 200, payload)
 }
 
 func (o *DeleteRoleOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *DeleteRoleBadRequest) Code() int {
 }
 
 func (o *DeleteRoleBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleBadRequest %s", 400, payload)
 }
 
 func (o *DeleteRoleBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleBadRequest %s", 400, payload)
 }
 
 func (o *DeleteRoleBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *DeleteRoleForbidden) Code() int {
 }
 
 func (o *DeleteRoleForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleForbidden %s", 403, payload)
 }
 
 func (o *DeleteRoleForbidden) String() string {
-	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleForbidden %s", 403, payload)
 }
 
 func (o *DeleteRoleForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *DeleteRoleInternalServerError) Code() int {
 }
 
 func (o *DeleteRoleInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteRoleInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/roles/{roleUID}][%d] deleteRoleInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteRoleInternalServerError) GetPayload() *models.ErrorResponseBody {

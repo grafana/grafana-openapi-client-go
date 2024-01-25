@@ -6,6 +6,7 @@ package annotations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *DeleteAnnotationByIDOK) Code() int {
 }
 
 func (o *DeleteAnnotationByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdOk %s", 200, payload)
 }
 
 func (o *DeleteAnnotationByIDOK) String() string {
-	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdOk %s", 200, payload)
 }
 
 func (o *DeleteAnnotationByIDOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *DeleteAnnotationByIDUnauthorized) Code() int {
 }
 
 func (o *DeleteAnnotationByIDUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteAnnotationByIDUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteAnnotationByIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *DeleteAnnotationByIDForbidden) Code() int {
 }
 
 func (o *DeleteAnnotationByIDForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdForbidden %s", 403, payload)
 }
 
 func (o *DeleteAnnotationByIDForbidden) String() string {
-	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdForbidden %s", 403, payload)
 }
 
 func (o *DeleteAnnotationByIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *DeleteAnnotationByIDInternalServerError) Code() int {
 }
 
 func (o *DeleteAnnotationByIDInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteAnnotationByIDInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /annotations/{annotation_id}][%d] deleteAnnotationByIdInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteAnnotationByIDInternalServerError) GetPayload() *models.ErrorResponseBody {

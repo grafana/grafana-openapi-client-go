@@ -6,6 +6,7 @@ package org
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetOrgUsersForCurrentOrgLookupOK) Code() int {
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupOK) Error() string {
-	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupOk %s", 200, payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupOK) String() string {
-	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupOk %s", 200, payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupOK) GetPayload() []*models.UserLookupDTO {
@@ -163,11 +166,13 @@ func (o *GetOrgUsersForCurrentOrgLookupUnauthorized) Code() int {
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupUnauthorized %s", 401, payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupUnauthorized) String() string {
-	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupUnauthorized %s", 401, payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *GetOrgUsersForCurrentOrgLookupForbidden) Code() int {
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupForbidden) Error() string {
-	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupForbidden %s", 403, payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupForbidden) String() string {
-	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupForbidden %s", 403, payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *GetOrgUsersForCurrentOrgLookupInternalServerError) Code() int {
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupInternalServerError %s", 500, payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupInternalServerError) String() string {
-	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/users/lookup][%d] getOrgUsersForCurrentOrgLookupInternalServerError %s", 500, payload)
 }
 
 func (o *GetOrgUsersForCurrentOrgLookupInternalServerError) GetPayload() *models.ErrorResponseBody {

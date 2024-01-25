@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *UpdateReportOK) Code() int {
 }
 
 func (o *UpdateReportOK) Error() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportOk %s", 200, payload)
 }
 
 func (o *UpdateReportOK) String() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportOk %s", 200, payload)
 }
 
 func (o *UpdateReportOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *UpdateReportBadRequest) Code() int {
 }
 
 func (o *UpdateReportBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportBadRequest %s", 400, payload)
 }
 
 func (o *UpdateReportBadRequest) String() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportBadRequest %s", 400, payload)
 }
 
 func (o *UpdateReportBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *UpdateReportUnauthorized) Code() int {
 }
 
 func (o *UpdateReportUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateReportUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateReportUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *UpdateReportForbidden) Code() int {
 }
 
 func (o *UpdateReportForbidden) Error() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportForbidden %s", 403, payload)
 }
 
 func (o *UpdateReportForbidden) String() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportForbidden %s", 403, payload)
 }
 
 func (o *UpdateReportForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *UpdateReportNotFound) Code() int {
 }
 
 func (o *UpdateReportNotFound) Error() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportNotFound %s", 404, payload)
 }
 
 func (o *UpdateReportNotFound) String() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportNotFound %s", 404, payload)
 }
 
 func (o *UpdateReportNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *UpdateReportInternalServerError) Code() int {
 }
 
 func (o *UpdateReportInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateReportInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /reports/{id}][%d] updateReportInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateReportInternalServerError) GetPayload() *models.ErrorResponseBody {

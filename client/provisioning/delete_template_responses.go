@@ -75,11 +75,11 @@ func (o *DeleteTemplateNoContent) Code() int {
 }
 
 func (o *DeleteTemplateNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/templates/{name}][%d] deleteTemplateNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/templates/{name}][%d] deleteTemplateNoContent", 204)
 }
 
 func (o *DeleteTemplateNoContent) String() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/templates/{name}][%d] deleteTemplateNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/templates/{name}][%d] deleteTemplateNoContent", 204)
 }
 
 func (o *DeleteTemplateNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,6 +6,7 @@ package dashboards
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *CalculateDashboardDiffOK) Code() int {
 }
 
 func (o *CalculateDashboardDiffOK) Error() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffOk %s", 200, payload)
 }
 
 func (o *CalculateDashboardDiffOK) String() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffOk %s", 200, payload)
 }
 
 func (o *CalculateDashboardDiffOK) GetPayload() []uint8 {
@@ -163,11 +166,13 @@ func (o *CalculateDashboardDiffUnauthorized) Code() int {
 }
 
 func (o *CalculateDashboardDiffUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffUnauthorized %s", 401, payload)
 }
 
 func (o *CalculateDashboardDiffUnauthorized) String() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffUnauthorized %s", 401, payload)
 }
 
 func (o *CalculateDashboardDiffUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *CalculateDashboardDiffForbidden) Code() int {
 }
 
 func (o *CalculateDashboardDiffForbidden) Error() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffForbidden %s", 403, payload)
 }
 
 func (o *CalculateDashboardDiffForbidden) String() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffForbidden %s", 403, payload)
 }
 
 func (o *CalculateDashboardDiffForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *CalculateDashboardDiffInternalServerError) Code() int {
 }
 
 func (o *CalculateDashboardDiffInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffInternalServerError %s", 500, payload)
 }
 
 func (o *CalculateDashboardDiffInternalServerError) String() string {
-	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/calculate-diff][%d] calculateDashboardDiffInternalServerError %s", 500, payload)
 }
 
 func (o *CalculateDashboardDiffInternalServerError) GetPayload() *models.ErrorResponseBody {

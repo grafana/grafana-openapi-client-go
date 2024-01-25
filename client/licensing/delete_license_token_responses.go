@@ -6,6 +6,7 @@ package licensing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *DeleteLicenseTokenAccepted) Code() int {
 }
 
 func (o *DeleteLicenseTokenAccepted) Error() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenAccepted %s", 202, payload)
 }
 
 func (o *DeleteLicenseTokenAccepted) String() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenAccepted %s", 202, payload)
 }
 
 func (o *DeleteLicenseTokenAccepted) GetPayload() *models.ErrorResponseBody {
@@ -177,11 +180,13 @@ func (o *DeleteLicenseTokenBadRequest) Code() int {
 }
 
 func (o *DeleteLicenseTokenBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenBadRequest %s", 400, payload)
 }
 
 func (o *DeleteLicenseTokenBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenBadRequest %s", 400, payload)
 }
 
 func (o *DeleteLicenseTokenBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *DeleteLicenseTokenUnauthorized) Code() int {
 }
 
 func (o *DeleteLicenseTokenUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteLicenseTokenUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteLicenseTokenUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *DeleteLicenseTokenForbidden) Code() int {
 }
 
 func (o *DeleteLicenseTokenForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenForbidden %s", 403, payload)
 }
 
 func (o *DeleteLicenseTokenForbidden) String() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenForbidden %s", 403, payload)
 }
 
 func (o *DeleteLicenseTokenForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *DeleteLicenseTokenUnprocessableEntity) Code() int {
 }
 
 func (o *DeleteLicenseTokenUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeleteLicenseTokenUnprocessableEntity) String() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenUnprocessableEntity %s", 422, payload)
 }
 
 func (o *DeleteLicenseTokenUnprocessableEntity) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *DeleteLicenseTokenInternalServerError) Code() int {
 }
 
 func (o *DeleteLicenseTokenInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteLicenseTokenInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /licensing/token][%d] deleteLicenseTokenInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteLicenseTokenInternalServerError) GetPayload() *models.ErrorResponseBody {

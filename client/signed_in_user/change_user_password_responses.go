@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *ChangeUserPasswordOK) Code() int {
 }
 
 func (o *ChangeUserPasswordOK) Error() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordOk %s", 200, payload)
 }
 
 func (o *ChangeUserPasswordOK) String() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordOk %s", 200, payload)
 }
 
 func (o *ChangeUserPasswordOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *ChangeUserPasswordBadRequest) Code() int {
 }
 
 func (o *ChangeUserPasswordBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordBadRequest %s", 400, payload)
 }
 
 func (o *ChangeUserPasswordBadRequest) String() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordBadRequest %s", 400, payload)
 }
 
 func (o *ChangeUserPasswordBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *ChangeUserPasswordUnauthorized) Code() int {
 }
 
 func (o *ChangeUserPasswordUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordUnauthorized %s", 401, payload)
 }
 
 func (o *ChangeUserPasswordUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordUnauthorized %s", 401, payload)
 }
 
 func (o *ChangeUserPasswordUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *ChangeUserPasswordForbidden) Code() int {
 }
 
 func (o *ChangeUserPasswordForbidden) Error() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordForbidden %s", 403, payload)
 }
 
 func (o *ChangeUserPasswordForbidden) String() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordForbidden %s", 403, payload)
 }
 
 func (o *ChangeUserPasswordForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *ChangeUserPasswordInternalServerError) Code() int {
 }
 
 func (o *ChangeUserPasswordInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordInternalServerError %s", 500, payload)
 }
 
 func (o *ChangeUserPasswordInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/password][%d] changeUserPasswordInternalServerError %s", 500, payload)
 }
 
 func (o *ChangeUserPasswordInternalServerError) GetPayload() *models.ErrorResponseBody {

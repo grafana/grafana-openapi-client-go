@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *GetDataSourceByIDOK) Code() int {
 }
 
 func (o *GetDataSourceByIDOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdOk %s", 200, payload)
 }
 
 func (o *GetDataSourceByIDOK) String() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdOk %s", 200, payload)
 }
 
 func (o *GetDataSourceByIDOK) GetPayload() *models.DataSource {
@@ -177,11 +180,13 @@ func (o *GetDataSourceByIDBadRequest) Code() int {
 }
 
 func (o *GetDataSourceByIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdBadRequest %s", 400, payload)
 }
 
 func (o *GetDataSourceByIDBadRequest) String() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdBadRequest %s", 400, payload)
 }
 
 func (o *GetDataSourceByIDBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *GetDataSourceByIDUnauthorized) Code() int {
 }
 
 func (o *GetDataSourceByIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdUnauthorized %s", 401, payload)
 }
 
 func (o *GetDataSourceByIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdUnauthorized %s", 401, payload)
 }
 
 func (o *GetDataSourceByIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *GetDataSourceByIDForbidden) Code() int {
 }
 
 func (o *GetDataSourceByIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdForbidden %s", 403, payload)
 }
 
 func (o *GetDataSourceByIDForbidden) String() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdForbidden %s", 403, payload)
 }
 
 func (o *GetDataSourceByIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *GetDataSourceByIDNotFound) Code() int {
 }
 
 func (o *GetDataSourceByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdNotFound %s", 404, payload)
 }
 
 func (o *GetDataSourceByIDNotFound) String() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdNotFound %s", 404, payload)
 }
 
 func (o *GetDataSourceByIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *GetDataSourceByIDInternalServerError) Code() int {
 }
 
 func (o *GetDataSourceByIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetDataSourceByIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/{id}][%d] getDataSourceByIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetDataSourceByIDInternalServerError) GetPayload() *models.ErrorResponseBody {

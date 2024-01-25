@@ -6,6 +6,7 @@ package licensing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *RefreshLicenseStatsOK) Code() int {
 }
 
 func (o *RefreshLicenseStatsOK) Error() string {
-	return fmt.Sprintf("[GET /licensing/refresh-stats][%d] refreshLicenseStatsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/refresh-stats][%d] refreshLicenseStatsOk %s", 200, payload)
 }
 
 func (o *RefreshLicenseStatsOK) String() string {
-	return fmt.Sprintf("[GET /licensing/refresh-stats][%d] refreshLicenseStatsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/refresh-stats][%d] refreshLicenseStatsOk %s", 200, payload)
 }
 
 func (o *RefreshLicenseStatsOK) GetPayload() *models.ActiveUserStats {
@@ -153,11 +156,13 @@ func (o *RefreshLicenseStatsInternalServerError) Code() int {
 }
 
 func (o *RefreshLicenseStatsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /licensing/refresh-stats][%d] refreshLicenseStatsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/refresh-stats][%d] refreshLicenseStatsInternalServerError %s", 500, payload)
 }
 
 func (o *RefreshLicenseStatsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /licensing/refresh-stats][%d] refreshLicenseStatsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/refresh-stats][%d] refreshLicenseStatsInternalServerError %s", 500, payload)
 }
 
 func (o *RefreshLicenseStatsInternalServerError) GetPayload() *models.ErrorResponseBody {

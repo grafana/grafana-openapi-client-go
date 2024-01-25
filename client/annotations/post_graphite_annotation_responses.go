@@ -6,6 +6,7 @@ package annotations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *PostGraphiteAnnotationOK) Code() int {
 }
 
 func (o *PostGraphiteAnnotationOK) Error() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationOk %s", 200, payload)
 }
 
 func (o *PostGraphiteAnnotationOK) String() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationOk %s", 200, payload)
 }
 
 func (o *PostGraphiteAnnotationOK) GetPayload() *models.PostGraphiteAnnotationOKBody {
@@ -171,11 +174,13 @@ func (o *PostGraphiteAnnotationBadRequest) Code() int {
 }
 
 func (o *PostGraphiteAnnotationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationBadRequest %s", 400, payload)
 }
 
 func (o *PostGraphiteAnnotationBadRequest) String() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationBadRequest %s", 400, payload)
 }
 
 func (o *PostGraphiteAnnotationBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *PostGraphiteAnnotationUnauthorized) Code() int {
 }
 
 func (o *PostGraphiteAnnotationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationUnauthorized %s", 401, payload)
 }
 
 func (o *PostGraphiteAnnotationUnauthorized) String() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationUnauthorized %s", 401, payload)
 }
 
 func (o *PostGraphiteAnnotationUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *PostGraphiteAnnotationForbidden) Code() int {
 }
 
 func (o *PostGraphiteAnnotationForbidden) Error() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationForbidden %s", 403, payload)
 }
 
 func (o *PostGraphiteAnnotationForbidden) String() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationForbidden %s", 403, payload)
 }
 
 func (o *PostGraphiteAnnotationForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *PostGraphiteAnnotationInternalServerError) Code() int {
 }
 
 func (o *PostGraphiteAnnotationInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationInternalServerError %s", 500, payload)
 }
 
 func (o *PostGraphiteAnnotationInternalServerError) String() string {
-	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/graphite][%d] postGraphiteAnnotationInternalServerError %s", 500, payload)
 }
 
 func (o *PostGraphiteAnnotationInternalServerError) GetPayload() *models.ErrorResponseBody {

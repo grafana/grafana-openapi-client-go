@@ -6,6 +6,7 @@ package admin_ldap
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *ReloadLDAPCfgOK) Code() int {
 }
 
 func (o *ReloadLDAPCfgOK) Error() string {
-	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgOk %s", 200, payload)
 }
 
 func (o *ReloadLDAPCfgOK) String() string {
-	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgOk %s", 200, payload)
 }
 
 func (o *ReloadLDAPCfgOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *ReloadLDAPCfgUnauthorized) Code() int {
 }
 
 func (o *ReloadLDAPCfgUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgUnauthorized %s", 401, payload)
 }
 
 func (o *ReloadLDAPCfgUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgUnauthorized %s", 401, payload)
 }
 
 func (o *ReloadLDAPCfgUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *ReloadLDAPCfgForbidden) Code() int {
 }
 
 func (o *ReloadLDAPCfgForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgForbidden %s", 403, payload)
 }
 
 func (o *ReloadLDAPCfgForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgForbidden %s", 403, payload)
 }
 
 func (o *ReloadLDAPCfgForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *ReloadLDAPCfgInternalServerError) Code() int {
 }
 
 func (o *ReloadLDAPCfgInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgInternalServerError %s", 500, payload)
 }
 
 func (o *ReloadLDAPCfgInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/reload][%d] reloadLdapCfgInternalServerError %s", 500, payload)
 }
 
 func (o *ReloadLDAPCfgInternalServerError) GetPayload() *models.ErrorResponseBody {

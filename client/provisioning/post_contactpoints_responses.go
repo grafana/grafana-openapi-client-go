@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PostContactpointsAccepted) Code() int {
 }
 
 func (o *PostContactpointsAccepted) Error() string {
-	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsAccepted %s", 202, payload)
 }
 
 func (o *PostContactpointsAccepted) String() string {
-	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsAccepted %s", 202, payload)
 }
 
 func (o *PostContactpointsAccepted) GetPayload() *models.EmbeddedContactPoint {
@@ -153,11 +156,13 @@ func (o *PostContactpointsBadRequest) Code() int {
 }
 
 func (o *PostContactpointsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsBadRequest %s", 400, payload)
 }
 
 func (o *PostContactpointsBadRequest) String() string {
-	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/contact-points][%d] postContactpointsBadRequest %s", 400, payload)
 }
 
 func (o *PostContactpointsBadRequest) GetPayload() *models.ValidationError {

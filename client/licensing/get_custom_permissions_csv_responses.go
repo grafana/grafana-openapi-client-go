@@ -6,6 +6,7 @@ package licensing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -79,11 +80,13 @@ func (o *GetCustomPermissionsCSVInternalServerError) Code() int {
 }
 
 func (o *GetCustomPermissionsCSVInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /licensing/custom-permissions-csv][%d] getCustomPermissionsCsvInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/custom-permissions-csv][%d] getCustomPermissionsCsvInternalServerError %s", 500, payload)
 }
 
 func (o *GetCustomPermissionsCSVInternalServerError) String() string {
-	return fmt.Sprintf("[GET /licensing/custom-permissions-csv][%d] getCustomPermissionsCsvInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/custom-permissions-csv][%d] getCustomPermissionsCsvInternalServerError %s", 500, payload)
 }
 
 func (o *GetCustomPermissionsCSVInternalServerError) GetPayload() *models.ErrorResponseBody {

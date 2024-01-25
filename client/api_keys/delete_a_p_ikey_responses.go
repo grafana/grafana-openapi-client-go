@@ -6,6 +6,7 @@ package api_keys
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteAPIkeyOK) Code() int {
 }
 
 func (o *DeleteAPIkeyOK) Error() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyOk %s", 200, payload)
 }
 
 func (o *DeleteAPIkeyOK) String() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyOk %s", 200, payload)
 }
 
 func (o *DeleteAPIkeyOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *DeleteAPIkeyUnauthorized) Code() int {
 }
 
 func (o *DeleteAPIkeyUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteAPIkeyUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteAPIkeyUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteAPIkeyForbidden) Code() int {
 }
 
 func (o *DeleteAPIkeyForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyForbidden %s", 403, payload)
 }
 
 func (o *DeleteAPIkeyForbidden) String() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyForbidden %s", 403, payload)
 }
 
 func (o *DeleteAPIkeyForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteAPIkeyNotFound) Code() int {
 }
 
 func (o *DeleteAPIkeyNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyNotFound %s", 404, payload)
 }
 
 func (o *DeleteAPIkeyNotFound) String() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyNotFound %s", 404, payload)
 }
 
 func (o *DeleteAPIkeyNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteAPIkeyInternalServerError) Code() int {
 }
 
 func (o *DeleteAPIkeyInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteAPIkeyInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /auth/keys/{id}][%d] deleteAPIkeyInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteAPIkeyInternalServerError) GetPayload() *models.ErrorResponseBody {

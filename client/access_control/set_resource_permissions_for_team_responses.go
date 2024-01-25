@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SetResourcePermissionsForTeamOK) Code() int {
 }
 
 func (o *SetResourcePermissionsForTeamOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamOk %s", 200, payload)
 }
 
 func (o *SetResourcePermissionsForTeamOK) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamOk %s", 200, payload)
 }
 
 func (o *SetResourcePermissionsForTeamOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *SetResourcePermissionsForTeamBadRequest) Code() int {
 }
 
 func (o *SetResourcePermissionsForTeamBadRequest) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamBadRequest %s", 400, payload)
 }
 
 func (o *SetResourcePermissionsForTeamBadRequest) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamBadRequest %s", 400, payload)
 }
 
 func (o *SetResourcePermissionsForTeamBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *SetResourcePermissionsForTeamForbidden) Code() int {
 }
 
 func (o *SetResourcePermissionsForTeamForbidden) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamForbidden %s", 403, payload)
 }
 
 func (o *SetResourcePermissionsForTeamForbidden) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamForbidden %s", 403, payload)
 }
 
 func (o *SetResourcePermissionsForTeamForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *SetResourcePermissionsForTeamInternalServerError) Code() int {
 }
 
 func (o *SetResourcePermissionsForTeamInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamInternalServerError %s", 500, payload)
 }
 
 func (o *SetResourcePermissionsForTeamInternalServerError) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamInternalServerError %s", 500, payload)
 }
 
 func (o *SetResourcePermissionsForTeamInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *SetUserRolesOK) Code() int {
 }
 
 func (o *SetUserRolesOK) Error() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesOk %s", 200, payload)
 }
 
 func (o *SetUserRolesOK) String() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesOk %s", 200, payload)
 }
 
 func (o *SetUserRolesOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *SetUserRolesBadRequest) Code() int {
 }
 
 func (o *SetUserRolesBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesBadRequest %s", 400, payload)
 }
 
 func (o *SetUserRolesBadRequest) String() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesBadRequest %s", 400, payload)
 }
 
 func (o *SetUserRolesBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *SetUserRolesForbidden) Code() int {
 }
 
 func (o *SetUserRolesForbidden) Error() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesForbidden %s", 403, payload)
 }
 
 func (o *SetUserRolesForbidden) String() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesForbidden %s", 403, payload)
 }
 
 func (o *SetUserRolesForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *SetUserRolesNotFound) Code() int {
 }
 
 func (o *SetUserRolesNotFound) Error() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesNotFound %s", 404, payload)
 }
 
 func (o *SetUserRolesNotFound) String() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesNotFound %s", 404, payload)
 }
 
 func (o *SetUserRolesNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *SetUserRolesInternalServerError) Code() int {
 }
 
 func (o *SetUserRolesInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesInternalServerError %s", 500, payload)
 }
 
 func (o *SetUserRolesInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/users/{userId}/roles][%d] setUserRolesInternalServerError %s", 500, payload)
 }
 
 func (o *SetUserRolesInternalServerError) GetPayload() *models.ErrorResponseBody {

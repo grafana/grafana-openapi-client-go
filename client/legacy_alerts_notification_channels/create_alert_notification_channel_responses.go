@@ -6,6 +6,7 @@ package legacy_alerts_notification_channels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *CreateAlertNotificationChannelOK) Code() int {
 }
 
 func (o *CreateAlertNotificationChannelOK) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelOk %s", 200, payload)
 }
 
 func (o *CreateAlertNotificationChannelOK) String() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelOk %s", 200, payload)
 }
 
 func (o *CreateAlertNotificationChannelOK) GetPayload() *models.AlertNotification {
@@ -171,11 +174,13 @@ func (o *CreateAlertNotificationChannelUnauthorized) Code() int {
 }
 
 func (o *CreateAlertNotificationChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelUnauthorized %s", 401, payload)
 }
 
 func (o *CreateAlertNotificationChannelUnauthorized) String() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelUnauthorized %s", 401, payload)
 }
 
 func (o *CreateAlertNotificationChannelUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *CreateAlertNotificationChannelForbidden) Code() int {
 }
 
 func (o *CreateAlertNotificationChannelForbidden) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelForbidden %s", 403, payload)
 }
 
 func (o *CreateAlertNotificationChannelForbidden) String() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelForbidden %s", 403, payload)
 }
 
 func (o *CreateAlertNotificationChannelForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *CreateAlertNotificationChannelConflict) Code() int {
 }
 
 func (o *CreateAlertNotificationChannelConflict) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelConflict %s", 409, payload)
 }
 
 func (o *CreateAlertNotificationChannelConflict) String() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelConflict %s", 409, payload)
 }
 
 func (o *CreateAlertNotificationChannelConflict) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *CreateAlertNotificationChannelInternalServerError) Code() int {
 }
 
 func (o *CreateAlertNotificationChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelInternalServerError %s", 500, payload)
 }
 
 func (o *CreateAlertNotificationChannelInternalServerError) String() string {
-	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications][%d] createAlertNotificationChannelInternalServerError %s", 500, payload)
 }
 
 func (o *CreateAlertNotificationChannelInternalServerError) GetPayload() *models.ErrorResponseBody {

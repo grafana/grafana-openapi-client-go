@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PutAlertRuleGroupOK) Code() int {
 }
 
 func (o *PutAlertRuleGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupOk %s", 200, payload)
 }
 
 func (o *PutAlertRuleGroupOK) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupOk %s", 200, payload)
 }
 
 func (o *PutAlertRuleGroupOK) GetPayload() *models.AlertRuleGroup {
@@ -153,11 +156,13 @@ func (o *PutAlertRuleGroupBadRequest) Code() int {
 }
 
 func (o *PutAlertRuleGroupBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupBadRequest %s", 400, payload)
 }
 
 func (o *PutAlertRuleGroupBadRequest) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] putAlertRuleGroupBadRequest %s", 400, payload)
 }
 
 func (o *PutAlertRuleGroupBadRequest) GetPayload() *models.ValidationError {

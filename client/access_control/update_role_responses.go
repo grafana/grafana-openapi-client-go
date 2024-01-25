@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateRoleOK) Code() int {
 }
 
 func (o *UpdateRoleOK) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleOk %s", 200, payload)
 }
 
 func (o *UpdateRoleOK) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleOk %s", 200, payload)
 }
 
 func (o *UpdateRoleOK) GetPayload() *models.RoleDTO {
@@ -171,11 +174,13 @@ func (o *UpdateRoleBadRequest) Code() int {
 }
 
 func (o *UpdateRoleBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleBadRequest %s", 400, payload)
 }
 
 func (o *UpdateRoleBadRequest) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleBadRequest %s", 400, payload)
 }
 
 func (o *UpdateRoleBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateRoleForbidden) Code() int {
 }
 
 func (o *UpdateRoleForbidden) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleForbidden %s", 403, payload)
 }
 
 func (o *UpdateRoleForbidden) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleForbidden %s", 403, payload)
 }
 
 func (o *UpdateRoleForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateRoleNotFound) Code() int {
 }
 
 func (o *UpdateRoleNotFound) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleNotFound %s", 404, payload)
 }
 
 func (o *UpdateRoleNotFound) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleNotFound %s", 404, payload)
 }
 
 func (o *UpdateRoleNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateRoleInternalServerError) Code() int {
 }
 
 func (o *UpdateRoleInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateRoleInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}][%d] updateRoleInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateRoleInternalServerError) GetPayload() *models.ErrorResponseBody {

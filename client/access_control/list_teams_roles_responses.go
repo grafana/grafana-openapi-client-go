@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *ListTeamsRolesOK) Code() int {
 }
 
 func (o *ListTeamsRolesOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesOk %s", 200, payload)
 }
 
 func (o *ListTeamsRolesOK) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesOk %s", 200, payload)
 }
 
 func (o *ListTeamsRolesOK) GetPayload() map[string][]models.RoleDTO {
@@ -163,11 +166,13 @@ func (o *ListTeamsRolesBadRequest) Code() int {
 }
 
 func (o *ListTeamsRolesBadRequest) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesBadRequest %s", 400, payload)
 }
 
 func (o *ListTeamsRolesBadRequest) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesBadRequest %s", 400, payload)
 }
 
 func (o *ListTeamsRolesBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *ListTeamsRolesForbidden) Code() int {
 }
 
 func (o *ListTeamsRolesForbidden) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesForbidden %s", 403, payload)
 }
 
 func (o *ListTeamsRolesForbidden) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesForbidden %s", 403, payload)
 }
 
 func (o *ListTeamsRolesForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *ListTeamsRolesInternalServerError) Code() int {
 }
 
 func (o *ListTeamsRolesInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesInternalServerError %s", 500, payload)
 }
 
 func (o *ListTeamsRolesInternalServerError) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/roles/search][%d] listTeamsRolesInternalServerError %s", 500, payload)
 }
 
 func (o *ListTeamsRolesInternalServerError) GetPayload() *models.ErrorResponseBody {

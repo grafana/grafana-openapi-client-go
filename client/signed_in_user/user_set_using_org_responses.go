@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UserSetUsingOrgOK) Code() int {
 }
 
 func (o *UserSetUsingOrgOK) Error() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgOk %s", 200, payload)
 }
 
 func (o *UserSetUsingOrgOK) String() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgOk %s", 200, payload)
 }
 
 func (o *UserSetUsingOrgOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UserSetUsingOrgBadRequest) Code() int {
 }
 
 func (o *UserSetUsingOrgBadRequest) Error() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgBadRequest %s", 400, payload)
 }
 
 func (o *UserSetUsingOrgBadRequest) String() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgBadRequest %s", 400, payload)
 }
 
 func (o *UserSetUsingOrgBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UserSetUsingOrgUnauthorized) Code() int {
 }
 
 func (o *UserSetUsingOrgUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgUnauthorized %s", 401, payload)
 }
 
 func (o *UserSetUsingOrgUnauthorized) String() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgUnauthorized %s", 401, payload)
 }
 
 func (o *UserSetUsingOrgUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UserSetUsingOrgForbidden) Code() int {
 }
 
 func (o *UserSetUsingOrgForbidden) Error() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgForbidden %s", 403, payload)
 }
 
 func (o *UserSetUsingOrgForbidden) String() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgForbidden %s", 403, payload)
 }
 
 func (o *UserSetUsingOrgForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UserSetUsingOrgInternalServerError) Code() int {
 }
 
 func (o *UserSetUsingOrgInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgInternalServerError %s", 500, payload)
 }
 
 func (o *UserSetUsingOrgInternalServerError) String() string {
-	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/using/{org_id}][%d] userSetUsingOrgInternalServerError %s", 500, payload)
 }
 
 func (o *UserSetUsingOrgInternalServerError) GetPayload() *models.ErrorResponseBody {

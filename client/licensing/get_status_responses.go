@@ -75,11 +75,11 @@ func (o *GetStatusOK) Code() int {
 }
 
 func (o *GetStatusOK) Error() string {
-	return fmt.Sprintf("[GET /licensing/check][%d] getStatusOk ", 200)
+	return fmt.Sprintf("[GET /licensing/check][%d] getStatusOk", 200)
 }
 
 func (o *GetStatusOK) String() string {
-	return fmt.Sprintf("[GET /licensing/check][%d] getStatusOk ", 200)
+	return fmt.Sprintf("[GET /licensing/check][%d] getStatusOk", 200)
 }
 
 func (o *GetStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

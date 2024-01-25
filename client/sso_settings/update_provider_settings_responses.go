@@ -6,6 +6,7 @@ package sso_settings
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateProviderSettingsNoContent) Code() int {
 }
 
 func (o *UpdateProviderSettingsNoContent) Error() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsNoContent  %+v", 204, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsNoContent %s", 204, payload)
 }
 
 func (o *UpdateProviderSettingsNoContent) String() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsNoContent  %+v", 204, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsNoContent %s", 204, payload)
 }
 
 func (o *UpdateProviderSettingsNoContent) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateProviderSettingsBadRequest) Code() int {
 }
 
 func (o *UpdateProviderSettingsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsBadRequest %s", 400, payload)
 }
 
 func (o *UpdateProviderSettingsBadRequest) String() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsBadRequest %s", 400, payload)
 }
 
 func (o *UpdateProviderSettingsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateProviderSettingsUnauthorized) Code() int {
 }
 
 func (o *UpdateProviderSettingsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateProviderSettingsUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateProviderSettingsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateProviderSettingsForbidden) Code() int {
 }
 
 func (o *UpdateProviderSettingsForbidden) Error() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsForbidden %s", 403, payload)
 }
 
 func (o *UpdateProviderSettingsForbidden) String() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsForbidden %s", 403, payload)
 }
 
 func (o *UpdateProviderSettingsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateProviderSettingsInternalServerError) Code() int {
 }
 
 func (o *UpdateProviderSettingsInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateProviderSettingsInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/sso-settings/{key}][%d] updateProviderSettingsInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateProviderSettingsInternalServerError) GetPayload() *models.ErrorResponseBody {

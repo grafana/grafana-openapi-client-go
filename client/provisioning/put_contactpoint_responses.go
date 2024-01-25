@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PutContactpointAccepted) Code() int {
 }
 
 func (o *PutContactpointAccepted) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointAccepted %s", 202, payload)
 }
 
 func (o *PutContactpointAccepted) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointAccepted %s", 202, payload)
 }
 
 func (o *PutContactpointAccepted) GetPayload() models.Ack {
@@ -151,11 +154,13 @@ func (o *PutContactpointBadRequest) Code() int {
 }
 
 func (o *PutContactpointBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointBadRequest %s", 400, payload)
 }
 
 func (o *PutContactpointBadRequest) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/contact-points/{UID}][%d] putContactpointBadRequest %s", 400, payload)
 }
 
 func (o *PutContactpointBadRequest) GetPayload() *models.ValidationError {

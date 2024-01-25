@@ -6,6 +6,7 @@ package sso_settings
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetProviderSettingsOK) Code() int {
 }
 
 func (o *GetProviderSettingsOK) Error() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsOk %s", 200, payload)
 }
 
 func (o *GetProviderSettingsOK) String() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsOk %s", 200, payload)
 }
 
 func (o *GetProviderSettingsOK) GetPayload() *models.SSOSettings {
@@ -171,11 +174,13 @@ func (o *GetProviderSettingsBadRequest) Code() int {
 }
 
 func (o *GetProviderSettingsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsBadRequest %s", 400, payload)
 }
 
 func (o *GetProviderSettingsBadRequest) String() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsBadRequest %s", 400, payload)
 }
 
 func (o *GetProviderSettingsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetProviderSettingsUnauthorized) Code() int {
 }
 
 func (o *GetProviderSettingsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *GetProviderSettingsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *GetProviderSettingsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetProviderSettingsForbidden) Code() int {
 }
 
 func (o *GetProviderSettingsForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsForbidden %s", 403, payload)
 }
 
 func (o *GetProviderSettingsForbidden) String() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsForbidden %s", 403, payload)
 }
 
 func (o *GetProviderSettingsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetProviderSettingsNotFound) Code() int {
 }
 
 func (o *GetProviderSettingsNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsNotFound %s", 404, payload)
 }
 
 func (o *GetProviderSettingsNotFound) String() string {
-	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsNotFound %s", 404, payload)
 }
 
 func (o *GetProviderSettingsNotFound) GetPayload() *models.ErrorResponseBody {

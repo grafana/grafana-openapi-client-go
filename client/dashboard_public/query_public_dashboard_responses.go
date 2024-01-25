@@ -6,6 +6,7 @@ package dashboard_public
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *QueryPublicDashboardOK) Code() int {
 }
 
 func (o *QueryPublicDashboardOK) Error() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardOk %s", 200, payload)
 }
 
 func (o *QueryPublicDashboardOK) String() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardOk %s", 200, payload)
 }
 
 func (o *QueryPublicDashboardOK) GetPayload() *models.QueryDataResponse {
@@ -177,11 +180,13 @@ func (o *QueryPublicDashboardBadRequest) Code() int {
 }
 
 func (o *QueryPublicDashboardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardBadRequest %s", 400, payload)
 }
 
 func (o *QueryPublicDashboardBadRequest) String() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardBadRequest %s", 400, payload)
 }
 
 func (o *QueryPublicDashboardBadRequest) GetPayload() *models.PublicError {
@@ -245,11 +250,13 @@ func (o *QueryPublicDashboardUnauthorized) Code() int {
 }
 
 func (o *QueryPublicDashboardUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *QueryPublicDashboardUnauthorized) String() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *QueryPublicDashboardUnauthorized) GetPayload() *models.PublicError {
@@ -313,11 +320,13 @@ func (o *QueryPublicDashboardForbidden) Code() int {
 }
 
 func (o *QueryPublicDashboardForbidden) Error() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardForbidden %s", 403, payload)
 }
 
 func (o *QueryPublicDashboardForbidden) String() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardForbidden %s", 403, payload)
 }
 
 func (o *QueryPublicDashboardForbidden) GetPayload() *models.PublicError {
@@ -381,11 +390,13 @@ func (o *QueryPublicDashboardNotFound) Code() int {
 }
 
 func (o *QueryPublicDashboardNotFound) Error() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardNotFound %s", 404, payload)
 }
 
 func (o *QueryPublicDashboardNotFound) String() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardNotFound %s", 404, payload)
 }
 
 func (o *QueryPublicDashboardNotFound) GetPayload() *models.PublicError {
@@ -449,11 +460,13 @@ func (o *QueryPublicDashboardInternalServerError) Code() int {
 }
 
 func (o *QueryPublicDashboardInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *QueryPublicDashboardInternalServerError) String() string {
-	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /public/dashboards/{accessToken}/panels/{panelId}/query][%d] queryPublicDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *QueryPublicDashboardInternalServerError) GetPayload() *models.PublicError {

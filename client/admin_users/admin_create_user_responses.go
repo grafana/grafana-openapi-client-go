@@ -6,6 +6,7 @@ package admin_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *AdminCreateUserOK) Code() int {
 }
 
 func (o *AdminCreateUserOK) Error() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserOk %s", 200, payload)
 }
 
 func (o *AdminCreateUserOK) String() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserOk %s", 200, payload)
 }
 
 func (o *AdminCreateUserOK) GetPayload() *models.AdminCreateUserResponse {
@@ -177,11 +180,13 @@ func (o *AdminCreateUserBadRequest) Code() int {
 }
 
 func (o *AdminCreateUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserBadRequest %s", 400, payload)
 }
 
 func (o *AdminCreateUserBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserBadRequest %s", 400, payload)
 }
 
 func (o *AdminCreateUserBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *AdminCreateUserUnauthorized) Code() int {
 }
 
 func (o *AdminCreateUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserUnauthorized %s", 401, payload)
 }
 
 func (o *AdminCreateUserUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserUnauthorized %s", 401, payload)
 }
 
 func (o *AdminCreateUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *AdminCreateUserForbidden) Code() int {
 }
 
 func (o *AdminCreateUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserForbidden %s", 403, payload)
 }
 
 func (o *AdminCreateUserForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserForbidden %s", 403, payload)
 }
 
 func (o *AdminCreateUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *AdminCreateUserPreconditionFailed) Code() int {
 }
 
 func (o *AdminCreateUserPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserPreconditionFailed %s", 412, payload)
 }
 
 func (o *AdminCreateUserPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserPreconditionFailed %s", 412, payload)
 }
 
 func (o *AdminCreateUserPreconditionFailed) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *AdminCreateUserInternalServerError) Code() int {
 }
 
 func (o *AdminCreateUserInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserInternalServerError %s", 500, payload)
 }
 
 func (o *AdminCreateUserInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users][%d] adminCreateUserInternalServerError %s", 500, payload)
 }
 
 func (o *AdminCreateUserInternalServerError) GetPayload() *models.ErrorResponseBody {

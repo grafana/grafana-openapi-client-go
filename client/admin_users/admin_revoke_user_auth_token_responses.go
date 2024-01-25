@@ -6,6 +6,7 @@ package admin_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *AdminRevokeUserAuthTokenOK) Code() int {
 }
 
 func (o *AdminRevokeUserAuthTokenOK) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenOk %s", 200, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenOK) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenOk %s", 200, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *AdminRevokeUserAuthTokenBadRequest) Code() int {
 }
 
 func (o *AdminRevokeUserAuthTokenBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenBadRequest %s", 400, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenBadRequest %s", 400, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *AdminRevokeUserAuthTokenUnauthorized) Code() int {
 }
 
 func (o *AdminRevokeUserAuthTokenUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenUnauthorized %s", 401, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenUnauthorized %s", 401, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *AdminRevokeUserAuthTokenForbidden) Code() int {
 }
 
 func (o *AdminRevokeUserAuthTokenForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenForbidden %s", 403, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenForbidden %s", 403, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *AdminRevokeUserAuthTokenNotFound) Code() int {
 }
 
 func (o *AdminRevokeUserAuthTokenNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenNotFound %s", 404, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenNotFound %s", 404, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *AdminRevokeUserAuthTokenInternalServerError) Code() int {
 }
 
 func (o *AdminRevokeUserAuthTokenInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenInternalServerError %s", 500, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/revoke-auth-token][%d] adminRevokeUserAuthTokenInternalServerError %s", 500, payload)
 }
 
 func (o *AdminRevokeUserAuthTokenInternalServerError) GetPayload() *models.ErrorResponseBody {

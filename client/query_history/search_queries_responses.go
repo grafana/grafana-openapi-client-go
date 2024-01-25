@@ -6,6 +6,7 @@ package query_history
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *SearchQueriesOK) Code() int {
 }
 
 func (o *SearchQueriesOK) Error() string {
-	return fmt.Sprintf("[GET /query-history][%d] searchQueriesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /query-history][%d] searchQueriesOk %s", 200, payload)
 }
 
 func (o *SearchQueriesOK) String() string {
-	return fmt.Sprintf("[GET /query-history][%d] searchQueriesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /query-history][%d] searchQueriesOk %s", 200, payload)
 }
 
 func (o *SearchQueriesOK) GetPayload() *models.QueryHistorySearchResponse {
@@ -159,11 +162,13 @@ func (o *SearchQueriesUnauthorized) Code() int {
 }
 
 func (o *SearchQueriesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /query-history][%d] searchQueriesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /query-history][%d] searchQueriesUnauthorized %s", 401, payload)
 }
 
 func (o *SearchQueriesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /query-history][%d] searchQueriesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /query-history][%d] searchQueriesUnauthorized %s", 401, payload)
 }
 
 func (o *SearchQueriesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *SearchQueriesInternalServerError) Code() int {
 }
 
 func (o *SearchQueriesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /query-history][%d] searchQueriesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /query-history][%d] searchQueriesInternalServerError %s", 500, payload)
 }
 
 func (o *SearchQueriesInternalServerError) String() string {
-	return fmt.Sprintf("[GET /query-history][%d] searchQueriesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /query-history][%d] searchQueriesInternalServerError %s", 500, payload)
 }
 
 func (o *SearchQueriesInternalServerError) GetPayload() *models.ErrorResponseBody {

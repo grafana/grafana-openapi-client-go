@@ -6,6 +6,7 @@ package org
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateCurrentOrgAddressOK) Code() int {
 }
 
 func (o *UpdateCurrentOrgAddressOK) Error() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressOk %s", 200, payload)
 }
 
 func (o *UpdateCurrentOrgAddressOK) String() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressOk %s", 200, payload)
 }
 
 func (o *UpdateCurrentOrgAddressOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateCurrentOrgAddressBadRequest) Code() int {
 }
 
 func (o *UpdateCurrentOrgAddressBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressBadRequest %s", 400, payload)
 }
 
 func (o *UpdateCurrentOrgAddressBadRequest) String() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressBadRequest %s", 400, payload)
 }
 
 func (o *UpdateCurrentOrgAddressBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateCurrentOrgAddressUnauthorized) Code() int {
 }
 
 func (o *UpdateCurrentOrgAddressUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateCurrentOrgAddressUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateCurrentOrgAddressUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateCurrentOrgAddressForbidden) Code() int {
 }
 
 func (o *UpdateCurrentOrgAddressForbidden) Error() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressForbidden %s", 403, payload)
 }
 
 func (o *UpdateCurrentOrgAddressForbidden) String() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressForbidden %s", 403, payload)
 }
 
 func (o *UpdateCurrentOrgAddressForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateCurrentOrgAddressInternalServerError) Code() int {
 }
 
 func (o *UpdateCurrentOrgAddressInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateCurrentOrgAddressInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/address][%d] updateCurrentOrgAddressInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateCurrentOrgAddressInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package recording_rules
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateRecordingRuleOK) Code() int {
 }
 
 func (o *UpdateRecordingRuleOK) Error() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleOk %s", 200, payload)
 }
 
 func (o *UpdateRecordingRuleOK) String() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleOk %s", 200, payload)
 }
 
 func (o *UpdateRecordingRuleOK) GetPayload() *models.RecordingRuleJSON {
@@ -171,11 +174,13 @@ func (o *UpdateRecordingRuleUnauthorized) Code() int {
 }
 
 func (o *UpdateRecordingRuleUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateRecordingRuleUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateRecordingRuleUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateRecordingRuleForbidden) Code() int {
 }
 
 func (o *UpdateRecordingRuleForbidden) Error() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleForbidden %s", 403, payload)
 }
 
 func (o *UpdateRecordingRuleForbidden) String() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleForbidden %s", 403, payload)
 }
 
 func (o *UpdateRecordingRuleForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateRecordingRuleNotFound) Code() int {
 }
 
 func (o *UpdateRecordingRuleNotFound) Error() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleNotFound %s", 404, payload)
 }
 
 func (o *UpdateRecordingRuleNotFound) String() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleNotFound %s", 404, payload)
 }
 
 func (o *UpdateRecordingRuleNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateRecordingRuleInternalServerError) Code() int {
 }
 
 func (o *UpdateRecordingRuleInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateRecordingRuleInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /recording-rules][%d] updateRecordingRuleInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateRecordingRuleInternalServerError) GetPayload() *models.ErrorResponseBody {

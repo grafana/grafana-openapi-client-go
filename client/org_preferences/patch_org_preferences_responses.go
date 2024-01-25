@@ -6,6 +6,7 @@ package org_preferences
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *PatchOrgPreferencesOK) Code() int {
 }
 
 func (o *PatchOrgPreferencesOK) Error() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesOk %s", 200, payload)
 }
 
 func (o *PatchOrgPreferencesOK) String() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesOk %s", 200, payload)
 }
 
 func (o *PatchOrgPreferencesOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *PatchOrgPreferencesBadRequest) Code() int {
 }
 
 func (o *PatchOrgPreferencesBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesBadRequest %s", 400, payload)
 }
 
 func (o *PatchOrgPreferencesBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesBadRequest %s", 400, payload)
 }
 
 func (o *PatchOrgPreferencesBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *PatchOrgPreferencesUnauthorized) Code() int {
 }
 
 func (o *PatchOrgPreferencesUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *PatchOrgPreferencesUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *PatchOrgPreferencesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *PatchOrgPreferencesForbidden) Code() int {
 }
 
 func (o *PatchOrgPreferencesForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesForbidden %s", 403, payload)
 }
 
 func (o *PatchOrgPreferencesForbidden) String() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesForbidden %s", 403, payload)
 }
 
 func (o *PatchOrgPreferencesForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *PatchOrgPreferencesInternalServerError) Code() int {
 }
 
 func (o *PatchOrgPreferencesInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *PatchOrgPreferencesInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/preferences][%d] patchOrgPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *PatchOrgPreferencesInternalServerError) GetPayload() *models.ErrorResponseBody {

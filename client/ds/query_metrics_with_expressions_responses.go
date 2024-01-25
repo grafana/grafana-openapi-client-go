@@ -6,6 +6,7 @@ package ds
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *QueryMetricsWithExpressionsOK) Code() int {
 }
 
 func (o *QueryMetricsWithExpressionsOK) Error() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsOk %s", 200, payload)
 }
 
 func (o *QueryMetricsWithExpressionsOK) String() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsOk %s", 200, payload)
 }
 
 func (o *QueryMetricsWithExpressionsOK) GetPayload() *models.QueryDataResponse {
@@ -177,11 +180,13 @@ func (o *QueryMetricsWithExpressionsMultiStatus) Code() int {
 }
 
 func (o *QueryMetricsWithExpressionsMultiStatus) Error() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsMultiStatus  %+v", 207, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsMultiStatus %s", 207, payload)
 }
 
 func (o *QueryMetricsWithExpressionsMultiStatus) String() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsMultiStatus  %+v", 207, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsMultiStatus %s", 207, payload)
 }
 
 func (o *QueryMetricsWithExpressionsMultiStatus) GetPayload() *models.QueryDataResponse {
@@ -245,11 +250,13 @@ func (o *QueryMetricsWithExpressionsBadRequest) Code() int {
 }
 
 func (o *QueryMetricsWithExpressionsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsBadRequest %s", 400, payload)
 }
 
 func (o *QueryMetricsWithExpressionsBadRequest) String() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsBadRequest %s", 400, payload)
 }
 
 func (o *QueryMetricsWithExpressionsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *QueryMetricsWithExpressionsUnauthorized) Code() int {
 }
 
 func (o *QueryMetricsWithExpressionsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsUnauthorized %s", 401, payload)
 }
 
 func (o *QueryMetricsWithExpressionsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsUnauthorized %s", 401, payload)
 }
 
 func (o *QueryMetricsWithExpressionsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *QueryMetricsWithExpressionsForbidden) Code() int {
 }
 
 func (o *QueryMetricsWithExpressionsForbidden) Error() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsForbidden %s", 403, payload)
 }
 
 func (o *QueryMetricsWithExpressionsForbidden) String() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsForbidden %s", 403, payload)
 }
 
 func (o *QueryMetricsWithExpressionsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *QueryMetricsWithExpressionsInternalServerError) Code() int {
 }
 
 func (o *QueryMetricsWithExpressionsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsInternalServerError %s", 500, payload)
 }
 
 func (o *QueryMetricsWithExpressionsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ds/query][%d] queryMetricsWithExpressionsInternalServerError %s", 500, payload)
 }
 
 func (o *QueryMetricsWithExpressionsInternalServerError) GetPayload() *models.ErrorResponseBody {

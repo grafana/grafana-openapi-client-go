@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetAccessControlStatusOK) Code() int {
 }
 
 func (o *GetAccessControlStatusOK) Error() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusOk %s", 200, payload)
 }
 
 func (o *GetAccessControlStatusOK) String() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusOk %s", 200, payload)
 }
 
 func (o *GetAccessControlStatusOK) GetPayload() models.Status {
@@ -163,11 +166,13 @@ func (o *GetAccessControlStatusForbidden) Code() int {
 }
 
 func (o *GetAccessControlStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusForbidden %s", 403, payload)
 }
 
 func (o *GetAccessControlStatusForbidden) String() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusForbidden %s", 403, payload)
 }
 
 func (o *GetAccessControlStatusForbidden) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *GetAccessControlStatusNotFound) Code() int {
 }
 
 func (o *GetAccessControlStatusNotFound) Error() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusNotFound %s", 404, payload)
 }
 
 func (o *GetAccessControlStatusNotFound) String() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusNotFound %s", 404, payload)
 }
 
 func (o *GetAccessControlStatusNotFound) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *GetAccessControlStatusInternalServerError) Code() int {
 }
 
 func (o *GetAccessControlStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusInternalServerError %s", 500, payload)
 }
 
 func (o *GetAccessControlStatusInternalServerError) String() string {
-	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/status][%d] getAccessControlStatusInternalServerError %s", 500, payload)
 }
 
 func (o *GetAccessControlStatusInternalServerError) GetPayload() *models.ErrorResponseBody {

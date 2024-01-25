@@ -6,6 +6,7 @@ package legacy_alerts_notification_channels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateAlertNotificationChannelByUIDOK) Code() int {
 }
 
 func (o *UpdateAlertNotificationChannelByUIDOK) Error() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidOk %s", 200, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDOK) String() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidOk %s", 200, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDOK) GetPayload() *models.AlertNotification {
@@ -171,11 +174,13 @@ func (o *UpdateAlertNotificationChannelByUIDUnauthorized) Code() int {
 }
 
 func (o *UpdateAlertNotificationChannelByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateAlertNotificationChannelByUIDForbidden) Code() int {
 }
 
 func (o *UpdateAlertNotificationChannelByUIDForbidden) Error() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidForbidden %s", 403, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDForbidden) String() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidForbidden %s", 403, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateAlertNotificationChannelByUIDNotFound) Code() int {
 }
 
 func (o *UpdateAlertNotificationChannelByUIDNotFound) Error() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidNotFound %s", 404, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDNotFound) String() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidNotFound %s", 404, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateAlertNotificationChannelByUIDInternalServerError) Code() int {
 }
 
 func (o *UpdateAlertNotificationChannelByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /alert-notifications/uid/{notification_channel_uid}][%d] updateAlertNotificationChannelByUidInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateAlertNotificationChannelByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

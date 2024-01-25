@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetUserAuthTokensOK) Code() int {
 }
 
 func (o *GetUserAuthTokensOK) Error() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensOk %s", 200, payload)
 }
 
 func (o *GetUserAuthTokensOK) String() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensOk %s", 200, payload)
 }
 
 func (o *GetUserAuthTokensOK) GetPayload() []*models.UserToken {
@@ -163,11 +166,13 @@ func (o *GetUserAuthTokensUnauthorized) Code() int {
 }
 
 func (o *GetUserAuthTokensUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserAuthTokensUnauthorized) String() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserAuthTokensUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *GetUserAuthTokensForbidden) Code() int {
 }
 
 func (o *GetUserAuthTokensForbidden) Error() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensForbidden %s", 403, payload)
 }
 
 func (o *GetUserAuthTokensForbidden) String() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensForbidden %s", 403, payload)
 }
 
 func (o *GetUserAuthTokensForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *GetUserAuthTokensInternalServerError) Code() int {
 }
 
 func (o *GetUserAuthTokensInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserAuthTokensInternalServerError) String() string {
-	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/auth-tokens][%d] getUserAuthTokensInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserAuthTokensInternalServerError) GetPayload() *models.ErrorResponseBody {

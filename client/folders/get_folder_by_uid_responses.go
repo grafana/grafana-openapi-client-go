@@ -6,6 +6,7 @@ package folders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetFolderByUIDOK) Code() int {
 }
 
 func (o *GetFolderByUIDOK) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidOk %s", 200, payload)
 }
 
 func (o *GetFolderByUIDOK) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidOk %s", 200, payload)
 }
 
 func (o *GetFolderByUIDOK) GetPayload() *models.Folder {
@@ -171,11 +174,13 @@ func (o *GetFolderByUIDUnauthorized) Code() int {
 }
 
 func (o *GetFolderByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetFolderByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetFolderByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetFolderByUIDForbidden) Code() int {
 }
 
 func (o *GetFolderByUIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidForbidden %s", 403, payload)
 }
 
 func (o *GetFolderByUIDForbidden) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidForbidden %s", 403, payload)
 }
 
 func (o *GetFolderByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetFolderByUIDNotFound) Code() int {
 }
 
 func (o *GetFolderByUIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidNotFound %s", 404, payload)
 }
 
 func (o *GetFolderByUIDNotFound) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidNotFound %s", 404, payload)
 }
 
 func (o *GetFolderByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetFolderByUIDInternalServerError) Code() int {
 }
 
 func (o *GetFolderByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetFolderByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}][%d] getFolderByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetFolderByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

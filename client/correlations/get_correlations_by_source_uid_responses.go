@@ -6,6 +6,7 @@ package correlations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetCorrelationsBySourceUIDOK) Code() int {
 }
 
 func (o *GetCorrelationsBySourceUIDOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidOk %s", 200, payload)
 }
 
 func (o *GetCorrelationsBySourceUIDOK) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidOk %s", 200, payload)
 }
 
 func (o *GetCorrelationsBySourceUIDOK) GetPayload() []*models.Correlation {
@@ -163,11 +166,13 @@ func (o *GetCorrelationsBySourceUIDUnauthorized) Code() int {
 }
 
 func (o *GetCorrelationsBySourceUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetCorrelationsBySourceUIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetCorrelationsBySourceUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *GetCorrelationsBySourceUIDNotFound) Code() int {
 }
 
 func (o *GetCorrelationsBySourceUIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidNotFound %s", 404, payload)
 }
 
 func (o *GetCorrelationsBySourceUIDNotFound) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidNotFound %s", 404, payload)
 }
 
 func (o *GetCorrelationsBySourceUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *GetCorrelationsBySourceUIDInternalServerError) Code() int {
 }
 
 func (o *GetCorrelationsBySourceUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetCorrelationsBySourceUIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{sourceUID}/correlations][%d] getCorrelationsBySourceUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetCorrelationsBySourceUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

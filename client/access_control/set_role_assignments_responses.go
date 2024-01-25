@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SetRoleAssignmentsOK) Code() int {
 }
 
 func (o *SetRoleAssignmentsOK) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsOk %s", 200, payload)
 }
 
 func (o *SetRoleAssignmentsOK) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsOk %s", 200, payload)
 }
 
 func (o *SetRoleAssignmentsOK) GetPayload() *models.RoleAssignmentsDTO {
@@ -165,11 +168,13 @@ func (o *SetRoleAssignmentsForbidden) Code() int {
 }
 
 func (o *SetRoleAssignmentsForbidden) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsForbidden %s", 403, payload)
 }
 
 func (o *SetRoleAssignmentsForbidden) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsForbidden %s", 403, payload)
 }
 
 func (o *SetRoleAssignmentsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *SetRoleAssignmentsNotFound) Code() int {
 }
 
 func (o *SetRoleAssignmentsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsNotFound %s", 404, payload)
 }
 
 func (o *SetRoleAssignmentsNotFound) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsNotFound %s", 404, payload)
 }
 
 func (o *SetRoleAssignmentsNotFound) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *SetRoleAssignmentsInternalServerError) Code() int {
 }
 
 func (o *SetRoleAssignmentsInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsInternalServerError %s", 500, payload)
 }
 
 func (o *SetRoleAssignmentsInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /access-control/roles/{roleUID}/assignments][%d] setRoleAssignmentsInternalServerError %s", 500, payload)
 }
 
 func (o *SetRoleAssignmentsInternalServerError) GetPayload() *models.ErrorResponseBody {

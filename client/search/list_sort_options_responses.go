@@ -6,6 +6,7 @@ package search
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *ListSortOptionsOK) Code() int {
 }
 
 func (o *ListSortOptionsOK) Error() string {
-	return fmt.Sprintf("[GET /search/sorting][%d] listSortOptionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /search/sorting][%d] listSortOptionsOk %s", 200, payload)
 }
 
 func (o *ListSortOptionsOK) String() string {
-	return fmt.Sprintf("[GET /search/sorting][%d] listSortOptionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /search/sorting][%d] listSortOptionsOk %s", 200, payload)
 }
 
 func (o *ListSortOptionsOK) GetPayload() *models.ListSortOptionsOKBody {
@@ -153,11 +156,13 @@ func (o *ListSortOptionsUnauthorized) Code() int {
 }
 
 func (o *ListSortOptionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /search/sorting][%d] listSortOptionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /search/sorting][%d] listSortOptionsUnauthorized %s", 401, payload)
 }
 
 func (o *ListSortOptionsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /search/sorting][%d] listSortOptionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /search/sorting][%d] listSortOptionsUnauthorized %s", 401, payload)
 }
 
 func (o *ListSortOptionsUnauthorized) GetPayload() *models.ErrorResponseBody {

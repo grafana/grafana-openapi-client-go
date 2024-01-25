@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *GetMuteTimingOK) Code() int {
 }
 
 func (o *GetMuteTimingOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk %s", 200, payload)
 }
 
 func (o *GetMuteTimingOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingOk %s", 200, payload)
 }
 
 func (o *GetMuteTimingOK) GetPayload() *models.MuteTimeInterval {
@@ -152,11 +155,11 @@ func (o *GetMuteTimingNotFound) Code() int {
 }
 
 func (o *GetMuteTimingNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingNotFound", 404)
 }
 
 func (o *GetMuteTimingNotFound) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}][%d] getMuteTimingNotFound", 404)
 }
 
 func (o *GetMuteTimingNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

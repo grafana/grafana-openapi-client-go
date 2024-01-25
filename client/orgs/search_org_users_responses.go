@@ -6,6 +6,7 @@ package orgs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SearchOrgUsersOK) Code() int {
 }
 
 func (o *SearchOrgUsersOK) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersOk %s", 200, payload)
 }
 
 func (o *SearchOrgUsersOK) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersOk %s", 200, payload)
 }
 
 func (o *SearchOrgUsersOK) GetPayload() *models.SearchOrgUsersQueryResult {
@@ -165,11 +168,13 @@ func (o *SearchOrgUsersUnauthorized) Code() int {
 }
 
 func (o *SearchOrgUsersUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersUnauthorized %s", 401, payload)
 }
 
 func (o *SearchOrgUsersUnauthorized) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersUnauthorized %s", 401, payload)
 }
 
 func (o *SearchOrgUsersUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *SearchOrgUsersForbidden) Code() int {
 }
 
 func (o *SearchOrgUsersForbidden) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersForbidden %s", 403, payload)
 }
 
 func (o *SearchOrgUsersForbidden) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersForbidden %s", 403, payload)
 }
 
 func (o *SearchOrgUsersForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *SearchOrgUsersInternalServerError) Code() int {
 }
 
 func (o *SearchOrgUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersInternalServerError %s", 500, payload)
 }
 
 func (o *SearchOrgUsersInternalServerError) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}/users/search][%d] searchOrgUsersInternalServerError %s", 500, payload)
 }
 
 func (o *SearchOrgUsersInternalServerError) GetPayload() *models.ErrorResponseBody {

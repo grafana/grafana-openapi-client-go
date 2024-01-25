@@ -6,6 +6,7 @@ package org_preferences
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateOrgPreferencesOK) Code() int {
 }
 
 func (o *UpdateOrgPreferencesOK) Error() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesOk %s", 200, payload)
 }
 
 func (o *UpdateOrgPreferencesOK) String() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesOk %s", 200, payload)
 }
 
 func (o *UpdateOrgPreferencesOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateOrgPreferencesBadRequest) Code() int {
 }
 
 func (o *UpdateOrgPreferencesBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesBadRequest %s", 400, payload)
 }
 
 func (o *UpdateOrgPreferencesBadRequest) String() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesBadRequest %s", 400, payload)
 }
 
 func (o *UpdateOrgPreferencesBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateOrgPreferencesUnauthorized) Code() int {
 }
 
 func (o *UpdateOrgPreferencesUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateOrgPreferencesUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateOrgPreferencesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateOrgPreferencesForbidden) Code() int {
 }
 
 func (o *UpdateOrgPreferencesForbidden) Error() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesForbidden %s", 403, payload)
 }
 
 func (o *UpdateOrgPreferencesForbidden) String() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesForbidden %s", 403, payload)
 }
 
 func (o *UpdateOrgPreferencesForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateOrgPreferencesInternalServerError) Code() int {
 }
 
 func (o *UpdateOrgPreferencesInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateOrgPreferencesInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /org/preferences][%d] updateOrgPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateOrgPreferencesInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package service_accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *RetrieveServiceAccountOK) Code() int {
 }
 
 func (o *RetrieveServiceAccountOK) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountOk %s", 200, payload)
 }
 
 func (o *RetrieveServiceAccountOK) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountOk %s", 200, payload)
 }
 
 func (o *RetrieveServiceAccountOK) GetPayload() *models.ServiceAccountDTO {
@@ -177,11 +180,13 @@ func (o *RetrieveServiceAccountBadRequest) Code() int {
 }
 
 func (o *RetrieveServiceAccountBadRequest) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountBadRequest %s", 400, payload)
 }
 
 func (o *RetrieveServiceAccountBadRequest) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountBadRequest %s", 400, payload)
 }
 
 func (o *RetrieveServiceAccountBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *RetrieveServiceAccountUnauthorized) Code() int {
 }
 
 func (o *RetrieveServiceAccountUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountUnauthorized %s", 401, payload)
 }
 
 func (o *RetrieveServiceAccountUnauthorized) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountUnauthorized %s", 401, payload)
 }
 
 func (o *RetrieveServiceAccountUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *RetrieveServiceAccountForbidden) Code() int {
 }
 
 func (o *RetrieveServiceAccountForbidden) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountForbidden %s", 403, payload)
 }
 
 func (o *RetrieveServiceAccountForbidden) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountForbidden %s", 403, payload)
 }
 
 func (o *RetrieveServiceAccountForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *RetrieveServiceAccountNotFound) Code() int {
 }
 
 func (o *RetrieveServiceAccountNotFound) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountNotFound %s", 404, payload)
 }
 
 func (o *RetrieveServiceAccountNotFound) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountNotFound %s", 404, payload)
 }
 
 func (o *RetrieveServiceAccountNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *RetrieveServiceAccountInternalServerError) Code() int {
 }
 
 func (o *RetrieveServiceAccountInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountInternalServerError %s", 500, payload)
 }
 
 func (o *RetrieveServiceAccountInternalServerError) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}][%d] retrieveServiceAccountInternalServerError %s", 500, payload)
 }
 
 func (o *RetrieveServiceAccountInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package admin_ldap
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetLDAPStatusOK) Code() int {
 }
 
 func (o *GetLDAPStatusOK) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusOk %s", 200, payload)
 }
 
 func (o *GetLDAPStatusOK) String() string {
-	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusOk %s", 200, payload)
 }
 
 func (o *GetLDAPStatusOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *GetLDAPStatusUnauthorized) Code() int {
 }
 
 func (o *GetLDAPStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusUnauthorized %s", 401, payload)
 }
 
 func (o *GetLDAPStatusUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusUnauthorized %s", 401, payload)
 }
 
 func (o *GetLDAPStatusUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *GetLDAPStatusForbidden) Code() int {
 }
 
 func (o *GetLDAPStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusForbidden %s", 403, payload)
 }
 
 func (o *GetLDAPStatusForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusForbidden %s", 403, payload)
 }
 
 func (o *GetLDAPStatusForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *GetLDAPStatusInternalServerError) Code() int {
 }
 
 func (o *GetLDAPStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusInternalServerError %s", 500, payload)
 }
 
 func (o *GetLDAPStatusInternalServerError) String() string {
-	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/status][%d] getLdapStatusInternalServerError %s", 500, payload)
 }
 
 func (o *GetLDAPStatusInternalServerError) GetPayload() *models.ErrorResponseBody {

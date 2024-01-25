@@ -6,6 +6,7 @@ package admin_provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *AdminProvisioningReloadDatasourcesOK) Code() int {
 }
 
 func (o *AdminProvisioningReloadDatasourcesOK) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesOk %s", 200, payload)
 }
 
 func (o *AdminProvisioningReloadDatasourcesOK) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesOk %s", 200, payload)
 }
 
 func (o *AdminProvisioningReloadDatasourcesOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *AdminProvisioningReloadDatasourcesUnauthorized) Code() int {
 }
 
 func (o *AdminProvisioningReloadDatasourcesUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesUnauthorized %s", 401, payload)
 }
 
 func (o *AdminProvisioningReloadDatasourcesUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesUnauthorized %s", 401, payload)
 }
 
 func (o *AdminProvisioningReloadDatasourcesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *AdminProvisioningReloadDatasourcesForbidden) Code() int {
 }
 
 func (o *AdminProvisioningReloadDatasourcesForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesForbidden %s", 403, payload)
 }
 
 func (o *AdminProvisioningReloadDatasourcesForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesForbidden %s", 403, payload)
 }
 
 func (o *AdminProvisioningReloadDatasourcesForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *AdminProvisioningReloadDatasourcesInternalServerError) Code() int {
 }
 
 func (o *AdminProvisioningReloadDatasourcesInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesInternalServerError %s", 500, payload)
 }
 
 func (o *AdminProvisioningReloadDatasourcesInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/datasources/reload][%d] adminProvisioningReloadDatasourcesInternalServerError %s", 500, payload)
 }
 
 func (o *AdminProvisioningReloadDatasourcesInternalServerError) GetPayload() *models.ErrorResponseBody {

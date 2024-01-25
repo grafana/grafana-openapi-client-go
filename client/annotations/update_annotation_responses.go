@@ -6,6 +6,7 @@ package annotations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateAnnotationOK) Code() int {
 }
 
 func (o *UpdateAnnotationOK) Error() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationOk %s", 200, payload)
 }
 
 func (o *UpdateAnnotationOK) String() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationOk %s", 200, payload)
 }
 
 func (o *UpdateAnnotationOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateAnnotationBadRequest) Code() int {
 }
 
 func (o *UpdateAnnotationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAnnotationBadRequest) String() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationBadRequest %s", 400, payload)
 }
 
 func (o *UpdateAnnotationBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateAnnotationUnauthorized) Code() int {
 }
 
 func (o *UpdateAnnotationUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAnnotationUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateAnnotationUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateAnnotationForbidden) Code() int {
 }
 
 func (o *UpdateAnnotationForbidden) Error() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationForbidden %s", 403, payload)
 }
 
 func (o *UpdateAnnotationForbidden) String() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationForbidden %s", 403, payload)
 }
 
 func (o *UpdateAnnotationForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateAnnotationInternalServerError) Code() int {
 }
 
 func (o *UpdateAnnotationInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateAnnotationInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /annotations/{annotation_id}][%d] updateAnnotationInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateAnnotationInternalServerError) GetPayload() *models.ErrorResponseBody {

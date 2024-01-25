@@ -6,6 +6,7 @@ package enterprise
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SearchResultOK) Code() int {
 }
 
 func (o *SearchResultOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultOk %s", 200, payload)
 }
 
 func (o *SearchResultOK) String() string {
-	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultOk %s", 200, payload)
 }
 
 func (o *SearchResultOK) GetPayload() *models.SearchResult {
@@ -165,11 +168,13 @@ func (o *SearchResultBadRequest) Code() int {
 }
 
 func (o *SearchResultBadRequest) Error() string {
-	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultBadRequest %s", 400, payload)
 }
 
 func (o *SearchResultBadRequest) String() string {
-	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultBadRequest %s", 400, payload)
 }
 
 func (o *SearchResultBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *SearchResultForbidden) Code() int {
 }
 
 func (o *SearchResultForbidden) Error() string {
-	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultForbidden %s", 403, payload)
 }
 
 func (o *SearchResultForbidden) String() string {
-	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultForbidden %s", 403, payload)
 }
 
 func (o *SearchResultForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *SearchResultInternalServerError) Code() int {
 }
 
 func (o *SearchResultInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultInternalServerError %s", 500, payload)
 }
 
 func (o *SearchResultInternalServerError) String() string {
-	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/assignments/search][%d] searchResultInternalServerError %s", 500, payload)
 }
 
 func (o *SearchResultInternalServerError) GetPayload() *models.ErrorResponseBody {

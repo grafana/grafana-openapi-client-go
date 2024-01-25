@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -108,11 +109,11 @@ func (o *DatasourceProxyDELETEByUIDcallsAccepted) Code() int {
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsAccepted) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsAccepted ", 202)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsAccepted", 202)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsAccepted) String() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsAccepted ", 202)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsAccepted", 202)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,11 +166,13 @@ func (o *DatasourceProxyDELETEByUIDcallsBadRequest) Code() int {
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsBadRequest %s", 400, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsBadRequest %s", 400, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +236,13 @@ func (o *DatasourceProxyDELETEByUIDcallsUnauthorized) Code() int {
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsUnauthorized %s", 401, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsUnauthorized %s", 401, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +306,13 @@ func (o *DatasourceProxyDELETEByUIDcallsForbidden) Code() int {
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsForbidden %s", 403, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsForbidden) String() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsForbidden %s", 403, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -369,11 +376,13 @@ func (o *DatasourceProxyDELETEByUIDcallsNotFound) Code() int {
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsNotFound %s", 404, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsNotFound) String() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsNotFound %s", 404, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsNotFound) GetPayload() *models.ErrorResponseBody {
@@ -437,11 +446,13 @@ func (o *DatasourceProxyDELETEByUIDcallsInternalServerError) Code() int {
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsInternalServerError %s", 500, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyDELETEByUiDcallsInternalServerError %s", 500, payload)
 }
 
 func (o *DatasourceProxyDELETEByUIDcallsInternalServerError) GetPayload() *models.ErrorResponseBody {

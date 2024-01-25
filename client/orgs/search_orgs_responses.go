@@ -6,6 +6,7 @@ package orgs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *SearchOrgsOK) Code() int {
 }
 
 func (o *SearchOrgsOK) Error() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsOk %s", 200, payload)
 }
 
 func (o *SearchOrgsOK) String() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsOk %s", 200, payload)
 }
 
 func (o *SearchOrgsOK) GetPayload() []*models.OrgDTO {
@@ -169,11 +172,13 @@ func (o *SearchOrgsUnauthorized) Code() int {
 }
 
 func (o *SearchOrgsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsUnauthorized %s", 401, payload)
 }
 
 func (o *SearchOrgsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsUnauthorized %s", 401, payload)
 }
 
 func (o *SearchOrgsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *SearchOrgsForbidden) Code() int {
 }
 
 func (o *SearchOrgsForbidden) Error() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsForbidden %s", 403, payload)
 }
 
 func (o *SearchOrgsForbidden) String() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsForbidden %s", 403, payload)
 }
 
 func (o *SearchOrgsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *SearchOrgsConflict) Code() int {
 }
 
 func (o *SearchOrgsConflict) Error() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsConflict %s", 409, payload)
 }
 
 func (o *SearchOrgsConflict) String() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsConflict %s", 409, payload)
 }
 
 func (o *SearchOrgsConflict) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *SearchOrgsInternalServerError) Code() int {
 }
 
 func (o *SearchOrgsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsInternalServerError %s", 500, payload)
 }
 
 func (o *SearchOrgsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /orgs][%d] searchOrgsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs][%d] searchOrgsInternalServerError %s", 500, payload)
 }
 
 func (o *SearchOrgsInternalServerError) GetPayload() *models.ErrorResponseBody {

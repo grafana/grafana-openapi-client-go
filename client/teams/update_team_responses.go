@@ -6,6 +6,7 @@ package teams
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *UpdateTeamOK) Code() int {
 }
 
 func (o *UpdateTeamOK) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamOk %s", 200, payload)
 }
 
 func (o *UpdateTeamOK) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamOk %s", 200, payload)
 }
 
 func (o *UpdateTeamOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *UpdateTeamUnauthorized) Code() int {
 }
 
 func (o *UpdateTeamUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateTeamUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateTeamUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *UpdateTeamForbidden) Code() int {
 }
 
 func (o *UpdateTeamForbidden) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamForbidden %s", 403, payload)
 }
 
 func (o *UpdateTeamForbidden) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamForbidden %s", 403, payload)
 }
 
 func (o *UpdateTeamForbidden) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *UpdateTeamNotFound) Code() int {
 }
 
 func (o *UpdateTeamNotFound) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamNotFound %s", 404, payload)
 }
 
 func (o *UpdateTeamNotFound) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamNotFound %s", 404, payload)
 }
 
 func (o *UpdateTeamNotFound) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *UpdateTeamConflict) Code() int {
 }
 
 func (o *UpdateTeamConflict) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamConflict %s", 409, payload)
 }
 
 func (o *UpdateTeamConflict) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamConflict %s", 409, payload)
 }
 
 func (o *UpdateTeamConflict) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *UpdateTeamInternalServerError) Code() int {
 }
 
 func (o *UpdateTeamInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateTeamInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}][%d] updateTeamInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateTeamInternalServerError) GetPayload() *models.ErrorResponseBody {

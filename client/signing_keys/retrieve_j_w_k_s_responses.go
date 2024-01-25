@@ -6,6 +6,7 @@ package signing_keys
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *RetrieveJWKSOK) Code() int {
 }
 
 func (o *RetrieveJWKSOK) Error() string {
-	return fmt.Sprintf("[GET /signing-keys/keys][%d] retrieveJWKSOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /signing-keys/keys][%d] retrieveJWKSOk %s", 200, payload)
 }
 
 func (o *RetrieveJWKSOK) String() string {
-	return fmt.Sprintf("[GET /signing-keys/keys][%d] retrieveJWKSOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /signing-keys/keys][%d] retrieveJWKSOk %s", 200, payload)
 }
 
 func (o *RetrieveJWKSOK) GetPayload() *models.RetrieveJWKSOKBody {
@@ -153,11 +156,13 @@ func (o *RetrieveJWKSInternalServerError) Code() int {
 }
 
 func (o *RetrieveJWKSInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /signing-keys/keys][%d] retrieveJWKSInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /signing-keys/keys][%d] retrieveJWKSInternalServerError %s", 500, payload)
 }
 
 func (o *RetrieveJWKSInternalServerError) String() string {
-	return fmt.Sprintf("[GET /signing-keys/keys][%d] retrieveJWKSInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /signing-keys/keys][%d] retrieveJWKSInternalServerError %s", 500, payload)
 }
 
 func (o *RetrieveJWKSInternalServerError) GetPayload() *models.ErrorResponseBody {

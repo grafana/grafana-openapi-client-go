@@ -6,6 +6,7 @@ package dashboard_public
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *CreatePublicDashboardOK) Code() int {
 }
 
 func (o *CreatePublicDashboardOK) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardOk %s", 200, payload)
 }
 
 func (o *CreatePublicDashboardOK) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardOk %s", 200, payload)
 }
 
 func (o *CreatePublicDashboardOK) GetPayload() *models.PublicDashboard {
@@ -171,11 +174,13 @@ func (o *CreatePublicDashboardBadRequest) Code() int {
 }
 
 func (o *CreatePublicDashboardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardBadRequest %s", 400, payload)
 }
 
 func (o *CreatePublicDashboardBadRequest) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardBadRequest %s", 400, payload)
 }
 
 func (o *CreatePublicDashboardBadRequest) GetPayload() *models.PublicError {
@@ -239,11 +244,13 @@ func (o *CreatePublicDashboardUnauthorized) Code() int {
 }
 
 func (o *CreatePublicDashboardUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *CreatePublicDashboardUnauthorized) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *CreatePublicDashboardUnauthorized) GetPayload() *models.PublicError {
@@ -307,11 +314,13 @@ func (o *CreatePublicDashboardForbidden) Code() int {
 }
 
 func (o *CreatePublicDashboardForbidden) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardForbidden %s", 403, payload)
 }
 
 func (o *CreatePublicDashboardForbidden) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardForbidden %s", 403, payload)
 }
 
 func (o *CreatePublicDashboardForbidden) GetPayload() *models.PublicError {
@@ -375,11 +384,13 @@ func (o *CreatePublicDashboardInternalServerError) Code() int {
 }
 
 func (o *CreatePublicDashboardInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *CreatePublicDashboardInternalServerError) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{dashboardUid}/public-dashboards][%d] createPublicDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *CreatePublicDashboardInternalServerError) GetPayload() *models.PublicError {

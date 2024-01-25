@@ -6,6 +6,7 @@ package annotations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *MassDeleteAnnotationsOK) Code() int {
 }
 
 func (o *MassDeleteAnnotationsOK) Error() string {
-	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsOk %s", 200, payload)
 }
 
 func (o *MassDeleteAnnotationsOK) String() string {
-	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsOk %s", 200, payload)
 }
 
 func (o *MassDeleteAnnotationsOK) GetPayload() *models.SuccessResponseBody {
@@ -159,11 +162,13 @@ func (o *MassDeleteAnnotationsUnauthorized) Code() int {
 }
 
 func (o *MassDeleteAnnotationsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsUnauthorized %s", 401, payload)
 }
 
 func (o *MassDeleteAnnotationsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsUnauthorized %s", 401, payload)
 }
 
 func (o *MassDeleteAnnotationsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *MassDeleteAnnotationsInternalServerError) Code() int {
 }
 
 func (o *MassDeleteAnnotationsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsInternalServerError %s", 500, payload)
 }
 
 func (o *MassDeleteAnnotationsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations/mass-delete][%d] massDeleteAnnotationsInternalServerError %s", 500, payload)
 }
 
 func (o *MassDeleteAnnotationsInternalServerError) GetPayload() *models.ErrorResponseBody {

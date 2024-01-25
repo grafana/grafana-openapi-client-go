@@ -6,6 +6,7 @@ package service_accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *DeleteTokenOK) Code() int {
 }
 
 func (o *DeleteTokenOK) Error() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenOk %s", 200, payload)
 }
 
 func (o *DeleteTokenOK) String() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenOk %s", 200, payload)
 }
 
 func (o *DeleteTokenOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *DeleteTokenBadRequest) Code() int {
 }
 
 func (o *DeleteTokenBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenBadRequest %s", 400, payload)
 }
 
 func (o *DeleteTokenBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenBadRequest %s", 400, payload)
 }
 
 func (o *DeleteTokenBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *DeleteTokenUnauthorized) Code() int {
 }
 
 func (o *DeleteTokenUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTokenUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTokenUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *DeleteTokenForbidden) Code() int {
 }
 
 func (o *DeleteTokenForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenForbidden %s", 403, payload)
 }
 
 func (o *DeleteTokenForbidden) String() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenForbidden %s", 403, payload)
 }
 
 func (o *DeleteTokenForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *DeleteTokenNotFound) Code() int {
 }
 
 func (o *DeleteTokenNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenNotFound %s", 404, payload)
 }
 
 func (o *DeleteTokenNotFound) String() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenNotFound %s", 404, payload)
 }
 
 func (o *DeleteTokenNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *DeleteTokenInternalServerError) Code() int {
 }
 
 func (o *DeleteTokenInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteTokenInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}/tokens/{tokenId}][%d] deleteTokenInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteTokenInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package legacy_alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetAlertByIDOK) Code() int {
 }
 
 func (o *GetAlertByIDOK) Error() string {
-	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdOk %s", 200, payload)
 }
 
 func (o *GetAlertByIDOK) String() string {
-	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdOk %s", 200, payload)
 }
 
 func (o *GetAlertByIDOK) GetPayload() *models.LegacyAlert {
@@ -159,11 +162,13 @@ func (o *GetAlertByIDUnauthorized) Code() int {
 }
 
 func (o *GetAlertByIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdUnauthorized %s", 401, payload)
 }
 
 func (o *GetAlertByIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdUnauthorized %s", 401, payload)
 }
 
 func (o *GetAlertByIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *GetAlertByIDInternalServerError) Code() int {
 }
 
 func (o *GetAlertByIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetAlertByIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/{alert_id}][%d] getAlertByIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetAlertByIDInternalServerError) GetPayload() *models.ErrorResponseBody {

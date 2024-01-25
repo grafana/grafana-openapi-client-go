@@ -6,6 +6,7 @@ package licensing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PostLicenseTokenOK) Code() int {
 }
 
 func (o *PostLicenseTokenOK) Error() string {
-	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenOk %s", 200, payload)
 }
 
 func (o *PostLicenseTokenOK) String() string {
-	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenOk %s", 200, payload)
 }
 
 func (o *PostLicenseTokenOK) GetPayload() *models.Token {
@@ -153,11 +156,13 @@ func (o *PostLicenseTokenBadRequest) Code() int {
 }
 
 func (o *PostLicenseTokenBadRequest) Error() string {
-	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenBadRequest %s", 400, payload)
 }
 
 func (o *PostLicenseTokenBadRequest) String() string {
-	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /licensing/token][%d] postLicenseTokenBadRequest %s", 400, payload)
 }
 
 func (o *PostLicenseTokenBadRequest) GetPayload() *models.ErrorResponseBody {

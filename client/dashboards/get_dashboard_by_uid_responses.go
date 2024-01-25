@@ -6,6 +6,7 @@ package dashboards
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetDashboardByUIDOK) Code() int {
 }
 
 func (o *GetDashboardByUIDOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidOk %s", 200, payload)
 }
 
 func (o *GetDashboardByUIDOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidOk %s", 200, payload)
 }
 
 func (o *GetDashboardByUIDOK) GetPayload() *models.DashboardFullWithMeta {
@@ -171,11 +174,13 @@ func (o *GetDashboardByUIDUnauthorized) Code() int {
 }
 
 func (o *GetDashboardByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetDashboardByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetDashboardByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetDashboardByUIDForbidden) Code() int {
 }
 
 func (o *GetDashboardByUIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidForbidden %s", 403, payload)
 }
 
 func (o *GetDashboardByUIDForbidden) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidForbidden %s", 403, payload)
 }
 
 func (o *GetDashboardByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetDashboardByUIDNotFound) Code() int {
 }
 
 func (o *GetDashboardByUIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidNotFound %s", 404, payload)
 }
 
 func (o *GetDashboardByUIDNotFound) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidNotFound %s", 404, payload)
 }
 
 func (o *GetDashboardByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetDashboardByUIDInternalServerError) Code() int {
 }
 
 func (o *GetDashboardByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package playlists
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetPlaylistItemsOK) Code() int {
 }
 
 func (o *GetPlaylistItemsOK) Error() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsOk %s", 200, payload)
 }
 
 func (o *GetPlaylistItemsOK) String() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsOk %s", 200, payload)
 }
 
 func (o *GetPlaylistItemsOK) GetPayload() []*models.PlaylistItem {
@@ -169,11 +172,13 @@ func (o *GetPlaylistItemsUnauthorized) Code() int {
 }
 
 func (o *GetPlaylistItemsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsUnauthorized %s", 401, payload)
 }
 
 func (o *GetPlaylistItemsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsUnauthorized %s", 401, payload)
 }
 
 func (o *GetPlaylistItemsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetPlaylistItemsForbidden) Code() int {
 }
 
 func (o *GetPlaylistItemsForbidden) Error() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsForbidden %s", 403, payload)
 }
 
 func (o *GetPlaylistItemsForbidden) String() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsForbidden %s", 403, payload)
 }
 
 func (o *GetPlaylistItemsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetPlaylistItemsNotFound) Code() int {
 }
 
 func (o *GetPlaylistItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsNotFound %s", 404, payload)
 }
 
 func (o *GetPlaylistItemsNotFound) String() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsNotFound %s", 404, payload)
 }
 
 func (o *GetPlaylistItemsNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetPlaylistItemsInternalServerError) Code() int {
 }
 
 func (o *GetPlaylistItemsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsInternalServerError %s", 500, payload)
 }
 
 func (o *GetPlaylistItemsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists/{uid}/items][%d] getPlaylistItemsInternalServerError %s", 500, payload)
 }
 
 func (o *GetPlaylistItemsInternalServerError) GetPayload() *models.ErrorResponseBody {

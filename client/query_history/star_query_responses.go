@@ -6,6 +6,7 @@ package query_history
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *StarQueryOK) Code() int {
 }
 
 func (o *StarQueryOK) Error() string {
-	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryOk %s", 200, payload)
 }
 
 func (o *StarQueryOK) String() string {
-	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryOk %s", 200, payload)
 }
 
 func (o *StarQueryOK) GetPayload() *models.QueryHistoryResponse {
@@ -159,11 +162,13 @@ func (o *StarQueryUnauthorized) Code() int {
 }
 
 func (o *StarQueryUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryUnauthorized %s", 401, payload)
 }
 
 func (o *StarQueryUnauthorized) String() string {
-	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryUnauthorized %s", 401, payload)
 }
 
 func (o *StarQueryUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *StarQueryInternalServerError) Code() int {
 }
 
 func (o *StarQueryInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryInternalServerError %s", 500, payload)
 }
 
 func (o *StarQueryInternalServerError) String() string {
-	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history/star/{query_history_uid}][%d] starQueryInternalServerError %s", 500, payload)
 }
 
 func (o *StarQueryInternalServerError) GetPayload() *models.ErrorResponseBody {

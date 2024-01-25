@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -84,11 +85,11 @@ func (o *DeleteMuteTimingNoContent) Code() int {
 }
 
 func (o *DeleteMuteTimingNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingNoContent", 204)
 }
 
 func (o *DeleteMuteTimingNoContent) String() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingNoContent", 204)
 }
 
 func (o *DeleteMuteTimingNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -141,11 +142,13 @@ func (o *DeleteMuteTimingConflict) Code() int {
 }
 
 func (o *DeleteMuteTimingConflict) Error() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingConflict %s", 409, payload)
 }
 
 func (o *DeleteMuteTimingConflict) String() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingConflict %s", 409, payload)
 }
 
 func (o *DeleteMuteTimingConflict) GetPayload() *models.GenericPublicError {

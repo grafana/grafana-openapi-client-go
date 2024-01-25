@@ -6,6 +6,7 @@ package dashboard_public
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdatePublicDashboardOK) Code() int {
 }
 
 func (o *UpdatePublicDashboardOK) Error() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardOk %s", 200, payload)
 }
 
 func (o *UpdatePublicDashboardOK) String() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardOk %s", 200, payload)
 }
 
 func (o *UpdatePublicDashboardOK) GetPayload() *models.PublicDashboard {
@@ -171,11 +174,13 @@ func (o *UpdatePublicDashboardBadRequest) Code() int {
 }
 
 func (o *UpdatePublicDashboardBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardBadRequest %s", 400, payload)
 }
 
 func (o *UpdatePublicDashboardBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardBadRequest %s", 400, payload)
 }
 
 func (o *UpdatePublicDashboardBadRequest) GetPayload() *models.PublicError {
@@ -239,11 +244,13 @@ func (o *UpdatePublicDashboardUnauthorized) Code() int {
 }
 
 func (o *UpdatePublicDashboardUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *UpdatePublicDashboardUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *UpdatePublicDashboardUnauthorized) GetPayload() *models.PublicError {
@@ -307,11 +314,13 @@ func (o *UpdatePublicDashboardForbidden) Code() int {
 }
 
 func (o *UpdatePublicDashboardForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardForbidden %s", 403, payload)
 }
 
 func (o *UpdatePublicDashboardForbidden) String() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardForbidden %s", 403, payload)
 }
 
 func (o *UpdatePublicDashboardForbidden) GetPayload() *models.PublicError {
@@ -375,11 +384,13 @@ func (o *UpdatePublicDashboardInternalServerError) Code() int {
 }
 
 func (o *UpdatePublicDashboardInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *UpdatePublicDashboardInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboards/uid/{dashboardUid}/public-dashboards/{uid}][%d] updatePublicDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *UpdatePublicDashboardInternalServerError) GetPayload() *models.PublicError {

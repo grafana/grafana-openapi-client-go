@@ -6,6 +6,7 @@ package licensing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -90,11 +91,11 @@ func (o *PostRenewLicenseTokenOK) Code() int {
 }
 
 func (o *PostRenewLicenseTokenOK) Error() string {
-	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenOk ", 200)
+	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenOk", 200)
 }
 
 func (o *PostRenewLicenseTokenOK) String() string {
-	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenOk ", 200)
+	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenOk", 200)
 }
 
 func (o *PostRenewLicenseTokenOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -147,11 +148,13 @@ func (o *PostRenewLicenseTokenUnauthorized) Code() int {
 }
 
 func (o *PostRenewLicenseTokenUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenUnauthorized %s", 401, payload)
 }
 
 func (o *PostRenewLicenseTokenUnauthorized) String() string {
-	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenUnauthorized %s", 401, payload)
 }
 
 func (o *PostRenewLicenseTokenUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -215,11 +218,13 @@ func (o *PostRenewLicenseTokenNotFound) Code() int {
 }
 
 func (o *PostRenewLicenseTokenNotFound) Error() string {
-	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenNotFound %s", 404, payload)
 }
 
 func (o *PostRenewLicenseTokenNotFound) String() string {
-	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /licensing/token/renew][%d] postRenewLicenseTokenNotFound %s", 404, payload)
 }
 
 func (o *PostRenewLicenseTokenNotFound) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package service_accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *CreateTokenOK) Code() int {
 }
 
 func (o *CreateTokenOK) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenOk %s", 200, payload)
 }
 
 func (o *CreateTokenOK) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenOk %s", 200, payload)
 }
 
 func (o *CreateTokenOK) GetPayload() *models.NewAPIKeyResult {
@@ -183,11 +186,13 @@ func (o *CreateTokenBadRequest) Code() int {
 }
 
 func (o *CreateTokenBadRequest) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenBadRequest %s", 400, payload)
 }
 
 func (o *CreateTokenBadRequest) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenBadRequest %s", 400, payload)
 }
 
 func (o *CreateTokenBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -251,11 +256,13 @@ func (o *CreateTokenUnauthorized) Code() int {
 }
 
 func (o *CreateTokenUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenUnauthorized %s", 401, payload)
 }
 
 func (o *CreateTokenUnauthorized) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenUnauthorized %s", 401, payload)
 }
 
 func (o *CreateTokenUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -319,11 +326,13 @@ func (o *CreateTokenForbidden) Code() int {
 }
 
 func (o *CreateTokenForbidden) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenForbidden %s", 403, payload)
 }
 
 func (o *CreateTokenForbidden) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenForbidden %s", 403, payload)
 }
 
 func (o *CreateTokenForbidden) GetPayload() *models.ErrorResponseBody {
@@ -387,11 +396,13 @@ func (o *CreateTokenNotFound) Code() int {
 }
 
 func (o *CreateTokenNotFound) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenNotFound %s", 404, payload)
 }
 
 func (o *CreateTokenNotFound) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenNotFound %s", 404, payload)
 }
 
 func (o *CreateTokenNotFound) GetPayload() *models.ErrorResponseBody {
@@ -455,11 +466,13 @@ func (o *CreateTokenConflict) Code() int {
 }
 
 func (o *CreateTokenConflict) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenConflict %s", 409, payload)
 }
 
 func (o *CreateTokenConflict) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenConflict %s", 409, payload)
 }
 
 func (o *CreateTokenConflict) GetPayload() *models.ErrorResponseBody {
@@ -523,11 +536,13 @@ func (o *CreateTokenInternalServerError) Code() int {
 }
 
 func (o *CreateTokenInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenInternalServerError %s", 500, payload)
 }
 
 func (o *CreateTokenInternalServerError) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts/{serviceAccountId}/tokens][%d] createTokenInternalServerError %s", 500, payload)
 }
 
 func (o *CreateTokenInternalServerError) GetPayload() *models.ErrorResponseBody {

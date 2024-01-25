@@ -6,6 +6,7 @@ package legacy_alerts_notification_channels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *NotificationChannelTestOK) Code() int {
 }
 
 func (o *NotificationChannelTestOK) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestOk %s", 200, payload)
 }
 
 func (o *NotificationChannelTestOK) String() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestOk %s", 200, payload)
 }
 
 func (o *NotificationChannelTestOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *NotificationChannelTestBadRequest) Code() int {
 }
 
 func (o *NotificationChannelTestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestBadRequest %s", 400, payload)
 }
 
 func (o *NotificationChannelTestBadRequest) String() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestBadRequest %s", 400, payload)
 }
 
 func (o *NotificationChannelTestBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *NotificationChannelTestUnauthorized) Code() int {
 }
 
 func (o *NotificationChannelTestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestUnauthorized %s", 401, payload)
 }
 
 func (o *NotificationChannelTestUnauthorized) String() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestUnauthorized %s", 401, payload)
 }
 
 func (o *NotificationChannelTestUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *NotificationChannelTestForbidden) Code() int {
 }
 
 func (o *NotificationChannelTestForbidden) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestForbidden %s", 403, payload)
 }
 
 func (o *NotificationChannelTestForbidden) String() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestForbidden %s", 403, payload)
 }
 
 func (o *NotificationChannelTestForbidden) GetPayload() *models.ErrorResponseBody {
@@ -380,11 +389,11 @@ func (o *NotificationChannelTestPreconditionFailed) Code() int {
 }
 
 func (o *NotificationChannelTestPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestPreconditionFailed ", 412)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestPreconditionFailed", 412)
 }
 
 func (o *NotificationChannelTestPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestPreconditionFailed ", 412)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestPreconditionFailed", 412)
 }
 
 func (o *NotificationChannelTestPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -437,11 +446,13 @@ func (o *NotificationChannelTestInternalServerError) Code() int {
 }
 
 func (o *NotificationChannelTestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestInternalServerError %s", 500, payload)
 }
 
 func (o *NotificationChannelTestInternalServerError) String() string {
-	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert-notifications/test][%d] notificationChannelTestInternalServerError %s", 500, payload)
 }
 
 func (o *NotificationChannelTestInternalServerError) GetPayload() *models.ErrorResponseBody {

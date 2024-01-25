@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *GetAlertRuleGroupOK) Code() int {
 }
 
 func (o *GetAlertRuleGroupOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupOk %s", 200, payload)
 }
 
 func (o *GetAlertRuleGroupOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupOk %s", 200, payload)
 }
 
 func (o *GetAlertRuleGroupOK) GetPayload() *models.AlertRuleGroup {
@@ -152,11 +155,11 @@ func (o *GetAlertRuleGroupNotFound) Code() int {
 }
 
 func (o *GetAlertRuleGroupNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupNotFound", 404)
 }
 
 func (o *GetAlertRuleGroupNotFound) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/folder/{FolderUID}/rule-groups/{Group}][%d] getAlertRuleGroupNotFound", 404)
 }
 
 func (o *GetAlertRuleGroupNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

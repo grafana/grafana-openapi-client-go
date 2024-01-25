@@ -6,6 +6,7 @@ package service_accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *CreateServiceAccountCreated) Code() int {
 }
 
 func (o *CreateServiceAccountCreated) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountCreated %s", 201, payload)
 }
 
 func (o *CreateServiceAccountCreated) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountCreated %s", 201, payload)
 }
 
 func (o *CreateServiceAccountCreated) GetPayload() *models.ServiceAccountDTO {
@@ -171,11 +174,13 @@ func (o *CreateServiceAccountBadRequest) Code() int {
 }
 
 func (o *CreateServiceAccountBadRequest) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountBadRequest %s", 400, payload)
 }
 
 func (o *CreateServiceAccountBadRequest) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountBadRequest %s", 400, payload)
 }
 
 func (o *CreateServiceAccountBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *CreateServiceAccountUnauthorized) Code() int {
 }
 
 func (o *CreateServiceAccountUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountUnauthorized %s", 401, payload)
 }
 
 func (o *CreateServiceAccountUnauthorized) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountUnauthorized %s", 401, payload)
 }
 
 func (o *CreateServiceAccountUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *CreateServiceAccountForbidden) Code() int {
 }
 
 func (o *CreateServiceAccountForbidden) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountForbidden %s", 403, payload)
 }
 
 func (o *CreateServiceAccountForbidden) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountForbidden %s", 403, payload)
 }
 
 func (o *CreateServiceAccountForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *CreateServiceAccountInternalServerError) Code() int {
 }
 
 func (o *CreateServiceAccountInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountInternalServerError %s", 500, payload)
 }
 
 func (o *CreateServiceAccountInternalServerError) String() string {
-	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /serviceaccounts][%d] createServiceAccountInternalServerError %s", 500, payload)
 }
 
 func (o *CreateServiceAccountInternalServerError) GetPayload() *models.ErrorResponseBody {

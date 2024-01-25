@@ -6,6 +6,7 @@ package sso_settings
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *RemoveProviderSettingsNoContent) Code() int {
 }
 
 func (o *RemoveProviderSettingsNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNoContent  %+v", 204, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNoContent %s", 204, payload)
 }
 
 func (o *RemoveProviderSettingsNoContent) String() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNoContent  %+v", 204, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNoContent %s", 204, payload)
 }
 
 func (o *RemoveProviderSettingsNoContent) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *RemoveProviderSettingsBadRequest) Code() int {
 }
 
 func (o *RemoveProviderSettingsBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsBadRequest %s", 400, payload)
 }
 
 func (o *RemoveProviderSettingsBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsBadRequest %s", 400, payload)
 }
 
 func (o *RemoveProviderSettingsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *RemoveProviderSettingsUnauthorized) Code() int {
 }
 
 func (o *RemoveProviderSettingsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *RemoveProviderSettingsUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *RemoveProviderSettingsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *RemoveProviderSettingsForbidden) Code() int {
 }
 
 func (o *RemoveProviderSettingsForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsForbidden %s", 403, payload)
 }
 
 func (o *RemoveProviderSettingsForbidden) String() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsForbidden %s", 403, payload)
 }
 
 func (o *RemoveProviderSettingsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *RemoveProviderSettingsNotFound) Code() int {
 }
 
 func (o *RemoveProviderSettingsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNotFound %s", 404, payload)
 }
 
 func (o *RemoveProviderSettingsNotFound) String() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsNotFound %s", 404, payload)
 }
 
 func (o *RemoveProviderSettingsNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *RemoveProviderSettingsInternalServerError) Code() int {
 }
 
 func (o *RemoveProviderSettingsInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveProviderSettingsInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/sso-settings/{key}][%d] removeProviderSettingsInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveProviderSettingsInternalServerError) GetPayload() *models.ErrorResponseBody {

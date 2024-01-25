@@ -6,6 +6,7 @@ package saml
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -90,11 +91,11 @@ func (o *GetSAMLLogoutFound) Code() int {
 }
 
 func (o *GetSAMLLogoutFound) Error() string {
-	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutFound ", 302)
+	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutFound", 302)
 }
 
 func (o *GetSAMLLogoutFound) String() string {
-	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutFound ", 302)
+	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutFound", 302)
 }
 
 func (o *GetSAMLLogoutFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -147,11 +148,13 @@ func (o *GetSAMLLogoutNotFound) Code() int {
 }
 
 func (o *GetSAMLLogoutNotFound) Error() string {
-	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutNotFound %s", 404, payload)
 }
 
 func (o *GetSAMLLogoutNotFound) String() string {
-	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutNotFound %s", 404, payload)
 }
 
 func (o *GetSAMLLogoutNotFound) GetPayload() *models.ErrorResponseBody {
@@ -215,11 +218,13 @@ func (o *GetSAMLLogoutInternalServerError) Code() int {
 }
 
 func (o *GetSAMLLogoutInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutInternalServerError %s", 500, payload)
 }
 
 func (o *GetSAMLLogoutInternalServerError) String() string {
-	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /logout/saml][%d] getSAMLLogoutInternalServerError %s", 500, payload)
 }
 
 func (o *GetSAMLLogoutInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetUserByLoginOrEmailOK) Code() int {
 }
 
 func (o *GetUserByLoginOrEmailOK) Error() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailOk %s", 200, payload)
 }
 
 func (o *GetUserByLoginOrEmailOK) String() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailOk %s", 200, payload)
 }
 
 func (o *GetUserByLoginOrEmailOK) GetPayload() *models.UserProfileDTO {
@@ -171,11 +174,13 @@ func (o *GetUserByLoginOrEmailUnauthorized) Code() int {
 }
 
 func (o *GetUserByLoginOrEmailUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserByLoginOrEmailUnauthorized) String() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserByLoginOrEmailUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetUserByLoginOrEmailForbidden) Code() int {
 }
 
 func (o *GetUserByLoginOrEmailForbidden) Error() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailForbidden %s", 403, payload)
 }
 
 func (o *GetUserByLoginOrEmailForbidden) String() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailForbidden %s", 403, payload)
 }
 
 func (o *GetUserByLoginOrEmailForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetUserByLoginOrEmailNotFound) Code() int {
 }
 
 func (o *GetUserByLoginOrEmailNotFound) Error() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailNotFound %s", 404, payload)
 }
 
 func (o *GetUserByLoginOrEmailNotFound) String() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailNotFound %s", 404, payload)
 }
 
 func (o *GetUserByLoginOrEmailNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetUserByLoginOrEmailInternalServerError) Code() int {
 }
 
 func (o *GetUserByLoginOrEmailInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserByLoginOrEmailInternalServerError) String() string {
-	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/lookup][%d] getUserByLoginOrEmailInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserByLoginOrEmailInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *StarDashboardOK) Code() int {
 }
 
 func (o *StarDashboardOK) Error() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardOk %s", 200, payload)
 }
 
 func (o *StarDashboardOK) String() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardOk %s", 200, payload)
 }
 
 func (o *StarDashboardOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *StarDashboardBadRequest) Code() int {
 }
 
 func (o *StarDashboardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardBadRequest %s", 400, payload)
 }
 
 func (o *StarDashboardBadRequest) String() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardBadRequest %s", 400, payload)
 }
 
 func (o *StarDashboardBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *StarDashboardUnauthorized) Code() int {
 }
 
 func (o *StarDashboardUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *StarDashboardUnauthorized) String() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *StarDashboardUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *StarDashboardForbidden) Code() int {
 }
 
 func (o *StarDashboardForbidden) Error() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardForbidden %s", 403, payload)
 }
 
 func (o *StarDashboardForbidden) String() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardForbidden %s", 403, payload)
 }
 
 func (o *StarDashboardForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *StarDashboardInternalServerError) Code() int {
 }
 
 func (o *StarDashboardInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *StarDashboardInternalServerError) String() string {
-	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/stars/dashboard/{dashboard_id}][%d] starDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *StarDashboardInternalServerError) GetPayload() *models.ErrorResponseBody {

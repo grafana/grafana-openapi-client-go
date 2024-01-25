@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *ClearHelpFlagsOK) Code() int {
 }
 
 func (o *ClearHelpFlagsOK) Error() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsOk %s", 200, payload)
 }
 
 func (o *ClearHelpFlagsOK) String() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsOk %s", 200, payload)
 }
 
 func (o *ClearHelpFlagsOK) GetPayload() *models.ClearHelpFlagsOKBody {
@@ -165,11 +168,13 @@ func (o *ClearHelpFlagsUnauthorized) Code() int {
 }
 
 func (o *ClearHelpFlagsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsUnauthorized %s", 401, payload)
 }
 
 func (o *ClearHelpFlagsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsUnauthorized %s", 401, payload)
 }
 
 func (o *ClearHelpFlagsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *ClearHelpFlagsForbidden) Code() int {
 }
 
 func (o *ClearHelpFlagsForbidden) Error() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsForbidden %s", 403, payload)
 }
 
 func (o *ClearHelpFlagsForbidden) String() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsForbidden %s", 403, payload)
 }
 
 func (o *ClearHelpFlagsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *ClearHelpFlagsInternalServerError) Code() int {
 }
 
 func (o *ClearHelpFlagsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsInternalServerError %s", 500, payload)
 }
 
 func (o *ClearHelpFlagsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/helpflags/clear][%d] clearHelpFlagsInternalServerError %s", 500, payload)
 }
 
 func (o *ClearHelpFlagsInternalServerError) GetPayload() *models.ErrorResponseBody {

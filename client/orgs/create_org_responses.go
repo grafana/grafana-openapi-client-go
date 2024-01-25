@@ -6,6 +6,7 @@ package orgs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *CreateOrgOK) Code() int {
 }
 
 func (o *CreateOrgOK) Error() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgOk %s", 200, payload)
 }
 
 func (o *CreateOrgOK) String() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgOk %s", 200, payload)
 }
 
 func (o *CreateOrgOK) GetPayload() *models.CreateOrgOKBody {
@@ -171,11 +174,13 @@ func (o *CreateOrgUnauthorized) Code() int {
 }
 
 func (o *CreateOrgUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgUnauthorized %s", 401, payload)
 }
 
 func (o *CreateOrgUnauthorized) String() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgUnauthorized %s", 401, payload)
 }
 
 func (o *CreateOrgUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *CreateOrgForbidden) Code() int {
 }
 
 func (o *CreateOrgForbidden) Error() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgForbidden %s", 403, payload)
 }
 
 func (o *CreateOrgForbidden) String() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgForbidden %s", 403, payload)
 }
 
 func (o *CreateOrgForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *CreateOrgConflict) Code() int {
 }
 
 func (o *CreateOrgConflict) Error() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgConflict %s", 409, payload)
 }
 
 func (o *CreateOrgConflict) String() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgConflict %s", 409, payload)
 }
 
 func (o *CreateOrgConflict) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *CreateOrgInternalServerError) Code() int {
 }
 
 func (o *CreateOrgInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgInternalServerError %s", 500, payload)
 }
 
 func (o *CreateOrgInternalServerError) String() string {
-	return fmt.Sprintf("[POST /orgs][%d] createOrgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs][%d] createOrgInternalServerError %s", 500, payload)
 }
 
 func (o *CreateOrgInternalServerError) GetPayload() *models.ErrorResponseBody {

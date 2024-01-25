@@ -6,6 +6,7 @@ package library_elements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *DeleteLibraryElementByUIDOK) Code() int {
 }
 
 func (o *DeleteLibraryElementByUIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidOk %s", 200, payload)
 }
 
 func (o *DeleteLibraryElementByUIDOK) String() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidOk %s", 200, payload)
 }
 
 func (o *DeleteLibraryElementByUIDOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *DeleteLibraryElementByUIDBadRequest) Code() int {
 }
 
 func (o *DeleteLibraryElementByUIDBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidBadRequest %s", 400, payload)
 }
 
 func (o *DeleteLibraryElementByUIDBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidBadRequest %s", 400, payload)
 }
 
 func (o *DeleteLibraryElementByUIDBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *DeleteLibraryElementByUIDUnauthorized) Code() int {
 }
 
 func (o *DeleteLibraryElementByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteLibraryElementByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteLibraryElementByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *DeleteLibraryElementByUIDForbidden) Code() int {
 }
 
 func (o *DeleteLibraryElementByUIDForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidForbidden %s", 403, payload)
 }
 
 func (o *DeleteLibraryElementByUIDForbidden) String() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidForbidden %s", 403, payload)
 }
 
 func (o *DeleteLibraryElementByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *DeleteLibraryElementByUIDNotFound) Code() int {
 }
 
 func (o *DeleteLibraryElementByUIDNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidNotFound %s", 404, payload)
 }
 
 func (o *DeleteLibraryElementByUIDNotFound) String() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidNotFound %s", 404, payload)
 }
 
 func (o *DeleteLibraryElementByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *DeleteLibraryElementByUIDInternalServerError) Code() int {
 }
 
 func (o *DeleteLibraryElementByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteLibraryElementByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /library-elements/{library_element_uid}][%d] deleteLibraryElementByUidInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteLibraryElementByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

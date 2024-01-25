@@ -6,6 +6,7 @@ package playlists
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeletePlaylistOK) Code() int {
 }
 
 func (o *DeletePlaylistOK) Error() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistOk %s", 200, payload)
 }
 
 func (o *DeletePlaylistOK) String() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistOk %s", 200, payload)
 }
 
 func (o *DeletePlaylistOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *DeletePlaylistUnauthorized) Code() int {
 }
 
 func (o *DeletePlaylistUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistUnauthorized %s", 401, payload)
 }
 
 func (o *DeletePlaylistUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistUnauthorized %s", 401, payload)
 }
 
 func (o *DeletePlaylistUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeletePlaylistForbidden) Code() int {
 }
 
 func (o *DeletePlaylistForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistForbidden %s", 403, payload)
 }
 
 func (o *DeletePlaylistForbidden) String() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistForbidden %s", 403, payload)
 }
 
 func (o *DeletePlaylistForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeletePlaylistNotFound) Code() int {
 }
 
 func (o *DeletePlaylistNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistNotFound %s", 404, payload)
 }
 
 func (o *DeletePlaylistNotFound) String() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistNotFound %s", 404, payload)
 }
 
 func (o *DeletePlaylistNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeletePlaylistInternalServerError) Code() int {
 }
 
 func (o *DeletePlaylistInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistInternalServerError %s", 500, payload)
 }
 
 func (o *DeletePlaylistInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /playlists/{uid}][%d] deletePlaylistInternalServerError %s", 500, payload)
 }
 
 func (o *DeletePlaylistInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package legacy_alerts_notification_channels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteAlertNotificationChannelByUIDOK) Code() int {
 }
 
 func (o *DeleteAlertNotificationChannelByUIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidOk %s", 200, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDOK) String() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidOk %s", 200, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDOK) GetPayload() *models.DeleteAlertNotificationChannelByUIDOKBody {
@@ -171,11 +174,13 @@ func (o *DeleteAlertNotificationChannelByUIDUnauthorized) Code() int {
 }
 
 func (o *DeleteAlertNotificationChannelByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteAlertNotificationChannelByUIDForbidden) Code() int {
 }
 
 func (o *DeleteAlertNotificationChannelByUIDForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidForbidden %s", 403, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDForbidden) String() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidForbidden %s", 403, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteAlertNotificationChannelByUIDNotFound) Code() int {
 }
 
 func (o *DeleteAlertNotificationChannelByUIDNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidNotFound %s", 404, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDNotFound) String() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidNotFound %s", 404, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteAlertNotificationChannelByUIDInternalServerError) Code() int {
 }
 
 func (o *DeleteAlertNotificationChannelByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /alert-notifications/uid/{notification_channel_uid}][%d] deleteAlertNotificationChannelByUidInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteAlertNotificationChannelByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

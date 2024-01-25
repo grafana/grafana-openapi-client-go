@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *SaveReportSettingsOK) Code() int {
 }
 
 func (o *SaveReportSettingsOK) Error() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsOk %s", 200, payload)
 }
 
 func (o *SaveReportSettingsOK) String() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsOk %s", 200, payload)
 }
 
 func (o *SaveReportSettingsOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *SaveReportSettingsBadRequest) Code() int {
 }
 
 func (o *SaveReportSettingsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsBadRequest %s", 400, payload)
 }
 
 func (o *SaveReportSettingsBadRequest) String() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsBadRequest %s", 400, payload)
 }
 
 func (o *SaveReportSettingsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *SaveReportSettingsUnauthorized) Code() int {
 }
 
 func (o *SaveReportSettingsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *SaveReportSettingsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *SaveReportSettingsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *SaveReportSettingsForbidden) Code() int {
 }
 
 func (o *SaveReportSettingsForbidden) Error() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsForbidden %s", 403, payload)
 }
 
 func (o *SaveReportSettingsForbidden) String() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsForbidden %s", 403, payload)
 }
 
 func (o *SaveReportSettingsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *SaveReportSettingsInternalServerError) Code() int {
 }
 
 func (o *SaveReportSettingsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsInternalServerError %s", 500, payload)
 }
 
 func (o *SaveReportSettingsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports/settings][%d] saveReportSettingsInternalServerError %s", 500, payload)
 }
 
 func (o *SaveReportSettingsInternalServerError) GetPayload() *models.ErrorResponseBody {

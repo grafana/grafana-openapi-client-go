@@ -6,6 +6,7 @@ package folders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *DeleteFolderOK) Code() int {
 }
 
 func (o *DeleteFolderOK) Error() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderOk %s", 200, payload)
 }
 
 func (o *DeleteFolderOK) String() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderOk %s", 200, payload)
 }
 
 func (o *DeleteFolderOK) GetPayload() *models.DeleteFolderOKBody {
@@ -177,11 +180,13 @@ func (o *DeleteFolderBadRequest) Code() int {
 }
 
 func (o *DeleteFolderBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderBadRequest %s", 400, payload)
 }
 
 func (o *DeleteFolderBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderBadRequest %s", 400, payload)
 }
 
 func (o *DeleteFolderBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *DeleteFolderUnauthorized) Code() int {
 }
 
 func (o *DeleteFolderUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteFolderUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteFolderUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *DeleteFolderForbidden) Code() int {
 }
 
 func (o *DeleteFolderForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderForbidden %s", 403, payload)
 }
 
 func (o *DeleteFolderForbidden) String() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderForbidden %s", 403, payload)
 }
 
 func (o *DeleteFolderForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *DeleteFolderNotFound) Code() int {
 }
 
 func (o *DeleteFolderNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderNotFound %s", 404, payload)
 }
 
 func (o *DeleteFolderNotFound) String() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderNotFound %s", 404, payload)
 }
 
 func (o *DeleteFolderNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *DeleteFolderInternalServerError) Code() int {
 }
 
 func (o *DeleteFolderInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteFolderInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /folders/{folder_uid}][%d] deleteFolderInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteFolderInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package saml
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -96,11 +97,11 @@ func (o *GetSLOFound) Code() int {
 }
 
 func (o *GetSLOFound) Error() string {
-	return fmt.Sprintf("[GET /saml/slo][%d] getSLOFound ", 302)
+	return fmt.Sprintf("[GET /saml/slo][%d] getSLOFound", 302)
 }
 
 func (o *GetSLOFound) String() string {
-	return fmt.Sprintf("[GET /saml/slo][%d] getSLOFound ", 302)
+	return fmt.Sprintf("[GET /saml/slo][%d] getSLOFound", 302)
 }
 
 func (o *GetSLOFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -153,11 +154,13 @@ func (o *GetSLOBadRequest) Code() int {
 }
 
 func (o *GetSLOBadRequest) Error() string {
-	return fmt.Sprintf("[GET /saml/slo][%d] getSLOBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /saml/slo][%d] getSLOBadRequest %s", 400, payload)
 }
 
 func (o *GetSLOBadRequest) String() string {
-	return fmt.Sprintf("[GET /saml/slo][%d] getSLOBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /saml/slo][%d] getSLOBadRequest %s", 400, payload)
 }
 
 func (o *GetSLOBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -221,11 +224,13 @@ func (o *GetSLOForbidden) Code() int {
 }
 
 func (o *GetSLOForbidden) Error() string {
-	return fmt.Sprintf("[GET /saml/slo][%d] getSLOForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /saml/slo][%d] getSLOForbidden %s", 403, payload)
 }
 
 func (o *GetSLOForbidden) String() string {
-	return fmt.Sprintf("[GET /saml/slo][%d] getSLOForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /saml/slo][%d] getSLOForbidden %s", 403, payload)
 }
 
 func (o *GetSLOForbidden) GetPayload() *models.ErrorResponseBody {
@@ -289,11 +294,13 @@ func (o *GetSLOInternalServerError) Code() int {
 }
 
 func (o *GetSLOInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /saml/slo][%d] getSLOInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /saml/slo][%d] getSLOInternalServerError %s", 500, payload)
 }
 
 func (o *GetSLOInternalServerError) String() string {
-	return fmt.Sprintf("[GET /saml/slo][%d] getSLOInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /saml/slo][%d] getSLOInternalServerError %s", 500, payload)
 }
 
 func (o *GetSLOInternalServerError) GetPayload() *models.ErrorResponseBody {

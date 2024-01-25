@@ -6,6 +6,7 @@ package org
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RemoveOrgUserForCurrentOrgOK) Code() int {
 }
 
 func (o *RemoveOrgUserForCurrentOrgOK) Error() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgOk %s", 200, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgOK) String() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgOk %s", 200, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *RemoveOrgUserForCurrentOrgBadRequest) Code() int {
 }
 
 func (o *RemoveOrgUserForCurrentOrgBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgBadRequest %s", 400, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgBadRequest %s", 400, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *RemoveOrgUserForCurrentOrgUnauthorized) Code() int {
 }
 
 func (o *RemoveOrgUserForCurrentOrgUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgUnauthorized %s", 401, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgUnauthorized %s", 401, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *RemoveOrgUserForCurrentOrgForbidden) Code() int {
 }
 
 func (o *RemoveOrgUserForCurrentOrgForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgForbidden %s", 403, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgForbidden) String() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgForbidden %s", 403, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *RemoveOrgUserForCurrentOrgInternalServerError) Code() int {
 }
 
 func (o *RemoveOrgUserForCurrentOrgInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/users/{user_id}][%d] removeOrgUserForCurrentOrgInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveOrgUserForCurrentOrgInternalServerError) GetPayload() *models.ErrorResponseBody {

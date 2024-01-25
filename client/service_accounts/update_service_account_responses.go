@@ -6,6 +6,7 @@ package service_accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *UpdateServiceAccountOK) Code() int {
 }
 
 func (o *UpdateServiceAccountOK) Error() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountOk %s", 200, payload)
 }
 
 func (o *UpdateServiceAccountOK) String() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountOk %s", 200, payload)
 }
 
 func (o *UpdateServiceAccountOK) GetPayload() *models.UpdateServiceAccountOKBody {
@@ -177,11 +180,13 @@ func (o *UpdateServiceAccountBadRequest) Code() int {
 }
 
 func (o *UpdateServiceAccountBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountBadRequest %s", 400, payload)
 }
 
 func (o *UpdateServiceAccountBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountBadRequest %s", 400, payload)
 }
 
 func (o *UpdateServiceAccountBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *UpdateServiceAccountUnauthorized) Code() int {
 }
 
 func (o *UpdateServiceAccountUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateServiceAccountUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateServiceAccountUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *UpdateServiceAccountForbidden) Code() int {
 }
 
 func (o *UpdateServiceAccountForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountForbidden %s", 403, payload)
 }
 
 func (o *UpdateServiceAccountForbidden) String() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountForbidden %s", 403, payload)
 }
 
 func (o *UpdateServiceAccountForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *UpdateServiceAccountNotFound) Code() int {
 }
 
 func (o *UpdateServiceAccountNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountNotFound %s", 404, payload)
 }
 
 func (o *UpdateServiceAccountNotFound) String() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountNotFound %s", 404, payload)
 }
 
 func (o *UpdateServiceAccountNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *UpdateServiceAccountInternalServerError) Code() int {
 }
 
 func (o *UpdateServiceAccountInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateServiceAccountInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /serviceaccounts/{serviceAccountId}][%d] updateServiceAccountInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateServiceAccountInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package query_history
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *CreateQueryOK) Code() int {
 }
 
 func (o *CreateQueryOK) Error() string {
-	return fmt.Sprintf("[POST /query-history][%d] createQueryOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history][%d] createQueryOk %s", 200, payload)
 }
 
 func (o *CreateQueryOK) String() string {
-	return fmt.Sprintf("[POST /query-history][%d] createQueryOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history][%d] createQueryOk %s", 200, payload)
 }
 
 func (o *CreateQueryOK) GetPayload() *models.QueryHistoryResponse {
@@ -165,11 +168,13 @@ func (o *CreateQueryBadRequest) Code() int {
 }
 
 func (o *CreateQueryBadRequest) Error() string {
-	return fmt.Sprintf("[POST /query-history][%d] createQueryBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history][%d] createQueryBadRequest %s", 400, payload)
 }
 
 func (o *CreateQueryBadRequest) String() string {
-	return fmt.Sprintf("[POST /query-history][%d] createQueryBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history][%d] createQueryBadRequest %s", 400, payload)
 }
 
 func (o *CreateQueryBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *CreateQueryUnauthorized) Code() int {
 }
 
 func (o *CreateQueryUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /query-history][%d] createQueryUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history][%d] createQueryUnauthorized %s", 401, payload)
 }
 
 func (o *CreateQueryUnauthorized) String() string {
-	return fmt.Sprintf("[POST /query-history][%d] createQueryUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history][%d] createQueryUnauthorized %s", 401, payload)
 }
 
 func (o *CreateQueryUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *CreateQueryInternalServerError) Code() int {
 }
 
 func (o *CreateQueryInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /query-history][%d] createQueryInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history][%d] createQueryInternalServerError %s", 500, payload)
 }
 
 func (o *CreateQueryInternalServerError) String() string {
-	return fmt.Sprintf("[POST /query-history][%d] createQueryInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /query-history][%d] createQueryInternalServerError %s", 500, payload)
 }
 
 func (o *CreateQueryInternalServerError) GetPayload() *models.ErrorResponseBody {

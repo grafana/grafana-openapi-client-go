@@ -6,6 +6,7 @@ package library_elements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetLibraryElementByNameOK) Code() int {
 }
 
 func (o *GetLibraryElementByNameOK) Error() string {
-	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameOk %s", 200, payload)
 }
 
 func (o *GetLibraryElementByNameOK) String() string {
-	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameOk %s", 200, payload)
 }
 
 func (o *GetLibraryElementByNameOK) GetPayload() *models.LibraryElementArrayResponse {
@@ -165,11 +168,13 @@ func (o *GetLibraryElementByNameUnauthorized) Code() int {
 }
 
 func (o *GetLibraryElementByNameUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameUnauthorized %s", 401, payload)
 }
 
 func (o *GetLibraryElementByNameUnauthorized) String() string {
-	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameUnauthorized %s", 401, payload)
 }
 
 func (o *GetLibraryElementByNameUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *GetLibraryElementByNameNotFound) Code() int {
 }
 
 func (o *GetLibraryElementByNameNotFound) Error() string {
-	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameNotFound %s", 404, payload)
 }
 
 func (o *GetLibraryElementByNameNotFound) String() string {
-	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameNotFound %s", 404, payload)
 }
 
 func (o *GetLibraryElementByNameNotFound) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *GetLibraryElementByNameInternalServerError) Code() int {
 }
 
 func (o *GetLibraryElementByNameInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameInternalServerError %s", 500, payload)
 }
 
 func (o *GetLibraryElementByNameInternalServerError) String() string {
-	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/name/{library_element_name}][%d] getLibraryElementByNameInternalServerError %s", 500, payload)
 }
 
 func (o *GetLibraryElementByNameInternalServerError) GetPayload() *models.ErrorResponseBody {

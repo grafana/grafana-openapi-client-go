@@ -6,6 +6,7 @@ package folders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateFolderOK) Code() int {
 }
 
 func (o *UpdateFolderOK) Error() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderOk %s", 200, payload)
 }
 
 func (o *UpdateFolderOK) String() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderOk %s", 200, payload)
 }
 
 func (o *UpdateFolderOK) GetPayload() *models.Folder {
@@ -183,11 +186,13 @@ func (o *UpdateFolderBadRequest) Code() int {
 }
 
 func (o *UpdateFolderBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderBadRequest %s", 400, payload)
 }
 
 func (o *UpdateFolderBadRequest) String() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderBadRequest %s", 400, payload)
 }
 
 func (o *UpdateFolderBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -251,11 +256,13 @@ func (o *UpdateFolderUnauthorized) Code() int {
 }
 
 func (o *UpdateFolderUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateFolderUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateFolderUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -319,11 +326,13 @@ func (o *UpdateFolderForbidden) Code() int {
 }
 
 func (o *UpdateFolderForbidden) Error() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderForbidden %s", 403, payload)
 }
 
 func (o *UpdateFolderForbidden) String() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderForbidden %s", 403, payload)
 }
 
 func (o *UpdateFolderForbidden) GetPayload() *models.ErrorResponseBody {
@@ -387,11 +396,13 @@ func (o *UpdateFolderNotFound) Code() int {
 }
 
 func (o *UpdateFolderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderNotFound %s", 404, payload)
 }
 
 func (o *UpdateFolderNotFound) String() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderNotFound %s", 404, payload)
 }
 
 func (o *UpdateFolderNotFound) GetPayload() *models.ErrorResponseBody {
@@ -455,11 +466,13 @@ func (o *UpdateFolderConflict) Code() int {
 }
 
 func (o *UpdateFolderConflict) Error() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderConflict %s", 409, payload)
 }
 
 func (o *UpdateFolderConflict) String() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderConflict %s", 409, payload)
 }
 
 func (o *UpdateFolderConflict) GetPayload() *models.ErrorResponseBody {
@@ -523,11 +536,13 @@ func (o *UpdateFolderInternalServerError) Code() int {
 }
 
 func (o *UpdateFolderInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateFolderInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /folders/{folder_uid}][%d] updateFolderInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateFolderInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package folders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetFolderDescendantCountsOK) Code() int {
 }
 
 func (o *GetFolderDescendantCountsOK) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsOk %s", 200, payload)
 }
 
 func (o *GetFolderDescendantCountsOK) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsOk %s", 200, payload)
 }
 
 func (o *GetFolderDescendantCountsOK) GetPayload() models.DescendantCounts {
@@ -169,11 +172,13 @@ func (o *GetFolderDescendantCountsUnauthorized) Code() int {
 }
 
 func (o *GetFolderDescendantCountsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsUnauthorized %s", 401, payload)
 }
 
 func (o *GetFolderDescendantCountsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsUnauthorized %s", 401, payload)
 }
 
 func (o *GetFolderDescendantCountsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetFolderDescendantCountsForbidden) Code() int {
 }
 
 func (o *GetFolderDescendantCountsForbidden) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsForbidden %s", 403, payload)
 }
 
 func (o *GetFolderDescendantCountsForbidden) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsForbidden %s", 403, payload)
 }
 
 func (o *GetFolderDescendantCountsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetFolderDescendantCountsNotFound) Code() int {
 }
 
 func (o *GetFolderDescendantCountsNotFound) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsNotFound %s", 404, payload)
 }
 
 func (o *GetFolderDescendantCountsNotFound) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsNotFound %s", 404, payload)
 }
 
 func (o *GetFolderDescendantCountsNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetFolderDescendantCountsInternalServerError) Code() int {
 }
 
 func (o *GetFolderDescendantCountsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsInternalServerError %s", 500, payload)
 }
 
 func (o *GetFolderDescendantCountsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/counts][%d] getFolderDescendantCountsInternalServerError %s", 500, payload)
 }
 
 func (o *GetFolderDescendantCountsInternalServerError) GetPayload() *models.ErrorResponseBody {

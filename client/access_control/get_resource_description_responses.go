@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetResourceDescriptionOK) Code() int {
 }
 
 func (o *GetResourceDescriptionOK) Error() string {
-	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionOk %s", 200, payload)
 }
 
 func (o *GetResourceDescriptionOK) String() string {
-	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionOk %s", 200, payload)
 }
 
 func (o *GetResourceDescriptionOK) GetPayload() *models.Description {
@@ -159,11 +162,13 @@ func (o *GetResourceDescriptionForbidden) Code() int {
 }
 
 func (o *GetResourceDescriptionForbidden) Error() string {
-	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionForbidden %s", 403, payload)
 }
 
 func (o *GetResourceDescriptionForbidden) String() string {
-	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionForbidden %s", 403, payload)
 }
 
 func (o *GetResourceDescriptionForbidden) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *GetResourceDescriptionInternalServerError) Code() int {
 }
 
 func (o *GetResourceDescriptionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionInternalServerError %s", 500, payload)
 }
 
 func (o *GetResourceDescriptionInternalServerError) String() string {
-	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/description][%d] getResourceDescriptionInternalServerError %s", 500, payload)
 }
 
 func (o *GetResourceDescriptionInternalServerError) GetPayload() *models.ErrorResponseBody {

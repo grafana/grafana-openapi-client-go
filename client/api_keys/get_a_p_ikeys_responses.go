@@ -6,6 +6,7 @@ package api_keys
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetAPIkeysOK) Code() int {
 }
 
 func (o *GetAPIkeysOK) Error() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysOk %s", 200, payload)
 }
 
 func (o *GetAPIkeysOK) String() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysOk %s", 200, payload)
 }
 
 func (o *GetAPIkeysOK) GetPayload() []*models.APIKeyDTO {
@@ -169,11 +172,13 @@ func (o *GetAPIkeysUnauthorized) Code() int {
 }
 
 func (o *GetAPIkeysUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysUnauthorized %s", 401, payload)
 }
 
 func (o *GetAPIkeysUnauthorized) String() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysUnauthorized %s", 401, payload)
 }
 
 func (o *GetAPIkeysUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetAPIkeysForbidden) Code() int {
 }
 
 func (o *GetAPIkeysForbidden) Error() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysForbidden %s", 403, payload)
 }
 
 func (o *GetAPIkeysForbidden) String() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysForbidden %s", 403, payload)
 }
 
 func (o *GetAPIkeysForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetAPIkeysNotFound) Code() int {
 }
 
 func (o *GetAPIkeysNotFound) Error() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysNotFound %s", 404, payload)
 }
 
 func (o *GetAPIkeysNotFound) String() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysNotFound %s", 404, payload)
 }
 
 func (o *GetAPIkeysNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetAPIkeysInternalServerError) Code() int {
 }
 
 func (o *GetAPIkeysInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysInternalServerError %s", 500, payload)
 }
 
 func (o *GetAPIkeysInternalServerError) String() string {
-	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /auth/keys][%d] getAPIkeysInternalServerError %s", 500, payload)
 }
 
 func (o *GetAPIkeysInternalServerError) GetPayload() *models.ErrorResponseBody {

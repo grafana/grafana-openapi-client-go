@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *AddDataSourceOK) Code() int {
 }
 
 func (o *AddDataSourceOK) Error() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceOk %s", 200, payload)
 }
 
 func (o *AddDataSourceOK) String() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceOk %s", 200, payload)
 }
 
 func (o *AddDataSourceOK) GetPayload() *models.AddDataSourceOKBody {
@@ -171,11 +174,13 @@ func (o *AddDataSourceUnauthorized) Code() int {
 }
 
 func (o *AddDataSourceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceUnauthorized %s", 401, payload)
 }
 
 func (o *AddDataSourceUnauthorized) String() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceUnauthorized %s", 401, payload)
 }
 
 func (o *AddDataSourceUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *AddDataSourceForbidden) Code() int {
 }
 
 func (o *AddDataSourceForbidden) Error() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceForbidden %s", 403, payload)
 }
 
 func (o *AddDataSourceForbidden) String() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceForbidden %s", 403, payload)
 }
 
 func (o *AddDataSourceForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *AddDataSourceConflict) Code() int {
 }
 
 func (o *AddDataSourceConflict) Error() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceConflict %s", 409, payload)
 }
 
 func (o *AddDataSourceConflict) String() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceConflict %s", 409, payload)
 }
 
 func (o *AddDataSourceConflict) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *AddDataSourceInternalServerError) Code() int {
 }
 
 func (o *AddDataSourceInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceInternalServerError %s", 500, payload)
 }
 
 func (o *AddDataSourceInternalServerError) String() string {
-	return fmt.Sprintf("[POST /datasources][%d] addDataSourceInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /datasources][%d] addDataSourceInternalServerError %s", 500, payload)
 }
 
 func (o *AddDataSourceInternalServerError) GetPayload() *models.ErrorResponseBody {

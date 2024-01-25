@@ -6,6 +6,7 @@ package correlations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteCorrelationOK) Code() int {
 }
 
 func (o *DeleteCorrelationOK) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationOk %s", 200, payload)
 }
 
 func (o *DeleteCorrelationOK) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationOk %s", 200, payload)
 }
 
 func (o *DeleteCorrelationOK) GetPayload() *models.DeleteCorrelationResponseBody {
@@ -171,11 +174,13 @@ func (o *DeleteCorrelationUnauthorized) Code() int {
 }
 
 func (o *DeleteCorrelationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteCorrelationUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteCorrelationUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteCorrelationForbidden) Code() int {
 }
 
 func (o *DeleteCorrelationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationForbidden %s", 403, payload)
 }
 
 func (o *DeleteCorrelationForbidden) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationForbidden %s", 403, payload)
 }
 
 func (o *DeleteCorrelationForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteCorrelationNotFound) Code() int {
 }
 
 func (o *DeleteCorrelationNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationNotFound %s", 404, payload)
 }
 
 func (o *DeleteCorrelationNotFound) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationNotFound %s", 404, payload)
 }
 
 func (o *DeleteCorrelationNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteCorrelationInternalServerError) Code() int {
 }
 
 func (o *DeleteCorrelationInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteCorrelationInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}/correlations/{correlationUID}][%d] deleteCorrelationInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteCorrelationInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *GetPolicyTreeExportOK) Code() int {
 }
 
 func (o *GetPolicyTreeExportOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportOk %s", 200, payload)
 }
 
 func (o *GetPolicyTreeExportOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportOk %s", 200, payload)
 }
 
 func (o *GetPolicyTreeExportOK) GetPayload() *models.AlertingFileExport {
@@ -153,11 +156,13 @@ func (o *GetPolicyTreeExportNotFound) Code() int {
 }
 
 func (o *GetPolicyTreeExportNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportNotFound %s", 404, payload)
 }
 
 func (o *GetPolicyTreeExportNotFound) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies/export][%d] getPolicyTreeExportNotFound %s", 404, payload)
 }
 
 func (o *GetPolicyTreeExportNotFound) GetPayload() models.NotFound {

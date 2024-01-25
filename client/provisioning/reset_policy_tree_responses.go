@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -79,11 +80,13 @@ func (o *ResetPolicyTreeAccepted) Code() int {
 }
 
 func (o *ResetPolicyTreeAccepted) Error() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/policies][%d] resetPolicyTreeAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/provisioning/policies][%d] resetPolicyTreeAccepted %s", 202, payload)
 }
 
 func (o *ResetPolicyTreeAccepted) String() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/policies][%d] resetPolicyTreeAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/provisioning/policies][%d] resetPolicyTreeAccepted %s", 202, payload)
 }
 
 func (o *ResetPolicyTreeAccepted) GetPayload() models.Ack {

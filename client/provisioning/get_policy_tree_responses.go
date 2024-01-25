@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -79,11 +80,13 @@ func (o *GetPolicyTreeOK) Code() int {
 }
 
 func (o *GetPolicyTreeOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/policies][%d] getPolicyTreeOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies][%d] getPolicyTreeOk %s", 200, payload)
 }
 
 func (o *GetPolicyTreeOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/policies][%d] getPolicyTreeOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/policies][%d] getPolicyTreeOk %s", 200, payload)
 }
 
 func (o *GetPolicyTreeOK) GetPayload() *models.Route {

@@ -6,6 +6,7 @@ package folders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *MoveFolderOK) Code() int {
 }
 
 func (o *MoveFolderOK) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderOk %s", 200, payload)
 }
 
 func (o *MoveFolderOK) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderOk %s", 200, payload)
 }
 
 func (o *MoveFolderOK) GetPayload() *models.Folder {
@@ -171,11 +174,13 @@ func (o *MoveFolderUnauthorized) Code() int {
 }
 
 func (o *MoveFolderUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderUnauthorized %s", 401, payload)
 }
 
 func (o *MoveFolderUnauthorized) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderUnauthorized %s", 401, payload)
 }
 
 func (o *MoveFolderUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *MoveFolderForbidden) Code() int {
 }
 
 func (o *MoveFolderForbidden) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderForbidden %s", 403, payload)
 }
 
 func (o *MoveFolderForbidden) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderForbidden %s", 403, payload)
 }
 
 func (o *MoveFolderForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *MoveFolderNotFound) Code() int {
 }
 
 func (o *MoveFolderNotFound) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderNotFound %s", 404, payload)
 }
 
 func (o *MoveFolderNotFound) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderNotFound %s", 404, payload)
 }
 
 func (o *MoveFolderNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *MoveFolderInternalServerError) Code() int {
 }
 
 func (o *MoveFolderInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderInternalServerError %s", 500, payload)
 }
 
 func (o *MoveFolderInternalServerError) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/move][%d] moveFolderInternalServerError %s", 500, payload)
 }
 
 func (o *MoveFolderInternalServerError) GetPayload() *models.ErrorResponseBody {

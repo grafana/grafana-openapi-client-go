@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *SearchUsersWithPagingOK) Code() int {
 }
 
 func (o *SearchUsersWithPagingOK) Error() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingOk %s", 200, payload)
 }
 
 func (o *SearchUsersWithPagingOK) String() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingOk %s", 200, payload)
 }
 
 func (o *SearchUsersWithPagingOK) GetPayload() *models.SearchUserQueryResult {
@@ -171,11 +174,13 @@ func (o *SearchUsersWithPagingUnauthorized) Code() int {
 }
 
 func (o *SearchUsersWithPagingUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingUnauthorized %s", 401, payload)
 }
 
 func (o *SearchUsersWithPagingUnauthorized) String() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingUnauthorized %s", 401, payload)
 }
 
 func (o *SearchUsersWithPagingUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *SearchUsersWithPagingForbidden) Code() int {
 }
 
 func (o *SearchUsersWithPagingForbidden) Error() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingForbidden %s", 403, payload)
 }
 
 func (o *SearchUsersWithPagingForbidden) String() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingForbidden %s", 403, payload)
 }
 
 func (o *SearchUsersWithPagingForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *SearchUsersWithPagingNotFound) Code() int {
 }
 
 func (o *SearchUsersWithPagingNotFound) Error() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingNotFound %s", 404, payload)
 }
 
 func (o *SearchUsersWithPagingNotFound) String() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingNotFound %s", 404, payload)
 }
 
 func (o *SearchUsersWithPagingNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *SearchUsersWithPagingInternalServerError) Code() int {
 }
 
 func (o *SearchUsersWithPagingInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingInternalServerError %s", 500, payload)
 }
 
 func (o *SearchUsersWithPagingInternalServerError) String() string {
-	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/search][%d] searchUsersWithPagingInternalServerError %s", 500, payload)
 }
 
 func (o *SearchUsersWithPagingInternalServerError) GetPayload() *models.ErrorResponseBody {

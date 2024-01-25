@@ -6,6 +6,7 @@ package dashboard_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RestoreDashboardVersionByIDOK) Code() int {
 }
 
 func (o *RestoreDashboardVersionByIDOK) Error() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdOk %s", 200, payload)
 }
 
 func (o *RestoreDashboardVersionByIDOK) String() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdOk %s", 200, payload)
 }
 
 func (o *RestoreDashboardVersionByIDOK) GetPayload() *models.RestoreDashboardVersionByIDOKBody {
@@ -171,11 +174,13 @@ func (o *RestoreDashboardVersionByIDUnauthorized) Code() int {
 }
 
 func (o *RestoreDashboardVersionByIDUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdUnauthorized %s", 401, payload)
 }
 
 func (o *RestoreDashboardVersionByIDUnauthorized) String() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdUnauthorized %s", 401, payload)
 }
 
 func (o *RestoreDashboardVersionByIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *RestoreDashboardVersionByIDForbidden) Code() int {
 }
 
 func (o *RestoreDashboardVersionByIDForbidden) Error() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdForbidden %s", 403, payload)
 }
 
 func (o *RestoreDashboardVersionByIDForbidden) String() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdForbidden %s", 403, payload)
 }
 
 func (o *RestoreDashboardVersionByIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *RestoreDashboardVersionByIDNotFound) Code() int {
 }
 
 func (o *RestoreDashboardVersionByIDNotFound) Error() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdNotFound %s", 404, payload)
 }
 
 func (o *RestoreDashboardVersionByIDNotFound) String() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdNotFound %s", 404, payload)
 }
 
 func (o *RestoreDashboardVersionByIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *RestoreDashboardVersionByIDInternalServerError) Code() int {
 }
 
 func (o *RestoreDashboardVersionByIDInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdInternalServerError %s", 500, payload)
 }
 
 func (o *RestoreDashboardVersionByIDInternalServerError) String() string {
-	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/id/{DashboardID}/restore][%d] restoreDashboardVersionByIdInternalServerError %s", 500, payload)
 }
 
 func (o *RestoreDashboardVersionByIDInternalServerError) GetPayload() *models.ErrorResponseBody {

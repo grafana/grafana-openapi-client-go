@@ -6,6 +6,7 @@ package teams
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *UpdateTeamPreferencesOK) Code() int {
 }
 
 func (o *UpdateTeamPreferencesOK) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesOk %s", 200, payload)
 }
 
 func (o *UpdateTeamPreferencesOK) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesOk %s", 200, payload)
 }
 
 func (o *UpdateTeamPreferencesOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *UpdateTeamPreferencesBadRequest) Code() int {
 }
 
 func (o *UpdateTeamPreferencesBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesBadRequest %s", 400, payload)
 }
 
 func (o *UpdateTeamPreferencesBadRequest) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesBadRequest %s", 400, payload)
 }
 
 func (o *UpdateTeamPreferencesBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *UpdateTeamPreferencesUnauthorized) Code() int {
 }
 
 func (o *UpdateTeamPreferencesUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateTeamPreferencesUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateTeamPreferencesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *UpdateTeamPreferencesInternalServerError) Code() int {
 }
 
 func (o *UpdateTeamPreferencesInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateTeamPreferencesInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/preferences][%d] updateTeamPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateTeamPreferencesInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetUserOrgListOK) Code() int {
 }
 
 func (o *GetUserOrgListOK) Error() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListOk %s", 200, payload)
 }
 
 func (o *GetUserOrgListOK) String() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListOk %s", 200, payload)
 }
 
 func (o *GetUserOrgListOK) GetPayload() []*models.UserOrgDTO {
@@ -169,11 +172,13 @@ func (o *GetUserOrgListUnauthorized) Code() int {
 }
 
 func (o *GetUserOrgListUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserOrgListUnauthorized) String() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserOrgListUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetUserOrgListForbidden) Code() int {
 }
 
 func (o *GetUserOrgListForbidden) Error() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListForbidden %s", 403, payload)
 }
 
 func (o *GetUserOrgListForbidden) String() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListForbidden %s", 403, payload)
 }
 
 func (o *GetUserOrgListForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetUserOrgListNotFound) Code() int {
 }
 
 func (o *GetUserOrgListNotFound) Error() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListNotFound %s", 404, payload)
 }
 
 func (o *GetUserOrgListNotFound) String() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListNotFound %s", 404, payload)
 }
 
 func (o *GetUserOrgListNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetUserOrgListInternalServerError) Code() int {
 }
 
 func (o *GetUserOrgListInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserOrgListInternalServerError) String() string {
-	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users/{user_id}/orgs][%d] getUserOrgListInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserOrgListInternalServerError) GetPayload() *models.ErrorResponseBody {
