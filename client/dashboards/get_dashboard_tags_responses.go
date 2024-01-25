@@ -6,6 +6,7 @@ package dashboards
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetDashboardTagsOK) Code() int {
 }
 
 func (o *GetDashboardTagsOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsOk %s", 200, payload)
 }
 
 func (o *GetDashboardTagsOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsOk %s", 200, payload)
 }
 
 func (o *GetDashboardTagsOK) GetPayload() []*models.DashboardTagCloudItem {
@@ -157,11 +160,13 @@ func (o *GetDashboardTagsUnauthorized) Code() int {
 }
 
 func (o *GetDashboardTagsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsUnauthorized %s", 401, payload)
 }
 
 func (o *GetDashboardTagsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsUnauthorized %s", 401, payload)
 }
 
 func (o *GetDashboardTagsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -225,11 +230,13 @@ func (o *GetDashboardTagsInternalServerError) Code() int {
 }
 
 func (o *GetDashboardTagsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardTagsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/tags][%d] getDashboardTagsInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardTagsInternalServerError) GetPayload() *models.ErrorResponseBody {

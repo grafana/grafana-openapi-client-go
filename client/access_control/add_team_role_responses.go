@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *AddTeamRoleOK) Code() int {
 }
 
 func (o *AddTeamRoleOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleOk %s", 200, payload)
 }
 
 func (o *AddTeamRoleOK) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleOk %s", 200, payload)
 }
 
 func (o *AddTeamRoleOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *AddTeamRoleBadRequest) Code() int {
 }
 
 func (o *AddTeamRoleBadRequest) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleBadRequest %s", 400, payload)
 }
 
 func (o *AddTeamRoleBadRequest) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleBadRequest %s", 400, payload)
 }
 
 func (o *AddTeamRoleBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *AddTeamRoleForbidden) Code() int {
 }
 
 func (o *AddTeamRoleForbidden) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleForbidden %s", 403, payload)
 }
 
 func (o *AddTeamRoleForbidden) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleForbidden %s", 403, payload)
 }
 
 func (o *AddTeamRoleForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *AddTeamRoleNotFound) Code() int {
 }
 
 func (o *AddTeamRoleNotFound) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleNotFound %s", 404, payload)
 }
 
 func (o *AddTeamRoleNotFound) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleNotFound %s", 404, payload)
 }
 
 func (o *AddTeamRoleNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *AddTeamRoleInternalServerError) Code() int {
 }
 
 func (o *AddTeamRoleInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleInternalServerError %s", 500, payload)
 }
 
 func (o *AddTeamRoleInternalServerError) String() string {
-	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/teams/{teamId}/roles][%d] addTeamRoleInternalServerError %s", 500, payload)
 }
 
 func (o *AddTeamRoleInternalServerError) GetPayload() *models.ErrorResponseBody {

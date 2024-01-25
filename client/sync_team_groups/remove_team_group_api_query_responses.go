@@ -6,6 +6,7 @@ package sync_team_groups
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *RemoveTeamGroupAPIQueryOK) Code() int {
 }
 
 func (o *RemoveTeamGroupAPIQueryOK) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryOk %s", 200, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryOK) String() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryOk %s", 200, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *RemoveTeamGroupAPIQueryBadRequest) Code() int {
 }
 
 func (o *RemoveTeamGroupAPIQueryBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryBadRequest %s", 400, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryBadRequest %s", 400, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *RemoveTeamGroupAPIQueryUnauthorized) Code() int {
 }
 
 func (o *RemoveTeamGroupAPIQueryUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryUnauthorized %s", 401, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryUnauthorized %s", 401, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *RemoveTeamGroupAPIQueryForbidden) Code() int {
 }
 
 func (o *RemoveTeamGroupAPIQueryForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryForbidden %s", 403, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryForbidden) String() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryForbidden %s", 403, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *RemoveTeamGroupAPIQueryNotFound) Code() int {
 }
 
 func (o *RemoveTeamGroupAPIQueryNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryNotFound %s", 404, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryNotFound) String() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryNotFound %s", 404, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *RemoveTeamGroupAPIQueryInternalServerError) Code() int {
 }
 
 func (o *RemoveTeamGroupAPIQueryInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{teamId}/groups][%d] removeTeamGroupApiQueryInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveTeamGroupAPIQueryInternalServerError) GetPayload() *models.ErrorResponseBody {

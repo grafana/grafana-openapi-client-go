@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *DeleteReportOK) Code() int {
 }
 
 func (o *DeleteReportOK) Error() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportOk %s", 200, payload)
 }
 
 func (o *DeleteReportOK) String() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportOk %s", 200, payload)
 }
 
 func (o *DeleteReportOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *DeleteReportBadRequest) Code() int {
 }
 
 func (o *DeleteReportBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportBadRequest %s", 400, payload)
 }
 
 func (o *DeleteReportBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportBadRequest %s", 400, payload)
 }
 
 func (o *DeleteReportBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *DeleteReportUnauthorized) Code() int {
 }
 
 func (o *DeleteReportUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteReportUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteReportUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *DeleteReportForbidden) Code() int {
 }
 
 func (o *DeleteReportForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportForbidden %s", 403, payload)
 }
 
 func (o *DeleteReportForbidden) String() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportForbidden %s", 403, payload)
 }
 
 func (o *DeleteReportForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *DeleteReportNotFound) Code() int {
 }
 
 func (o *DeleteReportNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportNotFound %s", 404, payload)
 }
 
 func (o *DeleteReportNotFound) String() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportNotFound %s", 404, payload)
 }
 
 func (o *DeleteReportNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *DeleteReportInternalServerError) Code() int {
 }
 
 func (o *DeleteReportInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteReportInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /reports/{id}][%d] deleteReportInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteReportInternalServerError) GetPayload() *models.ErrorResponseBody {

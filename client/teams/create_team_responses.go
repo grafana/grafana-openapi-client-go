@@ -6,6 +6,7 @@ package teams
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *CreateTeamOK) Code() int {
 }
 
 func (o *CreateTeamOK) Error() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamOk %s", 200, payload)
 }
 
 func (o *CreateTeamOK) String() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamOk %s", 200, payload)
 }
 
 func (o *CreateTeamOK) GetPayload() *models.CreateTeamOKBody {
@@ -171,11 +174,13 @@ func (o *CreateTeamUnauthorized) Code() int {
 }
 
 func (o *CreateTeamUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamUnauthorized %s", 401, payload)
 }
 
 func (o *CreateTeamUnauthorized) String() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamUnauthorized %s", 401, payload)
 }
 
 func (o *CreateTeamUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *CreateTeamForbidden) Code() int {
 }
 
 func (o *CreateTeamForbidden) Error() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamForbidden %s", 403, payload)
 }
 
 func (o *CreateTeamForbidden) String() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamForbidden %s", 403, payload)
 }
 
 func (o *CreateTeamForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *CreateTeamConflict) Code() int {
 }
 
 func (o *CreateTeamConflict) Error() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamConflict %s", 409, payload)
 }
 
 func (o *CreateTeamConflict) String() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamConflict %s", 409, payload)
 }
 
 func (o *CreateTeamConflict) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *CreateTeamInternalServerError) Code() int {
 }
 
 func (o *CreateTeamInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamInternalServerError %s", 500, payload)
 }
 
 func (o *CreateTeamInternalServerError) String() string {
-	return fmt.Sprintf("[POST /teams][%d] createTeamInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams][%d] createTeamInternalServerError %s", 500, payload)
 }
 
 func (o *CreateTeamInternalServerError) GetPayload() *models.ErrorResponseBody {

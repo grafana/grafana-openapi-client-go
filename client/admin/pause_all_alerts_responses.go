@@ -6,6 +6,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *PauseAllAlertsOK) Code() int {
 }
 
 func (o *PauseAllAlertsOK) Error() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsOk %s", 200, payload)
 }
 
 func (o *PauseAllAlertsOK) String() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsOk %s", 200, payload)
 }
 
 func (o *PauseAllAlertsOK) GetPayload() *models.PauseAllAlertsOKBody {
@@ -165,11 +168,13 @@ func (o *PauseAllAlertsUnauthorized) Code() int {
 }
 
 func (o *PauseAllAlertsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsUnauthorized %s", 401, payload)
 }
 
 func (o *PauseAllAlertsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsUnauthorized %s", 401, payload)
 }
 
 func (o *PauseAllAlertsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *PauseAllAlertsForbidden) Code() int {
 }
 
 func (o *PauseAllAlertsForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsForbidden %s", 403, payload)
 }
 
 func (o *PauseAllAlertsForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsForbidden %s", 403, payload)
 }
 
 func (o *PauseAllAlertsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *PauseAllAlertsInternalServerError) Code() int {
 }
 
 func (o *PauseAllAlertsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsInternalServerError %s", 500, payload)
 }
 
 func (o *PauseAllAlertsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/pause-all-alerts][%d] pauseAllAlertsInternalServerError %s", 500, payload)
 }
 
 func (o *PauseAllAlertsInternalServerError) GetPayload() *models.ErrorResponseBody {

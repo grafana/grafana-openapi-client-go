@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -96,11 +97,11 @@ func (o *GetDashboardSnapshotOK) Code() int {
 }
 
 func (o *GetDashboardSnapshotOK) Error() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotOk ", 200)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotOk", 200)
 }
 
 func (o *GetDashboardSnapshotOK) String() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotOk ", 200)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotOk", 200)
 }
 
 func (o *GetDashboardSnapshotOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -153,11 +154,13 @@ func (o *GetDashboardSnapshotBadRequest) Code() int {
 }
 
 func (o *GetDashboardSnapshotBadRequest) Error() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotBadRequest %s", 400, payload)
 }
 
 func (o *GetDashboardSnapshotBadRequest) String() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotBadRequest %s", 400, payload)
 }
 
 func (o *GetDashboardSnapshotBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -221,11 +224,13 @@ func (o *GetDashboardSnapshotNotFound) Code() int {
 }
 
 func (o *GetDashboardSnapshotNotFound) Error() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotNotFound %s", 404, payload)
 }
 
 func (o *GetDashboardSnapshotNotFound) String() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotNotFound %s", 404, payload)
 }
 
 func (o *GetDashboardSnapshotNotFound) GetPayload() *models.ErrorResponseBody {
@@ -289,11 +294,13 @@ func (o *GetDashboardSnapshotInternalServerError) Code() int {
 }
 
 func (o *GetDashboardSnapshotInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardSnapshotInternalServerError) String() string {
-	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots/{key}][%d] getDashboardSnapshotInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardSnapshotInternalServerError) GetPayload() *models.ErrorResponseBody {

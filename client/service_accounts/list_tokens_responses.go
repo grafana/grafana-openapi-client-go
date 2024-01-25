@@ -6,6 +6,7 @@ package service_accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *ListTokensOK) Code() int {
 }
 
 func (o *ListTokensOK) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensOk %s", 200, payload)
 }
 
 func (o *ListTokensOK) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensOk %s", 200, payload)
 }
 
 func (o *ListTokensOK) GetPayload() []*models.TokenDTO {
@@ -169,11 +172,13 @@ func (o *ListTokensBadRequest) Code() int {
 }
 
 func (o *ListTokensBadRequest) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensBadRequest %s", 400, payload)
 }
 
 func (o *ListTokensBadRequest) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensBadRequest %s", 400, payload)
 }
 
 func (o *ListTokensBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *ListTokensUnauthorized) Code() int {
 }
 
 func (o *ListTokensUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensUnauthorized %s", 401, payload)
 }
 
 func (o *ListTokensUnauthorized) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensUnauthorized %s", 401, payload)
 }
 
 func (o *ListTokensUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *ListTokensForbidden) Code() int {
 }
 
 func (o *ListTokensForbidden) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensForbidden %s", 403, payload)
 }
 
 func (o *ListTokensForbidden) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensForbidden %s", 403, payload)
 }
 
 func (o *ListTokensForbidden) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *ListTokensInternalServerError) Code() int {
 }
 
 func (o *ListTokensInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensInternalServerError %s", 500, payload)
 }
 
 func (o *ListTokensInternalServerError) String() string {
-	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /serviceaccounts/{serviceAccountId}/tokens][%d] listTokensInternalServerError %s", 500, payload)
 }
 
 func (o *ListTokensInternalServerError) GetPayload() *models.ErrorResponseBody {

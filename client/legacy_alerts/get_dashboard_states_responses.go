@@ -6,6 +6,7 @@ package legacy_alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetDashboardStatesOK) Code() int {
 }
 
 func (o *GetDashboardStatesOK) Error() string {
-	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesOk %s", 200, payload)
 }
 
 func (o *GetDashboardStatesOK) String() string {
-	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesOk %s", 200, payload)
 }
 
 func (o *GetDashboardStatesOK) GetPayload() []*models.AlertStateInfoDTO {
@@ -157,11 +160,13 @@ func (o *GetDashboardStatesBadRequest) Code() int {
 }
 
 func (o *GetDashboardStatesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesBadRequest %s", 400, payload)
 }
 
 func (o *GetDashboardStatesBadRequest) String() string {
-	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesBadRequest %s", 400, payload)
 }
 
 func (o *GetDashboardStatesBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -225,11 +230,13 @@ func (o *GetDashboardStatesInternalServerError) Code() int {
 }
 
 func (o *GetDashboardStatesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardStatesInternalServerError) String() string {
-	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts/states-for-dashboard][%d] getDashboardStatesInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardStatesInternalServerError) GetPayload() *models.ErrorResponseBody {

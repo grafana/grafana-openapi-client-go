@@ -6,6 +6,7 @@ package orgs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RemoveOrgUserOK) Code() int {
 }
 
 func (o *RemoveOrgUserOK) Error() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserOk %s", 200, payload)
 }
 
 func (o *RemoveOrgUserOK) String() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserOk %s", 200, payload)
 }
 
 func (o *RemoveOrgUserOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *RemoveOrgUserBadRequest) Code() int {
 }
 
 func (o *RemoveOrgUserBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserBadRequest %s", 400, payload)
 }
 
 func (o *RemoveOrgUserBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserBadRequest %s", 400, payload)
 }
 
 func (o *RemoveOrgUserBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *RemoveOrgUserUnauthorized) Code() int {
 }
 
 func (o *RemoveOrgUserUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserUnauthorized %s", 401, payload)
 }
 
 func (o *RemoveOrgUserUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserUnauthorized %s", 401, payload)
 }
 
 func (o *RemoveOrgUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *RemoveOrgUserForbidden) Code() int {
 }
 
 func (o *RemoveOrgUserForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserForbidden %s", 403, payload)
 }
 
 func (o *RemoveOrgUserForbidden) String() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserForbidden %s", 403, payload)
 }
 
 func (o *RemoveOrgUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *RemoveOrgUserInternalServerError) Code() int {
 }
 
 func (o *RemoveOrgUserInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveOrgUserInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /orgs/{org_id}/users/{user_id}][%d] removeOrgUserInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveOrgUserInternalServerError) GetPayload() *models.ErrorResponseBody {

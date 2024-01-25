@@ -6,6 +6,7 @@ package admin_ldap
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetUserFromLDAPOK) Code() int {
 }
 
 func (o *GetUserFromLDAPOK) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapOk %s", 200, payload)
 }
 
 func (o *GetUserFromLDAPOK) String() string {
-	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapOk %s", 200, payload)
 }
 
 func (o *GetUserFromLDAPOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *GetUserFromLDAPUnauthorized) Code() int {
 }
 
 func (o *GetUserFromLDAPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserFromLDAPUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserFromLDAPUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *GetUserFromLDAPForbidden) Code() int {
 }
 
 func (o *GetUserFromLDAPForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapForbidden %s", 403, payload)
 }
 
 func (o *GetUserFromLDAPForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapForbidden %s", 403, payload)
 }
 
 func (o *GetUserFromLDAPForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *GetUserFromLDAPInternalServerError) Code() int {
 }
 
 func (o *GetUserFromLDAPInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserFromLDAPInternalServerError) String() string {
-	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap/{user_name}][%d] getUserFromLdapInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserFromLDAPInternalServerError) GetPayload() *models.ErrorResponseBody {

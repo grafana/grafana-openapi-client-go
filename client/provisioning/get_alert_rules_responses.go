@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -79,11 +80,13 @@ func (o *GetAlertRulesOK) Code() int {
 }
 
 func (o *GetAlertRulesOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/alert-rules][%d] getAlertRulesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules][%d] getAlertRulesOk %s", 200, payload)
 }
 
 func (o *GetAlertRulesOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/alert-rules][%d] getAlertRulesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules][%d] getAlertRulesOk %s", 200, payload)
 }
 
 func (o *GetAlertRulesOK) GetPayload() models.ProvisionedAlertRules {

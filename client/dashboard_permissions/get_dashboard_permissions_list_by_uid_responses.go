@@ -6,6 +6,7 @@ package dashboard_permissions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetDashboardPermissionsListByUIDOK) Code() int {
 }
 
 func (o *GetDashboardPermissionsListByUIDOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidOk %s", 200, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidOk %s", 200, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDOK) GetPayload() []*models.DashboardACLInfoDTO {
@@ -169,11 +172,13 @@ func (o *GetDashboardPermissionsListByUIDUnauthorized) Code() int {
 }
 
 func (o *GetDashboardPermissionsListByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetDashboardPermissionsListByUIDForbidden) Code() int {
 }
 
 func (o *GetDashboardPermissionsListByUIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidForbidden %s", 403, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDForbidden) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidForbidden %s", 403, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetDashboardPermissionsListByUIDNotFound) Code() int {
 }
 
 func (o *GetDashboardPermissionsListByUIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidNotFound %s", 404, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDNotFound) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidNotFound %s", 404, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetDashboardPermissionsListByUIDInternalServerError) Code() int {
 }
 
 func (o *GetDashboardPermissionsListByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/permissions][%d] getDashboardPermissionsListByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardPermissionsListByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

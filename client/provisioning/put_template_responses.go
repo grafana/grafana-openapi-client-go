@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PutTemplateAccepted) Code() int {
 }
 
 func (o *PutTemplateAccepted) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateAccepted %s", 202, payload)
 }
 
 func (o *PutTemplateAccepted) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateAccepted %s", 202, payload)
 }
 
 func (o *PutTemplateAccepted) GetPayload() *models.NotificationTemplate {
@@ -153,11 +156,13 @@ func (o *PutTemplateBadRequest) Code() int {
 }
 
 func (o *PutTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateBadRequest %s", 400, payload)
 }
 
 func (o *PutTemplateBadRequest) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateBadRequest %s", 400, payload)
 }
 
 func (o *PutTemplateBadRequest) GetPayload() *models.ValidationError {

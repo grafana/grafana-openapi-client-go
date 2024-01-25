@@ -6,6 +6,7 @@ package orgs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetOrgByIDOK) Code() int {
 }
 
 func (o *GetOrgByIDOK) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdOk %s", 200, payload)
 }
 
 func (o *GetOrgByIDOK) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdOk %s", 200, payload)
 }
 
 func (o *GetOrgByIDOK) GetPayload() *models.OrgDetailsDTO {
@@ -165,11 +168,13 @@ func (o *GetOrgByIDUnauthorized) Code() int {
 }
 
 func (o *GetOrgByIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdUnauthorized %s", 401, payload)
 }
 
 func (o *GetOrgByIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdUnauthorized %s", 401, payload)
 }
 
 func (o *GetOrgByIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *GetOrgByIDForbidden) Code() int {
 }
 
 func (o *GetOrgByIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdForbidden %s", 403, payload)
 }
 
 func (o *GetOrgByIDForbidden) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdForbidden %s", 403, payload)
 }
 
 func (o *GetOrgByIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *GetOrgByIDInternalServerError) Code() int {
 }
 
 func (o *GetOrgByIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetOrgByIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /orgs/{org_id}][%d] getOrgByIdInternalServerError %s", 500, payload)
 }
 
 func (o *GetOrgByIDInternalServerError) GetPayload() *models.ErrorResponseBody {

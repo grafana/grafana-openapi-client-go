@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetReportSettingsOK) Code() int {
 }
 
 func (o *GetReportSettingsOK) Error() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOk %s", 200, payload)
 }
 
 func (o *GetReportSettingsOK) String() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsOk %s", 200, payload)
 }
 
 func (o *GetReportSettingsOK) GetPayload() *models.ReportSettings {
@@ -165,11 +168,13 @@ func (o *GetReportSettingsUnauthorized) Code() int {
 }
 
 func (o *GetReportSettingsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *GetReportSettingsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *GetReportSettingsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *GetReportSettingsForbidden) Code() int {
 }
 
 func (o *GetReportSettingsForbidden) Error() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsForbidden %s", 403, payload)
 }
 
 func (o *GetReportSettingsForbidden) String() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsForbidden %s", 403, payload)
 }
 
 func (o *GetReportSettingsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *GetReportSettingsInternalServerError) Code() int {
 }
 
 func (o *GetReportSettingsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsInternalServerError %s", 500, payload)
 }
 
 func (o *GetReportSettingsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/settings][%d] getReportSettingsInternalServerError %s", 500, payload)
 }
 
 func (o *GetReportSettingsInternalServerError) GetPayload() *models.ErrorResponseBody {

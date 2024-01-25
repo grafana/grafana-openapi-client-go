@@ -6,6 +6,7 @@ package query_history
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *PatchQueryCommentOK) Code() int {
 }
 
 func (o *PatchQueryCommentOK) Error() string {
-	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentOk %s", 200, payload)
 }
 
 func (o *PatchQueryCommentOK) String() string {
-	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentOk %s", 200, payload)
 }
 
 func (o *PatchQueryCommentOK) GetPayload() *models.QueryHistoryResponse {
@@ -165,11 +168,13 @@ func (o *PatchQueryCommentBadRequest) Code() int {
 }
 
 func (o *PatchQueryCommentBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentBadRequest %s", 400, payload)
 }
 
 func (o *PatchQueryCommentBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentBadRequest %s", 400, payload)
 }
 
 func (o *PatchQueryCommentBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *PatchQueryCommentUnauthorized) Code() int {
 }
 
 func (o *PatchQueryCommentUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentUnauthorized %s", 401, payload)
 }
 
 func (o *PatchQueryCommentUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentUnauthorized %s", 401, payload)
 }
 
 func (o *PatchQueryCommentUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *PatchQueryCommentInternalServerError) Code() int {
 }
 
 func (o *PatchQueryCommentInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentInternalServerError %s", 500, payload)
 }
 
 func (o *PatchQueryCommentInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /query-history/{query_history_uid}][%d] patchQueryCommentInternalServerError %s", 500, payload)
 }
 
 func (o *PatchQueryCommentInternalServerError) GetPayload() *models.ErrorResponseBody {

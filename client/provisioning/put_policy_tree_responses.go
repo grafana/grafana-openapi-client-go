@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PutPolicyTreeAccepted) Code() int {
 }
 
 func (o *PutPolicyTreeAccepted) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeAccepted %s", 202, payload)
 }
 
 func (o *PutPolicyTreeAccepted) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeAccepted %s", 202, payload)
 }
 
 func (o *PutPolicyTreeAccepted) GetPayload() models.Ack {
@@ -151,11 +154,13 @@ func (o *PutPolicyTreeBadRequest) Code() int {
 }
 
 func (o *PutPolicyTreeBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeBadRequest %s", 400, payload)
 }
 
 func (o *PutPolicyTreeBadRequest) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/policies][%d] putPolicyTreeBadRequest %s", 400, payload)
 }
 
 func (o *PutPolicyTreeBadRequest) GetPayload() *models.ValidationError {

@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *CheckDatasourceHealthWithUIDOK) Code() int {
 }
 
 func (o *CheckDatasourceHealthWithUIDOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidOk %s", 200, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDOK) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidOk %s", 200, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *CheckDatasourceHealthWithUIDBadRequest) Code() int {
 }
 
 func (o *CheckDatasourceHealthWithUIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidBadRequest %s", 400, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDBadRequest) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidBadRequest %s", 400, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *CheckDatasourceHealthWithUIDUnauthorized) Code() int {
 }
 
 func (o *CheckDatasourceHealthWithUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidUnauthorized %s", 401, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidUnauthorized %s", 401, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *CheckDatasourceHealthWithUIDForbidden) Code() int {
 }
 
 func (o *CheckDatasourceHealthWithUIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidForbidden %s", 403, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDForbidden) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidForbidden %s", 403, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *CheckDatasourceHealthWithUIDInternalServerError) Code() int {
 }
 
 func (o *CheckDatasourceHealthWithUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidInternalServerError %s", 500, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/health][%d] checkDatasourceHealthWithUidInternalServerError %s", 500, payload)
 }
 
 func (o *CheckDatasourceHealthWithUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

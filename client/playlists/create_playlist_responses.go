@@ -6,6 +6,7 @@ package playlists
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *CreatePlaylistOK) Code() int {
 }
 
 func (o *CreatePlaylistOK) Error() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistOk %s", 200, payload)
 }
 
 func (o *CreatePlaylistOK) String() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistOk %s", 200, payload)
 }
 
 func (o *CreatePlaylistOK) GetPayload() *models.Playlist {
@@ -171,11 +174,13 @@ func (o *CreatePlaylistUnauthorized) Code() int {
 }
 
 func (o *CreatePlaylistUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistUnauthorized %s", 401, payload)
 }
 
 func (o *CreatePlaylistUnauthorized) String() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistUnauthorized %s", 401, payload)
 }
 
 func (o *CreatePlaylistUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *CreatePlaylistForbidden) Code() int {
 }
 
 func (o *CreatePlaylistForbidden) Error() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistForbidden %s", 403, payload)
 }
 
 func (o *CreatePlaylistForbidden) String() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistForbidden %s", 403, payload)
 }
 
 func (o *CreatePlaylistForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *CreatePlaylistNotFound) Code() int {
 }
 
 func (o *CreatePlaylistNotFound) Error() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistNotFound %s", 404, payload)
 }
 
 func (o *CreatePlaylistNotFound) String() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistNotFound %s", 404, payload)
 }
 
 func (o *CreatePlaylistNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *CreatePlaylistInternalServerError) Code() int {
 }
 
 func (o *CreatePlaylistInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistInternalServerError %s", 500, payload)
 }
 
 func (o *CreatePlaylistInternalServerError) String() string {
-	return fmt.Sprintf("[POST /playlists][%d] createPlaylistInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /playlists][%d] createPlaylistInternalServerError %s", 500, payload)
 }
 
 func (o *CreatePlaylistInternalServerError) GetPayload() *models.ErrorResponseBody {

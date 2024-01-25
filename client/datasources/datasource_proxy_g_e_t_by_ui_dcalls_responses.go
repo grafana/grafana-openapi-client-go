@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -108,11 +109,11 @@ func (o *DatasourceProxyGETByUIDcallsOK) Code() int {
 }
 
 func (o *DatasourceProxyGETByUIDcallsOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsOk ", 200)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsOk", 200)
 }
 
 func (o *DatasourceProxyGETByUIDcallsOK) String() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsOk ", 200)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsOk", 200)
 }
 
 func (o *DatasourceProxyGETByUIDcallsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,11 +166,13 @@ func (o *DatasourceProxyGETByUIDcallsBadRequest) Code() int {
 }
 
 func (o *DatasourceProxyGETByUIDcallsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsBadRequest %s", 400, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsBadRequest) String() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsBadRequest %s", 400, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +236,13 @@ func (o *DatasourceProxyGETByUIDcallsUnauthorized) Code() int {
 }
 
 func (o *DatasourceProxyGETByUIDcallsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsUnauthorized %s", 401, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsUnauthorized %s", 401, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +306,13 @@ func (o *DatasourceProxyGETByUIDcallsForbidden) Code() int {
 }
 
 func (o *DatasourceProxyGETByUIDcallsForbidden) Error() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsForbidden %s", 403, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsForbidden) String() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsForbidden %s", 403, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -369,11 +376,13 @@ func (o *DatasourceProxyGETByUIDcallsNotFound) Code() int {
 }
 
 func (o *DatasourceProxyGETByUIDcallsNotFound) Error() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsNotFound %s", 404, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsNotFound) String() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsNotFound %s", 404, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsNotFound) GetPayload() *models.ErrorResponseBody {
@@ -437,11 +446,13 @@ func (o *DatasourceProxyGETByUIDcallsInternalServerError) Code() int {
 }
 
 func (o *DatasourceProxyGETByUIDcallsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsInternalServerError %s", 500, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/proxy/uid/{uid}/{datasource_proxy_route}][%d] datasourceProxyGETByUiDcallsInternalServerError %s", 500, payload)
 }
 
 func (o *DatasourceProxyGETByUIDcallsInternalServerError) GetPayload() *models.ErrorResponseBody {

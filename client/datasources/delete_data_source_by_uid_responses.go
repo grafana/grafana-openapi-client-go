@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteDataSourceByUIDOK) Code() int {
 }
 
 func (o *DeleteDataSourceByUIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidOk %s", 200, payload)
 }
 
 func (o *DeleteDataSourceByUIDOK) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidOk %s", 200, payload)
 }
 
 func (o *DeleteDataSourceByUIDOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *DeleteDataSourceByUIDUnauthorized) Code() int {
 }
 
 func (o *DeleteDataSourceByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteDataSourceByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteDataSourceByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteDataSourceByUIDForbidden) Code() int {
 }
 
 func (o *DeleteDataSourceByUIDForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidForbidden %s", 403, payload)
 }
 
 func (o *DeleteDataSourceByUIDForbidden) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidForbidden %s", 403, payload)
 }
 
 func (o *DeleteDataSourceByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteDataSourceByUIDNotFound) Code() int {
 }
 
 func (o *DeleteDataSourceByUIDNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidNotFound %s", 404, payload)
 }
 
 func (o *DeleteDataSourceByUIDNotFound) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidNotFound %s", 404, payload)
 }
 
 func (o *DeleteDataSourceByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteDataSourceByUIDInternalServerError) Code() int {
 }
 
 func (o *DeleteDataSourceByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteDataSourceByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/uid/{uid}][%d] deleteDataSourceByUidInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteDataSourceByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

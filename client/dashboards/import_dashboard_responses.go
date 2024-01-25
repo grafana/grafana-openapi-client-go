@@ -6,6 +6,7 @@ package dashboards
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *ImportDashboardOK) Code() int {
 }
 
 func (o *ImportDashboardOK) Error() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardOk %s", 200, payload)
 }
 
 func (o *ImportDashboardOK) String() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardOk %s", 200, payload)
 }
 
 func (o *ImportDashboardOK) GetPayload() *models.ImportDashboardResponse {
@@ -177,11 +180,13 @@ func (o *ImportDashboardBadRequest) Code() int {
 }
 
 func (o *ImportDashboardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardBadRequest %s", 400, payload)
 }
 
 func (o *ImportDashboardBadRequest) String() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardBadRequest %s", 400, payload)
 }
 
 func (o *ImportDashboardBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *ImportDashboardUnauthorized) Code() int {
 }
 
 func (o *ImportDashboardUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *ImportDashboardUnauthorized) String() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *ImportDashboardUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *ImportDashboardPreconditionFailed) Code() int {
 }
 
 func (o *ImportDashboardPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardPreconditionFailed %s", 412, payload)
 }
 
 func (o *ImportDashboardPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardPreconditionFailed %s", 412, payload)
 }
 
 func (o *ImportDashboardPreconditionFailed) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *ImportDashboardUnprocessableEntity) Code() int {
 }
 
 func (o *ImportDashboardUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportDashboardUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardUnprocessableEntity %s", 422, payload)
 }
 
 func (o *ImportDashboardUnprocessableEntity) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *ImportDashboardInternalServerError) Code() int {
 }
 
 func (o *ImportDashboardInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *ImportDashboardInternalServerError) String() string {
-	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/import][%d] importDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *ImportDashboardInternalServerError) GetPayload() *models.ErrorResponseBody {

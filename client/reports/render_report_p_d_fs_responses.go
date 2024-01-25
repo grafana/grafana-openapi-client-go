@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *RenderReportPDFsOK) Code() int {
 }
 
 func (o *RenderReportPDFsOK) Error() string {
-	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsOk %s", 200, payload)
 }
 
 func (o *RenderReportPDFsOK) String() string {
-	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsOk %s", 200, payload)
 }
 
 func (o *RenderReportPDFsOK) GetPayload() []uint8 {
@@ -163,11 +166,13 @@ func (o *RenderReportPDFsBadRequest) Code() int {
 }
 
 func (o *RenderReportPDFsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsBadRequest %s", 400, payload)
 }
 
 func (o *RenderReportPDFsBadRequest) String() string {
-	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsBadRequest %s", 400, payload)
 }
 
 func (o *RenderReportPDFsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *RenderReportPDFsUnauthorized) Code() int {
 }
 
 func (o *RenderReportPDFsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsUnauthorized %s", 401, payload)
 }
 
 func (o *RenderReportPDFsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsUnauthorized %s", 401, payload)
 }
 
 func (o *RenderReportPDFsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *RenderReportPDFsInternalServerError) Code() int {
 }
 
 func (o *RenderReportPDFsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsInternalServerError %s", 500, payload)
 }
 
 func (o *RenderReportPDFsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdfs][%d] renderReportPDFsInternalServerError %s", 500, payload)
 }
 
 func (o *RenderReportPDFsInternalServerError) GetPayload() *models.ErrorResponseBody {

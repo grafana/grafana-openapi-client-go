@@ -6,6 +6,7 @@ package admin_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *AdminUpdateUserPermissionsOK) Code() int {
 }
 
 func (o *AdminUpdateUserPermissionsOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsOk %s", 200, payload)
 }
 
 func (o *AdminUpdateUserPermissionsOK) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsOk %s", 200, payload)
 }
 
 func (o *AdminUpdateUserPermissionsOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *AdminUpdateUserPermissionsBadRequest) Code() int {
 }
 
 func (o *AdminUpdateUserPermissionsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsBadRequest %s", 400, payload)
 }
 
 func (o *AdminUpdateUserPermissionsBadRequest) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsBadRequest %s", 400, payload)
 }
 
 func (o *AdminUpdateUserPermissionsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *AdminUpdateUserPermissionsUnauthorized) Code() int {
 }
 
 func (o *AdminUpdateUserPermissionsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminUpdateUserPermissionsUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminUpdateUserPermissionsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *AdminUpdateUserPermissionsForbidden) Code() int {
 }
 
 func (o *AdminUpdateUserPermissionsForbidden) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsForbidden %s", 403, payload)
 }
 
 func (o *AdminUpdateUserPermissionsForbidden) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsForbidden %s", 403, payload)
 }
 
 func (o *AdminUpdateUserPermissionsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *AdminUpdateUserPermissionsInternalServerError) Code() int {
 }
 
 func (o *AdminUpdateUserPermissionsInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsInternalServerError %s", 500, payload)
 }
 
 func (o *AdminUpdateUserPermissionsInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/permissions][%d] adminUpdateUserPermissionsInternalServerError %s", 500, payload)
 }
 
 func (o *AdminUpdateUserPermissionsInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package recording_rules
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteRecordingRuleOK) Code() int {
 }
 
 func (o *DeleteRecordingRuleOK) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleOk %s", 200, payload)
 }
 
 func (o *DeleteRecordingRuleOK) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleOk %s", 200, payload)
 }
 
 func (o *DeleteRecordingRuleOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *DeleteRecordingRuleUnauthorized) Code() int {
 }
 
 func (o *DeleteRecordingRuleUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteRecordingRuleUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteRecordingRuleUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteRecordingRuleForbidden) Code() int {
 }
 
 func (o *DeleteRecordingRuleForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleForbidden %s", 403, payload)
 }
 
 func (o *DeleteRecordingRuleForbidden) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleForbidden %s", 403, payload)
 }
 
 func (o *DeleteRecordingRuleForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteRecordingRuleNotFound) Code() int {
 }
 
 func (o *DeleteRecordingRuleNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleNotFound %s", 404, payload)
 }
 
 func (o *DeleteRecordingRuleNotFound) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleNotFound %s", 404, payload)
 }
 
 func (o *DeleteRecordingRuleNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteRecordingRuleInternalServerError) Code() int {
 }
 
 func (o *DeleteRecordingRuleInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteRecordingRuleInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/{recordingRuleID}][%d] deleteRecordingRuleInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteRecordingRuleInternalServerError) GetPayload() *models.ErrorResponseBody {

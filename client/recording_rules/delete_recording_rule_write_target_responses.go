@@ -6,6 +6,7 @@ package recording_rules
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteRecordingRuleWriteTargetOK) Code() int {
 }
 
 func (o *DeleteRecordingRuleWriteTargetOK) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetOk %s", 200, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetOK) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetOk %s", 200, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *DeleteRecordingRuleWriteTargetUnauthorized) Code() int {
 }
 
 func (o *DeleteRecordingRuleWriteTargetUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteRecordingRuleWriteTargetForbidden) Code() int {
 }
 
 func (o *DeleteRecordingRuleWriteTargetForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetForbidden %s", 403, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetForbidden) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetForbidden %s", 403, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteRecordingRuleWriteTargetNotFound) Code() int {
 }
 
 func (o *DeleteRecordingRuleWriteTargetNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetNotFound %s", 404, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetNotFound) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetNotFound %s", 404, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteRecordingRuleWriteTargetInternalServerError) Code() int {
 }
 
 func (o *DeleteRecordingRuleWriteTargetInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /recording-rules/writer][%d] deleteRecordingRuleWriteTargetInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteRecordingRuleWriteTargetInternalServerError) GetPayload() *models.ErrorResponseBody {

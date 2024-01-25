@@ -6,6 +6,7 @@ package recording_rules
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetRecordingRuleWriteTargetOK) Code() int {
 }
 
 func (o *GetRecordingRuleWriteTargetOK) Error() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetOk %s", 200, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetOK) String() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetOk %s", 200, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetOK) GetPayload() *models.PrometheusRemoteWriteTargetJSON {
@@ -171,11 +174,13 @@ func (o *GetRecordingRuleWriteTargetUnauthorized) Code() int {
 }
 
 func (o *GetRecordingRuleWriteTargetUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetUnauthorized %s", 401, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetUnauthorized) String() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetUnauthorized %s", 401, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetRecordingRuleWriteTargetForbidden) Code() int {
 }
 
 func (o *GetRecordingRuleWriteTargetForbidden) Error() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetForbidden %s", 403, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetForbidden) String() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetForbidden %s", 403, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetRecordingRuleWriteTargetNotFound) Code() int {
 }
 
 func (o *GetRecordingRuleWriteTargetNotFound) Error() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetNotFound %s", 404, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetNotFound) String() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetNotFound %s", 404, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetRecordingRuleWriteTargetInternalServerError) Code() int {
 }
 
 func (o *GetRecordingRuleWriteTargetInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetInternalServerError %s", 500, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetInternalServerError) String() string {
-	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /recording-rules/writer][%d] getRecordingRuleWriteTargetInternalServerError %s", 500, payload)
 }
 
 func (o *GetRecordingRuleWriteTargetInternalServerError) GetPayload() *models.ErrorResponseBody {

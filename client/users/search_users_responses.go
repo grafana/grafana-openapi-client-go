@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SearchUsersOK) Code() int {
 }
 
 func (o *SearchUsersOK) Error() string {
-	return fmt.Sprintf("[GET /users][%d] searchUsersOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users][%d] searchUsersOk %s", 200, payload)
 }
 
 func (o *SearchUsersOK) String() string {
-	return fmt.Sprintf("[GET /users][%d] searchUsersOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users][%d] searchUsersOk %s", 200, payload)
 }
 
 func (o *SearchUsersOK) GetPayload() []*models.UserSearchHitDTO {
@@ -163,11 +166,13 @@ func (o *SearchUsersUnauthorized) Code() int {
 }
 
 func (o *SearchUsersUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /users][%d] searchUsersUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users][%d] searchUsersUnauthorized %s", 401, payload)
 }
 
 func (o *SearchUsersUnauthorized) String() string {
-	return fmt.Sprintf("[GET /users][%d] searchUsersUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users][%d] searchUsersUnauthorized %s", 401, payload)
 }
 
 func (o *SearchUsersUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *SearchUsersForbidden) Code() int {
 }
 
 func (o *SearchUsersForbidden) Error() string {
-	return fmt.Sprintf("[GET /users][%d] searchUsersForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users][%d] searchUsersForbidden %s", 403, payload)
 }
 
 func (o *SearchUsersForbidden) String() string {
-	return fmt.Sprintf("[GET /users][%d] searchUsersForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users][%d] searchUsersForbidden %s", 403, payload)
 }
 
 func (o *SearchUsersForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *SearchUsersInternalServerError) Code() int {
 }
 
 func (o *SearchUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /users][%d] searchUsersInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users][%d] searchUsersInternalServerError %s", 500, payload)
 }
 
 func (o *SearchUsersInternalServerError) String() string {
-	return fmt.Sprintf("[GET /users][%d] searchUsersInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /users][%d] searchUsersInternalServerError %s", 500, payload)
 }
 
 func (o *SearchUsersInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *GetTemplatesOK) Code() int {
 }
 
 func (o *GetTemplatesOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesOk %s", 200, payload)
 }
 
 func (o *GetTemplatesOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesOk %s", 200, payload)
 }
 
 func (o *GetTemplatesOK) GetPayload() models.NotificationTemplates {
@@ -150,11 +153,11 @@ func (o *GetTemplatesNotFound) Code() int {
 }
 
 func (o *GetTemplatesNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesNotFound", 404)
 }
 
 func (o *GetTemplatesNotFound) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesNotFound", 404)
 }
 
 func (o *GetTemplatesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *ListRolesOK) Code() int {
 }
 
 func (o *ListRolesOK) Error() string {
-	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesOk %s", 200, payload)
 }
 
 func (o *ListRolesOK) String() string {
-	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesOk %s", 200, payload)
 }
 
 func (o *ListRolesOK) GetPayload() []*models.RoleDTO {
@@ -157,11 +160,13 @@ func (o *ListRolesForbidden) Code() int {
 }
 
 func (o *ListRolesForbidden) Error() string {
-	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesForbidden %s", 403, payload)
 }
 
 func (o *ListRolesForbidden) String() string {
-	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesForbidden %s", 403, payload)
 }
 
 func (o *ListRolesForbidden) GetPayload() *models.ErrorResponseBody {
@@ -225,11 +230,13 @@ func (o *ListRolesInternalServerError) Code() int {
 }
 
 func (o *ListRolesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesInternalServerError %s", 500, payload)
 }
 
 func (o *ListRolesInternalServerError) String() string {
-	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles][%d] listRolesInternalServerError %s", 500, payload)
 }
 
 func (o *ListRolesInternalServerError) GetPayload() *models.ErrorResponseBody {

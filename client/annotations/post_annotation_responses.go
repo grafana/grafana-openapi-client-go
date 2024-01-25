@@ -6,6 +6,7 @@ package annotations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *PostAnnotationOK) Code() int {
 }
 
 func (o *PostAnnotationOK) Error() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationOk %s", 200, payload)
 }
 
 func (o *PostAnnotationOK) String() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationOk %s", 200, payload)
 }
 
 func (o *PostAnnotationOK) GetPayload() *models.PostAnnotationOKBody {
@@ -171,11 +174,13 @@ func (o *PostAnnotationBadRequest) Code() int {
 }
 
 func (o *PostAnnotationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationBadRequest %s", 400, payload)
 }
 
 func (o *PostAnnotationBadRequest) String() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationBadRequest %s", 400, payload)
 }
 
 func (o *PostAnnotationBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *PostAnnotationUnauthorized) Code() int {
 }
 
 func (o *PostAnnotationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationUnauthorized %s", 401, payload)
 }
 
 func (o *PostAnnotationUnauthorized) String() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationUnauthorized %s", 401, payload)
 }
 
 func (o *PostAnnotationUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *PostAnnotationForbidden) Code() int {
 }
 
 func (o *PostAnnotationForbidden) Error() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationForbidden %s", 403, payload)
 }
 
 func (o *PostAnnotationForbidden) String() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationForbidden %s", 403, payload)
 }
 
 func (o *PostAnnotationForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *PostAnnotationInternalServerError) Code() int {
 }
 
 func (o *PostAnnotationInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationInternalServerError %s", 500, payload)
 }
 
 func (o *PostAnnotationInternalServerError) String() string {
-	return fmt.Sprintf("[POST /annotations][%d] postAnnotationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /annotations][%d] postAnnotationInternalServerError %s", 500, payload)
 }
 
 func (o *PostAnnotationInternalServerError) GetPayload() *models.ErrorResponseBody {

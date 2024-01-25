@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PostMuteTimingCreated) Code() int {
 }
 
 func (o *PostMuteTimingCreated) Error() string {
-	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingCreated %s", 201, payload)
 }
 
 func (o *PostMuteTimingCreated) String() string {
-	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingCreated %s", 201, payload)
 }
 
 func (o *PostMuteTimingCreated) GetPayload() *models.MuteTimeInterval {
@@ -153,11 +156,13 @@ func (o *PostMuteTimingBadRequest) Code() int {
 }
 
 func (o *PostMuteTimingBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingBadRequest %s", 400, payload)
 }
 
 func (o *PostMuteTimingBadRequest) String() string {
-	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/mute-timings][%d] postMuteTimingBadRequest %s", 400, payload)
 }
 
 func (o *PostMuteTimingBadRequest) GetPayload() *models.ValidationError {

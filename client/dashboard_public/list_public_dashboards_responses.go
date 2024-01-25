@@ -6,6 +6,7 @@ package dashboard_public
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *ListPublicDashboardsOK) Code() int {
 }
 
 func (o *ListPublicDashboardsOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsOk %s", 200, payload)
 }
 
 func (o *ListPublicDashboardsOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsOk %s", 200, payload)
 }
 
 func (o *ListPublicDashboardsOK) GetPayload() *models.PublicDashboardListResponseWithPagination {
@@ -165,11 +168,13 @@ func (o *ListPublicDashboardsUnauthorized) Code() int {
 }
 
 func (o *ListPublicDashboardsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsUnauthorized %s", 401, payload)
 }
 
 func (o *ListPublicDashboardsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsUnauthorized %s", 401, payload)
 }
 
 func (o *ListPublicDashboardsUnauthorized) GetPayload() *models.PublicError {
@@ -233,11 +238,13 @@ func (o *ListPublicDashboardsForbidden) Code() int {
 }
 
 func (o *ListPublicDashboardsForbidden) Error() string {
-	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsForbidden %s", 403, payload)
 }
 
 func (o *ListPublicDashboardsForbidden) String() string {
-	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsForbidden %s", 403, payload)
 }
 
 func (o *ListPublicDashboardsForbidden) GetPayload() *models.PublicError {
@@ -301,11 +308,13 @@ func (o *ListPublicDashboardsInternalServerError) Code() int {
 }
 
 func (o *ListPublicDashboardsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsInternalServerError %s", 500, payload)
 }
 
 func (o *ListPublicDashboardsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/public-dashboards][%d] listPublicDashboardsInternalServerError %s", 500, payload)
 }
 
 func (o *ListPublicDashboardsInternalServerError) GetPayload() *models.PublicError {

@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *CallDatasourceResourceWithUIDOK) Code() int {
 }
 
 func (o *CallDatasourceResourceWithUIDOK) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidOk %s", 200, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDOK) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidOk %s", 200, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *CallDatasourceResourceWithUIDBadRequest) Code() int {
 }
 
 func (o *CallDatasourceResourceWithUIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidBadRequest %s", 400, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDBadRequest) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidBadRequest %s", 400, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *CallDatasourceResourceWithUIDUnauthorized) Code() int {
 }
 
 func (o *CallDatasourceResourceWithUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidUnauthorized %s", 401, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidUnauthorized %s", 401, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *CallDatasourceResourceWithUIDForbidden) Code() int {
 }
 
 func (o *CallDatasourceResourceWithUIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidForbidden %s", 403, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDForbidden) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidForbidden %s", 403, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *CallDatasourceResourceWithUIDNotFound) Code() int {
 }
 
 func (o *CallDatasourceResourceWithUIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidNotFound %s", 404, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDNotFound) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidNotFound %s", 404, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *CallDatasourceResourceWithUIDInternalServerError) Code() int {
 }
 
 func (o *CallDatasourceResourceWithUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidInternalServerError %s", 500, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /datasources/uid/{uid}/resources/{datasource_proxy_route}][%d] callDatasourceResourceWithUidInternalServerError %s", 500, payload)
 }
 
 func (o *CallDatasourceResourceWithUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

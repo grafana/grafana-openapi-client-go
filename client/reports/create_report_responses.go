@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *CreateReportOK) Code() int {
 }
 
 func (o *CreateReportOK) Error() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportOk %s", 200, payload)
 }
 
 func (o *CreateReportOK) String() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportOk %s", 200, payload)
 }
 
 func (o *CreateReportOK) GetPayload() *models.CreateReportOKBody {
@@ -177,11 +180,13 @@ func (o *CreateReportBadRequest) Code() int {
 }
 
 func (o *CreateReportBadRequest) Error() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportBadRequest %s", 400, payload)
 }
 
 func (o *CreateReportBadRequest) String() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportBadRequest %s", 400, payload)
 }
 
 func (o *CreateReportBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *CreateReportUnauthorized) Code() int {
 }
 
 func (o *CreateReportUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportUnauthorized %s", 401, payload)
 }
 
 func (o *CreateReportUnauthorized) String() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportUnauthorized %s", 401, payload)
 }
 
 func (o *CreateReportUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *CreateReportForbidden) Code() int {
 }
 
 func (o *CreateReportForbidden) Error() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportForbidden %s", 403, payload)
 }
 
 func (o *CreateReportForbidden) String() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportForbidden %s", 403, payload)
 }
 
 func (o *CreateReportForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *CreateReportNotFound) Code() int {
 }
 
 func (o *CreateReportNotFound) Error() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportNotFound %s", 404, payload)
 }
 
 func (o *CreateReportNotFound) String() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportNotFound %s", 404, payload)
 }
 
 func (o *CreateReportNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *CreateReportInternalServerError) Code() int {
 }
 
 func (o *CreateReportInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportInternalServerError %s", 500, payload)
 }
 
 func (o *CreateReportInternalServerError) String() string {
-	return fmt.Sprintf("[POST /reports][%d] createReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /reports][%d] createReportInternalServerError %s", 500, payload)
 }
 
 func (o *CreateReportInternalServerError) GetPayload() *models.ErrorResponseBody {

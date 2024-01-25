@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PutAlertRuleOK) Code() int {
 }
 
 func (o *PutAlertRuleOK) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleOk %s", 200, payload)
 }
 
 func (o *PutAlertRuleOK) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleOk %s", 200, payload)
 }
 
 func (o *PutAlertRuleOK) GetPayload() *models.ProvisionedAlertRule {
@@ -153,11 +156,13 @@ func (o *PutAlertRuleBadRequest) Code() int {
 }
 
 func (o *PutAlertRuleBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleBadRequest %s", 400, payload)
 }
 
 func (o *PutAlertRuleBadRequest) String() string {
-	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/alert-rules/{UID}][%d] putAlertRuleBadRequest %s", 400, payload)
 }
 
 func (o *PutAlertRuleBadRequest) GetPayload() *models.ValidationError {

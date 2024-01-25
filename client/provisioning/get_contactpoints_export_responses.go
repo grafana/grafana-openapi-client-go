@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *GetContactpointsExportOK) Code() int {
 }
 
 func (o *GetContactpointsExportOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportOk %s", 200, payload)
 }
 
 func (o *GetContactpointsExportOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportOk %s", 200, payload)
 }
 
 func (o *GetContactpointsExportOK) GetPayload() *models.AlertingFileExport {
@@ -153,11 +156,13 @@ func (o *GetContactpointsExportForbidden) Code() int {
 }
 
 func (o *GetContactpointsExportForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportForbidden %s", 403, payload)
 }
 
 func (o *GetContactpointsExportForbidden) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/contact-points/export][%d] getContactpointsExportForbidden %s", 403, payload)
 }
 
 func (o *GetContactpointsExportForbidden) GetPayload() models.PermissionDenied {

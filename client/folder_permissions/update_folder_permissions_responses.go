@@ -6,6 +6,7 @@ package folder_permissions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateFolderPermissionsOK) Code() int {
 }
 
 func (o *UpdateFolderPermissionsOK) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsOk %s", 200, payload)
 }
 
 func (o *UpdateFolderPermissionsOK) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsOk %s", 200, payload)
 }
 
 func (o *UpdateFolderPermissionsOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateFolderPermissionsUnauthorized) Code() int {
 }
 
 func (o *UpdateFolderPermissionsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateFolderPermissionsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateFolderPermissionsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateFolderPermissionsForbidden) Code() int {
 }
 
 func (o *UpdateFolderPermissionsForbidden) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsForbidden %s", 403, payload)
 }
 
 func (o *UpdateFolderPermissionsForbidden) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsForbidden %s", 403, payload)
 }
 
 func (o *UpdateFolderPermissionsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateFolderPermissionsNotFound) Code() int {
 }
 
 func (o *UpdateFolderPermissionsNotFound) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsNotFound %s", 404, payload)
 }
 
 func (o *UpdateFolderPermissionsNotFound) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsNotFound %s", 404, payload)
 }
 
 func (o *UpdateFolderPermissionsNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateFolderPermissionsInternalServerError) Code() int {
 }
 
 func (o *UpdateFolderPermissionsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateFolderPermissionsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders/{folder_uid}/permissions][%d] updateFolderPermissionsInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateFolderPermissionsInternalServerError) GetPayload() *models.ErrorResponseBody {

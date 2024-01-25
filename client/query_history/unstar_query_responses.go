@@ -6,6 +6,7 @@ package query_history
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *UnstarQueryOK) Code() int {
 }
 
 func (o *UnstarQueryOK) Error() string {
-	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryOk %s", 200, payload)
 }
 
 func (o *UnstarQueryOK) String() string {
-	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryOk %s", 200, payload)
 }
 
 func (o *UnstarQueryOK) GetPayload() *models.QueryHistoryResponse {
@@ -159,11 +162,13 @@ func (o *UnstarQueryUnauthorized) Code() int {
 }
 
 func (o *UnstarQueryUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryUnauthorized %s", 401, payload)
 }
 
 func (o *UnstarQueryUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryUnauthorized %s", 401, payload)
 }
 
 func (o *UnstarQueryUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *UnstarQueryInternalServerError) Code() int {
 }
 
 func (o *UnstarQueryInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryInternalServerError %s", 500, payload)
 }
 
 func (o *UnstarQueryInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /query-history/star/{query_history_uid}][%d] unstarQueryInternalServerError %s", 500, payload)
 }
 
 func (o *UnstarQueryInternalServerError) GetPayload() *models.ErrorResponseBody {

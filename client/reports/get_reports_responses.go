@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetReportsOK) Code() int {
 }
 
 func (o *GetReportsOK) Error() string {
-	return fmt.Sprintf("[GET /reports][%d] getReportsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports][%d] getReportsOk %s", 200, payload)
 }
 
 func (o *GetReportsOK) String() string {
-	return fmt.Sprintf("[GET /reports][%d] getReportsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports][%d] getReportsOk %s", 200, payload)
 }
 
 func (o *GetReportsOK) GetPayload() []*models.Report {
@@ -163,11 +166,13 @@ func (o *GetReportsUnauthorized) Code() int {
 }
 
 func (o *GetReportsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /reports][%d] getReportsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports][%d] getReportsUnauthorized %s", 401, payload)
 }
 
 func (o *GetReportsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /reports][%d] getReportsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports][%d] getReportsUnauthorized %s", 401, payload)
 }
 
 func (o *GetReportsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *GetReportsForbidden) Code() int {
 }
 
 func (o *GetReportsForbidden) Error() string {
-	return fmt.Sprintf("[GET /reports][%d] getReportsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports][%d] getReportsForbidden %s", 403, payload)
 }
 
 func (o *GetReportsForbidden) String() string {
-	return fmt.Sprintf("[GET /reports][%d] getReportsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports][%d] getReportsForbidden %s", 403, payload)
 }
 
 func (o *GetReportsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *GetReportsInternalServerError) Code() int {
 }
 
 func (o *GetReportsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /reports][%d] getReportsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports][%d] getReportsInternalServerError %s", 500, payload)
 }
 
 func (o *GetReportsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /reports][%d] getReportsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports][%d] getReportsInternalServerError %s", 500, payload)
 }
 
 func (o *GetReportsInternalServerError) GetPayload() *models.ErrorResponseBody {

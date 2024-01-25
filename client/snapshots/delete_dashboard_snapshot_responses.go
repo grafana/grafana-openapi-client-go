@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *DeleteDashboardSnapshotOK) Code() int {
 }
 
 func (o *DeleteDashboardSnapshotOK) Error() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotOk %s", 200, payload)
 }
 
 func (o *DeleteDashboardSnapshotOK) String() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotOk %s", 200, payload)
 }
 
 func (o *DeleteDashboardSnapshotOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *DeleteDashboardSnapshotForbidden) Code() int {
 }
 
 func (o *DeleteDashboardSnapshotForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotForbidden %s", 403, payload)
 }
 
 func (o *DeleteDashboardSnapshotForbidden) String() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotForbidden %s", 403, payload)
 }
 
 func (o *DeleteDashboardSnapshotForbidden) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *DeleteDashboardSnapshotNotFound) Code() int {
 }
 
 func (o *DeleteDashboardSnapshotNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotNotFound %s", 404, payload)
 }
 
 func (o *DeleteDashboardSnapshotNotFound) String() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotNotFound %s", 404, payload)
 }
 
 func (o *DeleteDashboardSnapshotNotFound) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *DeleteDashboardSnapshotInternalServerError) Code() int {
 }
 
 func (o *DeleteDashboardSnapshotInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteDashboardSnapshotInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /snapshots/{key}][%d] deleteDashboardSnapshotInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteDashboardSnapshotInternalServerError) GetPayload() *models.ErrorResponseBody {

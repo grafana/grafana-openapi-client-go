@@ -6,6 +6,7 @@ package admin_provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *AdminProvisioningReloadPluginsOK) Code() int {
 }
 
 func (o *AdminProvisioningReloadPluginsOK) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsOk %s", 200, payload)
 }
 
 func (o *AdminProvisioningReloadPluginsOK) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsOk %s", 200, payload)
 }
 
 func (o *AdminProvisioningReloadPluginsOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *AdminProvisioningReloadPluginsUnauthorized) Code() int {
 }
 
 func (o *AdminProvisioningReloadPluginsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminProvisioningReloadPluginsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminProvisioningReloadPluginsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *AdminProvisioningReloadPluginsForbidden) Code() int {
 }
 
 func (o *AdminProvisioningReloadPluginsForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsForbidden %s", 403, payload)
 }
 
 func (o *AdminProvisioningReloadPluginsForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsForbidden %s", 403, payload)
 }
 
 func (o *AdminProvisioningReloadPluginsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *AdminProvisioningReloadPluginsInternalServerError) Code() int {
 }
 
 func (o *AdminProvisioningReloadPluginsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsInternalServerError %s", 500, payload)
 }
 
 func (o *AdminProvisioningReloadPluginsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/plugins/reload][%d] adminProvisioningReloadPluginsInternalServerError %s", 500, payload)
 }
 
 func (o *AdminProvisioningReloadPluginsInternalServerError) GetPayload() *models.ErrorResponseBody {

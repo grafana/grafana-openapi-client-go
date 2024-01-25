@@ -6,6 +6,7 @@ package legacy_alerts_notification_channels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetAlertNotificationLookupOK) Code() int {
 }
 
 func (o *GetAlertNotificationLookupOK) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupOk %s", 200, payload)
 }
 
 func (o *GetAlertNotificationLookupOK) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupOk %s", 200, payload)
 }
 
 func (o *GetAlertNotificationLookupOK) GetPayload() []*models.AlertNotificationLookup {
@@ -163,11 +166,13 @@ func (o *GetAlertNotificationLookupUnauthorized) Code() int {
 }
 
 func (o *GetAlertNotificationLookupUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupUnauthorized %s", 401, payload)
 }
 
 func (o *GetAlertNotificationLookupUnauthorized) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupUnauthorized %s", 401, payload)
 }
 
 func (o *GetAlertNotificationLookupUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *GetAlertNotificationLookupForbidden) Code() int {
 }
 
 func (o *GetAlertNotificationLookupForbidden) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupForbidden %s", 403, payload)
 }
 
 func (o *GetAlertNotificationLookupForbidden) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupForbidden %s", 403, payload)
 }
 
 func (o *GetAlertNotificationLookupForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *GetAlertNotificationLookupInternalServerError) Code() int {
 }
 
 func (o *GetAlertNotificationLookupInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupInternalServerError %s", 500, payload)
 }
 
 func (o *GetAlertNotificationLookupInternalServerError) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/lookup][%d] getAlertNotificationLookupInternalServerError %s", 500, payload)
 }
 
 func (o *GetAlertNotificationLookupInternalServerError) GetPayload() *models.ErrorResponseBody {

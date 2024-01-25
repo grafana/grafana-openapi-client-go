@@ -6,6 +6,7 @@ package admin_provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *AdminProvisioningReloadDashboardsOK) Code() int {
 }
 
 func (o *AdminProvisioningReloadDashboardsOK) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsOk %s", 200, payload)
 }
 
 func (o *AdminProvisioningReloadDashboardsOK) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsOk %s", 200, payload)
 }
 
 func (o *AdminProvisioningReloadDashboardsOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *AdminProvisioningReloadDashboardsUnauthorized) Code() int {
 }
 
 func (o *AdminProvisioningReloadDashboardsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminProvisioningReloadDashboardsUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminProvisioningReloadDashboardsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *AdminProvisioningReloadDashboardsForbidden) Code() int {
 }
 
 func (o *AdminProvisioningReloadDashboardsForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsForbidden %s", 403, payload)
 }
 
 func (o *AdminProvisioningReloadDashboardsForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsForbidden %s", 403, payload)
 }
 
 func (o *AdminProvisioningReloadDashboardsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *AdminProvisioningReloadDashboardsInternalServerError) Code() int {
 }
 
 func (o *AdminProvisioningReloadDashboardsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsInternalServerError %s", 500, payload)
 }
 
 func (o *AdminProvisioningReloadDashboardsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/provisioning/dashboards/reload][%d] adminProvisioningReloadDashboardsInternalServerError %s", 500, payload)
 }
 
 func (o *AdminProvisioningReloadDashboardsInternalServerError) GetPayload() *models.ErrorResponseBody {

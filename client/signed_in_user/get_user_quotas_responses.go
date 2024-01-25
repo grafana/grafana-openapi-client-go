@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetUserQuotasOK) Code() int {
 }
 
 func (o *GetUserQuotasOK) Error() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasOk %s", 200, payload)
 }
 
 func (o *GetUserQuotasOK) String() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasOk %s", 200, payload)
 }
 
 func (o *GetUserQuotasOK) GetPayload() []*models.QuotaDTO {
@@ -169,11 +172,13 @@ func (o *GetUserQuotasUnauthorized) Code() int {
 }
 
 func (o *GetUserQuotasUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserQuotasUnauthorized) String() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserQuotasUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetUserQuotasForbidden) Code() int {
 }
 
 func (o *GetUserQuotasForbidden) Error() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasForbidden %s", 403, payload)
 }
 
 func (o *GetUserQuotasForbidden) String() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasForbidden %s", 403, payload)
 }
 
 func (o *GetUserQuotasForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetUserQuotasNotFound) Code() int {
 }
 
 func (o *GetUserQuotasNotFound) Error() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasNotFound %s", 404, payload)
 }
 
 func (o *GetUserQuotasNotFound) String() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasNotFound %s", 404, payload)
 }
 
 func (o *GetUserQuotasNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetUserQuotasInternalServerError) Code() int {
 }
 
 func (o *GetUserQuotasInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserQuotasInternalServerError) String() string {
-	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/quotas][%d] getUserQuotasInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserQuotasInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -79,11 +80,13 @@ func (o *GetMuteTimingsOK) Code() int {
 }
 
 func (o *GetMuteTimingsOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings][%d] getMuteTimingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings][%d] getMuteTimingsOk %s", 200, payload)
 }
 
 func (o *GetMuteTimingsOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings][%d] getMuteTimingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings][%d] getMuteTimingsOk %s", 200, payload)
 }
 
 func (o *GetMuteTimingsOK) GetPayload() models.MuteTimings {

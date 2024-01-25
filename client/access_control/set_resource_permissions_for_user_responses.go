@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SetResourcePermissionsForUserOK) Code() int {
 }
 
 func (o *SetResourcePermissionsForUserOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserOk %s", 200, payload)
 }
 
 func (o *SetResourcePermissionsForUserOK) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserOk %s", 200, payload)
 }
 
 func (o *SetResourcePermissionsForUserOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *SetResourcePermissionsForUserBadRequest) Code() int {
 }
 
 func (o *SetResourcePermissionsForUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserBadRequest %s", 400, payload)
 }
 
 func (o *SetResourcePermissionsForUserBadRequest) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserBadRequest %s", 400, payload)
 }
 
 func (o *SetResourcePermissionsForUserBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *SetResourcePermissionsForUserForbidden) Code() int {
 }
 
 func (o *SetResourcePermissionsForUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserForbidden %s", 403, payload)
 }
 
 func (o *SetResourcePermissionsForUserForbidden) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserForbidden %s", 403, payload)
 }
 
 func (o *SetResourcePermissionsForUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *SetResourcePermissionsForUserInternalServerError) Code() int {
 }
 
 func (o *SetResourcePermissionsForUserInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserInternalServerError %s", 500, payload)
 }
 
 func (o *SetResourcePermissionsForUserInternalServerError) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserInternalServerError %s", 500, payload)
 }
 
 func (o *SetResourcePermissionsForUserInternalServerError) GetPayload() *models.ErrorResponseBody {

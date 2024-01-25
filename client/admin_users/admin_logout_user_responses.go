@@ -6,6 +6,7 @@ package admin_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *AdminLogoutUserOK) Code() int {
 }
 
 func (o *AdminLogoutUserOK) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserOk %s", 200, payload)
 }
 
 func (o *AdminLogoutUserOK) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserOk %s", 200, payload)
 }
 
 func (o *AdminLogoutUserOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *AdminLogoutUserBadRequest) Code() int {
 }
 
 func (o *AdminLogoutUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserBadRequest %s", 400, payload)
 }
 
 func (o *AdminLogoutUserBadRequest) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserBadRequest %s", 400, payload)
 }
 
 func (o *AdminLogoutUserBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *AdminLogoutUserUnauthorized) Code() int {
 }
 
 func (o *AdminLogoutUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserUnauthorized %s", 401, payload)
 }
 
 func (o *AdminLogoutUserUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserUnauthorized %s", 401, payload)
 }
 
 func (o *AdminLogoutUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *AdminLogoutUserForbidden) Code() int {
 }
 
 func (o *AdminLogoutUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserForbidden %s", 403, payload)
 }
 
 func (o *AdminLogoutUserForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserForbidden %s", 403, payload)
 }
 
 func (o *AdminLogoutUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *AdminLogoutUserNotFound) Code() int {
 }
 
 func (o *AdminLogoutUserNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserNotFound %s", 404, payload)
 }
 
 func (o *AdminLogoutUserNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserNotFound %s", 404, payload)
 }
 
 func (o *AdminLogoutUserNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *AdminLogoutUserInternalServerError) Code() int {
 }
 
 func (o *AdminLogoutUserInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserInternalServerError %s", 500, payload)
 }
 
 func (o *AdminLogoutUserInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/logout][%d] adminLogoutUserInternalServerError %s", 500, payload)
 }
 
 func (o *AdminLogoutUserInternalServerError) GetPayload() *models.ErrorResponseBody {

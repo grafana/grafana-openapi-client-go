@@ -6,6 +6,7 @@ package user_preferences
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetUserPreferencesOK) Code() int {
 }
 
 func (o *GetUserPreferencesOK) Error() string {
-	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesOk %s", 200, payload)
 }
 
 func (o *GetUserPreferencesOK) String() string {
-	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesOk %s", 200, payload)
 }
 
 func (o *GetUserPreferencesOK) GetPayload() *models.Preferences {
@@ -159,11 +162,13 @@ func (o *GetUserPreferencesUnauthorized) Code() int {
 }
 
 func (o *GetUserPreferencesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserPreferencesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *GetUserPreferencesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *GetUserPreferencesInternalServerError) Code() int {
 }
 
 func (o *GetUserPreferencesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserPreferencesInternalServerError) String() string {
-	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/preferences][%d] getUserPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *GetUserPreferencesInternalServerError) GetPayload() *models.ErrorResponseBody {

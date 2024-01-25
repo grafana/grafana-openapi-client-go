@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SetResourcePermissionsOK) Code() int {
 }
 
 func (o *SetResourcePermissionsOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsOk %s", 200, payload)
 }
 
 func (o *SetResourcePermissionsOK) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsOk %s", 200, payload)
 }
 
 func (o *SetResourcePermissionsOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *SetResourcePermissionsBadRequest) Code() int {
 }
 
 func (o *SetResourcePermissionsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsBadRequest %s", 400, payload)
 }
 
 func (o *SetResourcePermissionsBadRequest) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsBadRequest %s", 400, payload)
 }
 
 func (o *SetResourcePermissionsBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *SetResourcePermissionsForbidden) Code() int {
 }
 
 func (o *SetResourcePermissionsForbidden) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsForbidden %s", 403, payload)
 }
 
 func (o *SetResourcePermissionsForbidden) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsForbidden %s", 403, payload)
 }
 
 func (o *SetResourcePermissionsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *SetResourcePermissionsInternalServerError) Code() int {
 }
 
 func (o *SetResourcePermissionsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsInternalServerError %s", 500, payload)
 }
 
 func (o *SetResourcePermissionsInternalServerError) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}][%d] setResourcePermissionsInternalServerError %s", 500, payload)
 }
 
 func (o *SetResourcePermissionsInternalServerError) GetPayload() *models.ErrorResponseBody {

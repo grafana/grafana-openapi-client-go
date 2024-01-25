@@ -6,6 +6,7 @@ package teams
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetTeamMembersOK) Code() int {
 }
 
 func (o *GetTeamMembersOK) Error() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersOk %s", 200, payload)
 }
 
 func (o *GetTeamMembersOK) String() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersOk %s", 200, payload)
 }
 
 func (o *GetTeamMembersOK) GetPayload() []*models.TeamMemberDTO {
@@ -169,11 +172,13 @@ func (o *GetTeamMembersUnauthorized) Code() int {
 }
 
 func (o *GetTeamMembersUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersUnauthorized %s", 401, payload)
 }
 
 func (o *GetTeamMembersUnauthorized) String() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersUnauthorized %s", 401, payload)
 }
 
 func (o *GetTeamMembersUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetTeamMembersForbidden) Code() int {
 }
 
 func (o *GetTeamMembersForbidden) Error() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersForbidden %s", 403, payload)
 }
 
 func (o *GetTeamMembersForbidden) String() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersForbidden %s", 403, payload)
 }
 
 func (o *GetTeamMembersForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetTeamMembersNotFound) Code() int {
 }
 
 func (o *GetTeamMembersNotFound) Error() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersNotFound %s", 404, payload)
 }
 
 func (o *GetTeamMembersNotFound) String() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersNotFound %s", 404, payload)
 }
 
 func (o *GetTeamMembersNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetTeamMembersInternalServerError) Code() int {
 }
 
 func (o *GetTeamMembersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersInternalServerError %s", 500, payload)
 }
 
 func (o *GetTeamMembersInternalServerError) String() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/members][%d] getTeamMembersInternalServerError %s", 500, payload)
 }
 
 func (o *GetTeamMembersInternalServerError) GetPayload() *models.ErrorResponseBody {

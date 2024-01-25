@@ -6,6 +6,7 @@ package admin_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *AdminDisableUserOK) Code() int {
 }
 
 func (o *AdminDisableUserOK) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserOk %s", 200, payload)
 }
 
 func (o *AdminDisableUserOK) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserOk %s", 200, payload)
 }
 
 func (o *AdminDisableUserOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *AdminDisableUserUnauthorized) Code() int {
 }
 
 func (o *AdminDisableUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserUnauthorized %s", 401, payload)
 }
 
 func (o *AdminDisableUserUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserUnauthorized %s", 401, payload)
 }
 
 func (o *AdminDisableUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *AdminDisableUserForbidden) Code() int {
 }
 
 func (o *AdminDisableUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserForbidden %s", 403, payload)
 }
 
 func (o *AdminDisableUserForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserForbidden %s", 403, payload)
 }
 
 func (o *AdminDisableUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *AdminDisableUserNotFound) Code() int {
 }
 
 func (o *AdminDisableUserNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserNotFound %s", 404, payload)
 }
 
 func (o *AdminDisableUserNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserNotFound %s", 404, payload)
 }
 
 func (o *AdminDisableUserNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *AdminDisableUserInternalServerError) Code() int {
 }
 
 func (o *AdminDisableUserInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserInternalServerError %s", 500, payload)
 }
 
 func (o *AdminDisableUserInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/disable][%d] adminDisableUserInternalServerError %s", 500, payload)
 }
 
 func (o *AdminDisableUserInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package orgs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *AddOrgUserOK) Code() int {
 }
 
 func (o *AddOrgUserOK) Error() string {
-	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserOk %s", 200, payload)
 }
 
 func (o *AddOrgUserOK) String() string {
-	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserOk %s", 200, payload)
 }
 
 func (o *AddOrgUserOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *AddOrgUserUnauthorized) Code() int {
 }
 
 func (o *AddOrgUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserUnauthorized %s", 401, payload)
 }
 
 func (o *AddOrgUserUnauthorized) String() string {
-	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserUnauthorized %s", 401, payload)
 }
 
 func (o *AddOrgUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *AddOrgUserForbidden) Code() int {
 }
 
 func (o *AddOrgUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserForbidden %s", 403, payload)
 }
 
 func (o *AddOrgUserForbidden) String() string {
-	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserForbidden %s", 403, payload)
 }
 
 func (o *AddOrgUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *AddOrgUserInternalServerError) Code() int {
 }
 
 func (o *AddOrgUserInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserInternalServerError %s", 500, payload)
 }
 
 func (o *AddOrgUserInternalServerError) String() string {
-	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /orgs/{org_id}/users][%d] addOrgUserInternalServerError %s", 500, payload)
 }
 
 func (o *AddOrgUserInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *SearchDashboardSnapshotsOK) Code() int {
 }
 
 func (o *SearchDashboardSnapshotsOK) Error() string {
-	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsOk %s", 200, payload)
 }
 
 func (o *SearchDashboardSnapshotsOK) String() string {
-	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsOk %s", 200, payload)
 }
 
 func (o *SearchDashboardSnapshotsOK) GetPayload() []*models.DashboardSnapshotDTO {
@@ -151,11 +154,13 @@ func (o *SearchDashboardSnapshotsInternalServerError) Code() int {
 }
 
 func (o *SearchDashboardSnapshotsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsInternalServerError %s", 500, payload)
 }
 
 func (o *SearchDashboardSnapshotsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/snapshots][%d] searchDashboardSnapshotsInternalServerError %s", 500, payload)
 }
 
 func (o *SearchDashboardSnapshotsInternalServerError) GetPayload() *models.ErrorResponseBody {

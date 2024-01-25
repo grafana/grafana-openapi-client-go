@@ -6,6 +6,7 @@ package api_keys
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *AddAPIkeyOK) Code() int {
 }
 
 func (o *AddAPIkeyOK) Error() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyOk %s", 200, payload)
 }
 
 func (o *AddAPIkeyOK) String() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyOk %s", 200, payload)
 }
 
 func (o *AddAPIkeyOK) GetPayload() *models.NewAPIKeyResult {
@@ -177,11 +180,13 @@ func (o *AddAPIkeyBadRequest) Code() int {
 }
 
 func (o *AddAPIkeyBadRequest) Error() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyBadRequest %s", 400, payload)
 }
 
 func (o *AddAPIkeyBadRequest) String() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyBadRequest %s", 400, payload)
 }
 
 func (o *AddAPIkeyBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *AddAPIkeyUnauthorized) Code() int {
 }
 
 func (o *AddAPIkeyUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyUnauthorized %s", 401, payload)
 }
 
 func (o *AddAPIkeyUnauthorized) String() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyUnauthorized %s", 401, payload)
 }
 
 func (o *AddAPIkeyUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *AddAPIkeyForbidden) Code() int {
 }
 
 func (o *AddAPIkeyForbidden) Error() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyForbidden %s", 403, payload)
 }
 
 func (o *AddAPIkeyForbidden) String() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyForbidden %s", 403, payload)
 }
 
 func (o *AddAPIkeyForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *AddAPIkeyConflict) Code() int {
 }
 
 func (o *AddAPIkeyConflict) Error() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyConflict %s", 409, payload)
 }
 
 func (o *AddAPIkeyConflict) String() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyConflict %s", 409, payload)
 }
 
 func (o *AddAPIkeyConflict) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *AddAPIkeyInternalServerError) Code() int {
 }
 
 func (o *AddAPIkeyInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyInternalServerError %s", 500, payload)
 }
 
 func (o *AddAPIkeyInternalServerError) String() string {
-	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /auth/keys][%d] addAPIkeyInternalServerError %s", 500, payload)
 }
 
 func (o *AddAPIkeyInternalServerError) GetPayload() *models.ErrorResponseBody {

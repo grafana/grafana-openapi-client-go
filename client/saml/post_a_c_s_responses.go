@@ -6,6 +6,7 @@ package saml
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -90,11 +91,11 @@ func (o *PostACSFound) Code() int {
 }
 
 func (o *PostACSFound) Error() string {
-	return fmt.Sprintf("[POST /saml/acs][%d] postACSFound ", 302)
+	return fmt.Sprintf("[POST /saml/acs][%d] postACSFound", 302)
 }
 
 func (o *PostACSFound) String() string {
-	return fmt.Sprintf("[POST /saml/acs][%d] postACSFound ", 302)
+	return fmt.Sprintf("[POST /saml/acs][%d] postACSFound", 302)
 }
 
 func (o *PostACSFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -147,11 +148,13 @@ func (o *PostACSForbidden) Code() int {
 }
 
 func (o *PostACSForbidden) Error() string {
-	return fmt.Sprintf("[POST /saml/acs][%d] postACSForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /saml/acs][%d] postACSForbidden %s", 403, payload)
 }
 
 func (o *PostACSForbidden) String() string {
-	return fmt.Sprintf("[POST /saml/acs][%d] postACSForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /saml/acs][%d] postACSForbidden %s", 403, payload)
 }
 
 func (o *PostACSForbidden) GetPayload() *models.ErrorResponseBody {
@@ -215,11 +218,13 @@ func (o *PostACSInternalServerError) Code() int {
 }
 
 func (o *PostACSInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /saml/acs][%d] postACSInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /saml/acs][%d] postACSInternalServerError %s", 500, payload)
 }
 
 func (o *PostACSInternalServerError) String() string {
-	return fmt.Sprintf("[POST /saml/acs][%d] postACSInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /saml/acs][%d] postACSInternalServerError %s", 500, payload)
 }
 
 func (o *PostACSInternalServerError) GetPayload() *models.ErrorResponseBody {

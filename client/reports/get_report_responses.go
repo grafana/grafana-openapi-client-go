@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *GetReportOK) Code() int {
 }
 
 func (o *GetReportOK) Error() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOk %s", 200, payload)
 }
 
 func (o *GetReportOK) String() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportOk %s", 200, payload)
 }
 
 func (o *GetReportOK) GetPayload() *models.Report {
@@ -177,11 +180,13 @@ func (o *GetReportBadRequest) Code() int {
 }
 
 func (o *GetReportBadRequest) Error() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportBadRequest %s", 400, payload)
 }
 
 func (o *GetReportBadRequest) String() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportBadRequest %s", 400, payload)
 }
 
 func (o *GetReportBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *GetReportUnauthorized) Code() int {
 }
 
 func (o *GetReportUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportUnauthorized %s", 401, payload)
 }
 
 func (o *GetReportUnauthorized) String() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportUnauthorized %s", 401, payload)
 }
 
 func (o *GetReportUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *GetReportForbidden) Code() int {
 }
 
 func (o *GetReportForbidden) Error() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportForbidden %s", 403, payload)
 }
 
 func (o *GetReportForbidden) String() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportForbidden %s", 403, payload)
 }
 
 func (o *GetReportForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *GetReportNotFound) Code() int {
 }
 
 func (o *GetReportNotFound) Error() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportNotFound %s", 404, payload)
 }
 
 func (o *GetReportNotFound) String() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportNotFound %s", 404, payload)
 }
 
 func (o *GetReportNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *GetReportInternalServerError) Code() int {
 }
 
 func (o *GetReportInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportInternalServerError %s", 500, payload)
 }
 
 func (o *GetReportInternalServerError) String() string {
-	return fmt.Sprintf("[GET /reports/{id}][%d] getReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/{id}][%d] getReportInternalServerError %s", 500, payload)
 }
 
 func (o *GetReportInternalServerError) GetPayload() *models.ErrorResponseBody {

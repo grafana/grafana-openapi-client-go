@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateUserOK) Code() int {
 }
 
 func (o *UpdateUserOK) Error() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserOk %s", 200, payload)
 }
 
 func (o *UpdateUserOK) String() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserOk %s", 200, payload)
 }
 
 func (o *UpdateUserOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateUserUnauthorized) Code() int {
 }
 
 func (o *UpdateUserUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateUserUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateUserForbidden) Code() int {
 }
 
 func (o *UpdateUserForbidden) Error() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserForbidden %s", 403, payload)
 }
 
 func (o *UpdateUserForbidden) String() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserForbidden %s", 403, payload)
 }
 
 func (o *UpdateUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateUserNotFound) Code() int {
 }
 
 func (o *UpdateUserNotFound) Error() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserNotFound %s", 404, payload)
 }
 
 func (o *UpdateUserNotFound) String() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserNotFound %s", 404, payload)
 }
 
 func (o *UpdateUserNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateUserInternalServerError) Code() int {
 }
 
 func (o *UpdateUserInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateUserInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateUserInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package admin_ldap
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *PostSyncUserWithLDAPOK) Code() int {
 }
 
 func (o *PostSyncUserWithLDAPOK) Error() string {
-	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapOk %s", 200, payload)
 }
 
 func (o *PostSyncUserWithLDAPOK) String() string {
-	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapOk %s", 200, payload)
 }
 
 func (o *PostSyncUserWithLDAPOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *PostSyncUserWithLDAPUnauthorized) Code() int {
 }
 
 func (o *PostSyncUserWithLDAPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapUnauthorized %s", 401, payload)
 }
 
 func (o *PostSyncUserWithLDAPUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapUnauthorized %s", 401, payload)
 }
 
 func (o *PostSyncUserWithLDAPUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *PostSyncUserWithLDAPForbidden) Code() int {
 }
 
 func (o *PostSyncUserWithLDAPForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapForbidden %s", 403, payload)
 }
 
 func (o *PostSyncUserWithLDAPForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapForbidden %s", 403, payload)
 }
 
 func (o *PostSyncUserWithLDAPForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *PostSyncUserWithLDAPInternalServerError) Code() int {
 }
 
 func (o *PostSyncUserWithLDAPInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapInternalServerError %s", 500, payload)
 }
 
 func (o *PostSyncUserWithLDAPInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/ldap/sync/{user_id}][%d] postSyncUserWithLdapInternalServerError %s", 500, payload)
 }
 
 func (o *PostSyncUserWithLDAPInternalServerError) GetPayload() *models.ErrorResponseBody {

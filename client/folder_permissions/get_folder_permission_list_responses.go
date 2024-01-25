@@ -6,6 +6,7 @@ package folder_permissions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetFolderPermissionListOK) Code() int {
 }
 
 func (o *GetFolderPermissionListOK) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListOk %s", 200, payload)
 }
 
 func (o *GetFolderPermissionListOK) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListOk %s", 200, payload)
 }
 
 func (o *GetFolderPermissionListOK) GetPayload() []*models.DashboardACLInfoDTO {
@@ -169,11 +172,13 @@ func (o *GetFolderPermissionListUnauthorized) Code() int {
 }
 
 func (o *GetFolderPermissionListUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListUnauthorized %s", 401, payload)
 }
 
 func (o *GetFolderPermissionListUnauthorized) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListUnauthorized %s", 401, payload)
 }
 
 func (o *GetFolderPermissionListUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetFolderPermissionListForbidden) Code() int {
 }
 
 func (o *GetFolderPermissionListForbidden) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListForbidden %s", 403, payload)
 }
 
 func (o *GetFolderPermissionListForbidden) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListForbidden %s", 403, payload)
 }
 
 func (o *GetFolderPermissionListForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetFolderPermissionListNotFound) Code() int {
 }
 
 func (o *GetFolderPermissionListNotFound) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListNotFound %s", 404, payload)
 }
 
 func (o *GetFolderPermissionListNotFound) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListNotFound %s", 404, payload)
 }
 
 func (o *GetFolderPermissionListNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetFolderPermissionListInternalServerError) Code() int {
 }
 
 func (o *GetFolderPermissionListInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListInternalServerError %s", 500, payload)
 }
 
 func (o *GetFolderPermissionListInternalServerError) String() string {
-	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /folders/{folder_uid}/permissions][%d] getFolderPermissionListInternalServerError %s", 500, payload)
 }
 
 func (o *GetFolderPermissionListInternalServerError) GetPayload() *models.ErrorResponseBody {

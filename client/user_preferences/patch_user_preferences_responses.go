@@ -6,6 +6,7 @@ package user_preferences
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *PatchUserPreferencesOK) Code() int {
 }
 
 func (o *PatchUserPreferencesOK) Error() string {
-	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesOk %s", 200, payload)
 }
 
 func (o *PatchUserPreferencesOK) String() string {
-	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesOk %s", 200, payload)
 }
 
 func (o *PatchUserPreferencesOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *PatchUserPreferencesBadRequest) Code() int {
 }
 
 func (o *PatchUserPreferencesBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesBadRequest %s", 400, payload)
 }
 
 func (o *PatchUserPreferencesBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesBadRequest %s", 400, payload)
 }
 
 func (o *PatchUserPreferencesBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *PatchUserPreferencesUnauthorized) Code() int {
 }
 
 func (o *PatchUserPreferencesUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *PatchUserPreferencesUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *PatchUserPreferencesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *PatchUserPreferencesInternalServerError) Code() int {
 }
 
 func (o *PatchUserPreferencesInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *PatchUserPreferencesInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /user/preferences][%d] patchUserPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *PatchUserPreferencesInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package org
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateOrgUserForCurrentOrgOK) Code() int {
 }
 
 func (o *UpdateOrgUserForCurrentOrgOK) Error() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgOk %s", 200, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgOK) String() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgOk %s", 200, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateOrgUserForCurrentOrgBadRequest) Code() int {
 }
 
 func (o *UpdateOrgUserForCurrentOrgBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgBadRequest %s", 400, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgBadRequest %s", 400, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateOrgUserForCurrentOrgUnauthorized) Code() int {
 }
 
 func (o *UpdateOrgUserForCurrentOrgUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateOrgUserForCurrentOrgForbidden) Code() int {
 }
 
 func (o *UpdateOrgUserForCurrentOrgForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgForbidden %s", 403, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgForbidden) String() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgForbidden %s", 403, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateOrgUserForCurrentOrgInternalServerError) Code() int {
 }
 
 func (o *UpdateOrgUserForCurrentOrgInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /org/users/{user_id}][%d] updateOrgUserForCurrentOrgInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateOrgUserForCurrentOrgInternalServerError) GetPayload() *models.ErrorResponseBody {

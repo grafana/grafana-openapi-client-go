@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *UpdateDataSourceByUIDOK) Code() int {
 }
 
 func (o *UpdateDataSourceByUIDOK) Error() string {
-	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidOk %s", 200, payload)
 }
 
 func (o *UpdateDataSourceByUIDOK) String() string {
-	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidOk %s", 200, payload)
 }
 
 func (o *UpdateDataSourceByUIDOK) GetPayload() *models.UpdateDataSourceByUIDOKBody {
@@ -165,11 +168,13 @@ func (o *UpdateDataSourceByUIDUnauthorized) Code() int {
 }
 
 func (o *UpdateDataSourceByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateDataSourceByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateDataSourceByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *UpdateDataSourceByUIDForbidden) Code() int {
 }
 
 func (o *UpdateDataSourceByUIDForbidden) Error() string {
-	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidForbidden %s", 403, payload)
 }
 
 func (o *UpdateDataSourceByUIDForbidden) String() string {
-	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidForbidden %s", 403, payload)
 }
 
 func (o *UpdateDataSourceByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *UpdateDataSourceByUIDInternalServerError) Code() int {
 }
 
 func (o *UpdateDataSourceByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateDataSourceByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateDataSourceByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

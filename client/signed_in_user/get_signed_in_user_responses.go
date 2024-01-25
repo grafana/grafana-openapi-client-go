@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetSignedInUserOK) Code() int {
 }
 
 func (o *GetSignedInUserOK) Error() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserOk %s", 200, payload)
 }
 
 func (o *GetSignedInUserOK) String() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserOk %s", 200, payload)
 }
 
 func (o *GetSignedInUserOK) GetPayload() *models.UserProfileDTO {
@@ -171,11 +174,13 @@ func (o *GetSignedInUserUnauthorized) Code() int {
 }
 
 func (o *GetSignedInUserUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserUnauthorized %s", 401, payload)
 }
 
 func (o *GetSignedInUserUnauthorized) String() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserUnauthorized %s", 401, payload)
 }
 
 func (o *GetSignedInUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetSignedInUserForbidden) Code() int {
 }
 
 func (o *GetSignedInUserForbidden) Error() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserForbidden %s", 403, payload)
 }
 
 func (o *GetSignedInUserForbidden) String() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserForbidden %s", 403, payload)
 }
 
 func (o *GetSignedInUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetSignedInUserNotFound) Code() int {
 }
 
 func (o *GetSignedInUserNotFound) Error() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserNotFound %s", 404, payload)
 }
 
 func (o *GetSignedInUserNotFound) String() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserNotFound %s", 404, payload)
 }
 
 func (o *GetSignedInUserNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetSignedInUserInternalServerError) Code() int {
 }
 
 func (o *GetSignedInUserInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserInternalServerError %s", 500, payload)
 }
 
 func (o *GetSignedInUserInternalServerError) String() string {
-	return fmt.Sprintf("[GET /user][%d] getSignedInUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user][%d] getSignedInUserInternalServerError %s", 500, payload)
 }
 
 func (o *GetSignedInUserInternalServerError) GetPayload() *models.ErrorResponseBody {

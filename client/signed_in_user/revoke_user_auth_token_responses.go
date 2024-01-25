@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RevokeUserAuthTokenOK) Code() int {
 }
 
 func (o *RevokeUserAuthTokenOK) Error() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenOk %s", 200, payload)
 }
 
 func (o *RevokeUserAuthTokenOK) String() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenOk %s", 200, payload)
 }
 
 func (o *RevokeUserAuthTokenOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *RevokeUserAuthTokenBadRequest) Code() int {
 }
 
 func (o *RevokeUserAuthTokenBadRequest) Error() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenBadRequest %s", 400, payload)
 }
 
 func (o *RevokeUserAuthTokenBadRequest) String() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenBadRequest %s", 400, payload)
 }
 
 func (o *RevokeUserAuthTokenBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *RevokeUserAuthTokenUnauthorized) Code() int {
 }
 
 func (o *RevokeUserAuthTokenUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeUserAuthTokenUnauthorized) String() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeUserAuthTokenUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *RevokeUserAuthTokenForbidden) Code() int {
 }
 
 func (o *RevokeUserAuthTokenForbidden) Error() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenForbidden %s", 403, payload)
 }
 
 func (o *RevokeUserAuthTokenForbidden) String() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenForbidden %s", 403, payload)
 }
 
 func (o *RevokeUserAuthTokenForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *RevokeUserAuthTokenInternalServerError) Code() int {
 }
 
 func (o *RevokeUserAuthTokenInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenInternalServerError %s", 500, payload)
 }
 
 func (o *RevokeUserAuthTokenInternalServerError) String() string {
-	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /user/revoke-auth-token][%d] revokeUserAuthTokenInternalServerError %s", 500, payload)
 }
 
 func (o *RevokeUserAuthTokenInternalServerError) GetPayload() *models.ErrorResponseBody {

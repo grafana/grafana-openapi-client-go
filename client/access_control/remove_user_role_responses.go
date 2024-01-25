@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RemoveUserRoleOK) Code() int {
 }
 
 func (o *RemoveUserRoleOK) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleOk %s", 200, payload)
 }
 
 func (o *RemoveUserRoleOK) String() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleOk %s", 200, payload)
 }
 
 func (o *RemoveUserRoleOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *RemoveUserRoleBadRequest) Code() int {
 }
 
 func (o *RemoveUserRoleBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleBadRequest %s", 400, payload)
 }
 
 func (o *RemoveUserRoleBadRequest) String() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleBadRequest %s", 400, payload)
 }
 
 func (o *RemoveUserRoleBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *RemoveUserRoleForbidden) Code() int {
 }
 
 func (o *RemoveUserRoleForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleForbidden %s", 403, payload)
 }
 
 func (o *RemoveUserRoleForbidden) String() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleForbidden %s", 403, payload)
 }
 
 func (o *RemoveUserRoleForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *RemoveUserRoleNotFound) Code() int {
 }
 
 func (o *RemoveUserRoleNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleNotFound %s", 404, payload)
 }
 
 func (o *RemoveUserRoleNotFound) String() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleNotFound %s", 404, payload)
 }
 
 func (o *RemoveUserRoleNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *RemoveUserRoleInternalServerError) Code() int {
 }
 
 func (o *RemoveUserRoleInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveUserRoleInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /access-control/users/{userId}/roles/{roleUID}][%d] removeUserRoleInternalServerError %s", 500, payload)
 }
 
 func (o *RemoveUserRoleInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package ldap_debug
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetSyncStatusOK) Code() int {
 }
 
 func (o *GetSyncStatusOK) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusOk %s", 200, payload)
 }
 
 func (o *GetSyncStatusOK) String() string {
-	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusOk %s", 200, payload)
 }
 
 func (o *GetSyncStatusOK) GetPayload() *models.ActiveSyncStatusDTO {
@@ -165,11 +168,13 @@ func (o *GetSyncStatusUnauthorized) Code() int {
 }
 
 func (o *GetSyncStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusUnauthorized %s", 401, payload)
 }
 
 func (o *GetSyncStatusUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusUnauthorized %s", 401, payload)
 }
 
 func (o *GetSyncStatusUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *GetSyncStatusForbidden) Code() int {
 }
 
 func (o *GetSyncStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusForbidden %s", 403, payload)
 }
 
 func (o *GetSyncStatusForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusForbidden %s", 403, payload)
 }
 
 func (o *GetSyncStatusForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *GetSyncStatusInternalServerError) Code() int {
 }
 
 func (o *GetSyncStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusInternalServerError %s", 500, payload)
 }
 
 func (o *GetSyncStatusInternalServerError) String() string {
-	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/ldap-sync-status][%d] getSyncStatusInternalServerError %s", 500, payload)
 }
 
 func (o *GetSyncStatusInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package orgs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateOrgUserOK) Code() int {
 }
 
 func (o *UpdateOrgUserOK) Error() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserOk %s", 200, payload)
 }
 
 func (o *UpdateOrgUserOK) String() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserOk %s", 200, payload)
 }
 
 func (o *UpdateOrgUserOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateOrgUserBadRequest) Code() int {
 }
 
 func (o *UpdateOrgUserBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserBadRequest %s", 400, payload)
 }
 
 func (o *UpdateOrgUserBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserBadRequest %s", 400, payload)
 }
 
 func (o *UpdateOrgUserBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateOrgUserUnauthorized) Code() int {
 }
 
 func (o *UpdateOrgUserUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateOrgUserUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateOrgUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateOrgUserForbidden) Code() int {
 }
 
 func (o *UpdateOrgUserForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserForbidden %s", 403, payload)
 }
 
 func (o *UpdateOrgUserForbidden) String() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserForbidden %s", 403, payload)
 }
 
 func (o *UpdateOrgUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateOrgUserInternalServerError) Code() int {
 }
 
 func (o *UpdateOrgUserInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateOrgUserInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /orgs/{org_id}/users/{user_id}][%d] updateOrgUserInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateOrgUserInternalServerError) GetPayload() *models.ErrorResponseBody {

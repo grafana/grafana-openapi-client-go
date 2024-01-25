@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *ExportMuteTimingOK) Code() int {
 }
 
 func (o *ExportMuteTimingOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}/export][%d] exportMuteTimingOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}/export][%d] exportMuteTimingOk %s", 200, payload)
 }
 
 func (o *ExportMuteTimingOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}/export][%d] exportMuteTimingOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}/export][%d] exportMuteTimingOk %s", 200, payload)
 }
 
 func (o *ExportMuteTimingOK) GetPayload() *models.AlertingFileExport {
@@ -153,11 +156,13 @@ func (o *ExportMuteTimingForbidden) Code() int {
 }
 
 func (o *ExportMuteTimingForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}/export][%d] exportMuteTimingForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}/export][%d] exportMuteTimingForbidden %s", 403, payload)
 }
 
 func (o *ExportMuteTimingForbidden) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}/export][%d] exportMuteTimingForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/mute-timings/{name}/export][%d] exportMuteTimingForbidden %s", 403, payload)
 }
 
 func (o *ExportMuteTimingForbidden) GetPayload() models.PermissionDenied {

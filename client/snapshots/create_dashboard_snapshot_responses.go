@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *CreateDashboardSnapshotOK) Code() int {
 }
 
 func (o *CreateDashboardSnapshotOK) Error() string {
-	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotOk %s", 200, payload)
 }
 
 func (o *CreateDashboardSnapshotOK) String() string {
-	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotOk %s", 200, payload)
 }
 
 func (o *CreateDashboardSnapshotOK) GetPayload() *models.CreateDashboardSnapshotOKBody {
@@ -165,11 +168,13 @@ func (o *CreateDashboardSnapshotUnauthorized) Code() int {
 }
 
 func (o *CreateDashboardSnapshotUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotUnauthorized %s", 401, payload)
 }
 
 func (o *CreateDashboardSnapshotUnauthorized) String() string {
-	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotUnauthorized %s", 401, payload)
 }
 
 func (o *CreateDashboardSnapshotUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *CreateDashboardSnapshotForbidden) Code() int {
 }
 
 func (o *CreateDashboardSnapshotForbidden) Error() string {
-	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotForbidden %s", 403, payload)
 }
 
 func (o *CreateDashboardSnapshotForbidden) String() string {
-	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotForbidden %s", 403, payload)
 }
 
 func (o *CreateDashboardSnapshotForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *CreateDashboardSnapshotInternalServerError) Code() int {
 }
 
 func (o *CreateDashboardSnapshotInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDashboardSnapshotInternalServerError) String() string {
-	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /snapshots][%d] createDashboardSnapshotInternalServerError %s", 500, payload)
 }
 
 func (o *CreateDashboardSnapshotInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package library_elements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetLibraryElementsOK) Code() int {
 }
 
 func (o *GetLibraryElementsOK) Error() string {
-	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsOk %s", 200, payload)
 }
 
 func (o *GetLibraryElementsOK) String() string {
-	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsOk %s", 200, payload)
 }
 
 func (o *GetLibraryElementsOK) GetPayload() *models.LibraryElementSearchResponse {
@@ -159,11 +162,13 @@ func (o *GetLibraryElementsUnauthorized) Code() int {
 }
 
 func (o *GetLibraryElementsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsUnauthorized %s", 401, payload)
 }
 
 func (o *GetLibraryElementsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsUnauthorized %s", 401, payload)
 }
 
 func (o *GetLibraryElementsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *GetLibraryElementsInternalServerError) Code() int {
 }
 
 func (o *GetLibraryElementsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsInternalServerError %s", 500, payload)
 }
 
 func (o *GetLibraryElementsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements][%d] getLibraryElementsInternalServerError %s", 500, payload)
 }
 
 func (o *GetLibraryElementsInternalServerError) GetPayload() *models.ErrorResponseBody {

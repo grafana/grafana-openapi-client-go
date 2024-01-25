@@ -6,6 +6,7 @@ package teams
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetTeamPreferencesOK) Code() int {
 }
 
 func (o *GetTeamPreferencesOK) Error() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesOk %s", 200, payload)
 }
 
 func (o *GetTeamPreferencesOK) String() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesOk %s", 200, payload)
 }
 
 func (o *GetTeamPreferencesOK) GetPayload() *models.Preferences {
@@ -159,11 +162,13 @@ func (o *GetTeamPreferencesUnauthorized) Code() int {
 }
 
 func (o *GetTeamPreferencesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *GetTeamPreferencesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *GetTeamPreferencesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *GetTeamPreferencesInternalServerError) Code() int {
 }
 
 func (o *GetTeamPreferencesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *GetTeamPreferencesInternalServerError) String() string {
-	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /teams/{team_id}/preferences][%d] getTeamPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *GetTeamPreferencesInternalServerError) GetPayload() *models.ErrorResponseBody {

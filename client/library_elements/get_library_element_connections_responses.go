@@ -6,6 +6,7 @@ package library_elements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetLibraryElementConnectionsOK) Code() int {
 }
 
 func (o *GetLibraryElementConnectionsOK) Error() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsOk %s", 200, payload)
 }
 
 func (o *GetLibraryElementConnectionsOK) String() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsOk %s", 200, payload)
 }
 
 func (o *GetLibraryElementConnectionsOK) GetPayload() *models.LibraryElementConnectionsResponse {
@@ -171,11 +174,13 @@ func (o *GetLibraryElementConnectionsUnauthorized) Code() int {
 }
 
 func (o *GetLibraryElementConnectionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsUnauthorized %s", 401, payload)
 }
 
 func (o *GetLibraryElementConnectionsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsUnauthorized %s", 401, payload)
 }
 
 func (o *GetLibraryElementConnectionsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetLibraryElementConnectionsForbidden) Code() int {
 }
 
 func (o *GetLibraryElementConnectionsForbidden) Error() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsForbidden %s", 403, payload)
 }
 
 func (o *GetLibraryElementConnectionsForbidden) String() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsForbidden %s", 403, payload)
 }
 
 func (o *GetLibraryElementConnectionsForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetLibraryElementConnectionsNotFound) Code() int {
 }
 
 func (o *GetLibraryElementConnectionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsNotFound %s", 404, payload)
 }
 
 func (o *GetLibraryElementConnectionsNotFound) String() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsNotFound %s", 404, payload)
 }
 
 func (o *GetLibraryElementConnectionsNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetLibraryElementConnectionsInternalServerError) Code() int {
 }
 
 func (o *GetLibraryElementConnectionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsInternalServerError %s", 500, payload)
 }
 
 func (o *GetLibraryElementConnectionsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /library-elements/{library_element_uid}/connections/][%d] getLibraryElementConnectionsInternalServerError %s", 500, payload)
 }
 
 func (o *GetLibraryElementConnectionsInternalServerError) GetPayload() *models.ErrorResponseBody {

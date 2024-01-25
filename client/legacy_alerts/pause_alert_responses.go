@@ -6,6 +6,7 @@ package legacy_alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *PauseAlertOK) Code() int {
 }
 
 func (o *PauseAlertOK) Error() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertOk %s", 200, payload)
 }
 
 func (o *PauseAlertOK) String() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertOk %s", 200, payload)
 }
 
 func (o *PauseAlertOK) GetPayload() *models.PauseAlertOKBody {
@@ -171,11 +174,13 @@ func (o *PauseAlertUnauthorized) Code() int {
 }
 
 func (o *PauseAlertUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertUnauthorized %s", 401, payload)
 }
 
 func (o *PauseAlertUnauthorized) String() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertUnauthorized %s", 401, payload)
 }
 
 func (o *PauseAlertUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *PauseAlertForbidden) Code() int {
 }
 
 func (o *PauseAlertForbidden) Error() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertForbidden %s", 403, payload)
 }
 
 func (o *PauseAlertForbidden) String() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertForbidden %s", 403, payload)
 }
 
 func (o *PauseAlertForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *PauseAlertNotFound) Code() int {
 }
 
 func (o *PauseAlertNotFound) Error() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertNotFound %s", 404, payload)
 }
 
 func (o *PauseAlertNotFound) String() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertNotFound %s", 404, payload)
 }
 
 func (o *PauseAlertNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *PauseAlertInternalServerError) Code() int {
 }
 
 func (o *PauseAlertInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertInternalServerError %s", 500, payload)
 }
 
 func (o *PauseAlertInternalServerError) String() string {
-	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert_id}/pause][%d] pauseAlertInternalServerError %s", 500, payload)
 }
 
 func (o *PauseAlertInternalServerError) GetPayload() *models.ErrorResponseBody {

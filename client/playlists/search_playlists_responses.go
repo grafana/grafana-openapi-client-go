@@ -6,6 +6,7 @@ package playlists
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *SearchPlaylistsOK) Code() int {
 }
 
 func (o *SearchPlaylistsOK) Error() string {
-	return fmt.Sprintf("[GET /playlists][%d] searchPlaylistsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists][%d] searchPlaylistsOk %s", 200, payload)
 }
 
 func (o *SearchPlaylistsOK) String() string {
-	return fmt.Sprintf("[GET /playlists][%d] searchPlaylistsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists][%d] searchPlaylistsOk %s", 200, payload)
 }
 
 func (o *SearchPlaylistsOK) GetPayload() models.Playlists {
@@ -151,11 +154,13 @@ func (o *SearchPlaylistsInternalServerError) Code() int {
 }
 
 func (o *SearchPlaylistsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /playlists][%d] searchPlaylistsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists][%d] searchPlaylistsInternalServerError %s", 500, payload)
 }
 
 func (o *SearchPlaylistsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /playlists][%d] searchPlaylistsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /playlists][%d] searchPlaylistsInternalServerError %s", 500, payload)
 }
 
 func (o *SearchPlaylistsInternalServerError) GetPayload() *models.ErrorResponseBody {

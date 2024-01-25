@@ -6,6 +6,7 @@ package org_invites
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *RevokeInviteOK) Code() int {
 }
 
 func (o *RevokeInviteOK) Error() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteOk %s", 200, payload)
 }
 
 func (o *RevokeInviteOK) String() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteOk %s", 200, payload)
 }
 
 func (o *RevokeInviteOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *RevokeInviteUnauthorized) Code() int {
 }
 
 func (o *RevokeInviteUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeInviteUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteUnauthorized %s", 401, payload)
 }
 
 func (o *RevokeInviteUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *RevokeInviteForbidden) Code() int {
 }
 
 func (o *RevokeInviteForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteForbidden %s", 403, payload)
 }
 
 func (o *RevokeInviteForbidden) String() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteForbidden %s", 403, payload)
 }
 
 func (o *RevokeInviteForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *RevokeInviteNotFound) Code() int {
 }
 
 func (o *RevokeInviteNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteNotFound %s", 404, payload)
 }
 
 func (o *RevokeInviteNotFound) String() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteNotFound %s", 404, payload)
 }
 
 func (o *RevokeInviteNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *RevokeInviteInternalServerError) Code() int {
 }
 
 func (o *RevokeInviteInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteInternalServerError %s", 500, payload)
 }
 
 func (o *RevokeInviteInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /org/invites/{invitation_code}/revoke][%d] revokeInviteInternalServerError %s", 500, payload)
 }
 
 func (o *RevokeInviteInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package library_elements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *CreateLibraryElementOK) Code() int {
 }
 
 func (o *CreateLibraryElementOK) Error() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementOk %s", 200, payload)
 }
 
 func (o *CreateLibraryElementOK) String() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementOk %s", 200, payload)
 }
 
 func (o *CreateLibraryElementOK) GetPayload() *models.LibraryElementResponse {
@@ -177,11 +180,13 @@ func (o *CreateLibraryElementBadRequest) Code() int {
 }
 
 func (o *CreateLibraryElementBadRequest) Error() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementBadRequest %s", 400, payload)
 }
 
 func (o *CreateLibraryElementBadRequest) String() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementBadRequest %s", 400, payload)
 }
 
 func (o *CreateLibraryElementBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *CreateLibraryElementUnauthorized) Code() int {
 }
 
 func (o *CreateLibraryElementUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementUnauthorized %s", 401, payload)
 }
 
 func (o *CreateLibraryElementUnauthorized) String() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementUnauthorized %s", 401, payload)
 }
 
 func (o *CreateLibraryElementUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *CreateLibraryElementForbidden) Code() int {
 }
 
 func (o *CreateLibraryElementForbidden) Error() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementForbidden %s", 403, payload)
 }
 
 func (o *CreateLibraryElementForbidden) String() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementForbidden %s", 403, payload)
 }
 
 func (o *CreateLibraryElementForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *CreateLibraryElementNotFound) Code() int {
 }
 
 func (o *CreateLibraryElementNotFound) Error() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementNotFound %s", 404, payload)
 }
 
 func (o *CreateLibraryElementNotFound) String() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementNotFound %s", 404, payload)
 }
 
 func (o *CreateLibraryElementNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *CreateLibraryElementInternalServerError) Code() int {
 }
 
 func (o *CreateLibraryElementInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementInternalServerError %s", 500, payload)
 }
 
 func (o *CreateLibraryElementInternalServerError) String() string {
-	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /library-elements][%d] createLibraryElementInternalServerError %s", 500, payload)
 }
 
 func (o *CreateLibraryElementInternalServerError) GetPayload() *models.ErrorResponseBody {

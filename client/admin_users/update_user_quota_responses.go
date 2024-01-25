@@ -6,6 +6,7 @@ package admin_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateUserQuotaOK) Code() int {
 }
 
 func (o *UpdateUserQuotaOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaOk %s", 200, payload)
 }
 
 func (o *UpdateUserQuotaOK) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaOk %s", 200, payload)
 }
 
 func (o *UpdateUserQuotaOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateUserQuotaUnauthorized) Code() int {
 }
 
 func (o *UpdateUserQuotaUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateUserQuotaUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateUserQuotaUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateUserQuotaForbidden) Code() int {
 }
 
 func (o *UpdateUserQuotaForbidden) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaForbidden %s", 403, payload)
 }
 
 func (o *UpdateUserQuotaForbidden) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaForbidden %s", 403, payload)
 }
 
 func (o *UpdateUserQuotaForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateUserQuotaNotFound) Code() int {
 }
 
 func (o *UpdateUserQuotaNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaNotFound %s", 404, payload)
 }
 
 func (o *UpdateUserQuotaNotFound) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaNotFound %s", 404, payload)
 }
 
 func (o *UpdateUserQuotaNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateUserQuotaInternalServerError) Code() int {
 }
 
 func (o *UpdateUserQuotaInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateUserQuotaInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /admin/users/{user_id}/quotas/{quota_target}][%d] updateUserQuotaInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateUserQuotaInternalServerError) GetPayload() *models.ErrorResponseBody {

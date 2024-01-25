@@ -6,6 +6,7 @@ package dashboard_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetDashboardVersionByUIDOK) Code() int {
 }
 
 func (o *GetDashboardVersionByUIDOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidOk %s", 200, payload)
 }
 
 func (o *GetDashboardVersionByUIDOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidOk %s", 200, payload)
 }
 
 func (o *GetDashboardVersionByUIDOK) GetPayload() *models.DashboardVersionMeta {
@@ -171,11 +174,13 @@ func (o *GetDashboardVersionByUIDUnauthorized) Code() int {
 }
 
 func (o *GetDashboardVersionByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetDashboardVersionByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetDashboardVersionByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetDashboardVersionByUIDForbidden) Code() int {
 }
 
 func (o *GetDashboardVersionByUIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidForbidden %s", 403, payload)
 }
 
 func (o *GetDashboardVersionByUIDForbidden) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidForbidden %s", 403, payload)
 }
 
 func (o *GetDashboardVersionByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetDashboardVersionByUIDNotFound) Code() int {
 }
 
 func (o *GetDashboardVersionByUIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidNotFound %s", 404, payload)
 }
 
 func (o *GetDashboardVersionByUIDNotFound) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidNotFound %s", 404, payload)
 }
 
 func (o *GetDashboardVersionByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetDashboardVersionByUIDInternalServerError) Code() int {
 }
 
 func (o *GetDashboardVersionByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardVersionByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}/versions/{DashboardVersionID}][%d] getDashboardVersionByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetDashboardVersionByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

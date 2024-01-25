@@ -6,6 +6,7 @@ package annotations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *PatchAnnotationOK) Code() int {
 }
 
 func (o *PatchAnnotationOK) Error() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationOk %s", 200, payload)
 }
 
 func (o *PatchAnnotationOK) String() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationOk %s", 200, payload)
 }
 
 func (o *PatchAnnotationOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *PatchAnnotationUnauthorized) Code() int {
 }
 
 func (o *PatchAnnotationUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationUnauthorized %s", 401, payload)
 }
 
 func (o *PatchAnnotationUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationUnauthorized %s", 401, payload)
 }
 
 func (o *PatchAnnotationUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *PatchAnnotationForbidden) Code() int {
 }
 
 func (o *PatchAnnotationForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationForbidden %s", 403, payload)
 }
 
 func (o *PatchAnnotationForbidden) String() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationForbidden %s", 403, payload)
 }
 
 func (o *PatchAnnotationForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *PatchAnnotationNotFound) Code() int {
 }
 
 func (o *PatchAnnotationNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationNotFound %s", 404, payload)
 }
 
 func (o *PatchAnnotationNotFound) String() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationNotFound %s", 404, payload)
 }
 
 func (o *PatchAnnotationNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *PatchAnnotationInternalServerError) Code() int {
 }
 
 func (o *PatchAnnotationInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationInternalServerError %s", 500, payload)
 }
 
 func (o *PatchAnnotationInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /annotations/{annotation_id}][%d] patchAnnotationInternalServerError %s", 500, payload)
 }
 
 func (o *PatchAnnotationInternalServerError) GetPayload() *models.ErrorResponseBody {

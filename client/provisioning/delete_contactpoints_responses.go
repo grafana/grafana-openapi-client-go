@@ -75,11 +75,11 @@ func (o *DeleteContactpointsAccepted) Code() int {
 }
 
 func (o *DeleteContactpointsAccepted) Error() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsAccepted ", 202)
+	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsAccepted", 202)
 }
 
 func (o *DeleteContactpointsAccepted) String() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsAccepted ", 202)
+	return fmt.Sprintf("[DELETE /v1/provisioning/contact-points/{UID}][%d] deleteContactpointsAccepted", 202)
 }
 
 func (o *DeleteContactpointsAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

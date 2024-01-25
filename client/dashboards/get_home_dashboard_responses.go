@@ -6,6 +6,7 @@ package dashboards
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetHomeDashboardOK) Code() int {
 }
 
 func (o *GetHomeDashboardOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardOk %s", 200, payload)
 }
 
 func (o *GetHomeDashboardOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardOk %s", 200, payload)
 }
 
 func (o *GetHomeDashboardOK) GetPayload() *models.GetHomeDashboardResponse {
@@ -159,11 +162,13 @@ func (o *GetHomeDashboardUnauthorized) Code() int {
 }
 
 func (o *GetHomeDashboardUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *GetHomeDashboardUnauthorized) String() string {
-	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *GetHomeDashboardUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *GetHomeDashboardInternalServerError) Code() int {
 }
 
 func (o *GetHomeDashboardInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *GetHomeDashboardInternalServerError) String() string {
-	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/home][%d] getHomeDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *GetHomeDashboardInternalServerError) GetPayload() *models.ErrorResponseBody {

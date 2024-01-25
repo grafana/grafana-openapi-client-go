@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetSignedInUserOrgListOK) Code() int {
 }
 
 func (o *GetSignedInUserOrgListOK) Error() string {
-	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListOk %s", 200, payload)
 }
 
 func (o *GetSignedInUserOrgListOK) String() string {
-	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListOk %s", 200, payload)
 }
 
 func (o *GetSignedInUserOrgListOK) GetPayload() []*models.UserOrgDTO {
@@ -163,11 +166,13 @@ func (o *GetSignedInUserOrgListUnauthorized) Code() int {
 }
 
 func (o *GetSignedInUserOrgListUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListUnauthorized %s", 401, payload)
 }
 
 func (o *GetSignedInUserOrgListUnauthorized) String() string {
-	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListUnauthorized %s", 401, payload)
 }
 
 func (o *GetSignedInUserOrgListUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *GetSignedInUserOrgListForbidden) Code() int {
 }
 
 func (o *GetSignedInUserOrgListForbidden) Error() string {
-	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListForbidden %s", 403, payload)
 }
 
 func (o *GetSignedInUserOrgListForbidden) String() string {
-	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListForbidden %s", 403, payload)
 }
 
 func (o *GetSignedInUserOrgListForbidden) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *GetSignedInUserOrgListInternalServerError) Code() int {
 }
 
 func (o *GetSignedInUserOrgListInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListInternalServerError %s", 500, payload)
 }
 
 func (o *GetSignedInUserOrgListInternalServerError) String() string {
-	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /user/orgs][%d] getSignedInUserOrgListInternalServerError %s", 500, payload)
 }
 
 func (o *GetSignedInUserOrgListInternalServerError) GetPayload() *models.ErrorResponseBody {

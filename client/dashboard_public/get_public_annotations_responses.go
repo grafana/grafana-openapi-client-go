@@ -6,6 +6,7 @@ package dashboard_public
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *GetPublicAnnotationsOK) Code() int {
 }
 
 func (o *GetPublicAnnotationsOK) Error() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsOk %s", 200, payload)
 }
 
 func (o *GetPublicAnnotationsOK) String() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsOk %s", 200, payload)
 }
 
 func (o *GetPublicAnnotationsOK) GetPayload() []*models.AnnotationEvent {
@@ -175,11 +178,13 @@ func (o *GetPublicAnnotationsBadRequest) Code() int {
 }
 
 func (o *GetPublicAnnotationsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsBadRequest %s", 400, payload)
 }
 
 func (o *GetPublicAnnotationsBadRequest) String() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsBadRequest %s", 400, payload)
 }
 
 func (o *GetPublicAnnotationsBadRequest) GetPayload() *models.PublicError {
@@ -243,11 +248,13 @@ func (o *GetPublicAnnotationsUnauthorized) Code() int {
 }
 
 func (o *GetPublicAnnotationsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsUnauthorized %s", 401, payload)
 }
 
 func (o *GetPublicAnnotationsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsUnauthorized %s", 401, payload)
 }
 
 func (o *GetPublicAnnotationsUnauthorized) GetPayload() *models.PublicError {
@@ -311,11 +318,13 @@ func (o *GetPublicAnnotationsForbidden) Code() int {
 }
 
 func (o *GetPublicAnnotationsForbidden) Error() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsForbidden %s", 403, payload)
 }
 
 func (o *GetPublicAnnotationsForbidden) String() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsForbidden %s", 403, payload)
 }
 
 func (o *GetPublicAnnotationsForbidden) GetPayload() *models.PublicError {
@@ -379,11 +388,13 @@ func (o *GetPublicAnnotationsNotFound) Code() int {
 }
 
 func (o *GetPublicAnnotationsNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsNotFound %s", 404, payload)
 }
 
 func (o *GetPublicAnnotationsNotFound) String() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsNotFound %s", 404, payload)
 }
 
 func (o *GetPublicAnnotationsNotFound) GetPayload() *models.PublicError {
@@ -447,11 +458,13 @@ func (o *GetPublicAnnotationsInternalServerError) Code() int {
 }
 
 func (o *GetPublicAnnotationsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsInternalServerError %s", 500, payload)
 }
 
 func (o *GetPublicAnnotationsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /public/dashboards/{accessToken}/annotations][%d] getPublicAnnotationsInternalServerError %s", 500, payload)
 }
 
 func (o *GetPublicAnnotationsInternalServerError) GetPayload() *models.PublicError {

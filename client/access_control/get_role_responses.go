@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetRoleOK) Code() int {
 }
 
 func (o *GetRoleOK) Error() string {
-	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleOk %s", 200, payload)
 }
 
 func (o *GetRoleOK) String() string {
-	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleOk %s", 200, payload)
 }
 
 func (o *GetRoleOK) GetPayload() *models.RoleDTO {
@@ -159,11 +162,13 @@ func (o *GetRoleForbidden) Code() int {
 }
 
 func (o *GetRoleForbidden) Error() string {
-	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleForbidden %s", 403, payload)
 }
 
 func (o *GetRoleForbidden) String() string {
-	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleForbidden %s", 403, payload)
 }
 
 func (o *GetRoleForbidden) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *GetRoleInternalServerError) Code() int {
 }
 
 func (o *GetRoleInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleInternalServerError %s", 500, payload)
 }
 
 func (o *GetRoleInternalServerError) String() string {
-	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/roles/{roleUID}][%d] getRoleInternalServerError %s", 500, payload)
 }
 
 func (o *GetRoleInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package signed_in_user
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SetHelpFlagOK) Code() int {
 }
 
 func (o *SetHelpFlagOK) Error() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagOk %s", 200, payload)
 }
 
 func (o *SetHelpFlagOK) String() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagOk %s", 200, payload)
 }
 
 func (o *SetHelpFlagOK) GetPayload() *models.SetHelpFlagOKBody {
@@ -165,11 +168,13 @@ func (o *SetHelpFlagUnauthorized) Code() int {
 }
 
 func (o *SetHelpFlagUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagUnauthorized %s", 401, payload)
 }
 
 func (o *SetHelpFlagUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagUnauthorized %s", 401, payload)
 }
 
 func (o *SetHelpFlagUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *SetHelpFlagForbidden) Code() int {
 }
 
 func (o *SetHelpFlagForbidden) Error() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagForbidden %s", 403, payload)
 }
 
 func (o *SetHelpFlagForbidden) String() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagForbidden %s", 403, payload)
 }
 
 func (o *SetHelpFlagForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *SetHelpFlagInternalServerError) Code() int {
 }
 
 func (o *SetHelpFlagInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagInternalServerError %s", 500, payload)
 }
 
 func (o *SetHelpFlagInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /user/helpflags/{flag_id}][%d] setHelpFlagInternalServerError %s", 500, payload)
 }
 
 func (o *SetHelpFlagInternalServerError) GetPayload() *models.ErrorResponseBody {

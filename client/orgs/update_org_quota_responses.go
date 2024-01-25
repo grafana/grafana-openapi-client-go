@@ -6,6 +6,7 @@ package orgs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateOrgQuotaOK) Code() int {
 }
 
 func (o *UpdateOrgQuotaOK) Error() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaOk %s", 200, payload)
 }
 
 func (o *UpdateOrgQuotaOK) String() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaOk %s", 200, payload)
 }
 
 func (o *UpdateOrgQuotaOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateOrgQuotaUnauthorized) Code() int {
 }
 
 func (o *UpdateOrgQuotaUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateOrgQuotaUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateOrgQuotaUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateOrgQuotaForbidden) Code() int {
 }
 
 func (o *UpdateOrgQuotaForbidden) Error() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaForbidden %s", 403, payload)
 }
 
 func (o *UpdateOrgQuotaForbidden) String() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaForbidden %s", 403, payload)
 }
 
 func (o *UpdateOrgQuotaForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateOrgQuotaNotFound) Code() int {
 }
 
 func (o *UpdateOrgQuotaNotFound) Error() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaNotFound %s", 404, payload)
 }
 
 func (o *UpdateOrgQuotaNotFound) String() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaNotFound %s", 404, payload)
 }
 
 func (o *UpdateOrgQuotaNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateOrgQuotaInternalServerError) Code() int {
 }
 
 func (o *UpdateOrgQuotaInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateOrgQuotaInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /orgs/{org_id}/quotas/{quota_target}][%d] updateOrgQuotaInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateOrgQuotaInternalServerError) GetPayload() *models.ErrorResponseBody {

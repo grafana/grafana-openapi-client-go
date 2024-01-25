@@ -6,6 +6,7 @@ package org_invites
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *AddOrgInviteOK) Code() int {
 }
 
 func (o *AddOrgInviteOK) Error() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteOk %s", 200, payload)
 }
 
 func (o *AddOrgInviteOK) String() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteOk %s", 200, payload)
 }
 
 func (o *AddOrgInviteOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *AddOrgInviteBadRequest) Code() int {
 }
 
 func (o *AddOrgInviteBadRequest) Error() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteBadRequest %s", 400, payload)
 }
 
 func (o *AddOrgInviteBadRequest) String() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteBadRequest %s", 400, payload)
 }
 
 func (o *AddOrgInviteBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *AddOrgInviteUnauthorized) Code() int {
 }
 
 func (o *AddOrgInviteUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteUnauthorized %s", 401, payload)
 }
 
 func (o *AddOrgInviteUnauthorized) String() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteUnauthorized %s", 401, payload)
 }
 
 func (o *AddOrgInviteUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *AddOrgInviteForbidden) Code() int {
 }
 
 func (o *AddOrgInviteForbidden) Error() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteForbidden %s", 403, payload)
 }
 
 func (o *AddOrgInviteForbidden) String() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteForbidden %s", 403, payload)
 }
 
 func (o *AddOrgInviteForbidden) GetPayload() *models.ErrorResponseBody {
@@ -380,11 +389,11 @@ func (o *AddOrgInvitePreconditionFailed) Code() int {
 }
 
 func (o *AddOrgInvitePreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInvitePreconditionFailed ", 412)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInvitePreconditionFailed", 412)
 }
 
 func (o *AddOrgInvitePreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInvitePreconditionFailed ", 412)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInvitePreconditionFailed", 412)
 }
 
 func (o *AddOrgInvitePreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -437,11 +446,13 @@ func (o *AddOrgInviteInternalServerError) Code() int {
 }
 
 func (o *AddOrgInviteInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteInternalServerError %s", 500, payload)
 }
 
 func (o *AddOrgInviteInternalServerError) String() string {
-	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /org/invites][%d] addOrgInviteInternalServerError %s", 500, payload)
 }
 
 func (o *AddOrgInviteInternalServerError) GetPayload() *models.ErrorResponseBody {

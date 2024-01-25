@@ -6,6 +6,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *AdminGetSettingsOK) Code() int {
 }
 
 func (o *AdminGetSettingsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsOk %s", 200, payload)
 }
 
 func (o *AdminGetSettingsOK) String() string {
-	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsOk %s", 200, payload)
 }
 
 func (o *AdminGetSettingsOK) GetPayload() models.SettingsBag {
@@ -157,11 +160,13 @@ func (o *AdminGetSettingsUnauthorized) Code() int {
 }
 
 func (o *AdminGetSettingsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminGetSettingsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsUnauthorized %s", 401, payload)
 }
 
 func (o *AdminGetSettingsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -225,11 +230,13 @@ func (o *AdminGetSettingsForbidden) Code() int {
 }
 
 func (o *AdminGetSettingsForbidden) Error() string {
-	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsForbidden %s", 403, payload)
 }
 
 func (o *AdminGetSettingsForbidden) String() string {
-	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /admin/settings][%d] adminGetSettingsForbidden %s", 403, payload)
 }
 
 func (o *AdminGetSettingsForbidden) GetPayload() *models.ErrorResponseBody {

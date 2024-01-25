@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *GetSharingOptionsOK) Code() int {
 }
 
 func (o *GetSharingOptionsOK) Error() string {
-	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsOk %s", 200, payload)
 }
 
 func (o *GetSharingOptionsOK) String() string {
-	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsOk %s", 200, payload)
 }
 
 func (o *GetSharingOptionsOK) GetPayload() *models.GetSharingOptionsOKBody {
@@ -153,11 +156,13 @@ func (o *GetSharingOptionsUnauthorized) Code() int {
 }
 
 func (o *GetSharingOptionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsUnauthorized %s", 401, payload)
 }
 
 func (o *GetSharingOptionsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshot/shared-options][%d] getSharingOptionsUnauthorized %s", 401, payload)
 }
 
 func (o *GetSharingOptionsUnauthorized) GetPayload() *models.ErrorResponseBody {

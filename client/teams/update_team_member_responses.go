@@ -6,6 +6,7 @@ package teams
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *UpdateTeamMemberOK) Code() int {
 }
 
 func (o *UpdateTeamMemberOK) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberOk %s", 200, payload)
 }
 
 func (o *UpdateTeamMemberOK) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberOk %s", 200, payload)
 }
 
 func (o *UpdateTeamMemberOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *UpdateTeamMemberUnauthorized) Code() int {
 }
 
 func (o *UpdateTeamMemberUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateTeamMemberUnauthorized) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateTeamMemberUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *UpdateTeamMemberForbidden) Code() int {
 }
 
 func (o *UpdateTeamMemberForbidden) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberForbidden %s", 403, payload)
 }
 
 func (o *UpdateTeamMemberForbidden) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberForbidden %s", 403, payload)
 }
 
 func (o *UpdateTeamMemberForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *UpdateTeamMemberNotFound) Code() int {
 }
 
 func (o *UpdateTeamMemberNotFound) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberNotFound %s", 404, payload)
 }
 
 func (o *UpdateTeamMemberNotFound) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberNotFound %s", 404, payload)
 }
 
 func (o *UpdateTeamMemberNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *UpdateTeamMemberInternalServerError) Code() int {
 }
 
 func (o *UpdateTeamMemberInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateTeamMemberInternalServerError) String() string {
-	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /teams/{team_id}/members/{user_id}][%d] updateTeamMemberInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateTeamMemberInternalServerError) GetPayload() *models.ErrorResponseBody {

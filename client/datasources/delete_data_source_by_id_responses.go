@@ -6,6 +6,7 @@ package datasources
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteDataSourceByIDOK) Code() int {
 }
 
 func (o *DeleteDataSourceByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdOk %s", 200, payload)
 }
 
 func (o *DeleteDataSourceByIDOK) String() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdOk %s", 200, payload)
 }
 
 func (o *DeleteDataSourceByIDOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *DeleteDataSourceByIDUnauthorized) Code() int {
 }
 
 func (o *DeleteDataSourceByIDUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteDataSourceByIDUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteDataSourceByIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteDataSourceByIDForbidden) Code() int {
 }
 
 func (o *DeleteDataSourceByIDForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdForbidden %s", 403, payload)
 }
 
 func (o *DeleteDataSourceByIDForbidden) String() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdForbidden %s", 403, payload)
 }
 
 func (o *DeleteDataSourceByIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteDataSourceByIDNotFound) Code() int {
 }
 
 func (o *DeleteDataSourceByIDNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdNotFound %s", 404, payload)
 }
 
 func (o *DeleteDataSourceByIDNotFound) String() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdNotFound %s", 404, payload)
 }
 
 func (o *DeleteDataSourceByIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteDataSourceByIDInternalServerError) Code() int {
 }
 
 func (o *DeleteDataSourceByIDInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteDataSourceByIDInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /datasources/{id}][%d] deleteDataSourceByIdInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteDataSourceByIDInternalServerError) GetPayload() *models.ErrorResponseBody {

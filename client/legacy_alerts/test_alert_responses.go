@@ -6,6 +6,7 @@ package legacy_alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *TestAlertOK) Code() int {
 }
 
 func (o *TestAlertOK) Error() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertOk %s", 200, payload)
 }
 
 func (o *TestAlertOK) String() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertOk %s", 200, payload)
 }
 
 func (o *TestAlertOK) GetPayload() *models.AlertTestResult {
@@ -171,11 +174,13 @@ func (o *TestAlertBadRequest) Code() int {
 }
 
 func (o *TestAlertBadRequest) Error() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertBadRequest %s", 400, payload)
 }
 
 func (o *TestAlertBadRequest) String() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertBadRequest %s", 400, payload)
 }
 
 func (o *TestAlertBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *TestAlertForbidden) Code() int {
 }
 
 func (o *TestAlertForbidden) Error() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertForbidden %s", 403, payload)
 }
 
 func (o *TestAlertForbidden) String() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertForbidden %s", 403, payload)
 }
 
 func (o *TestAlertForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *TestAlertUnprocessableEntity) Code() int {
 }
 
 func (o *TestAlertUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertUnprocessableEntity %s", 422, payload)
 }
 
 func (o *TestAlertUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertUnprocessableEntity  %+v", 422, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertUnprocessableEntity %s", 422, payload)
 }
 
 func (o *TestAlertUnprocessableEntity) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *TestAlertInternalServerError) Code() int {
 }
 
 func (o *TestAlertInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertInternalServerError %s", 500, payload)
 }
 
 func (o *TestAlertInternalServerError) String() string {
-	return fmt.Sprintf("[POST /alerts/test][%d] testAlertInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/test][%d] testAlertInternalServerError %s", 500, payload)
 }
 
 func (o *TestAlertInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package access_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *SetResourcePermissionsForBuiltInRoleOK) Code() int {
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleOK) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleOk %s", 200, payload)
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleOK) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleOk %s", 200, payload)
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleOK) GetPayload() *models.SuccessResponseBody {
@@ -165,11 +168,13 @@ func (o *SetResourcePermissionsForBuiltInRoleBadRequest) Code() int {
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleBadRequest) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleBadRequest %s", 400, payload)
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleBadRequest) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleBadRequest %s", 400, payload)
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *SetResourcePermissionsForBuiltInRoleForbidden) Code() int {
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleForbidden) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleForbidden %s", 403, payload)
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleForbidden) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleForbidden %s", 403, payload)
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *SetResourcePermissionsForBuiltInRoleInternalServerError) Code() int {
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleInternalServerError %s", 500, payload)
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleInternalServerError) String() string {
-	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleInternalServerError %s", 500, payload)
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleInternalServerError) GetPayload() *models.ErrorResponseBody {

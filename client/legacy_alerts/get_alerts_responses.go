@@ -6,6 +6,7 @@ package legacy_alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetAlertsOK) Code() int {
 }
 
 func (o *GetAlertsOK) Error() string {
-	return fmt.Sprintf("[GET /alerts][%d] getAlertsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] getAlertsOk %s", 200, payload)
 }
 
 func (o *GetAlertsOK) String() string {
-	return fmt.Sprintf("[GET /alerts][%d] getAlertsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] getAlertsOk %s", 200, payload)
 }
 
 func (o *GetAlertsOK) GetPayload() []*models.AlertListItemDTO {
@@ -157,11 +160,13 @@ func (o *GetAlertsUnauthorized) Code() int {
 }
 
 func (o *GetAlertsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /alerts][%d] getAlertsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] getAlertsUnauthorized %s", 401, payload)
 }
 
 func (o *GetAlertsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /alerts][%d] getAlertsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] getAlertsUnauthorized %s", 401, payload)
 }
 
 func (o *GetAlertsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -225,11 +230,13 @@ func (o *GetAlertsInternalServerError) Code() int {
 }
 
 func (o *GetAlertsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /alerts][%d] getAlertsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] getAlertsInternalServerError %s", 500, payload)
 }
 
 func (o *GetAlertsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /alerts][%d] getAlertsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] getAlertsInternalServerError %s", 500, payload)
 }
 
 func (o *GetAlertsInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -6,6 +6,7 @@ package get_current_org
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetCurrentOrgQuotaOK) Code() int {
 }
 
 func (o *GetCurrentOrgQuotaOK) Error() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaOk %s", 200, payload)
 }
 
 func (o *GetCurrentOrgQuotaOK) String() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaOk %s", 200, payload)
 }
 
 func (o *GetCurrentOrgQuotaOK) GetPayload() []*models.QuotaDTO {
@@ -169,11 +172,13 @@ func (o *GetCurrentOrgQuotaUnauthorized) Code() int {
 }
 
 func (o *GetCurrentOrgQuotaUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaUnauthorized %s", 401, payload)
 }
 
 func (o *GetCurrentOrgQuotaUnauthorized) String() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaUnauthorized %s", 401, payload)
 }
 
 func (o *GetCurrentOrgQuotaUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -237,11 +242,13 @@ func (o *GetCurrentOrgQuotaForbidden) Code() int {
 }
 
 func (o *GetCurrentOrgQuotaForbidden) Error() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaForbidden %s", 403, payload)
 }
 
 func (o *GetCurrentOrgQuotaForbidden) String() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaForbidden %s", 403, payload)
 }
 
 func (o *GetCurrentOrgQuotaForbidden) GetPayload() *models.ErrorResponseBody {
@@ -305,11 +312,13 @@ func (o *GetCurrentOrgQuotaNotFound) Code() int {
 }
 
 func (o *GetCurrentOrgQuotaNotFound) Error() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaNotFound %s", 404, payload)
 }
 
 func (o *GetCurrentOrgQuotaNotFound) String() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaNotFound %s", 404, payload)
 }
 
 func (o *GetCurrentOrgQuotaNotFound) GetPayload() *models.ErrorResponseBody {
@@ -373,11 +382,13 @@ func (o *GetCurrentOrgQuotaInternalServerError) Code() int {
 }
 
 func (o *GetCurrentOrgQuotaInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaInternalServerError %s", 500, payload)
 }
 
 func (o *GetCurrentOrgQuotaInternalServerError) String() string {
-	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/quotas][%d] getCurrentOrgQuotaInternalServerError %s", 500, payload)
 }
 
 func (o *GetCurrentOrgQuotaInternalServerError) GetPayload() *models.ErrorResponseBody {

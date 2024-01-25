@@ -6,6 +6,7 @@ package licensing
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -79,11 +80,13 @@ func (o *GetCustomPermissionsReportInternalServerError) Code() int {
 }
 
 func (o *GetCustomPermissionsReportInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /licensing/custom-permissions][%d] getCustomPermissionsReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/custom-permissions][%d] getCustomPermissionsReportInternalServerError %s", 500, payload)
 }
 
 func (o *GetCustomPermissionsReportInternalServerError) String() string {
-	return fmt.Sprintf("[GET /licensing/custom-permissions][%d] getCustomPermissionsReportInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /licensing/custom-permissions][%d] getCustomPermissionsReportInternalServerError %s", 500, payload)
 }
 
 func (o *GetCustomPermissionsReportInternalServerError) GetPayload() *models.ErrorResponseBody {

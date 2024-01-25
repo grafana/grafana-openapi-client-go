@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *GetAlertRuleExportOK) Code() int {
 }
 
 func (o *GetAlertRuleExportOK) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportOk %s", 200, payload)
 }
 
 func (o *GetAlertRuleExportOK) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportOk %s", 200, payload)
 }
 
 func (o *GetAlertRuleExportOK) GetPayload() *models.AlertingFileExport {
@@ -152,11 +155,11 @@ func (o *GetAlertRuleExportNotFound) Code() int {
 }
 
 func (o *GetAlertRuleExportNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportNotFound", 404)
 }
 
 func (o *GetAlertRuleExportNotFound) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportNotFound ", 404)
+	return fmt.Sprintf("[GET /v1/provisioning/alert-rules/{UID}/export][%d] getAlertRuleExportNotFound", 404)
 }
 
 func (o *GetAlertRuleExportNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

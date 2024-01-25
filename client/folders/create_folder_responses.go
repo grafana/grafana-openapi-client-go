@@ -6,6 +6,7 @@ package folders
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *CreateFolderOK) Code() int {
 }
 
 func (o *CreateFolderOK) Error() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderOk %s", 200, payload)
 }
 
 func (o *CreateFolderOK) String() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderOk %s", 200, payload)
 }
 
 func (o *CreateFolderOK) GetPayload() *models.Folder {
@@ -177,11 +180,13 @@ func (o *CreateFolderBadRequest) Code() int {
 }
 
 func (o *CreateFolderBadRequest) Error() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderBadRequest %s", 400, payload)
 }
 
 func (o *CreateFolderBadRequest) String() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderBadRequest %s", 400, payload)
 }
 
 func (o *CreateFolderBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *CreateFolderUnauthorized) Code() int {
 }
 
 func (o *CreateFolderUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderUnauthorized %s", 401, payload)
 }
 
 func (o *CreateFolderUnauthorized) String() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderUnauthorized %s", 401, payload)
 }
 
 func (o *CreateFolderUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *CreateFolderForbidden) Code() int {
 }
 
 func (o *CreateFolderForbidden) Error() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderForbidden %s", 403, payload)
 }
 
 func (o *CreateFolderForbidden) String() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderForbidden %s", 403, payload)
 }
 
 func (o *CreateFolderForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *CreateFolderConflict) Code() int {
 }
 
 func (o *CreateFolderConflict) Error() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderConflict %s", 409, payload)
 }
 
 func (o *CreateFolderConflict) String() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderConflict %s", 409, payload)
 }
 
 func (o *CreateFolderConflict) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *CreateFolderInternalServerError) Code() int {
 }
 
 func (o *CreateFolderInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderInternalServerError %s", 500, payload)
 }
 
 func (o *CreateFolderInternalServerError) String() string {
-	return fmt.Sprintf("[POST /folders][%d] createFolderInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /folders][%d] createFolderInternalServerError %s", 500, payload)
 }
 
 func (o *CreateFolderInternalServerError) GetPayload() *models.ErrorResponseBody {

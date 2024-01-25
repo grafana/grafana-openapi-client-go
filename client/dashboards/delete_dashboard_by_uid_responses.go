@@ -6,6 +6,7 @@ package dashboards
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteDashboardByUIDOK) Code() int {
 }
 
 func (o *DeleteDashboardByUIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidOk %s", 200, payload)
 }
 
 func (o *DeleteDashboardByUIDOK) String() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidOk %s", 200, payload)
 }
 
 func (o *DeleteDashboardByUIDOK) GetPayload() *models.DeleteDashboardByUIDOKBody {
@@ -171,11 +174,13 @@ func (o *DeleteDashboardByUIDUnauthorized) Code() int {
 }
 
 func (o *DeleteDashboardByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteDashboardByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteDashboardByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteDashboardByUIDForbidden) Code() int {
 }
 
 func (o *DeleteDashboardByUIDForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidForbidden %s", 403, payload)
 }
 
 func (o *DeleteDashboardByUIDForbidden) String() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidForbidden %s", 403, payload)
 }
 
 func (o *DeleteDashboardByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteDashboardByUIDNotFound) Code() int {
 }
 
 func (o *DeleteDashboardByUIDNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidNotFound %s", 404, payload)
 }
 
 func (o *DeleteDashboardByUIDNotFound) String() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidNotFound %s", 404, payload)
 }
 
 func (o *DeleteDashboardByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteDashboardByUIDInternalServerError) Code() int {
 }
 
 func (o *DeleteDashboardByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteDashboardByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboards/uid/{uid}][%d] deleteDashboardByUidInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteDashboardByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

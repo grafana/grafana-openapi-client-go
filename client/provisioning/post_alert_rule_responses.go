@@ -6,6 +6,7 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *PostAlertRuleCreated) Code() int {
 }
 
 func (o *PostAlertRuleCreated) Error() string {
-	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleCreated %s", 201, payload)
 }
 
 func (o *PostAlertRuleCreated) String() string {
-	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleCreated  %+v", 201, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleCreated %s", 201, payload)
 }
 
 func (o *PostAlertRuleCreated) GetPayload() *models.ProvisionedAlertRule {
@@ -153,11 +156,13 @@ func (o *PostAlertRuleBadRequest) Code() int {
 }
 
 func (o *PostAlertRuleBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleBadRequest %s", 400, payload)
 }
 
 func (o *PostAlertRuleBadRequest) String() string {
-	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /v1/provisioning/alert-rules][%d] postAlertRuleBadRequest %s", 400, payload)
 }
 
 func (o *PostAlertRuleBadRequest) GetPayload() *models.ValidationError {

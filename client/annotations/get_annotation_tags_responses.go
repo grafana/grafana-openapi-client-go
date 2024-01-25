@@ -6,6 +6,7 @@ package annotations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -91,11 +92,13 @@ func (o *GetAnnotationTagsOK) Code() int {
 }
 
 func (o *GetAnnotationTagsOK) Error() string {
-	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsOk %s", 200, payload)
 }
 
 func (o *GetAnnotationTagsOK) String() string {
-	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsOk %s", 200, payload)
 }
 
 func (o *GetAnnotationTagsOK) GetPayload() *models.GetAnnotationTagsResponse {
@@ -159,11 +162,13 @@ func (o *GetAnnotationTagsUnauthorized) Code() int {
 }
 
 func (o *GetAnnotationTagsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsUnauthorized %s", 401, payload)
 }
 
 func (o *GetAnnotationTagsUnauthorized) String() string {
-	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsUnauthorized %s", 401, payload)
 }
 
 func (o *GetAnnotationTagsUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -227,11 +232,13 @@ func (o *GetAnnotationTagsInternalServerError) Code() int {
 }
 
 func (o *GetAnnotationTagsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsInternalServerError %s", 500, payload)
 }
 
 func (o *GetAnnotationTagsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /annotations/tags][%d] getAnnotationTagsInternalServerError %s", 500, payload)
 }
 
 func (o *GetAnnotationTagsInternalServerError) GetPayload() *models.ErrorResponseBody {

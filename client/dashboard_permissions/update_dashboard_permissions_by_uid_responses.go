@@ -6,6 +6,7 @@ package dashboard_permissions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *UpdateDashboardPermissionsByUIDOK) Code() int {
 }
 
 func (o *UpdateDashboardPermissionsByUIDOK) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidOk %s", 200, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDOK) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidOk %s", 200, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *UpdateDashboardPermissionsByUIDBadRequest) Code() int {
 }
 
 func (o *UpdateDashboardPermissionsByUIDBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidBadRequest %s", 400, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDBadRequest) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidBadRequest %s", 400, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *UpdateDashboardPermissionsByUIDUnauthorized) Code() int {
 }
 
 func (o *UpdateDashboardPermissionsByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *UpdateDashboardPermissionsByUIDForbidden) Code() int {
 }
 
 func (o *UpdateDashboardPermissionsByUIDForbidden) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidForbidden %s", 403, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDForbidden) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidForbidden %s", 403, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *UpdateDashboardPermissionsByUIDNotFound) Code() int {
 }
 
 func (o *UpdateDashboardPermissionsByUIDNotFound) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidNotFound %s", 404, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDNotFound) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidNotFound %s", 404, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *UpdateDashboardPermissionsByUIDInternalServerError) Code() int {
 }
 
 func (o *UpdateDashboardPermissionsByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboards/uid/{uid}/permissions][%d] updateDashboardPermissionsByUidInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateDashboardPermissionsByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {

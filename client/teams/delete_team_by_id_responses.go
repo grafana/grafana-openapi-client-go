@@ -6,6 +6,7 @@ package teams
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *DeleteTeamByIDOK) Code() int {
 }
 
 func (o *DeleteTeamByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdOk %s", 200, payload)
 }
 
 func (o *DeleteTeamByIDOK) String() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdOk %s", 200, payload)
 }
 
 func (o *DeleteTeamByIDOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *DeleteTeamByIDUnauthorized) Code() int {
 }
 
 func (o *DeleteTeamByIDUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTeamByIDUnauthorized) String() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteTeamByIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *DeleteTeamByIDForbidden) Code() int {
 }
 
 func (o *DeleteTeamByIDForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdForbidden %s", 403, payload)
 }
 
 func (o *DeleteTeamByIDForbidden) String() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdForbidden %s", 403, payload)
 }
 
 func (o *DeleteTeamByIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *DeleteTeamByIDNotFound) Code() int {
 }
 
 func (o *DeleteTeamByIDNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdNotFound %s", 404, payload)
 }
 
 func (o *DeleteTeamByIDNotFound) String() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdNotFound %s", 404, payload)
 }
 
 func (o *DeleteTeamByIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *DeleteTeamByIDInternalServerError) Code() int {
 }
 
 func (o *DeleteTeamByIDInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteTeamByIDInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /teams/{team_id}][%d] deleteTeamByIdInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteTeamByIDInternalServerError) GetPayload() *models.ErrorResponseBody {

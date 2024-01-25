@@ -6,6 +6,7 @@ package sync_team_groups
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *AddTeamGroupAPIOK) Code() int {
 }
 
 func (o *AddTeamGroupAPIOK) Error() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiOk %s", 200, payload)
 }
 
 func (o *AddTeamGroupAPIOK) String() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiOk %s", 200, payload)
 }
 
 func (o *AddTeamGroupAPIOK) GetPayload() *models.SuccessResponseBody {
@@ -177,11 +180,13 @@ func (o *AddTeamGroupAPIBadRequest) Code() int {
 }
 
 func (o *AddTeamGroupAPIBadRequest) Error() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiBadRequest %s", 400, payload)
 }
 
 func (o *AddTeamGroupAPIBadRequest) String() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiBadRequest %s", 400, payload)
 }
 
 func (o *AddTeamGroupAPIBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -245,11 +250,13 @@ func (o *AddTeamGroupAPIUnauthorized) Code() int {
 }
 
 func (o *AddTeamGroupAPIUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiUnauthorized %s", 401, payload)
 }
 
 func (o *AddTeamGroupAPIUnauthorized) String() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiUnauthorized %s", 401, payload)
 }
 
 func (o *AddTeamGroupAPIUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -313,11 +320,13 @@ func (o *AddTeamGroupAPIForbidden) Code() int {
 }
 
 func (o *AddTeamGroupAPIForbidden) Error() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiForbidden %s", 403, payload)
 }
 
 func (o *AddTeamGroupAPIForbidden) String() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiForbidden %s", 403, payload)
 }
 
 func (o *AddTeamGroupAPIForbidden) GetPayload() *models.ErrorResponseBody {
@@ -381,11 +390,13 @@ func (o *AddTeamGroupAPINotFound) Code() int {
 }
 
 func (o *AddTeamGroupAPINotFound) Error() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiNotFound %s", 404, payload)
 }
 
 func (o *AddTeamGroupAPINotFound) String() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiNotFound %s", 404, payload)
 }
 
 func (o *AddTeamGroupAPINotFound) GetPayload() *models.ErrorResponseBody {
@@ -449,11 +460,13 @@ func (o *AddTeamGroupAPIInternalServerError) Code() int {
 }
 
 func (o *AddTeamGroupAPIInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiInternalServerError %s", 500, payload)
 }
 
 func (o *AddTeamGroupAPIInternalServerError) String() string {
-	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /teams/{teamId}/groups][%d] addTeamGroupApiInternalServerError %s", 500, payload)
 }
 
 func (o *AddTeamGroupAPIInternalServerError) GetPayload() *models.ErrorResponseBody {

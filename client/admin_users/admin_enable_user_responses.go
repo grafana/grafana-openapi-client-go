@@ -6,6 +6,7 @@ package admin_users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *AdminEnableUserOK) Code() int {
 }
 
 func (o *AdminEnableUserOK) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserOk %s", 200, payload)
 }
 
 func (o *AdminEnableUserOK) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserOk %s", 200, payload)
 }
 
 func (o *AdminEnableUserOK) GetPayload() *models.SuccessResponseBody {
@@ -171,11 +174,13 @@ func (o *AdminEnableUserUnauthorized) Code() int {
 }
 
 func (o *AdminEnableUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserUnauthorized %s", 401, payload)
 }
 
 func (o *AdminEnableUserUnauthorized) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserUnauthorized %s", 401, payload)
 }
 
 func (o *AdminEnableUserUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *AdminEnableUserForbidden) Code() int {
 }
 
 func (o *AdminEnableUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserForbidden %s", 403, payload)
 }
 
 func (o *AdminEnableUserForbidden) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserForbidden %s", 403, payload)
 }
 
 func (o *AdminEnableUserForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *AdminEnableUserNotFound) Code() int {
 }
 
 func (o *AdminEnableUserNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserNotFound %s", 404, payload)
 }
 
 func (o *AdminEnableUserNotFound) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserNotFound %s", 404, payload)
 }
 
 func (o *AdminEnableUserNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *AdminEnableUserInternalServerError) Code() int {
 }
 
 func (o *AdminEnableUserInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserInternalServerError %s", 500, payload)
 }
 
 func (o *AdminEnableUserInternalServerError) String() string {
-	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /admin/users/{user_id}/enable][%d] adminEnableUserInternalServerError %s", 500, payload)
 }
 
 func (o *AdminEnableUserInternalServerError) GetPayload() *models.ErrorResponseBody {

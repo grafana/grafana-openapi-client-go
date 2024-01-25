@@ -6,6 +6,7 @@ package dashboard_public
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -109,11 +110,13 @@ func (o *GetPublicDashboardOK) Code() int {
 }
 
 func (o *GetPublicDashboardOK) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardOk %s", 200, payload)
 }
 
 func (o *GetPublicDashboardOK) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardOk %s", 200, payload)
 }
 
 func (o *GetPublicDashboardOK) GetPayload() *models.PublicDashboard {
@@ -177,11 +180,13 @@ func (o *GetPublicDashboardBadRequest) Code() int {
 }
 
 func (o *GetPublicDashboardBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardBadRequest %s", 400, payload)
 }
 
 func (o *GetPublicDashboardBadRequest) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardBadRequest %s", 400, payload)
 }
 
 func (o *GetPublicDashboardBadRequest) GetPayload() *models.PublicError {
@@ -245,11 +250,13 @@ func (o *GetPublicDashboardUnauthorized) Code() int {
 }
 
 func (o *GetPublicDashboardUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *GetPublicDashboardUnauthorized) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardUnauthorized %s", 401, payload)
 }
 
 func (o *GetPublicDashboardUnauthorized) GetPayload() *models.PublicError {
@@ -313,11 +320,13 @@ func (o *GetPublicDashboardForbidden) Code() int {
 }
 
 func (o *GetPublicDashboardForbidden) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardForbidden %s", 403, payload)
 }
 
 func (o *GetPublicDashboardForbidden) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardForbidden %s", 403, payload)
 }
 
 func (o *GetPublicDashboardForbidden) GetPayload() *models.PublicError {
@@ -381,11 +390,13 @@ func (o *GetPublicDashboardNotFound) Code() int {
 }
 
 func (o *GetPublicDashboardNotFound) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardNotFound %s", 404, payload)
 }
 
 func (o *GetPublicDashboardNotFound) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardNotFound %s", 404, payload)
 }
 
 func (o *GetPublicDashboardNotFound) GetPayload() *models.PublicError {
@@ -449,11 +460,13 @@ func (o *GetPublicDashboardInternalServerError) Code() int {
 }
 
 func (o *GetPublicDashboardInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *GetPublicDashboardInternalServerError) String() string {
-	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{dashboardUid}/public-dashboards][%d] getPublicDashboardInternalServerError %s", 500, payload)
 }
 
 func (o *GetPublicDashboardInternalServerError) GetPayload() *models.PublicError {

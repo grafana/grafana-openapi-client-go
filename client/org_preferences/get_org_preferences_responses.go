@@ -6,6 +6,7 @@ package org_preferences
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *GetOrgPreferencesOK) Code() int {
 }
 
 func (o *GetOrgPreferencesOK) Error() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesOk %s", 200, payload)
 }
 
 func (o *GetOrgPreferencesOK) String() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesOk %s", 200, payload)
 }
 
 func (o *GetOrgPreferencesOK) GetPayload() *models.Preferences {
@@ -165,11 +168,13 @@ func (o *GetOrgPreferencesUnauthorized) Code() int {
 }
 
 func (o *GetOrgPreferencesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *GetOrgPreferencesUnauthorized) String() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesUnauthorized %s", 401, payload)
 }
 
 func (o *GetOrgPreferencesUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -233,11 +238,13 @@ func (o *GetOrgPreferencesForbidden) Code() int {
 }
 
 func (o *GetOrgPreferencesForbidden) Error() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesForbidden %s", 403, payload)
 }
 
 func (o *GetOrgPreferencesForbidden) String() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesForbidden %s", 403, payload)
 }
 
 func (o *GetOrgPreferencesForbidden) GetPayload() *models.ErrorResponseBody {
@@ -301,11 +308,13 @@ func (o *GetOrgPreferencesInternalServerError) Code() int {
 }
 
 func (o *GetOrgPreferencesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *GetOrgPreferencesInternalServerError) String() string {
-	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /org/preferences][%d] getOrgPreferencesInternalServerError %s", 500, payload)
 }
 
 func (o *GetOrgPreferencesInternalServerError) GetPayload() *models.ErrorResponseBody {

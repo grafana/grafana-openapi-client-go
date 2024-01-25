@@ -6,6 +6,7 @@ package library_elements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -115,11 +116,13 @@ func (o *UpdateLibraryElementOK) Code() int {
 }
 
 func (o *UpdateLibraryElementOK) Error() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementOk %s", 200, payload)
 }
 
 func (o *UpdateLibraryElementOK) String() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementOk %s", 200, payload)
 }
 
 func (o *UpdateLibraryElementOK) GetPayload() *models.LibraryElementResponse {
@@ -183,11 +186,13 @@ func (o *UpdateLibraryElementBadRequest) Code() int {
 }
 
 func (o *UpdateLibraryElementBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementBadRequest %s", 400, payload)
 }
 
 func (o *UpdateLibraryElementBadRequest) String() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementBadRequest %s", 400, payload)
 }
 
 func (o *UpdateLibraryElementBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -251,11 +256,13 @@ func (o *UpdateLibraryElementUnauthorized) Code() int {
 }
 
 func (o *UpdateLibraryElementUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateLibraryElementUnauthorized) String() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementUnauthorized %s", 401, payload)
 }
 
 func (o *UpdateLibraryElementUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -319,11 +326,13 @@ func (o *UpdateLibraryElementForbidden) Code() int {
 }
 
 func (o *UpdateLibraryElementForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementForbidden %s", 403, payload)
 }
 
 func (o *UpdateLibraryElementForbidden) String() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementForbidden %s", 403, payload)
 }
 
 func (o *UpdateLibraryElementForbidden) GetPayload() *models.ErrorResponseBody {
@@ -387,11 +396,13 @@ func (o *UpdateLibraryElementNotFound) Code() int {
 }
 
 func (o *UpdateLibraryElementNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementNotFound %s", 404, payload)
 }
 
 func (o *UpdateLibraryElementNotFound) String() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementNotFound %s", 404, payload)
 }
 
 func (o *UpdateLibraryElementNotFound) GetPayload() *models.ErrorResponseBody {
@@ -455,11 +466,13 @@ func (o *UpdateLibraryElementPreconditionFailed) Code() int {
 }
 
 func (o *UpdateLibraryElementPreconditionFailed) Error() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementPreconditionFailed %s", 412, payload)
 }
 
 func (o *UpdateLibraryElementPreconditionFailed) String() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementPreconditionFailed  %+v", 412, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementPreconditionFailed %s", 412, payload)
 }
 
 func (o *UpdateLibraryElementPreconditionFailed) GetPayload() *models.ErrorResponseBody {
@@ -523,11 +536,13 @@ func (o *UpdateLibraryElementInternalServerError) Code() int {
 }
 
 func (o *UpdateLibraryElementInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateLibraryElementInternalServerError) String() string {
-	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /library-elements/{library_element_uid}][%d] updateLibraryElementInternalServerError %s", 500, payload)
 }
 
 func (o *UpdateLibraryElementInternalServerError) GetPayload() *models.ErrorResponseBody {

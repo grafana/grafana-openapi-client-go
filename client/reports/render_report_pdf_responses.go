@@ -6,6 +6,7 @@ package reports
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -97,11 +98,13 @@ func (o *RenderReportPDFOK) Code() int {
 }
 
 func (o *RenderReportPDFOK) Error() string {
-	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfOk %s", 200, payload)
 }
 
 func (o *RenderReportPDFOK) String() string {
-	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfOk %s", 200, payload)
 }
 
 func (o *RenderReportPDFOK) GetPayload() []uint8 {
@@ -163,11 +166,13 @@ func (o *RenderReportPDFBadRequest) Code() int {
 }
 
 func (o *RenderReportPDFBadRequest) Error() string {
-	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfBadRequest %s", 400, payload)
 }
 
 func (o *RenderReportPDFBadRequest) String() string {
-	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfBadRequest %s", 400, payload)
 }
 
 func (o *RenderReportPDFBadRequest) GetPayload() *models.ErrorResponseBody {
@@ -231,11 +236,13 @@ func (o *RenderReportPDFUnauthorized) Code() int {
 }
 
 func (o *RenderReportPDFUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfUnauthorized %s", 401, payload)
 }
 
 func (o *RenderReportPDFUnauthorized) String() string {
-	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfUnauthorized %s", 401, payload)
 }
 
 func (o *RenderReportPDFUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -299,11 +306,13 @@ func (o *RenderReportPDFInternalServerError) Code() int {
 }
 
 func (o *RenderReportPDFInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfInternalServerError %s", 500, payload)
 }
 
 func (o *RenderReportPDFInternalServerError) String() string {
-	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /reports/render/pdf/{dashboardID}][%d] renderReportPdfInternalServerError %s", 500, payload)
 }
 
 func (o *RenderReportPDFInternalServerError) GetPayload() *models.ErrorResponseBody {

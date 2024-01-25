@@ -75,11 +75,11 @@ func (o *DeleteAlertRuleNoContent) Code() int {
 }
 
 func (o *DeleteAlertRuleNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/alert-rules/{UID}][%d] deleteAlertRuleNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/alert-rules/{UID}][%d] deleteAlertRuleNoContent", 204)
 }
 
 func (o *DeleteAlertRuleNoContent) String() string {
-	return fmt.Sprintf("[DELETE /v1/provisioning/alert-rules/{UID}][%d] deleteAlertRuleNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/provisioning/alert-rules/{UID}][%d] deleteAlertRuleNoContent", 204)
 }
 
 func (o *DeleteAlertRuleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

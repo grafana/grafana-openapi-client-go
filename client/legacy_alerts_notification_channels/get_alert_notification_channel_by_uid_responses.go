@@ -6,6 +6,7 @@ package legacy_alerts_notification_channels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -103,11 +104,13 @@ func (o *GetAlertNotificationChannelByUIDOK) Code() int {
 }
 
 func (o *GetAlertNotificationChannelByUIDOK) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidOk %s", 200, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDOK) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidOk  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidOk %s", 200, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDOK) GetPayload() *models.AlertNotification {
@@ -171,11 +174,13 @@ func (o *GetAlertNotificationChannelByUIDUnauthorized) Code() int {
 }
 
 func (o *GetAlertNotificationChannelByUIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDUnauthorized) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidUnauthorized  %+v", 401, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidUnauthorized %s", 401, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,11 +244,13 @@ func (o *GetAlertNotificationChannelByUIDForbidden) Code() int {
 }
 
 func (o *GetAlertNotificationChannelByUIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidForbidden %s", 403, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDForbidden) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidForbidden  %+v", 403, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidForbidden %s", 403, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDForbidden) GetPayload() *models.ErrorResponseBody {
@@ -307,11 +314,13 @@ func (o *GetAlertNotificationChannelByUIDNotFound) Code() int {
 }
 
 func (o *GetAlertNotificationChannelByUIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidNotFound %s", 404, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDNotFound) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidNotFound %s", 404, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDNotFound) GetPayload() *models.ErrorResponseBody {
@@ -375,11 +384,13 @@ func (o *GetAlertNotificationChannelByUIDInternalServerError) Code() int {
 }
 
 func (o *GetAlertNotificationChannelByUIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDInternalServerError) String() string {
-	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert-notifications/uid/{notification_channel_uid}][%d] getAlertNotificationChannelByUidInternalServerError %s", 500, payload)
 }
 
 func (o *GetAlertNotificationChannelByUIDInternalServerError) GetPayload() *models.ErrorResponseBody {
