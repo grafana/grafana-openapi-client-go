@@ -4,7 +4,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Pull the schema (main branch)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/b8cf8ec8d75fe926eba0af0be4ccc1e350e97022/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/395a06ab86a67200733cb5718fc8d9a29239c04a/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
