@@ -36,6 +36,12 @@ func (o *GetResourcePermissionsReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
+	case 404:
+		result := NewGetResourcePermissionsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewGetResourcePermissionsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -174,6 +180,76 @@ func (o *GetResourcePermissionsForbidden) GetPayload() *models.ErrorResponseBody
 }
 
 func (o *GetResourcePermissionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetResourcePermissionsNotFound creates a GetResourcePermissionsNotFound with default headers values
+func NewGetResourcePermissionsNotFound() *GetResourcePermissionsNotFound {
+	return &GetResourcePermissionsNotFound{}
+}
+
+/*
+GetResourcePermissionsNotFound describes a response with status code 404, with default header values.
+
+NotFoundError is returned when the requested resource was not found.
+*/
+type GetResourcePermissionsNotFound struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this get resource permissions not found response has a 2xx status code
+func (o *GetResourcePermissionsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get resource permissions not found response has a 3xx status code
+func (o *GetResourcePermissionsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get resource permissions not found response has a 4xx status code
+func (o *GetResourcePermissionsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get resource permissions not found response has a 5xx status code
+func (o *GetResourcePermissionsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get resource permissions not found response a status code equal to that given
+func (o *GetResourcePermissionsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
+// Code gets the status code for the get resource permissions not found response
+func (o *GetResourcePermissionsNotFound) Code() int {
+	return 404
+}
+
+func (o *GetResourcePermissionsNotFound) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/{resourceID}][%d] getResourcePermissionsNotFound %s", 404, payload)
+}
+
+func (o *GetResourcePermissionsNotFound) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /access-control/{resource}/{resourceID}][%d] getResourcePermissionsNotFound %s", 404, payload)
+}
+
+func (o *GetResourcePermissionsNotFound) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *GetResourcePermissionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

@@ -42,6 +42,12 @@ func (o *SetResourcePermissionsForUserReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return nil, result
+	case 404:
+		result := NewSetResourcePermissionsForUserNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewSetResourcePermissionsForUserInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -252,6 +258,76 @@ func (o *SetResourcePermissionsForUserForbidden) GetPayload() *models.ErrorRespo
 }
 
 func (o *SetResourcePermissionsForUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSetResourcePermissionsForUserNotFound creates a SetResourcePermissionsForUserNotFound with default headers values
+func NewSetResourcePermissionsForUserNotFound() *SetResourcePermissionsForUserNotFound {
+	return &SetResourcePermissionsForUserNotFound{}
+}
+
+/*
+SetResourcePermissionsForUserNotFound describes a response with status code 404, with default header values.
+
+NotFoundError is returned when the requested resource was not found.
+*/
+type SetResourcePermissionsForUserNotFound struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this set resource permissions for user not found response has a 2xx status code
+func (o *SetResourcePermissionsForUserNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set resource permissions for user not found response has a 3xx status code
+func (o *SetResourcePermissionsForUserNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set resource permissions for user not found response has a 4xx status code
+func (o *SetResourcePermissionsForUserNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set resource permissions for user not found response has a 5xx status code
+func (o *SetResourcePermissionsForUserNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set resource permissions for user not found response a status code equal to that given
+func (o *SetResourcePermissionsForUserNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
+// Code gets the status code for the set resource permissions for user not found response
+func (o *SetResourcePermissionsForUserNotFound) Code() int {
+	return 404
+}
+
+func (o *SetResourcePermissionsForUserNotFound) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserNotFound %s", 404, payload)
+}
+
+func (o *SetResourcePermissionsForUserNotFound) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/users/{userID}][%d] setResourcePermissionsForUserNotFound %s", 404, payload)
+}
+
+func (o *SetResourcePermissionsForUserNotFound) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *SetResourcePermissionsForUserNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

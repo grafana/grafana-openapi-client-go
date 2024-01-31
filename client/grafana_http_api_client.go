@@ -394,15 +394,6 @@ func (c *GrafanaHTTPAPI) WithOrgID(orgID int64) *GrafanaHTTPAPI {
 	return c
 }
 
-// WithRetries sets retry parameters and returns the client
-func (c *GrafanaHTTPAPI) WithRetries(numRetries int, retryTimeout time.Duration, retryStatusCodes ...string) *GrafanaHTTPAPI {
-	c.cfg.NumRetries = numRetries
-	c.cfg.RetryTimeout = retryTimeout
-	c.cfg.RetryStatusCodes = retryStatusCodes
-	c.SetTransport(newTransportWithConfig(c.cfg))
-	return c
-}
-
 func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
 	httpTransport := http.DefaultTransport.(*http.Transport)
 	httpTransport.TLSClientConfig = cfg.TLSConfig

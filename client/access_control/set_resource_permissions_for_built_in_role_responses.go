@@ -42,6 +42,12 @@ func (o *SetResourcePermissionsForBuiltInRoleReader) ReadResponse(response runti
 			return nil, err
 		}
 		return nil, result
+	case 404:
+		result := NewSetResourcePermissionsForBuiltInRoleNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewSetResourcePermissionsForBuiltInRoleInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -252,6 +258,76 @@ func (o *SetResourcePermissionsForBuiltInRoleForbidden) GetPayload() *models.Err
 }
 
 func (o *SetResourcePermissionsForBuiltInRoleForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSetResourcePermissionsForBuiltInRoleNotFound creates a SetResourcePermissionsForBuiltInRoleNotFound with default headers values
+func NewSetResourcePermissionsForBuiltInRoleNotFound() *SetResourcePermissionsForBuiltInRoleNotFound {
+	return &SetResourcePermissionsForBuiltInRoleNotFound{}
+}
+
+/*
+SetResourcePermissionsForBuiltInRoleNotFound describes a response with status code 404, with default header values.
+
+NotFoundError is returned when the requested resource was not found.
+*/
+type SetResourcePermissionsForBuiltInRoleNotFound struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this set resource permissions for built in role not found response has a 2xx status code
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set resource permissions for built in role not found response has a 3xx status code
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set resource permissions for built in role not found response has a 4xx status code
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set resource permissions for built in role not found response has a 5xx status code
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set resource permissions for built in role not found response a status code equal to that given
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
+// Code gets the status code for the set resource permissions for built in role not found response
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) Code() int {
+	return 404
+}
+
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleNotFound %s", 404, payload)
+}
+
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/builtInRoles/{builtInRole}][%d] setResourcePermissionsForBuiltInRoleNotFound %s", 404, payload)
+}
+
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *SetResourcePermissionsForBuiltInRoleNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 
