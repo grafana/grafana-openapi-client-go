@@ -35,10 +35,13 @@ type ClientService interface {
 	GetProviderSettings(key string, opts ...ClientOption) (*GetProviderSettingsOK, error)
 	GetProviderSettingsWithParams(params *GetProviderSettingsParams, opts ...ClientOption) (*GetProviderSettingsOK, error)
 
+	ListAllProvidersSettings(opts ...ClientOption) (*ListAllProvidersSettingsOK, error)
+	ListAllProvidersSettingsWithParams(params *ListAllProvidersSettingsParams, opts ...ClientOption) (*ListAllProvidersSettingsOK, error)
+
 	RemoveProviderSettings(key string, opts ...ClientOption) (*RemoveProviderSettingsNoContent, error)
 	RemoveProviderSettingsWithParams(params *RemoveProviderSettingsParams, opts ...ClientOption) (*RemoveProviderSettingsNoContent, error)
 
-	UpdateProviderSettings(key string, body *models.SSOSettings, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error)
+	UpdateProviderSettings(key string, body *models.UpdateProviderSettingsParamsBody, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error)
 	UpdateProviderSettingsWithParams(params *UpdateProviderSettingsParams, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -87,6 +90,52 @@ func (a *Client) GetProviderSettingsWithParams(params *GetProviderSettingsParams
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getProviderSettings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ListAllProvidersSettings lists all s s o settings entries
+
+You need to have a permission with action `settings:read` with scope `settings:auth.<provider>:*`.
+*/
+func (a *Client) ListAllProvidersSettings(opts ...ClientOption) (*ListAllProvidersSettingsOK, error) {
+	params := NewListAllProvidersSettingsParams()
+	return a.ListAllProvidersSettingsWithParams(params, opts...)
+}
+
+func (a *Client) ListAllProvidersSettingsWithParams(params *ListAllProvidersSettingsParams, opts ...ClientOption) (*ListAllProvidersSettingsOK, error) {
+	if params == nil {
+		params = NewListAllProvidersSettingsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listAllProvidersSettings",
+		Method:             "GET",
+		PathPattern:        "/v1/sso-settings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &ListAllProvidersSettingsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListAllProvidersSettingsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listAllProvidersSettings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -145,7 +194,7 @@ Inserts or updates the SSO Settings for a provider.
 
 You need to have a permission with action `settings:write` and scope `settings:auth.<provider>:*`.
 */
-func (a *Client) UpdateProviderSettings(key string, body *models.SSOSettings, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error) {
+func (a *Client) UpdateProviderSettings(key string, body *models.UpdateProviderSettingsParamsBody, opts ...ClientOption) (*UpdateProviderSettingsNoContent, error) {
 	params := NewUpdateProviderSettingsParams().WithBody(body).WithKey(key)
 	return a.UpdateProviderSettingsWithParams(params, opts...)
 }

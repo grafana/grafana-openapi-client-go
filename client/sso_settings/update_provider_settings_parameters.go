@@ -64,7 +64,7 @@ UpdateProviderSettingsParams contains all the parameters to send to the API endp
 type UpdateProviderSettingsParams struct {
 
 	// Body.
-	Body *models.SSOSettings
+	Body *models.UpdateProviderSettingsParamsBody
 
 	// Key.
 	Key string
@@ -123,13 +123,13 @@ func (o *UpdateProviderSettingsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the update provider settings params
-func (o *UpdateProviderSettingsParams) WithBody(body *models.SSOSettings) *UpdateProviderSettingsParams {
+func (o *UpdateProviderSettingsParams) WithBody(body *models.UpdateProviderSettingsParamsBody) *UpdateProviderSettingsParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update provider settings params
-func (o *UpdateProviderSettingsParams) SetBody(body *models.SSOSettings) {
+func (o *UpdateProviderSettingsParams) SetBody(body *models.UpdateProviderSettingsParamsBody) {
 	o.Body = body
 }
 

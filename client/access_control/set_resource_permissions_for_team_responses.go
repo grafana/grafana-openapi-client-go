@@ -42,6 +42,12 @@ func (o *SetResourcePermissionsForTeamReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return nil, result
+	case 404:
+		result := NewSetResourcePermissionsForTeamNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewSetResourcePermissionsForTeamInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -252,6 +258,76 @@ func (o *SetResourcePermissionsForTeamForbidden) GetPayload() *models.ErrorRespo
 }
 
 func (o *SetResourcePermissionsForTeamForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSetResourcePermissionsForTeamNotFound creates a SetResourcePermissionsForTeamNotFound with default headers values
+func NewSetResourcePermissionsForTeamNotFound() *SetResourcePermissionsForTeamNotFound {
+	return &SetResourcePermissionsForTeamNotFound{}
+}
+
+/*
+SetResourcePermissionsForTeamNotFound describes a response with status code 404, with default header values.
+
+NotFoundError is returned when the requested resource was not found.
+*/
+type SetResourcePermissionsForTeamNotFound struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this set resource permissions for team not found response has a 2xx status code
+func (o *SetResourcePermissionsForTeamNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set resource permissions for team not found response has a 3xx status code
+func (o *SetResourcePermissionsForTeamNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set resource permissions for team not found response has a 4xx status code
+func (o *SetResourcePermissionsForTeamNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set resource permissions for team not found response has a 5xx status code
+func (o *SetResourcePermissionsForTeamNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set resource permissions for team not found response a status code equal to that given
+func (o *SetResourcePermissionsForTeamNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
+// Code gets the status code for the set resource permissions for team not found response
+func (o *SetResourcePermissionsForTeamNotFound) Code() int {
+	return 404
+}
+
+func (o *SetResourcePermissionsForTeamNotFound) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamNotFound %s", 404, payload)
+}
+
+func (o *SetResourcePermissionsForTeamNotFound) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /access-control/{resource}/{resourceID}/teams/{teamID}][%d] setResourcePermissionsForTeamNotFound %s", 404, payload)
+}
+
+func (o *SetResourcePermissionsForTeamNotFound) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *SetResourcePermissionsForTeamNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

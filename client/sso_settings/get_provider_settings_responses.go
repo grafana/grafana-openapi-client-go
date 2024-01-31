@@ -70,7 +70,7 @@ GetProviderSettingsOK describes a response with status code 200, with default he
 (empty)
 */
 type GetProviderSettingsOK struct {
-	Payload *models.SSOSettings
+	Payload *models.GetProviderSettingsOKBody
 }
 
 // IsSuccess returns true when this get provider settings Ok response has a 2xx status code
@@ -113,13 +113,13 @@ func (o *GetProviderSettingsOK) String() string {
 	return fmt.Sprintf("[GET /v1/sso-settings/{key}][%d] getProviderSettingsOk %s", 200, payload)
 }
 
-func (o *GetProviderSettingsOK) GetPayload() *models.SSOSettings {
+func (o *GetProviderSettingsOK) GetPayload() *models.GetProviderSettingsOKBody {
 	return o.Payload
 }
 
 func (o *GetProviderSettingsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SSOSettings)
+	o.Payload = new(models.GetProviderSettingsOKBody)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
