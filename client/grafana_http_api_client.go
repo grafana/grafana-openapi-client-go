@@ -211,6 +211,8 @@ type TransportConfig struct {
 	HTTPHeaders map[string]string
 	// Debug sets the optional debug mode for the transport
 	Debug bool
+	// Client sets the net/http client used for the transport
+	Client *http.Client
 }
 
 // WithHost overrides the default host,
@@ -403,6 +405,13 @@ func (c *GrafanaHTTPAPI) WithRetries(numRetries int, retryTimeout time.Duration,
 	return c
 }
 
+// WithHTTPClient sets the used net/http client and returns the API client
+func (c *GrafanaHTTPAPI) WithHTTPClient(client *http.Client) *GrafanaHTTPAPI {
+	c.cfg.Client = client
+	c.SetTransport(newTransportWithConfig(c.cfg))
+	return c
+}
+
 func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
 	httpTransport := http.DefaultTransport.(*http.Transport)
 	httpTransport.TLSClientConfig = cfg.TLSConfig
@@ -415,7 +424,7 @@ func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
 		HTTPHeaders:      cfg.HTTPHeaders,
 	}
 
-	tr := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	tr := httptransport.NewWithClient(cfg.Host, cfg.BasePath, cfg.Schemes, cfg.Client)
 	tr.Transport = retryableTransport
 
 	var auth []runtime.ClientAuthInfoWriter
