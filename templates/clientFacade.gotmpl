@@ -214,7 +214,7 @@ func newTransportWithConfig(cfg *TransportConfig) *httptransport.Runtime {
     HTTPHeaders: cfg.HTTPHeaders,
 	}
 
-	tr := httptransport.NewWithClient(cfg.Host, cfg.BasePath, cfg.Schemes,cfg.Client)	
+	tr := httptransport.NewWithClient(cfg.Host, cfg.BasePath, cfg.Schemes, cfg.Client)	
 	tr.Transport = retryableTransport
 
 	var auth []runtime.ClientAuthInfoWriter
