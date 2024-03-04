@@ -3,9 +3,9 @@ module github.com/grafana/grafana-openapi-client-go
 go 1.20
 
 require (
-	github.com/go-openapi/errors v0.21.0
+	github.com/go-openapi/errors v0.21.1
 	github.com/go-openapi/runtime v0.27.1
-	github.com/go-openapi/strfmt v0.22.1
+	github.com/go-openapi/strfmt v0.22.2
 	github.com/go-openapi/swag v0.22.9
 	github.com/go-openapi/validate v0.23.1
 )
