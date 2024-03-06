@@ -78,6 +78,9 @@ type Report struct {
 	// template vars
 	TemplateVars interface{} `json:"templateVars,omitempty"`
 
+	// uid
+	UID string `json:"uid,omitempty"`
+
 	// updated
 	// Format: date-time
 	Updated strfmt.DateTime `json:"updated,omitempty"`

@@ -23,7 +23,7 @@ type MuteTimeInterval struct {
 	Name string `json:"name,omitempty"`
 
 	// time intervals
-	TimeIntervals []*TimeInterval `json:"time_intervals"`
+	TimeIntervals []*TimeIntervalItem `json:"time_intervals"`
 }
 
 // Validate validates this mute time interval

@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -18,19 +19,115 @@ import (
 type ChangeUserPasswordCommand struct {
 
 	// new password
-	NewPassword string `json:"newPassword,omitempty"`
+	NewPassword Password `json:"newPassword,omitempty"`
 
 	// old password
-	OldPassword string `json:"oldPassword,omitempty"`
+	OldPassword Password `json:"oldPassword,omitempty"`
 }
 
 // Validate validates this change user password command
 func (m *ChangeUserPasswordCommand) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateNewPassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOldPassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this change user password command based on context it is used
+func (m *ChangeUserPasswordCommand) validateNewPassword(formats strfmt.Registry) error {
+	if swag.IsZero(m.NewPassword) { // not required
+		return nil
+	}
+
+	if err := m.NewPassword.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("newPassword")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("newPassword")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *ChangeUserPasswordCommand) validateOldPassword(formats strfmt.Registry) error {
+	if swag.IsZero(m.OldPassword) { // not required
+		return nil
+	}
+
+	if err := m.OldPassword.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("oldPassword")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("oldPassword")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this change user password command based on the context it is used
 func (m *ChangeUserPasswordCommand) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateNewPassword(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOldPassword(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ChangeUserPasswordCommand) contextValidateNewPassword(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.NewPassword) { // not required
+		return nil
+	}
+
+	if err := m.NewPassword.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("newPassword")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("newPassword")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *ChangeUserPasswordCommand) contextValidateOldPassword(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OldPassword) { // not required
+		return nil
+	}
+
+	if err := m.OldPassword.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("oldPassword")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("oldPassword")
+		}
+		return err
+	}
+
 	return nil
 }
 

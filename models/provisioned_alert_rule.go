@@ -66,6 +66,9 @@ type ProvisionedAlertRule struct {
 	// Enum: [Alerting NoData OK]
 	NoDataState *string `json:"noDataState"`
 
+	// notification settings
+	NotificationSettings *AlertRuleNotificationSettings `json:"notification_settings,omitempty"`
+
 	// org ID
 	// Required: true
 	OrgID *int64 `json:"orgID"`
@@ -124,6 +127,10 @@ func (m *ProvisionedAlertRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNoDataState(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNotificationSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -307,6 +314,25 @@ func (m *ProvisionedAlertRule) validateNoDataState(formats strfmt.Registry) erro
 	return nil
 }
 
+func (m *ProvisionedAlertRule) validateNotificationSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.NotificationSettings) { // not required
+		return nil
+	}
+
+	if m.NotificationSettings != nil {
+		if err := m.NotificationSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("notification_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("notification_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ProvisionedAlertRule) validateOrgID(formats strfmt.Registry) error {
 
 	if err := validate.Required("orgID", "body", m.OrgID); err != nil {
@@ -407,6 +433,10 @@ func (m *ProvisionedAlertRule) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNotificationSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateProvenance(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -441,6 +471,27 @@ func (m *ProvisionedAlertRule) contextValidateData(ctx context.Context, formats 
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ProvisionedAlertRule) contextValidateNotificationSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NotificationSettings != nil {
+
+		if swag.IsZero(m.NotificationSettings) { // not required
+			return nil
+		}
+
+		if err := m.NotificationSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("notification_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("notification_settings")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -14,36 +14,23 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// TimeInterval TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
+// TimeInterval TimeInterval represents a named set of time intervals for which a route should be muted.
 //
 // swagger:model TimeInterval
 type TimeInterval struct {
 
-	// days of month
-	DaysOfMonth []string `json:"days_of_month"`
+	// name
+	Name string `json:"name,omitempty"`
 
-	// location
-	Location string `json:"location,omitempty"`
-
-	// months
-	Months []string `json:"months"`
-
-	// times
-	Times []*TimeIntervalRange `json:"times"`
-
-	// weekdays
-	Weekdays []string `json:"weekdays"`
-
-	// years
-	Years []string `json:"years"`
+	// time intervals
+	TimeIntervals []*TimeIntervalItem `json:"time_intervals"`
 }
 
 // Validate validates this time interval
 func (m *TimeInterval) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateTimes(formats); err != nil {
+	if err := m.validateTimeIntervals(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -53,22 +40,22 @@ func (m *TimeInterval) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TimeInterval) validateTimes(formats strfmt.Registry) error {
-	if swag.IsZero(m.Times) { // not required
+func (m *TimeInterval) validateTimeIntervals(formats strfmt.Registry) error {
+	if swag.IsZero(m.TimeIntervals) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Times); i++ {
-		if swag.IsZero(m.Times[i]) { // not required
+	for i := 0; i < len(m.TimeIntervals); i++ {
+		if swag.IsZero(m.TimeIntervals[i]) { // not required
 			continue
 		}
 
-		if m.Times[i] != nil {
-			if err := m.Times[i].Validate(formats); err != nil {
+		if m.TimeIntervals[i] != nil {
+			if err := m.TimeIntervals[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("times" + "." + strconv.Itoa(i))
+					return ve.ValidateName("time_intervals" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("times" + "." + strconv.Itoa(i))
+					return ce.ValidateName("time_intervals" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -83,7 +70,7 @@ func (m *TimeInterval) validateTimes(formats strfmt.Registry) error {
 func (m *TimeInterval) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateTimes(ctx, formats); err != nil {
+	if err := m.contextValidateTimeIntervals(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -93,21 +80,21 @@ func (m *TimeInterval) ContextValidate(ctx context.Context, formats strfmt.Regis
 	return nil
 }
 
-func (m *TimeInterval) contextValidateTimes(ctx context.Context, formats strfmt.Registry) error {
+func (m *TimeInterval) contextValidateTimeIntervals(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.Times); i++ {
+	for i := 0; i < len(m.TimeIntervals); i++ {
 
-		if m.Times[i] != nil {
+		if m.TimeIntervals[i] != nil {
 
-			if swag.IsZero(m.Times[i]) { // not required
+			if swag.IsZero(m.TimeIntervals[i]) { // not required
 				return nil
 			}
 
-			if err := m.Times[i].ContextValidate(ctx, formats); err != nil {
+			if err := m.TimeIntervals[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("times" + "." + strconv.Itoa(i))
+					return ve.ValidateName("time_intervals" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("times" + "." + strconv.Itoa(i))
+					return ce.ValidateName("time_intervals" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

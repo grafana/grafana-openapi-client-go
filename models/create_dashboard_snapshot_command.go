@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // CreateDashboardSnapshotCommand create dashboard snapshot command
@@ -18,9 +19,16 @@ import (
 // swagger:model CreateDashboardSnapshotCommand
 type CreateDashboardSnapshotCommand struct {
 
+	// APIVersion defines the versioned schema of this representation of an object.
+	// Servers should convert recognized schemas to the latest internal value, and
+	// may reject unrecognized values.
+	// More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	// +optional
+	APIVersion string `json:"apiVersion,omitempty"`
+
 	// dashboard
 	// Required: true
-	Dashboard JSON `json:"dashboard"`
+	Dashboard *Unstructured `json:"dashboard"`
 
 	// Unique key used to delete the snapshot. It is different from the `key` so that only the creator can delete the snapshot. Required if `external` is `true`.
 	DeleteKey string `json:"deleteKey,omitempty"`
@@ -34,6 +42,14 @@ type CreateDashboardSnapshotCommand struct {
 
 	// Define the unique key. Required if `external` is `true`.
 	Key string `json:"key,omitempty"`
+
+	// Kind is a string value representing the REST resource this object represents.
+	// Servers may infer this from the endpoint the client submits requests to.
+	// Cannot be updated.
+	// In CamelCase.
+	// More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	// +optional
+	Kind string `json:"kind,omitempty"`
 
 	// Snapshot name
 	Name string `json:"name,omitempty"`
@@ -55,15 +71,52 @@ func (m *CreateDashboardSnapshotCommand) Validate(formats strfmt.Registry) error
 
 func (m *CreateDashboardSnapshotCommand) validateDashboard(formats strfmt.Registry) error {
 
-	if m.Dashboard == nil {
-		return errors.Required("dashboard", "body", nil)
+	if err := validate.Required("dashboard", "body", m.Dashboard); err != nil {
+		return err
+	}
+
+	if m.Dashboard != nil {
+		if err := m.Dashboard.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dashboard")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dashboard")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this create dashboard snapshot command based on context it is used
+// ContextValidate validate this create dashboard snapshot command based on the context it is used
 func (m *CreateDashboardSnapshotCommand) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDashboard(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CreateDashboardSnapshotCommand) contextValidateDashboard(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Dashboard != nil {
+
+		if err := m.Dashboard.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dashboard")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dashboard")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

@@ -48,6 +48,12 @@ func (o *UpdateUserReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
+	case 409:
+		result := NewUpdateUserConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewUpdateUserInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -328,6 +334,76 @@ func (o *UpdateUserNotFound) GetPayload() *models.ErrorResponseBody {
 }
 
 func (o *UpdateUserNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateUserConflict creates a UpdateUserConflict with default headers values
+func NewUpdateUserConflict() *UpdateUserConflict {
+	return &UpdateUserConflict{}
+}
+
+/*
+UpdateUserConflict describes a response with status code 409, with default header values.
+
+ConflictError
+*/
+type UpdateUserConflict struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this update user conflict response has a 2xx status code
+func (o *UpdateUserConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update user conflict response has a 3xx status code
+func (o *UpdateUserConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user conflict response has a 4xx status code
+func (o *UpdateUserConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update user conflict response has a 5xx status code
+func (o *UpdateUserConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user conflict response a status code equal to that given
+func (o *UpdateUserConflict) IsCode(code int) bool {
+	return code == 409
+}
+
+// Code gets the status code for the update user conflict response
+func (o *UpdateUserConflict) Code() int {
+	return 409
+}
+
+func (o *UpdateUserConflict) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserConflict %s", 409, payload)
+}
+
+func (o *UpdateUserConflict) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /users/{user_id}][%d] updateUserConflict %s", 409, payload)
+}
+
+func (o *UpdateUserConflict) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *UpdateUserConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

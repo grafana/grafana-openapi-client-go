@@ -32,6 +32,9 @@ type DiscordConfig struct {
 
 	// webhook url
 	WebhookURL *SecretURL `json:"webhook_url,omitempty"`
+
+	// webhook url file
+	WebhookURLFile string `json:"webhook_url_file,omitempty"`
 }
 
 // Validate validates this discord config

@@ -14,8 +14,8 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Vector Vector is basically only an alias for model.Samples, but the
-// contract is that in a Vector, all Samples have the same timestamp.
+// Vector Vector is basically only an alias for []Sample, but the contract is that
+// in a Vector, all Samples have the same timestamp.
 //
 // swagger:model Vector
 type Vector []*Sample
