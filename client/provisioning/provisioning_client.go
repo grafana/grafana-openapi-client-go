@@ -32,6 +32,9 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOption) (*DeleteAlertRuleNoContent, error)
 
+	DeleteAlertRuleGroup(group string, folderUID string, opts ...ClientOption) (*DeleteAlertRuleGroupNoContent, error)
+	DeleteAlertRuleGroupWithParams(params *DeleteAlertRuleGroupParams, opts ...ClientOption) (*DeleteAlertRuleGroupNoContent, error)
+
 	DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsAccepted, error)
 	DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsAccepted, error)
 
@@ -143,6 +146,50 @@ func (a *Client) DeleteAlertRule(params *DeleteAlertRuleParams, opts ...ClientOp
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for DeleteAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DeleteAlertRuleGroup Delete rule group
+*/
+func (a *Client) DeleteAlertRuleGroup(group string, folderUID string, opts ...ClientOption) (*DeleteAlertRuleGroupNoContent, error) {
+	params := NewDeleteAlertRuleGroupParams().WithFolderUID(folderUID).WithGroup(group)
+	return a.DeleteAlertRuleGroupWithParams(params, opts...)
+}
+
+func (a *Client) DeleteAlertRuleGroupWithParams(params *DeleteAlertRuleGroupParams, opts ...ClientOption) (*DeleteAlertRuleGroupNoContent, error) {
+	if params == nil {
+		params = NewDeleteAlertRuleGroupParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteAlertRuleGroup",
+		Method:             "DELETE",
+		PathPattern:        "/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &DeleteAlertRuleGroupReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteAlertRuleGroupNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteAlertRuleGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

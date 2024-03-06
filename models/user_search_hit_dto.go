@@ -49,6 +49,9 @@ type UserSearchHitDTO struct {
 
 	// name
 	Name string `json:"name,omitempty"`
+
+	// uid
+	UID string `json:"uid,omitempty"`
 }
 
 // Validate validates this user search hit DTO

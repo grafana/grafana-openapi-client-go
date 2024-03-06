@@ -328,6 +328,7 @@ func (a *Client) ImportDashboardWithParams(params *ImportDashboardParams, opts .
 PostDashboard creates update dashboard
 
 Creates a new dashboard or updates an existing dashboard.
+Note: This endpoint is not intended for creating folders, use `POST /api/folders` for that.
 */
 func (a *Client) PostDashboard(body *models.SaveDashboardCommand, opts ...ClientOption) (*PostDashboardOK, error) {
 	params := NewPostDashboardParams().WithBody(body)

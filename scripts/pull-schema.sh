@@ -4,7 +4,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Pull the schema (main branch)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/395a06ab86a67200733cb5718fc8d9a29239c04a/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/e916372249833f21ae5c09915a26758a52a87970/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
@@ -65,20 +65,9 @@ modify '.definitions += {
 modify '.definitions.ValidationError.properties.message = .definitions.ValidationError.properties.msg'
 modify 'del(.definitions.ValidationError.properties.msg)'
 
-# Mutetiming TimeInterval is wrong
-# TODO: Upstream fix
-modify '.definitions.TimeIntervalRange = {
-    "type": "object",
-    "properties": {
-      "start_time": {
-        "type": "string",
-      },
-      "end_time": {
-        "type": "string",
-      }
-    }
-}'
-modify '.definitions.TimeInterval.properties.times.items["$ref"] = "#/definitions/TimeIntervalRange"'
+# Remap field time_intervals of MuteTimeInterval and TimeInterval from TimeInterval (collision) to an equivalent model TimeIntervalItem.
+modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
+modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"

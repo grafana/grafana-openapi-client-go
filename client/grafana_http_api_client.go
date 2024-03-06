@@ -66,6 +66,7 @@ import (
 	"github.com/grafana/grafana-openapi-client-go/client/sso_settings"
 	"github.com/grafana/grafana-openapi-client-go/client/sync_team_groups"
 	"github.com/grafana/grafana-openapi-client-go/client/teams"
+	"github.com/grafana/grafana-openapi-client-go/client/user"
 	"github.com/grafana/grafana-openapi-client-go/client/user_preferences"
 	"github.com/grafana/grafana-openapi-client-go/client/users"
 )
@@ -160,6 +161,7 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.SsoSettings = sso_settings.New(transport, formats)
 	cli.SyncTeamGroups = sync_team_groups.New(transport, formats)
 	cli.Teams = teams.New(transport, formats)
+	cli.User = user.New(transport, formats)
 	cli.UserPreferences = user_preferences.New(transport, formats)
 	cli.Users = users.New(transport, formats)
 	return cli
@@ -324,6 +326,8 @@ type GrafanaHTTPAPI struct {
 
 	Teams teams.ClientService
 
+	User user.ClientService
+
 	UserPreferences user_preferences.ClientService
 
 	Users users.ClientService
@@ -380,6 +384,7 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.SsoSettings.SetTransport(transport)
 	c.SyncTeamGroups.SetTransport(transport)
 	c.Teams.SetTransport(transport)
+	c.User.SetTransport(transport)
 	c.UserPreferences.SetTransport(transport)
 	c.Users.SetTransport(transport)
 }

@@ -38,6 +38,9 @@ type PostableGrafanaRule struct {
 	// Enum: [Alerting NoData OK]
 	NoDataState string `json:"no_data_state,omitempty"`
 
+	// notification settings
+	NotificationSettings *AlertRuleNotificationSettings `json:"notification_settings,omitempty"`
+
 	// title
 	Title string `json:"title,omitempty"`
 
@@ -58,6 +61,10 @@ func (m *PostableGrafanaRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNoDataState(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNotificationSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -183,11 +190,34 @@ func (m *PostableGrafanaRule) validateNoDataState(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *PostableGrafanaRule) validateNotificationSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.NotificationSettings) { // not required
+		return nil
+	}
+
+	if m.NotificationSettings != nil {
+		if err := m.NotificationSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("notification_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("notification_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this postable grafana rule based on the context it is used
 func (m *PostableGrafanaRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNotificationSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -217,6 +247,27 @@ func (m *PostableGrafanaRule) contextValidateData(ctx context.Context, formats s
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *PostableGrafanaRule) contextValidateNotificationSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NotificationSettings != nil {
+
+		if swag.IsZero(m.NotificationSettings) { // not required
+			return nil
+		}
+
+		if err := m.NotificationSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("notification_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("notification_settings")
+			}
+			return err
+		}
 	}
 
 	return nil

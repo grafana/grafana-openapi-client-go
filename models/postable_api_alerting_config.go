@@ -25,7 +25,7 @@ type PostableAPIAlertingConfig struct {
 	// inhibit rules
 	InhibitRules []*InhibitRule `json:"inhibit_rules"`
 
-	// mute time intervals
+	// MuteTimeIntervals is deprecated and will be removed before Alertmanager 1.0.
 	MuteTimeIntervals []*MuteTimeInterval `json:"mute_time_intervals"`
 
 	// Override with our superset receiver type
@@ -36,6 +36,9 @@ type PostableAPIAlertingConfig struct {
 
 	// templates
 	Templates []string `json:"templates"`
+
+	// time intervals
+	TimeIntervals []*TimeInterval `json:"time_intervals"`
 }
 
 // Validate validates this postable Api alerting config
@@ -59,6 +62,10 @@ func (m *PostableAPIAlertingConfig) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRoute(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTimeIntervals(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -184,6 +191,32 @@ func (m *PostableAPIAlertingConfig) validateRoute(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *PostableAPIAlertingConfig) validateTimeIntervals(formats strfmt.Registry) error {
+	if swag.IsZero(m.TimeIntervals) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.TimeIntervals); i++ {
+		if swag.IsZero(m.TimeIntervals[i]) { // not required
+			continue
+		}
+
+		if m.TimeIntervals[i] != nil {
+			if err := m.TimeIntervals[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("time_intervals" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("time_intervals" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this postable Api alerting config based on the context it is used
 func (m *PostableAPIAlertingConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -205,6 +238,10 @@ func (m *PostableAPIAlertingConfig) ContextValidate(ctx context.Context, formats
 	}
 
 	if err := m.contextValidateRoute(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTimeIntervals(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -326,6 +363,31 @@ func (m *PostableAPIAlertingConfig) contextValidateRoute(ctx context.Context, fo
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *PostableAPIAlertingConfig) contextValidateTimeIntervals(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.TimeIntervals); i++ {
+
+		if m.TimeIntervals[i] != nil {
+
+			if swag.IsZero(m.TimeIntervals[i]) { // not required
+				return nil
+			}
+
+			if err := m.TimeIntervals[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("time_intervals" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("time_intervals" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

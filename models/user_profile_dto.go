@@ -65,6 +65,9 @@ type UserProfileDTO struct {
 	// theme
 	Theme string `json:"theme,omitempty"`
 
+	// uid
+	UID string `json:"uid,omitempty"`
+
 	// updated at
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`

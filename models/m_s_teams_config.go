@@ -24,6 +24,9 @@ type MSTeamsConfig struct {
 	// send resolved
 	SendResolved bool `json:"send_resolved,omitempty"`
 
+	// summary
+	Summary string `json:"summary,omitempty"`
+
 	// text
 	Text string `json:"text,omitempty"`
 
@@ -32,6 +35,9 @@ type MSTeamsConfig struct {
 
 	// webhook url
 	WebhookURL *SecretURL `json:"webhook_url,omitempty"`
+
+	// webhook url file
+	WebhookURLFile string `json:"webhook_url_file,omitempty"`
 }
 
 // Validate validates this m s teams config

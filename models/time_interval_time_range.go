@@ -12,10 +12,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// TimeIntervalRange time interval range
+// TimeIntervalTimeRange time interval time range
 //
-// swagger:model TimeIntervalRange
-type TimeIntervalRange struct {
+// swagger:model TimeIntervalTimeRange
+type TimeIntervalTimeRange struct {
 
 	// end time
 	EndTime string `json:"end_time,omitempty"`
@@ -24,18 +24,18 @@ type TimeIntervalRange struct {
 	StartTime string `json:"start_time,omitempty"`
 }
 
-// Validate validates this time interval range
-func (m *TimeIntervalRange) Validate(formats strfmt.Registry) error {
+// Validate validates this time interval time range
+func (m *TimeIntervalTimeRange) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this time interval range based on context it is used
-func (m *TimeIntervalRange) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this time interval time range based on context it is used
+func (m *TimeIntervalTimeRange) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *TimeIntervalRange) MarshalBinary() ([]byte, error) {
+func (m *TimeIntervalTimeRange) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -43,8 +43,8 @@ func (m *TimeIntervalRange) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *TimeIntervalRange) UnmarshalBinary(b []byte) error {
-	var res TimeIntervalRange
+func (m *TimeIntervalTimeRange) UnmarshalBinary(b []byte) error {
+	var res TimeIntervalTimeRange
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

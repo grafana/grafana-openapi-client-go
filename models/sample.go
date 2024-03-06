@@ -13,10 +13,15 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Sample Sample is a single sample belonging to a metric.
+// Sample Sample is a single sample belonging to a metric. It represents either a float
+// sample or a histogram sample. If H is nil, it is a float sample. Otherwise,
+// it is a histogram sample.
 //
 // swagger:model Sample
 type Sample struct {
+
+	// f
+	F float64 `json:"F,omitempty"`
 
 	// h
 	H *FloatHistogram `json:"H,omitempty"`
@@ -26,9 +31,6 @@ type Sample struct {
 
 	// t
 	T int64 `json:"T,omitempty"`
-
-	// v
-	V float64 `json:"V,omitempty"`
 }
 
 // Validate validates this sample

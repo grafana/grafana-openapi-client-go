@@ -17,9 +17,6 @@ import (
 // swagger:model ReportEmail
 type ReportEmail struct {
 
-	// email
-	Email string `json:"email,omitempty"`
-
 	// Comma-separated list of emails to which to send the report to.
 	Emails string `json:"emails,omitempty"`
 
