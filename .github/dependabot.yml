@@ -9,4 +9,4 @@ updates:
       go-openapi:
         applies-to: version-updates
         patterns:
-          - '*/go-openapi/*
+          - '*/go-openapi/*'
