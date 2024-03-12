@@ -43,23 +43,6 @@ modify '.definitions.ProvisionedAlertRule.properties.for = {
 modify '.definitions.ReportSchedule.properties.startDate["x-nullable"] = true'
 modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 
-# Fixed here: https://github.com/grafana/grafana/pull/79477
-modify '.definitions += {
-    "ObjectMatcher": {
-      "type": "array",
-      "title": "ObjectMatcher is a matcher that can be used to filter alerts.",
-      "items": {
-        "type": "string"
-      }
-    },
-    "ObjectMatchers": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ObjectMatcher"
-      }
-    }
-}'
-
 # Alerting validation error is wrong. Message doesn't show up
 # TODO: Upstream fix
 modify '.definitions.ValidationError.properties.message = .definitions.ValidationError.properties.msg'
@@ -68,6 +51,8 @@ modify 'del(.definitions.ValidationError.properties.msg)'
 # Remap field time_intervals of MuteTimeInterval and TimeInterval from TimeInterval (collision) to an equivalent model TimeIntervalItem.
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
+modify '.paths["/v1/provisioning/mute-timings"].get.responses["200"]= {"$ref": "#/responses/GetAllIntervalsResponse"}'
+modify '.paths["/v1/provisioning/mute-timings/{name}"].get.responses["200"] = {"$ref": "#/responses/GetIntervalsByNameResponse"}'
 
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
