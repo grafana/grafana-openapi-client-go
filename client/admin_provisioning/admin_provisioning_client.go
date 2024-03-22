@@ -36,9 +36,6 @@ type ClientService interface {
 	AdminProvisioningReloadDatasources(opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error)
 	AdminProvisioningReloadDatasourcesWithParams(params *AdminProvisioningReloadDatasourcesParams, opts ...ClientOption) (*AdminProvisioningReloadDatasourcesOK, error)
 
-	AdminProvisioningReloadNotifications(opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error)
-	AdminProvisioningReloadNotificationsWithParams(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error)
-
 	AdminProvisioningReloadPlugins(opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error)
 	AdminProvisioningReloadPluginsWithParams(params *AdminProvisioningReloadPluginsParams, opts ...ClientOption) (*AdminProvisioningReloadPluginsOK, error)
 
@@ -136,53 +133,6 @@ func (a *Client) AdminProvisioningReloadDatasourcesWithParams(params *AdminProvi
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for adminProvisioningReloadDatasources: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-AdminProvisioningReloadNotifications reloads legacy alert notifier provisioning configurations
-
-Reloads the provisioning config files for legacy alert notifiers again. It won’t return until the new provisioned entities are already stored in the database. In case of dashboards, it will stop polling for changes in dashboard files and then restart it with new configurations after returning.
-If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `provisioning:reload` and scope `provisioners:notifications`.
-*/
-func (a *Client) AdminProvisioningReloadNotifications(opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
-	params := NewAdminProvisioningReloadNotificationsParams()
-	return a.AdminProvisioningReloadNotificationsWithParams(params, opts...)
-}
-
-func (a *Client) AdminProvisioningReloadNotificationsWithParams(params *AdminProvisioningReloadNotificationsParams, opts ...ClientOption) (*AdminProvisioningReloadNotificationsOK, error) {
-	if params == nil {
-		params = NewAdminProvisioningReloadNotificationsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "adminProvisioningReloadNotifications",
-		Method:             "POST",
-		PathPattern:        "/admin/provisioning/notifications/reload",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &AdminProvisioningReloadNotificationsReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*AdminProvisioningReloadNotificationsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for adminProvisioningReloadNotifications: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -47,8 +47,6 @@ type ClientService interface {
 	GetReports(opts ...ClientOption) (*GetReportsOK, error)
 	GetReportsWithParams(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error)
 
-	RenderReportPDF(params *RenderReportPDFParams, opts ...ClientOption) (*RenderReportPDFOK, error)
-
 	RenderReportPDFs(params *RenderReportPDFsParams, opts ...ClientOption) (*RenderReportPDFsOK, error)
 
 	SaveReportSettings(body *models.ReportSettings, opts ...ClientOption) (*SaveReportSettingsOK, error)
@@ -303,48 +301,6 @@ func (a *Client) GetReportsWithParams(params *GetReportsParams, opts ...ClientOp
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getReports: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-RenderReportPDF renders report for dashboard
-
-Please refer to [reports enterprise](#/reports/renderReportPDFs) instead. This will be removed in Grafana 10.
-*/
-
-func (a *Client) RenderReportPDF(params *RenderReportPDFParams, opts ...ClientOption) (*RenderReportPDFOK, error) {
-	if params == nil {
-		params = NewRenderReportPDFParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "renderReportPDF",
-		Method:             "GET",
-		PathPattern:        "/reports/render/pdf/{dashboardID}",
-		ProducesMediaTypes: []string{"application/pdf"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &RenderReportPDFReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*RenderReportPDFOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for renderReportPDF: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

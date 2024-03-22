@@ -14,7 +14,8 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// JSONWebKey JSONWebKey represents a public or private key in JWK format.
+// JSONWebKey JSONWebKey represents a public or private key in JWK format. It can be
+// marshaled into JSON and unmarshaled from JSON.
 //
 // swagger:model JSONWebKey
 type JSONWebKey struct {
@@ -34,7 +35,18 @@ type JSONWebKey struct {
 	// certificates URL
 	CertificatesURL *URL `json:"CertificatesURL,omitempty"`
 
-	// Cryptographic key, can be a symmetric or asymmetric key.
+	// Key is the Go in-memory representation of this key. It must have one
+	// of these types:
+	// ed25519.PublicKey
+	// ed25519.PrivateKey
+	// ecdsa.PublicKey
+	// ecdsa.PrivateKey
+	// rsa.PublicKey
+	// rsa.PrivateKey
+	// []byte (a symmetric key)
+	//
+	// When marshaling this JSONWebKey into JSON, the "kty" header parameter
+	// will be automatically set based on the type of this field.
 	Key interface{} `json:"Key,omitempty"`
 
 	// Key identifier, parsed from `kid` header.

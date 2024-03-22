@@ -19,12 +19,6 @@ import (
 // swagger:model CreateOrUpdateReportConfig
 type CreateOrUpdateReportConfig struct {
 
-	// dashboard Id
-	DashboardID int64 `json:"dashboardId,omitempty"`
-
-	// dashboard Uid
-	DashboardUID string `json:"dashboardUid,omitempty"`
-
 	// dashboards
 	Dashboards []*ReportDashboard `json:"dashboards"`
 
@@ -60,9 +54,6 @@ type CreateOrUpdateReportConfig struct {
 
 	// state
 	State State `json:"state,omitempty"`
-
-	// template vars
-	TemplateVars interface{} `json:"templateVars,omitempty"`
 }
 
 // Validate validates this create or update report config

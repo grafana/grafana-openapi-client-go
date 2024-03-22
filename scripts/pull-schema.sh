@@ -3,8 +3,8 @@
 # https://stackoverflow.com/a/246128
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-# Pull the schema (main branch)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/e916372249833f21ae5c09915a26758a52a87970/public/api-merged.json)"
+# Pull the schema (stable commit)
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/351425ab3d8eee7a579c19468549e4991e5455a7/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana

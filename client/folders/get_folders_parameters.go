@@ -86,6 +86,14 @@ type GetFoldersParams struct {
 	*/
 	ParentUID *string
 
+	/* Permission.
+
+	   Set to `Edit` to return folders that the user can edit
+
+	   Default: "View"
+	*/
+	Permission *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -107,11 +115,14 @@ func (o *GetFoldersParams) SetDefaults() {
 		limitDefault = int64(1000)
 
 		pageDefault = int64(1)
+
+		permissionDefault = string("View")
 	)
 
 	val := GetFoldersParams{
-		Limit: &limitDefault,
-		Page:  &pageDefault,
+		Limit:      &limitDefault,
+		Page:       &pageDefault,
+		Permission: &permissionDefault,
 	}
 
 	val.timeout = o.timeout
@@ -186,6 +197,17 @@ func (o *GetFoldersParams) SetParentUID(parentUID *string) {
 	o.ParentUID = parentUID
 }
 
+// WithPermission adds the permission to the get folders params
+func (o *GetFoldersParams) WithPermission(permission *string) *GetFoldersParams {
+	o.SetPermission(permission)
+	return o
+}
+
+// SetPermission adds the permission to the get folders params
+func (o *GetFoldersParams) SetPermission(permission *string) {
+	o.Permission = permission
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetFoldersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -240,6 +262,23 @@ func (o *GetFoldersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		if qParentUID != "" {
 
 			if err := r.SetQueryParam("parentUid", qParentUID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Permission != nil {
+
+		// query param permission
+		var qrPermission string
+
+		if o.Permission != nil {
+			qrPermission = *o.Permission
+		}
+		qPermission := qrPermission
+		if qPermission != "" {
+
+			if err := r.SetQueryParam("permission", qPermission); err != nil {
 				return err
 			}
 		}

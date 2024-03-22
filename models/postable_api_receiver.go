@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// PostableAPIReceiver postable Api receiver
+// PostableAPIReceiver nolint:revive
 //
 // swagger:model PostableApiReceiver
 type PostableAPIReceiver struct {

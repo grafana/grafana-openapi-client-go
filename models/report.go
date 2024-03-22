@@ -24,15 +24,6 @@ type Report struct {
 	// Format: date-time
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	// dashboard Id
-	DashboardID int64 `json:"dashboardId,omitempty"`
-
-	// dashboard name
-	DashboardName string `json:"dashboardName,omitempty"`
-
-	// dashboard Uid
-	DashboardUID string `json:"dashboardUid,omitempty"`
-
 	// dashboards
 	Dashboards []*ReportDashboard `json:"dashboards"`
 
@@ -74,9 +65,6 @@ type Report struct {
 
 	// state
 	State State `json:"state,omitempty"`
-
-	// template vars
-	TemplateVars interface{} `json:"templateVars,omitempty"`
 
 	// uid
 	UID string `json:"uid,omitempty"`
