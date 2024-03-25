@@ -44,8 +44,6 @@ import (
 	"github.com/grafana/grafana-openapi-client-go/client/folders"
 	"github.com/grafana/grafana-openapi-client-go/client/get_current_org"
 	"github.com/grafana/grafana-openapi-client-go/client/ldap_debug"
-	"github.com/grafana/grafana-openapi-client-go/client/legacy_alerts"
-	"github.com/grafana/grafana-openapi-client-go/client/legacy_alerts_notification_channels"
 	"github.com/grafana/grafana-openapi-client-go/client/library_elements"
 	"github.com/grafana/grafana-openapi-client-go/client/licensing"
 	"github.com/grafana/grafana-openapi-client-go/client/org"
@@ -139,8 +137,6 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.Folders = folders.New(transport, formats)
 	cli.GetCurrentOrg = get_current_org.New(transport, formats)
 	cli.LDAPDebug = ldap_debug.New(transport, formats)
-	cli.LegacyAlerts = legacy_alerts.New(transport, formats)
-	cli.LegacyAlertsNotificationChannels = legacy_alerts_notification_channels.New(transport, formats)
 	cli.LibraryElements = library_elements.New(transport, formats)
 	cli.Licensing = licensing.New(transport, formats)
 	cli.Org = org.New(transport, formats)
@@ -282,10 +278,6 @@ type GrafanaHTTPAPI struct {
 
 	LDAPDebug ldap_debug.ClientService
 
-	LegacyAlerts legacy_alerts.ClientService
-
-	LegacyAlertsNotificationChannels legacy_alerts_notification_channels.ClientService
-
 	LibraryElements library_elements.ClientService
 
 	Licensing licensing.ClientService
@@ -362,8 +354,6 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Folders.SetTransport(transport)
 	c.GetCurrentOrg.SetTransport(transport)
 	c.LDAPDebug.SetTransport(transport)
-	c.LegacyAlerts.SetTransport(transport)
-	c.LegacyAlertsNotificationChannels.SetTransport(transport)
 	c.LibraryElements.SetTransport(transport)
 	c.Licensing.SetTransport(transport)
 	c.Org.SetTransport(transport)

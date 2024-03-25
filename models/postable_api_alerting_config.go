@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// PostableAPIAlertingConfig postable Api alerting config
+// PostableAPIAlertingConfig nolint:revive
 //
 // swagger:model PostableApiAlertingConfig
 type PostableAPIAlertingConfig struct {

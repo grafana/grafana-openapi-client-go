@@ -20,15 +20,15 @@ import (
 // swagger:model QueryDataResponse
 type QueryDataResponse struct {
 
-	// responses
-	Responses Responses `json:"Responses,omitempty"`
+	// results
+	Results Responses `json:"results,omitempty"`
 }
 
 // Validate validates this query data response
 func (m *QueryDataResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResponses(formats); err != nil {
+	if err := m.validateResults(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -38,17 +38,17 @@ func (m *QueryDataResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *QueryDataResponse) validateResponses(formats strfmt.Registry) error {
-	if swag.IsZero(m.Responses) { // not required
+func (m *QueryDataResponse) validateResults(formats strfmt.Registry) error {
+	if swag.IsZero(m.Results) { // not required
 		return nil
 	}
 
-	if m.Responses != nil {
-		if err := m.Responses.Validate(formats); err != nil {
+	if m.Results != nil {
+		if err := m.Results.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("Responses")
+				return ve.ValidateName("results")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("Responses")
+				return ce.ValidateName("results")
 			}
 			return err
 		}
@@ -61,7 +61,7 @@ func (m *QueryDataResponse) validateResponses(formats strfmt.Registry) error {
 func (m *QueryDataResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateResponses(ctx, formats); err != nil {
+	if err := m.contextValidateResults(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -71,17 +71,17 @@ func (m *QueryDataResponse) ContextValidate(ctx context.Context, formats strfmt.
 	return nil
 }
 
-func (m *QueryDataResponse) contextValidateResponses(ctx context.Context, formats strfmt.Registry) error {
+func (m *QueryDataResponse) contextValidateResults(ctx context.Context, formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Responses) { // not required
+	if swag.IsZero(m.Results) { // not required
 		return nil
 	}
 
-	if err := m.Responses.ContextValidate(ctx, formats); err != nil {
+	if err := m.Results.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("Responses")
+			return ve.ValidateName("results")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("Responses")
+			return ce.ValidateName("results")
 		}
 		return err
 	}

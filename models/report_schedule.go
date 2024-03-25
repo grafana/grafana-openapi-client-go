@@ -19,9 +19,6 @@ import (
 // swagger:model ReportSchedule
 type ReportSchedule struct {
 
-	// day
-	Day string `json:"day,omitempty"`
-
 	// day of month
 	DayOfMonth string `json:"dayOfMonth,omitempty"`
 
@@ -32,17 +29,11 @@ type ReportSchedule struct {
 	// frequency
 	Frequency string `json:"frequency,omitempty"`
 
-	// hour
-	Hour int64 `json:"hour,omitempty"`
-
 	// interval amount
 	IntervalAmount int64 `json:"intervalAmount,omitempty"`
 
 	// interval frequency
 	IntervalFrequency string `json:"intervalFrequency,omitempty"`
-
-	// minute
-	Minute int64 `json:"minute,omitempty"`
 
 	// start date
 	// Format: date-time

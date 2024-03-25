@@ -10,8 +10,6 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new admin API client.
@@ -37,9 +35,6 @@ type ClientService interface {
 
 	AdminGetStats(opts ...ClientOption) (*AdminGetStatsOK, error)
 	AdminGetStatsWithParams(params *AdminGetStatsParams, opts ...ClientOption) (*AdminGetStatsOK, error)
-
-	PauseAllAlerts(body *models.PauseAllAlertsCommand, opts ...ClientOption) (*PauseAllAlertsOK, error)
-	PauseAllAlertsWithParams(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -134,50 +129,6 @@ func (a *Client) AdminGetStatsWithParams(params *AdminGetStatsParams, opts ...Cl
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for adminGetStats: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-PauseAllAlerts pauses unpause all legacy alerts
-*/
-func (a *Client) PauseAllAlerts(body *models.PauseAllAlertsCommand, opts ...ClientOption) (*PauseAllAlertsOK, error) {
-	params := NewPauseAllAlertsParams().WithBody(body)
-	return a.PauseAllAlertsWithParams(params, opts...)
-}
-
-func (a *Client) PauseAllAlertsWithParams(params *PauseAllAlertsParams, opts ...ClientOption) (*PauseAllAlertsOK, error) {
-	if params == nil {
-		params = NewPauseAllAlertsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "pauseAllAlerts",
-		Method:             "POST",
-		PathPattern:        "/admin/pause-all-alerts",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &PauseAllAlertsReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PauseAllAlertsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for pauseAllAlerts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
