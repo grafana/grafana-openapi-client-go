@@ -43,23 +43,6 @@ modify '.definitions.ProvisionedAlertRule.properties.for = {
 modify '.definitions.ReportSchedule.properties.startDate["x-nullable"] = true'
 modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 
-# Fixed here: https://github.com/grafana/grafana/pull/79477
-modify '.definitions += {
-    "ObjectMatcher": {
-      "type": "array",
-      "title": "ObjectMatcher is a matcher that can be used to filter alerts.",
-      "items": {
-        "type": "string"
-      }
-    },
-    "ObjectMatchers": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ObjectMatcher"
-      }
-    }
-}'
-
 # Alerting validation error is wrong. Message doesn't show up
 # TODO: Upstream fix
 modify '.definitions.ValidationError.properties.message = .definitions.ValidationError.properties.msg'
