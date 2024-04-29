@@ -65,6 +65,9 @@ type ListRolesParams struct {
 	// Delegatable.
 	Delegatable *bool
 
+	// IncludeHidden.
+	IncludeHidden *bool
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -129,6 +132,17 @@ func (o *ListRolesParams) SetDelegatable(delegatable *bool) {
 	o.Delegatable = delegatable
 }
 
+// WithIncludeHidden adds the includeHidden to the list roles params
+func (o *ListRolesParams) WithIncludeHidden(includeHidden *bool) *ListRolesParams {
+	o.SetIncludeHidden(includeHidden)
+	return o
+}
+
+// SetIncludeHidden adds the includeHidden to the list roles params
+func (o *ListRolesParams) SetIncludeHidden(includeHidden *bool) {
+	o.IncludeHidden = includeHidden
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -149,6 +163,23 @@ func (o *ListRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		if qDelegatable != "" {
 
 			if err := r.SetQueryParam("delegatable", qDelegatable); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.IncludeHidden != nil {
+
+		// query param includeHidden
+		var qrIncludeHidden bool
+
+		if o.IncludeHidden != nil {
+			qrIncludeHidden = *o.IncludeHidden
+		}
+		qIncludeHidden := swag.FormatBool(qrIncludeHidden)
+		if qIncludeHidden != "" {
+
+			if err := r.SetQueryParam("includeHidden", qIncludeHidden); err != nil {
 				return err
 			}
 		}

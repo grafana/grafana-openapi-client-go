@@ -337,7 +337,7 @@ func (a *Client) ExportMuteTiming(params *ExportMuteTimingParams, opts ...Client
 		ID:                 "ExportMuteTiming",
 		Method:             "GET",
 		PathPattern:        "/v1/provisioning/mute-timings/{name}/export",
-		ProducesMediaTypes: []string{"application/json"},
+		ProducesMediaTypes: []string{"application/json", "application/terraform+hcl", "application/yaml", "text/hcl", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
@@ -377,7 +377,7 @@ func (a *Client) ExportMuteTimings(params *ExportMuteTimingsParams, opts ...Clie
 		ID:                 "ExportMuteTimings",
 		Method:             "GET",
 		PathPattern:        "/v1/provisioning/mute-timings/export",
-		ProducesMediaTypes: []string{"application/json"},
+		ProducesMediaTypes: []string{"application/json", "application/terraform+hcl", "application/yaml", "text/hcl", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
@@ -461,7 +461,7 @@ func (a *Client) GetAlertRuleExport(params *GetAlertRuleExportParams, opts ...Cl
 		ID:                 "GetAlertRuleExport",
 		Method:             "GET",
 		PathPattern:        "/v1/provisioning/alert-rules/{UID}/export",
-		ProducesMediaTypes: []string{"application/json", "application/yaml", "text/yaml"},
+		ProducesMediaTypes: []string{"application/json", "application/terraform+hcl", "application/yaml", "text/hcl", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
@@ -545,7 +545,7 @@ func (a *Client) GetAlertRuleGroupExport(params *GetAlertRuleGroupExportParams, 
 		ID:                 "GetAlertRuleGroupExport",
 		Method:             "GET",
 		PathPattern:        "/v1/provisioning/folder/{FolderUID}/rule-groups/{Group}/export",
-		ProducesMediaTypes: []string{"application/json", "application/yaml", "text/yaml"},
+		ProducesMediaTypes: []string{"application/json", "application/terraform+hcl", "application/yaml", "text/hcl", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
@@ -629,7 +629,7 @@ func (a *Client) GetAlertRulesExport(params *GetAlertRulesExportParams, opts ...
 		ID:                 "GetAlertRulesExport",
 		Method:             "GET",
 		PathPattern:        "/v1/provisioning/alert-rules/export",
-		ProducesMediaTypes: []string{"application/json"},
+		ProducesMediaTypes: []string{"application/json", "application/terraform+hcl", "application/yaml", "text/hcl", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
@@ -709,7 +709,7 @@ func (a *Client) GetContactpointsExport(params *GetContactpointsExportParams, op
 		ID:                 "GetContactpointsExport",
 		Method:             "GET",
 		PathPattern:        "/v1/provisioning/contact-points/export",
-		ProducesMediaTypes: []string{"application/json"},
+		ProducesMediaTypes: []string{"application/json", "application/terraform+hcl", "application/yaml", "text/hcl", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
@@ -885,7 +885,7 @@ func (a *Client) GetPolicyTreeExportWithParams(params *GetPolicyTreeExportParams
 		ID:                 "GetPolicyTreeExport",
 		Method:             "GET",
 		PathPattern:        "/v1/provisioning/policies/export",
-		ProducesMediaTypes: []string{"application/json"},
+		ProducesMediaTypes: []string{"application/json", "application/terraform+hcl", "application/yaml", "text/hcl", "text/yaml"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
@@ -1162,7 +1162,7 @@ func (a *Client) PutAlertRule(params *PutAlertRuleParams, opts ...ClientOption) 
 }
 
 /*
-PutAlertRuleGroup updates the interval of a rule group
+PutAlertRuleGroup creates or update alert rule group
 */
 
 func (a *Client) PutAlertRuleGroup(params *PutAlertRuleGroupParams, opts ...ClientOption) (*PutAlertRuleGroupOK, error) {

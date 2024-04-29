@@ -76,7 +76,7 @@ type GetContactpointsExportParams struct {
 
 	/* Format.
 
-	   Format of the downloaded file, either yaml or json. Accept header can also be used, but the query parameter will take precedence.
+	   Format of the downloaded file. Supported yaml, json or hcl. Accept header can also be used, but the query parameter will take precedence.
 
 	   Default: "yaml"
 	*/

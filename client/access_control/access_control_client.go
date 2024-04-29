@@ -525,6 +525,8 @@ ListRoles gets all roles
 Gets all existing roles. The response contains all global and organization local roles, for the organization which user is signed in.
 
 You need to have a permission with action `roles:read` and scope `roles:*`.
+
+The `delegatable` flag reduces the set of roles to only those for which the signed-in user has permissions to assign.
 */
 
 func (a *Client) ListRoles(params *ListRolesParams, opts ...ClientOption) (*ListRolesOK, error) {
