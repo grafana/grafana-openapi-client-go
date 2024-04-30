@@ -4,7 +4,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Pull the schema (stable commit)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/351425ab3d8eee7a579c19468549e4991e5455a7/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/49fbe970fb9dceca72a7455f5c2a77cf85c4f2a8/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
@@ -42,23 +42,6 @@ modify '.definitions.ProvisionedAlertRule.properties.for = {
 # TODO: Upstream fix
 modify '.definitions.ReportSchedule.properties.startDate["x-nullable"] = true'
 modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
-
-# Fixed here: https://github.com/grafana/grafana/pull/79477
-modify '.definitions += {
-    "ObjectMatcher": {
-      "type": "array",
-      "title": "ObjectMatcher is a matcher that can be used to filter alerts.",
-      "items": {
-        "type": "string"
-      }
-    },
-    "ObjectMatchers": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ObjectMatcher"
-      }
-    }
-}'
 
 # Alerting validation error is wrong. Message doesn't show up
 # TODO: Upstream fix

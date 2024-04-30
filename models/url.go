@@ -22,10 +22,17 @@ import (
 //
 // scheme:opaque[?query][#fragment]
 //
+// The Host field contains the host and port subcomponents of the URL.
+// When the port is present, it is separated from the host with a colon.
+// When the host is an IPv6 address, it must be enclosed in square brackets:
+// "[fe80::1]:80". The [net.JoinHostPort] function combines a host and port
+// into a string suitable for the Host field, adding square brackets to
+// the host when necessary.
+//
 // Note that the Path field is stored in decoded form: /%47%6f%2f becomes /Go/.
 // A consequence is that it is impossible to tell which slashes in the Path were
 // slashes in the raw URL and which were %2f. This distinction is rarely important,
-// but when it is, the code should use the EscapedPath method, which preserves
+// but when it is, the code should use the [URL.EscapedPath] method, which preserves
 // the original encoding of Path.
 //
 // The RawPath field is an optional field which is only set when the default

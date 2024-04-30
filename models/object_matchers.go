@@ -13,7 +13,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// ObjectMatchers object matchers
+// ObjectMatchers ObjectMatchers is a list of matchers that can be used to filter alerts.
 //
 // swagger:model ObjectMatchers
 type ObjectMatchers []ObjectMatcher

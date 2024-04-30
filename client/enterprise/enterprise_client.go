@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // New creates a new enterprise API client.
@@ -30,10 +32,201 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	CleanDataSourceCache(dataSourceUID string, opts ...ClientOption) (*CleanDataSourceCacheOK, error)
+	CleanDataSourceCacheWithParams(params *CleanDataSourceCacheParams, opts ...ClientOption) (*CleanDataSourceCacheOK, error)
+
+	DisableDataSourceCache(dataSourceUID string, opts ...ClientOption) (*DisableDataSourceCacheOK, error)
+	DisableDataSourceCacheWithParams(params *DisableDataSourceCacheParams, opts ...ClientOption) (*DisableDataSourceCacheOK, error)
+
+	EnableDataSourceCache(dataSourceUID string, opts ...ClientOption) (*EnableDataSourceCacheOK, error)
+	EnableDataSourceCacheWithParams(params *EnableDataSourceCacheParams, opts ...ClientOption) (*EnableDataSourceCacheOK, error)
+
+	GetDataSourceCacheConfig(dataSourceUID string, opts ...ClientOption) (*GetDataSourceCacheConfigOK, error)
+	GetDataSourceCacheConfigWithParams(params *GetDataSourceCacheConfigParams, opts ...ClientOption) (*GetDataSourceCacheConfigOK, error)
+
 	SearchResult(opts ...ClientOption) (*SearchResultOK, error)
 	SearchResultWithParams(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error)
 
+	SetDataSourceCacheConfig(dataSourceUID string, body *models.CacheConfigSetter, opts ...ClientOption) (*SetDataSourceCacheConfigOK, error)
+	SetDataSourceCacheConfigWithParams(params *SetDataSourceCacheConfigParams, opts ...ClientOption) (*SetDataSourceCacheConfigOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+CleanDataSourceCache clean cache for a single data source
+*/
+func (a *Client) CleanDataSourceCache(dataSourceUID string, opts ...ClientOption) (*CleanDataSourceCacheOK, error) {
+	params := NewCleanDataSourceCacheParams().WithDataSourceUID(dataSourceUID)
+	return a.CleanDataSourceCacheWithParams(params, opts...)
+}
+
+func (a *Client) CleanDataSourceCacheWithParams(params *CleanDataSourceCacheParams, opts ...ClientOption) (*CleanDataSourceCacheOK, error) {
+	if params == nil {
+		params = NewCleanDataSourceCacheParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "cleanDataSourceCache",
+		Method:             "POST",
+		PathPattern:        "/datasources/{dataSourceUID}/cache/clean",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &CleanDataSourceCacheReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CleanDataSourceCacheOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for cleanDataSourceCache: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DisableDataSourceCache disable cache for a single data source
+*/
+func (a *Client) DisableDataSourceCache(dataSourceUID string, opts ...ClientOption) (*DisableDataSourceCacheOK, error) {
+	params := NewDisableDataSourceCacheParams().WithDataSourceUID(dataSourceUID)
+	return a.DisableDataSourceCacheWithParams(params, opts...)
+}
+
+func (a *Client) DisableDataSourceCacheWithParams(params *DisableDataSourceCacheParams, opts ...ClientOption) (*DisableDataSourceCacheOK, error) {
+	if params == nil {
+		params = NewDisableDataSourceCacheParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "disableDataSourceCache",
+		Method:             "POST",
+		PathPattern:        "/datasources/{dataSourceUID}/cache/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &DisableDataSourceCacheReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DisableDataSourceCacheOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for disableDataSourceCache: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+EnableDataSourceCache enable cache for a single data source
+*/
+func (a *Client) EnableDataSourceCache(dataSourceUID string, opts ...ClientOption) (*EnableDataSourceCacheOK, error) {
+	params := NewEnableDataSourceCacheParams().WithDataSourceUID(dataSourceUID)
+	return a.EnableDataSourceCacheWithParams(params, opts...)
+}
+
+func (a *Client) EnableDataSourceCacheWithParams(params *EnableDataSourceCacheParams, opts ...ClientOption) (*EnableDataSourceCacheOK, error) {
+	if params == nil {
+		params = NewEnableDataSourceCacheParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "enableDataSourceCache",
+		Method:             "POST",
+		PathPattern:        "/datasources/{dataSourceUID}/cache/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &EnableDataSourceCacheReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*EnableDataSourceCacheOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for enableDataSourceCache: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetDataSourceCacheConfig get cache config for a single data source
+*/
+func (a *Client) GetDataSourceCacheConfig(dataSourceUID string, opts ...ClientOption) (*GetDataSourceCacheConfigOK, error) {
+	params := NewGetDataSourceCacheConfigParams().WithDataSourceUID(dataSourceUID)
+	return a.GetDataSourceCacheConfigWithParams(params, opts...)
+}
+
+func (a *Client) GetDataSourceCacheConfigWithParams(params *GetDataSourceCacheConfigParams, opts ...ClientOption) (*GetDataSourceCacheConfigOK, error) {
+	if params == nil {
+		params = NewGetDataSourceCacheConfigParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getDataSourceCacheConfig",
+		Method:             "GET",
+		PathPattern:        "/datasources/{dataSourceUID}/cache",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetDataSourceCacheConfigReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetDataSourceCacheConfigOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getDataSourceCacheConfig: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -82,6 +275,50 @@ func (a *Client) SearchResultWithParams(params *SearchResultParams, opts ...Clie
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for searchResult: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SetDataSourceCacheConfig set cache config for a single data source
+*/
+func (a *Client) SetDataSourceCacheConfig(dataSourceUID string, body *models.CacheConfigSetter, opts ...ClientOption) (*SetDataSourceCacheConfigOK, error) {
+	params := NewSetDataSourceCacheConfigParams().WithBody(body).WithDataSourceUID(dataSourceUID)
+	return a.SetDataSourceCacheConfigWithParams(params, opts...)
+}
+
+func (a *Client) SetDataSourceCacheConfigWithParams(params *SetDataSourceCacheConfigParams, opts ...ClientOption) (*SetDataSourceCacheConfigOK, error) {
+	if params == nil {
+		params = NewSetDataSourceCacheConfigParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setDataSourceCacheConfig",
+		Method:             "POST",
+		PathPattern:        "/datasources/{dataSourceUID}/cache",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &SetDataSourceCacheConfigReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetDataSourceCacheConfigOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setDataSourceCacheConfig: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
