@@ -72,7 +72,7 @@ cfg := &goapi.TransportConfig{
     RetryTimeout: 0,
     // RetryStatusCodes contains the optional list of status codes to retry
     // Use "x" as a wildcard for a single digit (default: [429, 5xx])
-    RetryStatusCodes: []string{"420, 5xx"},
+    RetryStatusCodes: []string{"420", "5xx"},
     // HTTPHeaders contains an optional map of HTTP headers to add to each request
     HTTPHeaders: map[string]string{},
 }
