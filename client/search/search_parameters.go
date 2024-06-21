@@ -75,6 +75,12 @@ type SearchParams struct {
 	*/
 	DashboardUIDs []string
 
+	/* Deleted.
+
+	   Flag indicating if only soft deleted Dashboards should be returned
+	*/
+	Deleted *bool
+
 	/* FolderIds.
 
 	     List of folder id’s to search in for dashboards
@@ -235,6 +241,17 @@ func (o *SearchParams) SetDashboardUIDs(dashboardUIDs []string) {
 	o.DashboardUIDs = dashboardUIDs
 }
 
+// WithDeleted adds the deleted to the search params
+func (o *SearchParams) WithDeleted(deleted *bool) *SearchParams {
+	o.SetDeleted(deleted)
+	return o
+}
+
+// SetDeleted adds the deleted to the search params
+func (o *SearchParams) SetDeleted(deleted *bool) {
+	o.Deleted = deleted
+}
+
 // WithFolderIds adds the folderIds to the search params
 func (o *SearchParams) WithFolderIds(folderIds []int64) *SearchParams {
 	o.SetFolderIds(folderIds)
@@ -372,6 +389,23 @@ func (o *SearchParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regist
 		// query array param dashboardUIDs
 		if err := r.SetQueryParam("dashboardUIDs", joinedDashboardUIDs...); err != nil {
 			return err
+		}
+	}
+
+	if o.Deleted != nil {
+
+		// query param deleted
+		var qrDeleted bool
+
+		if o.Deleted != nil {
+			qrDeleted = *o.Deleted
+		}
+		qDeleted := swag.FormatBool(qrDeleted)
+		if qDeleted != "" {
+
+			if err := r.SetQueryParam("deleted", qDeleted); err != nil {
+				return err
+			}
 		}
 	}
 

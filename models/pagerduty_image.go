@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// PagerdutyImage PagerdutyImage is an image
+// PagerdutyImage PagerdutyImage is an image.
 //
 // swagger:model PagerdutyImage
 type PagerdutyImage struct {

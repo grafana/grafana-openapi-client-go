@@ -1,6 +1,6 @@
-# Project Development Dependencies
+# Project Development Dependencies.
 
-This is a directory which stores Go modules with pinned buildable package that is used within this repository, managed by https://github.com/bwplotka/bingo.
+This is directory which stores Go modules with pinned buildable package that is used within this repository, managed by https://github.com/bwplotka/bingo.
 
 * Run `bingo get` to install all tools having each own module file in this directory.
 * Run `bingo get <tool>` to install <tool> that have own module file in this directory.
@@ -12,10 +12,3 @@ This is a directory which stores Go modules with pinned buildable package that i
 ## Requirements
 
 * Go 1.14+
-
-## Swagger
-
-Update the version of swagger in [swagger.mod](.bingo/swagger.mod) that is used to generate the Go client with the following command:
-```script
-bingo get github.com/fatih/faillint@<vX.Y.Z>
-```

@@ -55,6 +55,9 @@ type ClientService interface {
 
 	SearchTeams(params *SearchTeamsParams, opts ...ClientOption) (*SearchTeamsOK, error)
 
+	SetTeamMemberships(teamID string, body *models.SetTeamMembershipsCommand, opts ...ClientOption) (*SetTeamMembershipsOK, error)
+	SetTeamMembershipsWithParams(params *SetTeamMembershipsParams, opts ...ClientOption) (*SetTeamMembershipsOK, error)
+
 	UpdateTeam(teamID string, body *models.UpdateTeamCommand, opts ...ClientOption) (*UpdateTeamOK, error)
 	UpdateTeamWithParams(params *UpdateTeamParams, opts ...ClientOption) (*UpdateTeamOK, error)
 
@@ -411,6 +414,53 @@ func (a *Client) SearchTeams(params *SearchTeamsParams, opts ...ClientOption) (*
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for searchTeams: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SetTeamMemberships sets team memberships
+
+Takes user emails, and updates team members and admins to the provided lists of users.
+Any current team members and admins not in the provided lists will be removed.
+*/
+func (a *Client) SetTeamMemberships(teamID string, body *models.SetTeamMembershipsCommand, opts ...ClientOption) (*SetTeamMembershipsOK, error) {
+	params := NewSetTeamMembershipsParams().WithBody(body).WithTeamID(teamID)
+	return a.SetTeamMembershipsWithParams(params, opts...)
+}
+
+func (a *Client) SetTeamMembershipsWithParams(params *SetTeamMembershipsParams, opts ...ClientOption) (*SetTeamMembershipsOK, error) {
+	if params == nil {
+		params = NewSetTeamMembershipsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setTeamMemberships",
+		Method:             "PUT",
+		PathPattern:        "/teams/{team_id}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &SetTeamMembershipsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetTeamMembershipsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setTeamMemberships: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

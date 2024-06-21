@@ -38,22 +38,28 @@ type ClientService interface {
 	CreateMigration(body *models.CloudMigrationRequest, opts ...ClientOption) (*CreateMigrationOK, error)
 	CreateMigrationWithParams(params *CreateMigrationParams, opts ...ClientOption) (*CreateMigrationOK, error)
 
-	DeleteCloudMigration(id int64, opts ...ClientOption) error
+	DeleteCloudMigration(uid string, opts ...ClientOption) error
 	DeleteCloudMigrationWithParams(params *DeleteCloudMigrationParams, opts ...ClientOption) error
 
-	GetCloudMigration(id int64, opts ...ClientOption) (*GetCloudMigrationOK, error)
+	DeleteCloudMigrationToken(uid string, opts ...ClientOption) (*DeleteCloudMigrationTokenNoContent, error)
+	DeleteCloudMigrationTokenWithParams(params *DeleteCloudMigrationTokenParams, opts ...ClientOption) (*DeleteCloudMigrationTokenNoContent, error)
+
+	GetCloudMigration(uid string, opts ...ClientOption) (*GetCloudMigrationOK, error)
 	GetCloudMigrationWithParams(params *GetCloudMigrationParams, opts ...ClientOption) (*GetCloudMigrationOK, error)
 
-	GetCloudMigrationRun(runID int64, id int64, opts ...ClientOption) (*GetCloudMigrationRunOK, error)
+	GetCloudMigrationRun(runUID string, opts ...ClientOption) (*GetCloudMigrationRunOK, error)
 	GetCloudMigrationRunWithParams(params *GetCloudMigrationRunParams, opts ...ClientOption) (*GetCloudMigrationRunOK, error)
 
-	GetCloudMigrationRunList(id int64, opts ...ClientOption) (*GetCloudMigrationRunListOK, error)
+	GetCloudMigrationRunList(uid string, opts ...ClientOption) (*GetCloudMigrationRunListOK, error)
 	GetCloudMigrationRunListWithParams(params *GetCloudMigrationRunListParams, opts ...ClientOption) (*GetCloudMigrationRunListOK, error)
+
+	GetCloudMigrationToken(opts ...ClientOption) (*GetCloudMigrationTokenOK, error)
+	GetCloudMigrationTokenWithParams(params *GetCloudMigrationTokenParams, opts ...ClientOption) (*GetCloudMigrationTokenOK, error)
 
 	GetMigrationList(opts ...ClientOption) (*GetMigrationListOK, error)
 	GetMigrationListWithParams(params *GetMigrationListParams, opts ...ClientOption) (*GetMigrationListOK, error)
 
-	RunCloudMigration(id int64, opts ...ClientOption) (*RunCloudMigrationOK, error)
+	RunCloudMigration(uid string, opts ...ClientOption) (*RunCloudMigrationOK, error)
 	RunCloudMigrationWithParams(params *RunCloudMigrationParams, opts ...ClientOption) (*RunCloudMigrationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -150,8 +156,8 @@ func (a *Client) CreateMigrationWithParams(params *CreateMigrationParams, opts .
 /*
 DeleteCloudMigration deletes a migration
 */
-func (a *Client) DeleteCloudMigration(id int64, opts ...ClientOption) error {
-	params := NewDeleteCloudMigrationParams().WithID(id)
+func (a *Client) DeleteCloudMigration(uid string, opts ...ClientOption) error {
+	params := NewDeleteCloudMigrationParams().WithUID(uid)
 	return a.DeleteCloudMigrationWithParams(params, opts...)
 }
 
@@ -162,7 +168,7 @@ func (a *Client) DeleteCloudMigrationWithParams(params *DeleteCloudMigrationPara
 	op := &runtime.ClientOperation{
 		ID:                 "deleteCloudMigration",
 		Method:             "DELETE",
-		PathPattern:        "/cloudmigration/migration/{id}",
+		PathPattern:        "/cloudmigration/migration/{uid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -185,12 +191,56 @@ func (a *Client) DeleteCloudMigrationWithParams(params *DeleteCloudMigrationPara
 }
 
 /*
+DeleteCloudMigrationToken deletes a cloud migration token
+*/
+func (a *Client) DeleteCloudMigrationToken(uid string, opts ...ClientOption) (*DeleteCloudMigrationTokenNoContent, error) {
+	params := NewDeleteCloudMigrationTokenParams().WithUID(uid)
+	return a.DeleteCloudMigrationTokenWithParams(params, opts...)
+}
+
+func (a *Client) DeleteCloudMigrationTokenWithParams(params *DeleteCloudMigrationTokenParams, opts ...ClientOption) (*DeleteCloudMigrationTokenNoContent, error) {
+	if params == nil {
+		params = NewDeleteCloudMigrationTokenParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "deleteCloudMigrationToken",
+		Method:             "DELETE",
+		PathPattern:        "/cloudmigration/token/{uid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &DeleteCloudMigrationTokenReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteCloudMigrationTokenNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteCloudMigrationToken: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 GetCloudMigration gets a cloud migration
 
 It returns migrations that has been created.
 */
-func (a *Client) GetCloudMigration(id int64, opts ...ClientOption) (*GetCloudMigrationOK, error) {
-	params := NewGetCloudMigrationParams().WithID(id)
+func (a *Client) GetCloudMigration(uid string, opts ...ClientOption) (*GetCloudMigrationOK, error) {
+	params := NewGetCloudMigrationParams().WithUID(uid)
 	return a.GetCloudMigrationWithParams(params, opts...)
 }
 
@@ -201,7 +251,7 @@ func (a *Client) GetCloudMigrationWithParams(params *GetCloudMigrationParams, op
 	op := &runtime.ClientOperation{
 		ID:                 "getCloudMigration",
 		Method:             "GET",
-		PathPattern:        "/cloudmigration/migration/{id}",
+		PathPattern:        "/cloudmigration/migration/{uid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -233,8 +283,8 @@ func (a *Client) GetCloudMigrationWithParams(params *GetCloudMigrationParams, op
 /*
 GetCloudMigrationRun gets the result of a single migration run
 */
-func (a *Client) GetCloudMigrationRun(runID int64, id int64, opts ...ClientOption) (*GetCloudMigrationRunOK, error) {
-	params := NewGetCloudMigrationRunParams().WithID(id).WithRunID(runID)
+func (a *Client) GetCloudMigrationRun(runUID string, opts ...ClientOption) (*GetCloudMigrationRunOK, error) {
+	params := NewGetCloudMigrationRunParams().WithRunUID(runUID)
 	return a.GetCloudMigrationRunWithParams(params, opts...)
 }
 
@@ -245,7 +295,7 @@ func (a *Client) GetCloudMigrationRunWithParams(params *GetCloudMigrationRunPara
 	op := &runtime.ClientOperation{
 		ID:                 "getCloudMigrationRun",
 		Method:             "GET",
-		PathPattern:        "/cloudmigration/migration/{id}/run/{runID}",
+		PathPattern:        "/cloudmigration/migration/run/{runUID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -277,8 +327,8 @@ func (a *Client) GetCloudMigrationRunWithParams(params *GetCloudMigrationRunPara
 /*
 GetCloudMigrationRunList gets a list of migration runs for a migration
 */
-func (a *Client) GetCloudMigrationRunList(id int64, opts ...ClientOption) (*GetCloudMigrationRunListOK, error) {
-	params := NewGetCloudMigrationRunListParams().WithID(id)
+func (a *Client) GetCloudMigrationRunList(uid string, opts ...ClientOption) (*GetCloudMigrationRunListOK, error) {
+	params := NewGetCloudMigrationRunListParams().WithUID(uid)
 	return a.GetCloudMigrationRunListWithParams(params, opts...)
 }
 
@@ -289,7 +339,7 @@ func (a *Client) GetCloudMigrationRunListWithParams(params *GetCloudMigrationRun
 	op := &runtime.ClientOperation{
 		ID:                 "getCloudMigrationRunList",
 		Method:             "GET",
-		PathPattern:        "/cloudmigration/migration/{id}/run",
+		PathPattern:        "/cloudmigration/migration/{uid}/run",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -315,6 +365,50 @@ func (a *Client) GetCloudMigrationRunListWithParams(params *GetCloudMigrationRun
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getCloudMigrationRunList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetCloudMigrationToken fetches the cloud migration token if it exists
+*/
+func (a *Client) GetCloudMigrationToken(opts ...ClientOption) (*GetCloudMigrationTokenOK, error) {
+	params := NewGetCloudMigrationTokenParams()
+	return a.GetCloudMigrationTokenWithParams(params, opts...)
+}
+
+func (a *Client) GetCloudMigrationTokenWithParams(params *GetCloudMigrationTokenParams, opts ...ClientOption) (*GetCloudMigrationTokenOK, error) {
+	if params == nil {
+		params = NewGetCloudMigrationTokenParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getCloudMigrationToken",
+		Method:             "GET",
+		PathPattern:        "/cloudmigration/token",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetCloudMigrationTokenReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetCloudMigrationTokenOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getCloudMigrationToken: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -367,8 +461,8 @@ RunCloudMigration triggers the run of a migration to the grafana cloud
 
 It returns migrations that has been created.
 */
-func (a *Client) RunCloudMigration(id int64, opts ...ClientOption) (*RunCloudMigrationOK, error) {
-	params := NewRunCloudMigrationParams().WithID(id)
+func (a *Client) RunCloudMigration(uid string, opts ...ClientOption) (*RunCloudMigrationOK, error) {
+	params := NewRunCloudMigrationParams().WithUID(uid)
 	return a.RunCloudMigrationWithParams(params, opts...)
 }
 
@@ -379,7 +473,7 @@ func (a *Client) RunCloudMigrationWithParams(params *RunCloudMigrationParams, op
 	op := &runtime.ClientOperation{
 		ID:                 "runCloudMigration",
 		Method:             "POST",
-		PathPattern:        "/cloudmigration/migration/{id}/run",
+		PathPattern:        "/cloudmigration/migration/{uid}/run",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},

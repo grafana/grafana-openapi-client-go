@@ -23,11 +23,11 @@ type CloudMigrationResponse struct {
 	// Format: date-time
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	// id
-	ID int64 `json:"id,omitempty"`
-
 	// stack
 	Stack string `json:"stack,omitempty"`
+
+	// uid
+	UID string `json:"uid,omitempty"`
 
 	// updated
 	// Format: date-time

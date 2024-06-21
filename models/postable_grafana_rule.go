@@ -41,6 +41,9 @@ type PostableGrafanaRule struct {
 	// notification settings
 	NotificationSettings *AlertRuleNotificationSettings `json:"notification_settings,omitempty"`
 
+	// record
+	Record *Record `json:"record,omitempty"`
+
 	// title
 	Title string `json:"title,omitempty"`
 
@@ -65,6 +68,10 @@ func (m *PostableGrafanaRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNotificationSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRecord(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -209,6 +216,25 @@ func (m *PostableGrafanaRule) validateNotificationSettings(formats strfmt.Regist
 	return nil
 }
 
+func (m *PostableGrafanaRule) validateRecord(formats strfmt.Registry) error {
+	if swag.IsZero(m.Record) { // not required
+		return nil
+	}
+
+	if m.Record != nil {
+		if err := m.Record.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("record")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("record")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this postable grafana rule based on the context it is used
 func (m *PostableGrafanaRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -218,6 +244,10 @@ func (m *PostableGrafanaRule) ContextValidate(ctx context.Context, formats strfm
 	}
 
 	if err := m.contextValidateNotificationSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRecord(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -265,6 +295,27 @@ func (m *PostableGrafanaRule) contextValidateNotificationSettings(ctx context.Co
 				return ve.ValidateName("notification_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("notification_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *PostableGrafanaRule) contextValidateRecord(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Record != nil {
+
+		if swag.IsZero(m.Record) { // not required
+			return nil
+		}
+
+		if err := m.Record.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("record")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("record")
 			}
 			return err
 		}

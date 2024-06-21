@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeleteDashboardByUIDOKBody delete dashboard by Uid Ok body
+// HardDeleteDashboardByUIDOKBody hard delete dashboard by Uid Ok body
 //
-// swagger:model deleteDashboardByUidOkBody
-type DeleteDashboardByUIDOKBody struct {
+// swagger:model hardDeleteDashboardByUidOkBody
+type HardDeleteDashboardByUIDOKBody struct {
 
 	// Message Message of the deleted dashboard.
 	// Example: Dashboard My Dashboard deleted
@@ -35,8 +35,8 @@ type DeleteDashboardByUIDOKBody struct {
 	UID *string `json:"uid"`
 }
 
-// Validate validates this delete dashboard by Uid Ok body
-func (m *DeleteDashboardByUIDOKBody) Validate(formats strfmt.Registry) error {
+// Validate validates this hard delete dashboard by Uid Ok body
+func (m *HardDeleteDashboardByUIDOKBody) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMessage(formats); err != nil {
@@ -57,7 +57,7 @@ func (m *DeleteDashboardByUIDOKBody) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeleteDashboardByUIDOKBody) validateMessage(formats strfmt.Registry) error {
+func (m *HardDeleteDashboardByUIDOKBody) validateMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("message", "body", m.Message); err != nil {
 		return err
@@ -66,7 +66,7 @@ func (m *DeleteDashboardByUIDOKBody) validateMessage(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *DeleteDashboardByUIDOKBody) validateTitle(formats strfmt.Registry) error {
+func (m *HardDeleteDashboardByUIDOKBody) validateTitle(formats strfmt.Registry) error {
 
 	if err := validate.Required("title", "body", m.Title); err != nil {
 		return err
@@ -75,7 +75,7 @@ func (m *DeleteDashboardByUIDOKBody) validateTitle(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *DeleteDashboardByUIDOKBody) validateUID(formats strfmt.Registry) error {
+func (m *HardDeleteDashboardByUIDOKBody) validateUID(formats strfmt.Registry) error {
 
 	if err := validate.Required("uid", "body", m.UID); err != nil {
 		return err
@@ -84,13 +84,13 @@ func (m *DeleteDashboardByUIDOKBody) validateUID(formats strfmt.Registry) error 
 	return nil
 }
 
-// ContextValidate validates this delete dashboard by Uid Ok body based on context it is used
-func (m *DeleteDashboardByUIDOKBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this hard delete dashboard by Uid Ok body based on context it is used
+func (m *HardDeleteDashboardByUIDOKBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *DeleteDashboardByUIDOKBody) MarshalBinary() ([]byte, error) {
+func (m *HardDeleteDashboardByUIDOKBody) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -98,8 +98,8 @@ func (m *DeleteDashboardByUIDOKBody) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *DeleteDashboardByUIDOKBody) UnmarshalBinary(b []byte) error {
-	var res DeleteDashboardByUIDOKBody
+func (m *HardDeleteDashboardByUIDOKBody) UnmarshalBinary(b []byte) error {
+	var res HardDeleteDashboardByUIDOKBody
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

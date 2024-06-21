@@ -44,11 +44,17 @@ type ClientService interface {
 	GetDataSourceCacheConfig(dataSourceUID string, opts ...ClientOption) (*GetDataSourceCacheConfigOK, error)
 	GetDataSourceCacheConfigWithParams(params *GetDataSourceCacheConfigParams, opts ...ClientOption) (*GetDataSourceCacheConfigOK, error)
 
+	GetTeamLBACRulesAPI(uid string, opts ...ClientOption) (*GetTeamLBACRulesAPIOK, error)
+	GetTeamLBACRulesAPIWithParams(params *GetTeamLBACRulesAPIParams, opts ...ClientOption) (*GetTeamLBACRulesAPIOK, error)
+
 	SearchResult(opts ...ClientOption) (*SearchResultOK, error)
 	SearchResultWithParams(params *SearchResultParams, opts ...ClientOption) (*SearchResultOK, error)
 
 	SetDataSourceCacheConfig(dataSourceUID string, body *models.CacheConfigSetter, opts ...ClientOption) (*SetDataSourceCacheConfigOK, error)
 	SetDataSourceCacheConfigWithParams(params *SetDataSourceCacheConfigParams, opts ...ClientOption) (*SetDataSourceCacheConfigOK, error)
+
+	UpdateTeamLBACRulesAPI(uid string, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error)
+	UpdateTeamLBACRulesAPIWithParams(params *UpdateTeamLBACRulesAPIParams, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -230,6 +236,50 @@ func (a *Client) GetDataSourceCacheConfigWithParams(params *GetDataSourceCacheCo
 }
 
 /*
+GetTeamLBACRulesAPI retrieves l b a c rules for a team
+*/
+func (a *Client) GetTeamLBACRulesAPI(uid string, opts ...ClientOption) (*GetTeamLBACRulesAPIOK, error) {
+	params := NewGetTeamLBACRulesAPIParams().WithUID(uid)
+	return a.GetTeamLBACRulesAPIWithParams(params, opts...)
+}
+
+func (a *Client) GetTeamLBACRulesAPIWithParams(params *GetTeamLBACRulesAPIParams, opts ...ClientOption) (*GetTeamLBACRulesAPIOK, error) {
+	if params == nil {
+		params = NewGetTeamLBACRulesAPIParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getTeamLBACRulesApi",
+		Method:             "GET",
+		PathPattern:        "/datasources/uid/{uid}/lbac/teams",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetTeamLBACRulesAPIReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetTeamLBACRulesAPIOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getTeamLBACRulesApi: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 SearchResult debugs permissions
 
 Returns the result of the search through access-control role assignments.
@@ -319,6 +369,50 @@ func (a *Client) SetDataSourceCacheConfigWithParams(params *SetDataSourceCacheCo
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for setDataSourceCacheConfig: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateTeamLBACRulesAPI updates l b a c rules for a team
+*/
+func (a *Client) UpdateTeamLBACRulesAPI(uid string, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error) {
+	params := NewUpdateTeamLBACRulesAPIParams().WithUID(uid)
+	return a.UpdateTeamLBACRulesAPIWithParams(params, opts...)
+}
+
+func (a *Client) UpdateTeamLBACRulesAPIWithParams(params *UpdateTeamLBACRulesAPIParams, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error) {
+	if params == nil {
+		params = NewUpdateTeamLBACRulesAPIParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateTeamLBACRulesApi",
+		Method:             "PUT",
+		PathPattern:        "/datasources/uid/{uid}/lbac/teams",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &UpdateTeamLBACRulesAPIReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateTeamLBACRulesAPIOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateTeamLBACRulesApi: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

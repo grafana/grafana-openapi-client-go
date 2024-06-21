@@ -18,7 +18,7 @@ import (
 // swagger:model Hit
 type Hit struct {
 
-	// Deprecated: use FolderUID instead
+	// folder Id
 	FolderID int64 `json:"folderId,omitempty"`
 
 	// folder title
@@ -35,6 +35,9 @@ type Hit struct {
 
 	// is starred
 	IsStarred bool `json:"isStarred,omitempty"`
+
+	// remaining trash at age
+	RemainingTrashAtAge string `json:"remainingTrashAtAge,omitempty"`
 
 	// slug
 	Slug string `json:"slug,omitempty"`

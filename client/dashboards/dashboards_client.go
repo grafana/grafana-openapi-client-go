@@ -47,11 +47,17 @@ type ClientService interface {
 	GetHomeDashboard(opts ...ClientOption) (*GetHomeDashboardOK, error)
 	GetHomeDashboardWithParams(params *GetHomeDashboardParams, opts ...ClientOption) (*GetHomeDashboardOK, error)
 
+	HardDeleteDashboardByUID(uid string, opts ...ClientOption) (*HardDeleteDashboardByUIDOK, error)
+	HardDeleteDashboardByUIDWithParams(params *HardDeleteDashboardByUIDParams, opts ...ClientOption) (*HardDeleteDashboardByUIDOK, error)
+
 	ImportDashboard(body *models.ImportDashboardRequest, opts ...ClientOption) (*ImportDashboardOK, error)
 	ImportDashboardWithParams(params *ImportDashboardParams, opts ...ClientOption) (*ImportDashboardOK, error)
 
 	PostDashboard(body *models.SaveDashboardCommand, opts ...ClientOption) (*PostDashboardOK, error)
 	PostDashboardWithParams(params *PostDashboardParams, opts ...ClientOption) (*PostDashboardOK, error)
+
+	RestoreDeletedDashboardByUID(uid string, body *models.RestoreDeletedDashboardCommand, opts ...ClientOption) (*RestoreDeletedDashboardByUIDOK, error)
+	RestoreDeletedDashboardByUIDWithParams(params *RestoreDeletedDashboardByUIDParams, opts ...ClientOption) (*RestoreDeletedDashboardByUIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -281,6 +287,52 @@ func (a *Client) GetHomeDashboardWithParams(params *GetHomeDashboardParams, opts
 }
 
 /*
+HardDeleteDashboardByUID hards delete dashboard by uid
+
+Will delete the dashboard given the specified unique identifier (uid).
+*/
+func (a *Client) HardDeleteDashboardByUID(uid string, opts ...ClientOption) (*HardDeleteDashboardByUIDOK, error) {
+	params := NewHardDeleteDashboardByUIDParams().WithUID(uid)
+	return a.HardDeleteDashboardByUIDWithParams(params, opts...)
+}
+
+func (a *Client) HardDeleteDashboardByUIDWithParams(params *HardDeleteDashboardByUIDParams, opts ...ClientOption) (*HardDeleteDashboardByUIDOK, error) {
+	if params == nil {
+		params = NewHardDeleteDashboardByUIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "hardDeleteDashboardByUID",
+		Method:             "DELETE",
+		PathPattern:        "/dashboards/uid/{uid}/trash",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &HardDeleteDashboardByUIDReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*HardDeleteDashboardByUIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for hardDeleteDashboardByUID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 ImportDashboard imports dashboard
 */
 func (a *Client) ImportDashboard(body *models.ImportDashboardRequest, opts ...ClientOption) (*ImportDashboardOK, error) {
@@ -368,6 +420,50 @@ func (a *Client) PostDashboardWithParams(params *PostDashboardParams, opts ...Cl
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for postDashboard: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RestoreDeletedDashboardByUID restores a dashboard to a given dashboard version using UID
+*/
+func (a *Client) RestoreDeletedDashboardByUID(uid string, body *models.RestoreDeletedDashboardCommand, opts ...ClientOption) (*RestoreDeletedDashboardByUIDOK, error) {
+	params := NewRestoreDeletedDashboardByUIDParams().WithBody(body).WithUID(uid)
+	return a.RestoreDeletedDashboardByUIDWithParams(params, opts...)
+}
+
+func (a *Client) RestoreDeletedDashboardByUIDWithParams(params *RestoreDeletedDashboardByUIDParams, opts ...ClientOption) (*RestoreDeletedDashboardByUIDOK, error) {
+	if params == nil {
+		params = NewRestoreDeletedDashboardByUIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "restoreDeletedDashboardByUID",
+		Method:             "PATCH",
+		PathPattern:        "/dashboards/uid/{uid}/trash",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &RestoreDeletedDashboardByUIDReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RestoreDeletedDashboardByUIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for restoreDeletedDashboardByUID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

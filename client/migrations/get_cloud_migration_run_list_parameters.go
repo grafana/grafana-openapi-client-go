@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetCloudMigrationRunListParams creates a new GetCloudMigrationRunListParams object,
@@ -62,13 +61,11 @@ GetCloudMigrationRunListParams contains all the parameters to send to the API en
 */
 type GetCloudMigrationRunListParams struct {
 
-	/* ID.
+	/* UID.
 
-	   ID of an migration
-
-	   Format: int64
+	   UID of a migration
 	*/
-	ID int64
+	UID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +120,15 @@ func (o *GetCloudMigrationRunListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the get cloud migration run list params
-func (o *GetCloudMigrationRunListParams) WithID(id int64) *GetCloudMigrationRunListParams {
-	o.SetID(id)
+// WithUID adds the uid to the get cloud migration run list params
+func (o *GetCloudMigrationRunListParams) WithUID(uid string) *GetCloudMigrationRunListParams {
+	o.SetUID(uid)
 	return o
 }
 
-// SetID adds the id to the get cloud migration run list params
-func (o *GetCloudMigrationRunListParams) SetID(id int64) {
-	o.ID = id
+// SetUID adds the uid to the get cloud migration run list params
+func (o *GetCloudMigrationRunListParams) SetUID(uid string) {
+	o.UID = uid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -142,8 +139,8 @@ func (o *GetCloudMigrationRunListParams) WriteToRequest(r runtime.ClientRequest,
 	}
 	var res []error
 
-	// path param id
-	if err := r.SetPathParam("id", swag.FormatInt64(o.ID)); err != nil {
+	// path param uid
+	if err := r.SetPathParam("uid", o.UID); err != nil {
 		return err
 	}
 

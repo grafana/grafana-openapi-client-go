@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetCloudMigrationRunParams creates a new GetCloudMigrationRunParams object,
@@ -62,21 +61,11 @@ GetCloudMigrationRunParams contains all the parameters to send to the API endpoi
 */
 type GetCloudMigrationRunParams struct {
 
-	/* ID.
+	/* RunUID.
 
-	   ID of an migration
-
-	   Format: int64
+	   RunUID of a migration run
 	*/
-	ID int64
-
-	/* RunID.
-
-	   Run ID of a migration run
-
-	   Format: int64
-	*/
-	RunID int64
+	RunUID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -131,26 +120,15 @@ func (o *GetCloudMigrationRunParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the get cloud migration run params
-func (o *GetCloudMigrationRunParams) WithID(id int64) *GetCloudMigrationRunParams {
-	o.SetID(id)
+// WithRunUID adds the runUID to the get cloud migration run params
+func (o *GetCloudMigrationRunParams) WithRunUID(runUID string) *GetCloudMigrationRunParams {
+	o.SetRunUID(runUID)
 	return o
 }
 
-// SetID adds the id to the get cloud migration run params
-func (o *GetCloudMigrationRunParams) SetID(id int64) {
-	o.ID = id
-}
-
-// WithRunID adds the runID to the get cloud migration run params
-func (o *GetCloudMigrationRunParams) WithRunID(runID int64) *GetCloudMigrationRunParams {
-	o.SetRunID(runID)
-	return o
-}
-
-// SetRunID adds the runId to the get cloud migration run params
-func (o *GetCloudMigrationRunParams) SetRunID(runID int64) {
-	o.RunID = runID
+// SetRunUID adds the runUid to the get cloud migration run params
+func (o *GetCloudMigrationRunParams) SetRunUID(runUID string) {
+	o.RunUID = runUID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -161,13 +139,8 @@ func (o *GetCloudMigrationRunParams) WriteToRequest(r runtime.ClientRequest, reg
 	}
 	var res []error
 
-	// path param id
-	if err := r.SetPathParam("id", swag.FormatInt64(o.ID)); err != nil {
-		return err
-	}
-
-	// path param runID
-	if err := r.SetPathParam("runID", swag.FormatInt64(o.RunID)); err != nil {
+	// path param runUID
+	if err := r.SetPathParam("runUID", o.RunUID); err != nil {
 		return err
 	}
 
