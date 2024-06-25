@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// PagerdutyLink PagerdutyLink is a link
+// PagerdutyLink PagerdutyLink is a link.
 //
 // swagger:model PagerdutyLink
 type PagerdutyLink struct {

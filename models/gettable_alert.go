@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GettableAlert GettableAlert gettable alert
+// GettableAlert gettable alert
 //
 // swagger:model gettableAlert
 type GettableAlert struct {

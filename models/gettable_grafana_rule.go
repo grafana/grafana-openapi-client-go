@@ -56,6 +56,9 @@ type GettableGrafanaRule struct {
 	// provenance
 	Provenance Provenance `json:"provenance,omitempty"`
 
+	// record
+	Record *Record `json:"record,omitempty"`
+
 	// rule group
 	RuleGroup string `json:"rule_group,omitempty"`
 
@@ -94,6 +97,10 @@ func (m *GettableGrafanaRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateProvenance(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRecord(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -259,6 +266,25 @@ func (m *GettableGrafanaRule) validateProvenance(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *GettableGrafanaRule) validateRecord(formats strfmt.Registry) error {
+	if swag.IsZero(m.Record) { // not required
+		return nil
+	}
+
+	if m.Record != nil {
+		if err := m.Record.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("record")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("record")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *GettableGrafanaRule) validateUpdated(formats strfmt.Registry) error {
 	if swag.IsZero(m.Updated) { // not required
 		return nil
@@ -284,6 +310,10 @@ func (m *GettableGrafanaRule) ContextValidate(ctx context.Context, formats strfm
 	}
 
 	if err := m.contextValidateProvenance(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRecord(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -352,6 +382,27 @@ func (m *GettableGrafanaRule) contextValidateProvenance(ctx context.Context, for
 			return ce.ValidateName("provenance")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *GettableGrafanaRule) contextValidateRecord(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Record != nil {
+
+		if swag.IsZero(m.Record) { // not required
+			return nil
+		}
+
+		if err := m.Record.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("record")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("record")
+			}
+			return err
+		}
 	}
 
 	return nil

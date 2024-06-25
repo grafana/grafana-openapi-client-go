@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewDeleteCloudMigrationParams creates a new DeleteCloudMigrationParams object,
@@ -62,13 +61,11 @@ DeleteCloudMigrationParams contains all the parameters to send to the API endpoi
 */
 type DeleteCloudMigrationParams struct {
 
-	/* ID.
+	/* UID.
 
-	   ID of an migration
-
-	   Format: int64
+	   UID of a migration
 	*/
-	ID int64
+	UID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +120,15 @@ func (o *DeleteCloudMigrationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the delete cloud migration params
-func (o *DeleteCloudMigrationParams) WithID(id int64) *DeleteCloudMigrationParams {
-	o.SetID(id)
+// WithUID adds the uid to the delete cloud migration params
+func (o *DeleteCloudMigrationParams) WithUID(uid string) *DeleteCloudMigrationParams {
+	o.SetUID(uid)
 	return o
 }
 
-// SetID adds the id to the delete cloud migration params
-func (o *DeleteCloudMigrationParams) SetID(id int64) {
-	o.ID = id
+// SetUID adds the uid to the delete cloud migration params
+func (o *DeleteCloudMigrationParams) SetUID(uid string) {
+	o.UID = uid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -142,8 +139,8 @@ func (o *DeleteCloudMigrationParams) WriteToRequest(r runtime.ClientRequest, reg
 	}
 	var res []error
 
-	// path param id
-	if err := r.SetPathParam("id", swag.FormatInt64(o.ID)); err != nil {
+	// path param uid
+	if err := r.SetPathParam("uid", o.UID); err != nil {
 		return err
 	}
 

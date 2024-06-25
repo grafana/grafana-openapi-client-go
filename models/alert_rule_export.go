@@ -27,8 +27,8 @@ type AlertRuleExport struct {
 	// condition
 	Condition string `json:"condition,omitempty"`
 
-	// dasboard Uid
-	DasboardUID string `json:"dasboardUid,omitempty"`
+	// dashboard Uid
+	DashboardUID string `json:"dashboardUid,omitempty"`
 
 	// data
 	Data []*AlertQueryExport `json:"data"`
@@ -55,6 +55,9 @@ type AlertRuleExport struct {
 
 	// panel Id
 	PanelID int64 `json:"panelId,omitempty"`
+
+	// record
+	Record *AlertRuleRecordExport `json:"record,omitempty"`
 
 	// title
 	Title string `json:"title,omitempty"`
@@ -84,6 +87,10 @@ func (m *AlertRuleExport) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNotificationSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRecord(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -245,6 +252,25 @@ func (m *AlertRuleExport) validateNotificationSettings(formats strfmt.Registry) 
 	return nil
 }
 
+func (m *AlertRuleExport) validateRecord(formats strfmt.Registry) error {
+	if swag.IsZero(m.Record) { // not required
+		return nil
+	}
+
+	if m.Record != nil {
+		if err := m.Record.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("record")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("record")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this alert rule export based on the context it is used
 func (m *AlertRuleExport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -258,6 +284,10 @@ func (m *AlertRuleExport) ContextValidate(ctx context.Context, formats strfmt.Re
 	}
 
 	if err := m.contextValidateNotificationSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRecord(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -323,6 +353,27 @@ func (m *AlertRuleExport) contextValidateNotificationSettings(ctx context.Contex
 				return ve.ValidateName("notification_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("notification_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AlertRuleExport) contextValidateRecord(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Record != nil {
+
+		if swag.IsZero(m.Record) { // not required
+			return nil
+		}
+
+		if err := m.Record.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("record")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("record")
 			}
 			return err
 		}

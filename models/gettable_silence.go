@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GettableSilence gettable silence
+// GettableSilence GettableSilence gettable silence
 //
 // swagger:model gettableSilence
 type GettableSilence struct {

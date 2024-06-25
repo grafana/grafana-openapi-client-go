@@ -43,7 +43,7 @@ func (o *DeleteCloudMigrationReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[DELETE /cloudmigration/migration/{id}] deleteCloudMigration", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /cloudmigration/migration/{uid}] deleteCloudMigration", response, response.Code())
 	}
 }
 
@@ -93,12 +93,12 @@ func (o *DeleteCloudMigrationUnauthorized) Code() int {
 
 func (o *DeleteCloudMigrationUnauthorized) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /cloudmigration/migration/{id}][%d] deleteCloudMigrationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /cloudmigration/migration/{uid}][%d] deleteCloudMigrationUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteCloudMigrationUnauthorized) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /cloudmigration/migration/{id}][%d] deleteCloudMigrationUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[DELETE /cloudmigration/migration/{uid}][%d] deleteCloudMigrationUnauthorized %s", 401, payload)
 }
 
 func (o *DeleteCloudMigrationUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -163,12 +163,12 @@ func (o *DeleteCloudMigrationForbidden) Code() int {
 
 func (o *DeleteCloudMigrationForbidden) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /cloudmigration/migration/{id}][%d] deleteCloudMigrationForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /cloudmigration/migration/{uid}][%d] deleteCloudMigrationForbidden %s", 403, payload)
 }
 
 func (o *DeleteCloudMigrationForbidden) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /cloudmigration/migration/{id}][%d] deleteCloudMigrationForbidden %s", 403, payload)
+	return fmt.Sprintf("[DELETE /cloudmigration/migration/{uid}][%d] deleteCloudMigrationForbidden %s", 403, payload)
 }
 
 func (o *DeleteCloudMigrationForbidden) GetPayload() *models.ErrorResponseBody {
@@ -233,12 +233,12 @@ func (o *DeleteCloudMigrationInternalServerError) Code() int {
 
 func (o *DeleteCloudMigrationInternalServerError) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /cloudmigration/migration/{id}][%d] deleteCloudMigrationInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[DELETE /cloudmigration/migration/{uid}][%d] deleteCloudMigrationInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteCloudMigrationInternalServerError) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /cloudmigration/migration/{id}][%d] deleteCloudMigrationInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[DELETE /cloudmigration/migration/{uid}][%d] deleteCloudMigrationInternalServerError %s", 500, payload)
 }
 
 func (o *DeleteCloudMigrationInternalServerError) GetPayload() *models.ErrorResponseBody {

@@ -19,11 +19,11 @@ import (
 // swagger:model MigrateDataResponseDTO
 type MigrateDataResponseDTO struct {
 
-	// id
-	ID int64 `json:"id,omitempty"`
-
 	// items
 	Items []*MigrateDataResponseItemDTO `json:"items"`
+
+	// uid
+	UID string `json:"uid,omitempty"`
 }
 
 // Validate validates this migrate data response DTO

@@ -20,7 +20,7 @@ import (
 type CloudMigrationRunList struct {
 
 	// runs
-	Runs []*MigrateDataResponseDTO `json:"runs"`
+	Runs []*MigrateDataResponseListDTO `json:"runs"`
 }
 
 // Validate validates this cloud migration run list

@@ -49,7 +49,7 @@ func (o *GetCloudMigrationRunReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /cloudmigration/migration/{id}/run/{runID}] getCloudMigrationRun", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /cloudmigration/migration/run/{runUID}] getCloudMigrationRun", response, response.Code())
 	}
 }
 
@@ -99,12 +99,12 @@ func (o *GetCloudMigrationRunOK) Code() int {
 
 func (o *GetCloudMigrationRunOK) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /cloudmigration/migration/{id}/run/{runID}][%d] getCloudMigrationRunOk %s", 200, payload)
+	return fmt.Sprintf("[GET /cloudmigration/migration/run/{runUID}][%d] getCloudMigrationRunOk %s", 200, payload)
 }
 
 func (o *GetCloudMigrationRunOK) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /cloudmigration/migration/{id}/run/{runID}][%d] getCloudMigrationRunOk %s", 200, payload)
+	return fmt.Sprintf("[GET /cloudmigration/migration/run/{runUID}][%d] getCloudMigrationRunOk %s", 200, payload)
 }
 
 func (o *GetCloudMigrationRunOK) GetPayload() *models.MigrateDataResponseDTO {
@@ -169,12 +169,12 @@ func (o *GetCloudMigrationRunUnauthorized) Code() int {
 
 func (o *GetCloudMigrationRunUnauthorized) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /cloudmigration/migration/{id}/run/{runID}][%d] getCloudMigrationRunUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /cloudmigration/migration/run/{runUID}][%d] getCloudMigrationRunUnauthorized %s", 401, payload)
 }
 
 func (o *GetCloudMigrationRunUnauthorized) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /cloudmigration/migration/{id}/run/{runID}][%d] getCloudMigrationRunUnauthorized %s", 401, payload)
+	return fmt.Sprintf("[GET /cloudmigration/migration/run/{runUID}][%d] getCloudMigrationRunUnauthorized %s", 401, payload)
 }
 
 func (o *GetCloudMigrationRunUnauthorized) GetPayload() *models.ErrorResponseBody {
@@ -239,12 +239,12 @@ func (o *GetCloudMigrationRunForbidden) Code() int {
 
 func (o *GetCloudMigrationRunForbidden) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /cloudmigration/migration/{id}/run/{runID}][%d] getCloudMigrationRunForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /cloudmigration/migration/run/{runUID}][%d] getCloudMigrationRunForbidden %s", 403, payload)
 }
 
 func (o *GetCloudMigrationRunForbidden) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /cloudmigration/migration/{id}/run/{runID}][%d] getCloudMigrationRunForbidden %s", 403, payload)
+	return fmt.Sprintf("[GET /cloudmigration/migration/run/{runUID}][%d] getCloudMigrationRunForbidden %s", 403, payload)
 }
 
 func (o *GetCloudMigrationRunForbidden) GetPayload() *models.ErrorResponseBody {
@@ -309,12 +309,12 @@ func (o *GetCloudMigrationRunInternalServerError) Code() int {
 
 func (o *GetCloudMigrationRunInternalServerError) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /cloudmigration/migration/{id}/run/{runID}][%d] getCloudMigrationRunInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /cloudmigration/migration/run/{runUID}][%d] getCloudMigrationRunInternalServerError %s", 500, payload)
 }
 
 func (o *GetCloudMigrationRunInternalServerError) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /cloudmigration/migration/{id}/run/{runID}][%d] getCloudMigrationRunInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /cloudmigration/migration/run/{runUID}][%d] getCloudMigrationRunInternalServerError %s", 500, payload)
 }
 
 func (o *GetCloudMigrationRunInternalServerError) GetPayload() *models.ErrorResponseBody {
