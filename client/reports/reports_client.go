@@ -32,7 +32,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateReport(body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*CreateReportOK, error)
+	CreateReport(body *models.CreateOrUpdateReport, opts ...ClientOption) (*CreateReportOK, error)
 	CreateReportWithParams(params *CreateReportParams, opts ...ClientOption) (*CreateReportOK, error)
 
 	DeleteReport(id int64, opts ...ClientOption) (*DeleteReportOK, error)
@@ -47,6 +47,11 @@ type ClientService interface {
 	GetReports(opts ...ClientOption) (*GetReportsOK, error)
 	GetReportsWithParams(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error)
 
+	GetSettingsImage(opts ...ClientOption) (*GetSettingsImageOK, error)
+	GetSettingsImageWithParams(params *GetSettingsImageParams, opts ...ClientOption) (*GetSettingsImageOK, error)
+
+	RenderReportCSVs(params *RenderReportCSVsParams, opts ...ClientOption) (*RenderReportCSVsOK, *RenderReportCSVsNoContent, error)
+
 	RenderReportPDFs(params *RenderReportPDFsParams, opts ...ClientOption) (*RenderReportPDFsOK, error)
 
 	SaveReportSettings(body *models.ReportSettings, opts ...ClientOption) (*SaveReportSettingsOK, error)
@@ -55,10 +60,10 @@ type ClientService interface {
 	SendReport(body *models.ReportEmail, opts ...ClientOption) (*SendReportOK, error)
 	SendReportWithParams(params *SendReportParams, opts ...ClientOption) (*SendReportOK, error)
 
-	SendTestEmail(body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*SendTestEmailOK, error)
+	SendTestEmail(body *models.CreateOrUpdateReport, opts ...ClientOption) (*SendTestEmailOK, error)
 	SendTestEmailWithParams(params *SendTestEmailParams, opts ...ClientOption) (*SendTestEmailOK, error)
 
-	UpdateReport(id int64, body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*UpdateReportOK, error)
+	UpdateReport(id int64, body *models.CreateOrUpdateReport, opts ...ClientOption) (*UpdateReportOK, error)
 	UpdateReportWithParams(params *UpdateReportParams, opts ...ClientOption) (*UpdateReportOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -71,7 +76,7 @@ Available to org admins only and with a valid license.
 
 You need to have a permission with action `reports.admin:create`.
 */
-func (a *Client) CreateReport(body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*CreateReportOK, error) {
+func (a *Client) CreateReport(body *models.CreateOrUpdateReport, opts ...ClientOption) (*CreateReportOK, error) {
 	params := NewCreateReportParams().WithBody(body)
 	return a.CreateReportWithParams(params, opts...)
 }
@@ -209,7 +214,7 @@ func (a *Client) GetReportWithParams(params *GetReportParams, opts ...ClientOpti
 }
 
 /*
-GetReportSettings gets settings
+GetReportSettings gets report settings
 
 Available to org admins only and with a valid or expired license.
 
@@ -301,6 +306,97 @@ func (a *Client) GetReportsWithParams(params *GetReportsParams, opts ...ClientOp
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getReports: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetSettingsImage gets custom branding report image
+
+Available to org admins only and with a valid or expired license.
+
+You need to have a permission with action `reports.settings:read`.
+*/
+func (a *Client) GetSettingsImage(opts ...ClientOption) (*GetSettingsImageOK, error) {
+	params := NewGetSettingsImageParams()
+	return a.GetSettingsImageWithParams(params, opts...)
+}
+
+func (a *Client) GetSettingsImageWithParams(params *GetSettingsImageParams, opts ...ClientOption) (*GetSettingsImageOK, error) {
+	if params == nil {
+		params = NewGetSettingsImageParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getSettingsImage",
+		Method:             "GET",
+		PathPattern:        "/reports/images/:image",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetSettingsImageReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetSettingsImageOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getSettingsImage: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RenderReportCSVs downloads a CSV report
+
+Available to all users and with a valid license.
+*/
+
+func (a *Client) RenderReportCSVs(params *RenderReportCSVsParams, opts ...ClientOption) (*RenderReportCSVsOK, *RenderReportCSVsNoContent, error) {
+	if params == nil {
+		params = NewRenderReportCSVsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "renderReportCSVs",
+		Method:             "GET",
+		PathPattern:        "/reports/render/csvs",
+		ProducesMediaTypes: []string{"application/zip"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &RenderReportCSVsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, nil, err
+	}
+	switch value := result.(type) {
+	case *RenderReportCSVsOK:
+		return value, nil, nil
+	case *RenderReportCSVsNoContent:
+		return nil, value, nil
+	}
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for reports: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -452,7 +548,7 @@ Available to org admins only and with a valid license.
 
 You need to have a permission with action `reports:send`.
 */
-func (a *Client) SendTestEmail(body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*SendTestEmailOK, error) {
+func (a *Client) SendTestEmail(body *models.CreateOrUpdateReport, opts ...ClientOption) (*SendTestEmailOK, error) {
 	params := NewSendTestEmailParams().WithBody(body)
 	return a.SendTestEmailWithParams(params, opts...)
 }
@@ -500,7 +596,7 @@ Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.admin:write` with scope `reports:id:<report ID>`.
 */
-func (a *Client) UpdateReport(id int64, body *models.CreateOrUpdateReportConfig, opts ...ClientOption) (*UpdateReportOK, error) {
+func (a *Client) UpdateReport(id int64, body *models.CreateOrUpdateReport, opts ...ClientOption) (*UpdateReportOK, error) {
 	params := NewUpdateReportParams().WithBody(body).WithID(id)
 	return a.UpdateReportWithParams(params, opts...)
 }

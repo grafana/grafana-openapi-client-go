@@ -43,6 +43,7 @@ import (
 	"github.com/grafana/grafana-openapi-client-go/client/folder_permissions"
 	"github.com/grafana/grafana-openapi-client-go/client/folders"
 	"github.com/grafana/grafana-openapi-client-go/client/get_current_org"
+	"github.com/grafana/grafana-openapi-client-go/client/health"
 	"github.com/grafana/grafana-openapi-client-go/client/ldap_debug"
 	"github.com/grafana/grafana-openapi-client-go/client/library_elements"
 	"github.com/grafana/grafana-openapi-client-go/client/licensing"
@@ -137,6 +138,7 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.FolderPermissions = folder_permissions.New(transport, formats)
 	cli.Folders = folders.New(transport, formats)
 	cli.GetCurrentOrg = get_current_org.New(transport, formats)
+	cli.Health = health.New(transport, formats)
 	cli.LDAPDebug = ldap_debug.New(transport, formats)
 	cli.LibraryElements = library_elements.New(transport, formats)
 	cli.Licensing = licensing.New(transport, formats)
@@ -278,6 +280,8 @@ type GrafanaHTTPAPI struct {
 
 	GetCurrentOrg get_current_org.ClientService
 
+	Health health.ClientService
+
 	LDAPDebug ldap_debug.ClientService
 
 	LibraryElements library_elements.ClientService
@@ -357,6 +361,7 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.FolderPermissions.SetTransport(transport)
 	c.Folders.SetTransport(transport)
 	c.GetCurrentOrg.SetTransport(transport)
+	c.Health.SetTransport(transport)
 	c.LDAPDebug.SetTransport(transport)
 	c.LibraryElements.SetTransport(transport)
 	c.Licensing.SetTransport(transport)

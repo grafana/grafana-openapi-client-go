@@ -14,17 +14,17 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// CloudMigrationResponse cloud migration response
+// CloudMigrationSessionResponseDTO cloud migration session response DTO
 //
-// swagger:model CloudMigrationResponse
-type CloudMigrationResponse struct {
+// swagger:model CloudMigrationSessionResponseDTO
+type CloudMigrationSessionResponseDTO struct {
 
 	// created
 	// Format: date-time
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	// stack
-	Stack string `json:"stack,omitempty"`
+	// slug
+	Slug string `json:"slug,omitempty"`
 
 	// uid
 	UID string `json:"uid,omitempty"`
@@ -34,8 +34,8 @@ type CloudMigrationResponse struct {
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
-// Validate validates this cloud migration response
-func (m *CloudMigrationResponse) Validate(formats strfmt.Registry) error {
+// Validate validates this cloud migration session response DTO
+func (m *CloudMigrationSessionResponseDTO) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreated(formats); err != nil {
@@ -52,7 +52,7 @@ func (m *CloudMigrationResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CloudMigrationResponse) validateCreated(formats strfmt.Registry) error {
+func (m *CloudMigrationSessionResponseDTO) validateCreated(formats strfmt.Registry) error {
 	if swag.IsZero(m.Created) { // not required
 		return nil
 	}
@@ -64,7 +64,7 @@ func (m *CloudMigrationResponse) validateCreated(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *CloudMigrationResponse) validateUpdated(formats strfmt.Registry) error {
+func (m *CloudMigrationSessionResponseDTO) validateUpdated(formats strfmt.Registry) error {
 	if swag.IsZero(m.Updated) { // not required
 		return nil
 	}
@@ -76,13 +76,13 @@ func (m *CloudMigrationResponse) validateUpdated(formats strfmt.Registry) error 
 	return nil
 }
 
-// ContextValidate validates this cloud migration response based on context it is used
-func (m *CloudMigrationResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this cloud migration session response DTO based on context it is used
+func (m *CloudMigrationSessionResponseDTO) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *CloudMigrationResponse) MarshalBinary() ([]byte, error) {
+func (m *CloudMigrationSessionResponseDTO) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -90,8 +90,8 @@ func (m *CloudMigrationResponse) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *CloudMigrationResponse) UnmarshalBinary(b []byte) error {
-	var res CloudMigrationResponse
+func (m *CloudMigrationSessionResponseDTO) UnmarshalBinary(b []byte) error {
+	var res CloudMigrationSessionResponseDTO
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

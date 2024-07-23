@@ -38,8 +38,7 @@ type ClientService interface {
 	DeleteContactpoints(uid string, opts ...ClientOption) (*DeleteContactpointsAccepted, error)
 	DeleteContactpointsWithParams(params *DeleteContactpointsParams, opts ...ClientOption) (*DeleteContactpointsAccepted, error)
 
-	DeleteMuteTiming(name string, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
-	DeleteMuteTimingWithParams(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
+	DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
 
 	DeleteTemplate(name string, opts ...ClientOption) (*DeleteTemplateNoContent, error)
 	DeleteTemplateWithParams(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error)
@@ -240,12 +239,8 @@ func (a *Client) DeleteContactpointsWithParams(params *DeleteContactpointsParams
 /*
 DeleteMuteTiming deletes a mute timing
 */
-func (a *Client) DeleteMuteTiming(name string, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
-	params := NewDeleteMuteTimingParams().WithName(name)
-	return a.DeleteMuteTimingWithParams(params, opts...)
-}
 
-func (a *Client) DeleteMuteTimingWithParams(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
+func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error) {
 	if params == nil {
 		params = NewDeleteMuteTimingParams()
 	}

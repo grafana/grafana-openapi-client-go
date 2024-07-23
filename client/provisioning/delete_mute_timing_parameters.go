@@ -61,11 +61,20 @@ DeleteMuteTimingParams contains all the parameters to send to the API endpoint
 */
 type DeleteMuteTimingParams struct {
 
+	// XDisableProvenance.
+	XDisableProvenance *string
+
 	/* Name.
 
 	   Mute timing name
 	*/
 	Name string
+
+	/* Version.
+
+	   Version of mute timing to use for optimistic concurrency. Leave empty to disable validation
+	*/
+	Version *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,6 +129,17 @@ func (o *DeleteMuteTimingParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithXDisableProvenance adds the xDisableProvenance to the delete mute timing params
+func (o *DeleteMuteTimingParams) WithXDisableProvenance(xDisableProvenance *string) *DeleteMuteTimingParams {
+	o.SetXDisableProvenance(xDisableProvenance)
+	return o
+}
+
+// SetXDisableProvenance adds the xDisableProvenance to the delete mute timing params
+func (o *DeleteMuteTimingParams) SetXDisableProvenance(xDisableProvenance *string) {
+	o.XDisableProvenance = xDisableProvenance
+}
+
 // WithName adds the name to the delete mute timing params
 func (o *DeleteMuteTimingParams) WithName(name string) *DeleteMuteTimingParams {
 	o.SetName(name)
@@ -131,6 +151,17 @@ func (o *DeleteMuteTimingParams) SetName(name string) {
 	o.Name = name
 }
 
+// WithVersion adds the version to the delete mute timing params
+func (o *DeleteMuteTimingParams) WithVersion(version *string) *DeleteMuteTimingParams {
+	o.SetVersion(version)
+	return o
+}
+
+// SetVersion adds the version to the delete mute timing params
+func (o *DeleteMuteTimingParams) SetVersion(version *string) {
+	o.Version = version
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteMuteTimingParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,9 +170,34 @@ func (o *DeleteMuteTimingParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
+	if o.XDisableProvenance != nil {
+
+		// header param X-Disable-Provenance
+		if err := r.SetHeaderParam("X-Disable-Provenance", *o.XDisableProvenance); err != nil {
+			return err
+		}
+	}
+
 	// path param name
 	if err := r.SetPathParam("name", o.Name); err != nil {
 		return err
+	}
+
+	if o.Version != nil {
+
+		// query param version
+		var qrVersion string
+
+		if o.Version != nil {
+			qrVersion = *o.Version
+		}
+		qVersion := qrVersion
+		if qVersion != "" {
+
+			if err := r.SetQueryParam("version", qVersion); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

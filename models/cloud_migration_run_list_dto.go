@@ -14,17 +14,17 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// CloudMigrationRunList cloud migration run list
+// CloudMigrationRunListDTO cloud migration run list DTO
 //
-// swagger:model CloudMigrationRunList
-type CloudMigrationRunList struct {
+// swagger:model CloudMigrationRunListDTO
+type CloudMigrationRunListDTO struct {
 
 	// runs
 	Runs []*MigrateDataResponseListDTO `json:"runs"`
 }
 
-// Validate validates this cloud migration run list
-func (m *CloudMigrationRunList) Validate(formats strfmt.Registry) error {
+// Validate validates this cloud migration run list DTO
+func (m *CloudMigrationRunListDTO) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRuns(formats); err != nil {
@@ -37,7 +37,7 @@ func (m *CloudMigrationRunList) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CloudMigrationRunList) validateRuns(formats strfmt.Registry) error {
+func (m *CloudMigrationRunListDTO) validateRuns(formats strfmt.Registry) error {
 	if swag.IsZero(m.Runs) { // not required
 		return nil
 	}
@@ -63,8 +63,8 @@ func (m *CloudMigrationRunList) validateRuns(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this cloud migration run list based on the context it is used
-func (m *CloudMigrationRunList) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this cloud migration run list DTO based on the context it is used
+func (m *CloudMigrationRunListDTO) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateRuns(ctx, formats); err != nil {
@@ -77,7 +77,7 @@ func (m *CloudMigrationRunList) ContextValidate(ctx context.Context, formats str
 	return nil
 }
 
-func (m *CloudMigrationRunList) contextValidateRuns(ctx context.Context, formats strfmt.Registry) error {
+func (m *CloudMigrationRunListDTO) contextValidateRuns(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Runs); i++ {
 
@@ -103,7 +103,7 @@ func (m *CloudMigrationRunList) contextValidateRuns(ctx context.Context, formats
 }
 
 // MarshalBinary interface implementation
-func (m *CloudMigrationRunList) MarshalBinary() ([]byte, error) {
+func (m *CloudMigrationRunListDTO) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -111,8 +111,8 @@ func (m *CloudMigrationRunList) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *CloudMigrationRunList) UnmarshalBinary(b []byte) error {
-	var res CloudMigrationRunList
+func (m *CloudMigrationRunListDTO) UnmarshalBinary(b []byte) error {
+	var res CloudMigrationRunListDTO
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

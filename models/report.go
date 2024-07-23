@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Report ConfigDTO is model representation in transfer
+// Report report
 //
 // swagger:model Report
 type Report struct {

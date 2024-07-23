@@ -33,6 +33,9 @@ type UpdatePrefsCmd struct {
 	// language
 	Language string `json:"language,omitempty"`
 
+	// navbar
+	Navbar *NavbarPreference `json:"navbar,omitempty"`
+
 	// query history
 	QueryHistory *QueryHistoryPreference `json:"queryHistory,omitempty"`
 
@@ -53,6 +56,10 @@ func (m *UpdatePrefsCmd) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCookies(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNavbar(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,6 +97,25 @@ func (m *UpdatePrefsCmd) validateCookies(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UpdatePrefsCmd) validateNavbar(formats strfmt.Registry) error {
+	if swag.IsZero(m.Navbar) { // not required
+		return nil
+	}
+
+	if m.Navbar != nil {
+		if err := m.Navbar.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("navbar")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("navbar")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -209,6 +235,10 @@ func (m *UpdatePrefsCmd) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNavbar(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateQueryHistory(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -236,6 +266,27 @@ func (m *UpdatePrefsCmd) contextValidateCookies(ctx context.Context, formats str
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UpdatePrefsCmd) contextValidateNavbar(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Navbar != nil {
+
+		if swag.IsZero(m.Navbar) { // not required
+			return nil
+		}
+
+		if err := m.Navbar.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("navbar")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("navbar")
+			}
+			return err
+		}
 	}
 
 	return nil

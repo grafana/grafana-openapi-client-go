@@ -65,7 +65,7 @@ UpdateReportParams contains all the parameters to send to the API endpoint
 type UpdateReportParams struct {
 
 	// Body.
-	Body *models.CreateOrUpdateReportConfig
+	Body *models.CreateOrUpdateReport
 
 	// ID.
 	//
@@ -126,13 +126,13 @@ func (o *UpdateReportParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the update report params
-func (o *UpdateReportParams) WithBody(body *models.CreateOrUpdateReportConfig) *UpdateReportParams {
+func (o *UpdateReportParams) WithBody(body *models.CreateOrUpdateReport) *UpdateReportParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update report params
-func (o *UpdateReportParams) SetBody(body *models.CreateOrUpdateReportConfig) {
+func (o *UpdateReportParams) SetBody(body *models.CreateOrUpdateReport) {
 	o.Body = body
 }
 

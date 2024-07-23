@@ -30,6 +30,12 @@ func (o *RunCloudMigrationReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewRunCloudMigrationBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewRunCloudMigrationUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -114,6 +120,76 @@ func (o *RunCloudMigrationOK) GetPayload() *models.MigrateDataResponseDTO {
 func (o *RunCloudMigrationOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.MigrateDataResponseDTO)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRunCloudMigrationBadRequest creates a RunCloudMigrationBadRequest with default headers values
+func NewRunCloudMigrationBadRequest() *RunCloudMigrationBadRequest {
+	return &RunCloudMigrationBadRequest{}
+}
+
+/*
+RunCloudMigrationBadRequest describes a response with status code 400, with default header values.
+
+BadRequestError is returned when the request is invalid and it cannot be processed.
+*/
+type RunCloudMigrationBadRequest struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this run cloud migration bad request response has a 2xx status code
+func (o *RunCloudMigrationBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this run cloud migration bad request response has a 3xx status code
+func (o *RunCloudMigrationBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this run cloud migration bad request response has a 4xx status code
+func (o *RunCloudMigrationBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this run cloud migration bad request response has a 5xx status code
+func (o *RunCloudMigrationBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this run cloud migration bad request response a status code equal to that given
+func (o *RunCloudMigrationBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
+// Code gets the status code for the run cloud migration bad request response
+func (o *RunCloudMigrationBadRequest) Code() int {
+	return 400
+}
+
+func (o *RunCloudMigrationBadRequest) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /cloudmigration/migration/{uid}/run][%d] runCloudMigrationBadRequest %s", 400, payload)
+}
+
+func (o *RunCloudMigrationBadRequest) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /cloudmigration/migration/{uid}/run][%d] runCloudMigrationBadRequest %s", 400, payload)
+}
+
+func (o *RunCloudMigrationBadRequest) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *RunCloudMigrationBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
