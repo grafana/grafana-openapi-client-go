@@ -24,19 +24,19 @@ modify '.responses.getPlaylistResponse.schema["$ref"] = "#/definitions/Playlist"
 modify '.paths = .paths | walk(if type == "object" and has("operationId") then .operationId |= sub("^Route";"") else . end)'
 
 # The "for" property returned by the API is a string (can't be unmarshaled to time.Duration)
-# TODO: Upstream fix
+# https://github.com/grafana/grafana/pull/90841
 modify '.definitions.ProvisionedAlertRule.properties.for = {
     "type": "string",
     "format": "duration"
 }'
 
 # StartDate and EndDate of reports must be nullable
-# TODO: Upstream fix
+# https://github.com/grafana/grafana/pull/90845
 modify '.definitions.ReportSchedule.properties.startDate["x-nullable"] = true'
 modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 
 # Alerting validation error is wrong. Message doesn't show up
-# TODO: Upstream fix
+# https://github.com/grafana/grafana/pull/90846
 modify '.definitions.ValidationError.properties.message = .definitions.ValidationError.properties.msg'
 modify 'del(.definitions.ValidationError.properties.msg)'
 
