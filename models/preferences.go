@@ -21,14 +21,14 @@ type Preferences struct {
 	// cookie preferences
 	CookiePreferences *CookiePreferences `json:"cookiePreferences,omitempty"`
 
-	// ID for the home dashboard. This is deprecated and will be removed in a future version. Use homeDashboardUid instead.
-	HomeDashboardID int64 `json:"homeDashboardId,omitempty"`
-
 	// UID for the home dashboard
 	HomeDashboardUID string `json:"homeDashboardUID,omitempty"`
 
 	// Selected language (beta)
 	Language string `json:"language,omitempty"`
+
+	// navbar
+	Navbar *NavbarPreference `json:"navbar,omitempty"`
 
 	// query history
 	QueryHistory *QueryHistoryPreference `json:"queryHistory,omitempty"`
@@ -49,6 +49,10 @@ func (m *Preferences) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCookiePreferences(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNavbar(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,6 +77,25 @@ func (m *Preferences) validateCookiePreferences(formats strfmt.Registry) error {
 				return ve.ValidateName("cookiePreferences")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("cookiePreferences")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Preferences) validateNavbar(formats strfmt.Registry) error {
+	if swag.IsZero(m.Navbar) { // not required
+		return nil
+	}
+
+	if m.Navbar != nil {
+		if err := m.Navbar.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("navbar")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("navbar")
 			}
 			return err
 		}
@@ -108,6 +131,10 @@ func (m *Preferences) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNavbar(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateQueryHistory(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -131,6 +158,27 @@ func (m *Preferences) contextValidateCookiePreferences(ctx context.Context, form
 				return ve.ValidateName("cookiePreferences")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("cookiePreferences")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Preferences) contextValidateNavbar(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Navbar != nil {
+
+		if swag.IsZero(m.Navbar) { // not required
+			return nil
+		}
+
+		if err := m.Navbar.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("navbar")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("navbar")
 			}
 			return err
 		}

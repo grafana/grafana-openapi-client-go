@@ -4,20 +4,13 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Pull the schema (stable commit)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/d359591daccafc39930249cf16a32aa0fcd84e71/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/2e5b41cbcb403d7dee6ecdfacb94a6bc52cd6e90/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
 modify() {
     SCHEMA="$(echo "${SCHEMA}" | jq "${1}")"
 }
-
-# TODO: Remove on next Terraform provider version
-# This is a deprecated attribute for newer Grafana versions
-modify '.definitions.Preferences.properties.homeDashboardId = {
-  "description": "ID for the home dashboard. This is deprecated and will be removed in a future version. Use homeDashboardUid instead.",
-  "type": "integer"
-}'
 
 # Playlist models are all messed up
 # TODO: Upstream fix

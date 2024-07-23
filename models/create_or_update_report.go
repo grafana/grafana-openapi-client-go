@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// CreateOrUpdateReportConfig create or update report config
+// CreateOrUpdateReport create or update report
 //
-// swagger:model CreateOrUpdateReportConfig
-type CreateOrUpdateReportConfig struct {
+// swagger:model CreateOrUpdateReport
+type CreateOrUpdateReport struct {
 
 	// dashboards
 	Dashboards []*ReportDashboard `json:"dashboards"`
@@ -56,8 +56,8 @@ type CreateOrUpdateReportConfig struct {
 	State State `json:"state,omitempty"`
 }
 
-// Validate validates this create or update report config
-func (m *CreateOrUpdateReportConfig) Validate(formats strfmt.Registry) error {
+// Validate validates this create or update report
+func (m *CreateOrUpdateReport) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDashboards(formats); err != nil {
@@ -86,7 +86,7 @@ func (m *CreateOrUpdateReportConfig) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) validateDashboards(formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) validateDashboards(formats strfmt.Registry) error {
 	if swag.IsZero(m.Dashboards) { // not required
 		return nil
 	}
@@ -112,7 +112,7 @@ func (m *CreateOrUpdateReportConfig) validateDashboards(formats strfmt.Registry)
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) validateFormats(formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) validateFormats(formats strfmt.Registry) error {
 	if swag.IsZero(m.Formats) { // not required
 		return nil
 	}
@@ -133,7 +133,7 @@ func (m *CreateOrUpdateReportConfig) validateFormats(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) validateOptions(formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) validateOptions(formats strfmt.Registry) error {
 	if swag.IsZero(m.Options) { // not required
 		return nil
 	}
@@ -152,7 +152,7 @@ func (m *CreateOrUpdateReportConfig) validateOptions(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) validateSchedule(formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) validateSchedule(formats strfmt.Registry) error {
 	if swag.IsZero(m.Schedule) { // not required
 		return nil
 	}
@@ -171,7 +171,7 @@ func (m *CreateOrUpdateReportConfig) validateSchedule(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) validateState(formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) validateState(formats strfmt.Registry) error {
 	if swag.IsZero(m.State) { // not required
 		return nil
 	}
@@ -188,8 +188,8 @@ func (m *CreateOrUpdateReportConfig) validateState(formats strfmt.Registry) erro
 	return nil
 }
 
-// ContextValidate validate this create or update report config based on the context it is used
-func (m *CreateOrUpdateReportConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this create or update report based on the context it is used
+func (m *CreateOrUpdateReport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateDashboards(ctx, formats); err != nil {
@@ -218,7 +218,7 @@ func (m *CreateOrUpdateReportConfig) ContextValidate(ctx context.Context, format
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) contextValidateDashboards(ctx context.Context, formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) contextValidateDashboards(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Dashboards); i++ {
 
@@ -243,7 +243,7 @@ func (m *CreateOrUpdateReportConfig) contextValidateDashboards(ctx context.Conte
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) contextValidateFormats(ctx context.Context, formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) contextValidateFormats(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Formats); i++ {
 
@@ -265,7 +265,7 @@ func (m *CreateOrUpdateReportConfig) contextValidateFormats(ctx context.Context,
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) contextValidateOptions(ctx context.Context, formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) contextValidateOptions(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Options != nil {
 
@@ -286,7 +286,7 @@ func (m *CreateOrUpdateReportConfig) contextValidateOptions(ctx context.Context,
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schedule != nil {
 
@@ -307,7 +307,7 @@ func (m *CreateOrUpdateReportConfig) contextValidateSchedule(ctx context.Context
 	return nil
 }
 
-func (m *CreateOrUpdateReportConfig) contextValidateState(ctx context.Context, formats strfmt.Registry) error {
+func (m *CreateOrUpdateReport) contextValidateState(ctx context.Context, formats strfmt.Registry) error {
 
 	if swag.IsZero(m.State) { // not required
 		return nil
@@ -326,7 +326,7 @@ func (m *CreateOrUpdateReportConfig) contextValidateState(ctx context.Context, f
 }
 
 // MarshalBinary interface implementation
-func (m *CreateOrUpdateReportConfig) MarshalBinary() ([]byte, error) {
+func (m *CreateOrUpdateReport) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -334,8 +334,8 @@ func (m *CreateOrUpdateReportConfig) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *CreateOrUpdateReportConfig) UnmarshalBinary(b []byte) error {
-	var res CreateOrUpdateReportConfig
+func (m *CreateOrUpdateReport) UnmarshalBinary(b []byte) error {
+	var res CreateOrUpdateReport
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

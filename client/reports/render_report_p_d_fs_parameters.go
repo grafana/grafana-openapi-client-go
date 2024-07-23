@@ -61,8 +61,8 @@ RenderReportPDFsParams contains all the parameters to send to the API endpoint
 */
 type RenderReportPDFsParams struct {
 
-	// DashboardID.
-	DashboardID *string
+	// Dashboards.
+	Dashboards *string
 
 	// IncludeTables.
 	IncludeTables *string
@@ -132,15 +132,15 @@ func (o *RenderReportPDFsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithDashboardID adds the dashboardID to the render report p d fs params
-func (o *RenderReportPDFsParams) WithDashboardID(dashboardID *string) *RenderReportPDFsParams {
-	o.SetDashboardID(dashboardID)
+// WithDashboards adds the dashboards to the render report p d fs params
+func (o *RenderReportPDFsParams) WithDashboards(dashboards *string) *RenderReportPDFsParams {
+	o.SetDashboards(dashboards)
 	return o
 }
 
-// SetDashboardID adds the dashboardId to the render report p d fs params
-func (o *RenderReportPDFsParams) SetDashboardID(dashboardID *string) {
-	o.DashboardID = dashboardID
+// SetDashboards adds the dashboards to the render report p d fs params
+func (o *RenderReportPDFsParams) SetDashboards(dashboards *string) {
+	o.Dashboards = dashboards
 }
 
 // WithIncludeTables adds the includeTables to the render report p d fs params
@@ -206,18 +206,18 @@ func (o *RenderReportPDFsParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	if o.DashboardID != nil {
+	if o.Dashboards != nil {
 
-		// query param dashboardID
-		var qrDashboardID string
+		// query param dashboards
+		var qrDashboards string
 
-		if o.DashboardID != nil {
-			qrDashboardID = *o.DashboardID
+		if o.Dashboards != nil {
+			qrDashboards = *o.Dashboards
 		}
-		qDashboardID := qrDashboardID
-		if qDashboardID != "" {
+		qDashboards := qrDashboards
+		if qDashboards != "" {
 
-			if err := r.SetQueryParam("dashboardID", qDashboardID); err != nil {
+			if err := r.SetQueryParam("dashboards", qDashboards); err != nil {
 				return err
 			}
 		}

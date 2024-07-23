@@ -64,7 +64,7 @@ CreateReportParams contains all the parameters to send to the API endpoint
 type CreateReportParams struct {
 
 	// Body.
-	Body *models.CreateOrUpdateReportConfig
+	Body *models.CreateOrUpdateReport
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *CreateReportParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the create report params
-func (o *CreateReportParams) WithBody(body *models.CreateOrUpdateReportConfig) *CreateReportParams {
+func (o *CreateReportParams) WithBody(body *models.CreateOrUpdateReport) *CreateReportParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the create report params
-func (o *CreateReportParams) SetBody(body *models.CreateOrUpdateReportConfig) {
+func (o *CreateReportParams) SetBody(body *models.CreateOrUpdateReport) {
 	o.Body = body
 }
 

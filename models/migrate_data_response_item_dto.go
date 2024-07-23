@@ -29,7 +29,7 @@ type MigrateDataResponseItemDTO struct {
 
 	// status
 	// Required: true
-	// Enum: [OK ERROR]
+	// Enum: [OK ERROR PENDING UNKNOWN]
 	Status *string `json:"status"`
 
 	// type
@@ -73,7 +73,7 @@ var migrateDataResponseItemDtoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["OK","ERROR"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["OK","ERROR","PENDING","UNKNOWN"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -88,6 +88,12 @@ const (
 
 	// MigrateDataResponseItemDTOStatusERROR captures enum value "ERROR"
 	MigrateDataResponseItemDTOStatusERROR string = "ERROR"
+
+	// MigrateDataResponseItemDTOStatusPENDING captures enum value "PENDING"
+	MigrateDataResponseItemDTOStatusPENDING string = "PENDING"
+
+	// MigrateDataResponseItemDTOStatusUNKNOWN captures enum value "UNKNOWN"
+	MigrateDataResponseItemDTOStatusUNKNOWN string = "UNKNOWN"
 )
 
 // prop value enum
