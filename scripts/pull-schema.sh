@@ -14,7 +14,6 @@ modify() {
 
 # Playlist models are all messed up
 # TODO: Upstream fix
-modify 'del(.definitions.Item)' # Old playlist item schema, PlaylistItem is more up to date
 modify '.responses.getPlaylistItemsResponse.schema.items["$ref"] = "#/definitions/PlaylistItem"' # Currently pointing to Item (old PlaylistItem model)
 modify '.responses.updatePlaylistResponse.schema["$ref"] = "#/definitions/Playlist"' # Currently pointing to Spec (Preferences)
 modify '.responses.getPlaylistResponse.schema["$ref"] = "#/definitions/Playlist"' # Currently pointing to Spec (Preferences)
