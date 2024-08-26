@@ -20,8 +20,8 @@ import (
 // swagger:model MigrateDataResponseItemDTO
 type MigrateDataResponseItemDTO struct {
 
-	// error
-	Error string `json:"error,omitempty"`
+	// message
+	Message string `json:"message,omitempty"`
 
 	// ref Id
 	// Required: true
@@ -29,7 +29,7 @@ type MigrateDataResponseItemDTO struct {
 
 	// status
 	// Required: true
-	// Enum: [OK ERROR PENDING UNKNOWN]
+	// Enum: [OK WARNING ERROR PENDING UNKNOWN]
 	Status *string `json:"status"`
 
 	// type
@@ -73,7 +73,7 @@ var migrateDataResponseItemDtoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["OK","ERROR","PENDING","UNKNOWN"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["OK","WARNING","ERROR","PENDING","UNKNOWN"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -85,6 +85,9 @@ const (
 
 	// MigrateDataResponseItemDTOStatusOK captures enum value "OK"
 	MigrateDataResponseItemDTOStatusOK string = "OK"
+
+	// MigrateDataResponseItemDTOStatusWARNING captures enum value "WARNING"
+	MigrateDataResponseItemDTOStatusWARNING string = "WARNING"
 
 	// MigrateDataResponseItemDTOStatusERROR captures enum value "ERROR"
 	MigrateDataResponseItemDTOStatusERROR string = "ERROR"

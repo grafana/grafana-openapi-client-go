@@ -28,6 +28,9 @@ type UpdateCorrelationCommand struct {
 	// Optional label identifying the correlation
 	// Example: My label
 	Label string `json:"label,omitempty"`
+
+	// type
+	Type CorrelationType `json:"type,omitempty"`
 }
 
 // Validate validates this update correlation command
@@ -35,6 +38,10 @@ func (m *UpdateCorrelationCommand) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -63,11 +70,32 @@ func (m *UpdateCorrelationCommand) validateConfig(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *UpdateCorrelationCommand) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if err := m.Type.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("type")
+		}
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this update correlation command based on the context it is used
 func (m *UpdateCorrelationCommand) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -93,6 +121,24 @@ func (m *UpdateCorrelationCommand) contextValidateConfig(ctx context.Context, fo
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *UpdateCorrelationCommand) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if err := m.Type.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("type")
+		}
+		return err
 	}
 
 	return nil

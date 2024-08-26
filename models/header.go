@@ -14,30 +14,27 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Header header
+// Header Header represents the configuration for a single HTTP header.
 //
 // swagger:model Header
-type Header map[string][]Secret
+type Header struct {
+
+	// files
+	Files []string `json:"files"`
+
+	// secrets
+	Secrets []Secret `json:"secrets"`
+
+	// values
+	Values []string `json:"values"`
+}
 
 // Validate validates this header
-func (m Header) Validate(formats strfmt.Registry) error {
+func (m *Header) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	for k := range m {
-
-		for i := 0; i < len(m[k]); i++ {
-
-			if err := m[k][i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName(k + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName(k + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-
-		}
-
+	if err := m.validateSecrets(formats); err != nil {
+		res = append(res, err)
 	}
 
 	if len(res) > 0 {
@@ -46,33 +43,77 @@ func (m Header) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this header based on the context it is used
-func (m Header) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
+func (m *Header) validateSecrets(formats strfmt.Registry) error {
+	if swag.IsZero(m.Secrets) { // not required
+		return nil
+	}
 
-	for k := range m {
+	for i := 0; i < len(m.Secrets); i++ {
 
-		for i := 0; i < len(m[k]); i++ {
-
-			if swag.IsZero(m[k][i]) { // not required
-				return nil
+		if err := m.Secrets[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("secrets" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("secrets" + "." + strconv.Itoa(i))
 			}
-
-			if err := m[k][i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName(k + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName(k + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-
+			return err
 		}
 
+	}
+
+	return nil
+}
+
+// ContextValidate validate this header based on the context it is used
+func (m *Header) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSecrets(ctx, formats); err != nil {
+		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Header) contextValidateSecrets(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Secrets); i++ {
+
+		if swag.IsZero(m.Secrets[i]) { // not required
+			return nil
+		}
+
+		if err := m.Secrets[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("secrets" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("secrets" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *Header) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *Header) UnmarshalBinary(b []byte) error {
+	var res Header
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
 	return nil
 }

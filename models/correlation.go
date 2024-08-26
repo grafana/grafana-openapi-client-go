@@ -44,6 +44,9 @@ type Correlation struct {
 	// Example: PE1C5CBDA0504A6A3
 	TargetUID string `json:"targetUID,omitempty"`
 
+	// type
+	Type CorrelationType `json:"type,omitempty"`
+
 	// Unique identifier of the correlation
 	// Example: 50xhMlg9k
 	UID string `json:"uid,omitempty"`
@@ -54,6 +57,10 @@ func (m *Correlation) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -82,11 +89,32 @@ func (m *Correlation) validateConfig(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Correlation) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if err := m.Type.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("type")
+		}
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this correlation based on the context it is used
 func (m *Correlation) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -112,6 +140,24 @@ func (m *Correlation) contextValidateConfig(ctx context.Context, formats strfmt.
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Correlation) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if err := m.Type.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("type")
+		}
+		return err
 	}
 
 	return nil

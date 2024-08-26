@@ -20,6 +20,9 @@ type SnapshotResourceStats struct {
 	// statuses
 	Statuses map[string]int64 `json:"statuses,omitempty"`
 
+	// total
+	Total int64 `json:"total,omitempty"`
+
 	// types
 	Types map[string]int64 `json:"types,omitempty"`
 }

@@ -30,9 +30,6 @@ type CorrelationConfigUpdateDTO struct {
 	// Source data transformations
 	// Example: [{"type":"logfmt"},{"expression":"(Superman|Batman)","type":"regex","variable":"name"}]
 	Transformations []*Transformation `json:"transformations"`
-
-	// type
-	Type CorrelationConfigType `json:"type,omitempty"`
 }
 
 // Validate validates this correlation config update DTO
@@ -40,10 +37,6 @@ func (m *CorrelationConfigUpdateDTO) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateTransformations(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,32 +72,11 @@ func (m *CorrelationConfigUpdateDTO) validateTransformations(formats strfmt.Regi
 	return nil
 }
 
-func (m *CorrelationConfigUpdateDTO) validateType(formats strfmt.Registry) error {
-	if swag.IsZero(m.Type) { // not required
-		return nil
-	}
-
-	if err := m.Type.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("type")
-		}
-		return err
-	}
-
-	return nil
-}
-
 // ContextValidate validate this correlation config update DTO based on the context it is used
 func (m *CorrelationConfigUpdateDTO) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateTransformations(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -134,24 +106,6 @@ func (m *CorrelationConfigUpdateDTO) contextValidateTransformations(ctx context.
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *CorrelationConfigUpdateDTO) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Type) { // not required
-		return nil
-	}
-
-	if err := m.Type.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("type")
-		}
-		return err
 	}
 
 	return nil

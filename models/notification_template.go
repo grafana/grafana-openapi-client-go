@@ -26,6 +26,9 @@ type NotificationTemplate struct {
 
 	// template
 	Template string `json:"template,omitempty"`
+
+	// version
+	Version string `json:"version,omitempty"`
 }
 
 // Validate validates this notification template

@@ -119,9 +119,10 @@ func NewGetTemplateNotFound() *GetTemplateNotFound {
 /*
 GetTemplateNotFound describes a response with status code 404, with default header values.
 
-	Not found.
+PublicError
 */
 type GetTemplateNotFound struct {
+	Payload *models.PublicError
 }
 
 // IsSuccess returns true when this get template not found response has a 2xx status code
@@ -155,14 +156,27 @@ func (o *GetTemplateNotFound) Code() int {
 }
 
 func (o *GetTemplateNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/templates/{name}][%d] getTemplateNotFound", 404)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/templates/{name}][%d] getTemplateNotFound %s", 404, payload)
 }
 
 func (o *GetTemplateNotFound) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/templates/{name}][%d] getTemplateNotFound", 404)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /v1/provisioning/templates/{name}][%d] getTemplateNotFound %s", 404, payload)
+}
+
+func (o *GetTemplateNotFound) GetPayload() *models.PublicError {
+	return o.Payload
 }
 
 func (o *GetTemplateNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.PublicError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

@@ -17,8 +17,8 @@ import (
 // swagger:model NavbarPreference
 type NavbarPreference struct {
 
-	// bookmark ids
-	BookmarkIds []string `json:"bookmarkIds"`
+	// bookmark urls
+	BookmarkUrls []string `json:"bookmarkUrls"`
 }
 
 // Validate validates this navbar preference
