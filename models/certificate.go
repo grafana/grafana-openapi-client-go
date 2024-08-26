@@ -124,7 +124,7 @@ type Certificate struct {
 
 	// Policies contains all policy identifiers included in the certificate.
 	// In Go 1.22, encoding/gob cannot handle and ignores this field.
-	Policies []OID `json:"Policies"`
+	Policies []string `json:"Policies"`
 
 	// PolicyIdentifiers contains asn1.ObjectIdentifiers, the components
 	// of which are limited to int32. If a certificate contains a policy which

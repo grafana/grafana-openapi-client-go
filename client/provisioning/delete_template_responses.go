@@ -6,10 +6,14 @@ package provisioning
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // DeleteTemplateReader is a Reader for the DeleteTemplate structure.
@@ -26,6 +30,12 @@ func (o *DeleteTemplateReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewDeleteTemplateConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("[DELETE /v1/provisioning/templates/{name}] DeleteTemplate", response, response.Code())
 	}
@@ -83,6 +93,76 @@ func (o *DeleteTemplateNoContent) String() string {
 }
 
 func (o *DeleteTemplateNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteTemplateConflict creates a DeleteTemplateConflict with default headers values
+func NewDeleteTemplateConflict() *DeleteTemplateConflict {
+	return &DeleteTemplateConflict{}
+}
+
+/*
+DeleteTemplateConflict describes a response with status code 409, with default header values.
+
+PublicError
+*/
+type DeleteTemplateConflict struct {
+	Payload *models.PublicError
+}
+
+// IsSuccess returns true when this delete template conflict response has a 2xx status code
+func (o *DeleteTemplateConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete template conflict response has a 3xx status code
+func (o *DeleteTemplateConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete template conflict response has a 4xx status code
+func (o *DeleteTemplateConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete template conflict response has a 5xx status code
+func (o *DeleteTemplateConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete template conflict response a status code equal to that given
+func (o *DeleteTemplateConflict) IsCode(code int) bool {
+	return code == 409
+}
+
+// Code gets the status code for the delete template conflict response
+func (o *DeleteTemplateConflict) Code() int {
+	return 409
+}
+
+func (o *DeleteTemplateConflict) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/provisioning/templates/{name}][%d] deleteTemplateConflict %s", 409, payload)
+}
+
+func (o *DeleteTemplateConflict) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /v1/provisioning/templates/{name}][%d] deleteTemplateConflict %s", 409, payload)
+}
+
+func (o *DeleteTemplateConflict) GetPayload() *models.PublicError {
+	return o.Payload
+}
+
+func (o *DeleteTemplateConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.PublicError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

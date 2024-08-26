@@ -36,6 +36,12 @@ func (o *PutTemplateReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
+	case 409:
+		result := NewPutTemplateConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("[PUT /v1/provisioning/templates/{name}] PutTemplate", response, response.Code())
 	}
@@ -119,10 +125,10 @@ func NewPutTemplateBadRequest() *PutTemplateBadRequest {
 /*
 PutTemplateBadRequest describes a response with status code 400, with default header values.
 
-ValidationError
+PublicError
 */
 type PutTemplateBadRequest struct {
-	Payload *models.ValidationError
+	Payload *models.PublicError
 }
 
 // IsSuccess returns true when this put template bad request response has a 2xx status code
@@ -165,13 +171,83 @@ func (o *PutTemplateBadRequest) String() string {
 	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateBadRequest %s", 400, payload)
 }
 
-func (o *PutTemplateBadRequest) GetPayload() *models.ValidationError {
+func (o *PutTemplateBadRequest) GetPayload() *models.PublicError {
 	return o.Payload
 }
 
 func (o *PutTemplateBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.ValidationError)
+	o.Payload = new(models.PublicError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPutTemplateConflict creates a PutTemplateConflict with default headers values
+func NewPutTemplateConflict() *PutTemplateConflict {
+	return &PutTemplateConflict{}
+}
+
+/*
+PutTemplateConflict describes a response with status code 409, with default header values.
+
+PublicError
+*/
+type PutTemplateConflict struct {
+	Payload *models.PublicError
+}
+
+// IsSuccess returns true when this put template conflict response has a 2xx status code
+func (o *PutTemplateConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this put template conflict response has a 3xx status code
+func (o *PutTemplateConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this put template conflict response has a 4xx status code
+func (o *PutTemplateConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this put template conflict response has a 5xx status code
+func (o *PutTemplateConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this put template conflict response a status code equal to that given
+func (o *PutTemplateConflict) IsCode(code int) bool {
+	return code == 409
+}
+
+// Code gets the status code for the put template conflict response
+func (o *PutTemplateConflict) Code() int {
+	return 409
+}
+
+func (o *PutTemplateConflict) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateConflict %s", 409, payload)
+}
+
+func (o *PutTemplateConflict) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /v1/provisioning/templates/{name}][%d] putTemplateConflict %s", 409, payload)
+}
+
+func (o *PutTemplateConflict) GetPayload() *models.PublicError {
+	return o.Payload
+}
+
+func (o *PutTemplateConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.PublicError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

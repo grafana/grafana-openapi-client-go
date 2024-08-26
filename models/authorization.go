@@ -24,6 +24,9 @@ type Authorization struct {
 	// credentials file
 	CredentialsFile string `json:"credentials_file,omitempty"`
 
+	// CredentialsRef is the name of the secret within the secret manager to use as credentials.
+	CredentialsRef string `json:"credentials_ref,omitempty"`
+
 	// type
 	Type string `json:"type,omitempty"`
 }

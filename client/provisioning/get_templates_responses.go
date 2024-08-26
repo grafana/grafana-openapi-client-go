@@ -30,12 +30,6 @@ func (o *GetTemplatesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetTemplatesNotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		return nil, runtime.NewAPIError("[GET /v1/provisioning/templates] GetTemplates", response, response.Code())
 	}
@@ -105,62 +99,6 @@ func (o *GetTemplatesOK) readResponse(response runtime.ClientResponse, consumer 
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewGetTemplatesNotFound creates a GetTemplatesNotFound with default headers values
-func NewGetTemplatesNotFound() *GetTemplatesNotFound {
-	return &GetTemplatesNotFound{}
-}
-
-/*
-GetTemplatesNotFound describes a response with status code 404, with default header values.
-
-	Not found.
-*/
-type GetTemplatesNotFound struct {
-}
-
-// IsSuccess returns true when this get templates not found response has a 2xx status code
-func (o *GetTemplatesNotFound) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this get templates not found response has a 3xx status code
-func (o *GetTemplatesNotFound) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this get templates not found response has a 4xx status code
-func (o *GetTemplatesNotFound) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this get templates not found response has a 5xx status code
-func (o *GetTemplatesNotFound) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this get templates not found response a status code equal to that given
-func (o *GetTemplatesNotFound) IsCode(code int) bool {
-	return code == 404
-}
-
-// Code gets the status code for the get templates not found response
-func (o *GetTemplatesNotFound) Code() int {
-	return 404
-}
-
-func (o *GetTemplatesNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesNotFound", 404)
-}
-
-func (o *GetTemplatesNotFound) String() string {
-	return fmt.Sprintf("[GET /v1/provisioning/templates][%d] getTemplatesNotFound", 404)
-}
-
-func (o *GetTemplatesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

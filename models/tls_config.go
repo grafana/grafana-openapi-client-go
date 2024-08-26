@@ -24,11 +24,19 @@ type TLSConfig struct {
 	// The CA cert to use for the targets.
 	CaFile string `json:"ca_file,omitempty"`
 
+	// CARef is the name of the secret within the secret manager to use as the CA cert for the
+	// targets.
+	CaRef string `json:"ca_ref,omitempty"`
+
 	// Text of the client cert file for the targets.
 	Cert string `json:"cert,omitempty"`
 
 	// The client cert file for the targets.
 	CertFile string `json:"cert_file,omitempty"`
+
+	// CertRef is the name of the secret within the secret manager to use as the client cert for
+	// the targets.
+	CertRef string `json:"cert_ref,omitempty"`
 
 	// Disable target certificate validation.
 	InsecureSkipVerify bool `json:"insecure_skip_verify,omitempty"`
@@ -38,6 +46,10 @@ type TLSConfig struct {
 
 	// The client key file for the targets.
 	KeyFile string `json:"key_file,omitempty"`
+
+	// KeyRef is the name of the secret within the secret manager to use as the client key for
+	// the targets.
+	KeyRef string `json:"key_ref,omitempty"`
 
 	// max version
 	MaxVersion TLSVersion `json:"max_version,omitempty"`

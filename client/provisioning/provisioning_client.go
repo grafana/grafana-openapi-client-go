@@ -40,8 +40,7 @@ type ClientService interface {
 
 	DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...ClientOption) (*DeleteMuteTimingNoContent, error)
 
-	DeleteTemplate(name string, opts ...ClientOption) (*DeleteTemplateNoContent, error)
-	DeleteTemplateWithParams(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error)
+	DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error)
 
 	ExportMuteTiming(params *ExportMuteTimingParams, opts ...ClientOption) (*ExportMuteTimingOK, error)
 
@@ -279,12 +278,8 @@ func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...Client
 /*
 DeleteTemplate deletes a template
 */
-func (a *Client) DeleteTemplate(name string, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
-	params := NewDeleteTemplateParams().WithName(name)
-	return a.DeleteTemplateWithParams(params, opts...)
-}
 
-func (a *Client) DeleteTemplateWithParams(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
+func (a *Client) DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
 	if params == nil {
 		params = NewDeleteTemplateParams()
 	}

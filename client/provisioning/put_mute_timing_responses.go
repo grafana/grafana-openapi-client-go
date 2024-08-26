@@ -195,10 +195,10 @@ func NewPutMuteTimingConflict() *PutMuteTimingConflict {
 /*
 PutMuteTimingConflict describes a response with status code 409, with default header values.
 
-GenericPublicError
+PublicError
 */
 type PutMuteTimingConflict struct {
-	Payload *models.GenericPublicError
+	Payload *models.PublicError
 }
 
 // IsSuccess returns true when this put mute timing conflict response has a 2xx status code
@@ -241,13 +241,13 @@ func (o *PutMuteTimingConflict) String() string {
 	return fmt.Sprintf("[PUT /v1/provisioning/mute-timings/{name}][%d] putMuteTimingConflict %s", 409, payload)
 }
 
-func (o *PutMuteTimingConflict) GetPayload() *models.GenericPublicError {
+func (o *PutMuteTimingConflict) GetPayload() *models.PublicError {
 	return o.Payload
 }
 
 func (o *PutMuteTimingConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GenericPublicError)
+	o.Payload = new(models.PublicError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

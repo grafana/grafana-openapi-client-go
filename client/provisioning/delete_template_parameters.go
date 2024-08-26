@@ -63,9 +63,15 @@ type DeleteTemplateParams struct {
 
 	/* Name.
 
-	   Template Name
+	   Template name
 	*/
 	Name string
+
+	/* Version.
+
+	   Version of template to use for optimistic concurrency. Leave empty to disable validation
+	*/
+	Version *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -131,6 +137,17 @@ func (o *DeleteTemplateParams) SetName(name string) {
 	o.Name = name
 }
 
+// WithVersion adds the version to the delete template params
+func (o *DeleteTemplateParams) WithVersion(version *string) *DeleteTemplateParams {
+	o.SetVersion(version)
+	return o
+}
+
+// SetVersion adds the version to the delete template params
+func (o *DeleteTemplateParams) SetVersion(version *string) {
+	o.Version = version
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteTemplateParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,6 +159,23 @@ func (o *DeleteTemplateParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	// path param name
 	if err := r.SetPathParam("name", o.Name); err != nil {
 		return err
+	}
+
+	if o.Version != nil {
+
+		// query param version
+		var qrVersion string
+
+		if o.Version != nil {
+			qrVersion = *o.Version
+		}
+		qVersion := qrVersion
+		if qVersion != "" {
+
+			if err := r.SetQueryParam("version", qVersion); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

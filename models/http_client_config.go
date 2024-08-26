@@ -41,6 +41,9 @@ type HTTPClientConfig struct {
 	// marshalled configuration when set to false.
 	FollowRedirects bool `json:"follow_redirects,omitempty"`
 
+	// http headers
+	HTTPHeaders *Headers `json:"http_headers,omitempty"`
+
 	// NoProxy contains addresses that should not use a proxy.
 	NoProxy string `json:"no_proxy,omitempty"`
 
@@ -48,7 +51,7 @@ type HTTPClientConfig struct {
 	Oauth2 *OAuth2 `json:"oauth2,omitempty"`
 
 	// proxy connect header
-	ProxyConnectHeader Header `json:"proxy_connect_header,omitempty"`
+	ProxyConnectHeader ProxyHeader `json:"proxy_connect_header,omitempty"`
 
 	// ProxyFromEnvironment makes use of net/http ProxyFromEnvironment function
 	// to determine proxies.
@@ -74,6 +77,10 @@ func (m *HTTPClientConfig) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateBearerToken(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHTTPHeaders(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -149,6 +156,25 @@ func (m *HTTPClientConfig) validateBearerToken(formats strfmt.Registry) error {
 			return ce.ValidateName("bearer_token")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *HTTPClientConfig) validateHTTPHeaders(formats strfmt.Registry) error {
+	if swag.IsZero(m.HTTPHeaders) { // not required
+		return nil
+	}
+
+	if m.HTTPHeaders != nil {
+		if err := m.HTTPHeaders.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("http_headers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("http_headers")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -246,6 +272,10 @@ func (m *HTTPClientConfig) ContextValidate(ctx context.Context, formats strfmt.R
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateHTTPHeaders(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOauth2(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -323,6 +353,27 @@ func (m *HTTPClientConfig) contextValidateBearerToken(ctx context.Context, forma
 			return ce.ValidateName("bearer_token")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *HTTPClientConfig) contextValidateHTTPHeaders(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HTTPHeaders != nil {
+
+		if swag.IsZero(m.HTTPHeaders) { // not required
+			return nil
+		}
+
+		if err := m.HTTPHeaders.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("http_headers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("http_headers")
+			}
+			return err
+		}
 	}
 
 	return nil

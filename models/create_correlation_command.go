@@ -32,9 +32,12 @@ type CreateCorrelationCommand struct {
 	// True if correlation was created with provisioning. This makes it read-only.
 	Provisioned bool `json:"provisioned,omitempty"`
 
-	// Target data source UID to which the correlation is created. required if config.type = query
+	// Target data source UID to which the correlation is created. required if type = query
 	// Example: PE1C5CBDA0504A6A3
 	TargetUID string `json:"targetUID,omitempty"`
+
+	// type
+	Type CorrelationType `json:"type,omitempty"`
 }
 
 // Validate validates this create correlation command
@@ -42,6 +45,10 @@ func (m *CreateCorrelationCommand) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -70,11 +77,32 @@ func (m *CreateCorrelationCommand) validateConfig(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *CreateCorrelationCommand) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if err := m.Type.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("type")
+		}
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this create correlation command based on the context it is used
 func (m *CreateCorrelationCommand) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -100,6 +128,24 @@ func (m *CreateCorrelationCommand) contextValidateConfig(ctx context.Context, fo
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *CreateCorrelationCommand) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if err := m.Type.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("type")
+		}
+		return err
 	}
 
 	return nil

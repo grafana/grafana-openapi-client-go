@@ -105,10 +105,10 @@ func NewDeleteMuteTimingConflict() *DeleteMuteTimingConflict {
 /*
 DeleteMuteTimingConflict describes a response with status code 409, with default header values.
 
-GenericPublicError
+PublicError
 */
 type DeleteMuteTimingConflict struct {
-	Payload *models.GenericPublicError
+	Payload *models.PublicError
 }
 
 // IsSuccess returns true when this delete mute timing conflict response has a 2xx status code
@@ -151,13 +151,13 @@ func (o *DeleteMuteTimingConflict) String() string {
 	return fmt.Sprintf("[DELETE /v1/provisioning/mute-timings/{name}][%d] deleteMuteTimingConflict %s", 409, payload)
 }
 
-func (o *DeleteMuteTimingConflict) GetPayload() *models.GenericPublicError {
+func (o *DeleteMuteTimingConflict) GetPayload() *models.PublicError {
 	return o.Payload
 }
 
 func (o *DeleteMuteTimingConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GenericPublicError)
+	o.Payload = new(models.PublicError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
