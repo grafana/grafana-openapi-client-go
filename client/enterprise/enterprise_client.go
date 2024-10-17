@@ -53,8 +53,7 @@ type ClientService interface {
 	SetDataSourceCacheConfig(dataSourceUID string, body *models.CacheConfigSetter, opts ...ClientOption) (*SetDataSourceCacheConfigOK, error)
 	SetDataSourceCacheConfigWithParams(params *SetDataSourceCacheConfigParams, opts ...ClientOption) (*SetDataSourceCacheConfigOK, error)
 
-	UpdateTeamLBACRulesAPI(uid string, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error)
-	UpdateTeamLBACRulesAPIWithParams(params *UpdateTeamLBACRulesAPIParams, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error)
+	UpdateTeamLBACRulesAPI(params *UpdateTeamLBACRulesAPIParams, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -375,12 +374,8 @@ func (a *Client) SetDataSourceCacheConfigWithParams(params *SetDataSourceCacheCo
 /*
 UpdateTeamLBACRulesAPI updates l b a c rules for a team
 */
-func (a *Client) UpdateTeamLBACRulesAPI(uid string, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error) {
-	params := NewUpdateTeamLBACRulesAPIParams().WithUID(uid)
-	return a.UpdateTeamLBACRulesAPIWithParams(params, opts...)
-}
 
-func (a *Client) UpdateTeamLBACRulesAPIWithParams(params *UpdateTeamLBACRulesAPIParams, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error) {
+func (a *Client) UpdateTeamLBACRulesAPI(params *UpdateTeamLBACRulesAPIParams, opts ...ClientOption) (*UpdateTeamLBACRulesAPIOK, error) {
 	if params == nil {
 		params = NewUpdateTeamLBACRulesAPIParams()
 	}
