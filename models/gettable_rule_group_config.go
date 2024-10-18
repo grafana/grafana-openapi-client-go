@@ -19,11 +19,23 @@ import (
 // swagger:model GettableRuleGroupConfig
 type GettableRuleGroupConfig struct {
 
+	// align evaluation time on interval
+	AlignEvaluationTimeOnInterval bool `json:"align_evaluation_time_on_interval,omitempty"`
+
+	// evaluation delay
+	EvaluationDelay string `json:"evaluation_delay,omitempty"`
+
 	// interval
 	Interval Duration `json:"interval,omitempty"`
 
+	// limit
+	Limit int64 `json:"limit,omitempty"`
+
 	// name
 	Name string `json:"name,omitempty"`
+
+	// query offset
+	QueryOffset string `json:"query_offset,omitempty"`
 
 	// rules
 	Rules []*GettableExtendedRuleNode `json:"rules"`

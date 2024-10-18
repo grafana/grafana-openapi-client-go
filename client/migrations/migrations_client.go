@@ -50,12 +50,6 @@ type ClientService interface {
 	DeleteSession(uid string, opts ...ClientOption) error
 	DeleteSessionWithParams(params *DeleteSessionParams, opts ...ClientOption) error
 
-	GetCloudMigrationRun(runUID string, opts ...ClientOption) (*GetCloudMigrationRunOK, error)
-	GetCloudMigrationRunWithParams(params *GetCloudMigrationRunParams, opts ...ClientOption) (*GetCloudMigrationRunOK, error)
-
-	GetCloudMigrationRunList(uid string, opts ...ClientOption) (*GetCloudMigrationRunListOK, error)
-	GetCloudMigrationRunListWithParams(params *GetCloudMigrationRunListParams, opts ...ClientOption) (*GetCloudMigrationRunListOK, error)
-
 	GetCloudMigrationToken(opts ...ClientOption) (*GetCloudMigrationTokenOK, error)
 	GetCloudMigrationTokenWithParams(params *GetCloudMigrationTokenParams, opts ...ClientOption) (*GetCloudMigrationTokenOK, error)
 
@@ -68,9 +62,6 @@ type ClientService interface {
 	GetShapshotList(params *GetShapshotListParams, opts ...ClientOption) (*GetShapshotListOK, error)
 
 	GetSnapshot(params *GetSnapshotParams, opts ...ClientOption) (*GetSnapshotOK, error)
-
-	RunCloudMigration(uid string, opts ...ClientOption) (*RunCloudMigrationOK, error)
-	RunCloudMigrationWithParams(params *RunCloudMigrationParams, opts ...ClientOption) (*RunCloudMigrationOK, error)
 
 	UploadSnapshot(uid string, snapshotUID string, opts ...ClientOption) (*UploadSnapshotOK, error)
 	UploadSnapshotWithParams(params *UploadSnapshotParams, opts ...ClientOption) (*UploadSnapshotOK, error)
@@ -340,94 +331,6 @@ func (a *Client) DeleteSessionWithParams(params *DeleteSessionParams, opts ...Cl
 }
 
 /*
-GetCloudMigrationRun gets the result of a single migration run
-*/
-func (a *Client) GetCloudMigrationRun(runUID string, opts ...ClientOption) (*GetCloudMigrationRunOK, error) {
-	params := NewGetCloudMigrationRunParams().WithRunUID(runUID)
-	return a.GetCloudMigrationRunWithParams(params, opts...)
-}
-
-func (a *Client) GetCloudMigrationRunWithParams(params *GetCloudMigrationRunParams, opts ...ClientOption) (*GetCloudMigrationRunOK, error) {
-	if params == nil {
-		params = NewGetCloudMigrationRunParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "getCloudMigrationRun",
-		Method:             "GET",
-		PathPattern:        "/cloudmigration/migration/run/{runUID}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &GetCloudMigrationRunReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetCloudMigrationRunOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getCloudMigrationRun: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetCloudMigrationRunList gets a list of migration runs for a migration
-*/
-func (a *Client) GetCloudMigrationRunList(uid string, opts ...ClientOption) (*GetCloudMigrationRunListOK, error) {
-	params := NewGetCloudMigrationRunListParams().WithUID(uid)
-	return a.GetCloudMigrationRunListWithParams(params, opts...)
-}
-
-func (a *Client) GetCloudMigrationRunListWithParams(params *GetCloudMigrationRunListParams, opts ...ClientOption) (*GetCloudMigrationRunListOK, error) {
-	if params == nil {
-		params = NewGetCloudMigrationRunListParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "getCloudMigrationRunList",
-		Method:             "GET",
-		PathPattern:        "/cloudmigration/migration/{uid}/run",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &GetCloudMigrationRunListReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetCloudMigrationRunListOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getCloudMigrationRunList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetCloudMigrationToken fetches the cloud migration token if it exists
 */
 func (a *Client) GetCloudMigrationToken(opts ...ClientOption) (*GetCloudMigrationTokenOK, error) {
@@ -636,52 +539,6 @@ func (a *Client) GetSnapshot(params *GetSnapshotParams, opts ...ClientOption) (*
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getSnapshot: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-RunCloudMigration triggers the run of a migration to the grafana cloud
-
-It returns migrations that has been created.
-*/
-func (a *Client) RunCloudMigration(uid string, opts ...ClientOption) (*RunCloudMigrationOK, error) {
-	params := NewRunCloudMigrationParams().WithUID(uid)
-	return a.RunCloudMigrationWithParams(params, opts...)
-}
-
-func (a *Client) RunCloudMigrationWithParams(params *RunCloudMigrationParams, opts ...ClientOption) (*RunCloudMigrationOK, error) {
-	if params == nil {
-		params = NewRunCloudMigrationParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "runCloudMigration",
-		Method:             "POST",
-		PathPattern:        "/cloudmigration/migration/{uid}/run",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &RunCloudMigrationReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*RunCloudMigrationOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for runCloudMigration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

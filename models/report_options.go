@@ -24,6 +24,9 @@ type ReportOptions struct {
 	// orientation
 	Orientation string `json:"orientation,omitempty"`
 
+	// pdf show template variables
+	PDFShowTemplateVariables bool `json:"pdfShowTemplateVariables,omitempty"`
+
 	// time range
 	TimeRange *ReportTimeRange `json:"timeRange,omitempty"`
 }

@@ -29,6 +29,9 @@ type UserToken struct {
 	// created at
 	CreatedAt int64 `json:"CreatedAt,omitempty"`
 
+	// external session Id
+	ExternalSessionID int64 `json:"ExternalSessionId,omitempty"`
+
 	// Id
 	ID int64 `json:"Id,omitempty"`
 
