@@ -73,10 +73,10 @@ func NewUpdateTeamLBACRulesAPIOK() *UpdateTeamLBACRulesAPIOK {
 /*
 UpdateTeamLBACRulesAPIOK describes a response with status code 200, with default header values.
 
-An OKResponse is returned if the request was successful.
+(empty)
 */
 type UpdateTeamLBACRulesAPIOK struct {
-	Payload *models.SuccessResponseBody
+	Payload *models.UpdateTeamLBACRulesAPIOKBody
 }
 
 // IsSuccess returns true when this update team l b a c rules Api Ok response has a 2xx status code
@@ -119,13 +119,13 @@ func (o *UpdateTeamLBACRulesAPIOK) String() string {
 	return fmt.Sprintf("[PUT /datasources/uid/{uid}/lbac/teams][%d] updateTeamLBACRulesApiOk %s", 200, payload)
 }
 
-func (o *UpdateTeamLBACRulesAPIOK) GetPayload() *models.SuccessResponseBody {
+func (o *UpdateTeamLBACRulesAPIOK) GetPayload() *models.UpdateTeamLBACRulesAPIOKBody {
 	return o.Payload
 }
 
 func (o *UpdateTeamLBACRulesAPIOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SuccessResponseBody)
+	o.Payload = new(models.UpdateTeamLBACRulesAPIOKBody)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

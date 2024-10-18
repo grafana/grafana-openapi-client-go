@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // NewUpdateTeamLBACRulesAPIParams creates a new UpdateTeamLBACRulesAPIParams object,
@@ -60,6 +62,9 @@ UpdateTeamLBACRulesAPIParams contains all the parameters to send to the API endp
 	Typically these are written to a http.Request.
 */
 type UpdateTeamLBACRulesAPIParams struct {
+
+	// Body.
+	Body *models.UpdateTeamLBACCommand
 
 	// UID.
 	UID string
@@ -117,6 +122,17 @@ func (o *UpdateTeamLBACRulesAPIParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithBody adds the body to the update team l b a c rules Api params
+func (o *UpdateTeamLBACRulesAPIParams) WithBody(body *models.UpdateTeamLBACCommand) *UpdateTeamLBACRulesAPIParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the update team l b a c rules Api params
+func (o *UpdateTeamLBACRulesAPIParams) SetBody(body *models.UpdateTeamLBACCommand) {
+	o.Body = body
+}
+
 // WithUID adds the uid to the update team l b a c rules Api params
 func (o *UpdateTeamLBACRulesAPIParams) WithUID(uid string) *UpdateTeamLBACRulesAPIParams {
 	o.SetUID(uid)
@@ -135,6 +151,11 @@ func (o *UpdateTeamLBACRulesAPIParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param uid
 	if err := r.SetPathParam("uid", o.UID); err != nil {

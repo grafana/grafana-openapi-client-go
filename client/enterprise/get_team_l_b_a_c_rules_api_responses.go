@@ -73,10 +73,10 @@ func NewGetTeamLBACRulesAPIOK() *GetTeamLBACRulesAPIOK {
 /*
 GetTeamLBACRulesAPIOK describes a response with status code 200, with default header values.
 
-An OKResponse is returned if the request was successful.
+(empty)
 */
 type GetTeamLBACRulesAPIOK struct {
-	Payload *models.SuccessResponseBody
+	Payload *models.TeamLBACRules
 }
 
 // IsSuccess returns true when this get team l b a c rules Api Ok response has a 2xx status code
@@ -119,13 +119,13 @@ func (o *GetTeamLBACRulesAPIOK) String() string {
 	return fmt.Sprintf("[GET /datasources/uid/{uid}/lbac/teams][%d] getTeamLBACRulesApiOk %s", 200, payload)
 }
 
-func (o *GetTeamLBACRulesAPIOK) GetPayload() *models.SuccessResponseBody {
+func (o *GetTeamLBACRulesAPIOK) GetPayload() *models.TeamLBACRules {
 	return o.Payload
 }
 
 func (o *GetTeamLBACRulesAPIOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SuccessResponseBody)
+	o.Payload = new(models.TeamLBACRules)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

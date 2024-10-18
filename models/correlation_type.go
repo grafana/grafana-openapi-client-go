@@ -11,7 +11,8 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// CorrelationType correlation type
+// CorrelationType the type of correlation, either query for containing query information, or external for containing an external URL
+// +enum
 //
 // swagger:model CorrelationType
 type CorrelationType string

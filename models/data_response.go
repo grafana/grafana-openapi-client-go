@@ -25,7 +25,7 @@ type DataResponse struct {
 	Error string `json:"Error,omitempty"`
 
 	// error source
-	ErrorSource ErrorSource `json:"ErrorSource,omitempty"`
+	ErrorSource Source `json:"ErrorSource,omitempty"`
 
 	// frames
 	Frames Frames `json:"Frames,omitempty"`

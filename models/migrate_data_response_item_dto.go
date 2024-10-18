@@ -23,6 +23,12 @@ type MigrateDataResponseItemDTO struct {
 	// message
 	Message string `json:"message,omitempty"`
 
+	// name
+	Name string `json:"name,omitempty"`
+
+	// parent name
+	ParentName string `json:"parentName,omitempty"`
+
 	// ref Id
 	// Required: true
 	RefID *string `json:"refId"`
@@ -34,7 +40,7 @@ type MigrateDataResponseItemDTO struct {
 
 	// type
 	// Required: true
-	// Enum: [DASHBOARD DATASOURCE FOLDER]
+	// Enum: [DASHBOARD DATASOURCE FOLDER LIBRARY_ELEMENT ALERT_RULE CONTACT_POINT NOTIFICATION_POLICY NOTIFICATION_TEMPLATE MUTE_TIMING]
 	Type *string `json:"type"`
 }
 
@@ -125,7 +131,7 @@ var migrateDataResponseItemDtoTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DASHBOARD","DATASOURCE","FOLDER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DASHBOARD","DATASOURCE","FOLDER","LIBRARY_ELEMENT","ALERT_RULE","CONTACT_POINT","NOTIFICATION_POLICY","NOTIFICATION_TEMPLATE","MUTE_TIMING"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -143,6 +149,24 @@ const (
 
 	// MigrateDataResponseItemDTOTypeFOLDER captures enum value "FOLDER"
 	MigrateDataResponseItemDTOTypeFOLDER string = "FOLDER"
+
+	// MigrateDataResponseItemDTOTypeLIBRARYELEMENT captures enum value "LIBRARY_ELEMENT"
+	MigrateDataResponseItemDTOTypeLIBRARYELEMENT string = "LIBRARY_ELEMENT"
+
+	// MigrateDataResponseItemDTOTypeALERTRULE captures enum value "ALERT_RULE"
+	MigrateDataResponseItemDTOTypeALERTRULE string = "ALERT_RULE"
+
+	// MigrateDataResponseItemDTOTypeCONTACTPOINT captures enum value "CONTACT_POINT"
+	MigrateDataResponseItemDTOTypeCONTACTPOINT string = "CONTACT_POINT"
+
+	// MigrateDataResponseItemDTOTypeNOTIFICATIONPOLICY captures enum value "NOTIFICATION_POLICY"
+	MigrateDataResponseItemDTOTypeNOTIFICATIONPOLICY string = "NOTIFICATION_POLICY"
+
+	// MigrateDataResponseItemDTOTypeNOTIFICATIONTEMPLATE captures enum value "NOTIFICATION_TEMPLATE"
+	MigrateDataResponseItemDTOTypeNOTIFICATIONTEMPLATE string = "NOTIFICATION_TEMPLATE"
+
+	// MigrateDataResponseItemDTOTypeMUTETIMING captures enum value "MUTE_TIMING"
+	MigrateDataResponseItemDTOTypeMUTETIMING string = "MUTE_TIMING"
 )
 
 // prop value enum

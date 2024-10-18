@@ -80,6 +80,12 @@ type GetShapshotListParams struct {
 	*/
 	Page *int64
 
+	/* Sort.
+
+	   Sort with value latest to return results sorted in descending order.
+	*/
+	Sort *string
+
 	/* UID.
 
 	   Session UID of a session
@@ -175,6 +181,17 @@ func (o *GetShapshotListParams) SetPage(page *int64) {
 	o.Page = page
 }
 
+// WithSort adds the sort to the get shapshot list params
+func (o *GetShapshotListParams) WithSort(sort *string) *GetShapshotListParams {
+	o.SetSort(sort)
+	return o
+}
+
+// SetSort adds the sort to the get shapshot list params
+func (o *GetShapshotListParams) SetSort(sort *string) {
+	o.Sort = sort
+}
+
 // WithUID adds the uid to the get shapshot list params
 func (o *GetShapshotListParams) WithUID(uid string) *GetShapshotListParams {
 	o.SetUID(uid)
@@ -223,6 +240,23 @@ func (o *GetShapshotListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		if qPage != "" {
 
 			if err := r.SetQueryParam("page", qPage); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Sort != nil {
+
+		// query param sort
+		var qrSort string
+
+		if o.Sort != nil {
+			qrSort = *o.Sort
+		}
+		qSort := qrSort
+		if qSort != "" {
+
+			if err := r.SetQueryParam("sort", qSort); err != nil {
 				return err
 			}
 		}
