@@ -23,6 +23,9 @@ type UserLookupDTO struct {
 	// login
 	Login string `json:"login,omitempty"`
 
+	// uid
+	UID string `json:"uid,omitempty"`
+
 	// user Id
 	UserID int64 `json:"userId,omitempty"`
 }
