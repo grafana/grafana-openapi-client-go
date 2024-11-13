@@ -20,6 +20,10 @@ import (
 // swagger:model MigrateDataResponseItemDTO
 type MigrateDataResponseItemDTO struct {
 
+	// error code
+	// Enum: [DATASOURCE_NAME_CONFLICT DATASOURCE_INVALID_URL DATASOURCE_ALREADY_MANAGED FOLDER_NAME_CONFLICT DASHBOARD_ALREADY_MANAGED LIBRARY_ELEMENT_NAME_CONFLICT UNSUPPORTED_DATA_TYPE RESOURCE_CONFLICT UNEXPECTED_STATUS_CODE INTERNAL_SERVICE_ERROR ONLY_CORE_DATA_SOURCES GENERIC_ERROR]
+	ErrorCode string `json:"errorCode,omitempty"`
+
 	// message
 	Message string `json:"message,omitempty"`
 
@@ -48,6 +52,10 @@ type MigrateDataResponseItemDTO struct {
 func (m *MigrateDataResponseItemDTO) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateErrorCode(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRefID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -63,6 +71,78 @@ func (m *MigrateDataResponseItemDTO) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var migrateDataResponseItemDtoTypeErrorCodePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DATASOURCE_NAME_CONFLICT","DATASOURCE_INVALID_URL","DATASOURCE_ALREADY_MANAGED","FOLDER_NAME_CONFLICT","DASHBOARD_ALREADY_MANAGED","LIBRARY_ELEMENT_NAME_CONFLICT","UNSUPPORTED_DATA_TYPE","RESOURCE_CONFLICT","UNEXPECTED_STATUS_CODE","INTERNAL_SERVICE_ERROR","ONLY_CORE_DATA_SOURCES","GENERIC_ERROR"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		migrateDataResponseItemDtoTypeErrorCodePropEnum = append(migrateDataResponseItemDtoTypeErrorCodePropEnum, v)
+	}
+}
+
+const (
+
+	// MigrateDataResponseItemDTOErrorCodeDATASOURCENAMECONFLICT captures enum value "DATASOURCE_NAME_CONFLICT"
+	MigrateDataResponseItemDTOErrorCodeDATASOURCENAMECONFLICT string = "DATASOURCE_NAME_CONFLICT"
+
+	// MigrateDataResponseItemDTOErrorCodeDATASOURCEINVALIDURL captures enum value "DATASOURCE_INVALID_URL"
+	MigrateDataResponseItemDTOErrorCodeDATASOURCEINVALIDURL string = "DATASOURCE_INVALID_URL"
+
+	// MigrateDataResponseItemDTOErrorCodeDATASOURCEALREADYMANAGED captures enum value "DATASOURCE_ALREADY_MANAGED"
+	MigrateDataResponseItemDTOErrorCodeDATASOURCEALREADYMANAGED string = "DATASOURCE_ALREADY_MANAGED"
+
+	// MigrateDataResponseItemDTOErrorCodeFOLDERNAMECONFLICT captures enum value "FOLDER_NAME_CONFLICT"
+	MigrateDataResponseItemDTOErrorCodeFOLDERNAMECONFLICT string = "FOLDER_NAME_CONFLICT"
+
+	// MigrateDataResponseItemDTOErrorCodeDASHBOARDALREADYMANAGED captures enum value "DASHBOARD_ALREADY_MANAGED"
+	MigrateDataResponseItemDTOErrorCodeDASHBOARDALREADYMANAGED string = "DASHBOARD_ALREADY_MANAGED"
+
+	// MigrateDataResponseItemDTOErrorCodeLIBRARYELEMENTNAMECONFLICT captures enum value "LIBRARY_ELEMENT_NAME_CONFLICT"
+	MigrateDataResponseItemDTOErrorCodeLIBRARYELEMENTNAMECONFLICT string = "LIBRARY_ELEMENT_NAME_CONFLICT"
+
+	// MigrateDataResponseItemDTOErrorCodeUNSUPPORTEDDATATYPE captures enum value "UNSUPPORTED_DATA_TYPE"
+	MigrateDataResponseItemDTOErrorCodeUNSUPPORTEDDATATYPE string = "UNSUPPORTED_DATA_TYPE"
+
+	// MigrateDataResponseItemDTOErrorCodeRESOURCECONFLICT captures enum value "RESOURCE_CONFLICT"
+	MigrateDataResponseItemDTOErrorCodeRESOURCECONFLICT string = "RESOURCE_CONFLICT"
+
+	// MigrateDataResponseItemDTOErrorCodeUNEXPECTEDSTATUSCODE captures enum value "UNEXPECTED_STATUS_CODE"
+	MigrateDataResponseItemDTOErrorCodeUNEXPECTEDSTATUSCODE string = "UNEXPECTED_STATUS_CODE"
+
+	// MigrateDataResponseItemDTOErrorCodeINTERNALSERVICEERROR captures enum value "INTERNAL_SERVICE_ERROR"
+	MigrateDataResponseItemDTOErrorCodeINTERNALSERVICEERROR string = "INTERNAL_SERVICE_ERROR"
+
+	// MigrateDataResponseItemDTOErrorCodeONLYCOREDATASOURCES captures enum value "ONLY_CORE_DATA_SOURCES"
+	MigrateDataResponseItemDTOErrorCodeONLYCOREDATASOURCES string = "ONLY_CORE_DATA_SOURCES"
+
+	// MigrateDataResponseItemDTOErrorCodeGENERICERROR captures enum value "GENERIC_ERROR"
+	MigrateDataResponseItemDTOErrorCodeGENERICERROR string = "GENERIC_ERROR"
+)
+
+// prop value enum
+func (m *MigrateDataResponseItemDTO) validateErrorCodeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, migrateDataResponseItemDtoTypeErrorCodePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MigrateDataResponseItemDTO) validateErrorCode(formats strfmt.Registry) error {
+	if swag.IsZero(m.ErrorCode) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateErrorCodeEnum("errorCode", "body", m.ErrorCode); err != nil {
+		return err
+	}
+
 	return nil
 }
 

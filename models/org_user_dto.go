@@ -56,6 +56,9 @@ type OrgUserDTO struct {
 	// role
 	Role string `json:"role,omitempty"`
 
+	// uid
+	UID string `json:"uid,omitempty"`
+
 	// user Id
 	UserID int64 `json:"userId,omitempty"`
 }
