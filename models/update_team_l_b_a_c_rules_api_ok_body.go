@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -21,14 +22,14 @@ type UpdateTeamLBACRulesAPIOKBody struct {
 	// id
 	ID int64 `json:"id,omitempty"`
 
-	// lbac rules
-	LbacRules *TeamLBACRules `json:"lbacRules,omitempty"`
-
 	// message
 	Message string `json:"message,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
+
+	// rules
+	Rules []*TeamLBACRule `json:"rules"`
 
 	// uid
 	UID string `json:"uid,omitempty"`
@@ -38,7 +39,7 @@ type UpdateTeamLBACRulesAPIOKBody struct {
 func (m *UpdateTeamLBACRulesAPIOKBody) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateLbacRules(formats); err != nil {
+	if err := m.validateRules(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -48,20 +49,27 @@ func (m *UpdateTeamLBACRulesAPIOKBody) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UpdateTeamLBACRulesAPIOKBody) validateLbacRules(formats strfmt.Registry) error {
-	if swag.IsZero(m.LbacRules) { // not required
+func (m *UpdateTeamLBACRulesAPIOKBody) validateRules(formats strfmt.Registry) error {
+	if swag.IsZero(m.Rules) { // not required
 		return nil
 	}
 
-	if m.LbacRules != nil {
-		if err := m.LbacRules.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("lbacRules")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("lbacRules")
-			}
-			return err
+	for i := 0; i < len(m.Rules); i++ {
+		if swag.IsZero(m.Rules[i]) { // not required
+			continue
 		}
+
+		if m.Rules[i] != nil {
+			if err := m.Rules[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -71,7 +79,7 @@ func (m *UpdateTeamLBACRulesAPIOKBody) validateLbacRules(formats strfmt.Registry
 func (m *UpdateTeamLBACRulesAPIOKBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateLbacRules(ctx, formats); err != nil {
+	if err := m.contextValidateRules(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -81,22 +89,26 @@ func (m *UpdateTeamLBACRulesAPIOKBody) ContextValidate(ctx context.Context, form
 	return nil
 }
 
-func (m *UpdateTeamLBACRulesAPIOKBody) contextValidateLbacRules(ctx context.Context, formats strfmt.Registry) error {
+func (m *UpdateTeamLBACRulesAPIOKBody) contextValidateRules(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.LbacRules != nil {
+	for i := 0; i < len(m.Rules); i++ {
 
-		if swag.IsZero(m.LbacRules) { // not required
-			return nil
-		}
+		if m.Rules[i] != nil {
 
-		if err := m.LbacRules.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("lbacRules")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("lbacRules")
+			if swag.IsZero(m.Rules[i]) { // not required
+				return nil
 			}
-			return err
+
+			if err := m.Rules[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
+
 	}
 
 	return nil

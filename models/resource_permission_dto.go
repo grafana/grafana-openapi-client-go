@@ -50,6 +50,9 @@ type ResourcePermissionDTO struct {
 	// team Id
 	TeamID int64 `json:"teamId,omitempty"`
 
+	// team Uid
+	TeamUID string `json:"teamUid,omitempty"`
+
 	// user avatar Url
 	UserAvatarURL string `json:"userAvatarUrl,omitempty"`
 
@@ -58,6 +61,9 @@ type ResourcePermissionDTO struct {
 
 	// user login
 	UserLogin string `json:"userLogin,omitempty"`
+
+	// user Uid
+	UserUID string `json:"userUid,omitempty"`
 }
 
 // Validate validates this resource permission DTO

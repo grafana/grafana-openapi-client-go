@@ -55,6 +55,10 @@ type ServiceAccountDTO struct {
 	// tokens
 	// Example: 0
 	Tokens int64 `json:"tokens,omitempty"`
+
+	// uid
+	// Example: fe1xejlha91xce
+	UID string `json:"uid,omitempty"`
 }
 
 // Validate validates this service account DTO

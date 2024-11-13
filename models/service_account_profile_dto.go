@@ -70,6 +70,10 @@ type ServiceAccountProfileDTO struct {
 	// tokens
 	Tokens int64 `json:"tokens,omitempty"`
 
+	// uid
+	// Example: fe1xejlha91xce
+	UID string `json:"uid,omitempty"`
+
 	// updated at
 	// Example: 2022-03-21T14:35:33Z
 	// Format: date-time

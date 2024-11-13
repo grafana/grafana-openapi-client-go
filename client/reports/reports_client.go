@@ -123,6 +123,9 @@ DeleteReport deletes a report
 Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.delete` with scope `reports:id:<report ID>`.
+
+Requesting reports using the internal id will stop workgin in the future
+Use the reporting apiserver to manage reports.  See: /apis/reporting.grafana.app/
 */
 func (a *Client) DeleteReport(id int64, opts ...ClientOption) (*DeleteReportOK, error) {
 	params := NewDeleteReportParams().WithID(id)
@@ -171,6 +174,9 @@ GetReport gets a report
 Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports:read` with scope `reports:id:<report ID>`.
+
+Requesting reports using the internal id will stop workgin in the future
+Use the reporting apiserver to manage reports.  See: /apis/reporting.grafana.app/
 */
 func (a *Client) GetReport(id int64, opts ...ClientOption) (*GetReportOK, error) {
 	params := NewGetReportParams().WithID(id)
@@ -595,6 +601,9 @@ UpdateReport updates a report
 Available to org admins only and with a valid or expired license.
 
 You need to have a permission with action `reports.admin:write` with scope `reports:id:<report ID>`.
+
+Requesting reports using the internal id will stop workgin in the future
+Use the reporting apiserver to manage reports.  See: /apis/reporting.grafana.app/
 */
 func (a *Client) UpdateReport(id int64, body *models.CreateOrUpdateReport, opts ...ClientOption) (*UpdateReportOK, error) {
 	params := NewUpdateReportParams().WithBody(body).WithID(id)

@@ -22,6 +22,9 @@ type TeamLBACRule struct {
 
 	// team Id
 	TeamID string `json:"teamId,omitempty"`
+
+	// team Uid
+	TeamUID string `json:"teamUid,omitempty"`
 }
 
 // Validate validates this team l b a c rule
