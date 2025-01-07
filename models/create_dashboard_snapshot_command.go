@@ -11,7 +11,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // CreateDashboardSnapshotCommand create dashboard snapshot command
@@ -28,7 +27,7 @@ type CreateDashboardSnapshotCommand struct {
 
 	// dashboard
 	// Required: true
-	Dashboard *Unstructured `json:"dashboard"`
+	Dashboard Unstructured `json:"dashboard"`
 
 	// Unique key used to delete the snapshot. It is different from the `key` so that only the creator can delete the snapshot. Required if `external` is `true`.
 	DeleteKey string `json:"deleteKey,omitempty"`
@@ -71,52 +70,15 @@ func (m *CreateDashboardSnapshotCommand) Validate(formats strfmt.Registry) error
 
 func (m *CreateDashboardSnapshotCommand) validateDashboard(formats strfmt.Registry) error {
 
-	if err := validate.Required("dashboard", "body", m.Dashboard); err != nil {
-		return err
-	}
-
-	if m.Dashboard != nil {
-		if err := m.Dashboard.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("dashboard")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("dashboard")
-			}
-			return err
-		}
+	if m.Dashboard == nil {
+		return errors.Required("dashboard", "body", nil)
 	}
 
 	return nil
 }
 
-// ContextValidate validate this create dashboard snapshot command based on the context it is used
+// ContextValidate validates this create dashboard snapshot command based on context it is used
 func (m *CreateDashboardSnapshotCommand) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateDashboard(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *CreateDashboardSnapshotCommand) contextValidateDashboard(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Dashboard != nil {
-
-		if err := m.Dashboard.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("dashboard")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("dashboard")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

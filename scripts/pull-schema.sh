@@ -32,5 +32,8 @@ modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 
+# "Unstructured" should truly be unstructured. Not an object with an "Object" property that allows anything.
+modify '.definitions.Unstructured.properties = {}'
+
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
