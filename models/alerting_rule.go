@@ -38,9 +38,15 @@ type AlertingRule struct {
 	// evaluation time
 	EvaluationTime float64 `json:"evaluationTime,omitempty"`
 
+	// folder Uid
+	FolderUID string `json:"folderUid,omitempty"`
+
 	// health
 	// Required: true
 	Health *string `json:"health"`
+
+	// keep firing for
+	KeepFiringFor float64 `json:"keepFiringFor,omitempty"`
 
 	// labels
 	Labels Labels `json:"labels,omitempty"`
@@ -55,6 +61,9 @@ type AlertingRule struct {
 	// name
 	// Required: true
 	Name *string `json:"name"`
+
+	// queried datasource UI ds
+	QueriedDatasourceUIDs []string `json:"queriedDatasourceUIDs"`
 
 	// query
 	// Required: true
@@ -73,6 +82,9 @@ type AlertingRule struct {
 	// type
 	// Required: true
 	Type *string `json:"type"`
+
+	// uid
+	UID string `json:"uid,omitempty"`
 }
 
 // Validate validates this alerting rule

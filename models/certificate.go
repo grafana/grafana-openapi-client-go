@@ -68,6 +68,46 @@ type Certificate struct {
 	// IP addresses
 	IPAddresses []string `json:"IPAddresses"`
 
+	// InhibitAnyPolicy and InhibitAnyPolicyZero indicate the presence and value
+	// of the inhibitAnyPolicy extension.
+	//
+	// The value of InhibitAnyPolicy indicates the number of additional
+	// certificates in the path after this certificate that may use the
+	// anyPolicy policy OID to indicate a match with any other policy.
+	//
+	// When parsing a certificate, a positive non-zero InhibitAnyPolicy means
+	// that the field was specified, -1 means it was unset, and
+	// InhibitAnyPolicyZero being true mean that the field was explicitly set to
+	// zero. The case of InhibitAnyPolicy==0 with InhibitAnyPolicyZero==false
+	// should be treated equivalent to -1 (unset).
+	InhibitAnyPolicy int64 `json:"InhibitAnyPolicy,omitempty"`
+
+	// InhibitAnyPolicyZero indicates that InhibitAnyPolicy==0 should be
+	// interpreted as an actual maximum path length of zero. Otherwise, that
+	// combination is interpreted as InhibitAnyPolicy not being set.
+	InhibitAnyPolicyZero bool `json:"InhibitAnyPolicyZero,omitempty"`
+
+	// InhibitPolicyMapping and InhibitPolicyMappingZero indicate the presence
+	// and value of the inhibitPolicyMapping field of the policyConstraints
+	// extension.
+	//
+	// The value of InhibitPolicyMapping indicates the number of additional
+	// certificates in the path after this certificate that may use policy
+	// mapping.
+	//
+	// When parsing a certificate, a positive non-zero InhibitPolicyMapping
+	// means that the field was specified, -1 means it was unset, and
+	// InhibitPolicyMappingZero being true mean that the field was explicitly
+	// set to zero. The case of InhibitPolicyMapping==0 with
+	// InhibitPolicyMappingZero==false should be treated equivalent to -1
+	// (unset).
+	InhibitPolicyMapping int64 `json:"InhibitPolicyMapping,omitempty"`
+
+	// InhibitPolicyMappingZero indicates that InhibitPolicyMapping==0 should be
+	// interpreted as an actual maximum path length of zero. Otherwise, that
+	// combination is interpreted as InhibitAnyPolicy not being set.
+	InhibitPolicyMappingZero bool `json:"InhibitPolicyMappingZero,omitempty"`
+
 	// is c a
 	IsCA bool `json:"IsCA,omitempty"`
 
@@ -123,6 +163,8 @@ type Certificate struct {
 	PermittedURIDomains []string `json:"PermittedURIDomains"`
 
 	// Policies contains all policy identifiers included in the certificate.
+	// See CreateCertificate for context about how this field and the PolicyIdentifiers field
+	// interact.
 	// In Go 1.22, encoding/gob cannot handle and ignores this field.
 	Policies []string `json:"Policies"`
 
@@ -131,7 +173,12 @@ type Certificate struct {
 	// cannot be represented by asn1.ObjectIdentifier, it will not be included in
 	// PolicyIdentifiers, but will be present in Policies, which contains all parsed
 	// policy OIDs.
+	// See CreateCertificate for context about how this field and the Policies field
+	// interact.
 	PolicyIdentifiers []ObjectIdentifier `json:"PolicyIdentifiers"`
+
+	// PolicyMappings contains a list of policy mappings included in the certificate.
+	PolicyMappings []*PolicyMapping `json:"PolicyMappings"`
 
 	// public key
 	PublicKey interface{} `json:"PublicKey,omitempty"`
@@ -153,6 +200,30 @@ type Certificate struct {
 
 	// raw t b s certificate
 	RawTBSCertificate []uint8 `json:"RawTBSCertificate"`
+
+	// RequireExplicitPolicy and RequireExplicitPolicyZero indicate the presence
+	// and value of the requireExplicitPolicy field of the policyConstraints
+	// extension.
+	//
+	// The value of RequireExplicitPolicy indicates the number of additional
+	// certificates in the path after this certificate before an explicit policy
+	// is required for the rest of the path. When an explicit policy is required,
+	// each subsequent certificate in the path must contain a required policy OID,
+	// or a policy OID which has been declared as equivalent through the policy
+	// mapping extension.
+	//
+	// When parsing a certificate, a positive non-zero RequireExplicitPolicy
+	// means that the field was specified, -1 means it was unset, and
+	// RequireExplicitPolicyZero being true mean that the field was explicitly
+	// set to zero. The case of RequireExplicitPolicy==0 with
+	// RequireExplicitPolicyZero==false should be treated equivalent to -1
+	// (unset).
+	RequireExplicitPolicy int64 `json:"RequireExplicitPolicy,omitempty"`
+
+	// RequireExplicitPolicyZero indicates that RequireExplicitPolicy==0 should be
+	// interpreted as an actual maximum path length of zero. Otherwise, that
+	// combination is interpreted as InhibitAnyPolicy not being set.
+	RequireExplicitPolicyZero bool `json:"RequireExplicitPolicyZero,omitempty"`
 
 	// serial number
 	SerialNumber string `json:"SerialNumber,omitempty"`
@@ -226,6 +297,10 @@ func (m *Certificate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePolicyIdentifiers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePolicyMappings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -453,6 +528,32 @@ func (m *Certificate) validatePolicyIdentifiers(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Certificate) validatePolicyMappings(formats strfmt.Registry) error {
+	if swag.IsZero(m.PolicyMappings) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PolicyMappings); i++ {
+		if swag.IsZero(m.PolicyMappings[i]) { // not required
+			continue
+		}
+
+		if m.PolicyMappings[i] != nil {
+			if err := m.PolicyMappings[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("PolicyMappings" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("PolicyMappings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Certificate) validatePublicKeyAlgorithm(formats strfmt.Registry) error {
 	if swag.IsZero(m.PublicKeyAlgorithm) { // not required
 		return nil
@@ -607,6 +708,10 @@ func (m *Certificate) ContextValidate(ctx context.Context, formats strfmt.Regist
 	}
 
 	if err := m.contextValidatePolicyIdentifiers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePolicyMappings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -812,6 +917,31 @@ func (m *Certificate) contextValidatePolicyIdentifiers(ctx context.Context, form
 				return ce.ValidateName("PolicyIdentifiers" + "." + strconv.Itoa(i))
 			}
 			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Certificate) contextValidatePolicyMappings(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PolicyMappings); i++ {
+
+		if m.PolicyMappings[i] != nil {
+
+			if swag.IsZero(m.PolicyMappings[i]) { // not required
+				return nil
+			}
+
+			if err := m.PolicyMappings[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("PolicyMappings" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("PolicyMappings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
 
 	}

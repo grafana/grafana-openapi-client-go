@@ -42,6 +42,12 @@ func (o *UpdateDataSourceByUIDReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
+	case 409:
+		result := NewUpdateDataSourceByUIDConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewUpdateDataSourceByUIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -252,6 +258,76 @@ func (o *UpdateDataSourceByUIDForbidden) GetPayload() *models.ErrorResponseBody 
 }
 
 func (o *UpdateDataSourceByUIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateDataSourceByUIDConflict creates a UpdateDataSourceByUIDConflict with default headers values
+func NewUpdateDataSourceByUIDConflict() *UpdateDataSourceByUIDConflict {
+	return &UpdateDataSourceByUIDConflict{}
+}
+
+/*
+UpdateDataSourceByUIDConflict describes a response with status code 409, with default header values.
+
+ConflictError
+*/
+type UpdateDataSourceByUIDConflict struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this update data source by Uid conflict response has a 2xx status code
+func (o *UpdateDataSourceByUIDConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update data source by Uid conflict response has a 3xx status code
+func (o *UpdateDataSourceByUIDConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update data source by Uid conflict response has a 4xx status code
+func (o *UpdateDataSourceByUIDConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update data source by Uid conflict response has a 5xx status code
+func (o *UpdateDataSourceByUIDConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update data source by Uid conflict response a status code equal to that given
+func (o *UpdateDataSourceByUIDConflict) IsCode(code int) bool {
+	return code == 409
+}
+
+// Code gets the status code for the update data source by Uid conflict response
+func (o *UpdateDataSourceByUIDConflict) Code() int {
+	return 409
+}
+
+func (o *UpdateDataSourceByUIDConflict) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidConflict %s", 409, payload)
+}
+
+func (o *UpdateDataSourceByUIDConflict) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /datasources/uid/{uid}][%d] updateDataSourceByUidConflict %s", 409, payload)
+}
+
+func (o *UpdateDataSourceByUIDConflict) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *UpdateDataSourceByUIDConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

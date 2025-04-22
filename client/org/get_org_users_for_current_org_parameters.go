@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetOrgUsersForCurrentOrgParams creates a new GetOrgUsersForCurrentOrgParams object,
@@ -60,6 +61,15 @@ GetOrgUsersForCurrentOrgParams contains all the parameters to send to the API en
 	Typically these are written to a http.Request.
 */
 type GetOrgUsersForCurrentOrgParams struct {
+
+	// Limit.
+	//
+	// Format: int64
+	Limit *int64
+
+	// Query.
+	Query *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +123,28 @@ func (o *GetOrgUsersForCurrentOrgParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithLimit adds the limit to the get org users for current org params
+func (o *GetOrgUsersForCurrentOrgParams) WithLimit(limit *int64) *GetOrgUsersForCurrentOrgParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the get org users for current org params
+func (o *GetOrgUsersForCurrentOrgParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithQuery adds the query to the get org users for current org params
+func (o *GetOrgUsersForCurrentOrgParams) WithQuery(query *string) *GetOrgUsersForCurrentOrgParams {
+	o.SetQuery(query)
+	return o
+}
+
+// SetQuery adds the query to the get org users for current org params
+func (o *GetOrgUsersForCurrentOrgParams) SetQuery(query *string) {
+	o.Query = query
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetOrgUsersForCurrentOrgParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +152,40 @@ func (o *GetOrgUsersForCurrentOrgParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Query != nil {
+
+		// query param query
+		var qrQuery string
+
+		if o.Query != nil {
+			qrQuery = *o.Query
+		}
+		qQuery := qrQuery
+		if qQuery != "" {
+
+			if err := r.SetQueryParam("query", qQuery); err != nil {
+				return err
+			}
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

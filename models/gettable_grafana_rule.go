@@ -31,8 +31,8 @@ type GettableGrafanaRule struct {
 	// Enum: [OK Alerting Error]
 	ExecErrState string `json:"exec_err_state,omitempty"`
 
-	// id
-	ID int64 `json:"id,omitempty"`
+	// guid
+	GUID string `json:"guid,omitempty"`
 
 	// interval seconds
 	IntervalSeconds int64 `json:"intervalSeconds,omitempty"`
@@ -43,6 +43,9 @@ type GettableGrafanaRule struct {
 	// metadata
 	Metadata *AlertRuleMetadata `json:"metadata,omitempty"`
 
+	// missing series evals to resolve
+	MissingSeriesEvalsToResolve int64 `json:"missing_series_evals_to_resolve,omitempty"`
+
 	// namespace uid
 	NamespaceUID string `json:"namespace_uid,omitempty"`
 
@@ -52,9 +55,6 @@ type GettableGrafanaRule struct {
 
 	// notification settings
 	NotificationSettings *AlertRuleNotificationSettings `json:"notification_settings,omitempty"`
-
-	// org Id
-	OrgID int64 `json:"orgId,omitempty"`
 
 	// provenance
 	Provenance Provenance `json:"provenance,omitempty"`
@@ -74,6 +74,9 @@ type GettableGrafanaRule struct {
 	// updated
 	// Format: date-time
 	Updated strfmt.DateTime `json:"updated,omitempty"`
+
+	// updated by
+	UpdatedBy *UserInfo `json:"updated_by,omitempty"`
 
 	// version
 	Version int64 `json:"version,omitempty"`
@@ -112,6 +115,10 @@ func (m *GettableGrafanaRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateUpdated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedBy(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -323,6 +330,25 @@ func (m *GettableGrafanaRule) validateUpdated(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GettableGrafanaRule) validateUpdatedBy(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedBy) { // not required
+		return nil
+	}
+
+	if m.UpdatedBy != nil {
+		if err := m.UpdatedBy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("updated_by")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("updated_by")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this gettable grafana rule based on the context it is used
 func (m *GettableGrafanaRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -344,6 +370,10 @@ func (m *GettableGrafanaRule) ContextValidate(ctx context.Context, formats strfm
 	}
 
 	if err := m.contextValidateRecord(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUpdatedBy(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -451,6 +481,27 @@ func (m *GettableGrafanaRule) contextValidateRecord(ctx context.Context, formats
 				return ve.ValidateName("record")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("record")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GettableGrafanaRule) contextValidateUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UpdatedBy != nil {
+
+		if swag.IsZero(m.UpdatedBy) { // not required
+			return nil
+		}
+
+		if err := m.UpdatedBy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("updated_by")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("updated_by")
 			}
 			return err
 		}

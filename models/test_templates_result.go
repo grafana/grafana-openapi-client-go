@@ -7,9 +7,12 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // TestTemplatesResult test templates result
@@ -20,12 +23,71 @@ type TestTemplatesResult struct {
 	// Name of the associated template definition for this result.
 	Name string `json:"name,omitempty"`
 
+	// Scope that was successfully used to interpolate the template. If the root scope "." fails, more specific
+	// scopes will be tried, such as ".Alerts', or ".Alert".
+	// Enum: [. .Alerts .Alert]
+	Scope string `json:"scope,omitempty"`
+
 	// Interpolated value of the template.
 	Text string `json:"text,omitempty"`
 }
 
 // Validate validates this test templates result
 func (m *TestTemplatesResult) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateScope(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var testTemplatesResultTypeScopePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`[".",".Alerts",".Alert"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		testTemplatesResultTypeScopePropEnum = append(testTemplatesResultTypeScopePropEnum, v)
+	}
+}
+
+const (
+
+	// TestTemplatesResultScopeDot captures enum value "."
+	TestTemplatesResultScopeDot string = "."
+
+	// TestTemplatesResultScopeDotAlerts captures enum value ".Alerts"
+	TestTemplatesResultScopeDotAlerts string = ".Alerts"
+
+	// TestTemplatesResultScopeDotAlert captures enum value ".Alert"
+	TestTemplatesResultScopeDotAlert string = ".Alert"
+)
+
+// prop value enum
+func (m *TestTemplatesResult) validateScopeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, testTemplatesResultTypeScopePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *TestTemplatesResult) validateScope(formats strfmt.Registry) error {
+	if swag.IsZero(m.Scope) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateScopeEnum("scope", "body", m.Scope); err != nil {
+		return err
+	}
+
 	return nil
 }
 

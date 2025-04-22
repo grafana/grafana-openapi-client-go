@@ -66,6 +66,9 @@ type Report struct {
 	// state
 	State State `json:"state,omitempty"`
 
+	// subject
+	Subject string `json:"subject,omitempty"`
+
 	// uid
 	UID string `json:"uid,omitempty"`
 

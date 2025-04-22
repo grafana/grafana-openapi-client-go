@@ -17,6 +17,9 @@ import (
 // swagger:model AlertRuleEditorSettings
 type AlertRuleEditorSettings struct {
 
+	// simplified notifications section
+	SimplifiedNotificationsSection bool `json:"simplified_notifications_section,omitempty"`
+
 	// simplified query and expressions section
 	SimplifiedQueryAndExpressionsSection bool `json:"simplified_query_and_expressions_section,omitempty"`
 }

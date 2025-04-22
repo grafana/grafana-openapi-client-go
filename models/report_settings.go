@@ -21,11 +21,17 @@ type ReportSettings struct {
 	// branding
 	Branding *ReportBrandingOptions `json:"branding,omitempty"`
 
+	// embedded image theme
+	EmbeddedImageTheme string `json:"embeddedImageTheme,omitempty"`
+
 	// id
 	ID int64 `json:"id,omitempty"`
 
 	// org Id
 	OrgID int64 `json:"orgId,omitempty"`
+
+	// pdf theme
+	PDFTheme string `json:"pdfTheme,omitempty"`
 
 	// user Id
 	UserID int64 `json:"userId,omitempty"`

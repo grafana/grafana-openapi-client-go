@@ -38,8 +38,7 @@ type ClientService interface {
 	GetCurrentOrg(opts ...ClientOption) (*GetCurrentOrgOK, error)
 	GetCurrentOrgWithParams(params *GetCurrentOrgParams, opts ...ClientOption) (*GetCurrentOrgOK, error)
 
-	GetOrgUsersForCurrentOrg(opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error)
-	GetOrgUsersForCurrentOrgWithParams(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error)
+	GetOrgUsersForCurrentOrg(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error)
 
 	GetOrgUsersForCurrentOrgLookup(params *GetOrgUsersForCurrentOrgLookupParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgLookupOK, error)
 
@@ -158,12 +157,8 @@ Returns all org users within the current organization. Accessible to users with 
 If you are running Grafana Enterprise and have Fine-grained access control enabled
 you need to have a permission with action: `org.users:read` with scope `users:*`.
 */
-func (a *Client) GetOrgUsersForCurrentOrg(opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
-	params := NewGetOrgUsersForCurrentOrgParams()
-	return a.GetOrgUsersForCurrentOrgWithParams(params, opts...)
-}
 
-func (a *Client) GetOrgUsersForCurrentOrgWithParams(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
+func (a *Client) GetOrgUsersForCurrentOrg(params *GetOrgUsersForCurrentOrgParams, opts ...ClientOption) (*GetOrgUsersForCurrentOrgOK, error) {
 	if params == nil {
 		params = NewGetOrgUsersForCurrentOrgParams()
 	}

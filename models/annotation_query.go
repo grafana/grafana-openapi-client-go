@@ -20,7 +20,7 @@ import (
 type AnnotationQuery struct {
 
 	// Set to 1 for the standard annotation query all dashboards have by default.
-	BuiltIn float32 `json:"builtIn,omitempty"`
+	BuiltIn float64 `json:"builtIn,omitempty"`
 
 	// datasource
 	Datasource *DataSourceRef `json:"datasource,omitempty"`

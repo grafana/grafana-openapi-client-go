@@ -41,7 +41,7 @@ type ClientService interface {
 	CreateSession(body *models.CloudMigrationSessionRequestDTO, opts ...ClientOption) (*CreateSessionOK, error)
 	CreateSessionWithParams(params *CreateSessionParams, opts ...ClientOption) (*CreateSessionOK, error)
 
-	CreateSnapshot(uid string, opts ...ClientOption) (*CreateSnapshotOK, error)
+	CreateSnapshot(uid string, body *models.CreateSnapshotRequestDTO, opts ...ClientOption) (*CreateSnapshotOK, error)
 	CreateSnapshotWithParams(params *CreateSnapshotParams, opts ...ClientOption) (*CreateSnapshotOK, error)
 
 	DeleteCloudMigrationToken(uid string, opts ...ClientOption) (*DeleteCloudMigrationTokenNoContent, error)
@@ -52,6 +52,9 @@ type ClientService interface {
 
 	GetCloudMigrationToken(opts ...ClientOption) (*GetCloudMigrationTokenOK, error)
 	GetCloudMigrationTokenWithParams(params *GetCloudMigrationTokenParams, opts ...ClientOption) (*GetCloudMigrationTokenOK, error)
+
+	GetResourceDependencies(opts ...ClientOption) (*GetResourceDependenciesOK, error)
+	GetResourceDependenciesWithParams(params *GetResourceDependenciesParams, opts ...ClientOption) (*GetResourceDependenciesOK, error)
 
 	GetSession(uid string, opts ...ClientOption) (*GetSessionOK, error)
 	GetSessionWithParams(params *GetSessionParams, opts ...ClientOption) (*GetSessionOK, error)
@@ -208,8 +211,8 @@ CreateSnapshot triggers the creation of an instance snapshot associated with the
 
 If the snapshot initialization is successful, the snapshot uid is returned.
 */
-func (a *Client) CreateSnapshot(uid string, opts ...ClientOption) (*CreateSnapshotOK, error) {
-	params := NewCreateSnapshotParams().WithUID(uid)
+func (a *Client) CreateSnapshot(uid string, body *models.CreateSnapshotRequestDTO, opts ...ClientOption) (*CreateSnapshotOK, error) {
+	params := NewCreateSnapshotParams().WithBody(body).WithUID(uid)
 	return a.CreateSnapshotWithParams(params, opts...)
 }
 
@@ -371,6 +374,50 @@ func (a *Client) GetCloudMigrationTokenWithParams(params *GetCloudMigrationToken
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getCloudMigrationToken: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetResourceDependencies gets the resource dependencies graph for the current set of migratable resources
+*/
+func (a *Client) GetResourceDependencies(opts ...ClientOption) (*GetResourceDependenciesOK, error) {
+	params := NewGetResourceDependenciesParams()
+	return a.GetResourceDependenciesWithParams(params, opts...)
+}
+
+func (a *Client) GetResourceDependenciesWithParams(params *GetResourceDependenciesParams, opts ...ClientOption) (*GetResourceDependenciesOK, error) {
+	if params == nil {
+		params = NewGetResourceDependenciesParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getResourceDependencies",
+		Method:             "GET",
+		PathPattern:        "/cloudmigration/resources/dependencies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetResourceDependenciesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetResourceDependenciesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getResourceDependencies: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -276,7 +276,7 @@ func (a *Client) DeleteMuteTiming(params *DeleteMuteTimingParams, opts ...Client
 }
 
 /*
-DeleteTemplate deletes a template
+DeleteTemplate deletes a notification template group
 */
 
 func (a *Client) DeleteTemplate(params *DeleteTemplateParams, opts ...ClientOption) (*DeleteTemplateNoContent, error) {
@@ -904,7 +904,7 @@ func (a *Client) GetPolicyTreeExportWithParams(params *GetPolicyTreeExportParams
 }
 
 /*
-GetTemplate gets a notification template
+GetTemplate gets a notification template group
 */
 func (a *Client) GetTemplate(name string, opts ...ClientOption) (*GetTemplateOK, error) {
 	params := NewGetTemplateParams().WithName(name)
@@ -948,7 +948,7 @@ func (a *Client) GetTemplateWithParams(params *GetTemplateParams, opts ...Client
 }
 
 /*
-GetTemplates gets all notification templates
+GetTemplates gets all notification template groups
 */
 func (a *Client) GetTemplates(opts ...ClientOption) (*GetTemplatesOK, error) {
 	params := NewGetTemplatesParams()
@@ -1312,7 +1312,7 @@ func (a *Client) PutPolicyTree(params *PutPolicyTreeParams, opts ...ClientOption
 }
 
 /*
-PutTemplate updates an existing notification template
+PutTemplate updates an existing notification template group
 */
 
 func (a *Client) PutTemplate(params *PutTemplateParams, opts ...ClientOption) (*PutTemplateAccepted, error) {

@@ -37,6 +37,9 @@ type UserSearchHitDTO struct {
 	// is disabled
 	IsDisabled bool `json:"isDisabled,omitempty"`
 
+	// is provisioned
+	IsProvisioned bool `json:"isProvisioned,omitempty"`
+
 	// last seen at
 	// Format: date-time
 	LastSeenAt strfmt.DateTime `json:"lastSeenAt,omitempty"`

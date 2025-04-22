@@ -48,6 +48,12 @@ func (o *GetDashboardByUIDReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
+	case 406:
+		result := NewGetDashboardByUIDNotAcceptable()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewGetDashboardByUIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -328,6 +334,76 @@ func (o *GetDashboardByUIDNotFound) GetPayload() *models.ErrorResponseBody {
 }
 
 func (o *GetDashboardByUIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetDashboardByUIDNotAcceptable creates a GetDashboardByUIDNotAcceptable with default headers values
+func NewGetDashboardByUIDNotAcceptable() *GetDashboardByUIDNotAcceptable {
+	return &GetDashboardByUIDNotAcceptable{}
+}
+
+/*
+GetDashboardByUIDNotAcceptable describes a response with status code 406, with default header values.
+
+NotAcceptableError is returned when the server cannot produce a response matching the accepted formats.
+*/
+type GetDashboardByUIDNotAcceptable struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this get dashboard by Uid not acceptable response has a 2xx status code
+func (o *GetDashboardByUIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get dashboard by Uid not acceptable response has a 3xx status code
+func (o *GetDashboardByUIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get dashboard by Uid not acceptable response has a 4xx status code
+func (o *GetDashboardByUIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get dashboard by Uid not acceptable response has a 5xx status code
+func (o *GetDashboardByUIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get dashboard by Uid not acceptable response a status code equal to that given
+func (o *GetDashboardByUIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
+// Code gets the status code for the get dashboard by Uid not acceptable response
+func (o *GetDashboardByUIDNotAcceptable) Code() int {
+	return 406
+}
+
+func (o *GetDashboardByUIDNotAcceptable) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidNotAcceptable %s", 406, payload)
+}
+
+func (o *GetDashboardByUIDNotAcceptable) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboards/uid/{uid}][%d] getDashboardByUidNotAcceptable %s", 406, payload)
+}
+
+func (o *GetDashboardByUIDNotAcceptable) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *GetDashboardByUIDNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

@@ -62,6 +62,12 @@ GetSnapshotParams contains all the parameters to send to the API endpoint
 */
 type GetSnapshotParams struct {
 
+	/* ErrorsOnly.
+
+	   ErrorsOnly is used to only return resources with error statuses
+	*/
+	ErrorsOnly *bool
+
 	/* ResultLimit.
 
 	   Max limit for snapshot results returned.
@@ -79,6 +85,22 @@ type GetSnapshotParams struct {
 	   Default: 1
 	*/
 	ResultPage *int64
+
+	/* ResultSortColumn.
+
+	   ResultSortColumn can be used to override the default system sort. Valid values are "name", "resource_type", and "status".
+
+	   Default: "default"
+	*/
+	ResultSortColumn *string
+
+	/* ResultSortOrder.
+
+	   ResultSortOrder is used with ResultSortColumn. Valid values are ASC and DESC.
+
+	   Default: "ASC"
+	*/
+	ResultSortOrder *string
 
 	/* SnapshotUID.
 
@@ -110,14 +132,23 @@ func (o *GetSnapshotParams) WithDefaults() *GetSnapshotParams {
 // All values with no default are reset to their zero value.
 func (o *GetSnapshotParams) SetDefaults() {
 	var (
+		errorsOnlyDefault = bool(false)
+
 		resultLimitDefault = int64(100)
 
 		resultPageDefault = int64(1)
+
+		resultSortColumnDefault = string("default")
+
+		resultSortOrderDefault = string("ASC")
 	)
 
 	val := GetSnapshotParams{
-		ResultLimit: &resultLimitDefault,
-		ResultPage:  &resultPageDefault,
+		ErrorsOnly:       &errorsOnlyDefault,
+		ResultLimit:      &resultLimitDefault,
+		ResultPage:       &resultPageDefault,
+		ResultSortColumn: &resultSortColumnDefault,
+		ResultSortOrder:  &resultSortOrderDefault,
 	}
 
 	val.timeout = o.timeout
@@ -159,6 +190,17 @@ func (o *GetSnapshotParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithErrorsOnly adds the errorsOnly to the get snapshot params
+func (o *GetSnapshotParams) WithErrorsOnly(errorsOnly *bool) *GetSnapshotParams {
+	o.SetErrorsOnly(errorsOnly)
+	return o
+}
+
+// SetErrorsOnly adds the errorsOnly to the get snapshot params
+func (o *GetSnapshotParams) SetErrorsOnly(errorsOnly *bool) {
+	o.ErrorsOnly = errorsOnly
+}
+
 // WithResultLimit adds the resultLimit to the get snapshot params
 func (o *GetSnapshotParams) WithResultLimit(resultLimit *int64) *GetSnapshotParams {
 	o.SetResultLimit(resultLimit)
@@ -179,6 +221,28 @@ func (o *GetSnapshotParams) WithResultPage(resultPage *int64) *GetSnapshotParams
 // SetResultPage adds the resultPage to the get snapshot params
 func (o *GetSnapshotParams) SetResultPage(resultPage *int64) {
 	o.ResultPage = resultPage
+}
+
+// WithResultSortColumn adds the resultSortColumn to the get snapshot params
+func (o *GetSnapshotParams) WithResultSortColumn(resultSortColumn *string) *GetSnapshotParams {
+	o.SetResultSortColumn(resultSortColumn)
+	return o
+}
+
+// SetResultSortColumn adds the resultSortColumn to the get snapshot params
+func (o *GetSnapshotParams) SetResultSortColumn(resultSortColumn *string) {
+	o.ResultSortColumn = resultSortColumn
+}
+
+// WithResultSortOrder adds the resultSortOrder to the get snapshot params
+func (o *GetSnapshotParams) WithResultSortOrder(resultSortOrder *string) *GetSnapshotParams {
+	o.SetResultSortOrder(resultSortOrder)
+	return o
+}
+
+// SetResultSortOrder adds the resultSortOrder to the get snapshot params
+func (o *GetSnapshotParams) SetResultSortOrder(resultSortOrder *string) {
+	o.ResultSortOrder = resultSortOrder
 }
 
 // WithSnapshotUID adds the snapshotUID to the get snapshot params
@@ -211,6 +275,23 @@ func (o *GetSnapshotParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 	var res []error
 
+	if o.ErrorsOnly != nil {
+
+		// query param errorsOnly
+		var qrErrorsOnly bool
+
+		if o.ErrorsOnly != nil {
+			qrErrorsOnly = *o.ErrorsOnly
+		}
+		qErrorsOnly := swag.FormatBool(qrErrorsOnly)
+		if qErrorsOnly != "" {
+
+			if err := r.SetQueryParam("errorsOnly", qErrorsOnly); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.ResultLimit != nil {
 
 		// query param resultLimit
@@ -240,6 +321,40 @@ func (o *GetSnapshotParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		if qResultPage != "" {
 
 			if err := r.SetQueryParam("resultPage", qResultPage); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ResultSortColumn != nil {
+
+		// query param resultSortColumn
+		var qrResultSortColumn string
+
+		if o.ResultSortColumn != nil {
+			qrResultSortColumn = *o.ResultSortColumn
+		}
+		qResultSortColumn := qrResultSortColumn
+		if qResultSortColumn != "" {
+
+			if err := r.SetQueryParam("resultSortColumn", qResultSortColumn); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ResultSortOrder != nil {
+
+		// query param resultSortOrder
+		var qrResultSortOrder string
+
+		if o.ResultSortOrder != nil {
+			qrResultSortOrder = *o.ResultSortOrder
+		}
+		qResultSortOrder := qrResultSortOrder
+		if qResultSortOrder != "" {
+
+			if err := r.SetQueryParam("resultSortOrder", qResultSortOrder); err != nil {
 				return err
 			}
 		}

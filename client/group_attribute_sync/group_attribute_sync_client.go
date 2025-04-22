@@ -32,23 +32,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateGroupMapping(body *models.GroupMappingRequestBody, opts ...ClientOption) (*CreateGroupMappingCreated, error)
-	CreateGroupMappingWithParams(params *CreateGroupMappingParams, opts ...ClientOption) (*CreateGroupMappingCreated, error)
-
 	CreateGroupMappings(groupID string, body *models.GroupAttributes, opts ...ClientOption) (*CreateGroupMappingsCreated, error)
 	CreateGroupMappingsWithParams(params *CreateGroupMappingsParams, opts ...ClientOption) (*CreateGroupMappingsCreated, error)
 
-	DeleteGroupMapping(mappingUID string, opts ...ClientOption) (*DeleteGroupMappingNoContent, error)
-	DeleteGroupMappingWithParams(params *DeleteGroupMappingParams, opts ...ClientOption) (*DeleteGroupMappingNoContent, error)
-
 	DeleteGroupMappings(groupID string, opts ...ClientOption) (*DeleteGroupMappingsNoContent, error)
 	DeleteGroupMappingsWithParams(params *DeleteGroupMappingsParams, opts ...ClientOption) (*DeleteGroupMappingsNoContent, error)
-
-	GetGroupMapping(mappingUID string, opts ...ClientOption) (*GetGroupMappingOK, error)
-	GetGroupMappingWithParams(params *GetGroupMappingParams, opts ...ClientOption) (*GetGroupMappingOK, error)
-
-	GetGroupMappings(opts ...ClientOption) (*GetGroupMappingsOK, error)
-	GetGroupMappingsWithParams(params *GetGroupMappingsParams, opts ...ClientOption) (*GetGroupMappingsOK, error)
 
 	GetGroupRoles(groupID string, opts ...ClientOption) (*GetGroupRolesOK, error)
 	GetGroupRolesWithParams(params *GetGroupRolesParams, opts ...ClientOption) (*GetGroupRolesOK, error)
@@ -60,50 +48,6 @@ type ClientService interface {
 	UpdateGroupMappingsWithParams(params *UpdateGroupMappingsParams, opts ...ClientOption) (*UpdateGroupMappingsCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-CreateGroupMapping creates a group mapping this endpoint is behind the feature flag group attribute sync and is considered experimental
-*/
-func (a *Client) CreateGroupMapping(body *models.GroupMappingRequestBody, opts ...ClientOption) (*CreateGroupMappingCreated, error) {
-	params := NewCreateGroupMappingParams().WithBody(body)
-	return a.CreateGroupMappingWithParams(params, opts...)
-}
-
-func (a *Client) CreateGroupMappingWithParams(params *CreateGroupMappingParams, opts ...ClientOption) (*CreateGroupMappingCreated, error) {
-	if params == nil {
-		params = NewCreateGroupMappingParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "createGroupMapping",
-		Method:             "POST",
-		PathPattern:        "/groupsync/mappings",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &CreateGroupMappingReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*CreateGroupMappingCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for createGroupMapping: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -151,50 +95,6 @@ func (a *Client) CreateGroupMappingsWithParams(params *CreateGroupMappingsParams
 }
 
 /*
-DeleteGroupMapping deletes a group mapping this endpoint is behind the feature flag group attribute sync and is considered experimental
-*/
-func (a *Client) DeleteGroupMapping(mappingUID string, opts ...ClientOption) (*DeleteGroupMappingNoContent, error) {
-	params := NewDeleteGroupMappingParams().WithMappingUID(mappingUID)
-	return a.DeleteGroupMappingWithParams(params, opts...)
-}
-
-func (a *Client) DeleteGroupMappingWithParams(params *DeleteGroupMappingParams, opts ...ClientOption) (*DeleteGroupMappingNoContent, error) {
-	if params == nil {
-		params = NewDeleteGroupMappingParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "deleteGroupMapping",
-		Method:             "DELETE",
-		PathPattern:        "/groupsync/mappings/{mapping_uid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &DeleteGroupMappingReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*DeleteGroupMappingNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for deleteGroupMapping: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 DeleteGroupMappings deletes mappings for a group this endpoint is behind the feature flag group attribute sync and is considered experimental
 */
 func (a *Client) DeleteGroupMappings(groupID string, opts ...ClientOption) (*DeleteGroupMappingsNoContent, error) {
@@ -235,94 +135,6 @@ func (a *Client) DeleteGroupMappingsWithParams(params *DeleteGroupMappingsParams
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for deleteGroupMappings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetGroupMapping gets a group mapping this endpoint is behind the feature flag group attribute sync and is considered experimental
-*/
-func (a *Client) GetGroupMapping(mappingUID string, opts ...ClientOption) (*GetGroupMappingOK, error) {
-	params := NewGetGroupMappingParams().WithMappingUID(mappingUID)
-	return a.GetGroupMappingWithParams(params, opts...)
-}
-
-func (a *Client) GetGroupMappingWithParams(params *GetGroupMappingParams, opts ...ClientOption) (*GetGroupMappingOK, error) {
-	if params == nil {
-		params = NewGetGroupMappingParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "getGroupMapping",
-		Method:             "GET",
-		PathPattern:        "/groupsync/mappings/{mapping_uid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &GetGroupMappingReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetGroupMappingOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getGroupMapping: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetGroupMappings lists group mappings this endpoint is behind the feature flag group attribute sync and is considered experimental
-*/
-func (a *Client) GetGroupMappings(opts ...ClientOption) (*GetGroupMappingsOK, error) {
-	params := NewGetGroupMappingsParams()
-	return a.GetGroupMappingsWithParams(params, opts...)
-}
-
-func (a *Client) GetGroupMappingsWithParams(params *GetGroupMappingsParams, opts ...ClientOption) (*GetGroupMappingsOK, error) {
-	if params == nil {
-		params = NewGetGroupMappingsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "getGroupMappings",
-		Method:             "GET",
-		PathPattern:        "/groupsync/mappings",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &GetGroupMappingsReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetGroupMappingsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getGroupMappings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

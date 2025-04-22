@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NavbarPreference NavbarPreference defines model for NavbarPreference.
+// NavbarPreference navbar preference
 //
 // swagger:model NavbarPreference
 type NavbarPreference struct {

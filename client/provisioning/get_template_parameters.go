@@ -63,7 +63,7 @@ type GetTemplateParams struct {
 
 	/* Name.
 
-	   Template Name
+	   Template group name
 	*/
 	Name string
 

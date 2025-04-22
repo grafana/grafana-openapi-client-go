@@ -71,7 +71,7 @@ type PutTemplateParams struct {
 
 	/* Name.
 
-	   Template Name
+	   Template group name
 	*/
 	Name string
 

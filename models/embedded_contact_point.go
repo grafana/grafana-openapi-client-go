@@ -41,7 +41,7 @@ type EmbeddedContactPoint struct {
 	// type
 	// Example: webhook
 	// Required: true
-	// Enum: [alertmanager  dingding  discord  email  googlechat  kafka  line  opsgenie  pagerduty  pushover  sensugo  slack  teams  telegram  threema  victorops  webhook  wecom]
+	// Enum: [alertmanager dingding discord email googlechat kafka line opsgenie pagerduty pushover sensugo slack teams telegram threema victorops webhook wecom]
 	Type *string `json:"type"`
 
 	// UID is the unique identifier of the contact point. The UID can be
@@ -88,7 +88,7 @@ var embeddedContactPointTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["alertmanager"," dingding"," discord"," email"," googlechat"," kafka"," line"," opsgenie"," pagerduty"," pushover"," sensugo"," slack"," teams"," telegram"," threema"," victorops"," webhook"," wecom"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["alertmanager","dingding","discord","email","googlechat","kafka","line","opsgenie","pagerduty","pushover","sensugo","slack","teams","telegram","threema","victorops","webhook","wecom"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -101,56 +101,56 @@ const (
 	// EmbeddedContactPointTypeAlertmanager captures enum value "alertmanager"
 	EmbeddedContactPointTypeAlertmanager string = "alertmanager"
 
-	// EmbeddedContactPointTypeDingding captures enum value " dingding"
-	EmbeddedContactPointTypeDingding string = " dingding"
+	// EmbeddedContactPointTypeDingding captures enum value "dingding"
+	EmbeddedContactPointTypeDingding string = "dingding"
 
-	// EmbeddedContactPointTypeDiscord captures enum value " discord"
-	EmbeddedContactPointTypeDiscord string = " discord"
+	// EmbeddedContactPointTypeDiscord captures enum value "discord"
+	EmbeddedContactPointTypeDiscord string = "discord"
 
-	// EmbeddedContactPointTypeEmail captures enum value " email"
-	EmbeddedContactPointTypeEmail string = " email"
+	// EmbeddedContactPointTypeEmail captures enum value "email"
+	EmbeddedContactPointTypeEmail string = "email"
 
-	// EmbeddedContactPointTypeGooglechat captures enum value " googlechat"
-	EmbeddedContactPointTypeGooglechat string = " googlechat"
+	// EmbeddedContactPointTypeGooglechat captures enum value "googlechat"
+	EmbeddedContactPointTypeGooglechat string = "googlechat"
 
-	// EmbeddedContactPointTypeKafka captures enum value " kafka"
-	EmbeddedContactPointTypeKafka string = " kafka"
+	// EmbeddedContactPointTypeKafka captures enum value "kafka"
+	EmbeddedContactPointTypeKafka string = "kafka"
 
-	// EmbeddedContactPointTypeLine captures enum value " line"
-	EmbeddedContactPointTypeLine string = " line"
+	// EmbeddedContactPointTypeLine captures enum value "line"
+	EmbeddedContactPointTypeLine string = "line"
 
-	// EmbeddedContactPointTypeOpsgenie captures enum value " opsgenie"
-	EmbeddedContactPointTypeOpsgenie string = " opsgenie"
+	// EmbeddedContactPointTypeOpsgenie captures enum value "opsgenie"
+	EmbeddedContactPointTypeOpsgenie string = "opsgenie"
 
-	// EmbeddedContactPointTypePagerduty captures enum value " pagerduty"
-	EmbeddedContactPointTypePagerduty string = " pagerduty"
+	// EmbeddedContactPointTypePagerduty captures enum value "pagerduty"
+	EmbeddedContactPointTypePagerduty string = "pagerduty"
 
-	// EmbeddedContactPointTypePushover captures enum value " pushover"
-	EmbeddedContactPointTypePushover string = " pushover"
+	// EmbeddedContactPointTypePushover captures enum value "pushover"
+	EmbeddedContactPointTypePushover string = "pushover"
 
-	// EmbeddedContactPointTypeSensugo captures enum value " sensugo"
-	EmbeddedContactPointTypeSensugo string = " sensugo"
+	// EmbeddedContactPointTypeSensugo captures enum value "sensugo"
+	EmbeddedContactPointTypeSensugo string = "sensugo"
 
-	// EmbeddedContactPointTypeSlack captures enum value " slack"
-	EmbeddedContactPointTypeSlack string = " slack"
+	// EmbeddedContactPointTypeSlack captures enum value "slack"
+	EmbeddedContactPointTypeSlack string = "slack"
 
-	// EmbeddedContactPointTypeTeams captures enum value " teams"
-	EmbeddedContactPointTypeTeams string = " teams"
+	// EmbeddedContactPointTypeTeams captures enum value "teams"
+	EmbeddedContactPointTypeTeams string = "teams"
 
-	// EmbeddedContactPointTypeTelegram captures enum value " telegram"
-	EmbeddedContactPointTypeTelegram string = " telegram"
+	// EmbeddedContactPointTypeTelegram captures enum value "telegram"
+	EmbeddedContactPointTypeTelegram string = "telegram"
 
-	// EmbeddedContactPointTypeThreema captures enum value " threema"
-	EmbeddedContactPointTypeThreema string = " threema"
+	// EmbeddedContactPointTypeThreema captures enum value "threema"
+	EmbeddedContactPointTypeThreema string = "threema"
 
-	// EmbeddedContactPointTypeVictorops captures enum value " victorops"
-	EmbeddedContactPointTypeVictorops string = " victorops"
+	// EmbeddedContactPointTypeVictorops captures enum value "victorops"
+	EmbeddedContactPointTypeVictorops string = "victorops"
 
-	// EmbeddedContactPointTypeWebhook captures enum value " webhook"
-	EmbeddedContactPointTypeWebhook string = " webhook"
+	// EmbeddedContactPointTypeWebhook captures enum value "webhook"
+	EmbeddedContactPointTypeWebhook string = "webhook"
 
-	// EmbeddedContactPointTypeWecom captures enum value " wecom"
-	EmbeddedContactPointTypeWecom string = " wecom"
+	// EmbeddedContactPointTypeWecom captures enum value "wecom"
+	EmbeddedContactPointTypeWecom string = "wecom"
 )
 
 // prop value enum

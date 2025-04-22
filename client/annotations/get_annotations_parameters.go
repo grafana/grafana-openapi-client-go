@@ -64,11 +64,18 @@ type GetAnnotationsParams struct {
 
 	/* AlertID.
 
-	   Find annotations for a specified alert.
+	     Find annotations for a specified alert rule by its ID.
+	deprecated: AlertID is deprecated and will be removed in future versions. Please use AlertUID instead.
 
-	   Format: int64
+	     Format: int64
 	*/
 	AlertID *int64
+
+	/* AlertUID.
+
+	   Find annotations for a specified alert rule by its UID.
+	*/
+	AlertUID *string
 
 	/* DashboardID.
 
@@ -206,6 +213,17 @@ func (o *GetAnnotationsParams) SetAlertID(alertID *int64) {
 	o.AlertID = alertID
 }
 
+// WithAlertUID adds the alertUID to the get annotations params
+func (o *GetAnnotationsParams) WithAlertUID(alertUID *string) *GetAnnotationsParams {
+	o.SetAlertUID(alertUID)
+	return o
+}
+
+// SetAlertUID adds the alertUid to the get annotations params
+func (o *GetAnnotationsParams) SetAlertUID(alertUID *string) {
+	o.AlertUID = alertUID
+}
+
 // WithDashboardID adds the dashboardID to the get annotations params
 func (o *GetAnnotationsParams) WithDashboardID(dashboardID *int64) *GetAnnotationsParams {
 	o.SetDashboardID(dashboardID)
@@ -336,6 +354,23 @@ func (o *GetAnnotationsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		if qAlertID != "" {
 
 			if err := r.SetQueryParam("alertId", qAlertID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AlertUID != nil {
+
+		// query param alertUID
+		var qrAlertUID string
+
+		if o.AlertUID != nil {
+			qrAlertUID = *o.AlertUID
+		}
+		qAlertUID := qrAlertUID
+		if qAlertUID != "" {
+
+			if err := r.SetQueryParam("alertUID", qAlertUID); err != nil {
 				return err
 			}
 		}

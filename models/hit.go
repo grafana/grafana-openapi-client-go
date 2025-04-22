@@ -40,6 +40,9 @@ type Hit struct {
 	// is starred
 	IsStarred bool `json:"isStarred,omitempty"`
 
+	// org Id
+	OrgID int64 `json:"orgId,omitempty"`
+
 	// permanently delete date
 	// Format: date-time
 	PermanentlyDeleteDate strfmt.DateTime `json:"permanentlyDeleteDate,omitempty"`
