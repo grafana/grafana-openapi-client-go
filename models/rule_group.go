@@ -27,6 +27,10 @@ type RuleGroup struct {
 	// Required: true
 	File *string `json:"file"`
 
+	// folder Uid
+	// Required: true
+	FolderUID *string `json:"folderUid"`
+
 	// interval
 	// Required: true
 	Interval *float64 `json:"interval"`
@@ -57,6 +61,10 @@ func (m *RuleGroup) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateFolderUID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateInterval(formats); err != nil {
 		res = append(res, err)
 	}
@@ -82,6 +90,15 @@ func (m *RuleGroup) Validate(formats strfmt.Registry) error {
 func (m *RuleGroup) validateFile(formats strfmt.Registry) error {
 
 	if err := validate.Required("file", "body", m.File); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RuleGroup) validateFolderUID(formats strfmt.Registry) error {
+
+	if err := validate.Required("folderUid", "body", m.FolderUID); err != nil {
 		return err
 	}
 

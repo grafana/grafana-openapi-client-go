@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/grafana/grafana-openapi-client-go/models"
 )
 
 // NewCreateSnapshotParams creates a new CreateSnapshotParams object,
@@ -60,6 +62,9 @@ CreateSnapshotParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type CreateSnapshotParams struct {
+
+	// Body.
+	Body *models.CreateSnapshotRequestDTO
 
 	/* UID.
 
@@ -120,6 +125,17 @@ func (o *CreateSnapshotParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithBody adds the body to the create snapshot params
+func (o *CreateSnapshotParams) WithBody(body *models.CreateSnapshotRequestDTO) *CreateSnapshotParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the create snapshot params
+func (o *CreateSnapshotParams) SetBody(body *models.CreateSnapshotRequestDTO) {
+	o.Body = body
+}
+
 // WithUID adds the uid to the create snapshot params
 func (o *CreateSnapshotParams) WithUID(uid string) *CreateSnapshotParams {
 	o.SetUID(uid)
@@ -138,6 +154,11 @@ func (o *CreateSnapshotParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param uid
 	if err := r.SetPathParam("uid", o.UID); err != nil {

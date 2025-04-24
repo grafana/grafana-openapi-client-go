@@ -20,6 +20,9 @@ import (
 // swagger:model RuleDiscovery
 type RuleDiscovery struct {
 
+	// group next token
+	GroupNextToken string `json:"groupNextToken,omitempty"`
+
 	// groups
 	// Required: true
 	Groups []*RuleGroup `json:"groups"`

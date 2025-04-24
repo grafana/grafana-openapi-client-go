@@ -33,6 +33,9 @@ type PatchPrefsCmd struct {
 	// language
 	Language string `json:"language,omitempty"`
 
+	// locale
+	Locale string `json:"locale,omitempty"`
+
 	// navbar
 	Navbar *NavbarPreference `json:"navbar,omitempty"`
 

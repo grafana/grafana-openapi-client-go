@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// AnnotationActions annotation actions
+// AnnotationActions +k8s:deepcopy-gen=true
 //
 // swagger:model AnnotationActions
 type AnnotationActions struct {

@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// CookiePreferences CookiePreferences defines model for CookiePreferences.
+// CookiePreferences cookie preferences
 //
 // swagger:model CookiePreferences
 type CookiePreferences struct {

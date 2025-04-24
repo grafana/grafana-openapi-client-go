@@ -28,6 +28,9 @@ type GettableAPIReceiver struct {
 	// grafana managed receiver configs
 	GrafanaManagedReceiverConfigs []*GettableGrafanaReceiver `json:"grafana_managed_receiver_configs"`
 
+	// jira configs
+	JiraConfigs []*JiraConfig `json:"jira_configs"`
+
 	// msteams configs
 	MsteamsConfigs []*MSTeamsConfig `json:"msteams_configs"`
 
@@ -78,6 +81,10 @@ func (m *GettableAPIReceiver) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateGrafanaManagedReceiverConfigs(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateJiraConfigs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -199,6 +206,32 @@ func (m *GettableAPIReceiver) validateGrafanaManagedReceiverConfigs(formats strf
 					return ve.ValidateName("grafana_managed_receiver_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("grafana_managed_receiver_configs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GettableAPIReceiver) validateJiraConfigs(formats strfmt.Registry) error {
+	if swag.IsZero(m.JiraConfigs) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.JiraConfigs); i++ {
+		if swag.IsZero(m.JiraConfigs[i]) { // not required
+			continue
+		}
+
+		if m.JiraConfigs[i] != nil {
+			if err := m.JiraConfigs[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("jira_configs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("jira_configs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -511,6 +544,10 @@ func (m *GettableAPIReceiver) ContextValidate(ctx context.Context, formats strfm
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateJiraConfigs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMsteamsConfigs(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -626,6 +663,31 @@ func (m *GettableAPIReceiver) contextValidateGrafanaManagedReceiverConfigs(ctx c
 					return ve.ValidateName("grafana_managed_receiver_configs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("grafana_managed_receiver_configs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GettableAPIReceiver) contextValidateJiraConfigs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.JiraConfigs); i++ {
+
+		if m.JiraConfigs[i] != nil {
+
+			if swag.IsZero(m.JiraConfigs[i]) { // not required
+				return nil
+			}
+
+			if err := m.JiraConfigs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("jira_configs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("jira_configs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

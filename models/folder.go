@@ -48,6 +48,9 @@ type Folder struct {
 	// Deprecated: use UID instead
 	ID int64 `json:"id,omitempty"`
 
+	// managed by
+	ManagedBy ManagerKind `json:"managedBy,omitempty"`
+
 	// org Id
 	OrgID int64 `json:"orgId,omitempty"`
 
@@ -86,6 +89,10 @@ func (m *Folder) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCreated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateManagedBy(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -128,6 +135,23 @@ func (m *Folder) validateCreated(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("created", "body", "date-time", m.Created.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Folder) validateManagedBy(formats strfmt.Registry) error {
+	if swag.IsZero(m.ManagedBy) { // not required
+		return nil
+	}
+
+	if err := m.ManagedBy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("managedBy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("managedBy")
+		}
 		return err
 	}
 
@@ -180,6 +204,10 @@ func (m *Folder) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateManagedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateParents(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -201,6 +229,24 @@ func (m *Folder) contextValidateAccessControl(ctx context.Context, formats strfm
 			return ve.ValidateName("accessControl")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("accessControl")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *Folder) contextValidateManagedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ManagedBy) { // not required
+		return nil
+	}
+
+	if err := m.ManagedBy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("managedBy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("managedBy")
 		}
 		return err
 	}

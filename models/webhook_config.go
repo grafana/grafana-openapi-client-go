@@ -29,6 +29,9 @@ type WebhookConfig struct {
 	// send resolved
 	SendResolved bool `json:"send_resolved,omitempty"`
 
+	// timeout
+	Timeout Duration `json:"timeout,omitempty"`
+
 	// url
 	URL *SecretURL `json:"url,omitempty"`
 
@@ -41,6 +44,10 @@ func (m *WebhookConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateHTTPConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTimeout(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,6 +80,23 @@ func (m *WebhookConfig) validateHTTPConfig(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *WebhookConfig) validateTimeout(formats strfmt.Registry) error {
+	if swag.IsZero(m.Timeout) { // not required
+		return nil
+	}
+
+	if err := m.Timeout.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("timeout")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("timeout")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *WebhookConfig) validateURL(formats strfmt.Registry) error {
 	if swag.IsZero(m.URL) { // not required
 		return nil
@@ -97,6 +121,10 @@ func (m *WebhookConfig) ContextValidate(ctx context.Context, formats strfmt.Regi
 	var res []error
 
 	if err := m.contextValidateHTTPConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTimeout(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -126,6 +154,24 @@ func (m *WebhookConfig) contextValidateHTTPConfig(ctx context.Context, formats s
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *WebhookConfig) contextValidateTimeout(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Timeout) { // not required
+		return nil
+	}
+
+	if err := m.Timeout.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("timeout")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("timeout")
+		}
+		return err
 	}
 
 	return nil

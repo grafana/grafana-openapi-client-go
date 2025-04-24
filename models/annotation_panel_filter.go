@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// AnnotationPanelFilter AnnotationPanelFilter defines model for AnnotationPanelFilter.
+// AnnotationPanelFilter annotation panel filter
 //
 // swagger:model AnnotationPanelFilter
 type AnnotationPanelFilter struct {
@@ -21,7 +21,7 @@ type AnnotationPanelFilter struct {
 	Exclude bool `json:"exclude,omitempty"`
 
 	// Panel IDs that should be included or excluded
-	Ids []int64 `json:"ids"`
+	Ids []uint8 `json:"ids"`
 }
 
 // Validate validates this annotation panel filter

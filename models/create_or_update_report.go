@@ -54,6 +54,9 @@ type CreateOrUpdateReport struct {
 
 	// state
 	State State `json:"state,omitempty"`
+
+	// subject
+	Subject string `json:"subject,omitempty"`
 }
 
 // Validate validates this create or update report

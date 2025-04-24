@@ -22,6 +22,9 @@ type AlertRuleRecordExport struct {
 
 	// metric
 	Metric string `json:"metric,omitempty"`
+
+	// target datasource Uid
+	TargetDatasourceUID string `json:"targetDatasourceUid,omitempty"`
 }
 
 // Validate validates this alert rule record export

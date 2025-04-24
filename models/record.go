@@ -28,6 +28,10 @@ type Record struct {
 	// Example: grafana_alerts_ratio
 	// Required: true
 	Metric *string `json:"metric"`
+
+	// Which data source should be used to write the output of the recording rule, specified by UID.
+	// Example: my-prom
+	TargetDatasourceUID string `json:"target_datasource_uid,omitempty"`
 }
 
 // Validate validates this record

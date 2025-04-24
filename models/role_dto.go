@@ -42,6 +42,9 @@ type RoleDTO struct {
 	// hidden
 	Hidden bool `json:"hidden,omitempty"`
 
+	// mapped
+	Mapped bool `json:"mapped,omitempty"`
+
 	// name
 	Name string `json:"name,omitempty"`
 

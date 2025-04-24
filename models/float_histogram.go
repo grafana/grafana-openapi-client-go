@@ -32,6 +32,13 @@ type FloatHistogram struct {
 	// counter reset hint
 	CounterResetHint CounterResetHint `json:"CounterResetHint,omitempty"`
 
+	// Holds the custom (usually upper) bounds for bucket definitions, otherwise nil.
+	// This slice is interned, to be treated as immutable and copied by reference.
+	// These numbers should be strictly increasing. This field is only used when the
+	// schema is for custom buckets, and the ZeroThreshold, ZeroCount, NegativeSpans
+	// and NegativeBuckets fields are not used in that case.
+	CustomValues []float64 `json:"CustomValues"`
+
 	// Observation counts in buckets. Each represents an absolute count and
 	// must be zero or positive.
 	PositiveBuckets []float64 `json:"PositiveBuckets"`
@@ -39,11 +46,12 @@ type FloatHistogram struct {
 	// Spans for positive and negative buckets (see Span below).
 	PositiveSpans []*Span `json:"PositiveSpans"`
 
-	// Currently valid schema numbers are -4 <= n <= 8.  They are all for
-	// base-2 bucket schemas, where 1 is a bucket boundary in each case, and
-	// then each power of two is divided into 2^n logarithmic buckets.  Or
-	// in other words, each bucket boundary is the previous boundary times
-	// 2^(2^-n).
+	// Currently valid schema numbers are -4 <= n <= 8 for exponential buckets.
+	// They are all for base-2 bucket schemas, where 1 is a bucket boundary in
+	// each case, and then each power of two is divided into 2^n logarithmic buckets.
+	// Or in other words, each bucket boundary is the previous boundary times
+	// 2^(2^-n). Another valid schema number is -53 for custom buckets, defined by
+	// the CustomValues field.
 	Schema int32 `json:"Schema,omitempty"`
 
 	// Sum of observations. This is also used as the stale marker.

@@ -63,7 +63,7 @@ type DeleteTemplateParams struct {
 
 	/* Name.
 
-	   Template name
+	   Template group name
 	*/
 	Name string
 

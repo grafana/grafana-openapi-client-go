@@ -22,6 +22,9 @@ type DashboardMeta struct {
 	// annotations permissions
 	AnnotationsPermissions *AnnotationPermission `json:"annotationsPermissions,omitempty"`
 
+	// api version
+	APIVersion string `json:"apiVersion,omitempty"`
+
 	// can admin
 	CanAdmin bool `json:"canAdmin,omitempty"`
 

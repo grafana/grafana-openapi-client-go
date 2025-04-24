@@ -57,9 +57,17 @@ type ProvisionedAlertRule struct {
 	// Example: false
 	IsPaused bool `json:"isPaused,omitempty"`
 
+	// keep firing for
+	// Format: duration
+	KeepFiringFor strfmt.Duration `json:"keep_firing_for,omitempty"`
+
 	// labels
 	// Example: {"team":"sre-team-1"}
 	Labels map[string]string `json:"labels,omitempty"`
+
+	// missing series evals to resolve
+	// Example: 2
+	MissingSeriesEvalsToResolve int64 `json:"missingSeriesEvalsToResolve,omitempty"`
 
 	// no data state
 	// Required: true
@@ -126,6 +134,10 @@ func (m *ProvisionedAlertRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateFor(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateKeepFiringFor(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -269,6 +281,18 @@ func (m *ProvisionedAlertRule) validateFor(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("for", "body", "duration", m.For.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ProvisionedAlertRule) validateKeepFiringFor(formats strfmt.Registry) error {
+	if swag.IsZero(m.KeepFiringFor) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("keep_firing_for", "body", "duration", m.KeepFiringFor.String(), formats); err != nil {
 		return err
 	}
 

@@ -27,8 +27,14 @@ type TeamDTO struct {
 	// email
 	Email string `json:"email,omitempty"`
 
+	// external UID
+	ExternalUID string `json:"externalUID,omitempty"`
+
 	// id
 	ID int64 `json:"id,omitempty"`
+
+	// is provisioned
+	IsProvisioned bool `json:"isProvisioned,omitempty"`
 
 	// member count
 	MemberCount int64 `json:"memberCount,omitempty"`

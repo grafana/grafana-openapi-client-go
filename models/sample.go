@@ -20,6 +20,10 @@ import (
 // swagger:model Sample
 type Sample struct {
 
+	// DropName is used to indicate whether the __name__ label should be dropped
+	// as part of the query evaluation.
+	DropName bool `json:"DropName,omitempty"`
+
 	// f
 	F float64 `json:"F,omitempty"`
 

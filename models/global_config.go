@@ -22,6 +22,9 @@ type GlobalConfig struct {
 	// http config
 	HTTPConfig *HTTPClientConfig `json:"http_config,omitempty"`
 
+	// jira api url
+	JiraAPIURL *URL `json:"jira_api_url,omitempty"`
+
 	// opsgenie api key
 	OpsgenieAPIKey Secret `json:"opsgenie_api_key,omitempty"`
 
@@ -70,6 +73,9 @@ type GlobalConfig struct {
 	// smtp smarthost
 	SMTPSmarthost *HostPort `json:"smtp_smarthost,omitempty"`
 
+	// smtp tls config
+	SMTPTLSConfig *TLSConfig `json:"smtp_tls_config,omitempty"`
+
 	// telegram api url
 	TelegramAPIURL *URL `json:"telegram_api_url,omitempty"`
 
@@ -103,6 +109,10 @@ func (m *GlobalConfig) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateJiraAPIURL(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOpsgenieAPIKey(formats); err != nil {
 		res = append(res, err)
 	}
@@ -132,6 +142,10 @@ func (m *GlobalConfig) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSMTPSmarthost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSMTPTLSConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -176,6 +190,25 @@ func (m *GlobalConfig) validateHTTPConfig(formats strfmt.Registry) error {
 				return ve.ValidateName("http_config")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("http_config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GlobalConfig) validateJiraAPIURL(formats strfmt.Registry) error {
+	if swag.IsZero(m.JiraAPIURL) { // not required
+		return nil
+	}
+
+	if m.JiraAPIURL != nil {
+		if err := m.JiraAPIURL.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jira_api_url")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("jira_api_url")
 			}
 			return err
 		}
@@ -328,6 +361,25 @@ func (m *GlobalConfig) validateSMTPSmarthost(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GlobalConfig) validateSMTPTLSConfig(formats strfmt.Registry) error {
+	if swag.IsZero(m.SMTPTLSConfig) { // not required
+		return nil
+	}
+
+	if m.SMTPTLSConfig != nil {
+		if err := m.SMTPTLSConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("smtp_tls_config")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("smtp_tls_config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *GlobalConfig) validateTelegramAPIURL(formats strfmt.Registry) error {
 	if swag.IsZero(m.TelegramAPIURL) { // not required
 		return nil
@@ -446,6 +498,10 @@ func (m *GlobalConfig) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateJiraAPIURL(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOpsgenieAPIKey(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -475,6 +531,10 @@ func (m *GlobalConfig) ContextValidate(ctx context.Context, formats strfmt.Regis
 	}
 
 	if err := m.contextValidateSMTPSmarthost(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSMTPTLSConfig(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -521,6 +581,27 @@ func (m *GlobalConfig) contextValidateHTTPConfig(ctx context.Context, formats st
 				return ve.ValidateName("http_config")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("http_config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GlobalConfig) contextValidateJiraAPIURL(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.JiraAPIURL != nil {
+
+		if swag.IsZero(m.JiraAPIURL) { // not required
+			return nil
+		}
+
+		if err := m.JiraAPIURL.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jira_api_url")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("jira_api_url")
 			}
 			return err
 		}
@@ -677,6 +758,27 @@ func (m *GlobalConfig) contextValidateSMTPSmarthost(ctx context.Context, formats
 				return ve.ValidateName("smtp_smarthost")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("smtp_smarthost")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GlobalConfig) contextValidateSMTPTLSConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SMTPTLSConfig != nil {
+
+		if swag.IsZero(m.SMTPTLSConfig) { // not required
+			return nil
+		}
+
+		if err := m.SMTPTLSConfig.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("smtp_tls_config")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("smtp_tls_config")
 			}
 			return err
 		}

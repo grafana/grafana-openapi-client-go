@@ -37,6 +37,12 @@ type PostableGrafanaRule struct {
 	// metadata
 	Metadata *AlertRuleMetadata `json:"metadata,omitempty"`
 
+	// Number of consecutive evaluation intervals with no data for a dimension must pass
+	// before the alert state is considered stale and automatically resolved.
+	// If set to 0, the value is reset to the default.
+	// Example: 3
+	MissingSeriesEvalsToResolve int64 `json:"missing_series_evals_to_resolve,omitempty"`
+
 	// no data state
 	// Enum: [Alerting NoData OK]
 	NoDataState string `json:"no_data_state,omitempty"`

@@ -13,7 +13,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// AnnotationPermission annotation permission
+// AnnotationPermission +k8s:deepcopy-gen=true
 //
 // swagger:model AnnotationPermission
 type AnnotationPermission struct {
