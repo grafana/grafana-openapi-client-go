@@ -21,7 +21,7 @@ import (
 type UpdateServiceAccountForm struct {
 
 	// is disabled
-	IsDisabled bool `json:"isDisabled,omitempty"`
+	IsDisabled *bool `json:"isDisabled,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
