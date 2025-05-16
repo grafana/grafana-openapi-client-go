@@ -47,6 +47,9 @@ type ClientService interface {
 	GetReports(opts ...ClientOption) (*GetReportsOK, error)
 	GetReportsWithParams(params *GetReportsParams, opts ...ClientOption) (*GetReportsOK, error)
 
+	GetReportsByDashboardUID(uid string, opts ...ClientOption) (*GetReportsByDashboardUIDOK, error)
+	GetReportsByDashboardUIDWithParams(params *GetReportsByDashboardUIDParams, opts ...ClientOption) (*GetReportsByDashboardUIDOK, error)
+
 	GetSettingsImage(opts ...ClientOption) (*GetSettingsImageOK, error)
 	GetSettingsImageWithParams(params *GetSettingsImageParams, opts ...ClientOption) (*GetSettingsImageOK, error)
 
@@ -312,6 +315,54 @@ func (a *Client) GetReportsWithParams(params *GetReportsParams, opts ...ClientOp
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getReports: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetReportsByDashboardUID lists reports by dashboard uid
+
+Available to org admins only and with a valid or expired license.
+
+You need to have a permission with action `reports:read` with scope `reports:*`.
+*/
+func (a *Client) GetReportsByDashboardUID(uid string, opts ...ClientOption) (*GetReportsByDashboardUIDOK, error) {
+	params := NewGetReportsByDashboardUIDParams().WithUID(uid)
+	return a.GetReportsByDashboardUIDWithParams(params, opts...)
+}
+
+func (a *Client) GetReportsByDashboardUIDWithParams(params *GetReportsByDashboardUIDParams, opts ...ClientOption) (*GetReportsByDashboardUIDOK, error) {
+	if params == nil {
+		params = NewGetReportsByDashboardUIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getReportsByDashboardUID",
+		Method:             "GET",
+		PathPattern:        "/reports/dashboards/{uid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetReportsByDashboardUIDReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetReportsByDashboardUIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getReportsByDashboardUID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

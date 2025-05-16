@@ -19,6 +19,9 @@ import (
 // swagger:model NotificationPolicyExport
 type NotificationPolicyExport struct {
 
+	// active time intervals
+	ActiveTimeIntervals []string `json:"active_time_intervals"`
+
 	// continue
 	Continue bool `json:"continue,omitempty"`
 

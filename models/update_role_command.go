@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UpdateRoleCommand update role command
@@ -20,16 +21,19 @@ import (
 type UpdateRoleCommand struct {
 
 	// description
-	Description string `json:"description,omitempty"`
+	// Required: true
+	Description *string `json:"description"`
 
 	// display name
-	DisplayName string `json:"displayName,omitempty"`
+	// Required: true
+	DisplayName *string `json:"displayName"`
 
 	// global
 	Global bool `json:"global,omitempty"`
 
 	// group
-	Group string `json:"group,omitempty"`
+	// Required: true
+	Group *string `json:"group"`
 
 	// hidden
 	Hidden bool `json:"hidden,omitempty"`
@@ -48,6 +52,18 @@ type UpdateRoleCommand struct {
 func (m *UpdateRoleCommand) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisplayName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePermissions(formats); err != nil {
 		res = append(res, err)
 	}
@@ -55,6 +71,33 @@ func (m *UpdateRoleCommand) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UpdateRoleCommand) validateDescription(formats strfmt.Registry) error {
+
+	if err := validate.Required("description", "body", m.Description); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UpdateRoleCommand) validateDisplayName(formats strfmt.Registry) error {
+
+	if err := validate.Required("displayName", "body", m.DisplayName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UpdateRoleCommand) validateGroup(formats strfmt.Registry) error {
+
+	if err := validate.Required("group", "body", m.Group); err != nil {
+		return err
+	}
+
 	return nil
 }
 

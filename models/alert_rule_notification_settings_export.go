@@ -17,6 +17,9 @@ import (
 // swagger:model AlertRuleNotificationSettingsExport
 type AlertRuleNotificationSettingsExport struct {
 
+	// active time intervals
+	ActiveTimeIntervals []string `json:"active_time_intervals"`
+
 	// group by
 	GroupBy []string `json:"group_by"`
 
