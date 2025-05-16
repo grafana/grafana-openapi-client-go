@@ -45,6 +45,9 @@ type AlertingRule struct {
 	// Required: true
 	Health *string `json:"health"`
 
+	// is paused
+	IsPaused bool `json:"isPaused,omitempty"`
+
 	// keep firing for
 	KeepFiringFor float64 `json:"keepFiringFor,omitempty"`
 
@@ -61,6 +64,9 @@ type AlertingRule struct {
 	// name
 	// Required: true
 	Name *string `json:"name"`
+
+	// notification settings
+	NotificationSettings *AlertRuleNotificationSettings `json:"notificationSettings,omitempty"`
 
 	// queried datasource UI ds
 	QueriedDatasourceUIDs []string `json:"queriedDatasourceUIDs"`
@@ -116,6 +122,10 @@ func (m *AlertingRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNotificationSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -241,6 +251,25 @@ func (m *AlertingRule) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AlertingRule) validateNotificationSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.NotificationSettings) { // not required
+		return nil
+	}
+
+	if m.NotificationSettings != nil {
+		if err := m.NotificationSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("notificationSettings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("notificationSettings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AlertingRule) validateQuery(formats strfmt.Registry) error {
 
 	if err := validate.Required("query", "body", m.Query); err != nil {
@@ -281,6 +310,10 @@ func (m *AlertingRule) ContextValidate(ctx context.Context, formats strfmt.Regis
 	}
 
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNotificationSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -338,6 +371,27 @@ func (m *AlertingRule) contextValidateLabels(ctx context.Context, formats strfmt
 			return ce.ValidateName("labels")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *AlertingRule) contextValidateNotificationSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NotificationSettings != nil {
+
+		if swag.IsZero(m.NotificationSettings) { // not required
+			return nil
+		}
+
+		if err := m.NotificationSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("notificationSettings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("notificationSettings")
+			}
+			return err
+		}
 	}
 
 	return nil
