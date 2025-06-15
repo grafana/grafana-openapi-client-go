@@ -31,6 +31,10 @@ modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 # Remap field time_intervals of MuteTimeInterval and TimeInterval from TimeInterval (collision) to an equivalent model TimeIntervalItem.
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
+modify '.definitions.AlertRuleGroupExport.properties.interval = { "type" : "string"} '
+modify '.definitions.AlertRuleExport.properties.for = { "type" : "string"} '
+modify '.definitions.AlertRuleExport.properties.keepFiringFor = { "type" : "string"} '
+
 
 # "Unstructured" should truly be unstructured. Not an object with an "Object" property that allows anything.
 modify '.definitions.Unstructured.properties = {}'
