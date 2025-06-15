@@ -33,6 +33,8 @@ modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/d
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.AlertRuleGroupExport.properties.interval = { "type" : "string"} '
 modify '.definitions.AlertRuleExport.properties.for = { "type" : "string"} '
+modify '.definitions.AlertRuleExport.properties.keepFiringFor = { "type" : "string"} '
+
 
 # "Unstructured" should truly be unstructured. Not an object with an "Object" property that allows anything.
 modify '.definitions.Unstructured.properties = {}'

@@ -44,7 +44,7 @@ type AlertRuleExport struct {
 	IsPaused bool `json:"isPaused,omitempty"`
 
 	// keep firing for
-	KeepFiringFor Duration `json:"keepFiringFor,omitempty"`
+	KeepFiringFor string `json:"keepFiringFor,omitempty"`
 
 	// labels
 	Labels map[string]string `json:"labels,omitempty"`
@@ -81,10 +81,6 @@ func (m *AlertRuleExport) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateExecErrState(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateKeepFiringFor(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -171,23 +167,6 @@ func (m *AlertRuleExport) validateExecErrState(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validateExecErrStateEnum("execErrState", "body", m.ExecErrState); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AlertRuleExport) validateKeepFiringFor(formats strfmt.Registry) error {
-	if swag.IsZero(m.KeepFiringFor) { // not required
-		return nil
-	}
-
-	if err := m.KeepFiringFor.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("keepFiringFor")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("keepFiringFor")
-		}
 		return err
 	}
 
@@ -285,10 +264,6 @@ func (m *AlertRuleExport) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateKeepFiringFor(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateNotificationSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -323,24 +298,6 @@ func (m *AlertRuleExport) contextValidateData(ctx context.Context, formats strfm
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *AlertRuleExport) contextValidateKeepFiringFor(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.KeepFiringFor) { // not required
-		return nil
-	}
-
-	if err := m.KeepFiringFor.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("keepFiringFor")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("keepFiringFor")
-		}
-		return err
 	}
 
 	return nil
