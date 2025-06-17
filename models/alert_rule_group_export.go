@@ -23,7 +23,7 @@ type AlertRuleGroupExport struct {
 	Folder string `json:"folder,omitempty"`
 
 	// interval
-	Interval Duration `json:"interval,omitempty"`
+	Interval string `json:"interval,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -39,10 +39,6 @@ type AlertRuleGroupExport struct {
 func (m *AlertRuleGroupExport) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateInterval(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateRules(formats); err != nil {
 		res = append(res, err)
 	}
@@ -50,23 +46,6 @@ func (m *AlertRuleGroupExport) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *AlertRuleGroupExport) validateInterval(formats strfmt.Registry) error {
-	if swag.IsZero(m.Interval) { // not required
-		return nil
-	}
-
-	if err := m.Interval.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("interval")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("interval")
-		}
-		return err
-	}
-
 	return nil
 }
 
@@ -100,10 +79,6 @@ func (m *AlertRuleGroupExport) validateRules(formats strfmt.Registry) error {
 func (m *AlertRuleGroupExport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateInterval(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateRules(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -111,24 +86,6 @@ func (m *AlertRuleGroupExport) ContextValidate(ctx context.Context, formats strf
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *AlertRuleGroupExport) contextValidateInterval(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Interval) { // not required
-		return nil
-	}
-
-	if err := m.Interval.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("interval")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("interval")
-		}
-		return err
-	}
-
 	return nil
 }
 

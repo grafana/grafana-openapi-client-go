@@ -32,6 +32,12 @@ modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 
+# TODO: Upstream fix (https://github.com/grafana/grafana/issues/94936)
+modify '.definitions.AlertRuleGroupExport.properties.interval = { "type" : "string"} '
+modify '.definitions.AlertRuleExport.properties.for = { "type" : "string"} '
+modify '.definitions.AlertRuleExport.properties.keepFiringFor = { "type" : "string"} '
+
+
 # "Unstructured" should truly be unstructured. Not an object with an "Object" property that allows anything.
 modify '.definitions.Unstructured.properties = {}'
 
