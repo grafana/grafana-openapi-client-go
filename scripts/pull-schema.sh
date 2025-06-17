@@ -31,6 +31,8 @@ modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 # Remap field time_intervals of MuteTimeInterval and TimeInterval from TimeInterval (collision) to an equivalent model TimeIntervalItem.
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
+
+# TODO: Upstream fix (https://github.com/grafana/grafana/issues/94936)
 modify '.definitions.AlertRuleGroupExport.properties.interval = { "type" : "string"} '
 modify '.definitions.AlertRuleExport.properties.for = { "type" : "string"} '
 modify '.definitions.AlertRuleExport.properties.keepFiringFor = { "type" : "string"} '
