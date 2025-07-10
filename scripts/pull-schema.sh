@@ -41,5 +41,15 @@ modify '.definitions.AlertRuleExport.properties.keepFiringFor = { "type" : "stri
 # "Unstructured" should truly be unstructured. Not an object with an "Object" property that allows anything.
 modify '.definitions.Unstructured.properties = {}'
 
+modify '.definitions.AlertRuleExport.properties.execErrState.enum += ["KeepLast"]'
+modify '.definitions.AlertRuleExport.properties.noDataState.enum += ["KeepLast"]'
+modify '.definitions.GettableGrafanaRule.properties.exec_err_state.enum += ["KeepLast"]'
+modify '.definitions.GettableGrafanaRule.properties.no_data_state.enum += ["KeepLast"]'
+modify '.definitions.PostableGrafanaRule.properties.exec_err_state.enum += ["KeepLast"]'
+modify '.definitions.PostableGrafanaRule.properties.no_data_state.enum += ["KeepLast"]'
+modify '.definitions.ProvisionedAlertRule.properties.execErrState.enum += ["KeepLast"]'
+modify '.definitions.ProvisionedAlertRule.properties.noDataState.enum += ["KeepLast"]'
+
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"
+
