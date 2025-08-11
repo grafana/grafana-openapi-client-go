@@ -20,6 +20,9 @@ type UpdateTeamCommand struct {
 	// email
 	Email string `json:"Email,omitempty"`
 
+	// external UID
+	ExternalUID string `json:"ExternalUID,omitempty"`
+
 	// ID
 	ID int64 `json:"ID,omitempty"`
 
