@@ -20,22 +20,22 @@ import (
 type PrometheusRuleGroup struct {
 
 	// interval
-	Interval Duration `json:"Interval,omitempty"`
+	Interval Duration `json:"interval,omitempty"`
 
 	// labels
-	Labels map[string]string `json:"Labels,omitempty"`
+	Labels map[string]string `json:"labels,omitempty"`
 
 	// limit
-	Limit int64 `json:"Limit,omitempty"`
+	Limit int64 `json:"limit,omitempty"`
 
 	// name
-	Name string `json:"Name,omitempty"`
+	Name string `json:"name,omitempty"`
 
 	// query offset
-	QueryOffset string `json:"QueryOffset,omitempty"`
+	QueryOffset string `json:"query_offset,omitempty"`
 
 	// rules
-	Rules []*PrometheusRule `json:"Rules"`
+	Rules []*PrometheusRule `json:"rules"`
 }
 
 // Validate validates this prometheus rule group
@@ -63,9 +63,9 @@ func (m *PrometheusRuleGroup) validateInterval(formats strfmt.Registry) error {
 
 	if err := m.Interval.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("Interval")
+			return ve.ValidateName("interval")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("Interval")
+			return ce.ValidateName("interval")
 		}
 		return err
 	}
@@ -86,9 +86,9 @@ func (m *PrometheusRuleGroup) validateRules(formats strfmt.Registry) error {
 		if m.Rules[i] != nil {
 			if err := m.Rules[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("Rules" + "." + strconv.Itoa(i))
+					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("Rules" + "." + strconv.Itoa(i))
+					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -125,9 +125,9 @@ func (m *PrometheusRuleGroup) contextValidateInterval(ctx context.Context, forma
 
 	if err := m.Interval.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("Interval")
+			return ve.ValidateName("interval")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("Interval")
+			return ce.ValidateName("interval")
 		}
 		return err
 	}
@@ -147,9 +147,9 @@ func (m *PrometheusRuleGroup) contextValidateRules(ctx context.Context, formats 
 
 			if err := m.Rules[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("Rules" + "." + strconv.Itoa(i))
+					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("Rules" + "." + strconv.Itoa(i))
+					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

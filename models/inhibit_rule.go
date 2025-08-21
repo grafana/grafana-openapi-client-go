@@ -20,8 +20,9 @@ import (
 // swagger:model InhibitRule
 type InhibitRule struct {
 
-	// equal
-	Equal LabelNames `json:"equal,omitempty"`
+	// A set of labels that must be equal between the source and target alert
+	// for them to be a match.
+	Equal []string `json:"equal"`
 
 	// SourceMatch defines a set of labels that have to equal the given
 	// value for source alerts. Deprecated. Remove before v1.0 release.
@@ -48,10 +49,6 @@ type InhibitRule struct {
 func (m *InhibitRule) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEqual(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateSourceMatchRe(formats); err != nil {
 		res = append(res, err)
 	}
@@ -71,23 +68,6 @@ func (m *InhibitRule) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *InhibitRule) validateEqual(formats strfmt.Registry) error {
-	if swag.IsZero(m.Equal) { // not required
-		return nil
-	}
-
-	if err := m.Equal.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("equal")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("equal")
-		}
-		return err
-	}
-
 	return nil
 }
 
@@ -167,10 +147,6 @@ func (m *InhibitRule) validateTargetMatchers(formats strfmt.Registry) error {
 func (m *InhibitRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateEqual(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateSourceMatchRe(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -190,20 +166,6 @@ func (m *InhibitRule) ContextValidate(ctx context.Context, formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *InhibitRule) contextValidateEqual(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := m.Equal.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("equal")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("equal")
-		}
-		return err
-	}
-
 	return nil
 }
 

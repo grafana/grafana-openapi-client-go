@@ -31,8 +31,7 @@ type PatchLibraryElementCommand struct {
 	// Kind of element to create, Use 1 for library panels or 2 for c.
 	// Description:
 	// 1 - library panels
-	// 2 - library variables
-	// Enum: [1 2]
+	// Enum: [1]
 	Kind int64 `json:"kind,omitempty"`
 
 	// The JSON model for the library element.
@@ -66,7 +65,7 @@ var patchLibraryElementCommandTypeKindPropEnum []interface{}
 
 func init() {
 	var res []int64
-	if err := json.Unmarshal([]byte(`[1,2]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`[1]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

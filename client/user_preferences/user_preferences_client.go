@@ -135,7 +135,7 @@ func (a *Client) PatchUserPreferencesWithParams(params *PatchUserPreferencesPara
 /*
 UpdateUserPreferences updates user preferences
 
-Omitting a key (`theme`, `homeDashboardId`, `timezone`) will cause the current value to be replaced with the system default value.
+Omitting a key (`theme`, `homeDashboardUID`, `timezone`) will cause the current value to be replaced with the system default value.
 */
 func (a *Client) UpdateUserPreferences(body *models.UpdatePrefsCmd, opts ...ClientOption) (*UpdateUserPreferencesOK, error) {
 	params := NewUpdateUserPreferencesParams().WithBody(body)

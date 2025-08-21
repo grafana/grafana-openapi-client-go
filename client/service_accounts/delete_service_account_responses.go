@@ -48,6 +48,12 @@ func (o *DeleteServiceAccountReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
+	case 404:
+		result := NewDeleteServiceAccountNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 500:
 		result := NewDeleteServiceAccountInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -328,6 +334,76 @@ func (o *DeleteServiceAccountForbidden) GetPayload() *models.ErrorResponseBody {
 }
 
 func (o *DeleteServiceAccountForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteServiceAccountNotFound creates a DeleteServiceAccountNotFound with default headers values
+func NewDeleteServiceAccountNotFound() *DeleteServiceAccountNotFound {
+	return &DeleteServiceAccountNotFound{}
+}
+
+/*
+DeleteServiceAccountNotFound describes a response with status code 404, with default header values.
+
+NotFoundError is returned when the requested resource was not found.
+*/
+type DeleteServiceAccountNotFound struct {
+	Payload *models.ErrorResponseBody
+}
+
+// IsSuccess returns true when this delete service account not found response has a 2xx status code
+func (o *DeleteServiceAccountNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete service account not found response has a 3xx status code
+func (o *DeleteServiceAccountNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete service account not found response has a 4xx status code
+func (o *DeleteServiceAccountNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete service account not found response has a 5xx status code
+func (o *DeleteServiceAccountNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete service account not found response a status code equal to that given
+func (o *DeleteServiceAccountNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
+// Code gets the status code for the delete service account not found response
+func (o *DeleteServiceAccountNotFound) Code() int {
+	return 404
+}
+
+func (o *DeleteServiceAccountNotFound) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}][%d] deleteServiceAccountNotFound %s", 404, payload)
+}
+
+func (o *DeleteServiceAccountNotFound) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /serviceaccounts/{serviceAccountId}][%d] deleteServiceAccountNotFound %s", 404, payload)
+}
+
+func (o *DeleteServiceAccountNotFound) GetPayload() *models.ErrorResponseBody {
+	return o.Payload
+}
+
+func (o *DeleteServiceAccountNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ErrorResponseBody)
 

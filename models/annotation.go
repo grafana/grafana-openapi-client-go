@@ -29,7 +29,7 @@ type Annotation struct {
 	// created
 	Created int64 `json:"created,omitempty"`
 
-	// dashboard Id
+	// Deprecated: Use DashboardUID and OrgID instead
 	DashboardID int64 `json:"dashboardId,omitempty"`
 
 	// dashboard UID

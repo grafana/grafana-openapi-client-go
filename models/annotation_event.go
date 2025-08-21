@@ -24,6 +24,9 @@ type AnnotationEvent struct {
 	// dashboard Id
 	DashboardID int64 `json:"dashboardId,omitempty"`
 
+	// dashboard UID
+	DashboardUID string `json:"dashboardUID,omitempty"`
+
 	// id
 	ID int64 `json:"id,omitempty"`
 

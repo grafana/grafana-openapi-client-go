@@ -40,6 +40,8 @@ type ClientService interface {
 
 	RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, opts ...ClientOption) (*RemoveTeamGroupAPIQueryOK, error)
 
+	SearchTeamGroups(params *SearchTeamGroupsParams, opts ...ClientOption) (*SearchTeamGroupsOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -168,6 +170,46 @@ func (a *Client) RemoveTeamGroupAPIQuery(params *RemoveTeamGroupAPIQueryParams, 
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for removeTeamGroupApiQuery: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SearchTeamGroups searches for team groups with optional filtering and pagination
+*/
+
+func (a *Client) SearchTeamGroups(params *SearchTeamGroupsParams, opts ...ClientOption) (*SearchTeamGroupsOK, error) {
+	if params == nil {
+		params = NewSearchTeamGroupsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "searchTeamGroups",
+		Method:             "GET",
+		PathPattern:        "/teams/{teamId}/groups/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &SearchTeamGroupsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		if opt != nil {
+			opt(op)
+		}
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SearchTeamGroupsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for searchTeamGroups: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

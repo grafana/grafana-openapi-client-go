@@ -54,7 +54,7 @@ type UpdateDataSourceCommand struct {
 	// user
 	User string `json:"user,omitempty"`
 
-	// version
+	// The previous version -- used for optimistic locking
 	Version int64 `json:"version,omitempty"`
 
 	// with credentials
