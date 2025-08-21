@@ -28,6 +28,10 @@ modify '.paths = .paths | walk(if type == "object" and has("operationId") then .
 modify '.definitions.ReportSchedule.properties.startDate["x-nullable"] = true'
 modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 
+# UpdateServiceAccountForm.isDisabled must be nullable
+# https://github.com/grafana/grafana-operator/pull/1907
+modify '.definitions.UpdateServiceAccountForm.properties.isDisabled["x-nullable"] = true'
+
 # Remap field time_intervals of MuteTimeInterval and TimeInterval from TimeInterval (collision) to an equivalent model TimeIntervalItem.
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
