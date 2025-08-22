@@ -27,14 +27,14 @@ type Preferences struct {
 	// Selected language (beta)
 	Language string `json:"language,omitempty"`
 
-	// Selected locale (beta)
-	Locale string `json:"locale,omitempty"`
-
 	// navbar
 	Navbar *NavbarPreference `json:"navbar,omitempty"`
 
 	// query history
 	QueryHistory *QueryHistoryPreference `json:"queryHistory,omitempty"`
+
+	// Selected locale (beta)
+	RegionalFormat string `json:"regionalFormat,omitempty"`
 
 	// light, dark, empty is default
 	Theme string `json:"theme,omitempty"`
