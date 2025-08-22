@@ -35,7 +35,7 @@ type LibraryElementConnectionDTO struct {
 	// element Id
 	ElementID int64 `json:"elementId,omitempty"`
 
-	// id
+	// Deprecated: this field will be removed in the future
 	ID int64 `json:"id,omitempty"`
 
 	// kind

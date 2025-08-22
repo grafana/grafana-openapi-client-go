@@ -278,7 +278,7 @@ func (a *Client) GetStatusWithParams(params *GetStatusParams, opts ...ClientOpti
 /*
 PostLicenseToken creates license token
 
-You need to have a permission with action `licensing:update`.
+You need to have a permission with action `licensing:write`.
 */
 func (a *Client) PostLicenseToken(body *models.DeleteTokenCommand, opts ...ClientOption) (*PostLicenseTokenOK, error) {
 	params := NewPostLicenseTokenParams().WithBody(body)
@@ -326,7 +326,7 @@ PostRenewLicenseToken manuallies force license refresh
 
 Manually ask license issuer for a new token. Available in Grafana Enterprise v7.4+.
 
-You need to have a permission with action `licensing:update`.
+You need to have a permission with action `licensing:write`.
 */
 func (a *Client) PostRenewLicenseToken(body interface{}, opts ...ClientOption) (*PostRenewLicenseTokenOK, error) {
 	params := NewPostRenewLicenseTokenParams().WithBody(body)

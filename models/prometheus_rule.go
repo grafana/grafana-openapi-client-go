@@ -18,25 +18,25 @@ import (
 type PrometheusRule struct {
 
 	// alert
-	Alert string `json:"Alert,omitempty"`
+	Alert string `json:"alert,omitempty"`
 
 	// annotations
-	Annotations map[string]string `json:"Annotations,omitempty"`
+	Annotations map[string]string `json:"annotations,omitempty"`
 
 	// expr
-	Expr string `json:"Expr,omitempty"`
+	Expr string `json:"expr,omitempty"`
 
 	// for
-	For string `json:"For,omitempty"`
+	For string `json:"for,omitempty"`
 
 	// keep firing for
-	KeepFiringFor string `json:"KeepFiringFor,omitempty"`
+	KeepFiringFor string `json:"keep_firing_for,omitempty"`
 
 	// labels
-	Labels map[string]string `json:"Labels,omitempty"`
+	Labels map[string]string `json:"labels,omitempty"`
 
 	// record
-	Record string `json:"Record,omitempty"`
+	Record string `json:"record,omitempty"`
 }
 
 // Validate validates this prometheus rule
