@@ -68,6 +68,9 @@ type AlertingRule struct {
 	// notification settings
 	NotificationSettings *AlertRuleNotificationSettings `json:"notificationSettings,omitempty"`
 
+	// provenance
+	Provenance Provenance `json:"provenance,omitempty"`
+
 	// queried datasource UI ds
 	QueriedDatasourceUIDs []string `json:"queriedDatasourceUIDs"`
 
@@ -126,6 +129,10 @@ func (m *AlertingRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNotificationSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProvenance(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -270,6 +277,23 @@ func (m *AlertingRule) validateNotificationSettings(formats strfmt.Registry) err
 	return nil
 }
 
+func (m *AlertingRule) validateProvenance(formats strfmt.Registry) error {
+	if swag.IsZero(m.Provenance) { // not required
+		return nil
+	}
+
+	if err := m.Provenance.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("provenance")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("provenance")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *AlertingRule) validateQuery(formats strfmt.Registry) error {
 
 	if err := validate.Required("query", "body", m.Query); err != nil {
@@ -314,6 +338,10 @@ func (m *AlertingRule) ContextValidate(ctx context.Context, formats strfmt.Regis
 	}
 
 	if err := m.contextValidateNotificationSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProvenance(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -392,6 +420,24 @@ func (m *AlertingRule) contextValidateNotificationSettings(ctx context.Context, 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *AlertingRule) contextValidateProvenance(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Provenance) { // not required
+		return nil
+	}
+
+	if err := m.Provenance.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("provenance")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("provenance")
+		}
+		return err
 	}
 
 	return nil
