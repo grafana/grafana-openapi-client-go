@@ -33,14 +33,14 @@ type PatchPrefsCmd struct {
 	// language
 	Language string `json:"language,omitempty"`
 
-	// locale
-	Locale string `json:"locale,omitempty"`
-
 	// navbar
 	Navbar *NavbarPreference `json:"navbar,omitempty"`
 
 	// query history
 	QueryHistory *QueryHistoryPreference `json:"queryHistory,omitempty"`
+
+	// regional format
+	RegionalFormat string `json:"regionalFormat,omitempty"`
 
 	// theme
 	// Enum: [light dark]
