@@ -39,7 +39,7 @@ func (m *CreateSnapshotRequestDTO) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var createSnapshotRequestDtoResourceTypesItemsEnum []interface{}
+var createSnapshotRequestDtoResourceTypesItemsEnum []any
 
 func init() {
 	var res []string

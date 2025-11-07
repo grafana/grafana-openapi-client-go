@@ -21,7 +21,7 @@ import (
 type PublicError struct {
 
 	// Extra Additional information about the error
-	Extra interface{} `json:"extra,omitempty"`
+	Extra map[string]any `json:"extra,omitempty"`
 
 	// Message A human readable message
 	Message string `json:"message,omitempty"`

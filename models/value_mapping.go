@@ -8,4 +8,4 @@ package models
 // ValueMapping ValueMapping allows mapping input values to text and color
 //
 // swagger:model ValueMapping
-type ValueMapping interface{}
+type ValueMapping any

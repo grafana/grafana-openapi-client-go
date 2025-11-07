@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -73,11 +74,15 @@ func (m *UpdateDataSourceByUIDOKBody) validateDatasource(formats strfmt.Registry
 
 	if m.Datasource != nil {
 		if err := m.Datasource.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("datasource")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("datasource")
 			}
+
 			return err
 		}
 	}
@@ -131,11 +136,15 @@ func (m *UpdateDataSourceByUIDOKBody) contextValidateDatasource(ctx context.Cont
 	if m.Datasource != nil {
 
 		if err := m.Datasource.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("datasource")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("datasource")
 			}
+
 			return err
 		}
 	}

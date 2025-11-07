@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -58,11 +59,15 @@ func (m *PublicDashboardListResponseWithPagination) validatePublicDashboards(for
 
 		if m.PublicDashboards[i] != nil {
 			if err := m.PublicDashboards[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("publicDashboards" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("publicDashboards" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -97,11 +102,15 @@ func (m *PublicDashboardListResponseWithPagination) contextValidatePublicDashboa
 			}
 
 			if err := m.PublicDashboards[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("publicDashboards" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("publicDashboards" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

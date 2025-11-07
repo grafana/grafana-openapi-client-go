@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -50,11 +51,15 @@ func (m *AnnotationPermission) validateDashboard(formats strfmt.Registry) error 
 
 	if m.Dashboard != nil {
 		if err := m.Dashboard.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("dashboard")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("dashboard")
 			}
+
 			return err
 		}
 	}
@@ -69,11 +74,15 @@ func (m *AnnotationPermission) validateOrganization(formats strfmt.Registry) err
 
 	if m.Organization != nil {
 		if err := m.Organization.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("organization")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("organization")
 			}
+
 			return err
 		}
 	}
@@ -108,11 +117,15 @@ func (m *AnnotationPermission) contextValidateDashboard(ctx context.Context, for
 		}
 
 		if err := m.Dashboard.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("dashboard")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("dashboard")
 			}
+
 			return err
 		}
 	}
@@ -129,11 +142,15 @@ func (m *AnnotationPermission) contextValidateOrganization(ctx context.Context, 
 		}
 
 		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("organization")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("organization")
 			}
+
 			return err
 		}
 	}

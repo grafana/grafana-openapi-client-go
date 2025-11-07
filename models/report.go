@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -142,11 +143,15 @@ func (m *Report) validateDashboards(formats strfmt.Registry) error {
 
 		if m.Dashboards[i] != nil {
 			if err := m.Dashboards[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("dashboards" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("dashboards" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -164,11 +169,15 @@ func (m *Report) validateFormats(formats strfmt.Registry) error {
 	for i := 0; i < len(m.Formats); i++ {
 
 		if err := m.Formats[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("formats" + "." + strconv.Itoa(i))
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("formats" + "." + strconv.Itoa(i))
 			}
+
 			return err
 		}
 
@@ -184,11 +193,15 @@ func (m *Report) validateOptions(formats strfmt.Registry) error {
 
 	if m.Options != nil {
 		if err := m.Options.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("options")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("options")
 			}
+
 			return err
 		}
 	}
@@ -203,11 +216,15 @@ func (m *Report) validateSchedule(formats strfmt.Registry) error {
 
 	if m.Schedule != nil {
 		if err := m.Schedule.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("schedule")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("schedule")
 			}
+
 			return err
 		}
 	}
@@ -221,11 +238,15 @@ func (m *Report) validateState(formats strfmt.Registry) error {
 	}
 
 	if err := m.State.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("state")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("state")
 		}
+
 		return err
 	}
 
@@ -285,11 +306,15 @@ func (m *Report) contextValidateDashboards(ctx context.Context, formats strfmt.R
 			}
 
 			if err := m.Dashboards[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("dashboards" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("dashboards" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -308,11 +333,15 @@ func (m *Report) contextValidateFormats(ctx context.Context, formats strfmt.Regi
 		}
 
 		if err := m.Formats[i].ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("formats" + "." + strconv.Itoa(i))
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("formats" + "." + strconv.Itoa(i))
 			}
+
 			return err
 		}
 
@@ -330,11 +359,15 @@ func (m *Report) contextValidateOptions(ctx context.Context, formats strfmt.Regi
 		}
 
 		if err := m.Options.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("options")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("options")
 			}
+
 			return err
 		}
 	}
@@ -351,11 +384,15 @@ func (m *Report) contextValidateSchedule(ctx context.Context, formats strfmt.Reg
 		}
 
 		if err := m.Schedule.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("schedule")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("schedule")
 			}
+
 			return err
 		}
 	}
@@ -370,11 +407,15 @@ func (m *Report) contextValidateState(ctx context.Context, formats strfmt.Regist
 	}
 
 	if err := m.State.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("state")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("state")
 		}
+
 		return err
 	}
 

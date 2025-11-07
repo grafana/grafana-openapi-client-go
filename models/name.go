@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -76,11 +77,15 @@ func (m *Name) validateExtraNames(formats strfmt.Registry) error {
 
 		if m.ExtraNames[i] != nil {
 			if err := m.ExtraNames[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("ExtraNames" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("ExtraNames" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -102,11 +107,15 @@ func (m *Name) validateNames(formats strfmt.Registry) error {
 
 		if m.Names[i] != nil {
 			if err := m.Names[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("Names" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("Names" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -145,11 +154,15 @@ func (m *Name) contextValidateExtraNames(ctx context.Context, formats strfmt.Reg
 			}
 
 			if err := m.ExtraNames[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("ExtraNames" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("ExtraNames" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -170,11 +183,15 @@ func (m *Name) contextValidateNames(ctx context.Context, formats strfmt.Registry
 			}
 
 			if err := m.Names[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("Names" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("Names" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

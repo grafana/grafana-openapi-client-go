@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -65,11 +66,15 @@ func (m *SyncResult) validateElapsed(formats strfmt.Registry) error {
 	}
 
 	if err := m.Elapsed.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Elapsed")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Elapsed")
 		}
+
 		return err
 	}
 
@@ -88,11 +93,15 @@ func (m *SyncResult) validateFailedUsers(formats strfmt.Registry) error {
 
 		if m.FailedUsers[i] != nil {
 			if err := m.FailedUsers[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("FailedUsers" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("FailedUsers" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -139,11 +148,15 @@ func (m *SyncResult) contextValidateElapsed(ctx context.Context, formats strfmt.
 	}
 
 	if err := m.Elapsed.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Elapsed")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Elapsed")
 		}
+
 		return err
 	}
 
@@ -161,11 +174,15 @@ func (m *SyncResult) contextValidateFailedUsers(ctx context.Context, formats str
 			}
 
 			if err := m.FailedUsers[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("FailedUsers" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("FailedUsers" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

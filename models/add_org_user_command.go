@@ -24,7 +24,7 @@ type AddOrgUserCommand struct {
 	LoginOrEmail string `json:"loginOrEmail,omitempty"`
 
 	// role
-	// Enum: [None Viewer Editor Admin]
+	// Enum: ["None","Viewer","Editor","Admin"]
 	Role string `json:"role,omitempty"`
 }
 
@@ -42,7 +42,7 @@ func (m *AddOrgUserCommand) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var addOrgUserCommandTypeRolePropEnum []interface{}
+var addOrgUserCommandTypeRolePropEnum []any
 
 func init() {
 	var res []string

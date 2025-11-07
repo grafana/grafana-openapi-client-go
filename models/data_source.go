@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -100,11 +101,15 @@ func (m *DataSource) validateAccess(formats strfmt.Registry) error {
 	}
 
 	if err := m.Access.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("access")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("access")
 		}
+
 		return err
 	}
 
@@ -118,11 +123,15 @@ func (m *DataSource) validateAccessControl(formats strfmt.Registry) error {
 
 	if m.AccessControl != nil {
 		if err := m.AccessControl.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("accessControl")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("accessControl")
 			}
+
 			return err
 		}
 	}
@@ -155,11 +164,15 @@ func (m *DataSource) contextValidateAccess(ctx context.Context, formats strfmt.R
 	}
 
 	if err := m.Access.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("access")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("access")
 		}
+
 		return err
 	}
 
@@ -173,11 +186,15 @@ func (m *DataSource) contextValidateAccessControl(ctx context.Context, formats s
 	}
 
 	if err := m.AccessControl.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("accessControl")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("accessControl")
 		}
+
 		return err
 	}
 

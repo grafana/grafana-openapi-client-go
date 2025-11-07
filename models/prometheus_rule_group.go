@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -62,11 +63,15 @@ func (m *PrometheusRuleGroup) validateInterval(formats strfmt.Registry) error {
 	}
 
 	if err := m.Interval.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("interval")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("interval")
 		}
+
 		return err
 	}
 
@@ -85,11 +90,15 @@ func (m *PrometheusRuleGroup) validateRules(formats strfmt.Registry) error {
 
 		if m.Rules[i] != nil {
 			if err := m.Rules[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -124,11 +133,15 @@ func (m *PrometheusRuleGroup) contextValidateInterval(ctx context.Context, forma
 	}
 
 	if err := m.Interval.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("interval")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("interval")
 		}
+
 		return err
 	}
 
@@ -146,11 +159,15 @@ func (m *PrometheusRuleGroup) contextValidateRules(ctx context.Context, formats 
 			}
 
 			if err := m.Rules[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

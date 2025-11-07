@@ -24,7 +24,7 @@ type ListAllProvidersSettingsOKBodyItems struct {
 	Provider string `json:"provider,omitempty"`
 
 	// settings
-	Settings interface{} `json:"settings,omitempty"`
+	Settings map[string]any `json:"settings,omitempty"`
 
 	// source
 	Source string `json:"source,omitempty"`

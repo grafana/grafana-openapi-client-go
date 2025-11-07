@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -117,11 +118,15 @@ func (m *Folder) validateAccessControl(formats strfmt.Registry) error {
 
 	if m.AccessControl != nil {
 		if err := m.AccessControl.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("accessControl")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("accessControl")
 			}
+
 			return err
 		}
 	}
@@ -147,11 +152,15 @@ func (m *Folder) validateManagedBy(formats strfmt.Registry) error {
 	}
 
 	if err := m.ManagedBy.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("managedBy")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("managedBy")
 		}
+
 		return err
 	}
 
@@ -170,11 +179,15 @@ func (m *Folder) validateParents(formats strfmt.Registry) error {
 
 		if m.Parents[i] != nil {
 			if err := m.Parents[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("parents" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("parents" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -225,11 +238,15 @@ func (m *Folder) contextValidateAccessControl(ctx context.Context, formats strfm
 	}
 
 	if err := m.AccessControl.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("accessControl")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("accessControl")
 		}
+
 		return err
 	}
 
@@ -243,11 +260,15 @@ func (m *Folder) contextValidateManagedBy(ctx context.Context, formats strfmt.Re
 	}
 
 	if err := m.ManagedBy.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("managedBy")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("managedBy")
 		}
+
 		return err
 	}
 
@@ -265,11 +286,15 @@ func (m *Folder) contextValidateParents(ctx context.Context, formats strfmt.Regi
 			}
 
 			if err := m.Parents[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("parents" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("parents" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

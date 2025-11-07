@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -62,11 +63,15 @@ func (m *DataResponse) validateErrorSource(formats strfmt.Registry) error {
 	}
 
 	if err := m.ErrorSource.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("ErrorSource")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("ErrorSource")
 		}
+
 		return err
 	}
 
@@ -79,11 +84,15 @@ func (m *DataResponse) validateFrames(formats strfmt.Registry) error {
 	}
 
 	if err := m.Frames.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Frames")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Frames")
 		}
+
 		return err
 	}
 
@@ -96,11 +105,15 @@ func (m *DataResponse) validateStatus(formats strfmt.Registry) error {
 	}
 
 	if err := m.Status.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Status")
 		}
+
 		return err
 	}
 
@@ -136,11 +149,15 @@ func (m *DataResponse) contextValidateErrorSource(ctx context.Context, formats s
 	}
 
 	if err := m.ErrorSource.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("ErrorSource")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("ErrorSource")
 		}
+
 		return err
 	}
 
@@ -150,11 +167,15 @@ func (m *DataResponse) contextValidateErrorSource(ctx context.Context, formats s
 func (m *DataResponse) contextValidateFrames(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Frames.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Frames")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Frames")
 		}
+
 		return err
 	}
 
@@ -168,11 +189,15 @@ func (m *DataResponse) contextValidateStatus(ctx context.Context, formats strfmt
 	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Status")
 		}
+
 		return err
 	}
 

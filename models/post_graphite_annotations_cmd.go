@@ -21,7 +21,7 @@ type PostGraphiteAnnotationsCmd struct {
 	Data string `json:"data,omitempty"`
 
 	// tags
-	Tags interface{} `json:"tags,omitempty"`
+	Tags any `json:"tags,omitempty"`
 
 	// what
 	What string `json:"what,omitempty"`

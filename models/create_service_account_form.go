@@ -30,7 +30,7 @@ type CreateServiceAccountForm struct {
 
 	// role
 	// Example: Admin
-	// Enum: [None Viewer Editor Admin]
+	// Enum: ["None","Viewer","Editor","Admin"]
 	Role string `json:"role,omitempty"`
 }
 
@@ -48,7 +48,7 @@ func (m *CreateServiceAccountForm) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var createServiceAccountFormTypeRolePropEnum []interface{}
+var createServiceAccountFormTypeRolePropEnum []any
 
 func init() {
 	var res []string

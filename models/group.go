@@ -21,7 +21,7 @@ type Group struct {
 	GroupID string `json:"groupID,omitempty"`
 
 	// mappings
-	Mappings interface{} `json:"mappings,omitempty"`
+	Mappings any `json:"mappings,omitempty"`
 }
 
 // Validate validates this group

@@ -138,7 +138,7 @@ RenderReportCSVsNoContent describes a response with status code 204, with defaul
 (empty)
 */
 type RenderReportCSVsNoContent struct {
-	Payload interface{}
+	Payload any
 }
 
 // IsSuccess returns true when this render report c s vs no content response has a 2xx status code
@@ -181,7 +181,7 @@ func (o *RenderReportCSVsNoContent) String() string {
 	return fmt.Sprintf("[GET /reports/render/csvs][%d] renderReportCSVsNoContent %s", 204, payload)
 }
 
-func (o *RenderReportCSVsNoContent) GetPayload() interface{} {
+func (o *RenderReportCSVsNoContent) GetPayload() any {
 	return o.Payload
 }
 

@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -29,7 +30,7 @@ type InternalDataLink struct {
 	PanelsState ExplorePanelsState `json:"panelsState,omitempty"`
 
 	// query
-	Query interface{} `json:"query,omitempty"`
+	Query any `json:"query,omitempty"`
 
 	// time range
 	TimeRange *TimeRange `json:"timeRange,omitempty"`
@@ -63,11 +64,15 @@ func (m *InternalDataLink) validateTimeRange(formats strfmt.Registry) error {
 
 	if m.TimeRange != nil {
 		if err := m.TimeRange.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("timeRange")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("timeRange")
 			}
+
 			return err
 		}
 	}
@@ -87,11 +92,15 @@ func (m *InternalDataLink) validateTransformations(formats strfmt.Registry) erro
 
 		if m.Transformations[i] != nil {
 			if err := m.Transformations[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("transformations" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("transformations" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -128,11 +137,15 @@ func (m *InternalDataLink) contextValidateTimeRange(ctx context.Context, formats
 		}
 
 		if err := m.TimeRange.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("timeRange")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("timeRange")
 			}
+
 			return err
 		}
 	}
@@ -151,11 +164,15 @@ func (m *InternalDataLink) contextValidateTransformations(ctx context.Context, f
 			}
 
 			if err := m.Transformations[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("transformations" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("transformations" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

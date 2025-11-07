@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -88,11 +89,15 @@ func (m *LibraryElementDTOMeta) validateCreatedBy(formats strfmt.Registry) error
 
 	if m.CreatedBy != nil {
 		if err := m.CreatedBy.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("createdBy")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("createdBy")
 			}
+
 			return err
 		}
 	}
@@ -119,11 +124,15 @@ func (m *LibraryElementDTOMeta) validateUpdatedBy(formats strfmt.Registry) error
 
 	if m.UpdatedBy != nil {
 		if err := m.UpdatedBy.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("updatedBy")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("updatedBy")
 			}
+
 			return err
 		}
 	}
@@ -158,11 +167,15 @@ func (m *LibraryElementDTOMeta) contextValidateCreatedBy(ctx context.Context, fo
 		}
 
 		if err := m.CreatedBy.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("createdBy")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("createdBy")
 			}
+
 			return err
 		}
 	}
@@ -179,11 +192,15 @@ func (m *LibraryElementDTOMeta) contextValidateUpdatedBy(ctx context.Context, fo
 		}
 
 		if err := m.UpdatedBy.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("updatedBy")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("updatedBy")
 			}
+
 			return err
 		}
 	}

@@ -62,7 +62,7 @@ PostRenewLicenseTokenParams contains all the parameters to send to the API endpo
 type PostRenewLicenseTokenParams struct {
 
 	// Body.
-	Body interface{}
+	Body any
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *PostRenewLicenseTokenParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the post renew license token params
-func (o *PostRenewLicenseTokenParams) WithBody(body interface{}) *PostRenewLicenseTokenParams {
+func (o *PostRenewLicenseTokenParams) WithBody(body any) *PostRenewLicenseTokenParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the post renew license token params
-func (o *PostRenewLicenseTokenParams) SetBody(body interface{}) {
+func (o *PostRenewLicenseTokenParams) SetBody(body any) {
 	o.Body = body
 }
 

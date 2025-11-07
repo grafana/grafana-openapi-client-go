@@ -27,7 +27,7 @@ type UpdateServiceAccountForm struct {
 	Name string `json:"name,omitempty"`
 
 	// role
-	// Enum: [None Viewer Editor Admin]
+	// Enum: ["None","Viewer","Editor","Admin"]
 	Role string `json:"role,omitempty"`
 
 	// service account Id
@@ -48,7 +48,7 @@ func (m *UpdateServiceAccountForm) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var updateServiceAccountFormTypeRolePropEnum []interface{}
+var updateServiceAccountFormTypeRolePropEnum []any
 
 func init() {
 	var res []string

@@ -8,4 +8,4 @@ package models
 // PermissionDenied permission denied
 //
 // swagger:model PermissionDenied
-type PermissionDenied interface{}
+type PermissionDenied any
