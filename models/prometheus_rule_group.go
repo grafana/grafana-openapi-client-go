@@ -21,7 +21,7 @@ import (
 type PrometheusRuleGroup struct {
 
 	// interval
-	Interval Duration `json:"interval,omitempty"`
+	Interval string `json:"interval,omitempty"`
 
 	// labels
 	Labels map[string]string `json:"labels,omitempty"`
@@ -43,10 +43,6 @@ type PrometheusRuleGroup struct {
 func (m *PrometheusRuleGroup) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateInterval(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateRules(formats); err != nil {
 		res = append(res, err)
 	}
@@ -54,27 +50,6 @@ func (m *PrometheusRuleGroup) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *PrometheusRuleGroup) validateInterval(formats strfmt.Registry) error {
-	if swag.IsZero(m.Interval) { // not required
-		return nil
-	}
-
-	if err := m.Interval.Validate(formats); err != nil {
-		ve := new(errors.Validation)
-		if stderrors.As(err, &ve) {
-			return ve.ValidateName("interval")
-		}
-		ce := new(errors.CompositeError)
-		if stderrors.As(err, &ce) {
-			return ce.ValidateName("interval")
-		}
-
-		return err
-	}
-
 	return nil
 }
 
@@ -112,10 +87,6 @@ func (m *PrometheusRuleGroup) validateRules(formats strfmt.Registry) error {
 func (m *PrometheusRuleGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateInterval(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateRules(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -123,28 +94,6 @@ func (m *PrometheusRuleGroup) ContextValidate(ctx context.Context, formats strfm
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *PrometheusRuleGroup) contextValidateInterval(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Interval) { // not required
-		return nil
-	}
-
-	if err := m.Interval.ContextValidate(ctx, formats); err != nil {
-		ve := new(errors.Validation)
-		if stderrors.As(err, &ve) {
-			return ve.ValidateName("interval")
-		}
-		ce := new(errors.CompositeError)
-		if stderrors.As(err, &ce) {
-			return ce.ValidateName("interval")
-		}
-
-		return err
-	}
-
 	return nil
 }
 

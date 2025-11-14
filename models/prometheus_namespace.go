@@ -16,50 +16,31 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// PrometheusNamespace prometheus namespace
+// PrometheusNamespace in: body
 //
 // swagger:model PrometheusNamespace
-type PrometheusNamespace struct {
-
-	// in: body
-	Body map[string][]PrometheusRuleGroup `json:"Body,omitempty"`
-}
+type PrometheusNamespace map[string][]PrometheusRuleGroup
 
 // Validate validates this prometheus namespace
-func (m *PrometheusNamespace) Validate(formats strfmt.Registry) error {
+func (m PrometheusNamespace) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateBody(formats); err != nil {
-		res = append(res, err)
-	}
+	for k := range m {
 
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *PrometheusNamespace) validateBody(formats strfmt.Registry) error {
-	if swag.IsZero(m.Body) { // not required
-		return nil
-	}
-
-	for k := range m.Body {
-
-		if err := validate.Required("Body"+"."+k, "body", m.Body[k]); err != nil {
+		if err := validate.Required(k, "body", m[k]); err != nil {
 			return err
 		}
 
-		for i := 0; i < len(m.Body[k]); i++ {
+		for i := 0; i < len(m[k]); i++ {
 
-			if err := m.Body[k][i].Validate(formats); err != nil {
+			if err := m[k][i].Validate(formats); err != nil {
 				ve := new(errors.Validation)
 				if stderrors.As(err, &ve) {
-					return ve.ValidateName("Body" + "." + k + "." + strconv.Itoa(i))
+					return ve.ValidateName(k + "." + strconv.Itoa(i))
 				}
 				ce := new(errors.CompositeError)
 				if stderrors.As(err, &ce) {
-					return ce.ValidateName("Body" + "." + k + "." + strconv.Itoa(i))
+					return ce.ValidateName(k + "." + strconv.Itoa(i))
 				}
 
 				return err
@@ -69,41 +50,32 @@ func (m *PrometheusNamespace) validateBody(formats strfmt.Registry) error {
 
 	}
 
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
 // ContextValidate validate this prometheus namespace based on the context it is used
-func (m *PrometheusNamespace) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+func (m PrometheusNamespace) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateBody(ctx, formats); err != nil {
-		res = append(res, err)
-	}
+	for k := range m {
 
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
+		for i := 0; i < len(m[k]); i++ {
 
-func (m *PrometheusNamespace) contextValidateBody(ctx context.Context, formats strfmt.Registry) error {
-
-	for k := range m.Body {
-
-		for i := 0; i < len(m.Body[k]); i++ {
-
-			if swag.IsZero(m.Body[k][i]) { // not required
+			if swag.IsZero(m[k][i]) { // not required
 				return nil
 			}
 
-			if err := m.Body[k][i].ContextValidate(ctx, formats); err != nil {
+			if err := m[k][i].ContextValidate(ctx, formats); err != nil {
 				ve := new(errors.Validation)
 				if stderrors.As(err, &ve) {
-					return ve.ValidateName("Body" + "." + k + "." + strconv.Itoa(i))
+					return ve.ValidateName(k + "." + strconv.Itoa(i))
 				}
 				ce := new(errors.CompositeError)
 				if stderrors.As(err, &ce) {
-					return ce.ValidateName("Body" + "." + k + "." + strconv.Itoa(i))
+					return ce.ValidateName(k + "." + strconv.Itoa(i))
 				}
 
 				return err
@@ -113,23 +85,8 @@ func (m *PrometheusNamespace) contextValidateBody(ctx context.Context, formats s
 
 	}
 
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *PrometheusNamespace) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
 	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *PrometheusNamespace) UnmarshalBinary(b []byte) error {
-	var res PrometheusNamespace
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
 	return nil
 }

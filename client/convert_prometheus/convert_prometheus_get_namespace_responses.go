@@ -58,7 +58,7 @@ ConvertPrometheusGetNamespaceOK describes a response with status code 200, with 
 PrometheusNamespace
 */
 type ConvertPrometheusGetNamespaceOK struct {
-	Payload *models.PrometheusNamespace
+	Payload models.PrometheusNamespace
 }
 
 // IsSuccess returns true when this convert prometheus get namespace Ok response has a 2xx status code
@@ -101,16 +101,14 @@ func (o *ConvertPrometheusGetNamespaceOK) String() string {
 	return fmt.Sprintf("[GET /convert/prometheus/config/v1/rules/{NamespaceTitle}][%d] convertPrometheusGetNamespaceOk %s", 200, payload)
 }
 
-func (o *ConvertPrometheusGetNamespaceOK) GetPayload() *models.PrometheusNamespace {
+func (o *ConvertPrometheusGetNamespaceOK) GetPayload() models.PrometheusNamespace {
 	return o.Payload
 }
 
 func (o *ConvertPrometheusGetNamespaceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.PrometheusNamespace)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
