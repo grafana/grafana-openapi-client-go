@@ -27,7 +27,7 @@ type UserOrgDTO struct {
 	OrgID int64 `json:"orgId,omitempty"`
 
 	// role
-	// Enum: [None Viewer Editor Admin]
+	// Enum: ["None","Viewer","Editor","Admin"]
 	Role string `json:"role,omitempty"`
 }
 
@@ -45,7 +45,7 @@ func (m *UserOrgDTO) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var userOrgDtoTypeRolePropEnum []interface{}
+var userOrgDtoTypeRolePropEnum []any
 
 func init() {
 	var res []string

@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -45,11 +46,15 @@ func (m *IPNet) validateMask(formats strfmt.Registry) error {
 	}
 
 	if err := m.Mask.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Mask")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Mask")
 		}
+
 		return err
 	}
 
@@ -73,11 +78,15 @@ func (m *IPNet) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 func (m *IPNet) contextValidateMask(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Mask.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Mask")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Mask")
 		}
+
 		return err
 	}
 

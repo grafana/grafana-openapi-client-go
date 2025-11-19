@@ -32,7 +32,7 @@ type SnapshotDTO struct {
 	SessionUID string `json:"sessionUid,omitempty"`
 
 	// status
-	// Enum: [INITIALIZING CREATING PENDING_UPLOAD UPLOADING PENDING_PROCESSING PROCESSING FINISHED CANCELED ERROR UNKNOWN]
+	// Enum: ["INITIALIZING","CREATING","PENDING_UPLOAD","UPLOADING","PENDING_PROCESSING","PROCESSING","FINISHED","CANCELED","ERROR","UNKNOWN"]
 	Status string `json:"status,omitempty"`
 
 	// uid
@@ -85,7 +85,7 @@ func (m *SnapshotDTO) validateFinished(formats strfmt.Registry) error {
 	return nil
 }
 
-var snapshotDtoTypeStatusPropEnum []interface{}
+var snapshotDtoTypeStatusPropEnum []any
 
 func init() {
 	var res []string

@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -56,11 +57,15 @@ func (m *Notice) validateInspect(formats strfmt.Registry) error {
 	}
 
 	if err := m.Inspect.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("inspect")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("inspect")
 		}
+
 		return err
 	}
 
@@ -73,11 +78,15 @@ func (m *Notice) validateSeverity(formats strfmt.Registry) error {
 	}
 
 	if err := m.Severity.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("severity")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("severity")
 		}
+
 		return err
 	}
 
@@ -109,11 +118,15 @@ func (m *Notice) contextValidateInspect(ctx context.Context, formats strfmt.Regi
 	}
 
 	if err := m.Inspect.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("inspect")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("inspect")
 		}
+
 		return err
 	}
 
@@ -127,11 +140,15 @@ func (m *Notice) contextValidateSeverity(ctx context.Context, formats strfmt.Reg
 	}
 
 	if err := m.Severity.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("severity")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("severity")
 		}
+
 		return err
 	}
 

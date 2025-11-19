@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 	"encoding/json"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -56,7 +57,7 @@ type TempUserDTO struct {
 	OrgID int64 `json:"orgId,omitempty"`
 
 	// role
-	// Enum: [None Viewer Editor Admin]
+	// Enum: ["None","Viewer","Editor","Admin"]
 	Role string `json:"role,omitempty"`
 
 	// status
@@ -116,7 +117,7 @@ func (m *TempUserDTO) validateEmailSentOn(formats strfmt.Registry) error {
 	return nil
 }
 
-var tempUserDtoTypeRolePropEnum []interface{}
+var tempUserDtoTypeRolePropEnum []any
 
 func init() {
 	var res []string
@@ -170,11 +171,15 @@ func (m *TempUserDTO) validateStatus(formats strfmt.Registry) error {
 	}
 
 	if err := m.Status.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("status")
 		}
+
 		return err
 	}
 
@@ -202,11 +207,15 @@ func (m *TempUserDTO) contextValidateStatus(ctx context.Context, formats strfmt.
 	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("status")
 		}
+
 		return err
 	}
 

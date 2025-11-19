@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -50,11 +51,15 @@ func (m *RelativeTimeRange) validateFrom(formats strfmt.Registry) error {
 	}
 
 	if err := m.From.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("from")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("from")
 		}
+
 		return err
 	}
 
@@ -67,11 +72,15 @@ func (m *RelativeTimeRange) validateTo(formats strfmt.Registry) error {
 	}
 
 	if err := m.To.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("to")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("to")
 		}
+
 		return err
 	}
 
@@ -103,11 +112,15 @@ func (m *RelativeTimeRange) contextValidateFrom(ctx context.Context, formats str
 	}
 
 	if err := m.From.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("from")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("from")
 		}
+
 		return err
 	}
 
@@ -121,11 +134,15 @@ func (m *RelativeTimeRange) contextValidateTo(ctx context.Context, formats strfm
 	}
 
 	if err := m.To.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("to")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("to")
 		}
+
 		return err
 	}
 

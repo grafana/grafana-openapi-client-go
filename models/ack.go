@@ -8,4 +8,4 @@ package models
 // Ack ack
 //
 // swagger:model Ack
-type Ack interface{}
+type Ack any

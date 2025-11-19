@@ -21,7 +21,7 @@ import (
 type MigrateDataResponseItemDTO struct {
 
 	// error code
-	// Enum: [DATASOURCE_NAME_CONFLICT DATASOURCE_INVALID_URL DATASOURCE_ALREADY_MANAGED FOLDER_NAME_CONFLICT DASHBOARD_ALREADY_MANAGED LIBRARY_ELEMENT_NAME_CONFLICT UNSUPPORTED_DATA_TYPE RESOURCE_CONFLICT UNEXPECTED_STATUS_CODE INTERNAL_SERVICE_ERROR GENERIC_ERROR]
+	// Enum: ["ALERT_RULES_QUOTA_REACHED","ALERT_RULES_GROUP_QUOTA_REACHED","DATASOURCE_NAME_CONFLICT","DATASOURCE_INVALID_URL","DATASOURCE_ALREADY_MANAGED","FOLDER_NAME_CONFLICT","DASHBOARD_ALREADY_MANAGED","LIBRARY_ELEMENT_NAME_CONFLICT","UNSUPPORTED_DATA_TYPE","RESOURCE_CONFLICT","UNEXPECTED_STATUS_CODE","INTERNAL_SERVICE_ERROR","GENERIC_ERROR"]
 	ErrorCode string `json:"errorCode,omitempty"`
 
 	// message
@@ -39,12 +39,12 @@ type MigrateDataResponseItemDTO struct {
 
 	// status
 	// Required: true
-	// Enum: [OK WARNING ERROR PENDING UNKNOWN]
+	// Enum: ["OK","WARNING","ERROR","PENDING","UNKNOWN"]
 	Status *string `json:"status"`
 
 	// type
 	// Required: true
-	// Enum: [DASHBOARD DATASOURCE FOLDER LIBRARY_ELEMENT ALERT_RULE ALERT_RULE_GROUP CONTACT_POINT NOTIFICATION_POLICY NOTIFICATION_TEMPLATE MUTE_TIMING PLUGIN]
+	// Enum: ["DASHBOARD","DATASOURCE","FOLDER","LIBRARY_ELEMENT","ALERT_RULE","ALERT_RULE_GROUP","CONTACT_POINT","NOTIFICATION_POLICY","NOTIFICATION_TEMPLATE","MUTE_TIMING","PLUGIN"]
 	Type *string `json:"type"`
 }
 
@@ -74,11 +74,11 @@ func (m *MigrateDataResponseItemDTO) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var migrateDataResponseItemDtoTypeErrorCodePropEnum []interface{}
+var migrateDataResponseItemDtoTypeErrorCodePropEnum []any
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DATASOURCE_NAME_CONFLICT","DATASOURCE_INVALID_URL","DATASOURCE_ALREADY_MANAGED","FOLDER_NAME_CONFLICT","DASHBOARD_ALREADY_MANAGED","LIBRARY_ELEMENT_NAME_CONFLICT","UNSUPPORTED_DATA_TYPE","RESOURCE_CONFLICT","UNEXPECTED_STATUS_CODE","INTERNAL_SERVICE_ERROR","GENERIC_ERROR"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ALERT_RULES_QUOTA_REACHED","ALERT_RULES_GROUP_QUOTA_REACHED","DATASOURCE_NAME_CONFLICT","DATASOURCE_INVALID_URL","DATASOURCE_ALREADY_MANAGED","FOLDER_NAME_CONFLICT","DASHBOARD_ALREADY_MANAGED","LIBRARY_ELEMENT_NAME_CONFLICT","UNSUPPORTED_DATA_TYPE","RESOURCE_CONFLICT","UNEXPECTED_STATUS_CODE","INTERNAL_SERVICE_ERROR","GENERIC_ERROR"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -87,6 +87,12 @@ func init() {
 }
 
 const (
+
+	// MigrateDataResponseItemDTOErrorCodeALERTRULESQUOTAREACHED captures enum value "ALERT_RULES_QUOTA_REACHED"
+	MigrateDataResponseItemDTOErrorCodeALERTRULESQUOTAREACHED string = "ALERT_RULES_QUOTA_REACHED"
+
+	// MigrateDataResponseItemDTOErrorCodeALERTRULESGROUPQUOTAREACHED captures enum value "ALERT_RULES_GROUP_QUOTA_REACHED"
+	MigrateDataResponseItemDTOErrorCodeALERTRULESGROUPQUOTAREACHED string = "ALERT_RULES_GROUP_QUOTA_REACHED"
 
 	// MigrateDataResponseItemDTOErrorCodeDATASOURCENAMECONFLICT captures enum value "DATASOURCE_NAME_CONFLICT"
 	MigrateDataResponseItemDTOErrorCodeDATASOURCENAMECONFLICT string = "DATASOURCE_NAME_CONFLICT"
@@ -152,7 +158,7 @@ func (m *MigrateDataResponseItemDTO) validateRefID(formats strfmt.Registry) erro
 	return nil
 }
 
-var migrateDataResponseItemDtoTypeStatusPropEnum []interface{}
+var migrateDataResponseItemDtoTypeStatusPropEnum []any
 
 func init() {
 	var res []string
@@ -204,7 +210,7 @@ func (m *MigrateDataResponseItemDTO) validateStatus(formats strfmt.Registry) err
 	return nil
 }
 
-var migrateDataResponseItemDtoTypeTypePropEnum []interface{}
+var migrateDataResponseItemDtoTypeTypePropEnum []any
 
 func init() {
 	var res []string

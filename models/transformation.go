@@ -30,7 +30,7 @@ type Transformation struct {
 	MapValue string `json:"mapValue,omitempty"`
 
 	// type
-	// Enum: [regex logfmt]
+	// Enum: ["regex","logfmt"]
 	Type string `json:"type,omitempty"`
 }
 
@@ -48,7 +48,7 @@ func (m *Transformation) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var transformationTypeTypePropEnum []interface{}
+var transformationTypeTypePropEnum []any
 
 func init() {
 	var res []string

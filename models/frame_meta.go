@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -27,7 +28,7 @@ type FrameMeta struct {
 	Channel string `json:"channel,omitempty"`
 
 	// Custom datasource specific values.
-	Custom interface{} `json:"custom,omitempty"`
+	Custom any `json:"custom,omitempty"`
 
 	// data topic
 	DataTopic DataTopic `json:"dataTopic,omitempty"`
@@ -109,11 +110,15 @@ func (m *FrameMeta) validateDataTopic(formats strfmt.Registry) error {
 	}
 
 	if err := m.DataTopic.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("dataTopic")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("dataTopic")
 		}
+
 		return err
 	}
 
@@ -132,11 +137,15 @@ func (m *FrameMeta) validateNotices(formats strfmt.Registry) error {
 
 		if m.Notices[i] != nil {
 			if err := m.Notices[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("notices" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("notices" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -152,11 +161,15 @@ func (m *FrameMeta) validatePreferredVisualisationType(formats strfmt.Registry) 
 	}
 
 	if err := m.PreferredVisualisationType.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("preferredVisualisationType")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("preferredVisualisationType")
 		}
+
 		return err
 	}
 
@@ -175,11 +188,15 @@ func (m *FrameMeta) validateStats(formats strfmt.Registry) error {
 
 		if m.Stats[i] != nil {
 			if err := m.Stats[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("stats" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("stats" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -195,11 +212,15 @@ func (m *FrameMeta) validateType(formats strfmt.Registry) error {
 	}
 
 	if err := m.Type.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("type")
 		}
+
 		return err
 	}
 
@@ -212,11 +233,15 @@ func (m *FrameMeta) validateTypeVersion(formats strfmt.Registry) error {
 	}
 
 	if err := m.TypeVersion.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("typeVersion")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("typeVersion")
 		}
+
 		return err
 	}
 
@@ -264,11 +289,15 @@ func (m *FrameMeta) contextValidateDataTopic(ctx context.Context, formats strfmt
 	}
 
 	if err := m.DataTopic.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("dataTopic")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("dataTopic")
 		}
+
 		return err
 	}
 
@@ -286,11 +315,15 @@ func (m *FrameMeta) contextValidateNotices(ctx context.Context, formats strfmt.R
 			}
 
 			if err := m.Notices[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("notices" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("notices" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -307,11 +340,15 @@ func (m *FrameMeta) contextValidatePreferredVisualisationType(ctx context.Contex
 	}
 
 	if err := m.PreferredVisualisationType.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("preferredVisualisationType")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("preferredVisualisationType")
 		}
+
 		return err
 	}
 
@@ -329,11 +366,15 @@ func (m *FrameMeta) contextValidateStats(ctx context.Context, formats strfmt.Reg
 			}
 
 			if err := m.Stats[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("stats" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("stats" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -350,11 +391,15 @@ func (m *FrameMeta) contextValidateType(ctx context.Context, formats strfmt.Regi
 	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("type")
 		}
+
 		return err
 	}
 
@@ -364,11 +409,15 @@ func (m *FrameMeta) contextValidateType(ctx context.Context, formats strfmt.Regi
 func (m *FrameMeta) contextValidateTypeVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.TypeVersion.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("typeVersion")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("typeVersion")
 		}
+
 		return err
 	}
 

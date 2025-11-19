@@ -8,4 +8,4 @@ package models
 // NotFound not found
 //
 // swagger:model NotFound
-type NotFound interface{}
+type NotFound any

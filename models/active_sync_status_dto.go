@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -70,11 +71,15 @@ func (m *ActiveSyncStatusDTO) validatePrevSync(formats strfmt.Registry) error {
 
 	if m.PrevSync != nil {
 		if err := m.PrevSync.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("prevSync")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("prevSync")
 			}
+
 			return err
 		}
 	}
@@ -105,11 +110,15 @@ func (m *ActiveSyncStatusDTO) contextValidatePrevSync(ctx context.Context, forma
 		}
 
 		if err := m.PrevSync.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("prevSync")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("prevSync")
 			}
+
 			return err
 		}
 	}

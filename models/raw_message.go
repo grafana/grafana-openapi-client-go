@@ -8,4 +8,4 @@ package models
 // RawMessage raw message
 //
 // swagger:model RawMessage
-type RawMessage interface{}
+type RawMessage any

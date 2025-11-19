@@ -21,7 +21,7 @@ import (
 type UpdateOrgUserCommand struct {
 
 	// role
-	// Enum: [None Viewer Editor Admin]
+	// Enum: ["None","Viewer","Editor","Admin"]
 	Role string `json:"role,omitempty"`
 }
 
@@ -39,7 +39,7 @@ func (m *UpdateOrgUserCommand) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var updateOrgUserCommandTypeRolePropEnum []interface{}
+var updateOrgUserCommandTypeRolePropEnum []any
 
 func init() {
 	var res []string

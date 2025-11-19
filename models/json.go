@@ -8,4 +8,4 @@ package models
 // JSON Json
 //
 // swagger:model Json
-type JSON interface{}
+type JSON any

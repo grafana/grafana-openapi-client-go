@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 	"encoding/json"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -43,11 +44,11 @@ type UpdatePrefsCmd struct {
 	RegionalFormat string `json:"regionalFormat,omitempty"`
 
 	// theme
-	// Enum: [light dark system]
+	// Enum: ["light","dark","system"]
 	Theme string `json:"theme,omitempty"`
 
 	// timezone
-	// Enum: [utc browser]
+	// Enum: ["utc","browser"]
 	Timezone string `json:"timezone,omitempty"`
 
 	// week start
@@ -92,11 +93,15 @@ func (m *UpdatePrefsCmd) validateCookies(formats strfmt.Registry) error {
 	for i := 0; i < len(m.Cookies); i++ {
 
 		if err := m.Cookies[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("cookies" + "." + strconv.Itoa(i))
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("cookies" + "." + strconv.Itoa(i))
 			}
+
 			return err
 		}
 
@@ -112,11 +117,15 @@ func (m *UpdatePrefsCmd) validateNavbar(formats strfmt.Registry) error {
 
 	if m.Navbar != nil {
 		if err := m.Navbar.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("navbar")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("navbar")
 			}
+
 			return err
 		}
 	}
@@ -131,11 +140,15 @@ func (m *UpdatePrefsCmd) validateQueryHistory(formats strfmt.Registry) error {
 
 	if m.QueryHistory != nil {
 		if err := m.QueryHistory.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("queryHistory")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("queryHistory")
 			}
+
 			return err
 		}
 	}
@@ -143,7 +156,7 @@ func (m *UpdatePrefsCmd) validateQueryHistory(formats strfmt.Registry) error {
 	return nil
 }
 
-var updatePrefsCmdTypeThemePropEnum []interface{}
+var updatePrefsCmdTypeThemePropEnum []any
 
 func init() {
 	var res []string
@@ -188,7 +201,7 @@ func (m *UpdatePrefsCmd) validateTheme(formats strfmt.Registry) error {
 	return nil
 }
 
-var updatePrefsCmdTypeTimezonePropEnum []interface{}
+var updatePrefsCmdTypeTimezonePropEnum []any
 
 func init() {
 	var res []string
@@ -261,11 +274,15 @@ func (m *UpdatePrefsCmd) contextValidateCookies(ctx context.Context, formats str
 		}
 
 		if err := m.Cookies[i].ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("cookies" + "." + strconv.Itoa(i))
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("cookies" + "." + strconv.Itoa(i))
 			}
+
 			return err
 		}
 
@@ -283,11 +300,15 @@ func (m *UpdatePrefsCmd) contextValidateNavbar(ctx context.Context, formats strf
 		}
 
 		if err := m.Navbar.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("navbar")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("navbar")
 			}
+
 			return err
 		}
 	}
@@ -304,11 +325,15 @@ func (m *UpdatePrefsCmd) contextValidateQueryHistory(ctx context.Context, format
 		}
 
 		if err := m.QueryHistory.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("queryHistory")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("queryHistory")
 			}
+
 			return err
 		}
 	}

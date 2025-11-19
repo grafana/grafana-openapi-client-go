@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -73,11 +74,15 @@ func (m *AlertingFileExport) validateContactPoints(formats strfmt.Registry) erro
 
 		if m.ContactPoints[i] != nil {
 			if err := m.ContactPoints[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("contactPoints" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("contactPoints" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -99,11 +104,15 @@ func (m *AlertingFileExport) validateGroups(formats strfmt.Registry) error {
 
 		if m.Groups[i] != nil {
 			if err := m.Groups[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("groups" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -125,11 +134,15 @@ func (m *AlertingFileExport) validateMuteTimes(formats strfmt.Registry) error {
 
 		if m.MuteTimes[i] != nil {
 			if err := m.MuteTimes[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("muteTimes" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("muteTimes" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -151,11 +164,15 @@ func (m *AlertingFileExport) validatePolicies(formats strfmt.Registry) error {
 
 		if m.Policies[i] != nil {
 			if err := m.Policies[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("policies" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("policies" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -202,11 +219,15 @@ func (m *AlertingFileExport) contextValidateContactPoints(ctx context.Context, f
 			}
 
 			if err := m.ContactPoints[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("contactPoints" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("contactPoints" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -227,11 +248,15 @@ func (m *AlertingFileExport) contextValidateGroups(ctx context.Context, formats 
 			}
 
 			if err := m.Groups[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("groups" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -252,11 +277,15 @@ func (m *AlertingFileExport) contextValidateMuteTimes(ctx context.Context, forma
 			}
 
 			if err := m.MuteTimes[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("muteTimes" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("muteTimes" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -277,11 +306,15 @@ func (m *AlertingFileExport) contextValidatePolicies(ctx context.Context, format
 			}
 
 			if err := m.Policies[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("policies" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("policies" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

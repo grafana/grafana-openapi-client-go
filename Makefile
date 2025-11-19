@@ -42,4 +42,4 @@ golangci-lint:
 		--rm \
 		--volume "$(shell pwd):/src" \
 		--workdir "/src" \
-		golangci/golangci-lint:v1.55 golangci-lint run ./... -v
+		golangci/golangci-lint:v2.6.1 golangci-lint run ./... -v

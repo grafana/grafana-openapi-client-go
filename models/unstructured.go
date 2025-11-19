@@ -9,4 +9,4 @@ package models
 // generically.
 //
 // swagger:model Unstructured
-type Unstructured interface{}
+type Unstructured any

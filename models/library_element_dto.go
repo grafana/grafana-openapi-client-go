@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -37,7 +38,7 @@ type LibraryElementDTO struct {
 	Meta *LibraryElementDTOMeta `json:"meta,omitempty"`
 
 	// model
-	Model interface{} `json:"model,omitempty"`
+	Model any `json:"model,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -79,11 +80,15 @@ func (m *LibraryElementDTO) validateMeta(formats strfmt.Registry) error {
 
 	if m.Meta != nil {
 		if err := m.Meta.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("meta")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("meta")
 			}
+
 			return err
 		}
 	}
@@ -114,11 +119,15 @@ func (m *LibraryElementDTO) contextValidateMeta(ctx context.Context, formats str
 		}
 
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("meta")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("meta")
 			}
+
 			return err
 		}
 	}

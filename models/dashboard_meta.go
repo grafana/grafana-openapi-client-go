@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -137,11 +138,15 @@ func (m *DashboardMeta) validateAnnotationsPermissions(formats strfmt.Registry) 
 
 	if m.AnnotationsPermissions != nil {
 		if err := m.AnnotationsPermissions.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("annotationsPermissions")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("annotationsPermissions")
 			}
+
 			return err
 		}
 	}
@@ -208,11 +213,15 @@ func (m *DashboardMeta) contextValidateAnnotationsPermissions(ctx context.Contex
 		}
 
 		if err := m.AnnotationsPermissions.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("annotationsPermissions")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("annotationsPermissions")
 			}
+
 			return err
 		}
 	}

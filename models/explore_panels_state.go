@@ -8,4 +8,4 @@ package models
 // ExplorePanelsState This is an object constructed with the keys as the values of the enum VisType and the value being a bag of properties
 //
 // swagger:model ExplorePanelsState
-type ExplorePanelsState interface{}
+type ExplorePanelsState any

@@ -24,7 +24,7 @@ type UpdateProviderSettingsParamsBody struct {
 	Provider string `json:"provider,omitempty"`
 
 	// settings
-	Settings interface{} `json:"settings,omitempty"`
+	Settings map[string]any `json:"settings,omitempty"`
 }
 
 // Validate validates this update provider settings params body

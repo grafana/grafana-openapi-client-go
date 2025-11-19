@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -21,10 +22,10 @@ type FieldConfig struct {
 
 	// Map values to a display color
 	// NOTE: this interface is under development in the frontend... so simple map for now
-	Color interface{} `json:"color,omitempty"`
+	Color map[string]any `json:"color,omitempty"`
 
 	// Panel Specific Values
-	Custom interface{} `json:"custom,omitempty"`
+	Custom map[string]any `json:"custom,omitempty"`
 
 	// decimals
 	Decimals uint16 `json:"decimals,omitempty"`
@@ -128,11 +129,15 @@ func (m *FieldConfig) validateLinks(formats strfmt.Registry) error {
 
 		if m.Links[i] != nil {
 			if err := m.Links[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("links" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("links" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -148,11 +153,15 @@ func (m *FieldConfig) validateMappings(formats strfmt.Registry) error {
 	}
 
 	if err := m.Mappings.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("mappings")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("mappings")
 		}
+
 		return err
 	}
 
@@ -165,11 +174,15 @@ func (m *FieldConfig) validateMax(formats strfmt.Registry) error {
 	}
 
 	if err := m.Max.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("max")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("max")
 		}
+
 		return err
 	}
 
@@ -182,11 +195,15 @@ func (m *FieldConfig) validateMin(formats strfmt.Registry) error {
 	}
 
 	if err := m.Min.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("min")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("min")
 		}
+
 		return err
 	}
 
@@ -200,11 +217,15 @@ func (m *FieldConfig) validateThresholds(formats strfmt.Registry) error {
 
 	if m.Thresholds != nil {
 		if err := m.Thresholds.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("thresholds")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("thresholds")
 			}
+
 			return err
 		}
 	}
@@ -219,11 +240,15 @@ func (m *FieldConfig) validateType(formats strfmt.Registry) error {
 
 	if m.Type != nil {
 		if err := m.Type.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("type")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("type")
 			}
+
 			return err
 		}
 	}
@@ -276,11 +301,15 @@ func (m *FieldConfig) contextValidateLinks(ctx context.Context, formats strfmt.R
 			}
 
 			if err := m.Links[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("links" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("links" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -293,11 +322,15 @@ func (m *FieldConfig) contextValidateLinks(ctx context.Context, formats strfmt.R
 func (m *FieldConfig) contextValidateMappings(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Mappings.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("mappings")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("mappings")
 		}
+
 		return err
 	}
 
@@ -311,11 +344,15 @@ func (m *FieldConfig) contextValidateMax(ctx context.Context, formats strfmt.Reg
 	}
 
 	if err := m.Max.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("max")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("max")
 		}
+
 		return err
 	}
 
@@ -329,11 +366,15 @@ func (m *FieldConfig) contextValidateMin(ctx context.Context, formats strfmt.Reg
 	}
 
 	if err := m.Min.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("min")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("min")
 		}
+
 		return err
 	}
 
@@ -349,11 +390,15 @@ func (m *FieldConfig) contextValidateThresholds(ctx context.Context, formats str
 		}
 
 		if err := m.Thresholds.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("thresholds")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("thresholds")
 			}
+
 			return err
 		}
 	}
@@ -370,11 +415,15 @@ func (m *FieldConfig) contextValidateType(ctx context.Context, formats strfmt.Re
 		}
 
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("type")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("type")
 			}
+
 			return err
 		}
 	}

@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -23,7 +24,7 @@ type AttributeTypeAndValue struct {
 	Type ObjectIdentifier `json:"Type,omitempty"`
 
 	// value
-	Value interface{} `json:"Value,omitempty"`
+	Value any `json:"Value,omitempty"`
 }
 
 // Validate validates this attribute type and value
@@ -46,11 +47,15 @@ func (m *AttributeTypeAndValue) validateType(formats strfmt.Registry) error {
 	}
 
 	if err := m.Type.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Type")
 		}
+
 		return err
 	}
 
@@ -74,11 +79,15 @@ func (m *AttributeTypeAndValue) ContextValidate(ctx context.Context, formats str
 func (m *AttributeTypeAndValue) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("Type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("Type")
 		}
+
 		return err
 	}
 

@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 	"encoding/json"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -46,7 +47,7 @@ type DashboardACLInfoDTO struct {
 	PermissionName string `json:"permissionName,omitempty"`
 
 	// role
-	// Enum: [None Viewer Editor Admin]
+	// Enum: ["None","Viewer","Editor","Admin"]
 	Role string `json:"role,omitempty"`
 
 	// slug
@@ -140,18 +141,22 @@ func (m *DashboardACLInfoDTO) validatePermission(formats strfmt.Registry) error 
 	}
 
 	if err := m.Permission.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("permission")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("permission")
 		}
+
 		return err
 	}
 
 	return nil
 }
 
-var dashboardAclInfoDtoTypeRolePropEnum []interface{}
+var dashboardAclInfoDtoTypeRolePropEnum []any
 
 func init() {
 	var res []string
@@ -232,11 +237,15 @@ func (m *DashboardACLInfoDTO) contextValidatePermission(ctx context.Context, for
 	}
 
 	if err := m.Permission.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("permission")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("permission")
 		}
+
 		return err
 	}
 

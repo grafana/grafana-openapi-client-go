@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -95,11 +96,15 @@ func (m *NotificationPolicyExport) validateMatchRe(formats strfmt.Registry) erro
 
 	if m.MatchRe != nil {
 		if err := m.MatchRe.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("match_re")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("match_re")
 			}
+
 			return err
 		}
 	}
@@ -113,11 +118,15 @@ func (m *NotificationPolicyExport) validateMatchers(formats strfmt.Registry) err
 	}
 
 	if err := m.Matchers.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("matchers")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("matchers")
 		}
+
 		return err
 	}
 
@@ -130,11 +139,15 @@ func (m *NotificationPolicyExport) validateObjectMatchers(formats strfmt.Registr
 	}
 
 	if err := m.ObjectMatchers.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("object_matchers")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("object_matchers")
 		}
+
 		return err
 	}
 
@@ -153,11 +166,15 @@ func (m *NotificationPolicyExport) validateRoutes(formats strfmt.Registry) error
 
 		if m.Routes[i] != nil {
 			if err := m.Routes[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("routes" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("routes" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -200,11 +217,15 @@ func (m *NotificationPolicyExport) contextValidateMatchRe(ctx context.Context, f
 	}
 
 	if err := m.MatchRe.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("match_re")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("match_re")
 		}
+
 		return err
 	}
 
@@ -214,11 +235,15 @@ func (m *NotificationPolicyExport) contextValidateMatchRe(ctx context.Context, f
 func (m *NotificationPolicyExport) contextValidateMatchers(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Matchers.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("matchers")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("matchers")
 		}
+
 		return err
 	}
 
@@ -228,11 +253,15 @@ func (m *NotificationPolicyExport) contextValidateMatchers(ctx context.Context, 
 func (m *NotificationPolicyExport) contextValidateObjectMatchers(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.ObjectMatchers.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("object_matchers")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("object_matchers")
 		}
+
 		return err
 	}
 
@@ -250,11 +279,15 @@ func (m *NotificationPolicyExport) contextValidateRoutes(ctx context.Context, fo
 			}
 
 			if err := m.Routes[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("routes" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("routes" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

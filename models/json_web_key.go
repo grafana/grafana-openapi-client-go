@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -47,7 +48,7 @@ type JSONWebKey struct {
 	//
 	// When marshaling this JSONWebKey into JSON, the "kty" header parameter
 	// will be automatically set based on the type of this field.
-	Key interface{} `json:"Key,omitempty"`
+	Key any `json:"Key,omitempty"`
 
 	// Key identifier, parsed from `kid` header.
 	KeyID string `json:"KeyID,omitempty"`
@@ -86,11 +87,15 @@ func (m *JSONWebKey) validateCertificates(formats strfmt.Registry) error {
 
 		if m.Certificates[i] != nil {
 			if err := m.Certificates[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("Certificates" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("Certificates" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -107,11 +112,15 @@ func (m *JSONWebKey) validateCertificatesURL(formats strfmt.Registry) error {
 
 	if m.CertificatesURL != nil {
 		if err := m.CertificatesURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("CertificatesURL")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("CertificatesURL")
 			}
+
 			return err
 		}
 	}
@@ -148,11 +157,15 @@ func (m *JSONWebKey) contextValidateCertificates(ctx context.Context, formats st
 			}
 
 			if err := m.Certificates[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("Certificates" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("Certificates" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -171,11 +184,15 @@ func (m *JSONWebKey) contextValidateCertificatesURL(ctx context.Context, formats
 		}
 
 		if err := m.CertificatesURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("CertificatesURL")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("CertificatesURL")
 			}
+
 			return err
 		}
 	}

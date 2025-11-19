@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 	"encoding/json"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -27,7 +28,7 @@ type CalculateDashboardDiffParamsBody struct {
 	// Description:
 	// `basic`
 	// `json`
-	// Enum: [basic json]
+	// Enum: ["basic","json"]
 	DiffType string `json:"diffType,omitempty"`
 
 	// new
@@ -63,11 +64,15 @@ func (m *CalculateDashboardDiffParamsBody) validateBase(formats strfmt.Registry)
 
 	if m.Base != nil {
 		if err := m.Base.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("base")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("base")
 			}
+
 			return err
 		}
 	}
@@ -75,7 +80,7 @@ func (m *CalculateDashboardDiffParamsBody) validateBase(formats strfmt.Registry)
 	return nil
 }
 
-var calculateDashboardDiffParamsBodyTypeDiffTypePropEnum []interface{}
+var calculateDashboardDiffParamsBodyTypeDiffTypePropEnum []any
 
 func init() {
 	var res []string
@@ -124,11 +129,15 @@ func (m *CalculateDashboardDiffParamsBody) validateNew(formats strfmt.Registry) 
 
 	if m.New != nil {
 		if err := m.New.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("new")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("new")
 			}
+
 			return err
 		}
 	}
@@ -163,11 +172,15 @@ func (m *CalculateDashboardDiffParamsBody) contextValidateBase(ctx context.Conte
 		}
 
 		if err := m.Base.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("base")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("base")
 			}
+
 			return err
 		}
 	}
@@ -184,11 +197,15 @@ func (m *CalculateDashboardDiffParamsBody) contextValidateNew(ctx context.Contex
 		}
 
 		if err := m.New.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("new")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("new")
 			}
+
 			return err
 		}
 	}

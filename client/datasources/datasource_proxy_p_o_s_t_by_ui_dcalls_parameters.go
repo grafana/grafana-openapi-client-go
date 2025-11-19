@@ -62,7 +62,7 @@ DatasourceProxyPOSTByUIDcallsParams contains all the parameters to send to the A
 type DatasourceProxyPOSTByUIDcallsParams struct {
 
 	// DatasourceProxyParam.
-	DatasourceProxyParam interface{}
+	DatasourceProxyParam any
 
 	// DatasourceProxyRoute.
 	DatasourceProxyRoute string
@@ -124,13 +124,13 @@ func (o *DatasourceProxyPOSTByUIDcallsParams) SetHTTPClient(client *http.Client)
 }
 
 // WithDatasourceProxyParam adds the datasourceProxyParam to the datasource proxy p o s t by UI dcalls params
-func (o *DatasourceProxyPOSTByUIDcallsParams) WithDatasourceProxyParam(datasourceProxyParam interface{}) *DatasourceProxyPOSTByUIDcallsParams {
+func (o *DatasourceProxyPOSTByUIDcallsParams) WithDatasourceProxyParam(datasourceProxyParam any) *DatasourceProxyPOSTByUIDcallsParams {
 	o.SetDatasourceProxyParam(datasourceProxyParam)
 	return o
 }
 
 // SetDatasourceProxyParam adds the datasourceProxyParam to the datasource proxy p o s t by UI dcalls params
-func (o *DatasourceProxyPOSTByUIDcallsParams) SetDatasourceProxyParam(datasourceProxyParam interface{}) {
+func (o *DatasourceProxyPOSTByUIDcallsParams) SetDatasourceProxyParam(datasourceProxyParam any) {
 	o.DatasourceProxyParam = datasourceProxyParam
 }
 

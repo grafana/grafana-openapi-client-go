@@ -41,7 +41,7 @@ type EmbeddedContactPoint struct {
 	// type
 	// Example: webhook
 	// Required: true
-	// Enum: [alertmanager dingding discord email googlechat kafka line opsgenie pagerduty pushover sensugo slack teams telegram threema victorops webhook wecom]
+	// Enum: ["alertmanager","dingding","discord","email","googlechat","kafka","line","opsgenie","pagerduty","pushover","sensugo","slack","teams","telegram","threema","victorops","webhook","wecom"]
 	Type *string `json:"type"`
 
 	// UID is the unique identifier of the contact point. The UID can be
@@ -84,7 +84,7 @@ func (m *EmbeddedContactPoint) validateSettings(formats strfmt.Registry) error {
 	return nil
 }
 
-var embeddedContactPointTypeTypePropEnum []interface{}
+var embeddedContactPointTypeTypePropEnum []any
 
 func init() {
 	var res []string
@@ -211,7 +211,7 @@ func (m *EmbeddedContactPoint) ContextValidate(ctx context.Context, formats strf
 
 func (m *EmbeddedContactPoint) contextValidateProvenance(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "provenance", "body", string(m.Provenance)); err != nil {
+	if err := validate.ReadOnly(ctx, "provenance", "body", m.Provenance); err != nil {
 		return err
 	}
 

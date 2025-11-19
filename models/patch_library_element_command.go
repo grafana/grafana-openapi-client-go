@@ -35,7 +35,7 @@ type PatchLibraryElementCommand struct {
 	Kind int64 `json:"kind,omitempty"`
 
 	// The JSON model for the library element.
-	Model interface{} `json:"model,omitempty"`
+	Model any `json:"model,omitempty"`
 
 	// Name of the library element.
 	Name string `json:"name,omitempty"`
@@ -61,7 +61,7 @@ func (m *PatchLibraryElementCommand) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var patchLibraryElementCommandTypeKindPropEnum []interface{}
+var patchLibraryElementCommandTypeKindPropEnum []any
 
 func init() {
 	var res []int64

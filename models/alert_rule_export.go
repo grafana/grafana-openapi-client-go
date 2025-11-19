@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 	"encoding/json"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -34,7 +35,7 @@ type AlertRuleExport struct {
 	Data []*AlertQueryExport `json:"data"`
 
 	// exec err state
-	// Enum: [OK Alerting Error]
+	// Enum: ["OK","Alerting","Error"]
 	ExecErrState string `json:"execErrState,omitempty"`
 
 	// for
@@ -53,7 +54,7 @@ type AlertRuleExport struct {
 	MissingSeriesEvalsToResolve int64 `json:"missing_series_evals_to_resolve,omitempty"`
 
 	// no data state
-	// Enum: [Alerting NoData OK]
+	// Enum: ["Alerting","NoData","OK"]
 	NoDataState string `json:"noDataState,omitempty"`
 
 	// notification settings
@@ -114,11 +115,15 @@ func (m *AlertRuleExport) validateData(formats strfmt.Registry) error {
 
 		if m.Data[i] != nil {
 			if err := m.Data[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -128,7 +133,7 @@ func (m *AlertRuleExport) validateData(formats strfmt.Registry) error {
 	return nil
 }
 
-var alertRuleExportTypeExecErrStatePropEnum []interface{}
+var alertRuleExportTypeExecErrStatePropEnum []any
 
 func init() {
 	var res []string
@@ -173,7 +178,7 @@ func (m *AlertRuleExport) validateExecErrState(formats strfmt.Registry) error {
 	return nil
 }
 
-var alertRuleExportTypeNoDataStatePropEnum []interface{}
+var alertRuleExportTypeNoDataStatePropEnum []any
 
 func init() {
 	var res []string
@@ -225,11 +230,15 @@ func (m *AlertRuleExport) validateNotificationSettings(formats strfmt.Registry) 
 
 	if m.NotificationSettings != nil {
 		if err := m.NotificationSettings.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("notification_settings")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("notification_settings")
 			}
+
 			return err
 		}
 	}
@@ -244,11 +253,15 @@ func (m *AlertRuleExport) validateRecord(formats strfmt.Registry) error {
 
 	if m.Record != nil {
 		if err := m.Record.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("record")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("record")
 			}
+
 			return err
 		}
 	}
@@ -289,11 +302,15 @@ func (m *AlertRuleExport) contextValidateData(ctx context.Context, formats strfm
 			}
 
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -312,11 +329,15 @@ func (m *AlertRuleExport) contextValidateNotificationSettings(ctx context.Contex
 		}
 
 		if err := m.NotificationSettings.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("notification_settings")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("notification_settings")
 			}
+
 			return err
 		}
 	}
@@ -333,11 +354,15 @@ func (m *AlertRuleExport) contextValidateRecord(ctx context.Context, formats str
 		}
 
 		if err := m.Record.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("record")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("record")
 			}
+
 			return err
 		}
 	}

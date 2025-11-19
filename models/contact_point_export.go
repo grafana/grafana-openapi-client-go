@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -55,11 +56,15 @@ func (m *ContactPointExport) validateReceivers(formats strfmt.Registry) error {
 
 		if m.Receivers[i] != nil {
 			if err := m.Receivers[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("receivers" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("receivers" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}
@@ -94,11 +99,15 @@ func (m *ContactPointExport) contextValidateReceivers(ctx context.Context, forma
 			}
 
 			if err := m.Receivers[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
 					return ve.ValidateName("receivers" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
 					return ce.ValidateName("receivers" + "." + strconv.Itoa(i))
 				}
+
 				return err
 			}
 		}

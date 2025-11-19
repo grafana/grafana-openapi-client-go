@@ -42,7 +42,7 @@ type RecordingRuleJSON struct {
 	PromName string `json:"prom_name,omitempty"`
 
 	// queries
-	Queries []interface{} `json:"queries"`
+	Queries []map[string]any `json:"queries"`
 
 	// range
 	Range int64 `json:"range,omitempty"`

@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -55,11 +56,15 @@ func (m *ReportOptions) validateTimeRange(formats strfmt.Registry) error {
 
 	if m.TimeRange != nil {
 		if err := m.TimeRange.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("timeRange")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("timeRange")
 			}
+
 			return err
 		}
 	}
@@ -90,11 +95,15 @@ func (m *ReportOptions) contextValidateTimeRange(ctx context.Context, formats st
 		}
 
 		if err := m.TimeRange.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
 				return ve.ValidateName("timeRange")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
 				return ce.ValidateName("timeRange")
 			}
+
 			return err
 		}
 	}

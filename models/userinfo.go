@@ -11,4 +11,4 @@ package models
 // and optionally a password.
 //
 // swagger:model Userinfo
-type Userinfo interface{}
+type Userinfo any

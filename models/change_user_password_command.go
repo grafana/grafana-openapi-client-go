@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	stderrors "errors"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -49,11 +50,15 @@ func (m *ChangeUserPasswordCommand) validateNewPassword(formats strfmt.Registry)
 	}
 
 	if err := m.NewPassword.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("newPassword")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("newPassword")
 		}
+
 		return err
 	}
 
@@ -66,11 +71,15 @@ func (m *ChangeUserPasswordCommand) validateOldPassword(formats strfmt.Registry)
 	}
 
 	if err := m.OldPassword.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("oldPassword")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("oldPassword")
 		}
+
 		return err
 	}
 
@@ -102,11 +111,15 @@ func (m *ChangeUserPasswordCommand) contextValidateNewPassword(ctx context.Conte
 	}
 
 	if err := m.NewPassword.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("newPassword")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("newPassword")
 		}
+
 		return err
 	}
 
@@ -120,11 +133,15 @@ func (m *ChangeUserPasswordCommand) contextValidateOldPassword(ctx context.Conte
 	}
 
 	if err := m.OldPassword.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
+		ve := new(errors.Validation)
+		if stderrors.As(err, &ve) {
 			return ve.ValidateName("oldPassword")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
+		}
+		ce := new(errors.CompositeError)
+		if stderrors.As(err, &ce) {
 			return ce.ValidateName("oldPassword")
 		}
+
 		return err
 	}
 

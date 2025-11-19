@@ -27,7 +27,7 @@ type AddInviteForm struct {
 	Name string `json:"name,omitempty"`
 
 	// role
-	// Enum: [None Viewer Editor Admin]
+	// Enum: ["None","Viewer","Editor","Admin"]
 	Role string `json:"role,omitempty"`
 
 	// send email
@@ -48,7 +48,7 @@ func (m *AddInviteForm) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var addInviteFormTypeRolePropEnum []interface{}
+var addInviteFormTypeRolePropEnum []any
 
 func init() {
 	var res []string

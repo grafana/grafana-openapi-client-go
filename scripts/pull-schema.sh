@@ -4,7 +4,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Pull the schema (stable commit)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/refs/tags/v12.1.0/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/refs/tags/v12.2.1/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
@@ -40,7 +40,9 @@ modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = 
 modify '.definitions.AlertRuleGroupExport.properties.interval = { "type" : "string"} '
 modify '.definitions.AlertRuleExport.properties.for = { "type" : "string"} '
 modify '.definitions.AlertRuleExport.properties.keepFiringFor = { "type" : "string"} '
+modify '.definitions.PrometheusRuleGroup.properties.interval = { "type" : "string"} '
 
+modify '.definitions.PrometheusNamespace = .definitions.PrometheusNamespace.properties.Body'
 
 # "Unstructured" should truly be unstructured. Not an object with an "Object" property that allows anything.
 modify '.definitions.Unstructured.properties = {}'
