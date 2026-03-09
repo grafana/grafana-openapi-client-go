@@ -32,6 +32,11 @@ modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 # https://github.com/grafana/grafana-operator/pull/1907
 modify '.definitions.UpdateServiceAccountForm.properties.isDisabled["x-nullable"] = true'
 
+# Fix: prevent fields set to 'false' from being omitted when serializing the struct
+modify '.definitions.PublicDashboardDTO.properties.isEnabled["x-nullable"] = true'
+modify '.definitions.PublicDashboardDTO.properties.annotationsEnabled["x-nullable"] = true'
+modify '.definitions.PublicDashboardDTO.properties.timeSelectionEnabled["x-nullable"] = true'
+
 # Remap field time_intervals of MuteTimeInterval and TimeInterval from TimeInterval (collision) to an equivalent model TimeIntervalItem.
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
