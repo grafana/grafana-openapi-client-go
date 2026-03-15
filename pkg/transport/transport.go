@@ -50,7 +50,12 @@ func (t *RetryableTransport) RoundTrip(req *http.Request) (*http.Response, error
 			if retryTimeout == 0 {
 				retryTimeout = backoff(n)
 			}
-			time.Sleep(retryTimeout)
+			select {
+			case <-time.After(retryTimeout):
+			case <-req.Context().Done():
+				// Return immediately if the context has expired or is cancelled
+				return nil, req.Context().Err()
+			}
 		}
 
 		resp, err = t.Transport.RoundTrip(req)
