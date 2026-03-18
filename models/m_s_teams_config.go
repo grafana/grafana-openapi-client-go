@@ -34,7 +34,7 @@ type MSTeamsConfig struct {
 	Title string `json:"title,omitempty"`
 
 	// webhook url
-	WebhookURL *SecretURL `json:"webhook_url,omitempty"`
+	WebhookURL SecretURL `json:"webhook_url,omitempty"`
 
 	// webhook url file
 	WebhookURLFile string `json:"webhook_url_file,omitempty"`
@@ -45,10 +45,6 @@ func (m *MSTeamsConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateHTTPConfig(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateWebhookURL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -77,34 +73,11 @@ func (m *MSTeamsConfig) validateHTTPConfig(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MSTeamsConfig) validateWebhookURL(formats strfmt.Registry) error {
-	if swag.IsZero(m.WebhookURL) { // not required
-		return nil
-	}
-
-	if m.WebhookURL != nil {
-		if err := m.WebhookURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("webhook_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("webhook_url")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this m s teams config based on the context it is used
 func (m *MSTeamsConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateHTTPConfig(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateWebhookURL(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -127,27 +100,6 @@ func (m *MSTeamsConfig) contextValidateHTTPConfig(ctx context.Context, formats s
 				return ve.ValidateName("http_config")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("http_config")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *MSTeamsConfig) contextValidateWebhookURL(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.WebhookURL != nil {
-
-		if swag.IsZero(m.WebhookURL) { // not required
-			return nil
-		}
-
-		if err := m.WebhookURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("webhook_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("webhook_url")
 			}
 			return err
 		}

@@ -53,9 +53,6 @@ type ClientService interface {
 	GetDashboardByUID(uid string, opts ...ClientOption) (*GetDashboardByUIDOK, error)
 	GetDashboardByUIDWithParams(params *GetDashboardByUIDParams, opts ...ClientOption) (*GetDashboardByUIDOK, error)
 
-	GetDashboardPermissionsListByID(dashboardID int64, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error)
-	GetDashboardPermissionsListByIDWithParams(params *GetDashboardPermissionsListByIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error)
-
 	GetDashboardPermissionsListByUID(uid string, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error)
 	GetDashboardPermissionsListByUIDWithParams(params *GetDashboardPermissionsListByUIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error)
 
@@ -65,14 +62,8 @@ type ClientService interface {
 	GetDashboardTags(opts ...ClientOption) (*GetDashboardTagsOK, error)
 	GetDashboardTagsWithParams(params *GetDashboardTagsParams, opts ...ClientOption) (*GetDashboardTagsOK, error)
 
-	GetDashboardVersionByID(dashboardVersionID int64, dashboardID int64, opts ...ClientOption) (*GetDashboardVersionByIDOK, error)
-	GetDashboardVersionByIDWithParams(params *GetDashboardVersionByIDParams, opts ...ClientOption) (*GetDashboardVersionByIDOK, error)
-
 	GetDashboardVersionByUID(uid string, dashboardVersionID int64, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error)
 	GetDashboardVersionByUIDWithParams(params *GetDashboardVersionByUIDParams, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error)
-
-	GetDashboardVersionsByID(dashboardID int64, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error)
-	GetDashboardVersionsByIDWithParams(params *GetDashboardVersionsByIDParams, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error)
 
 	GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDParams, opts ...ClientOption) (*GetDashboardVersionsByUIDOK, error)
 
@@ -104,9 +95,6 @@ type ClientService interface {
 	RestoreDashboardVersionByUIDWithParams(params *RestoreDashboardVersionByUIDParams, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error)
 
 	SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams, opts ...ClientOption) (*SearchDashboardSnapshotsOK, error)
-
-	UpdateDashboardPermissionsByID(dashboardID int64, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error)
-	UpdateDashboardPermissionsByIDWithParams(params *UpdateDashboardPermissionsByIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error)
 
 	UpdateDashboardPermissionsByUID(uid string, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error)
 	UpdateDashboardPermissionsByUIDWithParams(params *UpdateDashboardPermissionsByUIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByUIDOK, error)
@@ -436,52 +424,6 @@ func (a *Client) GetDashboardByUIDWithParams(params *GetDashboardByUIDParams, op
 }
 
 /*
-GetDashboardPermissionsListByID gets all existing permissions for the given dashboard
-
-Please refer to [updated API](#/dashboards/getDashboardPermissionsListByUID) instead
-*/
-func (a *Client) GetDashboardPermissionsListByID(dashboardID int64, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error) {
-	params := NewGetDashboardPermissionsListByIDParams().WithDashboardID(dashboardID)
-	return a.GetDashboardPermissionsListByIDWithParams(params, opts...)
-}
-
-func (a *Client) GetDashboardPermissionsListByIDWithParams(params *GetDashboardPermissionsListByIDParams, opts ...ClientOption) (*GetDashboardPermissionsListByIDOK, error) {
-	if params == nil {
-		params = NewGetDashboardPermissionsListByIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "getDashboardPermissionsListByID",
-		Method:             "GET",
-		PathPattern:        "/dashboards/id/{DashboardID}/permissions",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &GetDashboardPermissionsListByIDReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetDashboardPermissionsListByIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getDashboardPermissionsListByID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetDashboardPermissionsListByUID gets all existing permissions for the given dashboard
 */
 func (a *Client) GetDashboardPermissionsListByUID(uid string, opts ...ClientOption) (*GetDashboardPermissionsListByUIDOK, error) {
@@ -614,52 +556,6 @@ func (a *Client) GetDashboardTagsWithParams(params *GetDashboardTagsParams, opts
 }
 
 /*
-GetDashboardVersionByID gets a specific dashboard version
-
-Please refer to [updated API](#/dashboards/getDashboardVersionByUID) instead
-*/
-func (a *Client) GetDashboardVersionByID(dashboardVersionID int64, dashboardID int64, opts ...ClientOption) (*GetDashboardVersionByIDOK, error) {
-	params := NewGetDashboardVersionByIDParams().WithDashboardID(dashboardID).WithDashboardVersionID(dashboardVersionID)
-	return a.GetDashboardVersionByIDWithParams(params, opts...)
-}
-
-func (a *Client) GetDashboardVersionByIDWithParams(params *GetDashboardVersionByIDParams, opts ...ClientOption) (*GetDashboardVersionByIDOK, error) {
-	if params == nil {
-		params = NewGetDashboardVersionByIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "getDashboardVersionByID",
-		Method:             "GET",
-		PathPattern:        "/dashboards/id/{DashboardID}/versions/{DashboardVersionID}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &GetDashboardVersionByIDReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetDashboardVersionByIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getDashboardVersionByID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetDashboardVersionByUID gets a specific dashboard version using UID
 */
 func (a *Client) GetDashboardVersionByUID(uid string, dashboardVersionID int64, opts ...ClientOption) (*GetDashboardVersionByUIDOK, error) {
@@ -704,52 +600,6 @@ func (a *Client) GetDashboardVersionByUIDWithParams(params *GetDashboardVersionB
 }
 
 /*
-GetDashboardVersionsByID gets all existing versions for the dashboard
-
-Please refer to [updated API](#/dashboards/getDashboardVersionsByUID) instead
-*/
-func (a *Client) GetDashboardVersionsByID(dashboardID int64, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error) {
-	params := NewGetDashboardVersionsByIDParams().WithDashboardID(dashboardID)
-	return a.GetDashboardVersionsByIDWithParams(params, opts...)
-}
-
-func (a *Client) GetDashboardVersionsByIDWithParams(params *GetDashboardVersionsByIDParams, opts ...ClientOption) (*GetDashboardVersionsByIDOK, error) {
-	if params == nil {
-		params = NewGetDashboardVersionsByIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "getDashboardVersionsByID",
-		Method:             "GET",
-		PathPattern:        "/dashboards/id/{DashboardID}/versions",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &GetDashboardVersionsByIDReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetDashboardVersionsByIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getDashboardVersionsByID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetDashboardVersionsByUID gets all existing versions for the dashboard using UID
 */
 
@@ -790,7 +640,7 @@ func (a *Client) GetDashboardVersionsByUID(params *GetDashboardVersionsByUIDPara
 }
 
 /*
-GetHomeDashboard gets home dashboard
+GetHomeDashboard NOTE: the home dashboard is configured in preferences.  This API will be removed in G13
 */
 func (a *Client) GetHomeDashboard(opts ...ClientOption) (*GetHomeDashboardOK, error) {
 	params := NewGetHomeDashboardParams()
@@ -1146,6 +996,9 @@ func (a *Client) QueryPublicDashboardWithParams(params *QueryPublicDashboardPara
 
 /*
 RestoreDashboardVersionByUID restores a dashboard to a given dashboard version using UID
+
+This API will be removed when /apis/dashboards.grafana.app/v1 is released.
+You can restore a dashboard by reading it from history, then creating it again.
 */
 func (a *Client) RestoreDashboardVersionByUID(uid string, body *models.RestoreDashboardVersionCommand, opts ...ClientOption) (*RestoreDashboardVersionByUIDOK, error) {
 	params := NewRestoreDashboardVersionByUIDParams().WithBody(body).WithUID(uid)
@@ -1225,54 +1078,6 @@ func (a *Client) SearchDashboardSnapshots(params *SearchDashboardSnapshotsParams
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for searchDashboardSnapshots: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-UpdateDashboardPermissionsByID updates permissions for a dashboard
-
-Please refer to [updated API](#/dashboards/updateDashboardPermissionsByUID) instead
-
-This operation will remove existing permissions if they’re not included in the request.
-*/
-func (a *Client) UpdateDashboardPermissionsByID(dashboardID int64, body *models.UpdateDashboardACLCommand, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error) {
-	params := NewUpdateDashboardPermissionsByIDParams().WithBody(body).WithDashboardID(dashboardID)
-	return a.UpdateDashboardPermissionsByIDWithParams(params, opts...)
-}
-
-func (a *Client) UpdateDashboardPermissionsByIDWithParams(params *UpdateDashboardPermissionsByIDParams, opts ...ClientOption) (*UpdateDashboardPermissionsByIDOK, error) {
-	if params == nil {
-		params = NewUpdateDashboardPermissionsByIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "updateDashboardPermissionsByID",
-		Method:             "POST",
-		PathPattern:        "/dashboards/id/{DashboardID}/permissions",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &UpdateDashboardPermissionsByIDReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		if opt != nil {
-			opt(op)
-		}
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*UpdateDashboardPermissionsByIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for updateDashboardPermissionsByID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

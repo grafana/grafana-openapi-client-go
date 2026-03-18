@@ -33,7 +33,7 @@ type WebhookConfig struct {
 	Timeout Duration `json:"timeout,omitempty"`
 
 	// url
-	URL *SecretURL `json:"url,omitempty"`
+	URL SecretURL `json:"url,omitempty"`
 
 	// url file
 	URLFile string `json:"url_file,omitempty"`
@@ -102,15 +102,13 @@ func (m *WebhookConfig) validateURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.URL != nil {
-		if err := m.URL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("url")
-			}
-			return err
+	if err := m.URL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("url")
 		}
+		return err
 	}
 
 	return nil
@@ -179,20 +177,17 @@ func (m *WebhookConfig) contextValidateTimeout(ctx context.Context, formats strf
 
 func (m *WebhookConfig) contextValidateURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.URL != nil {
+	if swag.IsZero(m.URL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.URL) { // not required
-			return nil
+	if err := m.URL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("url")
 		}
-
-		if err := m.URL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil

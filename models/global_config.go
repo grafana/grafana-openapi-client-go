@@ -23,7 +23,7 @@ type GlobalConfig struct {
 	HTTPConfig *HTTPClientConfig `json:"http_config,omitempty"`
 
 	// jira api url
-	JiraAPIURL *URL `json:"jira_api_url,omitempty"`
+	JiraAPIURL URL `json:"jira_api_url,omitempty"`
 
 	// opsgenie api key
 	OpsgenieAPIKey Secret `json:"opsgenie_api_key,omitempty"`
@@ -32,16 +32,16 @@ type GlobalConfig struct {
 	OpsgenieAPIKeyFile string `json:"opsgenie_api_key_file,omitempty"`
 
 	// opsgenie api url
-	OpsgenieAPIURL *URL `json:"opsgenie_api_url,omitempty"`
+	OpsgenieAPIURL URL `json:"opsgenie_api_url,omitempty"`
 
 	// pagerduty url
-	PagerdutyURL *URL `json:"pagerduty_url,omitempty"`
+	PagerdutyURL URL `json:"pagerduty_url,omitempty"`
 
 	// resolve timeout
 	ResolveTimeout Duration `json:"resolve_timeout,omitempty"`
 
 	// slack api url
-	SlackAPIURL *SecretURL `json:"slack_api_url,omitempty"`
+	SlackAPIURL SecretURL `json:"slack_api_url,omitempty"`
 
 	// slack api url file
 	SlackAPIURLFile string `json:"slack_api_url_file,omitempty"`
@@ -77,7 +77,7 @@ type GlobalConfig struct {
 	SMTPTLSConfig *TLSConfig `json:"smtp_tls_config,omitempty"`
 
 	// telegram api url
-	TelegramAPIURL *URL `json:"telegram_api_url,omitempty"`
+	TelegramAPIURL URL `json:"telegram_api_url,omitempty"`
 
 	// victorops api key
 	VictoropsAPIKey Secret `json:"victorops_api_key,omitempty"`
@@ -86,10 +86,10 @@ type GlobalConfig struct {
 	VictoropsAPIKeyFile string `json:"victorops_api_key_file,omitempty"`
 
 	// victorops api url
-	VictoropsAPIURL *URL `json:"victorops_api_url,omitempty"`
+	VictoropsAPIURL URL `json:"victorops_api_url,omitempty"`
 
 	// webex api url
-	WebexAPIURL *URL `json:"webex_api_url,omitempty"`
+	WebexAPIURL URL `json:"webex_api_url,omitempty"`
 
 	// wechat api corp id
 	WechatAPICorpID string `json:"wechat_api_corp_id,omitempty"`
@@ -98,7 +98,7 @@ type GlobalConfig struct {
 	WechatAPISecret Secret `json:"wechat_api_secret,omitempty"`
 
 	// wechat api url
-	WechatAPIURL *URL `json:"wechat_api_url,omitempty"`
+	WechatAPIURL URL `json:"wechat_api_url,omitempty"`
 }
 
 // Validate validates this global config
@@ -126,10 +126,6 @@ func (m *GlobalConfig) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateResolveTimeout(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSlackAPIURL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -203,15 +199,13 @@ func (m *GlobalConfig) validateJiraAPIURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.JiraAPIURL != nil {
-		if err := m.JiraAPIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("jira_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("jira_api_url")
-			}
-			return err
+	if err := m.JiraAPIURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("jira_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("jira_api_url")
 		}
+		return err
 	}
 
 	return nil
@@ -239,15 +233,13 @@ func (m *GlobalConfig) validateOpsgenieAPIURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.OpsgenieAPIURL != nil {
-		if err := m.OpsgenieAPIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("opsgenie_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("opsgenie_api_url")
-			}
-			return err
+	if err := m.OpsgenieAPIURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("opsgenie_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("opsgenie_api_url")
 		}
+		return err
 	}
 
 	return nil
@@ -258,15 +250,13 @@ func (m *GlobalConfig) validatePagerdutyURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.PagerdutyURL != nil {
-		if err := m.PagerdutyURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("pagerduty_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("pagerduty_url")
-			}
-			return err
+	if err := m.PagerdutyURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("pagerduty_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("pagerduty_url")
 		}
+		return err
 	}
 
 	return nil
@@ -284,25 +274,6 @@ func (m *GlobalConfig) validateResolveTimeout(formats strfmt.Registry) error {
 			return ce.ValidateName("resolve_timeout")
 		}
 		return err
-	}
-
-	return nil
-}
-
-func (m *GlobalConfig) validateSlackAPIURL(formats strfmt.Registry) error {
-	if swag.IsZero(m.SlackAPIURL) { // not required
-		return nil
-	}
-
-	if m.SlackAPIURL != nil {
-		if err := m.SlackAPIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("slack_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("slack_api_url")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -385,15 +356,13 @@ func (m *GlobalConfig) validateTelegramAPIURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.TelegramAPIURL != nil {
-		if err := m.TelegramAPIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("telegram_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("telegram_api_url")
-			}
-			return err
+	if err := m.TelegramAPIURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("telegram_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("telegram_api_url")
 		}
+		return err
 	}
 
 	return nil
@@ -421,15 +390,13 @@ func (m *GlobalConfig) validateVictoropsAPIURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.VictoropsAPIURL != nil {
-		if err := m.VictoropsAPIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("victorops_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("victorops_api_url")
-			}
-			return err
+	if err := m.VictoropsAPIURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("victorops_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("victorops_api_url")
 		}
+		return err
 	}
 
 	return nil
@@ -440,15 +407,13 @@ func (m *GlobalConfig) validateWebexAPIURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.WebexAPIURL != nil {
-		if err := m.WebexAPIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("webex_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("webex_api_url")
-			}
-			return err
+	if err := m.WebexAPIURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("webex_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("webex_api_url")
 		}
+		return err
 	}
 
 	return nil
@@ -476,15 +441,13 @@ func (m *GlobalConfig) validateWechatAPIURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.WechatAPIURL != nil {
-		if err := m.WechatAPIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("wechat_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("wechat_api_url")
-			}
-			return err
+	if err := m.WechatAPIURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("wechat_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("wechat_api_url")
 		}
+		return err
 	}
 
 	return nil
@@ -515,10 +478,6 @@ func (m *GlobalConfig) ContextValidate(ctx context.Context, formats strfmt.Regis
 	}
 
 	if err := m.contextValidateResolveTimeout(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSlackAPIURL(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -591,20 +550,17 @@ func (m *GlobalConfig) contextValidateHTTPConfig(ctx context.Context, formats st
 
 func (m *GlobalConfig) contextValidateJiraAPIURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.JiraAPIURL != nil {
+	if swag.IsZero(m.JiraAPIURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.JiraAPIURL) { // not required
-			return nil
+	if err := m.JiraAPIURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("jira_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("jira_api_url")
 		}
-
-		if err := m.JiraAPIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("jira_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("jira_api_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
@@ -630,20 +586,17 @@ func (m *GlobalConfig) contextValidateOpsgenieAPIKey(ctx context.Context, format
 
 func (m *GlobalConfig) contextValidateOpsgenieAPIURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.OpsgenieAPIURL != nil {
+	if swag.IsZero(m.OpsgenieAPIURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.OpsgenieAPIURL) { // not required
-			return nil
+	if err := m.OpsgenieAPIURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("opsgenie_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("opsgenie_api_url")
 		}
-
-		if err := m.OpsgenieAPIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("opsgenie_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("opsgenie_api_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
@@ -651,20 +604,17 @@ func (m *GlobalConfig) contextValidateOpsgenieAPIURL(ctx context.Context, format
 
 func (m *GlobalConfig) contextValidatePagerdutyURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.PagerdutyURL != nil {
+	if swag.IsZero(m.PagerdutyURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.PagerdutyURL) { // not required
-			return nil
+	if err := m.PagerdutyURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("pagerduty_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("pagerduty_url")
 		}
-
-		if err := m.PagerdutyURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("pagerduty_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("pagerduty_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
@@ -683,27 +633,6 @@ func (m *GlobalConfig) contextValidateResolveTimeout(ctx context.Context, format
 			return ce.ValidateName("resolve_timeout")
 		}
 		return err
-	}
-
-	return nil
-}
-
-func (m *GlobalConfig) contextValidateSlackAPIURL(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.SlackAPIURL != nil {
-
-		if swag.IsZero(m.SlackAPIURL) { // not required
-			return nil
-		}
-
-		if err := m.SlackAPIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("slack_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("slack_api_url")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -789,20 +718,17 @@ func (m *GlobalConfig) contextValidateSMTPTLSConfig(ctx context.Context, formats
 
 func (m *GlobalConfig) contextValidateTelegramAPIURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.TelegramAPIURL != nil {
+	if swag.IsZero(m.TelegramAPIURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.TelegramAPIURL) { // not required
-			return nil
+	if err := m.TelegramAPIURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("telegram_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("telegram_api_url")
 		}
-
-		if err := m.TelegramAPIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("telegram_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("telegram_api_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
@@ -828,20 +754,17 @@ func (m *GlobalConfig) contextValidateVictoropsAPIKey(ctx context.Context, forma
 
 func (m *GlobalConfig) contextValidateVictoropsAPIURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.VictoropsAPIURL != nil {
+	if swag.IsZero(m.VictoropsAPIURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.VictoropsAPIURL) { // not required
-			return nil
+	if err := m.VictoropsAPIURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("victorops_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("victorops_api_url")
 		}
-
-		if err := m.VictoropsAPIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("victorops_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("victorops_api_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
@@ -849,20 +772,17 @@ func (m *GlobalConfig) contextValidateVictoropsAPIURL(ctx context.Context, forma
 
 func (m *GlobalConfig) contextValidateWebexAPIURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.WebexAPIURL != nil {
+	if swag.IsZero(m.WebexAPIURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.WebexAPIURL) { // not required
-			return nil
+	if err := m.WebexAPIURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("webex_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("webex_api_url")
 		}
-
-		if err := m.WebexAPIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("webex_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("webex_api_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
@@ -888,20 +808,17 @@ func (m *GlobalConfig) contextValidateWechatAPISecret(ctx context.Context, forma
 
 func (m *GlobalConfig) contextValidateWechatAPIURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.WechatAPIURL != nil {
+	if swag.IsZero(m.WechatAPIURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.WechatAPIURL) { // not required
-			return nil
+	if err := m.WechatAPIURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("wechat_api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("wechat_api_url")
 		}
-
-		if err := m.WechatAPIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("wechat_api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("wechat_api_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
