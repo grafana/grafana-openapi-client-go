@@ -241,7 +241,7 @@ type Certificate struct {
 	SubjectKeyID []uint8 `json:"SubjectKeyId"`
 
 	// u r is
-	URIs []*URL `json:"URIs"`
+	URIs []URL `json:"URIs"`
 
 	// UnhandledCriticalExtensions contains a list of extension IDs that
 	// were not (fully) processed when parsing. Verify will fail if this
@@ -613,19 +613,14 @@ func (m *Certificate) validateURIs(formats strfmt.Registry) error {
 	}
 
 	for i := 0; i < len(m.URIs); i++ {
-		if swag.IsZero(m.URIs[i]) { // not required
-			continue
-		}
 
-		if m.URIs[i] != nil {
-			if err := m.URIs[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("URIs" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("URIs" + "." + strconv.Itoa(i))
-				}
-				return err
+		if err := m.URIs[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("URIs" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("URIs" + "." + strconv.Itoa(i))
 			}
+			return err
 		}
 
 	}
@@ -1010,20 +1005,17 @@ func (m *Certificate) contextValidateURIs(ctx context.Context, formats strfmt.Re
 
 	for i := 0; i < len(m.URIs); i++ {
 
-		if m.URIs[i] != nil {
+		if swag.IsZero(m.URIs[i]) { // not required
+			return nil
+		}
 
-			if swag.IsZero(m.URIs[i]) { // not required
-				return nil
+		if err := m.URIs[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("URIs" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("URIs" + "." + strconv.Itoa(i))
 			}
-
-			if err := m.URIs[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("URIs" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("URIs" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
+			return err
 		}
 
 	}

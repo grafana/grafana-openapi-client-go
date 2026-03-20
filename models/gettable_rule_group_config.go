@@ -28,6 +28,9 @@ type GettableRuleGroupConfig struct {
 	// interval
 	Interval Duration `json:"interval,omitempty"`
 
+	// labels
+	Labels map[string]string `json:"labels,omitempty"`
+
 	// limit
 	Limit int64 `json:"limit,omitempty"`
 
@@ -36,6 +39,9 @@ type GettableRuleGroupConfig struct {
 
 	// query offset
 	QueryOffset string `json:"query_offset,omitempty"`
+
+	// remote write
+	RemoteWrite []*RemoteWriteConfig `json:"remote_write"`
 
 	// rules
 	Rules []*GettableExtendedRuleNode `json:"rules"`
@@ -49,6 +55,10 @@ func (m *GettableRuleGroupConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateInterval(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRemoteWrite(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -74,6 +84,32 @@ func (m *GettableRuleGroupConfig) validateInterval(formats strfmt.Registry) erro
 			return ce.ValidateName("interval")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *GettableRuleGroupConfig) validateRemoteWrite(formats strfmt.Registry) error {
+	if swag.IsZero(m.RemoteWrite) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.RemoteWrite); i++ {
+		if swag.IsZero(m.RemoteWrite[i]) { // not required
+			continue
+		}
+
+		if m.RemoteWrite[i] != nil {
+			if err := m.RemoteWrite[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("remote_write" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("remote_write" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -113,6 +149,10 @@ func (m *GettableRuleGroupConfig) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRemoteWrite(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateRules(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -136,6 +176,31 @@ func (m *GettableRuleGroupConfig) contextValidateInterval(ctx context.Context, f
 			return ce.ValidateName("interval")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *GettableRuleGroupConfig) contextValidateRemoteWrite(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.RemoteWrite); i++ {
+
+		if m.RemoteWrite[i] != nil {
+
+			if swag.IsZero(m.RemoteWrite[i]) { // not required
+				return nil
+			}
+
+			if err := m.RemoteWrite[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("remote_write" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("remote_write" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

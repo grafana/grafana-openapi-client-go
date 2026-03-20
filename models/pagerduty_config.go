@@ -71,7 +71,7 @@ type PagerdutyConfig struct {
 	Source string `json:"source,omitempty"`
 
 	// url
-	URL *URL `json:"url,omitempty"`
+	URL URL `json:"url,omitempty"`
 }
 
 // Validate validates this pagerduty config
@@ -218,15 +218,13 @@ func (m *PagerdutyConfig) validateURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.URL != nil {
-		if err := m.URL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("url")
-			}
-			return err
+	if err := m.URL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("url")
 		}
+		return err
 	}
 
 	return nil
@@ -375,20 +373,17 @@ func (m *PagerdutyConfig) contextValidateServiceKey(ctx context.Context, formats
 
 func (m *PagerdutyConfig) contextValidateURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.URL != nil {
+	if swag.IsZero(m.URL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.URL) { // not required
-			return nil
+	if err := m.URL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("url")
 		}
-
-		if err := m.URL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil

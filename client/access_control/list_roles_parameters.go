@@ -68,6 +68,11 @@ type ListRolesParams struct {
 	// IncludeHidden.
 	IncludeHidden *bool
 
+	// TargetOrgID.
+	//
+	// Format: int64
+	TargetOrgID *int64
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -143,6 +148,17 @@ func (o *ListRolesParams) SetIncludeHidden(includeHidden *bool) {
 	o.IncludeHidden = includeHidden
 }
 
+// WithTargetOrgID adds the targetOrgID to the list roles params
+func (o *ListRolesParams) WithTargetOrgID(targetOrgID *int64) *ListRolesParams {
+	o.SetTargetOrgID(targetOrgID)
+	return o
+}
+
+// SetTargetOrgID adds the targetOrgId to the list roles params
+func (o *ListRolesParams) SetTargetOrgID(targetOrgID *int64) {
+	o.TargetOrgID = targetOrgID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -180,6 +196,23 @@ func (o *ListRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		if qIncludeHidden != "" {
 
 			if err := r.SetQueryParam("includeHidden", qIncludeHidden); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.TargetOrgID != nil {
+
+		// query param targetOrgId
+		var qrTargetOrgID int64
+
+		if o.TargetOrgID != nil {
+			qrTargetOrgID = *o.TargetOrgID
+		}
+		qTargetOrgID := swag.FormatInt64(qrTargetOrgID)
+		if qTargetOrgID != "" {
+
+			if err := r.SetQueryParam("targetOrgId", qTargetOrgID); err != nil {
 				return err
 			}
 		}
