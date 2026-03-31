@@ -4,7 +4,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Pull the schema (stable commit)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/e36ea787712df453c31e48aefdbf2ba8fd7897d5/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/59f3e4d2cd3148e6b218d4017cdaa2a3d42af24b/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
@@ -49,6 +49,11 @@ modify '.definitions.AlertRuleExport.properties.keepFiringFor = { "type" : "stri
 
 # "Unstructured" should truly be unstructured. Not an object with an "Object" property that allows anything.
 modify '.definitions.Unstructured.properties = {}'
+
+# SecretURL is a $ref to URL (a string). The indirection causes go-swagger to
+# non-deterministically generate validation methods due to map iteration order.
+# Inline it as a plain string to make generation deterministic.
+modify '.definitions.SecretURL = {"type": "string"}'
 
 # Write the schema to a file
 echo "${SCHEMA}" > "${SCRIPT_DIR}/schema.json"

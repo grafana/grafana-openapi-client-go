@@ -61,6 +61,9 @@ GetDataSourceCacheConfigParams contains all the parameters to send to the API en
 */
 type GetDataSourceCacheConfigParams struct {
 
+	// DataSourceType.
+	DataSourceType *string
+
 	// DataSourceUID.
 	DataSourceUID string
 
@@ -117,6 +120,17 @@ func (o *GetDataSourceCacheConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithDataSourceType adds the dataSourceType to the get data source cache config params
+func (o *GetDataSourceCacheConfigParams) WithDataSourceType(dataSourceType *string) *GetDataSourceCacheConfigParams {
+	o.SetDataSourceType(dataSourceType)
+	return o
+}
+
+// SetDataSourceType adds the dataSourceType to the get data source cache config params
+func (o *GetDataSourceCacheConfigParams) SetDataSourceType(dataSourceType *string) {
+	o.DataSourceType = dataSourceType
+}
+
 // WithDataSourceUID adds the dataSourceUID to the get data source cache config params
 func (o *GetDataSourceCacheConfigParams) WithDataSourceUID(dataSourceUID string) *GetDataSourceCacheConfigParams {
 	o.SetDataSourceUID(dataSourceUID)
@@ -135,6 +149,23 @@ func (o *GetDataSourceCacheConfigParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.DataSourceType != nil {
+
+		// query param dataSourceType
+		var qrDataSourceType string
+
+		if o.DataSourceType != nil {
+			qrDataSourceType = *o.DataSourceType
+		}
+		qDataSourceType := qrDataSourceType
+		if qDataSourceType != "" {
+
+			if err := r.SetQueryParam("dataSourceType", qDataSourceType); err != nil {
+				return err
+			}
+		}
+	}
 
 	// path param dataSourceUID
 	if err := r.SetPathParam("dataSourceUID", o.DataSourceUID); err != nil {

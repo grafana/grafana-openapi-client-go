@@ -70,9 +70,16 @@ type GetLibraryElementsParams struct {
 
 	/* FolderFilter.
 
-	   A comma separated list of folder ID(s) to filter the elements by.
+	     A comma separated list of folder ID(s) to filter the elements by.
+	Deprecated: Use FolderFilterUIDs instead.
 	*/
 	FolderFilter *string
+
+	/* FolderFilterUIDs.
+
+	   A comma separated list of folder UID(s) to filter the elements by.
+	*/
+	FolderFilterUIDs *string
 
 	/* Kind.
 
@@ -207,6 +214,17 @@ func (o *GetLibraryElementsParams) SetFolderFilter(folderFilter *string) {
 	o.FolderFilter = folderFilter
 }
 
+// WithFolderFilterUIDs adds the folderFilterUIDs to the get library elements params
+func (o *GetLibraryElementsParams) WithFolderFilterUIDs(folderFilterUIDs *string) *GetLibraryElementsParams {
+	o.SetFolderFilterUIDs(folderFilterUIDs)
+	return o
+}
+
+// SetFolderFilterUIDs adds the folderFilterUiDs to the get library elements params
+func (o *GetLibraryElementsParams) SetFolderFilterUIDs(folderFilterUIDs *string) {
+	o.FolderFilterUIDs = folderFilterUIDs
+}
+
 // WithKind adds the kind to the get library elements params
 func (o *GetLibraryElementsParams) WithKind(kind *int64) *GetLibraryElementsParams {
 	o.SetKind(kind)
@@ -310,6 +328,23 @@ func (o *GetLibraryElementsParams) WriteToRequest(r runtime.ClientRequest, reg s
 		if qFolderFilter != "" {
 
 			if err := r.SetQueryParam("folderFilter", qFolderFilter); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.FolderFilterUIDs != nil {
+
+		// query param folderFilterUIDs
+		var qrFolderFilterUIDs string
+
+		if o.FolderFilterUIDs != nil {
+			qrFolderFilterUIDs = *o.FolderFilterUIDs
+		}
+		qFolderFilterUIDs := qrFolderFilterUIDs
+		if qFolderFilterUIDs != "" {
+
+			if err := r.SetQueryParam("folderFilterUIDs", qFolderFilterUIDs); err != nil {
 				return err
 			}
 		}

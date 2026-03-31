@@ -33,7 +33,7 @@ type JSONWebKey struct {
 	Certificates []*Certificate `json:"Certificates"`
 
 	// certificates URL
-	CertificatesURL *URL `json:"CertificatesURL,omitempty"`
+	CertificatesURL URL `json:"CertificatesURL,omitempty"`
 
 	// Key is the Go in-memory representation of this key. It must have one
 	// of these types:
@@ -105,15 +105,13 @@ func (m *JSONWebKey) validateCertificatesURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.CertificatesURL != nil {
-		if err := m.CertificatesURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CertificatesURL")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("CertificatesURL")
-			}
-			return err
+	if err := m.CertificatesURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("CertificatesURL")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("CertificatesURL")
 		}
+		return err
 	}
 
 	return nil
@@ -164,20 +162,17 @@ func (m *JSONWebKey) contextValidateCertificates(ctx context.Context, formats st
 
 func (m *JSONWebKey) contextValidateCertificatesURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.CertificatesURL != nil {
+	if swag.IsZero(m.CertificatesURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.CertificatesURL) { // not required
-			return nil
+	if err := m.CertificatesURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("CertificatesURL")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("CertificatesURL")
 		}
-
-		if err := m.CertificatesURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CertificatesURL")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("CertificatesURL")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
