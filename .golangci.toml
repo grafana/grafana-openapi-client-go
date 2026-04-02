@@ -9,6 +9,7 @@ min-len = 5
 min-occurrences = 5
 
 [linters-settings.depguard.rules.main]
+files = ["!**/*_test.go"]
 allow = [
   "fmt", "strconv", "time", "net/http",
   "bytes", "io", "math",
