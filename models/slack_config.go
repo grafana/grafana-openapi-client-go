@@ -23,7 +23,7 @@ type SlackConfig struct {
 	Actions []*SlackAction `json:"actions"`
 
 	// api url
-	APIURL *SecretURL `json:"api_url,omitempty"`
+	APIURL SecretURL `json:"api_url,omitempty"`
 
 	// api url file
 	APIURLFile string `json:"api_url_file,omitempty"`
@@ -97,10 +97,6 @@ func (m *SlackConfig) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAPIURL(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateFields(formats); err != nil {
 		res = append(res, err)
 	}
@@ -136,25 +132,6 @@ func (m *SlackConfig) validateActions(formats strfmt.Registry) error {
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *SlackConfig) validateAPIURL(formats strfmt.Registry) error {
-	if swag.IsZero(m.APIURL) { // not required
-		return nil
-	}
-
-	if m.APIURL != nil {
-		if err := m.APIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("api_url")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -213,10 +190,6 @@ func (m *SlackConfig) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateAPIURL(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateFields(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -251,27 +224,6 @@ func (m *SlackConfig) contextValidateActions(ctx context.Context, formats strfmt
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *SlackConfig) contextValidateAPIURL(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.APIURL != nil {
-
-		if swag.IsZero(m.APIURL) { // not required
-			return nil
-		}
-
-		if err := m.APIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("api_url")
-			}
-			return err
-		}
 	}
 
 	return nil

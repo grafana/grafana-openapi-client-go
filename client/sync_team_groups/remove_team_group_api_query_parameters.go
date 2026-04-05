@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewRemoveTeamGroupAPIQueryParams creates a new RemoveTeamGroupAPIQueryParams object,
@@ -66,9 +65,7 @@ type RemoveTeamGroupAPIQueryParams struct {
 	GroupID *string
 
 	// TeamID.
-	//
-	// Format: int64
-	TeamID int64
+	TeamID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -135,13 +132,13 @@ func (o *RemoveTeamGroupAPIQueryParams) SetGroupID(groupID *string) {
 }
 
 // WithTeamID adds the teamID to the remove team group Api query params
-func (o *RemoveTeamGroupAPIQueryParams) WithTeamID(teamID int64) *RemoveTeamGroupAPIQueryParams {
+func (o *RemoveTeamGroupAPIQueryParams) WithTeamID(teamID string) *RemoveTeamGroupAPIQueryParams {
 	o.SetTeamID(teamID)
 	return o
 }
 
 // SetTeamID adds the teamId to the remove team group Api query params
-func (o *RemoveTeamGroupAPIQueryParams) SetTeamID(teamID int64) {
+func (o *RemoveTeamGroupAPIQueryParams) SetTeamID(teamID string) {
 	o.TeamID = teamID
 }
 
@@ -171,7 +168,7 @@ func (o *RemoveTeamGroupAPIQueryParams) WriteToRequest(r runtime.ClientRequest, 
 	}
 
 	// path param teamId
-	if err := r.SetPathParam("teamId", swag.FormatInt64(o.TeamID)); err != nil {
+	if err := r.SetPathParam("teamId", o.TeamID); err != nil {
 		return err
 	}
 

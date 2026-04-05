@@ -18,6 +18,9 @@ import (
 // swagger:model ReportOptions
 type ReportOptions struct {
 
+	// csv encoding
+	CSVEncoding string `json:"csvEncoding,omitempty"`
+
 	// layout
 	Layout string `json:"layout,omitempty"`
 

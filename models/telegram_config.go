@@ -19,7 +19,7 @@ import (
 type TelegramConfig struct {
 
 	// api url
-	APIURL *URL `json:"api_url,omitempty"`
+	APIURL URL `json:"api_url,omitempty"`
 
 	// chat
 	Chat int64 `json:"chat,omitempty"`
@@ -73,15 +73,13 @@ func (m *TelegramConfig) validateAPIURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.APIURL != nil {
-		if err := m.APIURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("api_url")
-			}
-			return err
+	if err := m.APIURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("api_url")
 		}
+		return err
 	}
 
 	return nil
@@ -147,20 +145,17 @@ func (m *TelegramConfig) ContextValidate(ctx context.Context, formats strfmt.Reg
 
 func (m *TelegramConfig) contextValidateAPIURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.APIURL != nil {
+	if swag.IsZero(m.APIURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.APIURL) { // not required
-			return nil
+	if err := m.APIURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("api_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("api_url")
 		}
-
-		if err := m.APIURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("api_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("api_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil

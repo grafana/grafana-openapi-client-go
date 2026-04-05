@@ -81,7 +81,7 @@ type OAuth2 struct {
 	ProxyFromEnvironment bool `json:"proxy_from_environment,omitempty"`
 
 	// proxy url
-	ProxyURL *URL `json:"proxy_url,omitempty"`
+	ProxyURL URL `json:"proxy_url,omitempty"`
 
 	// scopes
 	Scopes []string `json:"scopes"`
@@ -202,15 +202,13 @@ func (m *OAuth2) validateProxyURL(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.ProxyURL != nil {
-		if err := m.ProxyURL.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("proxy_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("proxy_url")
-			}
-			return err
+	if err := m.ProxyURL.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("proxy_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("proxy_url")
 		}
+		return err
 	}
 
 	return nil
@@ -323,20 +321,17 @@ func (m *OAuth2) contextValidateProxyConnectHeader(ctx context.Context, formats 
 
 func (m *OAuth2) contextValidateProxyURL(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.ProxyURL != nil {
+	if swag.IsZero(m.ProxyURL) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.ProxyURL) { // not required
-			return nil
+	if err := m.ProxyURL.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("proxy_url")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("proxy_url")
 		}
-
-		if err := m.ProxyURL.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("proxy_url")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("proxy_url")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil
