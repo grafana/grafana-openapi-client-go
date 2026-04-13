@@ -1,6 +1,6 @@
 module github.com/grafana/grafana-openapi-client-go
 
-go 1.20
+go 1.25
 
 require (
 	github.com/go-openapi/errors v0.22.2
