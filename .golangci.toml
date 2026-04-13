@@ -36,7 +36,6 @@ enable = [
   "misspell",
   "nakedret",
   "rowserrcheck",
-  "exportloopref",
   "staticcheck",
   "stylecheck",
   "typecheck",

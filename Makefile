@@ -37,9 +37,11 @@ generate-client: ${SWAGGER} pull-schema
 	$(CLIENT_GENERATION_ARGS)
 	go mod tidy
 
+GOLANGCI_LINT_VERSION := $(shell awk '/^golangci-lint / {print $$2}' .tool-versions)
+
 golangci-lint:
 	docker run \
 		--rm \
 		--volume "$(shell pwd):/src" \
 		--workdir "/src" \
-		golangci/golangci-lint:v1.55 golangci-lint run ./... -v
+		golangci/golangci-lint:v$(GOLANGCI_LINT_VERSION) golangci-lint run ./... -v
