@@ -11,7 +11,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetTeamGroupsAPIParams creates a new GetTeamGroupsAPIParams object,
@@ -60,9 +59,7 @@ GetTeamGroupsAPIParams contains all the parameters to send to the API endpoint
 type GetTeamGroupsAPIParams struct {
 
 	// TeamID.
-	//
-	// Format: int64
-	TeamID int64
+	TeamID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +115,13 @@ func (o *GetTeamGroupsAPIParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithTeamID adds the teamID to the get team groups Api params
-func (o *GetTeamGroupsAPIParams) WithTeamID(teamID int64) *GetTeamGroupsAPIParams {
+func (o *GetTeamGroupsAPIParams) WithTeamID(teamID string) *GetTeamGroupsAPIParams {
 	o.SetTeamID(teamID)
 	return o
 }
 
 // SetTeamID adds the teamId to the get team groups Api params
-func (o *GetTeamGroupsAPIParams) SetTeamID(teamID int64) {
+func (o *GetTeamGroupsAPIParams) SetTeamID(teamID string) {
 	o.TeamID = teamID
 }
 
@@ -137,7 +134,7 @@ func (o *GetTeamGroupsAPIParams) WriteToRequest(r runtime.ClientRequest, reg str
 	var res []error
 
 	// path param teamId
-	if err := r.SetPathParam("teamId", swag.FormatInt64(o.TeamID)); err != nil {
+	if err := r.SetPathParam("teamId", o.TeamID); err != nil {
 		return err
 	}
 

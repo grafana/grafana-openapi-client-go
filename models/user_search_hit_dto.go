@@ -22,6 +22,10 @@ type UserSearchHitDTO struct {
 	// avatar Url
 	AvatarURL string `json:"avatarUrl,omitempty"`
 
+	// created
+	// Format: date-time
+	Created strfmt.DateTime `json:"created,omitempty"`
+
 	// email
 	Email string `json:"email,omitempty"`
 
@@ -58,6 +62,10 @@ type UserSearchHitDTO struct {
 func (m *UserSearchHitDTO) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCreated(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLastSeenAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -65,6 +73,18 @@ func (m *UserSearchHitDTO) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UserSearchHitDTO) validateCreated(formats strfmt.Registry) error {
+	if swag.IsZero(m.Created) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("created", "body", "date-time", m.Created.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

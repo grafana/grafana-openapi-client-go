@@ -59,6 +59,14 @@ ListUserRolesParams contains all the parameters to send to the API endpoint
 */
 type ListUserRolesParams struct {
 
+	// IncludeHidden.
+	IncludeHidden *bool
+
+	// TargetOrgID.
+	//
+	// Format: int64
+	TargetOrgID *int64
+
 	// UserID.
 	//
 	// Format: int64
@@ -117,6 +125,28 @@ func (o *ListUserRolesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIncludeHidden adds the includeHidden to the list user roles params
+func (o *ListUserRolesParams) WithIncludeHidden(includeHidden *bool) *ListUserRolesParams {
+	o.SetIncludeHidden(includeHidden)
+	return o
+}
+
+// SetIncludeHidden adds the includeHidden to the list user roles params
+func (o *ListUserRolesParams) SetIncludeHidden(includeHidden *bool) {
+	o.IncludeHidden = includeHidden
+}
+
+// WithTargetOrgID adds the targetOrgID to the list user roles params
+func (o *ListUserRolesParams) WithTargetOrgID(targetOrgID *int64) *ListUserRolesParams {
+	o.SetTargetOrgID(targetOrgID)
+	return o
+}
+
+// SetTargetOrgID adds the targetOrgId to the list user roles params
+func (o *ListUserRolesParams) SetTargetOrgID(targetOrgID *int64) {
+	o.TargetOrgID = targetOrgID
+}
+
 // WithUserID adds the userID to the list user roles params
 func (o *ListUserRolesParams) WithUserID(userID int64) *ListUserRolesParams {
 	o.SetUserID(userID)
@@ -135,6 +165,40 @@ func (o *ListUserRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
+	if o.IncludeHidden != nil {
+
+		// query param includeHidden
+		var qrIncludeHidden bool
+
+		if o.IncludeHidden != nil {
+			qrIncludeHidden = *o.IncludeHidden
+		}
+		qIncludeHidden := swag.FormatBool(qrIncludeHidden)
+		if qIncludeHidden != "" {
+
+			if err := r.SetQueryParam("includeHidden", qIncludeHidden); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.TargetOrgID != nil {
+
+		// query param targetOrgId
+		var qrTargetOrgID int64
+
+		if o.TargetOrgID != nil {
+			qrTargetOrgID = *o.TargetOrgID
+		}
+		qTargetOrgID := swag.FormatInt64(qrTargetOrgID)
+		if qTargetOrgID != "" {
+
+			if err := r.SetQueryParam("targetOrgId", qTargetOrgID); err != nil {
+				return err
+			}
+		}
+	}
 
 	// path param userId
 	if err := r.SetPathParam("userId", swag.FormatInt64(o.UserID)); err != nil {

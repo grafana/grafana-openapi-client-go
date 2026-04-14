@@ -239,7 +239,7 @@ type Certificate struct {
 	SubjectKeyID []uint8 `json:"SubjectKeyId"`
 
 	// URIs
-	URIs []*URL `json:"URIs"`
+	URIs []URL `json:"URIs"`
 
 	// UnhandledCriticalExtensions contains a list of extension IDs that
 	// were not (fully) processed when parsing. Verify will fail if this
@@ -659,23 +659,18 @@ func (m *Certificate) validateURIs(formats strfmt.Registry) error {
 	}
 
 	for i := 0; i < len(m.URIs); i++ {
-		if swag.IsZero(m.URIs[i]) { // not required
-			continue
-		}
 
-		if m.URIs[i] != nil {
-			if err := m.URIs[i].Validate(formats); err != nil {
-				ve := new(errors.Validation)
-				if stderrors.As(err, &ve) {
-					return ve.ValidateName("URIs" + "." + strconv.Itoa(i))
-				}
-				ce := new(errors.CompositeError)
-				if stderrors.As(err, &ce) {
-					return ce.ValidateName("URIs" + "." + strconv.Itoa(i))
-				}
-
-				return err
+		if err := m.URIs[i].Validate(formats); err != nil {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
+				return ve.ValidateName("URIs" + "." + strconv.Itoa(i))
 			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
+				return ce.ValidateName("URIs" + "." + strconv.Itoa(i))
+			}
+
+			return err
 		}
 
 	}
@@ -1116,24 +1111,21 @@ func (m *Certificate) contextValidateURIs(ctx context.Context, formats strfmt.Re
 
 	for i := 0; i < len(m.URIs); i++ {
 
-		if m.URIs[i] != nil {
+		if swag.IsZero(m.URIs[i]) { // not required
+			return nil
+		}
 
-			if swag.IsZero(m.URIs[i]) { // not required
-				return nil
+		if err := m.URIs[i].ContextValidate(ctx, formats); err != nil {
+			ve := new(errors.Validation)
+			if stderrors.As(err, &ve) {
+				return ve.ValidateName("URIs" + "." + strconv.Itoa(i))
+			}
+			ce := new(errors.CompositeError)
+			if stderrors.As(err, &ce) {
+				return ce.ValidateName("URIs" + "." + strconv.Itoa(i))
 			}
 
-			if err := m.URIs[i].ContextValidate(ctx, formats); err != nil {
-				ve := new(errors.Validation)
-				if stderrors.As(err, &ve) {
-					return ve.ValidateName("URIs" + "." + strconv.Itoa(i))
-				}
-				ce := new(errors.CompositeError)
-				if stderrors.As(err, &ce) {
-					return ce.ValidateName("URIs" + "." + strconv.Itoa(i))
-				}
-
-				return err
-			}
+			return err
 		}
 
 	}

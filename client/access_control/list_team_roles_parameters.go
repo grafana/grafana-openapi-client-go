@@ -59,6 +59,11 @@ ListTeamRolesParams contains all the parameters to send to the API endpoint
 */
 type ListTeamRolesParams struct {
 
+	// TargetOrgID.
+	//
+	// Format: int64
+	TargetOrgID *int64
+
 	// TeamID.
 	//
 	// Format: int64
@@ -117,6 +122,17 @@ func (o *ListTeamRolesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithTargetOrgID adds the targetOrgID to the list team roles params
+func (o *ListTeamRolesParams) WithTargetOrgID(targetOrgID *int64) *ListTeamRolesParams {
+	o.SetTargetOrgID(targetOrgID)
+	return o
+}
+
+// SetTargetOrgID adds the targetOrgId to the list team roles params
+func (o *ListTeamRolesParams) SetTargetOrgID(targetOrgID *int64) {
+	o.TargetOrgID = targetOrgID
+}
+
 // WithTeamID adds the teamID to the list team roles params
 func (o *ListTeamRolesParams) WithTeamID(teamID int64) *ListTeamRolesParams {
 	o.SetTeamID(teamID)
@@ -135,6 +151,23 @@ func (o *ListTeamRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
+	if o.TargetOrgID != nil {
+
+		// query param targetOrgId
+		var qrTargetOrgID int64
+
+		if o.TargetOrgID != nil {
+			qrTargetOrgID = *o.TargetOrgID
+		}
+		qTargetOrgID := swag.FormatInt64(qrTargetOrgID)
+		if qTargetOrgID != "" {
+
+			if err := r.SetQueryParam("targetOrgId", qTargetOrgID); err != nil {
+				return err
+			}
+		}
+	}
 
 	// path param teamId
 	if err := r.SetPathParam("teamId", swag.FormatInt64(o.TeamID)); err != nil {

@@ -19,7 +19,7 @@ type NewAPIKeyResult struct {
 	ID int64 `json:"id,omitempty"`
 
 	// key
-	// Example: glsa_yscW25imSKJIuav8zF37RZmnbiDvB05G_fcaaf58a
+	// Example: glsa_iNValIdinValiDinvalidinvalidinva_5b582697
 	Key string `json:"key,omitempty"`
 
 	// name

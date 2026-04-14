@@ -23,6 +23,9 @@ type TeamGroupDTO struct {
 	// team Id
 	TeamID int64 `json:"teamId,omitempty"`
 
+	// team Uid
+	TeamUID string `json:"teamUid,omitempty"`
+
 	// uid
 	UID string `json:"uid,omitempty"`
 }

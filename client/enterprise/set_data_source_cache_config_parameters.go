@@ -63,6 +63,9 @@ type SetDataSourceCacheConfigParams struct {
 	// Body.
 	Body *models.CacheConfigSetter
 
+	// DataSourceType.
+	DataSourceType *string
+
 	// DataSourceUID.
 	DataSourceUID string
 
@@ -130,6 +133,17 @@ func (o *SetDataSourceCacheConfigParams) SetBody(body *models.CacheConfigSetter)
 	o.Body = body
 }
 
+// WithDataSourceType adds the dataSourceType to the set data source cache config params
+func (o *SetDataSourceCacheConfigParams) WithDataSourceType(dataSourceType *string) *SetDataSourceCacheConfigParams {
+	o.SetDataSourceType(dataSourceType)
+	return o
+}
+
+// SetDataSourceType adds the dataSourceType to the set data source cache config params
+func (o *SetDataSourceCacheConfigParams) SetDataSourceType(dataSourceType *string) {
+	o.DataSourceType = dataSourceType
+}
+
 // WithDataSourceUID adds the dataSourceUID to the set data source cache config params
 func (o *SetDataSourceCacheConfigParams) WithDataSourceUID(dataSourceUID string) *SetDataSourceCacheConfigParams {
 	o.SetDataSourceUID(dataSourceUID)
@@ -151,6 +165,23 @@ func (o *SetDataSourceCacheConfigParams) WriteToRequest(r runtime.ClientRequest,
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
+		}
+	}
+
+	if o.DataSourceType != nil {
+
+		// query param dataSourceType
+		var qrDataSourceType string
+
+		if o.DataSourceType != nil {
+			qrDataSourceType = *o.DataSourceType
+		}
+		qDataSourceType := qrDataSourceType
+		if qDataSourceType != "" {
+
+			if err := r.SetQueryParam("dataSourceType", qDataSourceType); err != nil {
+				return err
+			}
 		}
 	}
 

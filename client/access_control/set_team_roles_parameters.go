@@ -64,6 +64,11 @@ type SetTeamRolesParams struct {
 	// Body.
 	Body *models.SetTeamRolesCommand
 
+	// TargetOrgID.
+	//
+	// Format: int64
+	TargetOrgID *int64
+
 	// TeamID.
 	//
 	// Format: int64
@@ -133,6 +138,17 @@ func (o *SetTeamRolesParams) SetBody(body *models.SetTeamRolesCommand) {
 	o.Body = body
 }
 
+// WithTargetOrgID adds the targetOrgID to the set team roles params
+func (o *SetTeamRolesParams) WithTargetOrgID(targetOrgID *int64) *SetTeamRolesParams {
+	o.SetTargetOrgID(targetOrgID)
+	return o
+}
+
+// SetTargetOrgID adds the targetOrgId to the set team roles params
+func (o *SetTeamRolesParams) SetTargetOrgID(targetOrgID *int64) {
+	o.TargetOrgID = targetOrgID
+}
+
 // WithTeamID adds the teamID to the set team roles params
 func (o *SetTeamRolesParams) WithTeamID(teamID int64) *SetTeamRolesParams {
 	o.SetTeamID(teamID)
@@ -154,6 +170,23 @@ func (o *SetTeamRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
+		}
+	}
+
+	if o.TargetOrgID != nil {
+
+		// query param targetOrgId
+		var qrTargetOrgID int64
+
+		if o.TargetOrgID != nil {
+			qrTargetOrgID = *o.TargetOrgID
+		}
+		qTargetOrgID := swag.FormatInt64(qrTargetOrgID)
+		if qTargetOrgID != "" {
+
+			if err := r.SetQueryParam("targetOrgId", qTargetOrgID); err != nil {
+				return err
+			}
 		}
 	}
 
