@@ -14,6 +14,9 @@ import (
 // swagger:model healthResponse
 type HealthResponse struct {
 
+	// apiserver
+	Apiserver string `json:"apiserver,omitempty"`
+
 	// commit
 	Commit string `json:"commit,omitempty"`
 

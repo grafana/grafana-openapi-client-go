@@ -6,7 +6,6 @@ import (
 	"context"
 	"encoding/json"
 	stderrors "errors"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -18,9 +17,6 @@ import (
 //
 // swagger:model PatchPrefsCmd
 type PatchPrefsCmd struct {
-
-	// cookies
-	Cookies []CookieType `json:"cookies"`
 
 	// The numerical :id of a favorited dashboard
 	HomeDashboardID int64 `json:"homeDashboardId,omitempty"`
@@ -44,8 +40,7 @@ type PatchPrefsCmd struct {
 	// Enum: ["light","dark"]
 	Theme string `json:"theme,omitempty"`
 
-	// timezone
-	// Enum: ["utc","browser"]
+	// Any IANA timezone string (e.g. America/New_York), 'utc', 'browser', or empty string
 	Timezone string `json:"timezone,omitempty"`
 
 	// week start
@@ -55,10 +50,6 @@ type PatchPrefsCmd struct {
 // Validate validates this patch prefs cmd
 func (m *PatchPrefsCmd) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateCookies(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateNavbar(formats); err != nil {
 		res = append(res, err)
@@ -72,38 +63,9 @@ func (m *PatchPrefsCmd) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateTimezone(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *PatchPrefsCmd) validateCookies(formats strfmt.Registry) error {
-	if swag.IsZero(m.Cookies) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Cookies); i++ {
-
-		if err := m.Cookies[i].Validate(formats); err != nil {
-			ve := new(errors.Validation)
-			if stderrors.As(err, &ve) {
-				return ve.ValidateName("cookies" + "." + strconv.Itoa(i))
-			}
-			ce := new(errors.CompositeError)
-			if stderrors.As(err, &ce) {
-				return ce.ValidateName("cookies" + "." + strconv.Itoa(i))
-			}
-
-			return err
-		}
-
-	}
-
 	return nil
 }
 
@@ -195,55 +157,9 @@ func (m *PatchPrefsCmd) validateTheme(formats strfmt.Registry) error {
 	return nil
 }
 
-var patchPrefsCmdTypeTimezonePropEnum []any
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["utc","browser"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		patchPrefsCmdTypeTimezonePropEnum = append(patchPrefsCmdTypeTimezonePropEnum, v)
-	}
-}
-
-const (
-
-	// PatchPrefsCmdTimezoneUtc captures enum value "utc"
-	PatchPrefsCmdTimezoneUtc string = "utc"
-
-	// PatchPrefsCmdTimezoneBrowser captures enum value "browser"
-	PatchPrefsCmdTimezoneBrowser string = "browser"
-)
-
-// prop value enum
-func (m *PatchPrefsCmd) validateTimezoneEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, patchPrefsCmdTypeTimezonePropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *PatchPrefsCmd) validateTimezone(formats strfmt.Registry) error {
-	if swag.IsZero(m.Timezone) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateTimezoneEnum("timezone", "body", m.Timezone); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // ContextValidate validate this patch prefs cmd based on the context it is used
 func (m *PatchPrefsCmd) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.contextValidateCookies(ctx, formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.contextValidateNavbar(ctx, formats); err != nil {
 		res = append(res, err)
@@ -256,32 +172,6 @@ func (m *PatchPrefsCmd) ContextValidate(ctx context.Context, formats strfmt.Regi
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *PatchPrefsCmd) contextValidateCookies(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Cookies); i++ {
-
-		if swag.IsZero(m.Cookies[i]) { // not required
-			return nil
-		}
-
-		if err := m.Cookies[i].ContextValidate(ctx, formats); err != nil {
-			ve := new(errors.Validation)
-			if stderrors.As(err, &ve) {
-				return ve.ValidateName("cookies" + "." + strconv.Itoa(i))
-			}
-			ce := new(errors.CompositeError)
-			if stderrors.As(err, &ce) {
-				return ce.ValidateName("cookies" + "." + strconv.Itoa(i))
-			}
-
-			return err
-		}
-
-	}
-
 	return nil
 }
 

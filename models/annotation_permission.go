@@ -18,9 +18,6 @@ type AnnotationPermission struct {
 
 	// dashboard
 	Dashboard *AnnotationActions `json:"dashboard,omitempty"`
-
-	// organization
-	Organization *AnnotationActions `json:"organization,omitempty"`
 }
 
 // Validate validates this annotation permission
@@ -28,10 +25,6 @@ func (m *AnnotationPermission) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDashboard(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOrganization(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -64,38 +57,11 @@ func (m *AnnotationPermission) validateDashboard(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *AnnotationPermission) validateOrganization(formats strfmt.Registry) error {
-	if swag.IsZero(m.Organization) { // not required
-		return nil
-	}
-
-	if m.Organization != nil {
-		if err := m.Organization.Validate(formats); err != nil {
-			ve := new(errors.Validation)
-			if stderrors.As(err, &ve) {
-				return ve.ValidateName("organization")
-			}
-			ce := new(errors.CompositeError)
-			if stderrors.As(err, &ce) {
-				return ce.ValidateName("organization")
-			}
-
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this annotation permission based on the context it is used
 func (m *AnnotationPermission) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateDashboard(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateOrganization(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -121,31 +87,6 @@ func (m *AnnotationPermission) contextValidateDashboard(ctx context.Context, for
 			ce := new(errors.CompositeError)
 			if stderrors.As(err, &ce) {
 				return ce.ValidateName("dashboard")
-			}
-
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *AnnotationPermission) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Organization != nil {
-
-		if swag.IsZero(m.Organization) { // not required
-			return nil
-		}
-
-		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
-			ve := new(errors.Validation)
-			if stderrors.As(err, &ve) {
-				return ve.ValidateName("organization")
-			}
-			ce := new(errors.CompositeError)
-			if stderrors.As(err, &ce) {
-				return ce.ValidateName("organization")
 			}
 
 			return err

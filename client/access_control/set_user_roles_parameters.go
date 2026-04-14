@@ -64,6 +64,11 @@ type SetUserRolesParams struct {
 	// Body.
 	Body *models.SetUserRolesCommand
 
+	// TargetOrgID.
+	//
+	// Format: int64
+	TargetOrgID *int64
+
 	// UserID.
 	//
 	// Format: int64
@@ -133,6 +138,17 @@ func (o *SetUserRolesParams) SetBody(body *models.SetUserRolesCommand) {
 	o.Body = body
 }
 
+// WithTargetOrgID adds the targetOrgID to the set user roles params
+func (o *SetUserRolesParams) WithTargetOrgID(targetOrgID *int64) *SetUserRolesParams {
+	o.SetTargetOrgID(targetOrgID)
+	return o
+}
+
+// SetTargetOrgID adds the targetOrgId to the set user roles params
+func (o *SetUserRolesParams) SetTargetOrgID(targetOrgID *int64) {
+	o.TargetOrgID = targetOrgID
+}
+
 // WithUserID adds the userID to the set user roles params
 func (o *SetUserRolesParams) WithUserID(userID int64) *SetUserRolesParams {
 	o.SetUserID(userID)
@@ -154,6 +170,23 @@ func (o *SetUserRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
+		}
+	}
+
+	if o.TargetOrgID != nil {
+
+		// query param targetOrgId
+		var qrTargetOrgID int64
+
+		if o.TargetOrgID != nil {
+			qrTargetOrgID = *o.TargetOrgID
+		}
+		qTargetOrgID := swag.FormatInt64(qrTargetOrgID)
+		if qTargetOrgID != "" {
+
+			if err := r.SetQueryParam("targetOrgId", qTargetOrgID); err != nil {
+				return err
+			}
 		}
 	}
 

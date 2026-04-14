@@ -5,6 +5,7 @@ package models
 import (
 	"context"
 	stderrors "errors"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -22,14 +23,29 @@ type ReportSettings struct {
 	// embedded image theme
 	EmbeddedImageTheme string `json:"embeddedImageTheme,omitempty"`
 
+	// footer font family
+	FooterFontFamily string `json:"footerFontFamily,omitempty"`
+
+	// footer items
+	FooterItems []*FooterItem `json:"footerItems"`
+
 	// id
 	ID int64 `json:"id,omitempty"`
 
 	// org Id
 	OrgID int64 `json:"orgId,omitempty"`
 
+	// pdf dashboard title enabled
+	PDFDashboardTitleEnabled bool `json:"pdfDashboardTitleEnabled,omitempty"`
+
+	// pdf header enabled
+	PDFHeaderEnabled bool `json:"pdfHeaderEnabled,omitempty"`
+
 	// pdf theme
 	PDFTheme string `json:"pdfTheme,omitempty"`
+
+	// pdf time range enabled
+	PDFTimeRangeEnabled bool `json:"pdfTimeRangeEnabled,omitempty"`
 
 	// user Id
 	UserID int64 `json:"userId,omitempty"`
@@ -40,6 +56,10 @@ func (m *ReportSettings) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBranding(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFooterItems(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -72,11 +92,45 @@ func (m *ReportSettings) validateBranding(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ReportSettings) validateFooterItems(formats strfmt.Registry) error {
+	if swag.IsZero(m.FooterItems) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.FooterItems); i++ {
+		if swag.IsZero(m.FooterItems[i]) { // not required
+			continue
+		}
+
+		if m.FooterItems[i] != nil {
+			if err := m.FooterItems[i].Validate(formats); err != nil {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
+					return ve.ValidateName("footerItems" + "." + strconv.Itoa(i))
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
+					return ce.ValidateName("footerItems" + "." + strconv.Itoa(i))
+				}
+
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this report settings based on the context it is used
 func (m *ReportSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateBranding(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFooterItems(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,6 +160,35 @@ func (m *ReportSettings) contextValidateBranding(ctx context.Context, formats st
 
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ReportSettings) contextValidateFooterItems(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.FooterItems); i++ {
+
+		if m.FooterItems[i] != nil {
+
+			if swag.IsZero(m.FooterItems[i]) { // not required
+				return nil
+			}
+
+			if err := m.FooterItems[i].ContextValidate(ctx, formats); err != nil {
+				ve := new(errors.Validation)
+				if stderrors.As(err, &ve) {
+					return ve.ValidateName("footerItems" + "." + strconv.Itoa(i))
+				}
+				ce := new(errors.CompositeError)
+				if stderrors.As(err, &ce) {
+					return ce.ValidateName("footerItems" + "." + strconv.Itoa(i))
+				}
+
+				return err
+			}
+		}
+
 	}
 
 	return nil

@@ -11,7 +11,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/grafana/grafana-openapi-client-go/models"
 )
@@ -65,9 +64,7 @@ type AddTeamGroupAPIParams struct {
 	Body *models.TeamGroupMapping
 
 	// TeamID.
-	//
-	// Format: int64
-	TeamID int64
+	TeamID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -134,13 +131,13 @@ func (o *AddTeamGroupAPIParams) SetBody(body *models.TeamGroupMapping) {
 }
 
 // WithTeamID adds the teamID to the add team group Api params
-func (o *AddTeamGroupAPIParams) WithTeamID(teamID int64) *AddTeamGroupAPIParams {
+func (o *AddTeamGroupAPIParams) WithTeamID(teamID string) *AddTeamGroupAPIParams {
 	o.SetTeamID(teamID)
 	return o
 }
 
 // SetTeamID adds the teamId to the add team group Api params
-func (o *AddTeamGroupAPIParams) SetTeamID(teamID int64) {
+func (o *AddTeamGroupAPIParams) SetTeamID(teamID string) {
 	o.TeamID = teamID
 }
 
@@ -158,7 +155,7 @@ func (o *AddTeamGroupAPIParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	}
 
 	// path param teamId
-	if err := r.SetPathParam("teamId", swag.FormatInt64(o.TeamID)); err != nil {
+	if err := r.SetPathParam("teamId", o.TeamID); err != nil {
 		return err
 	}
 

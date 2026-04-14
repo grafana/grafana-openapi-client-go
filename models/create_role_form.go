@@ -40,9 +40,6 @@ type CreateRoleForm struct {
 
 	// uid
 	UID string `json:"uid,omitempty"`
-
-	// version
-	Version int64 `json:"version,omitempty"`
 }
 
 // Validate validates this create role form

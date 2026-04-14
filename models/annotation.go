@@ -70,6 +70,9 @@ type Annotation struct {
 
 	// user Id
 	UserID int64 `json:"userId,omitempty"`
+
+	// user UID
+	UserUID string `json:"userUID,omitempty"`
 }
 
 // Validate validates this annotation

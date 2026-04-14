@@ -41,9 +41,6 @@ type UpdateRoleCommand struct {
 
 	// permissions
 	Permissions []*Permission `json:"permissions"`
-
-	// version
-	Version int64 `json:"version,omitempty"`
 }
 
 // Validate validates this update role command
