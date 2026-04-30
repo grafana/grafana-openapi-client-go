@@ -3,8 +3,11 @@
 # https://stackoverflow.com/a/246128
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+# Release commit for v13.0.0
+GRAFANA_REPO_SHA_COMMIT="e9de482b5110e6e7310a18274c53a0d7d0eee6af"
+
 # Pull the schema (stable commit)
-SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/e36ea787712df453c31e48aefdbf2ba8fd7897d5/public/api-merged.json)"
+SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/${GRAFANA_REPO_SHA_COMMIT}/public/api-merged.json)"
 
 # Custom extensions: https://goswagger.io/use/models/schemas.html#custom-extensions
 # These may have to be updated for future versions of Grafana
@@ -31,6 +34,11 @@ modify '.definitions.ReportSchedule.properties.endDate["x-nullable"] = true'
 # UpdateServiceAccountForm.isDisabled must be nullable
 # https://github.com/grafana/grafana-operator/pull/1907
 modify '.definitions.UpdateServiceAccountForm.properties.isDisabled["x-nullable"] = true'
+
+# Fix: prevent fields set to 'false' from being omitted when serializing the struct
+modify '.definitions.PublicDashboardDTO.properties.isEnabled["x-nullable"] = true'
+modify '.definitions.PublicDashboardDTO.properties.annotationsEnabled["x-nullable"] = true'
+modify '.definitions.PublicDashboardDTO.properties.timeSelectionEnabled["x-nullable"] = true'
 
 # Remap field time_intervals of MuteTimeInterval and TimeInterval from TimeInterval (collision) to an equivalent model TimeIntervalItem.
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'

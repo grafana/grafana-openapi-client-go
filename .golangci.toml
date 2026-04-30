@@ -1,48 +1,74 @@
-[run]
-timeout = "10m"
+version = '2'
 
-[linters-settings.golint]
-min-confidence = 3
+[linters]
+default = 'none'
+enable = [
+  'bodyclose',
+  'depguard',
+  'dogsled',
+  'errcheck',
+  'gochecknoinits',
+  'goconst',
+  'gocritic',
+  'gocyclo',
+  'goprintffuncname',
+  'gosec',
+  'govet',
+  'ineffassign',
+  'misspell',
+  'nakedret',
+  'rowserrcheck',
+  'staticcheck',
+  'unconvert',
+  'unparam',
+  'unused',
+  'whitespace'
+]
 
-[linters-settings.goconst]
+[linters.settings]
+[linters.settings.depguard]
+[linters.settings.depguard.rules]
+[linters.settings.depguard.rules.main]
+allow = [
+  'fmt',
+  'strconv',
+  'time',
+  'net/http',
+  'bytes',
+  'io',
+  'math',
+  'github.com/go-openapi/runtime',
+  'github.com/grafana/grafana-openapi-client-go/pkg/errors',
+  'github.com/grafana/grafana-openapi-client-go/pkg/transport'
+]
+
+[linters.settings.goconst]
 min-len = 5
 min-occurrences = 5
 
-[linters-settings.depguard.rules.main]
-allow = [
-  "fmt", "strconv", "time", "net/http",
-  "bytes", "io", "math",
-  "github.com/go-openapi/runtime",
-  "github.com/grafana/grafana-openapi-client-go/pkg/errors",
-  "github.com/grafana/grafana-openapi-client-go/pkg/transport"
+[linters.exclusions]
+generated = 'lax'
+presets = [
+  'comments',
+  'common-false-positives',
+  'legacy',
+  'std-error-handling'
+]
+paths = [
+  'third_party$',
+  'builtin$',
+  'examples$'
 ]
 
-[linters]
-disable-all = true
+[formatters]
 enable = [
-  "bodyclose",
-  "depguard",
-  "dogsled",
-  "errcheck",
-  "gochecknoinits",
-  "goconst",
-  "gocritic",
-  "goimports",
-  "goprintffuncname",
-  "gosec",
-  "gosimple",
-  "govet",
-  "ineffassign",
-  "misspell",
-  "nakedret",
-  "rowserrcheck",
-  "exportloopref",
-  "staticcheck",
-  "stylecheck",
-  "typecheck",
-  "unconvert",
-  "unused",
-  "whitespace",
-  "gocyclo",
-  "unparam",
+  'goimports'
+]
+
+[formatters.exclusions]
+generated = 'lax'
+paths = [
+  'third_party$',
+  'builtin$',
+  'examples$'
 ]
