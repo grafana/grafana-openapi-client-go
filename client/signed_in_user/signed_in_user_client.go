@@ -444,6 +444,8 @@ func (a *Client) RevokeUserAuthTokenWithParams(params *RevokeUserAuthTokenParams
 StarDashboardByUID stars a dashboard
 
 Stars the given Dashboard for the actual user.
+
+Use: PUT /apis/collections.grafana.app/v1alpha1/namespaces/{namespace}/stars/{name}/update/{group}/{kind}/{id}
 */
 func (a *Client) StarDashboardByUID(dashboardUID string, opts ...ClientOption) (*StarDashboardByUIDOK, error) {
 	params := NewStarDashboardByUIDParams().WithDashboardUID(dashboardUID)
@@ -490,6 +492,8 @@ func (a *Client) StarDashboardByUIDWithParams(params *StarDashboardByUIDParams, 
 UnstarDashboardByUID unstars a dashboard
 
 Deletes the starring of the given Dashboard for the actual user.
+
+Use: DELETE /apis/collections.grafana.app/v1alpha1/namespaces/{namespace}/stars/{name}/update/{group}/{kind}/{id}
 */
 func (a *Client) UnstarDashboardByUID(dashboardUID string, opts ...ClientOption) (*UnstarDashboardByUIDOK, error) {
 	params := NewUnstarDashboardByUIDParams().WithDashboardUID(dashboardUID)
