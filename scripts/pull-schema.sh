@@ -3,8 +3,8 @@
 # https://stackoverflow.com/a/246128
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-# Release commit for v13.0.0
-GRAFANA_REPO_SHA_COMMIT="e9de482b5110e6e7310a18274c53a0d7d0eee6af"
+# Release commit for v13.2.1
+GRAFANA_REPO_SHA_COMMIT="0e637ace5b37950a3f62f5a7536055e7c3b89353"
 
 # Pull the schema (stable commit)
 SCHEMA="$(curl -s -L https://raw.githubusercontent.com/grafana/grafana/${GRAFANA_REPO_SHA_COMMIT}/public/api-merged.json)"
