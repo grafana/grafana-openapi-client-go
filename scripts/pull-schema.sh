@@ -40,6 +40,13 @@ modify '.definitions.PublicDashboardDTO.properties.isEnabled["x-nullable"] = tru
 modify '.definitions.PublicDashboardDTO.properties.annotationsEnabled["x-nullable"] = true'
 modify '.definitions.PublicDashboardDTO.properties.timeSelectionEnabled["x-nullable"] = true'
 
+# CacheConfigSetter.enabled and useDefaultTTL must be nullable, otherwise "false"
+# values are dropped by omitempty and can never be sent to disable caching or
+# override the default TTL.
+# https://github.com/grafana/grafana-operator/issues/<TODO-fill-in-issue-number>
+modify '.definitions.CacheConfigSetter.properties.enabled["x-nullable"] = true'
+modify '.definitions.CacheConfigSetter.properties.useDefaultTTL["x-nullable"] = true'
+
 # Remap field time_intervals of MuteTimeInterval and TimeInterval from TimeInterval (collision) to an equivalent model TimeIntervalItem.
 modify '.definitions.TimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
 modify '.definitions.MuteTimeInterval.properties.time_intervals.items["$ref"] = "#/definitions/TimeIntervalItem"'
