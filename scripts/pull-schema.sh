@@ -43,7 +43,7 @@ modify '.definitions.PublicDashboardDTO.properties.timeSelectionEnabled["x-nulla
 # CacheConfigSetter.enabled and useDefaultTTL must be nullable, otherwise "false"
 # values are dropped by omitempty and can never be sent to disable caching or
 # override the default TTL.
-# https://github.com/grafana/grafana-operator/issues/<TODO-fill-in-issue-number>
+# https://github.com/grafana/grafana-operator/issues/2923
 modify '.definitions.CacheConfigSetter.properties.enabled["x-nullable"] = true'
 modify '.definitions.CacheConfigSetter.properties.useDefaultTTL["x-nullable"] = true'
 
